@@ -16,13 +16,16 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 
 ## Architecture & SLM Benchmark (`bench/`)
 - **Benchmark directory**: `bench/` contains the harness, setup, judge, and performance benchmarking for mobile-oriented SLMs (≤1.2B) in GGUF Q4_K_M via `llama.cpp`.
-- **Model storage**: Downloaded GGUF weights reside outside the repo at `~/models-poc/` (never committed). llama.cpp builds in `~/llama.cpp/`.
-- **Tier 1 Models**: Qwen 3.5 0.8B (Gated DeltaNet hybrid), Qwen 3 0.6B (Baseline), Gemma 3 1B IT, Liquid LFM2 1.2B RAG, Liquid LFM2.5 350M, Meta Llama 3.2 1B (Control).
-- **Core Findings on Tool-Calling vs Classic RAG**:
-  - Direct SLM-driven tool-calling in models ≤1B is NOT viable for production offline voice on Galaxy S21/S24+ (double inference round-trip exceeds 10s budget, 4 of 6 models do not support/ignore native tool schemas in PT-BR, grammar parsing fails on multi-turn).
-  - Recommended mobile architecture: **Classic RAG with deterministic external heuristic trigger** (keyword/intent classifier before SLM) + single inference turn.
-  - Recommended model: **Liquid LFM2 1.2B RAG** (highest factual accuracy 3.30/5, 40% gate pass, 5.1s latency) or **Gemma 3 1B IT** (highest PT fluency 4.50/5, 3.4s latency).
-- **Commands**: `make -C bench all` runs setup, perf, bench, and judge. Quick smoke: `python3 bench/harness.py --models qwen3.5-0.8b --mode both --limit 2`.
+- **Model storage**: Downloaded GGUF weights reside outside the repo at `~/models-poc/` (never committed). llama.cpp builds in `~/llama.cpp/` (CPU) and `~/llama.cpp/build-cuda` (GPU sm_120).
+- **Evaluated Models**: Qwen 3.5 0.8B (Gated DeltaNet hybrid), Qwen 3 0.6B (Baseline), Gemma 3 1B IT, Liquid LFM2 1.2B RAG, Liquid LFM2.5 1.2B Instruct, Liquid LFM2.5 1.2B Thinking, Liquid LFM2.5 350M, Meta Llama 3.2 1B (Control).
+- **Modes**: Classic-Raw (BM25 com pergunta bruta), Mode C (`query_rewrite_inject`: Turno 1 reescreve query curta + Turno 2 sintetiza com chunks injetados), Tool-Calling (JSON/Pythonic), topk2 (variante top-2 chunks).
+- **Core Findings (v2 Benchmark)**:
+  - **Abismo Lexical**: Pergunta bruta de operário recupera o chunk correto em apenas 20.8% das buscas; Modo C eleva para 28.7%; teto oracle com termos técnicos curados é 72.3%.
+  - **Fine-Tuning Cirúrgico no Turno 1**: O modelo já faz boa síntese se o chunk estiver presente; o fine-tuning (LoRA 500-1000 pares) é estritamente justificado no Turno 1 (converter fala de campo em termos técnicos de NR) para saltar de 28.7% para ~70% de recall.
+  - **Variante Top-2 Chunks**: Reduz o prompt de ~1420 para ~820 tokens, acelerando a inferência em ~30% (5.0s no LFM2.5 Instruct) sem perda de acerto factual, viabilizando o teto de 10s de voz no Galaxy S24+/S21.
+  - **Vencedores v2**: **Liquid LFM2.5 1.2B Instruct** (mais rápido, 5.0s no topk2, maior recall de reescrita 28.7%) e **Liquid LFM2 1.2B RAG** (maior acerto factual). LFM2.5 Thinking é inviável (15-16s de latência, reflexão em inglês destrói a reescrita).
+- **Judge Automatizado**: vLLM em `http://10.100.0.111:8005/v1` (`Qwen/Qwen3.8-27B-FP8`) com 8 workers. Amostra de calibração de 50 itens contra `claude -p` com 98% de concordância $\pm 1$.
+- **Commands**: `make -C bench all-v2` runs harness v2 and judge v2. Quick smoke: `python3 bench/harness.py --models qwen3.5-0.8b --mode all_three --limit 2`.
 - **On-Device Benchmark (`bench/device/`)**:
   - Build script: `./bench/device/build-android.sh` builds static `llama-bench` and `llama-cli` with `-march=armv8.4-a+dotprod+i8mm+fp16 -DGGML_CPU_KLEIDIAI=ON -DBUILD_SHARED_LIBS=OFF`.
   - Runner: `./bench/device/run-device-bench.sh` runs benchmarks via ADB on Galaxy S24+ (`SM-S926B`, Exynos 2400).
