@@ -23,6 +23,12 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   - Recommended mobile architecture: **Classic RAG with deterministic external heuristic trigger** (keyword/intent classifier before SLM) + single inference turn.
   - Recommended model: **Liquid LFM2 1.2B RAG** (highest factual accuracy 3.30/5, 40% gate pass, 5.1s latency) or **Gemma 3 1B IT** (highest PT fluency 4.50/5, 3.4s latency).
 - **Commands**: `make -C bench all` runs setup, perf, bench, and judge. Quick smoke: `python3 bench/harness.py --models qwen3.5-0.8b --mode both --limit 2`.
+- **On-Device Benchmark (`bench/device/`)**:
+  - Build script: `./bench/device/build-android.sh` builds static `llama-bench` and `llama-cli` with `-march=armv8.4-a+dotprod+i8mm+fp16 -DGGML_CPU_KLEIDIAI=ON -DBUILD_SHARED_LIBS=OFF`.
+  - Runner: `./bench/device/run-device-bench.sh` runs benchmarks via ADB on Galaxy S24+ (`SM-S926B`, Exynos 2400).
+  - Thread tuning: Use 6 threads (`-t 6`) to pin to the 6 Cortex-X4 / A720 performance cores; spilling into the 4 Cortex-A520 efficiency cores degrades prefill by >30%.
+  - CLI non-interactive flag: Always run `llama-cli` with `--single-turn < /dev/null` on ADB shell to avoid infinite prompt loops.
+  - S24+ latency findings: With 1500 tokens prefill + 100 tokens decode, only Liquid LFM2.5 350M (5.07s) meets the ≤10s voice latency budget on S24+; models ≥0.6B require restricting RAG context to ≤800 tokens to fit. On S21, context must be ≤300–500 tokens.
 
 ## Architecture & ASR Offline Benchmark (`asr/`)
 - **ASR directory**: `asr/` contains test data generation, evaluation harness, and benchmark results for offline Brazilian Portuguese ASR targeting electrical utility field workers.

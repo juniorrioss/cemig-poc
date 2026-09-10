@@ -1,0 +1,344 @@
+[
+  {
+    "alias": "qwen3-0.6b",
+    "name": "Qwen 3 0.6B Instruct (Baseline)",
+    "params": "0.6B",
+    "filename": "qwen3-0.6b-q4_k_m.gguf",
+    "file_size_bytes": 396705472,
+    "file_size_mib": 378.33,
+    "threads": 6,
+    "repetitions": 3,
+    "prompt_tokens": 1500,
+    "gen_tokens": 128,
+    "screen_wake_state": "Awake",
+    "prefill_tok_per_sec": 143.65,
+    "prefill_stddev": 1.39,
+    "prefill_samples": [
+      144.34,
+      144.569,
+      142.048
+    ],
+    "decode_tok_per_sec": 38.24,
+    "decode_stddev": 3.53,
+    "decode_samples": [
+      42.1067,
+      37.3923,
+      35.2089
+    ],
+    "peak_ram_mib": 989.22,
+    "cold_load_sec": 14.606,
+    "bench_wall_time_sec": 56.68,
+    "temperatures": {
+      "ap_before_c": 49.2,
+      "ap_after_c": 61.3,
+      "delta_ap_c": 12.1,
+      "bat_before_c": 44.0,
+      "bat_after_c": 44.8,
+      "delta_bat_c": 0.8,
+      "skin_before_c": 43.2,
+      "skin_after_c": 44.9,
+      "delta_skin_c": 1.7
+    },
+    "sanity": {
+      "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+      "response": "[Start thinking] Okay, the user is asking about the essential personal protection equipment (PPE) for work at height according to the NR-35 standard. Let me start by recalling what the NR-35 refers to. It's a standard for construction safety, right? So, the question is about the PPE",
+      "cli_prompt_ts": 51.9,
+      "cli_gen_ts": 23.3
+    },
+    "latency_budget": {
+      "target_budget_sec": 10.0,
+      "s24_total_sec": 13.06,
+      "s24_prefill_sec": 10.44,
+      "s24_decode_sec": 2.62,
+      "s24_fits_budget": false,
+      "s21_projection_factor": 2.25,
+      "s21_total_sec_proj": 29.38,
+      "s21_fits_budget_proj": false
+    }
+  },
+  {
+    "alias": "qwen3.5-0.8b",
+    "name": "Qwen 3.5 0.8B (Gated DeltaNet)",
+    "params": "0.8B",
+    "filename": "qwen3.5-0.8b-q4_k_m.gguf",
+    "file_size_bytes": 532517120,
+    "file_size_mib": 507.85,
+    "threads": 6,
+    "repetitions": 3,
+    "prompt_tokens": 1500,
+    "gen_tokens": 128,
+    "screen_wake_state": "Awake",
+    "prefill_tok_per_sec": 141.89,
+    "prefill_stddev": 0.48,
+    "prefill_samples": [
+      141.852,
+      142.396,
+      141.434
+    ],
+    "decode_tok_per_sec": 27.64,
+    "decode_stddev": 1.63,
+    "decode_samples": [
+      25.7636,
+      28.6518,
+      28.5161
+    ],
+    "peak_ram_mib": 1166.98,
+    "cold_load_sec": 18.494,
+    "bench_wall_time_sec": 65.18,
+    "temperatures": {
+      "ap_before_c": 58.8,
+      "ap_after_c": 59.7,
+      "delta_ap_c": 0.9,
+      "bat_before_c": 44.9,
+      "bat_after_c": 45.9,
+      "delta_bat_c": 1.0,
+      "skin_before_c": 45.1,
+      "skin_after_c": 45.8,
+      "delta_skin_c": 0.7
+    },
+    "sanity": {
+      "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+      "response": "[Start thinking] Thinking Process: 1.  **Analyze the Request:** *   Topic: Essential Personal Protective Equipment (PPE) for work at height. *   Reference: NR-35 (National Standard for Construction and Civil Engineering - specifically, the Brazilian National Standard for Construction and Civil Engineering, often",
+      "cli_prompt_ts": 30.9,
+      "cli_gen_ts": 11.9
+    },
+    "latency_budget": {
+      "target_budget_sec": 10.0,
+      "s24_total_sec": 14.19,
+      "s24_prefill_sec": 10.57,
+      "s24_decode_sec": 3.62,
+      "s24_fits_budget": false,
+      "s21_projection_factor": 2.25,
+      "s21_total_sec_proj": 31.92,
+      "s21_fits_budget_proj": false
+    }
+  },
+  {
+    "alias": "gemma-3-1b-it",
+    "name": "Gemma 3 1B IT",
+    "params": "1.0B",
+    "filename": "gemma-3-1b-it-q4_k_m.gguf",
+    "file_size_bytes": 806058496,
+    "file_size_mib": 768.72,
+    "threads": 6,
+    "repetitions": 3,
+    "prompt_tokens": 1500,
+    "gen_tokens": 128,
+    "screen_wake_state": "Awake",
+    "prefill_tok_per_sec": 65.15,
+    "prefill_stddev": 2.22,
+    "prefill_samples": [
+      62.5874,
+      66.4213,
+      66.4423
+    ],
+    "decode_tok_per_sec": 22.88,
+    "decode_stddev": 3.26,
+    "decode_samples": [
+      19.1116,
+      24.8086,
+      24.7167
+    ],
+    "peak_ram_mib": 1398.57,
+    "cold_load_sec": 26.531,
+    "bench_wall_time_sec": 113.71,
+    "temperatures": {
+      "ap_before_c": 56.2,
+      "ap_after_c": 62.1,
+      "delta_ap_c": 5.9,
+      "bat_before_c": 45.9,
+      "bat_after_c": 47.3,
+      "delta_bat_c": 1.4,
+      "skin_before_c": 45.6,
+      "skin_after_c": 47.0,
+      "delta_skin_c": 1.4
+    },
+    "sanity": {
+      "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+      "response": "A NR-35 exige o uso de equipamentos de proteção individual (EPIs) adequados, como capacete, cinto de segurança, luvas e outros, para cada tarefa realizada em altura.",
+      "cli_prompt_ts": 37.7,
+      "cli_gen_ts": 12.5
+    },
+    "latency_budget": {
+      "target_budget_sec": 10.0,
+      "s24_total_sec": 27.39,
+      "s24_prefill_sec": 23.02,
+      "s24_decode_sec": 4.37,
+      "s24_fits_budget": false,
+      "s21_projection_factor": 2.25,
+      "s21_total_sec_proj": 61.64,
+      "s21_fits_budget_proj": false
+    }
+  },
+  {
+    "alias": "lfm2-1.2b-rag",
+    "name": "Liquid LFM2 1.2B RAG",
+    "params": "1.2B",
+    "filename": "lfm2-1.2b-rag-q4_k_m.gguf",
+    "file_size_bytes": 730894048,
+    "file_size_mib": 697.03,
+    "threads": 6,
+    "repetitions": 3,
+    "prompt_tokens": 1500,
+    "gen_tokens": 128,
+    "screen_wake_state": "Awake",
+    "prefill_tok_per_sec": 101.31,
+    "prefill_stddev": 2.23,
+    "prefill_samples": [
+      103.506,
+      101.385,
+      99.0403
+    ],
+    "decode_tok_per_sec": 25.92,
+    "decode_stddev": 3.89,
+    "decode_samples": [
+      21.4272,
+      28.2468,
+      28.0727
+    ],
+    "peak_ram_mib": 1487.63,
+    "cold_load_sec": 19.697,
+    "bench_wall_time_sec": 79.8,
+    "temperatures": {
+      "ap_before_c": 62.1,
+      "ap_after_c": 62.3,
+      "delta_ap_c": 0.2,
+      "bat_before_c": 47.3,
+      "bat_after_c": 47.8,
+      "delta_bat_c": 0.5,
+      "skin_before_c": 47.0,
+      "skin_after_c": 47.2,
+      "delta_skin_c": 0.2
+    },
+    "sanity": {
+      "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+      "response": "De acordo com a NR-35, o equipamento essencial de proteção individual para trabalho em altura inclui capacetes, coletes salva-vidas, luvas, botas de segurança, guarda-chuva, guarda-torso e, se necessário, um arco",
+      "cli_prompt_ts": 69.7,
+      "cli_gen_ts": 21.4
+    },
+    "latency_budget": {
+      "target_budget_sec": 10.0,
+      "s24_total_sec": 18.66,
+      "s24_prefill_sec": 14.81,
+      "s24_decode_sec": 3.86,
+      "s24_fits_budget": false,
+      "s21_projection_factor": 2.25,
+      "s21_total_sec_proj": 42.0,
+      "s21_fits_budget_proj": false
+    }
+  },
+  {
+    "alias": "lfm2.5-350m",
+    "name": "Liquid LFM2.5 350M",
+    "params": "0.35B",
+    "filename": "lfm2.5-350m-q4_k_m.gguf",
+    "file_size_bytes": 229312224,
+    "file_size_mib": 218.69,
+    "threads": 6,
+    "repetitions": 3,
+    "prompt_tokens": 1500,
+    "gen_tokens": 128,
+    "screen_wake_state": "Awake",
+    "prefill_tok_per_sec": 400.55,
+    "prefill_stddev": 3.49,
+    "prefill_samples": [
+      404.569,
+      398.843,
+      398.243
+    ],
+    "decode_tok_per_sec": 75.24,
+    "decode_stddev": 18.46,
+    "decode_samples": [
+      53.9242,
+      86.1667,
+      85.6304
+    ],
+    "peak_ram_mib": 512.17,
+    "cold_load_sec": 6.818,
+    "bench_wall_time_sec": 23.79,
+    "temperatures": {
+      "ap_before_c": 53.6,
+      "ap_after_c": 60.0,
+      "delta_ap_c": 6.4,
+      "bat_before_c": 42.0,
+      "bat_after_c": 43.2,
+      "delta_bat_c": 1.2,
+      "skin_before_c": 42.8,
+      "skin_after_c": 43.8,
+      "delta_skin_c": 1.0
+    },
+    "sanity": {
+      "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+      "response": "Equipamento de proteção individual essencial para trabalho em altura segundo a NR-35 inclui luvas, óculos de proteção e capacetes.",
+      "cli_prompt_ts": 314.5,
+      "cli_gen_ts": 33.6
+    },
+    "latency_budget": {
+      "target_budget_sec": 10.0,
+      "s24_total_sec": 5.07,
+      "s24_prefill_sec": 3.74,
+      "s24_decode_sec": 1.33,
+      "s24_fits_budget": true,
+      "s21_projection_factor": 2.25,
+      "s21_total_sec_proj": 11.42,
+      "s21_fits_budget_proj": false
+    }
+  },
+  {
+    "alias": "llama-3.2-1b",
+    "name": "Meta Llama 3.2 1B Instruct (Controle)",
+    "params": "1.2B",
+    "filename": "llama-3.2-1b-instruct-q4_k_m.gguf",
+    "file_size_bytes": 807694368,
+    "file_size_mib": 770.28,
+    "threads": 6,
+    "repetitions": 3,
+    "prompt_tokens": 1500,
+    "gen_tokens": 128,
+    "screen_wake_state": "Awake",
+    "prefill_tok_per_sec": 103.68,
+    "prefill_stddev": 3.62,
+    "prefill_samples": [
+      104.956,
+      99.5938,
+      106.481
+    ],
+    "decode_tok_per_sec": 23.23,
+    "decode_stddev": 3.72,
+    "decode_samples": [
+      18.939,
+      25.3037,
+      25.4527
+    ],
+    "peak_ram_mib": 1690.38,
+    "cold_load_sec": 18.53,
+    "bench_wall_time_sec": 79.69,
+    "temperatures": {
+      "ap_before_c": 56.5,
+      "ap_after_c": 63.1,
+      "delta_ap_c": 6.6,
+      "bat_before_c": 47.9,
+      "bat_after_c": 48.5,
+      "delta_bat_c": 0.6,
+      "skin_before_c": 47.1,
+      "skin_after_c": 47.9,
+      "delta_skin_c": 0.8
+    },
+    "sanity": {
+      "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+      "response": "De acordo com a NR-35, o equipamento de proteção individual essencial para trabalho em altura é o capacete com visor de proteção, luvas, calçados de suporte e cordas de segurança.",
+      "cli_prompt_ts": 70.6,
+      "cli_gen_ts": 22.2
+    },
+    "latency_budget": {
+      "target_budget_sec": 10.0,
+      "s24_total_sec": 18.77,
+      "s24_prefill_sec": 14.47,
+      "s24_decode_sec": 4.3,
+      "s24_fits_budget": false,
+      "s21_projection_factor": 2.25,
+      "s21_total_sec_proj": 42.24,
+      "s21_fits_budget_proj": false
+    }
+  }
+]

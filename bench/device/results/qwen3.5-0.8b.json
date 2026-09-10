@@ -1,0 +1,57 @@
+{
+  "alias": "qwen3.5-0.8b",
+  "name": "Qwen 3.5 0.8B (Gated DeltaNet)",
+  "params": "0.8B",
+  "filename": "qwen3.5-0.8b-q4_k_m.gguf",
+  "file_size_bytes": 532517120,
+  "file_size_mib": 507.85,
+  "threads": 6,
+  "repetitions": 3,
+  "prompt_tokens": 1500,
+  "gen_tokens": 128,
+  "screen_wake_state": "Awake",
+  "prefill_tok_per_sec": 141.89,
+  "prefill_stddev": 0.48,
+  "prefill_samples": [
+    141.852,
+    142.396,
+    141.434
+  ],
+  "decode_tok_per_sec": 27.64,
+  "decode_stddev": 1.63,
+  "decode_samples": [
+    25.7636,
+    28.6518,
+    28.5161
+  ],
+  "peak_ram_mib": 1166.98,
+  "cold_load_sec": 18.494,
+  "bench_wall_time_sec": 65.18,
+  "temperatures": {
+    "ap_before_c": 58.8,
+    "ap_after_c": 59.7,
+    "delta_ap_c": 0.9,
+    "bat_before_c": 44.9,
+    "bat_after_c": 45.9,
+    "delta_bat_c": 1.0,
+    "skin_before_c": 45.1,
+    "skin_after_c": 45.8,
+    "delta_skin_c": 0.7
+  },
+  "sanity": {
+    "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+    "response": "[Start thinking] Thinking Process: 1.  **Analyze the Request:** *   Topic: Essential Personal Protective Equipment (PPE) for work at height. *   Reference: NR-35 (National Standard for Construction and Civil Engineering - specifically, the Brazilian National Standard for Construction and Civil Engineering, often",
+    "cli_prompt_ts": 30.9,
+    "cli_gen_ts": 11.9
+  },
+  "latency_budget": {
+    "target_budget_sec": 10.0,
+    "s24_total_sec": 14.19,
+    "s24_prefill_sec": 10.57,
+    "s24_decode_sec": 3.62,
+    "s24_fits_budget": false,
+    "s21_projection_factor": 2.25,
+    "s21_total_sec_proj": 31.92,
+    "s21_fits_budget_proj": false
+  }
+}

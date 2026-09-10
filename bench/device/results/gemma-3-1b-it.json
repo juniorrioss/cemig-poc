@@ -1,0 +1,57 @@
+{
+  "alias": "gemma-3-1b-it",
+  "name": "Gemma 3 1B IT",
+  "params": "1.0B",
+  "filename": "gemma-3-1b-it-q4_k_m.gguf",
+  "file_size_bytes": 806058496,
+  "file_size_mib": 768.72,
+  "threads": 6,
+  "repetitions": 3,
+  "prompt_tokens": 1500,
+  "gen_tokens": 128,
+  "screen_wake_state": "Awake",
+  "prefill_tok_per_sec": 65.15,
+  "prefill_stddev": 2.22,
+  "prefill_samples": [
+    62.5874,
+    66.4213,
+    66.4423
+  ],
+  "decode_tok_per_sec": 22.88,
+  "decode_stddev": 3.26,
+  "decode_samples": [
+    19.1116,
+    24.8086,
+    24.7167
+  ],
+  "peak_ram_mib": 1398.57,
+  "cold_load_sec": 26.531,
+  "bench_wall_time_sec": 113.71,
+  "temperatures": {
+    "ap_before_c": 56.2,
+    "ap_after_c": 62.1,
+    "delta_ap_c": 5.9,
+    "bat_before_c": 45.9,
+    "bat_after_c": 47.3,
+    "delta_bat_c": 1.4,
+    "skin_before_c": 45.6,
+    "skin_after_c": 47.0,
+    "delta_skin_c": 1.4
+  },
+  "sanity": {
+    "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+    "response": "A NR-35 exige o uso de equipamentos de proteção individual (EPIs) adequados, como capacete, cinto de segurança, luvas e outros, para cada tarefa realizada em altura.",
+    "cli_prompt_ts": 37.7,
+    "cli_gen_ts": 12.5
+  },
+  "latency_budget": {
+    "target_budget_sec": 10.0,
+    "s24_total_sec": 27.39,
+    "s24_prefill_sec": 23.02,
+    "s24_decode_sec": 4.37,
+    "s24_fits_budget": false,
+    "s21_projection_factor": 2.25,
+    "s21_total_sec_proj": 61.64,
+    "s21_fits_budget_proj": false
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "alias": "lfm2.5-350m",
+  "name": "Liquid LFM2.5 350M",
+  "params": "0.35B",
+  "filename": "lfm2.5-350m-q4_k_m.gguf",
+  "file_size_bytes": 229312224,
+  "file_size_mib": 218.69,
+  "threads": 6,
+  "repetitions": 3,
+  "prompt_tokens": 1500,
+  "gen_tokens": 128,
+  "screen_wake_state": "Awake",
+  "prefill_tok_per_sec": 400.55,
+  "prefill_stddev": 3.49,
+  "prefill_samples": [
+    404.569,
+    398.843,
+    398.243
+  ],
+  "decode_tok_per_sec": 75.24,
+  "decode_stddev": 18.46,
+  "decode_samples": [
+    53.9242,
+    86.1667,
+    85.6304
+  ],
+  "peak_ram_mib": 512.17,
+  "cold_load_sec": 6.818,
+  "bench_wall_time_sec": 23.79,
+  "temperatures": {
+    "ap_before_c": 53.6,
+    "ap_after_c": 60.0,
+    "delta_ap_c": 6.4,
+    "bat_before_c": 42.0,
+    "bat_after_c": 43.2,
+    "delta_bat_c": 1.2,
+    "skin_before_c": 42.8,
+    "skin_after_c": 43.8,
+    "delta_skin_c": 1.0
+  },
+  "sanity": {
+    "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+    "response": "Equipamento de proteção individual essencial para trabalho em altura segundo a NR-35 inclui luvas, óculos de proteção e capacetes.",
+    "cli_prompt_ts": 314.5,
+    "cli_gen_ts": 33.6
+  },
+  "latency_budget": {
+    "target_budget_sec": 10.0,
+    "s24_total_sec": 5.07,
+    "s24_prefill_sec": 3.74,
+    "s24_decode_sec": 1.33,
+    "s24_fits_budget": true,
+    "s21_projection_factor": 2.25,
+    "s21_total_sec_proj": 11.42,
+    "s21_fits_budget_proj": false
+  }
+}

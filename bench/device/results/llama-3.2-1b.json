@@ -1,0 +1,57 @@
+{
+  "alias": "llama-3.2-1b",
+  "name": "Meta Llama 3.2 1B Instruct (Controle)",
+  "params": "1.2B",
+  "filename": "llama-3.2-1b-instruct-q4_k_m.gguf",
+  "file_size_bytes": 807694368,
+  "file_size_mib": 770.28,
+  "threads": 6,
+  "repetitions": 3,
+  "prompt_tokens": 1500,
+  "gen_tokens": 128,
+  "screen_wake_state": "Awake",
+  "prefill_tok_per_sec": 103.68,
+  "prefill_stddev": 3.62,
+  "prefill_samples": [
+    104.956,
+    99.5938,
+    106.481
+  ],
+  "decode_tok_per_sec": 23.23,
+  "decode_stddev": 3.72,
+  "decode_samples": [
+    18.939,
+    25.3037,
+    25.4527
+  ],
+  "peak_ram_mib": 1690.38,
+  "cold_load_sec": 18.53,
+  "bench_wall_time_sec": 79.69,
+  "temperatures": {
+    "ap_before_c": 56.5,
+    "ap_after_c": 63.1,
+    "delta_ap_c": 6.6,
+    "bat_before_c": 47.9,
+    "bat_after_c": 48.5,
+    "delta_bat_c": 0.6,
+    "skin_before_c": 47.1,
+    "skin_after_c": 47.9,
+    "delta_skin_c": 0.8
+  },
+  "sanity": {
+    "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+    "response": "De acordo com a NR-35, o equipamento de proteção individual essencial para trabalho em altura é o capacete com visor de proteção, luvas, calçados de suporte e cordas de segurança.",
+    "cli_prompt_ts": 70.6,
+    "cli_gen_ts": 22.2
+  },
+  "latency_budget": {
+    "target_budget_sec": 10.0,
+    "s24_total_sec": 18.77,
+    "s24_prefill_sec": 14.47,
+    "s24_decode_sec": 4.3,
+    "s24_fits_budget": false,
+    "s21_projection_factor": 2.25,
+    "s21_total_sec_proj": 42.24,
+    "s21_fits_budget_proj": false
+  }
+}

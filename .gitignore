@@ -26,6 +26,7 @@ local.properties
 .cxx/
 *.apk
 *.aab
+bench/device/build-android/
 
 # IDE & Sistema operacional
 .idea/

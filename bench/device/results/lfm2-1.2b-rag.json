@@ -1,0 +1,57 @@
+{
+  "alias": "lfm2-1.2b-rag",
+  "name": "Liquid LFM2 1.2B RAG",
+  "params": "1.2B",
+  "filename": "lfm2-1.2b-rag-q4_k_m.gguf",
+  "file_size_bytes": 730894048,
+  "file_size_mib": 697.03,
+  "threads": 6,
+  "repetitions": 3,
+  "prompt_tokens": 1500,
+  "gen_tokens": 128,
+  "screen_wake_state": "Awake",
+  "prefill_tok_per_sec": 101.31,
+  "prefill_stddev": 2.23,
+  "prefill_samples": [
+    103.506,
+    101.385,
+    99.0403
+  ],
+  "decode_tok_per_sec": 25.92,
+  "decode_stddev": 3.89,
+  "decode_samples": [
+    21.4272,
+    28.2468,
+    28.0727
+  ],
+  "peak_ram_mib": 1487.63,
+  "cold_load_sec": 19.697,
+  "bench_wall_time_sec": 79.8,
+  "temperatures": {
+    "ap_before_c": 62.1,
+    "ap_after_c": 62.3,
+    "delta_ap_c": 0.2,
+    "bat_before_c": 47.3,
+    "bat_after_c": 47.8,
+    "delta_bat_c": 0.5,
+    "skin_before_c": 47.0,
+    "skin_after_c": 47.2,
+    "delta_skin_c": 0.2
+  },
+  "sanity": {
+    "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+    "response": "De acordo com a NR-35, o equipamento essencial de proteção individual para trabalho em altura inclui capacetes, coletes salva-vidas, luvas, botas de segurança, guarda-chuva, guarda-torso e, se necessário, um arco",
+    "cli_prompt_ts": 69.7,
+    "cli_gen_ts": 21.4
+  },
+  "latency_budget": {
+    "target_budget_sec": 10.0,
+    "s24_total_sec": 18.66,
+    "s24_prefill_sec": 14.81,
+    "s24_decode_sec": 3.86,
+    "s24_fits_budget": false,
+    "s21_projection_factor": 2.25,
+    "s21_total_sec_proj": 42.0,
+    "s21_fits_budget_proj": false
+  }
+}

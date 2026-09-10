@@ -1,0 +1,57 @@
+{
+  "alias": "qwen3-0.6b",
+  "name": "Qwen 3 0.6B Instruct (Baseline)",
+  "params": "0.6B",
+  "filename": "qwen3-0.6b-q4_k_m.gguf",
+  "file_size_bytes": 396705472,
+  "file_size_mib": 378.33,
+  "threads": 6,
+  "repetitions": 3,
+  "prompt_tokens": 1500,
+  "gen_tokens": 128,
+  "screen_wake_state": "Awake",
+  "prefill_tok_per_sec": 143.65,
+  "prefill_stddev": 1.39,
+  "prefill_samples": [
+    144.34,
+    144.569,
+    142.048
+  ],
+  "decode_tok_per_sec": 38.24,
+  "decode_stddev": 3.53,
+  "decode_samples": [
+    42.1067,
+    37.3923,
+    35.2089
+  ],
+  "peak_ram_mib": 989.22,
+  "cold_load_sec": 14.606,
+  "bench_wall_time_sec": 56.68,
+  "temperatures": {
+    "ap_before_c": 49.2,
+    "ap_after_c": 61.3,
+    "delta_ap_c": 12.1,
+    "bat_before_c": 44.0,
+    "bat_after_c": 44.8,
+    "delta_bat_c": 0.8,
+    "skin_before_c": 43.2,
+    "skin_after_c": 44.9,
+    "delta_skin_c": 1.7
+  },
+  "sanity": {
+    "prompt": "Qual é o equipamento de proteção individual essencial para trabalho em altura segundo a NR-35? Responda de forma sucinta em uma frase.",
+    "response": "[Start thinking] Okay, the user is asking about the essential personal protection equipment (PPE) for work at height according to the NR-35 standard. Let me start by recalling what the NR-35 refers to. It's a standard for construction safety, right? So, the question is about the PPE",
+    "cli_prompt_ts": 51.9,
+    "cli_gen_ts": 23.3
+  },
+  "latency_budget": {
+    "target_budget_sec": 10.0,
+    "s24_total_sec": 13.06,
+    "s24_prefill_sec": 10.44,
+    "s24_decode_sec": 2.62,
+    "s24_fits_budget": false,
+    "s21_projection_factor": 2.25,
+    "s21_total_sec_proj": 29.38,
+    "s21_fits_budget_proj": false
+  }
+}
