@@ -11,6 +11,10 @@ __pycache__/
 # Dados e artefatos intermediários
 /data/
 corpus/data/
+asr/data/clean/
+asr/data/noisy/
+
+
 
 # Gradle
 .gradle/

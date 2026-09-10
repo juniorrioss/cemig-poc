@@ -2,7 +2,7 @@
 
 PYTHON ?= $(shell if [ -f .venv/bin/python ]; then echo .venv/bin/python; else echo python3; fi)
 
-.PHONY: all pipeline extract chunk index eval synth test clean help
+.PHONY: all pipeline extract chunk index eval synth test clean asr-data asr-bench help
 
 help:
 	@echo "CEMIG POC Assistente Offline - Comandos Principais:"
@@ -12,6 +12,8 @@ help:
 	@echo "  make index     - Constrói o banco SQLite FTS5 (corpus/index.db)"
 	@echo "  make eval      - Executa avaliação de Recall@1/3/5 do BM25"
 	@echo "  make synth     - Gera dataset sintético P&R de operários com o LLM CLI"
+	@echo "  make asr-data  - Gera dataset de áudio limpo e ruidoso (10 dB SNR) para ASR"
+	@echo "  make asr-bench - Executa a bateria de benchmark de ASR no dispositivo conectado via adb"
 	@echo "  make test      - Roda testes unitários do pipeline"
 	@echo "  make clean     - Limpa artefatos temporários"
 
@@ -32,6 +34,12 @@ eval:
 
 synth:
 	@$(MAKE) -C corpus synth
+
+asr-data:
+	@$(PYTHON) asr/scripts/generate_audio.py
+
+asr-bench:
+	@$(PYTHON) asr/scripts/benchmark.py
 
 test:
 	@$(MAKE) -C corpus test

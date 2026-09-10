@@ -1,0 +1,67 @@
+[
+  {
+    "model": "Whisper Tiny Q5_1",
+    "wer_clean_pct": 15.861727161727163,
+    "wer_noisy_pct": 22.133044733044734,
+    "kw_acc_clean_pct": 74.19354838709677,
+    "kw_acc_noisy_pct": 66.12903225806451,
+    "rtf_clean": 0.4180779384099872,
+    "rtf_noisy": 0.4575701811609776,
+    "latency_clean_s": 2.349842,
+    "latency_noisy_s": 2.571332,
+    "peak_rss_mb": 132.515625,
+    "size_mb": 31.6
+  },
+  {
+    "model": "Whisper Base Q5_1",
+    "wer_clean_pct": 9.507026307026308,
+    "wer_noisy_pct": 11.777089577089578,
+    "kw_acc_clean_pct": 85.48387096774194,
+    "kw_acc_noisy_pct": 82.25806451612904,
+    "rtf_clean": 0.8391450696966465,
+    "rtf_noisy": 0.8617687375593664,
+    "latency_clean_s": 4.7047512000000005,
+    "latency_noisy_s": 4.833412,
+    "peak_rss_mb": 196.8046875,
+    "size_mb": 56.9
+  },
+  {
+    "model": "Whisper Small Q5_1",
+    "wer_clean_pct": 7.7653679653679655,
+    "wer_noisy_pct": 7.191008991008991,
+    "kw_acc_clean_pct": 90.32258064516128,
+    "kw_acc_noisy_pct": 88.70967741935483,
+    "rtf_clean": 2.814271746560189,
+    "rtf_noisy": 2.9870797369647506,
+    "latency_clean_s": 15.7726332,
+    "latency_noisy_s": 16.7544884,
+    "peak_rss_mb": 462.53125,
+    "size_mb": 181.3
+  },
+  {
+    "model": "Nemotron 3.5 INT8 (Official)",
+    "wer_clean_pct": 6.843428793428793,
+    "wer_noisy_pct": 8.155783105783106,
+    "kw_acc_clean_pct": 91.93548387096774,
+    "kw_acc_noisy_pct": 91.93548387096774,
+    "rtf_clean": 0.3610878905367919,
+    "rtf_noisy": 0.3592120006586046,
+    "latency_clean_s": 2.036,
+    "latency_noisy_s": 2.024,
+    "peak_rss_mb": 791.69140625,
+    "size_mb": 651.5
+  },
+  {
+    "model": "Nemotron 3.5 INT8 (Ottema PT-BR)",
+    "wer_clean_pct": 9.26941946941947,
+    "wer_noisy_pct": 8.312376512376511,
+    "kw_acc_clean_pct": 91.93548387096774,
+    "kw_acc_noisy_pct": 91.93548387096774,
+    "rtf_clean": 0.35768555528364937,
+    "rtf_noisy": 0.35611520422863174,
+    "latency_clean_s": 2.016,
+    "latency_noisy_s": 2.008,
+    "peak_rss_mb": 794.4765625,
+    "size_mb": 651.5
+  }
+]

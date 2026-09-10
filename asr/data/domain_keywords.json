@@ -1,0 +1,114 @@
+{
+  "1": [
+    ["distancia minima de seguranca"],
+    ["13 8 kv", "138 kv", "treze virgula oito", "quilovolts", "quilovolt"],
+    ["rede"]
+  ],
+  "2": [
+    ["bloqueio e etiquetagem", "bloqueio"],
+    ["religador automatico", "religador"],
+    ["subestacao"]
+  ],
+  "3": [
+    ["desenergizacao", "desenergizar"],
+    ["nr 10", "nr dez", "nr10"]
+  ],
+  "4": [
+    ["luva isolante", "luvas isolantes"],
+    ["classe 2", "classe dois", "classe2"],
+    ["tensao maxima"]
+  ],
+  "5": [
+    ["aterramento temporario"],
+    ["chave seccionadora", "seccionadora"]
+  ],
+  "6": [
+    ["capacete com jugular", "capacete", "jugular"],
+    ["oculos de protecao"],
+    ["eletricista"]
+  ],
+  "7": [
+    ["ausencia de tensao", "constatacao de ausencia"],
+    ["rede aerea"]
+  ],
+  "8": [
+    ["circuito energizado", "intervencao em circuito"],
+    ["chuva forte"]
+  ],
+  "9": [
+    ["protecao coletiva", "epc", "equipamento de protecao coletiva"],
+    ["chave fusivel"]
+  ],
+  "10": [
+    ["detector de tensao"],
+    ["calibracao", "calibrado"]
+  ],
+  "11": [
+    ["ferramentas isoladas"],
+    ["1000 volts", "mil volts", "1000 v"],
+    ["bolsa de lona"]
+  ],
+  "12": [
+    ["religador"],
+    ["sobrecorrente de fase"],
+    ["alimentador principal"]
+  ],
+  "13": [
+    ["abertura sob carga"],
+    ["chave seccionadora", "seccionadora"],
+    ["dispositivo de interrupcao"]
+  ],
+  "14": [
+    ["integridade dieletrica", "mecanica e dieletrica"],
+    ["bastao de manobra"]
+  ],
+  "15": [
+    ["vestimenta antichamas", "antichama"],
+    ["arco eletrico"],
+    ["cal cm2", "cal por cm2", "calorias"]
+  ],
+  "16": [
+    ["liberacao para trabalho"],
+    ["desenergizada", "instalacao eletrica desenergizada"]
+  ],
+  "17": [
+    ["aterramento temporario"],
+    ["condutores de fase", "fase"]
+  ],
+  "18": [
+    ["autorizacao de trabalho"],
+    ["rede subterranea"]
+  ],
+  "19": [
+    ["nr 35", "nr trinta e cinco", "nr35"],
+    ["ancoragem"],
+    ["cinto tipo paraquedista", "paraquedista"]
+  ],
+  "20": [
+    ["choque eletrico"],
+    ["vitima", "vitima presa"],
+    ["alta tensao"]
+  ],
+  "21": [
+    ["ensaio eletrico", "prazo de validade"],
+    ["luvas isolantes de borracha", "luva isolante", "luvas isolantes"]
+  ],
+  "22": [
+    ["disjuntor a vacuo"],
+    ["cabine primaria"],
+    ["religado manualmente", "inspecao"]
+  ],
+  "23": [
+    ["criterios para descarte", "descarte"],
+    ["vara de manobra telescopica", "vara de manobra"],
+    ["trinca"]
+  ],
+  "24": [
+    ["impedimento de reenergizacao", "reenergizacao"],
+    ["comando da chave"]
+  ],
+  "25": [
+    ["presenca de dois eletricistas", "dois eletricistas", "dois eletricistas habilitados"],
+    ["linha viva"]
+  ]
+}

@@ -24,6 +24,17 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   - Recommended model: **Liquid LFM2 1.2B RAG** (highest factual accuracy 3.30/5, 40% gate pass, 5.1s latency) or **Gemma 3 1B IT** (highest PT fluency 4.50/5, 3.4s latency).
 - **Commands**: `make -C bench all` runs setup, perf, bench, and judge. Quick smoke: `python3 bench/harness.py --models qwen3.5-0.8b --mode both --limit 2`.
 
+## Architecture & ASR Offline Benchmark (`asr/`)
+- **ASR directory**: `asr/` contains test data generation, evaluation harness, and benchmark results for offline Brazilian Portuguese ASR targeting electrical utility field workers.
+- **Model storage**: External models reside at `~/models-asr/` (never committed). Engine builds reside at `~/whisper.cpp/` and `~/sherpa-onnx/`.
+- **Engines evaluated**: Whisper.cpp (Tiny, Base, Small in Q5_1), Sherpa-ONNX (Nemotron 3.5 Streaming INT8 Official and Ottema PT-BR fine-tune), Android Native SpeechRecognizer.
+- **Core Findings on Mobile ASR**:
+  - **Whisper Base Q5_1 is the recommended production engine**: 196.8 MB peak RSS, 56.9 MB package, RTF 0.84 (<1.0), 9.5% clean WER / 11.8% noisy WER (10 dB SNR), 85.5% domain term accuracy. Crucially, 197 MB ASR + 700 MB SLM = ~897 MB total RAM, safely under Android LMK limits for 6 GB RAM phones.
+  - **Nemotron 3.5 INT8 (Official & Ottema PT-BR)**: Fastest streaming (RTF 0.36) and highest domain accuracy (91.9%), but heavy memory footprint (795 MB RSS) and package (651 MB). Reserved for dedicated 12 GB RAM devices where real-time streaming partials are required.
+  - **Whisper Small Q5_1**: Unviable for interactive mobile CPU (RTF 2.81, ~16s latency).
+  - **Android Native ASR**: Unreliable for offline distribution without manual user intervention to download language packs in Google Settings; zero support for technical domain biasing.
+- **Commands**: `make asr-data` generates audio sets; `make asr-bench` executes benchmark on connected Android device. Reference report at `asr/README.md`.
+
 ## Android Subproject (`android/`)
 - **Headless Toolchain**: Run `./android/setup-sdk.sh` to install OpenJDK 17 and Android SDK 34 (with build-tools, NDK, CMake) into `~/android-sdk`. Idempotent.
 - **Environment**: Set `JAVA_HOME="$HOME/android-sdk/jdk-17"` and `ANDROID_HOME="$HOME/android-sdk"` before building.

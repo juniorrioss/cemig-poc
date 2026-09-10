@@ -1,0 +1,25 @@
+1|Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?
+2|Como realizar o bloqueio e etiquetagem do religador automático da subestação?
+3|Quais são os procedimentos obrigatórios para a desenergização segundo a NR-10?
+4|A luva isolante de borracha classe 2 suporta qual nível de tensão máxima?
+5|Onde devo instalar o conjunto de aterramento temporário na chave seccionadora?
+6|É obrigatório o uso de capacete com jugular e óculos de proteção para eletricista?
+7|Qual é a sequência correta para constatação de ausência de tensão na rede aérea?
+8|Posso realizar intervenção em circuito energizado durante chuva forte?
+9|Qual equipamento de proteção coletiva é exigido para abertura de chave fusível?
+10|O detector de tensão por aproximação precisa de calibração antes da operação?
+11|Quais ferramentas isoladas a 1000 volts devem constar na bolsa de lona?
+12|O religador desarmou por sobrecorrente de fase na saída do alimentador principal.
+13|É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?
+14|Como verificar a integridade mecânica e dielétrica do bastão de manobra?
+15|A vestimenta antichamas categoria dois protege contra arco elétrico de quantos cal/cm²?
+16|Quais etapas compõem a liberação para trabalho em instalação elétrica desenergizada?
+17|O aterramento temporário deve ser conectado primeiro à terra ou aos condutores de fase?
+18|Quem pode emitir a autorização de trabalho para intervenção na rede subterrânea?
+19|Quais são os requisitos da NR-35 para ancoragem de cinto tipo paraquedista no poste?
+20|Como proceder em caso de choque elétrico com vítima presa ao condutor de alta tensão?
+21|Qual o prazo de validade do ensaio elétrico das luvas isolantes de borracha?
+22|O disjuntor a vácuo da cabine primária pode ser religado manualmente sem inspeção?
+23|Quais os critérios para descarte de vara de manobra telescópica com trinca?
+24|A sinalização de impedimento de reenergização deve ser fixada no comando da chave?
+25|É obrigatória a presença de dois eletricistas habilitados em serviço de linha viva?
