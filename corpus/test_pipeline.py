@@ -127,6 +127,81 @@ class TestCorpusPipeline(unittest.TestCase):
             self.assertGreater(len(item["golden_answer"]), 15)
             self.assertIsInstance(item["query_terms"], str)
 
+    def test_ingest_hf_parser_norma_and_manual(self):
+        """Valida a separação entre norma vinculante e manual comentado no ingest_hf."""
+        from corpus.ingest_hf import parse_manual_content, parse_norma_content
+
+        sample_norma = """# NR-10 — SEGURANÇA EM ELETRICIDADE
+## Norma
+*Fonte: nr-10.pdf*
+10.1 OBJETIVO
+10.1.1 Esta norma estabelece condições mínimas de segurança em eletricidade.
+10.2 MEDIDAS DE CONTROLE
+10.2.8 MEDIDAS DE PROTEÇÃO COLETIVA
+10.2.8.1 Em todos os serviços devem ser previstas medidas de proteção coletiva.
+"""
+        doc_norma = parse_norma_content("NR-10", 10, "Segurança Elétrica", sample_norma)
+        self.assertEqual(doc_norma.doc, "nr-10")
+        self.assertGreaterEqual(len(doc_norma.items), 2)
+        # Verifica seção extraída
+        sec_codes = [it.section for it in doc_norma.items]
+        self.assertTrue(any("10.2" in s for s in sec_codes))
+
+        sample_manual = """# Manual de Auxílio na Interpretação da NR-10 (2010)
+10.2.8 - MEDIDAS DE PROTEÇÃO COLETIVA
+Comentário
+As medidas de proteção coletiva são de suma importância para evitar choques.
+10.2.8.2 As medidas de proteção compreendem a desenergização.
+"""
+        doc_manual = parse_manual_content("NR-10", 10, "Segurança Elétrica", sample_manual)
+        self.assertIsNotNone(doc_manual)
+        self.assertEqual(doc_manual.doc, "nr-10-manual")
+        self.assertIn("Manual", doc_manual.doc_title)
+        self.assertGreaterEqual(len(doc_manual.items), 1)
+
+    def test_qa_v2_dataset_integrity(self):
+        """Valida o esquema e contagem do dataset consolidado v2."""
+        qa_v2_file = Path(__file__).parent / "qa_pairs_v2.jsonl"
+        self.assertTrue(qa_v2_file.exists(), f"Arquivo {qa_v2_file} deve existir")
+
+        with open(qa_v2_file, "r", encoding="utf-8") as f:
+            lines = [l.strip() for l in f if l.strip()]
+
+        # Requisito do brief: 101 v1 + ~40 novas (>= 140)
+        self.assertGreaterEqual(len(lines), 140, "Dataset v2 deve conter pelo menos 140 perguntas")
+
+        required_keys = {"id", "doc", "section", "chunk_id", "question", "golden_answer", "query_terms"}
+        valid_docs = {"nr-10", "nr-06", "nr-35", "nr-12", "nr-18", "nr-01", "nr-33", "nr-16", "nr-26"}
+
+        for line in lines:
+            item = json.loads(line)
+            self.assertTrue(required_keys.issubset(set(item.keys())), f"Chaves faltando no item {item}")
+            self.assertIn(item["doc"], valid_docs, f"Doc inválido: {item['doc']}")
+            self.assertGreater(len(item["question"]), 10)
+            self.assertGreater(len(item["golden_answer"]), 15)
+
+    def test_v2_indices_size_and_schema(self):
+        """Valida se os três índices do v2 existem, possuem esquema correto e estão abaixo de 50 MB."""
+        indices = [
+            Path(__file__).parent / "index_hf_5nr.db",
+            Path(__file__).parent / "index_hf_5nr_manual.db",
+            Path(__file__).parent / "index_hf_36nr.db",
+        ]
+        for db_file in indices:
+            self.assertTrue(db_file.exists(), f"Banco {db_file.name} deve existir")
+            size_mb = db_file.stat().st_size / (1024 * 1024)
+            self.assertLessEqual(size_mb, 50.0, f"{db_file.name} excede o limite de 50 MB (tamanho: {size_mb:.2f} MB)")
+
+            con = sqlite3.connect(str(db_file))
+            cur = con.cursor()
+            cur.execute("SELECT count(*) FROM chunks;")
+            count = cur.fetchone()[0]
+            self.assertGreater(count, 300, f"{db_file.name} deve ter pelo menos 300 chunks")
+            cur.execute("SELECT count(*) FROM chunks_fts;")
+            fts_count = cur.fetchone()[0]
+            self.assertEqual(count, fts_count, "chunks e chunks_fts devem estar sincronizados")
+            con.close()
+
 
 if __name__ == "__main__":
     unittest.main()

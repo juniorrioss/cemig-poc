@@ -4,11 +4,15 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 
 ## Architecture & Corpus Pipeline (`corpus/`)
 - **Corpus directory**: `corpus/` contains the ingestion, chunking, indexing, and evaluation pipeline for regulatory standards (NRs) targeted at Android offline RAG.
-- **Data location**: Source PDFs reside in `/home/rios/projetos/cemig-mobile-llm/firstmate/data/NRs/` and must never be committed to git.
-- **Core 5 NRs**: NR-10 (Electricity), NR-06 (PPE), NR-35 (Height), NR-12 (Machinery/LOTO), NR-18 (Construction).
-- **Retrieval engine**: Embedded SQLite FTS5 virtual table with `unicode61 remove_diacritics 2` and `bm25(chunks_fts)`.
-- **Pipeline command**: `make all` executes extract -> chunk -> build_index -> eval_retrieval.
-- **Python interpreter**: Uses `python3` (or `.venv` if configured) with stdlib `sqlite3` and `pypdf`. FTS5 query terms with hyphens or dots must be quoted (e.g. `"nr-10"`, `"10.5.1"`) to prevent FTS5 syntax errors.
+- **Data locations**: Source PDFs reside in `/home/rios/projetos/cemig-mobile-llm/firstmate/data/NRs/` (v1); clean 36-NR Parquet dataset with MTE manuals resides in `/home/rios/projetos/cemig-mobile-llm/firstmate/data/nrs_hf/nrs.parquet` (v2). Never commit external data to git.
+- **Standards & Datasets**: v1 covers 5 core NRs (`qa_pairs.jsonl`, 101 pairs); v2 expands to all 36 NRs with 151 pairs in `qa_pairs_v2.jsonl` (adding NR-01 GRO/recusa, NR-16 periculosidade, NR-26 sinalização/GHS, NR-33 espaços confinados).
+- **Retrieval engine & Indices**: Embedded SQLite FTS5 virtual table with `unicode61 remove_diacritics 2` and `bm25(chunks_fts)`. v2 indices: `index_hf_5nr.db` (1.64 MB), `index_hf_5nr_manual.db` (3.35 MB), and `index_hf_36nr.db` (8.28 MB).
+- **Core Corpus v2 Findings**:
+  - Clean Markdown source improves Recall@1 (+3.9 p.p.) and Recall@5 (+1.0 p.p.) over fragile PDF extraction.
+  - Adding commented manuals directly to BM25 severely pollutes retrieval (drops R@5 by >23 p.p., displacing the binding norm chunk from top-3 in 20.8% of queries). Recommendation: embed **`index_hf_36nr.db` (norm-only, 8.28 MB)** and isolate manuals in a separate table/UI tab.
+  - Expanding 5 to 36 NRs has negligible dilution (-1.9 p.p. R@5) under tool-calling with norm filter, achieving **85.4% Recall@5 and 0.6881 MRR** across all 151 questions.
+- **Pipeline commands**: `make all` runs v1 pipeline. `make -C corpus v2-all` runs v2 ingest -> chunk -> index -> eval. `make -C corpus v2-eval` runs the 4-way comparative evaluation.
+- **Python interpreter**: Uses `python3` with stdlib `sqlite3`, `pypdf`, and `pyarrow`. FTS5 query terms with hyphens or dots must be quoted (e.g. `"nr-10"`, `"10.5.1"`) to prevent FTS5 syntax errors.
 
 ## Architecture & SLM Benchmark (`bench/`)
 - **Benchmark directory**: `bench/` contains the harness, setup, judge, and performance benchmarking for mobile-oriented SLMs (≤1.2B) in GGUF Q4_K_M via `llama.cpp`.

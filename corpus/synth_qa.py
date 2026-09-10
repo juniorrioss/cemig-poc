@@ -31,13 +31,17 @@ logger = logging.getLogger(__name__)
 DEFAULT_DB_PATH = Path("corpus/index.db")
 DEFAULT_OUTPUT_JSONL = Path("corpus/qa_pairs.jsonl")
 
-# Justificativa técnica formal para as 5 NRs selecionadas
+# Justificativa técnica formal para as NRs selecionadas (v1 e expansão v2)
 NR_JUSTIFICATIONS = {
     "nr-10": "Mandatória para eletricistas: desenergização em 6 etapas, alta tensão, SEP, zonas controlada e de risco, prontuário (PIE), direito de recusa e qualificação.",
     "nr-06": "Essencial para segurança individual do eletricista: luvas de borracha isolante, vestimentas com classificação ATPV contra arco elétrico, capacetes classe B e calçados dielétricos.",
     "nr-35": "Rotina operacional em postes, linhas de transmissão e subestações (>2m): sistemas de proteção contra quedas (SPQ), cinto tipo paraquedista com talabarte duplo e pontos de ancoragem.",
     "nr-12": "Manutenção em painéis e motores: bloqueio e consignação de energias perigosas (LOTO), aterramento de carcaças, circuitos de comando elétrico e botoeiras de emergência.",
     "nr-18": "Trabalhos em canteiros de obra e proximidade com redes elétricas aéreas: quadros provisórios com proteção DR, cabos protegidos e afastamentos mínimos de linhas energizadas.",
+    "nr-01": "Diretrizes gerais de SST, GRO (Gerenciamento de Riscos Ocupacionais) e PGR (Programa de Gerenciamento de Riscos). Mandatória para a rotina do eletricista ao embasar o Direito de Recusa (item 1.4.3), ordens de serviço de segurança e análise preliminar de perigos em campo.",
+    "nr-33": "Crítica para equipes de redes e distribuição subterrânea da concessionária elétrica. Regula intervenções em caixas subterrâneas de passagem, câmaras transformadoras subterrâneas e poços de visita (manholes), com obrigatoriedade de vigia dedicado, medição contínua de gases e PET.",
+    "nr-16": "Principal norma regulamentadora de enquadramento remuneratório e periculosidade (Anexo 4 - Energia Elétrica) para eletricistas. Define o adicional legal de 30% em atividades no SEP (subestações e linhas), redes energizadas e regras de desenergização.",
+    "nr-26": "Essencial para prevenção de acidentes elétricos e químicos em subestações e oficinas. Define sinalização por cores, placas de advertência de risco de choque/morte e rotulagem GHS de óleos isolantes de transformadores e solventes dielétricos.",
 }
 
 
@@ -124,6 +128,57 @@ TARGET_TOPICS = [
     ("nr-18", "18.6.2", "Distâncias mínimas seguras de guindastes e andaimes em relação a redes elétricas aéreas"),
     ("nr-18", "18.5.1", "Condições de segurança em áreas de vivência e instalações sanitárias no canteiro"),
     ("nr-18", "18.14.1", "Treinamento admissional com carga horária de 4 horas antes de iniciar na obra"),
+]
+
+# Tópicos adicionais para o corpus v2 cobrindo NRs relevantes fora das 5 (NR-01, NR-33, NR-16, NR-26)
+NEW_TOPICS_V2 = [
+    # --- NR-01 (Gerenciamento de Riscos Ocupacionais e Disposições Gerais) ---
+    ("nr-01", "1.4.3", "Direito de recusa do trabalhador ao constatar risco grave e iminente na rede elétrica e interrupção do serviço sem punição"),
+    ("nr-01", "1.4.1", "Obrigação do empregador de informar os riscos ocupacionais e fornecer ordens de serviço de segurança antes da atividade"),
+    ("nr-01", "1.4.2", "Dever do trabalhador de cumprir as disposições legais e colaborar com a empresa na aplicação das NRs"),
+    ("nr-01", "1.5.3.1", "Responsabilidade da organização de implementar o Gerenciamento de Riscos Ocupacionais (GRO) nas atividades operacionais"),
+    ("nr-01", "1.5.4.4.2", "Hierarquia das medidas de prevenção: eliminação do perigo, proteção coletiva, medidas administrativas e EPI"),
+    ("nr-01", "1.5.5.1.1", "Elaboração de plano de ação e cronograma de implementação das medidas preventivas no PGR"),
+    ("nr-01", "1.5.7.1", "Documentos mínimos obrigatórios do PGR: Inventário de Riscos Ocupacionais e Plano de Ação"),
+    ("nr-01", "1.5.6.1", "Procedimentos de resposta a emergências e plano de resgate de acidentados elétricos"),
+    ("nr-01", "1.7.1", "Treinamento admissional, periódico e eventual com carga horária e conteúdo específicos antes do início das atividades"),
+    ("nr-01", "1.4.3.1", "Comunicação imediata ao superior hierárquico ao exercer o direito de recusa e proteção legal contra retaliação ou desconto"),
+
+    # --- NR-33 (Segurança e Saúde nos Trabalhos em Espaços Confinados) ---
+    ("nr-33", "33.1.2", "Definição técnica de espaço confinado para eletricistas (galerias subterrâneas, caixas de passagem e poços de visita)"),
+    ("nr-33", "33.3.4", "Deveres obrigatórios do Vigia de espaço confinado: permanecer fora junto à entrada e nunca abandonar o posto"),
+    ("nr-33", "33.3.4", "Proibição expressa do vigia realizar outras tarefas secundárias que dispersem sua atenção"),
+    ("nr-33", "33.5.4", "Emissão, validação e encerramento obrigatório da Permissão de Entrada e Trabalho (PET) antes de entrar na galeria"),
+    ("nr-33", "33.5.15", "Avaliação atmosférica contínua com detector multigás portátil para oxigênio, gases inflamáveis e tóxicos"),
+    ("nr-33", "33.5.16", "Ventilação mecânica contínua por insuflação de ar puro para manter a atmosfera respirável durante o serviço"),
+    ("nr-33", "33.5.14", "Bloqueio e isolamento de energias perigosas (LOTO) e desenergização de cabos adjacentes antes da entrada"),
+    ("nr-33", "33.5.20", "Equipamentos de movimentação vertical e resgate (tripé, guincho com cabo de aço e cinto tipo paraquedista)"),
+    ("nr-33", "33.6.1", "Carga horária mínima de 16 horas para capacitação periódica de trabalhadores autorizados e vigias"),
+    ("nr-33", "33.5.11", "Encerramento imediato da PET e abandono do espaço confinado ao soar o alarme do detector ou surgir condição imprevista"),
+
+    # --- NR-16 (Atividades e Operações Perigosas - Anexo 4 Energia Elétrica) ---
+    ("nr-16", "Anexo 4", "Percentual legal do adicional de periculosidade de 30% incidente sobre o salário-base para eletricistas"),
+    ("nr-16", "Anexo 4", "Enquadramento de periculosidade para atividades no Sistema Elétrico de Potência (SEP) em subestações e linhas de transmissão"),
+    ("nr-16", "Anexo 4", "Trabalho em proximidade com condutores elétricos energizados em alta e baixa tensão gerando direito ao adicional"),
+    ("nr-16", "Anexo 4", "Manutenção e inspeção em redes aéreas de distribuição de energia elétrica gerando direito à periculosidade"),
+    ("nr-16", "Anexo 4", "Atividades de desenergização e constatação de ausência de tensão como geradoras de direito à periculosidade"),
+    ("nr-16", "Anexo 4", "Operação de chaves seccionadoras, disjuntores e transformadores em pátios de subestações"),
+    ("nr-16", "Anexo 4", "Descaracterização do adicional de periculosidade em circuitos com extra baixa tensão (até 50V CA)"),
+    ("nr-16", "Anexo 4", "Descaracterização da periculosidade em instalações elétricas completamente desenergizadas e aterradas temporariamente"),
+    ("nr-16", "Anexo 4", "Trabalho em equipamentos elétricos de consumo final em baixa tensão desenergizados sem risco de energização acidental"),
+    ("nr-16", "16.2", "Obrigatoriedade de laudo técnico pericial de periculosidade elaborado por engenheiro de segurança ou médico do trabalho"),
+
+    # --- NR-26 (Sinalização de Segurança) ---
+    ("nr-26", "26.1.1", "Uso de cores de segurança para delimitar áreas perigosas, advertir contra riscos e identificar equipamentos em subestações"),
+    ("nr-26", "26.1.2", "A sinalização por cores não dispensa o emprego de outras medidas de prevenção coletiva e proteção de circuitos"),
+    ("nr-26", "26.4.1", "Classificação de perigo de produtos químicos (como óleos isolantes de transformador e solventes) pelo sistema GHS"),
+    ("nr-26", "26.4.2", "Elementos obrigatórios na rotulagem preventiva de frascos e recipientes químicos (pictogramas, palavra de advertência e frases de perigo)"),
+    ("nr-26", "26.4.3", "Exigência de disponibilização da Ficha com Dados de Segurança (FDS / FISPQ) em locais de fácil acesso aos operários"),
+    ("nr-26", "26.4.4", "Treinamento obrigatório para trabalhadores sobre interpretação dos rótulos de perigo e manuseio de fichas de segurança"),
+    ("nr-26", "26.1.1", "Sinalização e placas de advertência contra energização indevida instaladas em painéis e chaves de bloqueio"),
+    ("nr-26", "26.4.2", "Identificação clara de recipientes fracionados de solventes e graxas dielétricas utilizados na manutenção"),
+    ("nr-26", "26.4.3", "Instruções de primeiros socorros e combate a incêndio contidas na FDS para casos de derramamento de óleo isolante"),
+    ("nr-26", "26.1.2", "Placas padronizadas de advertência 'Perigo de Morte - Alta Tensão' em cercas perimetrais e portas de acesso a subestações"),
 ]
 
 
@@ -278,19 +333,121 @@ def generate_all_qa_pairs(
     return all_pairs
 
 
+def generate_qa_pairs_v2(
+    base_qa_path: Path = DEFAULT_OUTPUT_JSONL,
+    db_path: Path = Path("corpus/index_hf_36nr.db"),
+    output_path: Path = Path("corpus/qa_pairs_v2.jsonl"),
+    batch_size: int = 5,
+    force: bool = False,
+) -> List[Dict[str, Any]]:
+    """Gera o dataset v2 combinando as 101 perguntas do v1 com ~40 novas cobrindo NR-01, NR-33, NR-16 e NR-26."""
+    if output_path.exists() and not force:
+        with open(output_path, "r", encoding="utf-8") as f:
+            existing_lines = [json.loads(line) for line in f if line.strip()]
+        if len(existing_lines) >= 140:
+            logger.info("Arquivo v2 %s já existe com %d perguntas. Use --force para regenerar.", output_path, len(existing_lines))
+            return existing_lines
+
+    # 1. Carrega as 101 perguntas ouro originais do v1
+    if not base_qa_path.exists():
+        raise FileNotFoundError(f"Arquivo base v1 não encontrado em {base_qa_path}")
+
+    all_v2_pairs: List[Dict[str, Any]] = []
+    with open(base_qa_path, "r", encoding="utf-8") as f:
+        for line in f:
+            if line.strip():
+                all_v2_pairs.append(json.loads(line.strip()))
+
+    logger.info("Reutilizadas %d perguntas do corpus v1 (%s)", len(all_v2_pairs), base_qa_path)
+
+    # 2. Conecta ao banco SQLite de 36 NRs para encontrar os chunk_ids das novas perguntas
+    if not db_path.exists():
+        raise FileNotFoundError(f"Banco {db_path} não encontrado. Execute o chunking e indexação das 36 NRs primeiro.")
+
+    con = sqlite3.connect(str(db_path))
+    cur = con.cursor()
+
+    pair_counter = len(all_v2_pairs) + 1
+    new_pairs_added = 0
+
+    logger.info("Iniciando geração sintética v2 para %d novos tópicos (NR-01, NR-33, NR-16, NR-26)...", len(NEW_TOPICS_V2))
+
+    for i in range(0, len(NEW_TOPICS_V2), batch_size):
+        slice_topics = NEW_TOPICS_V2[i : i + batch_size]
+        batch_num = (i // batch_size) + 1
+        total_batches = (len(NEW_TOPICS_V2) + batch_size - 1) // batch_size
+        logger.info("Gerando lote v2 %d/%d (tópicos %d a %d)...", batch_num, total_batches, i + 1, min(i + batch_size, len(NEW_TOPICS_V2)))
+
+        try:
+            batch_result = generate_batch_qa(slice_topics)
+            for item in batch_result:
+                doc = item.get("doc", "").lower()
+                sec = item.get("section", "")
+                q = item.get("question", "")
+                ans = item.get("golden_answer", "")
+                q_terms = item.get("query_terms", "")
+                if isinstance(q_terms, list):
+                    q_terms = " ".join(str(x) for x in q_terms)
+
+                if not q or not ans:
+                    continue
+
+                chunk_id = find_matching_chunk(cur, doc, sec, q_terms)
+
+                qa_record = {
+                    "id": f"qa-{pair_counter:03d}",
+                    "doc": doc,
+                    "section": sec,
+                    "chunk_id": chunk_id,
+                    "relevant_chunk_ids": [chunk_id] if chunk_id else [],
+                    "question": q,
+                    "golden_answer": ans,
+                    "query_terms": q_terms,
+                }
+                all_v2_pairs.append(qa_record)
+                pair_counter += 1
+                new_pairs_added += 1
+
+        except Exception as e:
+            logger.error("Falha ao gerar lote v2: %s", e)
+
+    con.close()
+
+    # Salva o arquivo consolidado v2
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as f:
+        for p in all_v2_pairs:
+            f.write(json.dumps(p, ensure_ascii=False) + "\n")
+
+    logger.info("Dataset v2 gerado com sucesso: %d perguntas totais (101 v1 + %d novas) em %s", len(all_v2_pairs), new_pairs_added, output_path)
+    return all_v2_pairs
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Gera pares P&R sintéticos de campo com LLM CLI ('claude -p').")
-    parser.add_argument("--db", type=str, default=str(DEFAULT_DB_PATH), help="Caminho do banco SQLite FTS5 index.db.")
-    parser.add_argument("--output", type=str, default=str(DEFAULT_OUTPUT_JSONL), help="Arquivo JSONL de saída.")
+    parser.add_argument("--mode", type=str, default="v1", choices=["v1", "v2"], help="Modo de geração: v1 (5 NRs) ou v2 (101 v1 + 40 novas).")
+    parser.add_argument("--db", type=str, default=None, help="Caminho do banco SQLite FTS5 (index.db ou index_hf_36nr.db).")
+    parser.add_argument("--base-qa", type=str, default=str(DEFAULT_OUTPUT_JSONL), help="Caminho do arquivo v1 de perguntas base.")
+    parser.add_argument("--output", type=str, default=None, help="Arquivo JSONL de saída.")
     parser.add_argument("--force", action="store_true", help="Sobrescreve o arquivo JSONL existente.")
     args = parser.parse_args()
 
-    out_file = Path(args.output)
-    if out_file.exists() and not args.force:
-        logger.info("Arquivo %s já existe (%d linhas). Use --force para regenerar.", out_file, sum(1 for _ in open(out_file, encoding='utf-8')))
-        return
-
-    generate_all_qa_pairs(db_path=Path(args.db), output_path=out_file)
+    if args.mode == "v1":
+        db_path = Path(args.db) if args.db else DEFAULT_DB_PATH
+        out_file = Path(args.output) if args.output else DEFAULT_OUTPUT_JSONL
+        if out_file.exists() and not args.force:
+            logger.info("Arquivo %s já existe (%d linhas). Use --force para regenerar.", out_file, sum(1 for _ in open(out_file, encoding='utf-8')))
+            return
+        generate_all_qa_pairs(db_path=db_path, output_path=out_file)
+    else:
+        db_path = Path(args.db) if args.db else Path("corpus/index_hf_36nr.db")
+        out_file = Path(args.output) if args.output else Path("corpus/qa_pairs_v2.jsonl")
+        generate_qa_pairs_v2(
+            base_qa_path=Path(args.base_qa),
+            db_path=db_path,
+            output_path=out_file,
+            force=args.force,
+        )
 
 
 if __name__ == "__main__":

@@ -188,3 +188,123 @@ Os resultados experimentais confirmam taxativamente a hipótese de arquitetura d
   - O prompt forçou estritamente que a pergunta soasse com fala natural brasileira de campo ("Tô no poste...", "O encarregado falou que...", "Posso subir sozinho?").
   - A resposta-ouro (`golden_answer`) inclui a resposta técnica completa e a citação formal obrigatória da norma e do item aplicável.
   - O dataset resultante está versionado em `corpus/qa_pairs.jsonl` com 101 registros prontos para execução imediata offline.
+
+---
+
+## 8. Corpus v2: Avaliação Comparativa com Dataset Limpo Parquet (36 NRs + Manuais)
+
+Em evolução ao pipeline v1 baseado em PDFs, foi integrado o dataset externo `/home/rios/projetos/cemig-mobile-llm/firstmate/data/nrs_hf/nrs.parquet`, contendo as **36 Normas Regulamentadoras vigentes** em Markdown limpo (com numeração hierárquica oficial preservada) e os **manuais comentados oficiais do MTE** para 9 NRs (com destaque para a NR-10 Comentada, com 177 mil caracteres).
+
+### 8.1. Entregáveis do Corpus v2
+
+1. **`corpus/ingest_hf.py`**: Ingestor do Parquet que converte o texto Markdown em `ExtractedDocument` e `ExtractedItem`, preservando a compatibilidade estrita com o `chunk.py` (reusado sem modificações). Distingue formalmente norma vinculante (`doc='nr-XX'`) de manual interpretativo (`doc='nr-XX-manual'`).
+2. **Três Novos Índices SQLite FTS5** (~200–400 tokens por chunk):
+   - **`index_hf_5nr.db`** (1.64 MB, 357 chunks): Apenas as 5 NRs do v1 (10, 06, 12, 18, 35) em fonte limpa Markdown.
+   - **`index_hf_5nr_manual.db`** (3.35 MB, 788 chunks): As 5 NRs + 4 manuais disponíveis (06, 10, 12, 35).
+   - **`index_hf_36nr.db`** (8.28 MB, 2.202 chunks): Todas as 36 normas regulamentadoras vigentes (sem manuais).
+3. **`corpus/qa_pairs_v2.jsonl`** (151 perguntas): Reúne as 101 perguntas do v1 mais 50 novas perguntas geradas via `synth_qa.py` com voz coloquial de operário de campo e respostas-ouro citando itens normativos para NRs relevantes do setor elétrico fora das 5 originais:
+   - **NR-01 (GRO / PGR / Direito de Recusa)**: Fundamento legal de qualquer intervenção; embasa a recusa por risco grave e iminente (item 1.4.3) e ordens de serviço.
+   - **NR-33 (Espaços Confinados)**: Vital para eletricistas de redes subterrâneas (caixas de passagem, galerias técnicas e poços de visita), exigindo vigia, medição de gases e PET.
+   - **NR-16 (Periculosidade - Anexo 4 Energia Elétrica)**: Norma de enquadramento dos 30% em alta/baixa tensão, SEP e descaracterização do risco por desenergização.
+   - **NR-26 (Sinalização de Segurança)**: Cores de identificação, placas de "Perigo de Morte" e rotulagem GHS de óleos isolantes de transformador e solventes.
+4. **`corpus/eval_v2.py`**: Bateria comparativa cobrindo os 4 cenários experimentais solicitados pelo comando da POC.
+
+---
+
+### 8.2. Tabelas Comparativas dos 4 Experimentos
+
+#### Comparação (i): Fonte Limpa Markdown vs Extração PDF (101 Perguntas v1)
+*Objetivo: Decidir com números se o texto Markdown limpo supera a extração frágil de PDFs.*
+
+| Índice Avaliado | Estratégia de Retrieval | Recall@1 | Recall@3 | Recall@5 | MRR |
+|:----------------|:------------------------|:--------:|:--------:|:--------:|:---:|
+| **PDF v1 (`index.db`)** | Tool-Calling Filtrado por Norma | 51.5% | 77.2% | 85.1% | 0.6541 |
+| **HF 5NR (a) (`index_hf_5nr.db`)** | Tool-Calling Filtrado por Norma | **55.4%** | **78.2%** | **86.1%** | **0.6718** |
+| PDF v1 (`index.db`) | Tool-Calling Termos Soltos OR | 45.5% | 64.4% | 71.3% | 0.5571 |
+| **HF 5NR (a) (`index_hf_5nr.db`)** | Tool-Calling Termos Soltos OR | **46.5%** | **64.4%** | **74.3%** | **0.5662** |
+
+> **Conclusão (i):** A fonte limpa melhora o retrieval em todas as métricas (+3.9 p.p. no Recall@1 na estratégia filtrada; +3.0 p.p. no Recall@5 em termos soltos). O Markdown eliminou artefatos de quebra de coluna, sumários intermediários e hifenizações corrompidas comuns em leitores de PDF.
+
+---
+
+#### Comparação (ii): O Manual Comentado Ajuda ou Polui? (101 Perguntas v1)
+*Objetivo: Avaliar se os manuais interpretativos aumentam a precisão ou degradam a recuperação da norma vinculante.*
+
+| Índice Avaliado | Estratégia de Retrieval | Recall@1 | Recall@3 | Recall@5 | MRR |
+|:----------------|:------------------------|:--------:|:--------:|:--------:|:---:|
+| **HF 5NR (a) Norma Pura** | Termos Soltos OR | **46.5%** | **64.4%** | **74.3%** | **0.5662** |
+| **HF 5NR+Manual (b)** | Termos Soltos OR | 22.8% | 42.6% | 50.5% | 0.3373 |
+| **HF 5NR (a) Norma Pura** | Boost de Documento | **48.5%** | **72.3%** | **81.2%** | **0.6071** |
+| **HF 5NR+Manual (b)** | Boost de Documento | 24.8% | 46.5% | 56.4% | 0.3721 |
+| **HF 5NR (a) Norma Pura** | Filtrado por Norma | **55.4%** | **78.2%** | **86.1%** | **0.6718** |
+| **HF 5NR+Manual (b)** | Filtrado por Norma | 54.5% | 74.3% | 81.2% | 0.6512 |
+
+##### Medição Exata de Deslocamento do Top-3
+- **Total de perguntas avaliadas**: 101
+- **Perguntas em que um chunk do manual expulsou o chunk-ouro da norma do top-3**: **21 perguntas (20.8%)**
+- **Impacto prático**: Em **1 de cada 5 consultas operacionais**, o operário recebe a interpretação doutrinária do manual antes da redação formal da norma vinculante. Como os manuais são extensos e repetem exaustivamente termos técnicos ("Comentário", "Análise do subitem 10.2.8"), eles inflam os escores de TF (Term Frequency) no BM25 e desbancam os itens oficiais.
+
+> **Conclusão (ii):** O manual comentado **polui fortemente** a busca primária se embutido no mesmo índice de recuperação.
+
+---
+
+#### Comparação (iii): Diluição por Expansão de 5 NRs para 36 NRs (101 Perguntas v1)
+*Objetivo: Avaliar se a inclusão de 31 normas adicionais reduz o recall das 5 normas críticas do eletricista.*
+
+| Índice Avaliado | Estratégia de Retrieval | Recall@1 | Recall@3 | Recall@5 | MRR |
+|:----------------|:------------------------|:--------:|:--------:|:--------:|:---:|
+| **HF 5NR (a)** | Tool-Calling Filtrado por Norma | 55.4% | 78.2% | **86.1%** | 0.6718 |
+| **HF 36NR (c)** | Tool-Calling Filtrado por Norma | 53.5% | 76.2% | **84.2%** | 0.6541 |
+| **HF 5NR (a)** | Tool-Calling Boost de Documento | 48.5% | 72.3% | **81.2%** | 0.6071 |
+| **HF 36NR (c)** | Tool-Calling Boost de Documento | 47.5% | 69.3% | **77.2%** | 0.5886 |
+| **HF 5NR (a)** | Tool-Calling Termos Soltos OR | 46.5% | 64.4% | 74.3% | 0.5662 |
+| **HF 36NR (c)** | Tool-Calling Termos Soltos OR | 36.6% | 52.5% | 62.4% | 0.4568 |
+
+> **Conclusão (iii):** Quando se utiliza a estratégia com **Filtro de Norma**, a diluição ao expandir de 5 para 36 NRs é desprezível (**queda de apenas 1.9 p.p. no Recall@5** e 0.0177 no MRR). Por outro lado, a busca aberta por termos soltos sem filtro sofre diluição sensível (-11.9 p.p.), comprovando a necessidade de escopo por norma.
+
+---
+
+#### Avaliação (iv): Desempenho do Índice 36 NRs no Dataset Consolidado v2 (151 Perguntas)
+*Objetivo: Medir a acurácia global do índice completo cobrindo todas as normas avaliadas (5 NRs originais + NR-01, NR-16, NR-26, NR-33).*
+
+| Estratégia de Retrieval | Recall@1 | Recall@3 | Recall@5 | MRR |
+|:------------------------|:--------:|:--------:|:--------:|:---:|
+| **1. Pergunta Bruta de Voz (Stopwords + OR)** | 11.3% | 13.9% | 17.2% | 0.1301 |
+| **2. Tool-Calling SLM (Termos Soltos OR)** | 38.4% | 56.3% | 65.6% | 0.4837 |
+| **3. Tool-Calling SLM (Termos + Boost)** | 51.7% | 72.2% | 80.1% | 0.6237 |
+| **4. Tool-Calling SLM (Filtrado por Norma)** | **57.6%** | **80.1%** | **85.4%** | **0.6881** |
+
+##### Detalhamento por Norma Regulamentadora (Índice 36 NRs — Estratégia 4 Filtrada)
+
+| Norma | Descrição | Qtd Pares | Recall@1 | Recall@3 | Recall@5 | MRR |
+|:-----:|:----------|:---------:|:--------:|:--------:|:--------:|:---:|
+| **NR-01** | Gerenciamento de Riscos / GRO / Recusa | 15 | **80.0%** | **93.3%** | **93.3%** | **0.8667** |
+| **NR-06** | Equipamento de Proteção Individual (EPI) | 8 | 62.5% | 75.0% | 87.5% | 0.7188 |
+| **NR-10** | Segurança em Instalações e Serviços Elétricos | 45 | **62.2%** | **88.9%** | **93.3%** | **0.7481** |
+| **NR-12** | Segurança em Máquinas e Bloqueio LOTO | 13 | 38.5% | 53.8% | 61.5% | 0.4769 |
+| **NR-16** | Periculosidade (Anexo 4 - Energia Elétrica) | 15 | **60.0%** | **86.7%** | **86.7%** | **0.7000** |
+| **NR-18** | Condições na Construção e Redes Aéreas | 17 | 41.2% | 64.7% | 76.5% | 0.5363 |
+| **NR-26** | Sinalização de Segurança e GHS | 10 | 50.0% | **90.0%** | **90.0%** | 0.6833 |
+| **NR-33** | Espaços Confinados / Galerias Subterrâneas | 10 | **70.0%** | **80.0%** | **80.0%** | **0.7500** |
+| **NR-35** | Trabalho em Altura | 18 | 50.0% | 72.2% | 83.3% | 0.6296 |
+| **Total** | **Todas as NRs Avaliadas (v2)** | **151** | **57.6%** | **80.1%** | **85.4%** | **0.6881** |
+
+---
+
+### 8.3. Recomendação Objetiva para o Aplicativo Mobile
+
+Com base nas quatro baterias empíricas de testes, define-se a seguinte recomendação técnica:
+
+1. **Índice Recomendado para Embarque no App**: **`index_hf_36nr.db` (Todas as 36 NRs vigentes em texto normativo limpo, SEM manuais)**.
+   - **Tamanho no disco**: Apenas **8.28 MB** (bem inferior ao teto de 50 MB e plenamente viável para inclusão direta em `app/src/main/assets/index.db`).
+   - **Cobertura**: Expande a assistência para qualquer situação regulatória de SST sem degradar as 5 NRs essenciais (Recall@5 de **85.4%** e MRR de **0.6881**).
+   - **Segurança Jurídica**: Garante que o assistente cite exclusivamente o texto legal vinculante aprovado por Portaria do MTE, eliminando o risco de o modelo responder com interpretações de guias antigos (como o manual de 2010 da NR-10).
+
+2. **Diretrizes para Tratamento de Manuais Comentados (se disponibilizados na UI)**:
+   - Se o produto optar por disponibilizar o conteúdo interpretativo dos manuais, eles **NÃO devem concorrer no mesmo índice de busca BM25 do RAG principal**.
+   - **Separação de Índices / Tabelas**: Manter o manual em tabela dedicada (ex: `manual_chunks_fts`) acessível apenas via busca explícita de "Doutrina / Comentários".
+   - **Rotulagem Obrigatória na Interface (UI/UX)**:
+     - Chunks de norma vinculante (`doc='nr-XX'`): Exibir com crachá/badge destacado:  
+       🟢 **`[Norma Obrigatória · Portaria Vigente MTE]`** — com citação formal do item.
+     - Chunks de manual comentado (`doc='nr-XX-manual'`): Exibir com crachá/badge informativo:  
+       🟡 **`[Manual Comentado MTE · Conteúdo Interpretativo (2010)]`** — com aviso explícito de que o conteúdo é orientativo e não substitui a norma regulamentadora publicada no DOU.
