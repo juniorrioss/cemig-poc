@@ -1,0 +1,17 @@
+# Ambientes virtuais e dependências
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+
+# Dados e artefatos intermediários
+corpus/data/
+data/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
