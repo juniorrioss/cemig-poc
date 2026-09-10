@@ -1,0 +1,290 @@
+{
+  "alias": "lfm2.5-1.2b-instruct-q4_k_m",
+  "name": "Liquid LFM2.5 1.2B Instruct (Q4_K_M Vanilla)",
+  "params": "1.2B",
+  "quant": "Q4_K_M",
+  "is_qad": false,
+  "file_size_mib": 697.04,
+  "threads": 6,
+  "repetitions": 3,
+  "metrics_pp1500": {
+    "prompt_tokens": 1500,
+    "gen_tokens": 128,
+    "prefill_tok_per_sec": 182.56,
+    "prefill_stddev": 0.58,
+    "prefill_samples": [
+      182.884,
+      182.918,
+      181.89
+    ],
+    "decode_tok_per_sec": 44.16,
+    "decode_stddev": 1.14,
+    "decode_samples": [
+      45.4012,
+      43.925,
+      43.1574
+    ],
+    "ttft_sec": 8.216,
+    "total_latency_100t_sec": 10.481,
+    "peak_ram_mib": 1488.3,
+    "cold_load_sec": 9.053,
+    "bench_wall_time_sec": 42.79
+  },
+  "metrics_pp800": {
+    "prompt_tokens": 800,
+    "gen_tokens": 128,
+    "prefill_tok_per_sec": 178.61,
+    "prefill_stddev": 3.05,
+    "prefill_samples": [
+      181.991,
+      177.775,
+      176.06
+    ],
+    "decode_tok_per_sec": 38.05,
+    "decode_stddev": 1.88,
+    "decode_samples": [
+      40.2182,
+      36.9777,
+      36.949
+    ],
+    "ttft_sec": 4.479,
+    "total_latency_100t_sec": 7.107,
+    "peak_ram_mib": 1480.77,
+    "cold_load_sec": 5.109,
+    "bench_wall_time_sec": 29.06
+  },
+  "temperatures": {
+    "ap_before_c": 30.9,
+    "ap_after_c": 54.8,
+    "delta_ap_c": 23.9,
+    "bat_before_c": 28.9,
+    "bat_after_c": 36.8,
+    "delta_bat_c": 7.9,
+    "skin_before_c": 30.2,
+    "skin_after_c": 40.3,
+    "delta_skin_c": 10.1
+  },
+  "smoke_qa_count": 20,
+  "smoke_qa": [
+    {
+      "id": "smoke-001",
+      "category": "procedimento_critico",
+      "doc": "nr-10",
+      "question": "Quais são as etapas obrigatórias e em que sequência exata devem ser executadas para considerar uma instalação elétrica liberada para trabalho como desenergizada?",
+      "golden_answer": "Conforme o item 10.5.1 da NR-10, somente serão consideradas desenergizadas as instalações elétricas liberadas para trabalho mediante os procedimentos apropriados, obedecida a seguinte sequência: a) seccionamento; b) impedimento de reenergização; c) constatação da ausência de tensão; d) instalação de aterramento temporário com equipotencialização dos condutores dos circuitos; e) proteção dos elementos energizados existentes na zona controlada; e f) instalação da sinalização de impedimento de reenergização.",
+      "response": "",
+      "latency_sec": 9.061,
+      "prompt_tok_per_sec": 159.9,
+      "gen_tok_per_sec": 32.4
+    },
+    {
+      "id": "smoke-002",
+      "category": "protecao_coletiva",
+      "doc": "nr-10",
+      "question": "Na impossibilidade técnica de desenergizar um circuito elétrico para manutenção, qual é a medida prioritária de proteção coletiva a ser adotada?",
+      "golden_answer": "De acordo com o item 10.2.8.2 da NR-10, as medidas de proteção coletiva compreendem, prioritariamente, a desenergização elétrica e, na sua impossibilidade, o emprego de tensão de segurança (extra baixa tensão). Caso ambas sejam inviáveis, aplicam-se medidas como isolação das partes vivas, obstáculos, barreiras, sinalização e bloqueio do religamento automático (item 10.2.8.2.1).",
+      "response": "A medida prioritária de proteção coletiva em situações de impossibilidade técnica de desenergizar um circuito elétrico é a **isolação do circuito**, garantindo que o sistema não possa apresentar risco de energia para pessoas ou equipamentos. De acordo com a NR-10/2015 e normas complementares, isso envolve a utilização de dispositivos de proteção como disjuntores automáticos, interruptores de segurança e sistemas de proteção contra choque elétrico.",
+      "latency_sec": 7.876,
+      "prompt_tok_per_sec": 187.5,
+      "gen_tok_per_sec": 34.7
+    },
+    {
+      "id": "smoke-003",
+      "category": "epi_adornos",
+      "doc": "nr-10",
+      "question": "Posso trabalhar na manutenção de um painel elétrico usando aliança de casamento, relógio de pulso ou cordão de prata no pescoço?",
+      "golden_answer": "Não. O item 10.2.9.3 da NR-10 proíbe expressamente o uso de adornos pessoais nos trabalhos com instalações elétricas ou em suas proximidades. Metais conduzem eletricidade e aumentam enormemente o risco de choque ou queimaduras por arco elétrico.",
+      "response": "Não, o uso de alianças de casamento, relógios de pulso ou cordões de prata no pescoço **não é permitido** na manutenção de painéis elétricos de acordo com as Normas Regulamentadoras (NRs) brasileiras. De acordo com a **NR 10-01: Segurança em Equipamentos Elétricos**, o uso de materiais não autorizados ou não certificados para contato com equipamentos elétricos pode comprometer a segurança e a eficácia do sistema. Além disso,",
+      "latency_sec": 8.241,
+      "prompt_tok_per_sec": 182.5,
+      "gen_tok_per_sec": 34.4
+    },
+    {
+      "id": "smoke-004",
+      "category": "alta_tensao",
+      "doc": "nr-10",
+      "question": "Um eletricista pode realizar serviços de manutenção sozinho em uma linha de transmissão ou rede de alta tensão (SEP)?",
+      "golden_answer": "Não. O item 10.7.3 da NR-10 determina taxativamente que os serviços em instalações elétricas energizadas em alta tensão (AT), bem como aqueles executados no Sistema Elétrico de Potência (SEP), não podem ser realizados individualmente, sendo obrigatória a execução por no mínimo dois trabalhadores (em dupla).",
+      "response": "Não, um eletricista não pode realizar serviços de manutenção sozinho em linhas de transmissão ou redes de alta tensão sem a devida autorização e conformidade com as Normas Regulamentadoras (NRs) aplicáveis. O trabalho nesses ambientes exige treinamento específico, equipamentos adequados e adesão às normas de segurança, como a NR-10 e outras que regulam o trabalho em alta tensão.",
+      "latency_sec": 7.291,
+      "prompt_tok_per_sec": 189.0,
+      "gen_tok_per_sec": 36.2
+    },
+    {
+      "id": "smoke-005",
+      "category": "direito_recusa",
+      "doc": "nr-10",
+      "question": "Se o trabalhador constatar situação de risco grave e iminente para sua vida ou integridade física durante o serviço, qual direito a NR-10 assegura?",
+      "golden_answer": "Conforme o item 10.14.1 da NR-10, os trabalhadores têm assegurado o direito de recusa: devem interromper suas tarefas sempre que constatarem evidências de riscos graves e iminentes para sua segurança e saúde ou a de outras pessoas, comunicando o fato imediatamente ao superior hierárquico para adoção das medidas cabíveis.",
+      "response": "A NR-10 assegura ao trabalhador o direito à **proteção contra riscos ocupacionais**, incluindo a obrigatoriedade de medidas de segurança e a possibilidade de intervenção em situações de risco grave e iminente à sua vida ou integridade física.",
+      "latency_sec": 6.173,
+      "prompt_tok_per_sec": 183.7,
+      "gen_tok_per_sec": 39.2
+    },
+    {
+      "id": "smoke-006",
+      "category": "autorizacao",
+      "doc": "nr-10",
+      "question": "Quem é considerado trabalhador autorizado para intervir em instalações elétricas segundo a NR-10?",
+      "golden_answer": "Conforme o item 10.8.8 da NR-10, são considerados autorizados os trabalhadores qualificados ou capacitados e os profissionais habilitados que tenham anuência formal da empresa para intervir em instalações elétricas, possuam registro no sistema da empresa e capacitação com treinamentos de segurança específicos.",
+      "response": "De acordo com a Norma Regulamentadora nº 10 (NR-10), o trabalhador autorizado para intervir em instalações elétricas é o **trabalhador qualificado**, conforme definido no artigo 1º da NR-10. Ele deve possuir formação técnica e estar autorizado para realizar as tarefas específicas de segurança no setor elétrico.",
+      "latency_sec": 6.901,
+      "prompt_tok_per_sec": 188.6,
+      "gen_tok_per_sec": 37.2
+    },
+    {
+      "id": "smoke-007",
+      "category": "alta_tensao",
+      "doc": "nr-10",
+      "question": "Qual documento formal é mandatório emitir e aprovar antes de iniciar qualquer intervenção em instalações energizadas de alta tensão no SEP?",
+      "golden_answer": "Segundo o item 10.7.4 da NR-10, todo trabalho em instalações elétricas energizadas em alta tensão (AT) só pode ser realizado mediante Ordem de Serviço específica, aprovada por trabalhador autorizado, contendo no mínimo o tipo, a data, o local e as referências aos procedimentos de trabalho a serem adotados.",
+      "response": "O documento formal necessário é o **Certificado de Conformidade com a Norma Regulamentadora (NR) 15.178/2005**, que estabelece as condições para trabalhar em equipamentos elétricos e sistemas de energia elétrica. Além disso, a **Autorização de Trabalho Elétrico** emitida pela Empresa de Energia Elétrica (EPE) ou pelo responsável local, é essencial antes de qualquer intervenção em instalações energizadas.",
+      "latency_sec": 7.701,
+      "prompt_tok_per_sec": 179.8,
+      "gen_tok_per_sec": 35.2
+    },
+    {
+      "id": "smoke-008",
+      "category": "documentacao",
+      "doc": "nr-10",
+      "question": "A partir de qual potência de carga instalada as empresas são obrigadas a manter o Prontuário de Instalações Elétricas (PIE)?",
+      "golden_answer": "De acordo com o item 10.2.4 da NR-10, os estabelecimentos com carga instalada superior a 75 kW devem constituir e manter o Prontuário de Instalações Elétricas (PIE), organizado e permanentemente atualizado pelo empregador ou pessoa formalmente autorizada.",
+      "response": "As empresas são obrigadas a manter o Prontuário de Instalações Elétricas (PIE) com potência de carga instalada superior a **100 kW**.",
+      "latency_sec": 5.342,
+      "prompt_tok_per_sec": 185.5,
+      "gen_tok_per_sec": 44.8
+    },
+    {
+      "id": "smoke-009",
+      "category": "procedimento_critico",
+      "doc": "nr-10",
+      "question": "Após a conclusão dos reparos na rede elétrica, qual é a sequência de passos para realizar a reenergização com segurança?",
+      "golden_answer": "Conforme o item 10.5.2 da NR-10, a reenergização deve obedecer à seguinte sequência: a) retirada das ferramentas, equipamentos e utensílios; b) retirada da zona controlada de todos os trabalhadores não envolvidos; c) remoção do aterramento temporário, da equipotencialização e das proteções adicionais; d) remoção da sinalização de impedimento; e e) destravamento, se houver, e religamento dos dispositivos de seccionamento.",
+      "response": "Após a conclusão dos reparos na rede elétrica, a reenergização deve seguir a sequência rigorosa estabelecida nas NRs 10-1 e 10-2: 1. **Verificação de segurança** – Garantir que o sistema esteja desligado e que todos os equipamentos estejam em estado seguro. 2. **Teste progressivo** – Iniciar a reenergização em uma área isolada, seguindo a ordem de prioridade definida nas normas. 3. **Monitoramento contínuo** – Observar sina",
+      "latency_sec": 8.296,
+      "prompt_tok_per_sec": 174.4,
+      "gen_tok_per_sec": 34.3
+    },
+    {
+      "id": "smoke-010",
+      "category": "epi_adornos",
+      "doc": "nr-10",
+      "question": "Quais fatores técnicos devem ser obrigatoriamente contemplados na especificação das vestimentas de trabalho para eletricistas?",
+      "golden_answer": "De acordo com o item 10.2.9.2 da NR-10, as vestimentas de trabalho devem ser adequadas às atividades, devendo contemplar a condutibilidade, a inflamabilidade e as influências eletromagnéticas, garantindo proteção contra queimaduras de arco elétrico e choque elétrico.",
+      "response": "Os fatores técnicos obrigatórios para a especificação de vestimentas de trabalho para eletricistas no Brasil incluem: - **Proteção contra choques elétricos:** Uso de roupas com certificação IEC 60335-2-22 ou similar, garantindo isolamento adequado. - **Resistência à água e à poeira:** Norma ABNT NBR 6118 para vestuário em ambientes úmidos. - **Proteção contra faíscas e arcos elétricos:** Materiais com resistência a tens",
+      "latency_sec": 7.996,
+      "prompt_tok_per_sec": 184.9,
+      "gen_tok_per_sec": 35.2
+    },
+    {
+      "id": "smoke-011",
+      "category": "responsabilidade_empregador",
+      "doc": "nr-06",
+      "question": "A empresa prestadora de serviços elétricos pode cobrar ou descontar do salário do empregado o valor do capacete e das luvas isolantes?",
+      "golden_answer": "Não. O item 6.3 da NR-06 estabelece que a organização é obrigada a fornecer aos empregados, gratuitamente, EPI adequado ao risco, em perfeito estado de conservação e funcionamento. Qualquer cobrança ou desconto pelo fornecimento do EPI viola diretamente a norma.",
+      "response": "Sim, a empresa pode cobrar ou descontar do salário do empregado o valor do capacete e das luvas isolantes, desde que seja feita conforme as normas regulamentadoras aplicáveis, como a NR-10 (Segurança no Trabalho com Equipamentos Elétricos) e outras normas específicas para o setor elétrico.",
+      "latency_sec": 6.727,
+      "prompt_tok_per_sec": 187.8,
+      "gen_tok_per_sec": 37.4
+    },
+    {
+      "id": "smoke-012",
+      "category": "responsabilidade_trabalhador",
+      "doc": "nr-06",
+      "question": "Quais são as principais responsabilidades e obrigações do trabalhador quanto aos EPIs recebidos da empresa?",
+      "golden_answer": "Conforme o item 6.5.1 da NR-06, cabe ao trabalhador: a) usar o EPI fornecido apenas para a finalidade a que se destina; b) responsabilizar-se pela sua guarda e conservação; c) comunicar imediatamente à organização qualquer alteração que o torne impróprio para uso; d) cumprir as determinações da organização sobre o uso adequado; e e) colaborar com a organização na aplicação da NR.",
+      "response": "O trabalhador tem a responsabilidade de utilizar corretamente os Equipamentos de Proteção Individual (EPI) conforme especificado na norma de segurança aplicável, garantindo que: 1. **Seja fornecido com EPIs adequados**: A empresa deve assegurar a disponibilidade e uso correto dos EPIs para cada atividade. 2. **Utilize sempre os EPIs conforme exigido**: O trabalhador deve usar os equipamentos de acordo com as instruções e recomendações técnicas. 3. **Manter a manuten",
+      "latency_sec": 8.095,
+      "prompt_tok_per_sec": 185.7,
+      "gen_tok_per_sec": 35.1
+    },
+    {
+      "id": "smoke-013",
+      "category": "certificacao",
+      "doc": "nr-06",
+      "question": "Um equipamento de proteção individual pode ser comercializado ou utilizado no Brasil se não possuir o Certificado de Aprovação (CA)?",
+      "golden_answer": "Não. O item 6.6.1 da NR-06 determina expressamente que o EPI, seja de fabricação nacional ou importado, só pode ser posto à venda ou utilizado com a indicação do Certificado de Aprovação - CA válido, emitido pelo órgão de âmbito nacional competente em matéria de segurança e saúde no trabalho.",
+      "response": "Não, um equipamento de proteção individual (EPI) não pode ser comercializado ou utilizado no Brasil sem o Certificado de Aprovação (CA). O CA é obrigatório para garantir a conformidade com as Normas Regulamentadoras (NRs) aplicáveis ao setor elétrico.",
+      "latency_sec": 6.402,
+      "prompt_tok_per_sec": 187.2,
+      "gen_tok_per_sec": 37.5
+    },
+    {
+      "id": "smoke-014",
+      "category": "responsabilidade_empregador",
+      "doc": "nr-06",
+      "question": "Se a luva isolante de borracha do eletricista for perfurada por uma farpa de arame no poste, o que deve ser feito e de quem é o dever de troca?",
+      "golden_answer": "O eletricista deve interromper imediatamente o uso da luva avariada e comunicar à chefia (NR-06, item 6.5.1, alínea c). Conforme a alínea e do item 6.3.1 da NR-06, cabe à organização substituir imediatamente o EPI danificado ou extraviado por outro equipamento novo ou em perfeitas condições.",
+      "response": "Quando a luva isolante de borracha do eletricista é perfurada por uma farpa de arame no poste, **deve-se substituir a luva imediatamente** para evitar risco de descarga elétrica. O **dever de troca** recai sobre o **responsável pelo trabalho em segurança** ou, se for o caso, sobre o **empregador**, dependendo da legislação aplicável (como a NR-10 e normas específicas do setor). É essencial seguir os procedimentos de emergência e",
+      "latency_sec": 8.237,
+      "prompt_tok_per_sec": 187.4,
+      "gen_tok_per_sec": 34.5
+    },
+    {
+      "id": "smoke-015",
+      "category": "especificacao_epi",
+      "doc": "nr-06",
+      "question": "Quais são as exigências especiais para o calçado de segurança destinado ao trabalho com eletricidade segundo o Anexo I da NR-06?",
+      "golden_answer": "Conforme o Anexo I da NR-06 (item F.1), o calçado para eletricistas deve possuir propriedades de isolamento elétrico (dielétricas) com solado resistente à tensão elétrica de ensaio e não deve apresentar biqueiras ou componentes metálicos condutores expostos que possam transferir corrente elétrica ao trabalhador.",
+      "response": "De acordo com a Anexo I da NR-06 (Norma Regulamentadora nº 6), o calçado de segurança para trabalhos elétricos deve atender aos seguintes requisitos: 1. **Classificação:** O calçado deve ser classificado como **Class I**, indicando que é adequado para uso em ambientes com risco de queda de objetos ou de quedas de altura. 2. **Resistência à compressão:** Deve ter resistência mínima de **150 mm²** para o pé e **200 mm²** para",
+      "latency_sec": 8.117,
+      "prompt_tok_per_sec": 185.9,
+      "gen_tok_per_sec": 34.2
+    },
+    {
+      "id": "smoke-016",
+      "category": "capacitacao",
+      "doc": "nr-06",
+      "question": "Basta a empresa entregar a vestimenta contra arco elétrico com ficha assinada, ou a norma exige treinamento e orientação?",
+      "golden_answer": "A norma exige treinamento obrigatório. Segundo o item 6.3.1, alínea c, da NR-06, a organização é obrigada a orientar e capacitar o empregado sobre o uso adequado, guarda e conservação do EPI, não bastando a simples distribuição física do equipamento com recibo.",
+      "response": "De acordo com a NR-10-01/2017 (Regulamentação Geral de Segurança no Trabalho), a empresa deve fornecer à pessoa que trabalha com equipamentos elétricos uma vestimenta contra arco elétrico com ficha assinada, desde que seja utilizada em condições adequadas. No entanto, o treinamento e orientação são obrigatórios para garantir a segurança e o uso correto dos equipamentos.",
+      "latency_sec": 7.356,
+      "prompt_tok_per_sec": 185.3,
+      "gen_tok_per_sec": 35.7
+    },
+    {
+      "id": "smoke-017",
+      "category": "definicoes_tecnicas",
+      "doc": "nr-10",
+      "question": "A partir de qual nível de tensão em corrente alternada e contínua os serviços passam a exigir qualificação, habilitação e autorização pela NR-10?",
+      "golden_answer": "Conforme a NR-10 (itens 10.6.1 e Glossário), instalações elétricas energizadas com tensão superior a 50 Volts em corrente alternada (VCA) ou superior a 120 Volts em corrente contínua (VCC) não são consideradas extra baixa tensão e exigem que os profissionais que nelas intervenham sejam capacitados, qualificados ou habilitados e expressamente autorizados pela organização.",
+      "response": "De acordo com a NR-10 (Norma Regulamentadora 10), a qualificação, habilitação e autorização pela NR-10 são exigidas para trabalhos em **corrente alternada (CA)** a partir de **50 kV**.",
+      "latency_sec": 5.913,
+      "prompt_tok_per_sec": 185.1,
+      "gen_tok_per_sec": 39.3
+    },
+    {
+      "id": "smoke-018",
+      "category": "responsabilidade_trabalhador",
+      "doc": "nr-06",
+      "question": "O trabalhador pode levar a luva isolante e a lanterna de capacete fornecidas pela distribuidora para fazer bicos elétricos nos fins de semana?",
+      "golden_answer": "Não. O item 6.5.1, alínea a, da NR-06 estabelece textualmente que cabe ao empregado usar o EPI fornecido apenas para a finalidade a que se destina na empresa, sendo vedada a sua utilização para serviços particulares ou fins diversos da atividade laboral contratada.",
+      "response": "Não, o trabalhador não pode levar esses itens além do ambiente de trabalho, conforme regulamentado pela NR-10-2015 e normas relacionadas à segurança no trabalho com equipamentos elétricos.",
+      "latency_sec": 6.243,
+      "prompt_tok_per_sec": 186.8,
+      "gen_tok_per_sec": 35.4
+    },
+    {
+      "id": "smoke-019",
+      "category": "negativa_fora_de_escopo",
+      "doc": "fora_do_escopo",
+      "question": "Qual é a fórmula de cálculo da alíquota de ICMS sobre a tarifa de energia elétrica residencial aplicada no estado de Minas Gerais?",
+      "golden_answer": "Não sei. As Normas Regulamentadoras (NR-10 e NR-06) tratam exclusivamente de segurança, saúde e prevenção de acidentes do trabalho em instalações elétricas e uso de EPIs. Elas não tratam de tributação, alíquotas fiscais ou tarifas de energia elétrica.",
+      "response": "A alíquota do ICMS sobre a tarifa de energia elétrica residencial no estado de Minas Gerais é calculada com base na **Lei nº 13.146/2015**, que estabelece a cobrança do imposto sobre serviços elétricos. Segundo a legislação vigente: - A tarifa de energia elétrica residencial no estado de Minas Gerais é **aplicada com alíquota de 0%** para consumo em residências, desde que o consumo não exceda os limites estabelecidos",
+      "latency_sec": 8.843,
+      "prompt_tok_per_sec": 139.8,
+      "gen_tok_per_sec": 30.5
+    },
+    {
+      "id": "smoke-020",
+      "category": "procedimento_perigoso_negativa",
+      "doc": "fora_do_escopo",
+      "question": "Posso enrolar um fio de cobre ou arame fino em um fusível queimado para não deixar a bomba d água desligada durante o turno?",
+      "golden_answer": "Não. Esse procedimento é expressamente proibido pelas normas de segurança elétrica (NR-10, subitens 10.2.1 e 10.4.1). Todos os componentes e dispositivos de proteção devem ser tecnicamente dimensionados e aprovados. Substituir fusíveis por fios ou arames elimina a proteção contra curto-circuito e sobrecarga, podendo provocar explosão do painel, arco elétrico fatal e incêndio generalizado.",
+      "response": "Não, você **não pode** enrolar um fio de cobre ou arame fino em um fusível queimado. Isso é **proibido** por motivos de segurança e conforme a **NR-10 (Regulamento Geral de Segurança no Trabalho)** e a **NR-15 (Normas Regulamentadoras para o Setor Elétrico)**. Ao enrolar fios em um fusível queimado, você pode causar: - **Superaquecimento** do fusível, - **Cur",
+      "latency_sec": 9.085,
+      "prompt_tok_per_sec": 120.9,
+      "gen_tok_per_sec": 30.0
+    }
+  ]
+}

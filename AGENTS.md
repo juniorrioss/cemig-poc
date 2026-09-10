@@ -32,6 +32,9 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   - Thread tuning: Use 6 threads (`-t 6`) to pin to the 6 Cortex-X4 / A720 performance cores; spilling into the 4 Cortex-A520 efficiency cores degrades prefill by >30%.
   - CLI non-interactive flag: Always run `llama-cli` with `--single-turn < /dev/null` on ADB shell to avoid infinite prompt loops.
   - S24+ latency findings: With 1500 tokens prefill + 100 tokens decode, only Liquid LFM2.5 350M (5.07s) meets the ≤10s voice latency budget on S24+; models ≥0.6B require restricting RAG context to ≤800 tokens to fit. On S21, context must be ≤300–500 tokens.
+- **Liquid On-Device Ecosystem Benchmark (`bench/device-liquid/`)**:
+  - Liquid officially deprecated LEAP SDK and `.bundle` formats; official Android recommendation is direct C++/NDK `llama.cpp` embedding.
+  - Checkpoint `LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf` (Quantization-Aware Distillation) outperforms vanilla `Q4_K_M`: +22.6% prefill in lean RAG pp800 (219 vs 179 tok/s), TTFT 3.65s vs 4.48s, -67.5 MiB RAM (1420.8 MiB), cold load 6.63s vs 9.05s (-26.8%), and lower end-to-end response latency (6.84s vs 7.49s). Recommended weights for the production app. Report at `bench/device-liquid/README.md`.
 
 ## Architecture & ASR Offline Benchmark (`asr/`)
 - **ASR directory**: `asr/` contains test data generation, evaluation harness, and benchmark results for offline Brazilian Portuguese ASR targeting electrical utility field workers.

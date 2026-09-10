@@ -1,0 +1,4 @@
+Modelo,Quant,Tamanho (MiB),pp1500 Prefill (t/s),pp1500 TTFT (s),pp1500 Total 100t (s),pp800 Prefill (t/s),pp800 TTFT (s),pp800 Total 100t (s),Decode (t/s),Pico RAM (MiB),Load Time (s),Delta AP (°C),Delta Bat (°C)
+Liquid LFM2.5 1.2B Instruct (Q4_K_M Vanilla),Q4_K_M,697.04,182.56,8.216,10.481,178.61,4.479,7.107,44.16,1488.3,9.053,23.9,7.9
+Liquid LFM2.5 1.2B Instruct (QAD-Q4_0 Quant-Aware Distilled),QAD-Q4_0,663.52,207.09,7.243,10.563,219.04,3.652,6.966,30.12,1420.79,6.63,2.4,1.7
+Liquid LFM2.5 350M (Q4_K_M),Q4_K_M,218.69,398.63,3.763,4.912,493.43,1.621,2.791,87.0,511.15,2.941,0.6,0.1

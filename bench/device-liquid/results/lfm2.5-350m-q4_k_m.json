@@ -1,0 +1,69 @@
+{
+  "alias": "lfm2.5-350m-q4_k_m",
+  "name": "Liquid LFM2.5 350M (Q4_K_M)",
+  "params": "0.35B",
+  "quant": "Q4_K_M",
+  "is_qad": false,
+  "file_size_mib": 218.69,
+  "threads": 6,
+  "repetitions": 3,
+  "metrics_pp1500": {
+    "prompt_tokens": 1500,
+    "gen_tokens": 128,
+    "prefill_tok_per_sec": 398.63,
+    "prefill_stddev": 10.59,
+    "prefill_samples": [
+      410.858,
+      392.334,
+      392.701
+    ],
+    "decode_tok_per_sec": 87.0,
+    "decode_stddev": 0.17,
+    "decode_samples": [
+      86.8092,
+      87.0783,
+      87.1141
+    ],
+    "ttft_sec": 3.763,
+    "total_latency_100t_sec": 4.912,
+    "peak_ram_mib": 511.15,
+    "cold_load_sec": 2.941,
+    "bench_wall_time_sec": 19.02
+  },
+  "metrics_pp800": {
+    "prompt_tokens": 800,
+    "gen_tokens": 128,
+    "prefill_tok_per_sec": 493.43,
+    "prefill_stddev": 101.71,
+    "prefill_samples": [
+      608.978,
+      453.879,
+      417.448
+    ],
+    "decode_tok_per_sec": 85.46,
+    "decode_stddev": 0.33,
+    "decode_samples": [
+      85.0876,
+      85.6498,
+      85.656
+    ],
+    "ttft_sec": 1.621,
+    "total_latency_100t_sec": 2.791,
+    "peak_ram_mib": 504.25,
+    "cold_load_sec": 1.626,
+    "bench_wall_time_sec": 11.48
+  },
+  "temperatures": {
+    "ap_before_c": 57.2,
+    "ap_after_c": 57.8,
+    "delta_ap_c": 0.6,
+    "bat_before_c": 38.5,
+    "bat_after_c": 38.6,
+    "delta_bat_c": 0.1,
+    "skin_before_c": 41.3,
+    "skin_after_c": 41.7,
+    "delta_skin_c": 0.4
+  },
+  "smoke_qa_count": 0,
+  "smoke_qa": []
+}
