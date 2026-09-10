@@ -13,6 +13,12 @@ __pycache__/
 corpus/data/
 asr/data/clean/
 asr/data/noisy/
+finetune/checkpoints/
+finetune/merged_model/
+finetune/adapter/*.safetensors
+finetune/adapter/*.gguf
+*.safetensors
+*.gguf
 
 
 

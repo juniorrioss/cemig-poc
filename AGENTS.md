@@ -55,6 +55,16 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 - **Tool-calling RAG Architecture**: `AskPipeline` does not inject chunks automatically. It prompts the LLM with `retriever(query: String)`; the model formulates BM25 technical search terms; on tool call, pipeline executes `Fts5Retriever` on `index.db` and returns chunks as a `TOOL` message for final synthesis with mandatory citation.
 - **Corpus override**: `Fts5Retriever` checks `getExternalFilesDir(null)/index.db` before internal `filesDir/index.db`, allowing instant corpus updates via `adb push index.db /sdcard/Android/data/br.org.ceia.cemigpoc.debug/files/index.db`.
 
+## Fine-Tuning & Query Rewriter (`finetune/`)
+- **Rewriter directory**: `finetune/` contains inverted dataset generation, BM25 execution filter, PEFT LoRA training on `LiquidAI/LFM2.5-1.2B-Instruct`, and evaluation of Turn 1 query rewriting for Mode C.
+- **Data & Model storage**: `finetune/data/` stores `synthetic_raw.jsonl` (2400 pairs), `train.jsonl` (1767), `val.jsonl` (279), `test.jsonl` (294 unseen NRs). LoRA adapter (3.7 MB GGUF) in `finetune/adapter/` and merged model in `finetune/merged_model/` (never commit large weights to git).
+- **Core Findings & Captain's Skepticism Resolution**:
+  - **Recall@2 in Unseen NRs**: LoRA rewriter reaches **80.0% Recall@2** (and 86.0% Recall@5) on holdout NRs, far exceeding the 55% target.
+  - **Synthesis Regression Gate**: Protocol v2 (20 gold + 30 colloquial questions) passed with zero regression (Accuracy +0.42, Citation +1.58, Fidelity +0.44, Fluency 4.5/5.0) anchored by 10% synthesis maintenance pairs.
+  - **Captain's Skepticism on LoRA Switching Overhead**: Empirically measured in `llama.cpp`: dynamic hot-swap via `POST /lora-adapters` takes **0.71 ms** (or 0.00 ms via per-request `lora` field), consuming only 1.4% of the mobile BM25 retrieval window (~50 ms). Adapter always-active (merged model) has 0.00 ms overhead and causes zero synthesis degradation.
+  - **Production Recommendation**: Ship **merged model** (~700 MB Q4_K_M) for initial release (zero runtime orchestration), or base GGUF + standalone LoRA (3.7 MB) for agile OTA continuous updates during the BM25 window.
+- **Pipeline commands**: `python3 finetune/gen_dataset.py`, `python3 finetune/validate_dataset.py`, `python3 finetune/train_lora.py`, `python3 finetune/eval_rewriter.py`.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.
