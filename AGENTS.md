@@ -51,9 +51,14 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 ## Android Subproject (`android/`)
 - **Headless Toolchain**: Run `./android/setup-sdk.sh` to install OpenJDK 17 and Android SDK 34 (with build-tools, NDK, CMake) into `~/android-sdk`. Idempotent.
 - **Environment**: Set `JAVA_HOME="$HOME/android-sdk/jdk-17"` and `ANDROID_HOME="$HOME/android-sdk"` before building.
-- **Build & Test**: `./gradlew test` (runs JVM unit tests) and `./gradlew assembleDebug` (outputs debug APK to `android/app/build/outputs/apk/debug/app-debug.apk`).
-- **Tool-calling RAG Architecture**: `AskPipeline` does not inject chunks automatically. It prompts the LLM with `retriever(query: String)`; the model formulates BM25 technical search terms; on tool call, pipeline executes `Fts5Retriever` on `index.db` and returns chunks as a `TOOL` message for final synthesis with mandatory citation.
-- **Corpus override**: `Fts5Retriever` checks `getExternalFilesDir(null)/index.db` before internal `filesDir/index.db`, allowing instant corpus updates via `adb push index.db /sdcard/Android/data/br.org.ceia.cemigpoc.debug/files/index.db`.
+- **Build & Test**: `./gradlew test` (runs JVM unit tests), `./gradlew assembleDebug` (debug APK), `./gradlew assembleRelease` (outputs signed 868 MB APK to `android/app/build/outputs/apk/release/app-release.apk` with all weights embedded).
+- **Native Architecture & Engines**: Independent library modules `:llama` (`libllama_engine.so`, commit `434ddbb`, KleidiAI, ARM64 dotprod/i8mm/fp16) and `:whisper` (`libwhisper_engine.so`, v1.9.4, 4 threads, `ggml-base-q5_1.bin`).
+- **Modo C Top-2 Multiturno (`AskPipeline`)**:
+  - Turn 1 (Rewrite): Raw history up to 6 turns + question -> 3-6 keywords. Jaccard similarity > 0.7 reuses previous chunks without new search.
+  - BM25 Top-2: SQLite FTS5 on `index_hf_36nr.db` (pesos 1.5, 3.0, 2.0, 1.0; latency ~2-15 ms).
+  - Turn 2 (Synthesis): Raw history up to 3 turns + 2 chunks + question -> streaming synthesis with mandatory citation. Prunes oldest turn if prompt > 1000 tokens.
+- **Overrides**: `ModelFileManager` and `Fts5Retriever` check `getExternalFilesDir(null)/` before `filesDir/` or APK assets for `index.db`, `ggml-base-q5_1.bin`, and `LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf`.
+- **UI**: CeiaTheme, Push-to-Talk, editable transcription, expandable sources per answer, and prominent Modo Engenharia / Debug toggle (with proportional timeline breakdown bar).
 
 ## Fine-Tuning & Query Rewriter (`finetune/`)
 - **Rewriter directory**: `finetune/` contains inverted dataset generation, BM25 execution filter, PEFT LoRA training on `LiquidAI/LFM2.5-1.2B-Instruct`, and evaluation of Turn 1 query rewriting for Mode C.

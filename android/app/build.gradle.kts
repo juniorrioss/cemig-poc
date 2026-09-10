@@ -14,15 +14,29 @@ android {
         versionCode = 1
         versionName = "1.0.0"
 
+        ndk {
+            abiFilters.add("arm64-v8a")
+        }
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("poc-release.jks")
+            storePassword = "cemigpoc123"
+            keyAlias = "poc"
+            keyPassword = "cemigpoc123"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -31,7 +45,12 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isDebuggable = true
+            signingConfig = signingConfigs.getByName("release")
         }
+    }
+
+    aaptOptions {
+        noCompress.addAll(listOf("gguf", "bin", "db"))
     }
 
     testOptions {
@@ -65,6 +84,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":llama"))
+    implementation(project(":whisper"))
+
     val composeBom = platform("androidx.compose:compose-bom:2024.04.01")
     implementation(composeBom)
     androidTestImplementation(composeBom)

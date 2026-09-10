@@ -1,7 +1,7 @@
 package br.org.ceia.cemigpoc.data.telemetry
 
 import br.org.ceia.cemigpoc.domain.model.Chunk
-import br.org.ceia.cemigpoc.domain.model.ToolCall
+import br.org.ceia.cemigpoc.domain.model.TurnMetrics
 import java.io.File
 import java.io.FileWriter
 import java.text.SimpleDateFormat
@@ -11,8 +11,7 @@ import java.util.Locale
 /**
  * Registrador de telemetria local em formato JSONL (armazenado em filesDir/telemetry.jsonl).
  *
- * Implementado em Kotlin puro sem dependência de stubs do Android, garantindo
- * funcionamento idêntico na JVM de testes e no dispositivo Android em produção.
+ * Registra breakdown de cada etapa: ASR, Rewrite (T1), Busca BM25, Prefill/TTFT e Decode (T2).
  */
 class TelemetryLogger(
     private val telemetryFile: File
@@ -20,23 +19,39 @@ class TelemetryLogger(
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ", Locale.US)
 
     @Synchronized
-    fun log(
-        userQuestion: String,
+    fun logTurn(
+        turnIndex: Int,
+        question: String,
         transcription: String,
-        toolCallsMade: List<ToolCall>,
-        chunksUsed: List<Chunk>,
         finalAnswer: String,
-        totalDurationMs: Long
+        chunksUsed: List<Chunk>,
+        metrics: TurnMetrics
     ) {
-        val toolCallsJson = toolCallsMade.joinToString(prefix = "[", postfix = "]") { call ->
-            """{"tool":"${escape(call.toolName)}","query":"${escape(call.query)}"}"""
-        }
-
         val chunksJson = chunksUsed.joinToString(prefix = "[", postfix = "]") { chunk ->
-            """{"id":${chunk.id},"doc":"${escape(chunk.doc)}","section":"${escape(chunk.section)}","score":${chunk.score},"preview":"${escape(chunk.content.take(120))}"}"""
+            """{"id":${chunk.id},"doc":"${escape(chunk.doc)}","section":"${escape(chunk.section)}","score":${chunk.score},"title":"${escape(chunk.title)}"}"""
         }
 
-        val jsonLine = """{"timestamp":"${dateFormat.format(Date())}","question":"${escape(userQuestion)}","transcription":"${escape(transcription)}","tool_calls":$toolCallsJson,"chunks_used":$chunksJson,"response":"${escape(finalAnswer)}","total_duration_ms":$totalDurationMs}"""
+        val jsonLine = buildString {
+            append("{")
+            append("\"timestamp\":\"${dateFormat.format(Date())}\",")
+            append("\"turn_index\":$turnIndex,")
+            append("\"question\":\"${escape(question)}\",")
+            append("\"transcription\":\"${escape(transcription)}\",")
+            append("\"keywords\":\"${escape(metrics.keywords)}\",")
+            append("\"keywords_reused\":${metrics.keywordsReused},")
+            append("\"chunks_used\":$chunksJson,")
+            append("\"response\":\"${escape(finalAnswer)}\",")
+            append("\"asr_ms\":${metrics.asrMs},")
+            append("\"rewrite_ms\":${metrics.rewriteMs},")
+            append("\"search_ms\":${metrics.searchMs},")
+            append("\"ttft_ms\":${metrics.ttftMs},")
+            append("\"decode_ms\":${metrics.decodeMs},")
+            append("\"total_duration_ms\":${metrics.totalMs},")
+            append("\"context_tokens\":${metrics.contextTokens},")
+            append("\"completion_tokens\":${metrics.completionTokens},")
+            append("\"tok_per_sec\":${metrics.tokPerSec}")
+            append("}")
+        }
 
         telemetryFile.parentFile?.mkdirs()
         FileWriter(telemetryFile, true).use { writer ->
@@ -53,9 +68,6 @@ class TelemetryLogger(
             .replace("\t", "\\t")
     }
 
-    /**
-     * Retorna a quantidade de registros gravados no arquivo.
-     */
     fun getLogCount(): Int {
         if (!telemetryFile.exists()) return 0
         return telemetryFile.readLines().count { it.isNotBlank() }

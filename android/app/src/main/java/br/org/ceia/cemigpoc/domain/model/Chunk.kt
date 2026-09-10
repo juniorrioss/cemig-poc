@@ -14,5 +14,7 @@ data class Chunk(
     val doc: String,
     val section: String,
     val content: String,
-    val score: Double = 0.0
+    val score: Double = 0.0,
+    val title: String = "",
+    val page: Int = 0
 )

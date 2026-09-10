@@ -10,32 +10,51 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
+import java.text.Normalizer
 
 /**
- * Implementação real do motor de busca documental utilizando SQLite FTS5 (BM25) nativo do Android.
+ * Implementação real do motor de busca documental utilizando SQLite FTS5 (BM25)
+ * calibrado sobre o índice consolidado de 36 Normas Regulamentadoras (`index_hf_36nr.db`).
+ *
+ * Pesos BM25 calibrados: doc=1.5, section=3.0, title=2.0, text=1.0.
  *
  * Suporte a ciclo de vida de dados:
- * 1. Primeiro boot: copia `index.db` embutido nos assets para `context.filesDir/index.db`.
- * 2. Override externo: se existir um `index.db` em `context.getExternalFilesDir(null)` (injetável via
- *    `adb push index.db /sdcard/Android/data/br.org.ceia.cemigpoc/files/index.db`), ele tem precedência
- *    para permitir iteração rápida com novos corpuses da trilha T1 sem reinstalação do app.
+ * 1. Override externo: `context.getExternalFilesDir(null)/index.db` (injetável via adb push).
+ * 2. Cópia interna: `context.filesDir/index.db`.
+ * 3. Fallback de assets: cópia do arquivo embutido no APK na primeira execução.
  */
 class Fts5Retriever(
-    private val context: Context,
+    private val context: Context? = null,
     private val databaseOverrideFile: File? = null
 ) : Retriever {
 
     companion object {
         private const val TAG = "Fts5Retriever"
-        private const val DB_NAME = "index.db"
+        const val DB_NAME = "index.db"
+
+        private val PORTUGUESE_STOPWORDS = setOf(
+            "a", "ao", "aos", "aquela", "aquelas", "aquele", "aqueles", "aquilo", "as", "ate", "até",
+            "com", "como", "da", "das", "de", "dela", "delas", "dele", "deles", "do", "dos",
+            "e", "ela", "elas", "ele", "eles", "em", "entre", "era", "eram", "essa", "essas",
+            "esse", "esses", "esta", "estas", "este", "estes", "eu", "foi", "fomos", "foram",
+            "ha", "há", "isso", "isto", "ja", "já", "lhe", "lhes", "mais", "mas", "me", "mesmo",
+            "meu", "meus", "minha", "minhas", "muito", "na", "nas", "nao", "não", "no", "nos",
+            "nossa", "nossas", "nosso", "nossos", "num", "numa", "o", "os", "ou", "para",
+            "pela", "pelas", "pelo", "pelos", "por", "qual", "quais", "quando", "que", "quem",
+            "se", "seja", "sem", "so", "só", "sua", "suas", "seu", "seus", "tambem", "também",
+            "te", "tem", "têm", "temos", "ter", "teu", "teus", "tua", "tuas", "um", "uma", "voce", "você", "voces", "vocês",
+            "norma", "normas", "regulamentar", "regulamentares", "regulamentaria", "regulamentarias",
+            "seguranca", "segurança", "trabalho", "item", "artigo"
+        )
     }
 
-    /**
-     * Garante que o arquivo do banco de dados FTS5 exista no disco local e retorna o caminho ativo.
-     */
     fun resolveDatabaseFile(): File {
         if (databaseOverrideFile != null && databaseOverrideFile.exists()) {
             return databaseOverrideFile
+        }
+
+        if (context == null) {
+            return databaseOverrideFile ?: File(DB_NAME)
         }
 
         val externalOverride = context.getExternalFilesDir(null)?.resolve(DB_NAME)
@@ -83,13 +102,21 @@ class Fts5Retriever(
                 SQLiteDatabase.OPEN_READONLY
             )
 
-            // Consulta FTS5 com cálculo de relevância BM25 integrado
+            // Consulta com junção chunks_fts e chunks com pesos BM25 calibrados (v2 36 NRs)
             val sql = """
-                SELECT rowid, doc, section, content, bm25(chunks) as score 
-                FROM chunks 
-                WHERE chunks MATCH ? 
-                ORDER BY score ASC 
-                LIMIT ?
+                SELECT
+                    c.id,
+                    c.doc,
+                    c.section,
+                    c.title,
+                    c.page,
+                    c.text,
+                    bm25(chunks_fts, 1.5, 3.0, 2.0, 1.0) AS score
+                FROM chunks_fts
+                JOIN chunks c ON c.id = chunks_fts.rowid
+                WHERE chunks_fts MATCH ?
+                ORDER BY score ASC
+                LIMIT ?;
             """.trimIndent()
 
             cursor = database.rawQuery(sql, arrayOf(sanitizedQuery, topK.toString()))
@@ -98,22 +125,25 @@ class Fts5Retriever(
                 val rowId = cursor.getLong(0)
                 val doc = cursor.getString(1) ?: ""
                 val section = cursor.getString(2) ?: ""
-                val content = cursor.getString(3) ?: ""
-                val score = cursor.getDouble(4)
+                val title = cursor.getString(3) ?: ""
+                val page = cursor.getInt(4)
+                val text = cursor.getString(5) ?: ""
+                val score = cursor.getDouble(6)
 
                 results.add(
                     Chunk(
                         id = rowId,
                         doc = doc,
                         section = section,
-                        content = content,
-                        score = score
+                        content = text,
+                        score = score,
+                        title = title,
+                        page = page
                     )
                 )
             }
         } catch (e: Exception) {
             Log.e(TAG, "Erro ao consultar FTS5 com query '$sanitizedQuery'", e)
-            // Tenta busca de fallback por termo simples caso a sintaxe FTS5 tenha falhado
             results.addAll(fallbackSearch(database, query, topK))
         } finally {
             cursor?.close()
@@ -124,15 +154,34 @@ class Fts5Retriever(
     }
 
     /**
-     * Sanitiza a consulta para a sintaxe FTS5, tratando caracteres reservados e criando termos OR/AND.
+     * Higieniza e formata termos de busca para o SQLite FTS5 idêntico ao harness v2:
+     * - Remoção de diacríticos e normalização NFKD
+     * - Filtragem de stopwords em português
+     * - Truncamento para raiz (stemming 6 caracteres)
+     * - Escape com aspas para termos com hífen ou ponto (ex: "nr-10"*)
      */
-    private fun sanitizeFts5Query(rawQuery: String): String {
-        val cleaned = rawQuery.replace(Regex("[^a-zA-Z0-9À-ÿ\\s]"), " ")
-        val tokens = cleaned.split(Regex("\\s+"))
-            .filter { it.length >= 2 }
-            .map { "$it*" } // busca por prefixo no FTS5
+    fun sanitizeFts5Query(rawQuery: String): String {
+        val normalized = Normalizer.normalize(rawQuery, Normalizer.Form.NFKD)
+            .replace(Regex("\\p{M}"), "")
+            .lowercase()
 
-        return tokens.joinToString(" OR ")
+        val rawTokens = Regex("[\\w.-]+").findAll(normalized).map { it.value }.toList()
+        var filtered = rawTokens.filter { it !in PORTUGUESE_STOPWORDS && it.length > 2 }
+        if (filtered.isEmpty()) {
+            filtered = rawTokens.filter { it.length > 2 }
+        }
+        if (filtered.isEmpty()) {
+            return ""
+        }
+
+        return filtered.map { token ->
+            val stem = if (token.length > 6) token.take(6) else token
+            if (stem.contains("-") || stem.contains(".")) {
+                "\"$stem\"*"
+            } else {
+                "$stem*"
+            }
+        }.joinToString(" OR ")
     }
 
     private fun fallbackSearch(database: SQLiteDatabase?, query: String, topK: Int): List<Chunk> {
@@ -143,7 +192,7 @@ class Fts5Retriever(
             val terms = query.split(Regex("\\s+")).filter { it.length >= 3 }
             val firstTerm = terms.firstOrNull() ?: return emptyList()
             cursor = database.rawQuery(
-                "SELECT rowid, doc, section, content FROM chunks WHERE content LIKE ? LIMIT ?",
+                "SELECT id, doc, section, title, page, text FROM chunks WHERE text LIKE ? LIMIT ?",
                 arrayOf("%$firstTerm%", topK.toString())
             )
             while (cursor.moveToNext()) {
@@ -152,12 +201,15 @@ class Fts5Retriever(
                         id = cursor.getLong(0),
                         doc = cursor.getString(1) ?: "",
                         section = cursor.getString(2) ?: "",
-                        content = cursor.getString(3) ?: "",
+                        title = cursor.getString(3) ?: "",
+                        page = cursor.getInt(4),
+                        content = cursor.getString(5) ?: "",
                         score = 0.0
                     )
                 )
             }
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            Log.e(TAG, "Erro no fallbackSearch", e)
         } finally {
             cursor?.close()
         }

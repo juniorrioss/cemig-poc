@@ -32,6 +32,10 @@ local.properties
 .cxx/
 *.apk
 *.aab
+*.jks
+*.keystore
+*.gguf
+*.bin
 bench/device/build-android/
 
 # IDE & Sistema operacional

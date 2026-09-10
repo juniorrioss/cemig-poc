@@ -15,11 +15,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.org.ceia.cemigpoc.ui.AppStatus
+import br.org.ceia.cemigpoc.domain.model.PipelineStage
 import br.org.ceia.cemigpoc.ui.theme.CeiaBlue500
 import br.org.ceia.cemigpoc.ui.theme.CeiaDanger
 import br.org.ceia.cemigpoc.ui.theme.CeiaDangerBg
@@ -40,16 +39,18 @@ import br.org.ceia.cemigpoc.ui.theme.InterFontFamily
  */
 @Composable
 fun StatusBadge(
-    status: AppStatus,
+    stage: PipelineStage,
     modifier: Modifier = Modifier
 ) {
-    val (bgColor, textColor, dotColor) = when (status) {
-        AppStatus.PRONTO -> Triple(CeiaSuccessBg, CeiaSuccess, CeiaSuccess)
-        AppStatus.OUVINDO -> Triple(CeiaWarningBg, CeiaWarning, CeiaWarning)
-        AppStatus.BUSCANDO -> Triple(CeiaInfoBg, CeiaBlue500, CeiaBlue500)
-        AppStatus.GERANDO -> Triple(CeiaPurpleBg, CeiaPurple, CeiaPurple)
-        AppStatus.CONCLUIDO -> Triple(CeiaSuccessBg, CeiaNavy800, CeiaSuccess)
-        AppStatus.ERRO -> Triple(CeiaDangerBg, CeiaDanger, CeiaDanger)
+    val (bgColor, textColor, dotColor) = when (stage) {
+        PipelineStage.IDLE -> Triple(CeiaSuccessBg, CeiaSuccess, CeiaSuccess)
+        PipelineStage.LISTENING -> Triple(CeiaWarningBg, CeiaWarning, CeiaWarning)
+        PipelineStage.TRANSCRIBING -> Triple(CeiaInfoBg, CeiaBlue500, CeiaBlue500)
+        PipelineStage.REWRITING -> Triple(CeiaPurpleBg, CeiaPurple, CeiaPurple)
+        PipelineStage.SEARCHING -> Triple(CeiaInfoBg, CeiaBlue500, CeiaBlue500)
+        PipelineStage.RESPONDING -> Triple(CeiaPurpleBg, CeiaPurple, CeiaPurple)
+        PipelineStage.DONE -> Triple(CeiaSuccessBg, CeiaNavy800, CeiaSuccess)
+        PipelineStage.ERROR -> Triple(CeiaDangerBg, CeiaDanger, CeiaDanger)
     }
 
     Row(
@@ -68,7 +69,7 @@ fun StatusBadge(
         )
         Spacer(modifier = Modifier.width(6.dp))
         Text(
-            text = status.label,
+            text = stage.label,
             color = textColor,
             fontFamily = InterFontFamily,
             fontWeight = FontWeight.SemiBold,
