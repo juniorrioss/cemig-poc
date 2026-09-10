@@ -9,8 +9,8 @@ __pycache__/
 .pytest_cache/
 
 # Dados e artefatos intermediários
+/data/
 corpus/data/
-data/
 
 # Gradle
 .gradle/

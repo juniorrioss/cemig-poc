@@ -1,0 +1,13 @@
+model,description,mode,total_items,acerto_factual,fidelidade_contexto,qualidade_pt,citacao_fonte,score_global,pass_gate_pct,latency_avg_s,speed_tok_s,tool_call_rate_pct,tool_expected_rate_pct,query_reformulation_rate_pct,query_english_rate_pct
+qwen3.5-0.8b,Qwen 3.5 0.8B (Gated DeltaNet hybrid),classic_rag,20,2.75,2.8,3.0,2.65,2.78,20.0,7.9,78.7,N/A,N/A,N/A,N/A
+qwen3.5-0.8b,Qwen 3.5 0.8B (Gated DeltaNet hybrid),tool_calling,20,1.9,1.95,2.4,2.05,2.02,15.0,10.03,0,100.0,95.0,100.0,0.0
+qwen3-0.6b,Qwen 3 0.6B Instruct (Baseline Transformer),classic_rag,20,2.6,2.8,3.45,2.55,2.78,15.0,7.68,74.8,N/A,N/A,N/A,N/A
+qwen3-0.6b,Qwen 3 0.6B Instruct (Baseline Transformer),tool_calling,20,1.9,2.45,3.55,1.6,2.25,10.0,6.27,0,40.0,35.0,100.0,0.0
+gemma-3-1b,Gemma 3 1B IT,classic_rag,20,2.65,3.8,4.5,1.9,3.12,20.0,3.4,58.5,N/A,N/A,N/A,N/A
+gemma-3-1b,Gemma 3 1B IT,tool_calling,20,2.0,1.65,3.35,1.6,2.02,5.0,4.13,0,0.0,5.0,0.0,0.0
+lfm2-1.2b,Liquid LFM2 1.2B RAG,classic_rag,20,3.3,3.25,4.05,2.5,3.24,40.0,5.1,70.2,N/A,N/A,N/A,N/A
+lfm2-1.2b,Liquid LFM2 1.2B RAG,tool_calling,20,2.35,2.75,4.1,1.5,2.56,0.0,3.24,0,0.0,5.0,0.0,0.0
+lfm2.5-350m,Liquid LFM2.5 350M,classic_rag,20,2.05,3.55,4.85,1.1,2.73,5.0,0.65,229.9,N/A,N/A,N/A,N/A
+lfm2.5-350m,Liquid LFM2.5 350M,tool_calling,20,1.85,1.65,3.4,1.95,2.04,0.0,0.93,0,0.0,5.0,0.0,0.0
+llama-3.2-1b,Meta Llama 3.2 1B Instruct (Controle),classic_rag,20,2.1,3.5,4.85,1.1,2.73,5.0,2.06,55.2,N/A,N/A,N/A,N/A
+llama-3.2-1b,Meta Llama 3.2 1B Instruct (Controle),tool_calling,20,1.15,1.2,1.15,1.1,1.15,5.0,2.19,0,10.0,15.0,100.0,0.0

@@ -10,6 +10,16 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 - **Pipeline command**: `make all` executes extract -> chunk -> build_index -> eval_retrieval.
 - **Python interpreter**: Uses `python3` (or `.venv` if configured) with stdlib `sqlite3` and `pypdf`. FTS5 query terms with hyphens or dots must be quoted (e.g. `"nr-10"`, `"10.5.1"`) to prevent FTS5 syntax errors.
 
+## Architecture & SLM Benchmark (`bench/`)
+- **Benchmark directory**: `bench/` contains the harness, setup, judge, and performance benchmarking for mobile-oriented SLMs (≤1.2B) in GGUF Q4_K_M via `llama.cpp`.
+- **Model storage**: Downloaded GGUF weights reside outside the repo at `~/models-poc/` (never committed). llama.cpp builds in `~/llama.cpp/`.
+- **Tier 1 Models**: Qwen 3.5 0.8B (Gated DeltaNet hybrid), Qwen 3 0.6B (Baseline), Gemma 3 1B IT, Liquid LFM2 1.2B RAG, Liquid LFM2.5 350M, Meta Llama 3.2 1B (Control).
+- **Core Findings on Tool-Calling vs Classic RAG**:
+  - Direct SLM-driven tool-calling in models ≤1B is NOT viable for production offline voice on Galaxy S21/S24+ (double inference round-trip exceeds 10s budget, 4 of 6 models do not support/ignore native tool schemas in PT-BR, grammar parsing fails on multi-turn).
+  - Recommended mobile architecture: **Classic RAG with deterministic external heuristic trigger** (keyword/intent classifier before SLM) + single inference turn.
+  - Recommended model: **Liquid LFM2 1.2B RAG** (highest factual accuracy 3.30/5, 40% gate pass, 5.1s latency) or **Gemma 3 1B IT** (highest PT fluency 4.50/5, 3.4s latency).
+- **Commands**: `make -C bench all` runs setup, perf, bench, and judge. Quick smoke: `python3 bench/harness.py --models qwen3.5-0.8b --mode both --limit 2`.
+
 ## Android Subproject (`android/`)
 - **Headless Toolchain**: Run `./android/setup-sdk.sh` to install OpenJDK 17 and Android SDK 34 (with build-tools, NDK, CMake) into `~/android-sdk`. Idempotent.
 - **Environment**: Set `JAVA_HOME="$HOME/android-sdk/jdk-17"` and `ANDROID_HOME="$HOME/android-sdk"` before building.
