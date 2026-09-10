@@ -33,10 +33,11 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 ## Architecture & ASR Offline Benchmark (`asr/`)
 - **ASR directory**: `asr/` contains test data generation, evaluation harness, and benchmark results for offline Brazilian Portuguese ASR targeting electrical utility field workers.
 - **Model storage**: External models reside at `~/models-asr/` (never committed). Engine builds reside at `~/whisper.cpp/` and `~/sherpa-onnx/`.
-- **Engines evaluated**: Whisper.cpp (Tiny, Base, Small in Q5_1), Sherpa-ONNX (Nemotron 3.5 Streaming INT8 Official and Ottema PT-BR fine-tune), Android Native SpeechRecognizer.
+- **Engines evaluated**: Whisper.cpp (Tiny, Base, Small in Q5_1), Sherpa-ONNX (Nemotron 3.5 Streaming INT8 Official and Ottema PT-BR fine-tune), transcribe.cpp (Nemotron 3.5 Streaming GGUF Q4_K_M, Q5_K_M, Q6_K, Q8_0), Android Native SpeechRecognizer.
 - **Core Findings on Mobile ASR**:
-  - **Whisper Base Q5_1 is the recommended production engine**: 196.8 MB peak RSS, 56.9 MB package, RTF 0.84 (<1.0), 9.5% clean WER / 11.8% noisy WER (10 dB SNR), 85.5% domain term accuracy. Crucially, 197 MB ASR + 700 MB SLM = ~897 MB total RAM, safely under Android LMK limits for 6 GB RAM phones.
-  - **Nemotron 3.5 INT8 (Official & Ottema PT-BR)**: Fastest streaming (RTF 0.36) and highest domain accuracy (91.9%), but heavy memory footprint (795 MB RSS) and package (651 MB). Reserved for dedicated 12 GB RAM devices where real-time streaming partials are required.
+  - **Whisper Base Q5_1 is the recommended production engine**: 196.8 MB peak RSS, 56.9 MB package, RTF 0.84 (<1.0), 9.5% clean WER / 11.8% noisy WER (10 dB SNR), 85.5% domain term accuracy. Crucially, 197 MB ASR + 700 MB SLM = ~897 MB total RAM, safely under Android LMK limits for 6 GB RAM phones (Galaxy S21).
+  - **Nemotron 3.5 INT8 & GGUF (Q4_K_M a Q8_0)**: High quality (Q5_K_M achieves 5.8% WER in noise, 95.2% domain accuracy), but peak RAM remains between 792 MB (sherpa-onnx) and 943–1186 MB (transcribe.cpp/ggml due to ~470 MB runtime graph overhead and F16->F32 conv unpacking on CPU). Quantization of 600M models does NOT reduce RAM below the 550 MB target needed for S21 coexistence.
+  - **Nemotron ONNX INT4 (`onnx-community`)**: Incompatible with sherpa-onnx (requires onnxruntime-genai, lacks embedded metadata); package is 751 MB (> 651 MB INT8).
   - **Whisper Small Q5_1**: Unviable for interactive mobile CPU (RTF 2.81, ~16s latency).
   - **Android Native ASR**: Unreliable for offline distribution without manual user intervention to download language packs in Google Settings; zero support for technical domain biasing.
 - **Commands**: `make asr-data` generates audio sets; `make asr-bench` executes benchmark on connected Android device. Reference report at `asr/README.md`.

@@ -63,5 +63,57 @@
     "latency_noisy_s": 2.008,
     "peak_rss_mb": 794.4765625,
     "size_mb": 651.5
+  },
+  {
+    "model": "Nemotron 3.5 GGUF Q4_K_M",
+    "wer_clean_pct": 7.041292041292041,
+    "wer_noisy_pct": 7.093040293040293,
+    "kw_acc_clean_pct": 93.54838709677419,
+    "kw_acc_noisy_pct": 91.93548387096774,
+    "rtf_clean": 0.5496387779496721,
+    "rtf_noisy": 0.5218740777252786,
+    "latency_clean_s": 3.100392,
+    "latency_noisy_s": 2.947728,
+    "peak_rss_mb": 942.55859375,
+    "size_mb": 472.9
+  },
+  {
+    "model": "Nemotron 3.5 GGUF Q5_K_M",
+    "wer_clean_pct": 6.426373626373627,
+    "wer_noisy_pct": 5.810989010989011,
+    "kw_acc_clean_pct": 95.16129032258065,
+    "kw_acc_noisy_pct": 93.54838709677419,
+    "rtf_clean": 0.6368978538445695,
+    "rtf_noisy": 0.6096773293042436,
+    "latency_clean_s": 3.59024,
+    "latency_noisy_s": 3.43574,
+    "peak_rss_mb": 1003.375,
+    "size_mb": 533.7
+  },
+  {
+    "model": "Nemotron 3.5 GGUF Q6_K",
+    "wer_clean_pct": 6.75970695970696,
+    "wer_noisy_pct": 5.810989010989011,
+    "kw_acc_clean_pct": 93.54838709677419,
+    "kw_acc_noisy_pct": 93.54838709677419,
+    "rtf_clean": 0.60177271771106,
+    "rtf_noisy": 0.5790973115230398,
+    "latency_clean_s": 3.3913159999999998,
+    "latency_noisy_s": 3.2890159999999997,
+    "peak_rss_mb": 1062.29296875,
+    "size_mb": 592.5
+  },
+  {
+    "model": "Nemotron 3.5 GGUF Q8_0",
+    "wer_clean_pct": 6.75970695970696,
+    "wer_noisy_pct": 6.144322344322345,
+    "kw_acc_clean_pct": 93.54838709677419,
+    "kw_acc_noisy_pct": 95.16129032258065,
+    "rtf_clean": 0.3270024253413684,
+    "rtf_noisy": 0.36363629762857763,
+    "latency_clean_s": 1.841604,
+    "latency_noisy_s": 2.048988,
+    "peak_rss_mb": 1186.0078125,
+    "size_mb": 715.4
   }
 ]
