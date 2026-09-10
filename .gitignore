@@ -1,4 +1,4 @@
-# Ambientes virtuais e dependências
+# Ambientes virtuais e dependências Python
 .venv/
 venv/
 env/
@@ -12,6 +12,22 @@ __pycache__/
 corpus/data/
 data/
 
-# Sistema operacional
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Android
+local.properties
+.cxx/
+*.apk
+*.aab
+
+# IDE & Sistema operacional
+.idea/
+*.iml
 .DS_Store
 Thumbs.db
+*.swp
+*~
+Zone.Identifier
