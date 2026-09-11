@@ -22,7 +22,11 @@ data class TurnMetrics(
     val nrTop2: String = "",
     val gateMode: String = "", // "hard" | "soft" | "none" | "explicit" | "-"
     val boostNrs: String = "", // NRs efetivamente boostadas/filtradas (join por vírgula)
-    val chunksReused: Boolean = false
+    val chunksReused: Boolean = false,
+    // Retrieval v3: estratégia usada ("rrf3" | "bm25" | "rrf3-fallback-bm25") e o custo do
+    // encode denso on-device (EmbeddingGemma) dentro do tempo de busca.
+    val retrievalMode: String = "bm25",
+    val denseEncodeMs: Long = 0L
 )
 
 /**

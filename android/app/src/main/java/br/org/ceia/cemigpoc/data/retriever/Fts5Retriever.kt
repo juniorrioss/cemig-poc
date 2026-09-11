@@ -154,7 +154,15 @@ class Fts5Retriever(
                 "AND c.doc IN (${boostSet.joinToString(",") { "?" }})"
             } else ""
 
-            // Consulta com junção chunks_fts e chunks com pesos BM25 calibrados (v2 36 NRs)
+            // Consulta com junção chunks_fts e chunks com pesos BM25 calibrados.
+            // Retrieval v3: o índice expandido tem 5 campos FTS5 (doc, section, title, text,
+            // expansion). Detecta a coluna 'expansion' e usa pesos 1.5/3/2/1/1 (o 5º campo,
+            // expansão coloquial, calibrado em 1.0); senão mantém os 4 pesos legados.
+            val bm25Expr = if (hasExpansionColumn(database)) {
+                "bm25(chunks_fts, 1.5, 3.0, 2.0, 1.0, 1.0)"
+            } else {
+                "bm25(chunks_fts, 1.5, 3.0, 2.0, 1.0)"
+            }
             val sql = """
                 SELECT
                     c.id,
@@ -163,7 +171,7 @@ class Fts5Retriever(
                     c.title,
                     c.page,
                     c.text,
-                    bm25(chunks_fts, 1.5, 3.0, 2.0, 1.0) AS score
+                    $bm25Expr AS score
                 FROM chunks_fts
                 JOIN chunks c ON c.id = chunks_fts.rowid
                 WHERE chunks_fts MATCH ? $docClause
@@ -248,6 +256,73 @@ class Fts5Retriever(
                 "$stem*"
             }
         }.joinToString(" OR ")
+    }
+
+    /**
+     * Detecta se o índice FTS5 foi criado com a coluna `expansion` (Retrieval v3). O
+     * resultado é cacheado (o schema não muda em runtime).
+     */
+    @Volatile
+    private var expansionColumnCache: Boolean? = null
+
+    private fun hasExpansionColumn(database: SQLiteDatabase): Boolean {
+        expansionColumnCache?.let { return it }
+        var c: Cursor? = null
+        val has = try {
+            c = database.rawQuery(
+                "SELECT sql FROM sqlite_master WHERE name='chunks_fts'", null
+            )
+            val sql = if (c.moveToFirst()) c.getString(0) ?: "" else ""
+            sql.contains("expansion")
+        } catch (e: Exception) {
+            Log.w(TAG, "Falha ao detectar coluna expansion; assumindo índice legado", e)
+            false
+        } finally {
+            c?.close()
+        }
+        expansionColumnCache = has
+        Log.i(TAG, "Índice FTS5 com coluna expansion: $has")
+        return has
+    }
+
+    /**
+     * Hidrata chunks por id (join direto na tabela chunks) para a fusão densa: os índices
+     * densos guardam só ids; a metadata vem daqui. Preserva a ordem dos ids fornecidos.
+     */
+    suspend fun fetchByIds(ids: List<Long>): Map<Long, Chunk> = withContext(Dispatchers.IO) {
+        if (ids.isEmpty()) return@withContext emptyMap()
+        val dbFile = resolveDatabaseFile()
+        if (!dbFile.exists() || dbFile.length() == 0L) return@withContext emptyMap()
+        val out = HashMap<Long, Chunk>(ids.size)
+        var database: SQLiteDatabase? = null
+        var cursor: Cursor? = null
+        try {
+            ensureNativeLoaded()
+            database = SQLiteDatabase.openDatabase(dbFile.absolutePath, null, SQLiteDatabase.OPEN_READONLY)
+            val ph = ids.joinToString(",") { "?" }
+            cursor = database.rawQuery(
+                "SELECT id, doc, section, title, page, text FROM chunks WHERE id IN ($ph)",
+                ids.map { it.toString() }.toTypedArray()
+            )
+            while (cursor.moveToNext()) {
+                val id = cursor.getLong(0)
+                out[id] = Chunk(
+                    id = id,
+                    doc = cursor.getString(1) ?: "",
+                    section = cursor.getString(2) ?: "",
+                    title = cursor.getString(3) ?: "",
+                    page = cursor.getInt(4),
+                    content = cursor.getString(5) ?: "",
+                    score = 0.0
+                )
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Erro em fetchByIds", e)
+        } finally {
+            cursor?.close()
+            database?.close()
+        }
+        out
     }
 
     /**

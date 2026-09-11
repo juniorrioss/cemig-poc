@@ -7,8 +7,10 @@ import br.org.ceia.cemigpoc.data.engine.RealAsrEngine
 import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
 import br.org.ceia.cemigpoc.data.classifier.NrClassifier
 import br.org.ceia.cemigpoc.data.model.ModelFileManager
+import br.org.ceia.cemigpoc.data.retriever.DenseRetriever
 import br.org.ceia.cemigpoc.data.retriever.Fts5Retriever
 import br.org.ceia.cemigpoc.data.retriever.HybridRetriever
+import br.org.ceia.cemigpoc.llama.LlamaEmbedder
 import br.org.ceia.cemigpoc.data.telemetry.TelemetryLogger
 import br.org.ceia.cemigpoc.domain.model.ConversationTurn
 import br.org.ceia.cemigpoc.domain.model.TurnEvent
@@ -44,6 +46,8 @@ data class AcceptanceResultItem(
     val chunksReused: Boolean,
     val chunksRetrieved: List<String>,
     val answerSnippet: String,
+    val retrievalMode: String,
+    val denseEncodeMs: Long,
     val asrMs: Long,
     val searchMs: Long,
     val ttftMs: Long,
@@ -98,11 +102,23 @@ object AcceptanceRunner {
         val asrFile = fileManager.getAsrModelFile()
         val llmFile = fileManager.getLlmModelFile()
 
-        // Pipeline híbrido de 2 estágios: classificador NR (estágio 1) + BM25 com boost (estágio 2).
-        val retriever = existingRetriever ?: HybridRetriever(
-            delegate = Fts5Retriever(context, dbFile),
-            classifier = NrClassifier.load(context)
-        )
+        // Pipeline Retrieval v3: classificador NR (estágio 1) + fusão RRF 3-sinais
+        // (BM25-gated-expandido + 2 densos EmbeddingGemma). Reusa o retriever do ViewModel
+        // quando fornecido; senão monta um novo com encoder+índices densos.
+        val retriever = existingRetriever ?: run {
+            val emb = LlamaEmbedder().also {
+                val ok = it.load(fileManager.getEmbedModelFile().absolutePath)
+                if (!ok) Log.w(TAG, "Encoder denso não carregou; BM25-gated será usado")
+            }
+            val dense = DenseRetriever(context, emb).also {
+                if (emb.isLoaded) it.load()
+            }
+            HybridRetriever(
+                delegate = Fts5Retriever(context, dbFile),
+                classifier = NrClassifier.load(context),
+                denseRetriever = dense
+            )
+        }
         val realAsr = existingAsr ?: RealAsrEngine().also {
             it.engine.initModel(asrFile.absolutePath)
         }
@@ -196,6 +212,8 @@ object AcceptanceRunner {
                 chunksReused = m.chunksReused,
                 chunksRetrieved = chunksDesc,
                 answerSnippet = doneEvent.finalAnswer.take(180),
+                retrievalMode = m.retrievalMode,
+                denseEncodeMs = m.denseEncodeMs,
                 asrMs = m.asrMs,
                 searchMs = m.searchMs,
                 ttftMs = m.ttftMs,
@@ -294,6 +312,8 @@ object AcceptanceRunner {
                 append("      \"chunks_reused\": ${r.chunksReused},\n")
                 append("      \"chunks\": [${r.chunksRetrieved.joinToString(",") { "\"$it\"" }}],\n")
                 append("      \"answer_snippet\": \"${escape(r.answerSnippet)}\",\n")
+                append("      \"retrieval_mode\": \"${escape(r.retrievalMode)}\",\n")
+                append("      \"dense_encode_ms\": ${r.denseEncodeMs},\n")
                 append("      \"asr_ms\": ${r.asrMs},\n")
                 append("      \"search_ms\": ${r.searchMs},\n")
                 append("      \"ttft_ms\": ${r.ttftMs},\n")

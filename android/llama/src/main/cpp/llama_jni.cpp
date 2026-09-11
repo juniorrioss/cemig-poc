@@ -5,6 +5,7 @@
 #include <mutex>
 #include <algorithm>
 #include <cstring>
+#include <cmath>
 #include "llama.h"
 
 #define TAG "LlamaEngineJNI"
@@ -322,6 +323,149 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
 
     llama_sampler_free(smpl);
     return generated_count;
+}
+
+// -----------------------------------------------------------------------------
+// Modo EMBEDDING (Retrieval v3): codifica UMA query com o EmbeddingGemma-300M GGUF.
+// Reusa a MESMA libllama_engine já linkada (runtime mais simples do brief). Carrega um
+// contexto separado com pooling=mean e embeddings=true; retorna o vetor L2-normalizado.
+// -----------------------------------------------------------------------------
+struct LlamaEmbedContext {
+    llama_model * model = nullptr;
+    llama_context * ctx = nullptr;
+    std::mutex mtx;
+    int32_t n_embd = 0;
+};
+
+JNIEXPORT jlong JNICALL
+Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeLoadEmbedder(
+        JNIEnv * env,
+        jobject /* thiz */,
+        jstring j_model_path,
+        jint j_n_ctx,
+        jint j_n_threads
+) {
+    if (j_model_path == nullptr) {
+        LOGE("nativeLoadEmbedder: modelPath nulo");
+        return 0;
+    }
+    const char * model_path = env->GetStringUTFChars(j_model_path, nullptr);
+    LOGI("nativeLoadEmbedder: carregando encoder GGUF de %s", model_path);
+    llama_backend_init();
+    llama_model_params mparams = llama_model_default_params();
+    llama_model * model = llama_model_load_from_file(model_path, mparams);
+    env->ReleaseStringUTFChars(j_model_path, model_path);
+    if (!model) {
+        LOGE("nativeLoadEmbedder: falha ao carregar modelo de embedding");
+        return 0;
+    }
+    const int32_t n_ctx = j_n_ctx > 0 ? j_n_ctx : 2048;
+    const int32_t n_threads = j_n_threads > 0 ? j_n_threads : 6;
+    llama_context_params cparams = llama_context_default_params();
+    cparams.n_ctx = n_ctx;
+    cparams.n_batch = n_ctx;    // batch físico >= tokens da query (curta)
+    cparams.n_ubatch = n_ctx;
+    cparams.n_threads = n_threads;
+    cparams.n_threads_batch = n_threads;
+    cparams.embeddings = true;
+    cparams.pooling_type = LLAMA_POOLING_TYPE_MEAN;  // igual ao índice (mean pooling)
+    llama_context * ctx = llama_init_from_model(model, cparams);
+    if (!ctx) {
+        LOGE("nativeLoadEmbedder: falha ao criar contexto de embedding");
+        llama_model_free(model);
+        return 0;
+    }
+    auto * ec = new LlamaEmbedContext();
+    ec->model = model;
+    ec->ctx = ctx;
+    ec->n_embd = llama_model_n_embd(model);
+    LOGI("nativeLoadEmbedder: encoder pronto (n_embd=%d)", ec->n_embd);
+    return reinterpret_cast<jlong>(ec);
+}
+
+JNIEXPORT jfloatArray JNICALL
+Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeEmbed(
+        JNIEnv * env,
+        jobject /* thiz */,
+        jlong handle,
+        jstring j_text
+) {
+    auto * ec = reinterpret_cast<LlamaEmbedContext *>(handle);
+    if (!ec || !ec->ctx || !ec->model) {
+        LOGE("nativeEmbed: handle inválido");
+        return nullptr;
+    }
+    std::lock_guard<std::mutex> lock(ec->mtx);
+    const char * text_chars = env->GetStringUTFChars(j_text, nullptr);
+    std::string text(text_chars ? text_chars : "");
+    env->ReleaseStringUTFChars(j_text, text_chars);
+
+    const llama_vocab * vocab = llama_model_get_vocab(ec->model);
+    // Tokeniza com BOS (add_special=true), sem token de fim de geração.
+    int n_tokens = -llama_tokenize(vocab, text.c_str(), text.length(), nullptr, 0, true, true);
+    if (n_tokens <= 0) n_tokens = 1;
+    std::vector<llama_token> tokens(n_tokens);
+    int tok_res = llama_tokenize(vocab, text.c_str(), text.length(), tokens.data(), tokens.size(), true, true);
+    if (tok_res < 0) {
+        LOGE("nativeEmbed: falha na tokenização");
+        return nullptr;
+    }
+    tokens.resize(tok_res);
+
+    llama_memory_clear(llama_get_memory(ec->ctx), true);
+
+    llama_batch batch = llama_batch_init((int32_t) tokens.size(), 0, 1);
+    for (size_t i = 0; i < tokens.size(); i++) {
+        batch.token[i] = tokens[i];
+        batch.pos[i] = (llama_pos) i;
+        batch.n_seq_id[i] = 1;
+        batch.seq_id[i][0] = 0;
+        batch.logits[i] = true;  // pooling MEAN usa todos os tokens
+    }
+    batch.n_tokens = (int32_t) tokens.size();
+
+    if (llama_decode(ec->ctx, batch) != 0) {
+        LOGE("nativeEmbed: falha no decode");
+        llama_batch_free(batch);
+        return nullptr;
+    }
+    llama_batch_free(batch);
+
+    // Recupera o embedding pooled da sequência 0.
+    const float * emb = llama_get_embeddings_seq(ec->ctx, 0);
+    if (!emb) {
+        // fallback: embedding do último token
+        emb = llama_get_embeddings(ec->ctx);
+    }
+    if (!emb) {
+        LOGE("nativeEmbed: embeddings nulos");
+        return nullptr;
+    }
+    const int n_embd = ec->n_embd;
+    // Normaliza L2 (cosseno = produto interno).
+    double norm = 0.0;
+    for (int i = 0; i < n_embd; i++) norm += (double) emb[i] * emb[i];
+    norm = norm > 0 ? std::sqrt(norm) : 1.0;
+    std::vector<float> out(n_embd);
+    for (int i = 0; i < n_embd; i++) out[i] = (float) (emb[i] / norm);
+
+    jfloatArray result = env->NewFloatArray(n_embd);
+    env->SetFloatArrayRegion(result, 0, n_embd, out.data());
+    return result;
+}
+
+JNIEXPORT void JNICALL
+Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeFreeEmbedder(
+        JNIEnv * /* env */,
+        jobject /* thiz */,
+        jlong handle
+) {
+    auto * ec = reinterpret_cast<LlamaEmbedContext *>(handle);
+    if (!ec) return;
+    LOGI("nativeFreeEmbedder: liberando encoder (%p)", ec);
+    if (ec->ctx) llama_free(ec->ctx);
+    if (ec->model) llama_model_free(ec->model);
+    delete ec;
 }
 
 JNIEXPORT void JNICALL

@@ -16,5 +16,10 @@ data class Chunk(
     val content: String,
     val score: Double = 0.0,
     val title: String = "",
-    val page: Int = 0
+    val page: Int = 0,
+    // Telemetria de fusão RRF (Retrieval v3) para o Modo Engenharia. -1 = ausente no sinal.
+    val rankBm25: Int = -1,
+    val rankDenseText: Int = -1,
+    val rankDenseExp: Int = -1,
+    val rrfScore: Double = 0.0
 )

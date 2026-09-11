@@ -9,8 +9,10 @@ import br.org.ceia.cemigpoc.data.engine.RealAsrEngine
 import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
 import br.org.ceia.cemigpoc.data.model.ModelFileManager
 import br.org.ceia.cemigpoc.data.classifier.NrClassifier
+import br.org.ceia.cemigpoc.data.retriever.DenseRetriever
 import br.org.ceia.cemigpoc.data.retriever.Fts5Retriever
 import br.org.ceia.cemigpoc.data.retriever.HybridRetriever
+import br.org.ceia.cemigpoc.llama.LlamaEmbedder
 import br.org.ceia.cemigpoc.data.telemetry.TelemetryLogger
 import br.org.ceia.cemigpoc.domain.engine.AsrEvent
 import br.org.ceia.cemigpoc.domain.model.Chunk
@@ -54,9 +56,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val fileManager = ModelFileManager(application.applicationContext)
     // Estágio 1 do pipeline híbrido: classificador leve de NR (TF-IDF+LogReg, Kotlin puro).
     private val nrClassifier = NrClassifier.load(application.applicationContext)
+    // Retrieval v3: encoder de embeddings on-device + busca densa (fusão RRF 3-sinais).
+    private val embedder = LlamaEmbedder()
+    private val denseRetriever = DenseRetriever(application.applicationContext, embedder)
     private val retriever = HybridRetriever(
         delegate = Fts5Retriever(application.applicationContext),
-        classifier = nrClassifier
+        classifier = nrClassifier,
+        denseRetriever = denseRetriever
     )
     private val realLlamaEngine = RealLlamaEngine()
     private val realAsrEngine = RealAsrEngine()
@@ -107,6 +113,20 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 if (!llmOk) {
                     Log.e(TAG, "Falha ao inicializar LFM2.5")
+                }
+
+                // Retrieval v3: carrega o encoder de embeddings e os índices densos. Se algo
+                // falhar, o HybridRetriever degrada para BM25-gated (fallback honesto).
+                _uiState.update { it.copy(modelStatusMessage = "Carregando encoder denso (EmbeddingGemma)...") }
+                val embedFile = fileManager.getEmbedModelFile { progress ->
+                    _uiState.update {
+                        it.copy(modelStatusMessage = "Copiando EmbeddingGemma: ${(progress * 100).toInt()}%")
+                    }
+                }
+                val embedOk = embedder.load(embedFile.absolutePath)
+                val denseOk = if (embedOk) denseRetriever.load() else false
+                if (!denseOk) {
+                    Log.w(TAG, "Busca densa indisponível; pipeline usará BM25-gated (fallback)")
                 }
 
                 _uiState.update {
@@ -328,5 +348,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         super.onCleared()
         realLlamaEngine.engine.close()
         realAsrEngine.engine.close()
+        embedder.close()
     }
 }

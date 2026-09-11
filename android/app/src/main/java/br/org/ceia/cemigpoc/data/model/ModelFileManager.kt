@@ -29,6 +29,12 @@ class ModelFileManager(private val context: Context) {
         const val LLM_MODEL_NAME = "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"
         const val ASR_MODEL_NAME = "ggml-base-q5_1.bin"
         const val FTS5_DB_NAME = "index.db"
+        // Retrieval v3: encoder de embeddings on-device (EmbeddingGemma-300M QAT-Q4_0) e os
+        // dois índices densos binários (formato DVEC1). O index.db agora é o EXPANDIDO
+        // (5 campos FTS5, com coluna expansion) — substituído nos assets.
+        const val EMBED_MODEL_NAME = "embeddinggemma-300M-qat-Q4_0.gguf"
+        const val DENSE_TEXT_BIN = "dense_text.bin"
+        const val DENSE_EXPONLY_BIN = "dense_exponly.bin"
     }
 
     suspend fun getLlmModelFile(onProgress: ((Float) -> Unit)? = null): File = withContext(Dispatchers.IO) {
@@ -41,6 +47,10 @@ class ModelFileManager(private val context: Context) {
 
     suspend fun getFts5DatabaseFile(): File = withContext(Dispatchers.IO) {
         resolveOrCopy(FTS5_DB_NAME, null)
+    }
+
+    suspend fun getEmbedModelFile(onProgress: ((Float) -> Unit)? = null): File = withContext(Dispatchers.IO) {
+        resolveOrCopy(EMBED_MODEL_NAME, onProgress)
     }
 
     private fun resolveOrCopy(fileName: String, onProgress: ((Float) -> Unit)?): File {

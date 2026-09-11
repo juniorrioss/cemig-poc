@@ -134,15 +134,36 @@ fun DebugTurnCard(
                 detail = classDetail
             )
 
-            // (3) Chunks recuperados + Tempo BM25 (busca usa a FALA BRUTA)
+            // (3) Recuperação: Retrieval v3 (fusão RRF 3-sinais) ou BM25-gated legado.
+            val isRrf3 = metrics.retrievalMode == "rrf3"
+            val retrievalTitle = when (metrics.retrievalMode) {
+                "rrf3" -> "3. Fusão RRF 3-sinais (BM25+Denso×2)"
+                "rrf3-fallback-bm25" -> "3. BM25-gated (denso indisponível)"
+                else -> "3. Busca BM25 Top-2 (fala bruta)"
+            }
             val chunksSummary = if (chunks.isNotEmpty()) {
-                chunks.joinToString(", ") { "${it.doc} ${it.section} (score: ${"%.2f".format(it.score)})" }
+                if (isRrf3) {
+                    // Mostra os ranks por sinal e o score RRF (o capitão quer ver a fusão).
+                    chunks.joinToString("  |  ") { c ->
+                        val rb = if (c.rankBm25 > 0) "bm25#${c.rankBm25}" else "bm25–"
+                        val rt = if (c.rankDenseText > 0) "dTxt#${c.rankDenseText}" else "dTxt–"
+                        val re = if (c.rankDenseExp > 0) "dExp#${c.rankDenseExp}" else "dExp–"
+                        "${c.doc} ${c.section} [$rb $rt $re rrf=${"%.4f".format(c.rrfScore)}]"
+                    }
+                } else {
+                    chunks.joinToString(", ") { "${it.doc} ${it.section} (score: ${"%.2f".format(it.score)})" }
+                }
             } else {
                 "Nenhum chunk recuperado"
             }
+            val retrievalTime = when {
+                metrics.chunksReused -> "0 ms (reuso)"
+                isRrf3 && metrics.denseEncodeMs > 0 -> "${metrics.searchMs} ms (inclui encode denso)"
+                else -> "${metrics.searchMs} ms"
+            }
             DebugRow(
-                label = "3. Busca BM25 Top-2 (fala bruta)",
-                time = if (metrics.chunksReused) "0 ms (reuso)" else "${metrics.searchMs} ms",
+                label = retrievalTitle,
+                time = retrievalTime,
                 detail = chunksSummary
             )
 

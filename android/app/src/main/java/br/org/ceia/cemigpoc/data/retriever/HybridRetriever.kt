@@ -26,7 +26,12 @@ class HybridRetriever(
     private val classifier: NrClassifier?,
     private val confThreshold: Float = 0.5f,
     private val boostFactor: Double = 5.0,
-    private val topNr: Int = 2
+    private val topNr: Int = 2,
+    // Retrieval v3: busca densa opcional (fusão RRF 3-sinais). Se null, degrada para o
+    // caminho BM25-gated legado (comportamento anterior preservado).
+    private val denseRetriever: DenseRetriever? = null,
+    private val rrfK: Double = RrfFusion.DEFAULT_K,
+    private val fusionPool: Int = 60
 ) : Retriever {
 
     companion object {
@@ -54,8 +59,14 @@ class HybridRetriever(
         val top1Prob: Float,
         val top2: String,
         val boostNrs: List<String>,
-        val mode: String // "hard" | "soft" | "none"
+        val mode: String, // "hard" | "soft" | "none" | "explicit"
+        // Retrieval v3: rótulo da estratégia de recuperação efetivamente usada.
+        val retrieval: String = "bm25" // "bm25" | "rrf3" | "rrf3-fallback-bm25"
     )
+
+    /** true se a busca densa (fusão RRF 3-sinais) está disponível. */
+    val hasDense: Boolean
+        get() = denseRetriever != null
 
     /**
      * Busca compatível com a interface Retriever. Sem a fala bruta separada, o estágio 1
@@ -118,5 +129,102 @@ class HybridRetriever(
             )
         )
         return chunks
+    }
+
+    /**
+     * Retrieval v3 (fusão RRF 3-sinais). Estende o caminho gated com dois sinais densos
+     * (EmbeddingGemma) fundidos por RRF. Se o denso não estiver disponível/carregado, ou
+     * falhar, retorna o top-k BM25-gated (fallback honesto, marcado na decisão).
+     *
+     * Etapas:
+     *   s1 = BM25 gated-expandido (pool)      -> ids ordenados
+     *   sT = denso texto+expansão (pool)      -> ids ordenados
+     *   sE = denso expansão-only (pool)       -> ids ordenados
+     *   RRF(k) -> top-k -> hidrata metadata por id (Fts5Retriever.fetchByIds)
+     */
+    suspend fun searchV3(rawQuestion: String, topK: Int): List<Chunk> {
+        val dense = denseRetriever
+        if (dense == null || !dense.isReady) {
+            // Sem denso: caminho BM25-gated normal.
+            val r = searchWithRaw(bm25Query = rawQuestion, rawQuestion = rawQuestion, topK = topK)
+            lastDecision = lastDecision?.copy(retrieval = "rrf3-fallback-bm25")
+            return r
+        }
+
+        // s1: pool BM25 gated-expandido (reusa a política gated, mas com pool grande).
+        val clf = classifier
+        val explicit = detectExplicitNr(rawQuestion)
+        val bm25Pool: List<Chunk>
+        val decision: Decision
+        when {
+            clf == null -> {
+                bm25Pool = delegate.searchBoosted(rawQuestion, fusionPool, emptyList(), 1.0, hardFilter = false)
+                decision = Decision(rawQuestion, NONE_LABEL, 0f, NONE_LABEL, emptyList(), "none", "rrf3")
+            }
+            explicit != null -> {
+                bm25Pool = delegate.searchBoosted(rawQuestion, fusionPool, listOf(explicit), boostFactor, hardFilter = true)
+                decision = Decision(rawQuestion, explicit, 1.0f, explicit, listOf(explicit), "explicit", "rrf3")
+            }
+            else -> {
+                val preds = clf.classify(rawQuestion)
+                val top1 = preds.getOrNull(0)?.nr ?: NONE_LABEL
+                val top1Prob = preds.getOrNull(0)?.prob ?: 0f
+                val top2 = preds.getOrNull(1)?.nr ?: NONE_LABEL
+                when {
+                    top1 == NONE_LABEL -> {
+                        bm25Pool = delegate.searchBoosted(rawQuestion, fusionPool, emptyList(), 1.0, hardFilter = false)
+                        decision = Decision(rawQuestion, top1, top1Prob, top2, emptyList(), "none", "rrf3")
+                    }
+                    top1Prob >= confThreshold -> {
+                        val boost = listOf(top1)
+                        bm25Pool = delegate.searchBoosted(rawQuestion, fusionPool, boost, boostFactor, hardFilter = true)
+                        decision = Decision(rawQuestion, top1, top1Prob, top2, boost, "hard", "rrf3")
+                    }
+                    else -> {
+                        val boost = listOf(top1, top2).filter { it != NONE_LABEL }
+                        bm25Pool = delegate.searchBoosted(rawQuestion, fusionPool, boost, boostFactor, hardFilter = false)
+                        decision = Decision(rawQuestion, top1, top1Prob, top2, boost, "soft", "rrf3")
+                    }
+                }
+            }
+        }
+        lastDecision = decision
+
+        // sT, sE: rankings densos (1 encode serve os dois índices).
+        val denseRes = dense.search(rawQuestion, fusionPool)
+        if (denseRes == null) {
+            // encode falhou -> fallback BM25 top-k.
+            lastDecision = decision.copy(retrieval = "rrf3-fallback-bm25")
+            return bm25Pool.take(topK)
+        }
+
+        val s1Ids = bm25Pool.map { it.id }
+        val sTIds = denseRes.textRanking.map { it.first.toLong() }
+        val sEIds = denseRes.expRanking.map { it.first.toLong() }
+
+        val fused = RrfFusion.fuse(
+            listOf(
+                RrfFusion.Signal(s1Ids, 1.0),
+                RrfFusion.Signal(sTIds, 1.0),
+                RrfFusion.Signal(sEIds, 1.0)
+            ),
+            k = rrfK, limit = topK
+        )
+
+        // Hidrata metadata por id: usa o pool BM25 quando presente, senão busca no índice.
+        val poolById = bm25Pool.associateBy { it.id }
+        val missing = fused.map { it.id }.filter { it !in poolById }
+        val fetched = if (missing.isNotEmpty()) delegate.fetchByIds(missing) else emptyMap()
+
+        return fused.mapNotNull { f ->
+            val base = poolById[f.id] ?: fetched[f.id] ?: return@mapNotNull null
+            base.copy(
+                score = f.rrfScore,
+                rankBm25 = f.ranks.getOrElse(0) { -1 },
+                rankDenseText = f.ranks.getOrElse(1) { -1 },
+                rankDenseExp = f.ranks.getOrElse(2) { -1 },
+                rrfScore = f.rrfScore
+            )
+        }
     }
 }

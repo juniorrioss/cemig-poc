@@ -99,7 +99,13 @@ class AskPipeline(
                 // Estágio 1 híbrido: classifica a FALA BRUTA e aplica boost/filtro gated;
                 // o BM25 também recebe a fala bruta (melhor que keywords — ver AGENTS.md).
                 if (retriever is HybridRetriever) {
-                    val r = retriever.searchWithRaw(bm25Query = userQuestion, rawQuestion = userQuestion, topK = topK)
+                    // Retrieval v3: se a busca densa estiver disponível, usa fusão RRF
+                    // 3-sinais (BM25-gated-exp + 2 densos EmbeddingGemma); senão BM25-gated.
+                    val r = if (retriever.hasDense) {
+                        retriever.searchV3(rawQuestion = userQuestion, topK = topK)
+                    } else {
+                        retriever.searchWithRaw(bm25Query = userQuestion, rawQuestion = userQuestion, topK = topK)
+                    }
                     decision = retriever.lastDecision
                     r
                 } else {
@@ -203,7 +209,10 @@ class AskPipeline(
             nrTop2 = decision?.top2 ?: "",
             gateMode = decision?.mode ?: (if (canReuse) "reuso" else "-"),
             boostNrs = decision?.boostNrs?.joinToString(",").orEmpty(),
-            chunksReused = canReuse
+            chunksReused = canReuse,
+            retrievalMode = decision?.retrieval ?: (if (canReuse) "reuso" else "bm25"),
+            // O encode denso está embutido no searchMs; expomos separadamente quando possível.
+            denseEncodeMs = if (decision?.retrieval == "rrf3") searchMs else 0L
         )
 
         emit(TurnEvent.Done(finalAnswer = finalAnswer, chunksUsed = chunks, metrics = metrics))

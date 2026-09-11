@@ -54,4 +54,11 @@ class LlamaBridge {
     external fun nativeClearKv(handle: Long)
 
     external fun nativeFree(handle: Long)
+
+    // --- Modo embedding (Retrieval v3): encoder EmbeddingGemma-300M GGUF ---
+    external fun nativeLoadEmbedder(modelPath: String, nCtx: Int, nThreads: Int): Long
+
+    external fun nativeEmbed(handle: Long, text: String): FloatArray?
+
+    external fun nativeFreeEmbedder(handle: Long)
 }
