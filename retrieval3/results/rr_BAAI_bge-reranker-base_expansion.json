@@ -1,0 +1,24 @@
+{
+  "label": "bge-reranker-base-expansion",
+  "model": "BAAI/bge-reranker-base",
+  "fused_pre_rerank_151": {
+    "n": 151,
+    "recall_at_1": 37.09,
+    "recall_at_2": 52.32,
+    "recall_at_5": 63.58,
+    "mrr": 0.4776
+  },
+  "reranked_151": {
+    "n": 151,
+    "recall_at_1": 28.48,
+    "recall_at_2": 41.72,
+    "recall_at_5": 61.59,
+    "mrr": 0.4035
+  },
+  "cost": {
+    "ms_per_pair_gpu": 6.57,
+    "ms_per_query_gpu": 88.1,
+    "n_forwards": 10,
+    "load_s": 11.8
+  }
+}

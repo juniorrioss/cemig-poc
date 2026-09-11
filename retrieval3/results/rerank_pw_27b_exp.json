@@ -1,0 +1,25 @@
+{
+  "label": "27B-pw-exp",
+  "model": "Qwen/Qwen3.8-27B-FP8",
+  "doc_field": "expansion",
+  "fused_pre_rerank_151": {
+    "n": 151,
+    "recall_at_1": 37.09,
+    "recall_at_2": 52.32,
+    "recall_at_5": 63.58,
+    "mrr": 0.4776
+  },
+  "reranked_151": {
+    "n": 151,
+    "recall_at_1": 32.45,
+    "recall_at_2": 46.36,
+    "recall_at_5": 68.21,
+    "mrr": 0.4557
+  },
+  "cost": {
+    "wall_s": 44.9,
+    "ms_per_query_wall": 297.4,
+    "forwards_per_query": 10.0,
+    "workers": 8
+  }
+}

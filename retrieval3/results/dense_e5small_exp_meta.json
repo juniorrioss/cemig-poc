@@ -1,0 +1,16 @@
+{
+  "model": "intfloat/multilingual-e5-small",
+  "query_prefix": "query: ",
+  "doc_prefix": "passage: ",
+  "query_prompt_name": "",
+  "doc_prompt_name": "",
+  "full_dim": 384,
+  "dim": 384,
+  "n_chunks": 2202,
+  "with_expansion": true,
+  "load_s": 9.1,
+  "encode_all_s": 6.5,
+  "encode_query_ms_gpu": 3.9,
+  "index_mb": 12.66,
+  "index_path": "indices/dense_e5small_exp.db"
+}

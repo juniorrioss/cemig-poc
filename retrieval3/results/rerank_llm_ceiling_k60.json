@@ -1,0 +1,19 @@
+{
+  "label": "27B-ceiling-k60",
+  "model": "Qwen/Qwen3.8-27B-FP8",
+  "fused_pre_rerank_151": {
+    "n": 151,
+    "recall_at_1": 39.74,
+    "recall_at_2": 49.01,
+    "recall_at_5": 62.91,
+    "mrr": 0.4827
+  },
+  "reranked_151": {
+    "n": 151,
+    "recall_at_1": 37.09,
+    "recall_at_2": 49.67,
+    "recall_at_5": 63.58,
+    "mrr": 0.4781
+  },
+  "wall_s": 17.7
+}

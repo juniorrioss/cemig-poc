@@ -1,0 +1,197 @@
+{
+  "label": "gemma_exp+bmEXP",
+  "dev_grid": [
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 66.5,
+      "dev_r5": 84.5
+    },
+    {
+      "k": 10.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 60.0,
+      "dev_r5": 76.0
+    },
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 63.0,
+      "dev_r5": 78.5
+    },
+    {
+      "k": 10.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 53.0,
+      "dev_r5": 72.0
+    },
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 60.0,
+      "dev_r5": 76.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 66.5,
+      "dev_r5": 82.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 64.5,
+      "dev_r5": 81.5
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 63.5,
+      "dev_r5": 81.5
+    },
+    {
+      "k": 30.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 63.0,
+      "dev_r5": 77.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 64.5,
+      "dev_r5": 81.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 65.0,
+      "dev_r5": 82.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 66.5,
+      "dev_r5": 82.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 64.5,
+      "dev_r5": 81.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 65.5,
+      "dev_r5": 79.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 66.5,
+      "dev_r5": 82.0
+    }
+  ],
+  "best_dev": {
+    "k": 10.0,
+    "w": [
+      1.0,
+      1.0
+    ]
+  },
+  "gate_holdout_151": {
+    "dense_pure": {
+      "n": 151,
+      "recall_at_1": 19.21,
+      "recall_at_2": 32.45,
+      "recall_at_5": 44.37,
+      "mrr": 0.2908,
+      "per_doc": {}
+    },
+    "bm25_hybrid": {
+      "n": 151,
+      "recall_at_1": 29.14,
+      "recall_at_2": 37.75,
+      "recall_at_5": 52.32,
+      "mrr": 0.3742,
+      "per_doc": {}
+    },
+    "rrf_best": {
+      "n": 151,
+      "recall_at_1": 38.41,
+      "recall_at_2": 45.03,
+      "recall_at_5": 59.6,
+      "mrr": 0.4557,
+      "per_doc": {}
+    },
+    "rrf_ref_k60": {
+      "n": 151,
+      "recall_at_1": 36.42,
+      "recall_at_2": 41.72,
+      "recall_at_5": 56.29,
+      "mrr": 0.4331,
+      "per_doc": {}
+    }
+  },
+  "mobile_cost": {
+    "model": "google/embeddinggemma-300m",
+    "query_prefix": "",
+    "doc_prefix": "",
+    "query_prompt_name": "Retrieval-query",
+    "doc_prompt_name": "Retrieval-document",
+    "full_dim": 768,
+    "dim": 256,
+    "n_chunks": 2202,
+    "with_expansion": true,
+    "load_s": 9.3,
+    "encode_all_s": 220.4,
+    "encode_query_ms_gpu": 34.7,
+    "index_mb": 11.08,
+    "index_path": "indices/dense_gemma_exp.db"
+  }
+}

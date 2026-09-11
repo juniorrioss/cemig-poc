@@ -1,0 +1,19 @@
+{
+  "label": "LFM2.5-1.2B-mobile",
+  "model": "local",
+  "fused_pre_rerank_151": {
+    "n": 151,
+    "recall_at_1": 37.09,
+    "recall_at_2": 52.32,
+    "recall_at_5": 63.58,
+    "mrr": 0.4776
+  },
+  "reranked_151": {
+    "n": 151,
+    "recall_at_1": 9.27,
+    "recall_at_2": 43.05,
+    "recall_at_5": 58.94,
+    "mrr": 0.3011
+  },
+  "wall_s": 23.1
+}

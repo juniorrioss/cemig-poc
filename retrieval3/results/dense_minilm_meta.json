@@ -1,0 +1,12 @@
+{
+  "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "full_dim": 384,
+  "dim": 384,
+  "n_chunks": 2202,
+  "with_expansion": false,
+  "load_s": 8.6,
+  "encode_all_s": 1.7,
+  "encode_query_ms_gpu": 5.2,
+  "index_mb": 9.33,
+  "index_path": "indices/dense_minilm.db"
+}

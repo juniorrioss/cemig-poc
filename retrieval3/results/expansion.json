@@ -1,0 +1,91 @@
+{
+  "dev_grid": [
+    {
+      "w_exp": 0.0,
+      "dev_r2": 42.0,
+      "dev_r5": 61.5
+    },
+    {
+      "w_exp": 0.5,
+      "dev_r2": 66.5,
+      "dev_r5": 81.0
+    },
+    {
+      "w_exp": 1.0,
+      "dev_r2": 68.5,
+      "dev_r5": 83.0
+    },
+    {
+      "w_exp": 2.0,
+      "dev_r2": 67.0,
+      "dev_r5": 80.0
+    },
+    {
+      "w_exp": 3.0,
+      "dev_r2": 65.5,
+      "dev_r5": 79.0
+    },
+    {
+      "w_exp": 5.0,
+      "dev_r2": 63.0,
+      "dev_r5": 78.0
+    }
+  ],
+  "best_w_dev": 1.0,
+  "gate_holdout_151": {
+    "w0.0": {
+      "raw": {
+        "n": 151,
+        "recall_at_1": 9.27,
+        "recall_at_2": 14.57,
+        "recall_at_5": 23.84,
+        "mrr": 0.1456,
+        "per_doc": {}
+      },
+      "hybrid": {
+        "n": 151,
+        "recall_at_1": 21.85,
+        "recall_at_2": 31.13,
+        "recall_at_5": 43.71,
+        "mrr": 0.302,
+        "per_doc": {}
+      }
+    },
+    "w1.0": {
+      "raw": {
+        "n": 151,
+        "recall_at_1": 16.56,
+        "recall_at_2": 24.5,
+        "recall_at_5": 35.1,
+        "mrr": 0.2352,
+        "per_doc": {}
+      },
+      "hybrid": {
+        "n": 151,
+        "recall_at_1": 29.14,
+        "recall_at_2": 37.75,
+        "recall_at_5": 52.32,
+        "mrr": 0.3742,
+        "per_doc": {}
+      }
+    },
+    "w2.0": {
+      "raw": {
+        "n": 151,
+        "recall_at_1": 15.23,
+        "recall_at_2": 21.85,
+        "recall_at_5": 35.1,
+        "mrr": 0.2231,
+        "per_doc": {}
+      },
+      "hybrid": {
+        "n": 151,
+        "recall_at_1": 29.14,
+        "recall_at_2": 36.42,
+        "recall_at_5": 53.64,
+        "mrr": 0.3744,
+        "per_doc": {}
+      }
+    }
+  }
+}

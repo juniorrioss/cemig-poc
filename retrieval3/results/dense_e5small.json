@@ -1,0 +1,197 @@
+{
+  "label": "e5small",
+  "dev_grid": [
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 43.0,
+      "dev_r5": 57.5
+    },
+    {
+      "k": 10.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 38.0,
+      "dev_r5": 55.0
+    },
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 37.5,
+      "dev_r5": 48.5
+    },
+    {
+      "k": 10.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 34.5,
+      "dev_r5": 52.0
+    },
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 38.0,
+      "dev_r5": 55.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 42.0,
+      "dev_r5": 57.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 40.5,
+      "dev_r5": 55.5
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 40.5,
+      "dev_r5": 49.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 39.0,
+      "dev_r5": 55.5
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 40.5,
+      "dev_r5": 55.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 40.5,
+      "dev_r5": 56.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 42.5,
+      "dev_r5": 57.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 41.0,
+      "dev_r5": 54.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 39.5,
+      "dev_r5": 56.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 42.5,
+      "dev_r5": 57.0
+    }
+  ],
+  "best_dev": {
+    "k": 10.0,
+    "w": [
+      1.0,
+      1.0
+    ]
+  },
+  "gate_holdout_151": {
+    "dense_pure": {
+      "n": 151,
+      "recall_at_1": 7.28,
+      "recall_at_2": 10.6,
+      "recall_at_5": 15.89,
+      "mrr": 0.1036,
+      "per_doc": {}
+    },
+    "bm25_hybrid": {
+      "n": 151,
+      "recall_at_1": 22.52,
+      "recall_at_2": 29.8,
+      "recall_at_5": 41.06,
+      "mrr": 0.2927,
+      "per_doc": {}
+    },
+    "rrf_best": {
+      "n": 151,
+      "recall_at_1": 15.89,
+      "recall_at_2": 21.85,
+      "recall_at_5": 39.07,
+      "mrr": 0.2366,
+      "per_doc": {}
+    },
+    "rrf_ref_k60": {
+      "n": 151,
+      "recall_at_1": 15.23,
+      "recall_at_2": 19.87,
+      "recall_at_5": 31.13,
+      "mrr": 0.2063,
+      "per_doc": {}
+    }
+  },
+  "mobile_cost": {
+    "model": "intfloat/multilingual-e5-small",
+    "query_prefix": "query: ",
+    "doc_prefix": "passage: ",
+    "query_prompt_name": "",
+    "doc_prompt_name": "",
+    "full_dim": 384,
+    "dim": 384,
+    "n_chunks": 2202,
+    "with_expansion": false,
+    "load_s": 24.5,
+    "encode_all_s": 6.5,
+    "encode_query_ms_gpu": 4.8,
+    "index_mb": 9.33,
+    "index_path": "indices/dense_e5small.db"
+  }
+}

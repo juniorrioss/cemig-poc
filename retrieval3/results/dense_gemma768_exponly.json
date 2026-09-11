@@ -1,0 +1,197 @@
+{
+  "label": "gemma768_exponly",
+  "dev_grid": [
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 61.5,
+      "dev_r5": 85.5
+    },
+    {
+      "k": 10.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 45.0,
+      "dev_r5": 62.5
+    },
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 75.0,
+      "dev_r5": 89.0
+    },
+    {
+      "k": 10.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 41.0,
+      "dev_r5": 57.5
+    },
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 45.0,
+      "dev_r5": 62.5
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 59.0,
+      "dev_r5": 77.5
+    },
+    {
+      "k": 30.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 51.5,
+      "dev_r5": 64.5
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 69.0,
+      "dev_r5": 86.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 45.5,
+      "dev_r5": 62.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 51.5,
+      "dev_r5": 64.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 58.5,
+      "dev_r5": 75.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 53.0,
+      "dev_r5": 65.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 64.0,
+      "dev_r5": 83.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 51.5,
+      "dev_r5": 63.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 53.0,
+      "dev_r5": 65.5
+    }
+  ],
+  "best_dev": {
+    "k": 10.0,
+    "w": [
+      1.0,
+      2.0
+    ]
+  },
+  "gate_holdout_151": {
+    "dense_pure": {
+      "n": 151,
+      "recall_at_1": 21.19,
+      "recall_at_2": 37.09,
+      "recall_at_5": 57.62,
+      "mrr": 0.3467,
+      "per_doc": {}
+    },
+    "bm25_hybrid": {
+      "n": 151,
+      "recall_at_1": 22.52,
+      "recall_at_2": 29.8,
+      "recall_at_5": 41.06,
+      "mrr": 0.2927,
+      "per_doc": {}
+    },
+    "rrf_best": {
+      "n": 151,
+      "recall_at_1": 28.48,
+      "recall_at_2": 43.05,
+      "recall_at_5": 58.94,
+      "mrr": 0.4029,
+      "per_doc": {}
+    },
+    "rrf_ref_k60": {
+      "n": 151,
+      "recall_at_1": 31.13,
+      "recall_at_2": 42.38,
+      "recall_at_5": 52.98,
+      "mrr": 0.3951,
+      "per_doc": {}
+    }
+  },
+  "mobile_cost": {
+    "model": "google/embeddinggemma-300m",
+    "query_prefix": "",
+    "doc_prefix": "",
+    "query_prompt_name": "Retrieval-query",
+    "doc_prompt_name": "Retrieval-document",
+    "full_dim": 768,
+    "dim": 768,
+    "n_chunks": 2202,
+    "with_expansion": false,
+    "load_s": 9.6,
+    "encode_all_s": 17.7,
+    "encode_query_ms_gpu": 37.2,
+    "index_mb": 14.05,
+    "index_path": "indices/dense_gemma768_exponly.db"
+  }
+}

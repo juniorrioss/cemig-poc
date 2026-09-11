@@ -1,0 +1,21 @@
+{
+  "subset": "qa_v2",
+  "n": 151,
+  "db": "index_hf_36nr.db",
+  "baseline_raw": {
+    "n": 151,
+    "recall_at_1": 9.93,
+    "recall_at_2": 13.91,
+    "recall_at_5": 20.53,
+    "mrr": 0.1375,
+    "per_doc": {}
+  },
+  "hybrid_gated": {
+    "n": 151,
+    "recall_at_1": 22.52,
+    "recall_at_2": 29.8,
+    "recall_at_5": 41.06,
+    "mrr": 0.2927,
+    "per_doc": {}
+  }
+}

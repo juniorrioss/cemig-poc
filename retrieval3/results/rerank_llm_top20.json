@@ -1,0 +1,19 @@
+{
+  "label": "27B-top20",
+  "model": "Qwen/Qwen3.8-27B-FP8",
+  "fused_pre_rerank_151": {
+    "n": 151,
+    "recall_at_1": 39.74,
+    "recall_at_2": 49.01,
+    "recall_at_5": 62.91,
+    "mrr": 0.4827
+  },
+  "reranked_151": {
+    "n": 151,
+    "recall_at_1": 40.4,
+    "recall_at_2": 49.67,
+    "recall_at_5": 66.89,
+    "mrr": 0.5003
+  },
+  "wall_s": 31.8
+}

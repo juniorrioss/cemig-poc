@@ -1,0 +1,24 @@
+{
+  "label": "mMiniLM-expansion",
+  "model": "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
+  "fused_pre_rerank_151": {
+    "n": 151,
+    "recall_at_1": 38.41,
+    "recall_at_2": 45.03,
+    "recall_at_5": 59.6,
+    "mrr": 0.4557
+  },
+  "reranked_151": {
+    "n": 151,
+    "recall_at_1": 22.52,
+    "recall_at_2": 34.44,
+    "recall_at_5": 52.98,
+    "mrr": 0.3389
+  },
+  "cost": {
+    "ms_per_pair_gpu": 2.52,
+    "ms_per_query_gpu": 30.2,
+    "n_forwards": 10,
+    "load_s": 5.2
+  }
+}

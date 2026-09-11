@@ -1,0 +1,11 @@
+# Índices grandes (regeneráveis via Makefile; nunca versionar binários pesados)
+indices/*.db
+# Caches de ranking denso (dezenas de MB cada; regeneráveis com dump_dense.py)
+results/dense_rank_*.json
+results/kw_map.json
+results/fusion*_cand*.json
+# Logs de execução
+results/*.log
+# Cache Python
+__pycache__/
+*.pyc

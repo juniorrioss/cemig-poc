@@ -1,0 +1,16 @@
+{
+  "model": "google/embeddinggemma-300m",
+  "query_prefix": "",
+  "doc_prefix": "",
+  "query_prompt_name": "Retrieval-query",
+  "doc_prompt_name": "Retrieval-document",
+  "full_dim": 768,
+  "dim": 768,
+  "n_chunks": 2202,
+  "with_expansion": true,
+  "load_s": 11.7,
+  "encode_all_s": 264.0,
+  "encode_query_ms_gpu": 37.6,
+  "index_mb": 17.39,
+  "index_path": "indices/dense_gemma768_exp.db"
+}

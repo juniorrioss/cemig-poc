@@ -1,0 +1,197 @@
+{
+  "label": "e5small_exp",
+  "dev_grid": [
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 49.0,
+      "dev_r5": 67.0
+    },
+    {
+      "k": 10.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 39.0,
+      "dev_r5": 57.0
+    },
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 46.0,
+      "dev_r5": 64.5
+    },
+    {
+      "k": 10.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 34.5,
+      "dev_r5": 54.0
+    },
+    {
+      "k": 10.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 39.0,
+      "dev_r5": 57.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 47.0,
+      "dev_r5": 64.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 43.0,
+      "dev_r5": 60.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 46.0,
+      "dev_r5": 66.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 41.5,
+      "dev_r5": 57.0
+    },
+    {
+      "k": 30.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 43.0,
+      "dev_r5": 60.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        1.0
+      ],
+      "dev_r2": 44.5,
+      "dev_r5": 64.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        2.0,
+        1.0
+      ],
+      "dev_r2": 43.5,
+      "dev_r5": 59.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        2.0
+      ],
+      "dev_r2": 43.0,
+      "dev_r5": 64.0
+    },
+    {
+      "k": 60.0,
+      "w": [
+        3.0,
+        1.0
+      ],
+      "dev_r2": 42.0,
+      "dev_r5": 58.5
+    },
+    {
+      "k": 60.0,
+      "w": [
+        1.0,
+        0.5
+      ],
+      "dev_r2": 43.5,
+      "dev_r5": 59.0
+    }
+  ],
+  "best_dev": {
+    "k": 10.0,
+    "w": [
+      1.0,
+      1.0
+    ]
+  },
+  "gate_holdout_151": {
+    "dense_pure": {
+      "n": 151,
+      "recall_at_1": 5.96,
+      "recall_at_2": 10.6,
+      "recall_at_5": 21.19,
+      "mrr": 0.1126,
+      "per_doc": {}
+    },
+    "bm25_hybrid": {
+      "n": 151,
+      "recall_at_1": 22.52,
+      "recall_at_2": 29.8,
+      "recall_at_5": 41.06,
+      "mrr": 0.2927,
+      "per_doc": {}
+    },
+    "rrf_best": {
+      "n": 151,
+      "recall_at_1": 22.52,
+      "recall_at_2": 31.13,
+      "recall_at_5": 44.37,
+      "mrr": 0.3061,
+      "per_doc": {}
+    },
+    "rrf_ref_k60": {
+      "n": 151,
+      "recall_at_1": 23.18,
+      "recall_at_2": 29.8,
+      "recall_at_5": 43.71,
+      "mrr": 0.3029,
+      "per_doc": {}
+    }
+  },
+  "mobile_cost": {
+    "model": "intfloat/multilingual-e5-small",
+    "query_prefix": "query: ",
+    "doc_prefix": "passage: ",
+    "query_prompt_name": "",
+    "doc_prompt_name": "",
+    "full_dim": 384,
+    "dim": 384,
+    "n_chunks": 2202,
+    "with_expansion": true,
+    "load_s": 9.1,
+    "encode_all_s": 6.5,
+    "encode_query_ms_gpu": 3.9,
+    "index_mb": 12.66,
+    "index_path": "indices/dense_e5small_exp.db"
+  }
+}
