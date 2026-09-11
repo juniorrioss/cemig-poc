@@ -36,6 +36,15 @@ class LlamaCppEngine(
 
     private var nativeHandle: Long = 0L
 
+    /**
+     * Suprime o bloco de raciocínio (thinking-OFF) para modelos cujo chat_template força
+     * `<think>` no add_generation_prompt (ex.: LFM2.5-2.6B). Quando true, o template limpa
+     * o `<think>` primado e a geração bane o token especial `<think>` (ver llama_jni.cpp).
+     * Para o 1.2B QAD (não-reasoning) o efeito é no-op seguro. Configurável por build
+     * (BuildConfig.SUPPRESS_REASONING) sem trocar o modelo default do app.
+     */
+    var suppressReasoning: Boolean = false
+
     val isLoaded: Boolean
         get() = nativeHandle != 0L
 
@@ -75,7 +84,9 @@ class LlamaCppEngine(
         val roles = messages.map { it.first }.toTypedArray()
         val contents = messages.map { it.second }.toTypedArray()
 
-        return bridge.nativeApplyChatTemplate(nativeHandle, roles, contents, addAssistant)
+        return bridge.nativeApplyChatTemplate(
+            nativeHandle, roles, contents, addAssistant, suppressReasoning
+        )
     }
 
     /**
@@ -99,7 +110,8 @@ class LlamaCppEngine(
                 temperature = temperature,
                 topK = topK,
                 topP = topP,
-                repPenalty = repPenalty
+                repPenalty = repPenalty,
+                suppressReasoning = suppressReasoning
             ) { token ->
                 val canContinue = trySend(token).isSuccess
                 canContinue
@@ -131,7 +143,8 @@ class LlamaCppEngine(
             temperature = temperature,
             topK = topK,
             topP = topP,
-            repPenalty = repPenalty
+            repPenalty = repPenalty,
+            suppressReasoning = suppressReasoning
         ) { token ->
             sb.append(token)
             true

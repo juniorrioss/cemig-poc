@@ -127,6 +127,9 @@ object AcceptanceRunner {
             it.engine.initModel(asrFile.absolutePath)
         }
         val realLlama = existingLlama ?: RealLlamaEngine().also {
+            // Thinking-OFF (task poc-engine-upgrade): mesmo flag de build do ViewModel, para o
+            // roteiro de aceitção refletir o 2.6B thinking-OFF quando compilado com 2.6b.
+            it.engine.suppressReasoning = br.org.ceia.cemigpoc.BuildConfig.SUPPRESS_REASONING
             it.engine.load(llmFile.absolutePath, ctxSize = 2048, nThreads = 6)
         }
         val shouldCloseEngines = existingAsr == null && existingLlama == null

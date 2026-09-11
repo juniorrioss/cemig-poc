@@ -37,7 +37,8 @@ class LlamaBridge {
         handle: Long,
         roles: Array<String>,
         contents: Array<String>,
-        addAssistant: Boolean
+        addAssistant: Boolean,
+        suppressReasoning: Boolean
     ): String
 
     external fun nativeGenerate(
@@ -48,6 +49,7 @@ class LlamaBridge {
         topK: Int,
         topP: Float,
         repPenalty: Float,
+        suppressReasoning: Boolean,
         callback: LlamaCallback
     ): Int
 

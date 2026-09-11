@@ -22,6 +22,21 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        // --- Seleção do sintetizador por build (task poc-engine-upgrade) ---
+        // Entrega o SUPORTE ao 2.6B thinking-OFF sem trocar o default do app. O 2.6B é o
+        // sintetizador vencedor (7.1x gate do 1.2B sobre a v3), mas seu chat_template força
+        // <think>; o engine agora suprime o raciocínio (ver LlamaCppEngine.suppressReasoning /
+        // llama_jni.cpp). A troca definitiva ocorre quando o treino DPO fechar.
+        //   ./gradlew assembleRelease -Pcemig.synthModel=2.6b   -> LFM2.5-2.6B-Q4_0 + thinking-OFF
+        //   (default / omitido)                                 -> LFM2.5-1.2B-Instruct-QAD-Q4_0
+        val synthModel = (project.findProperty("cemig.synthModel") as String?)?.lowercase() ?: "1.2b"
+        val use26b = synthModel == "2.6b"
+        val llmModelName = if (use26b) "LFM2.5-2.6B-Q4_0.gguf" else "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"
+        buildConfigField("String", "LLM_MODEL_NAME", "\"$llmModelName\"")
+        // O 2.6B é modelo de raciocínio (template prima <think>): thinking-OFF obrigatório.
+        // No 1.2B (não-reasoning) a supressão é no-op seguro, mas só ativamos no 2.6B.
+        buildConfigField("boolean", "SUPPRESS_REASONING", use26b.toString())
     }
 
     signingConfigs {
@@ -70,6 +85,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 
     composeOptions {

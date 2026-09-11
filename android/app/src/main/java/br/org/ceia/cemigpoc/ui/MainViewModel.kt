@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import br.org.ceia.cemigpoc.BuildConfig
 import br.org.ceia.cemigpoc.data.acceptance.AcceptanceRunner
 import br.org.ceia.cemigpoc.data.engine.RealAsrEngine
 import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
@@ -122,6 +123,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         it.copy(modelStatusMessage = "Copiando LFM2.5 Q4: ${(progress * 100).toInt()}%")
                     }
                 }
+                // Thinking-OFF (task poc-engine-upgrade): configurado por build. O 2.6B força
+                // <think> no template; a supressão (template + logit-bias no JNI) o torna
+                // viável para voz. No 1.2B default o flag é false (no-op). Setar ANTES de gerar.
+                realLlamaEngine.engine.suppressReasoning = BuildConfig.SUPPRESS_REASONING
                 val llmOk = realLlamaEngine.engine.load(
                     modelPath = llmFile.absolutePath,
                     ctxSize = 2048,
@@ -130,6 +135,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 if (!llmOk) {
                     Log.e(TAG, "Falha ao inicializar LFM2.5")
                 }
+                Log.i(TAG, "Sintetizador: ${ModelFileManager.LLM_MODEL_NAME} (thinking-OFF=${BuildConfig.SUPPRESS_REASONING})")
 
                 // Retrieval v3: prepara o encoder de embeddings + índices densos. Se algo
                 // falhar, o HybridRetriever degrada para BM25-gated (fallback honesto).

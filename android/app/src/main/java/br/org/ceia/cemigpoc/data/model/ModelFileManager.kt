@@ -2,6 +2,7 @@ package br.org.ceia.cemigpoc.data.model
 
 import android.content.Context
 import android.util.Log
+import br.org.ceia.cemigpoc.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -26,7 +27,12 @@ class ModelFileManager(private val context: Context) {
         // aparelho gerou 700 tok de <think> e 44-54s de latência (inviável p/ voz). Não há
         // --reasoning-budget no caminho JNI e /no_think não suprime. Fallback do brief -> 1.2B.
         // Ver android/README_CONSOLIDACAO.md (seção "2.6B: aprovado na GPU, barrado no engine").
-        const val LLM_MODEL_NAME = "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"
+        //
+        // task poc-engine-upgrade: o engine agora suporta thinking-OFF no 2.6B (supressão do
+        // <think> via template + logit-bias). O modelo é selecionável por build
+        // (-Pcemig.synthModel=2.6b); o DEFAULT continua o 1.2B QAD até o treino DPO fechar.
+        // O nome vem de BuildConfig.LLM_MODEL_NAME (definido em app/build.gradle.kts).
+        val LLM_MODEL_NAME: String = BuildConfig.LLM_MODEL_NAME
         const val ASR_MODEL_NAME = "ggml-base-q5_1.bin"
         const val FTS5_DB_NAME = "index.db"
         // Retrieval v3: encoder de embeddings on-device (EmbeddingGemma-300M QAT-Q4_0) e os

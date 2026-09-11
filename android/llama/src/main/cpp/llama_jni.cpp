@@ -29,6 +29,43 @@ struct LlamaEngineContext {
     int32_t n_batch = 512;
 };
 
+// -----------------------------------------------------------------------------
+// Supressão de reasoning (thinking-OFF) para modelos que forçam <think> no template.
+//
+// Motivação (task poc-engine-upgrade): o chat_template do LFM2.5-2.6B termina em
+// `<|im_start|>assistant\n<think>` no `add_generation_prompt` e NÃO expõe um switch
+// `enable_thinking` (verificado no GGUF). A C-API `llama_chat_apply_template` sempre
+// prima o bloco de raciocínio -> 700 tok de <think>, 44-54 s/resposta (inviável p/ voz).
+// O caminho `--reasoning-budget 0` do llama-server vive no path jinja do servidor,
+// ausente no JNI.
+//
+// Fix auto-contido, réplica do `--reasoning-budget 0` do servidor (sem bump de submódulo):
+//   (1) ANEXA um bloco de raciocínio VAZIO `<think></think>\n` ao prompt (nativeApplyChatTemplate);
+//   (2) BANE a reabertura do token `<think>` via logit-bias na geração (nativeGenerate).
+// Provado na RTX 5070 e no S24+ (0/10 respostas com <think>, todas citam a NR correta).
+// Alternativas descartadas por evidência (ver README_ENGINE_UPGRADE.md): banir só o token
+// falha (o modelo soletra a tag por sub-tokens); FORÇAR <think>/</think> como tokens decodificados
+// separadamente fazia o 2.6B ECOAR o prompt (estado shortconv/recorrente do LFM2.5 híbrido
+// difere entre decode em lote e incremental). Anexar como TEXTO evita isso.
+// No 1.2B QAD (Instruct, não-reasoning) o flag é false -> no-op seguro (default do app).
+//
+// find_special_token permanece útil para resolver o id de `<think>`/`</think>`.
+// -----------------------------------------------------------------------------
+static const char * THINK_OPEN_TAG  = "<think>";
+static const char * THINK_CLOSE_TAG = "</think>";
+
+// Localiza o id de um token especial (`<think>`/`</think>`); -1 se o vocab não o tiver.
+static llama_token find_special_token(const llama_vocab * vocab, const char * tag) {
+    llama_token toks[8];
+    // parse_special=true para casar o token especial como unidade única.
+    int n = llama_tokenize(vocab, tag, (int32_t) std::strlen(tag),
+                           toks, 8, /*add_special*/ false, /*parse_special*/ true);
+    if (n == 1) {
+        return toks[0];
+    }
+    return -1;
+}
+
 extern "C" {
 
 JNIEXPORT jlong JNICALL
@@ -93,7 +130,8 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeApplyChatTemplate(
         jlong handle,
         jobjectArray roles_array,
         jobjectArray contents_array,
-        jboolean add_assistant
+        jboolean add_assistant,
+        jboolean suppress_reasoning
 ) {
     auto * engineCtx = reinterpret_cast<LlamaEngineContext *>(handle);
     if (!engineCtx || !engineCtx->model) {
@@ -162,7 +200,35 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeApplyChatTemplate(
         return env->NewStringUTF("");
     }
 
-    return env->NewStringUTF(buf.data());
+    std::string prompt(buf.data(), (size_t) res);
+
+    // Thinking-OFF (réplica de --reasoning-budget 0): anexa um bloco de raciocínio VAZIO
+    // `<think></think>\n` ao fim do prompt. A C-API `llama_chat_apply_template` NÃO usa o
+    // jinja completo do GGUF (casa um template embutido por heurística) e termina o prompt
+    // em `assistant\n` SEM primar `<think>`; sem o bloco vazio o 2.6B raciocínia sozinho
+    // (46-50 s/resposta no S24+). Provado na RTX 5070: prompt com `<think></think>` +
+    // ban do token `<think>` na geração -> resposta limpa e correta. Anexar como TEXTO (e
+    // não forçar tokens em decodes separados) é crucial no LFM2.5 híbrido (camadas
+    // shortconv/recorrentes): o estado de convolução difere entre decode em lote e
+    // incremental, e o decode incremental fazia o modelo ECOAR o prompt no S24+.
+    // No 1.2B QAD (não-reasoning) o flag é false -> no-op.
+    if (suppress_reasoning) {
+        // Idempotente: só anexa se ainda não houver um `<think>` ao fim.
+        const std::string open_tag = THINK_OPEN_TAG;
+        bool already_primed = prompt.size() >= open_tag.size() &&
+            prompt.compare(prompt.size() - open_tag.size(), open_tag.size(), open_tag) == 0;
+        if (already_primed) {
+            prompt += THINK_CLOSE_TAG;   // jinja completo já primou `<think>` -> só fecha
+            prompt += "\n";
+        } else {
+            prompt += THINK_OPEN_TAG;
+            prompt += THINK_CLOSE_TAG;
+            prompt += "\n";
+        }
+        LOGI("nativeApplyChatTemplate: bloco <think></think> vazio anexado (thinking-OFF)");
+    }
+
+    return env->NewStringUTF(prompt.c_str());
 }
 
 JNIEXPORT jint JNICALL
@@ -176,6 +242,7 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
         jint j_top_k,
         jfloat j_top_p,
         jfloat j_rep_penalty,
+        jboolean suppress_reasoning,
         jobject callback
 ) {
     auto * engineCtx = reinterpret_cast<LlamaEngineContext *>(handle);
@@ -214,6 +281,18 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
     }
     if (j_top_p > 0.0f && j_top_p < 1.0f) {
         llama_sampler_chain_add(smpl, llama_sampler_init_top_p(j_top_p, 1));
+    }
+    // Thinking-OFF: bane a REABERTURA do token `<think>` (-INF). O bloco vazio já foi
+    // primado no prompt (ver nativeApplyChatTemplate); o ban impede o modelo de reabrir o
+    // raciocínio depois. No-op se o vocab não tiver o token (modelos sem reasoning).
+    if (suppress_reasoning) {
+        const llama_token think_open = find_special_token(vocab, THINK_OPEN_TAG);
+        if (think_open >= 0) {
+            llama_logit_bias bias{think_open, -INFINITY};
+            llama_sampler_chain_add(smpl,
+                    llama_sampler_init_logit_bias(llama_vocab_n_tokens(vocab), 1, &bias));
+            LOGI("nativeGenerate: thinking-OFF ativo (token <think>=%d banido)", think_open);
+        }
     }
     llama_sampler_chain_add(smpl, llama_sampler_init_dist(LLAMA_DEFAULT_SEED));
 
