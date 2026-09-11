@@ -16,12 +16,11 @@ enum class FakeLlmMode {
 }
 
 /**
- * Mock configurável do SLM com suporte a Modo C Top-2 (Rewrite + Síntese com Citação).
+ * Mock configurável do SLM com suporte à síntese com citação (pipeline consolidado, sem T1).
  */
 class FakeLlm(
     private val mode: FakeLlmMode = FakeLlmMode.AUTO,
     private val streamDelayMs: Long = 0L,
-    var customRewriteOutput: String? = null,
     var customSynthesisOutput: String? = null
 ) : LlmEngine {
 
@@ -29,15 +28,7 @@ class FakeLlm(
         messages: List<Message>,
         systemPrompt: String
     ): Flow<LlmResponseChunk> = flow {
-        // 1. Turno 1: Extração / Query Rewrite de Palavras-Chave
-        if (systemPrompt == AskPipeline.REWRITE_SYSTEM_PROMPT) {
-            val userContent = messages.lastOrNull { it.role == Message.Role.USER }?.content ?: ""
-            val output = customRewriteOutput ?: reformulateKeywords(userContent)
-            emitStreamingText(output)
-            return@flow
-        }
-
-        // 2. Turno 2: Síntese de resposta baseada no contexto e histórico
+        // Síntese de resposta baseada no contexto e histórico (único turno de LLM restante).
         if (systemPrompt == AskPipeline.SYNTHESIS_SYSTEM_PROMPT) {
             val userContent = messages.lastOrNull { it.role == Message.Role.USER }?.content ?: ""
             val responseText = customSynthesisOutput ?: synthesizeAnswer(userContent)
@@ -58,17 +49,6 @@ class FakeLlm(
             if (streamDelayMs > 0) {
                 delay(streamDelayMs)
             }
-        }
-    }
-
-    fun reformulateKeywords(prompt: String): String {
-        val q = prompt.lowercase()
-        return when {
-            q.contains("desenergiz") -> "NR-10 desenergizacao etapas seccionamento aterramento"
-            q.contains("altura") || q.contains("nr-35") || q.contains("queda") -> "NR-35 trabalho altura protecao cinturão"
-            q.contains("epi") || q.contains("luva") || q.contains("capacete") -> "NR-06 EPI equipamento protecao individual"
-            q.contains("distancia") || q.contains("13,8") || q.contains("kv") -> "NR-10 delimitacao zonas risco controlada"
-            else -> "NR-10 seguranca instalacoes eletricas procedimentos"
         }
     }
 

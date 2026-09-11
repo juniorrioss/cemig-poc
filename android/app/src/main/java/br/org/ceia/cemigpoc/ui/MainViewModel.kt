@@ -34,7 +34,6 @@ data class MainUiState(
     val history: List<ConversationTurn> = emptyList(),
     val currentQuestionInput: String = "",
     val currentStreamingAnswer: String = "",
-    val currentKeywords: String = "",
     val currentChunks: List<Chunk> = emptyList(),
     val isListening: Boolean = false,
     val isModelReady: Boolean = false,
@@ -67,7 +66,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         retriever = retriever,
         llmEngine = realLlamaEngine,
         telemetryLogger = telemetryLogger,
-        maxTurnsT1 = 6,
         maxTurnsT2 = 3,
         t2MaxBudgetTokens = 1000,
         jaccardThreshold = 0.7,
@@ -148,7 +146,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         _uiState.update {
                             it.copy(
                                 isListening = false,
-                                stage = PipelineStage.REWRITING,
+                                stage = PipelineStage.CLASSIFYING,
                                 currentQuestionInput = event.text
                             )
                         }
@@ -227,10 +225,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             _uiState.update {
                 it.copy(
-                    stage = PipelineStage.REWRITING,
+                    stage = PipelineStage.CLASSIFYING,
                     currentQuestionInput = "",
                     currentStreamingAnswer = "",
-                    currentKeywords = "",
                     currentChunks = emptyList(),
                     errorMessage = null
                 )
@@ -246,9 +243,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 when (turnEvent) {
                     is TurnEvent.StageChanged -> {
                         _uiState.update { it.copy(stage = turnEvent.stage) }
-                    }
-                    is TurnEvent.KeywordsExtracted -> {
-                        _uiState.update { it.copy(currentKeywords = turnEvent.keywords) }
                     }
                     is TurnEvent.ChunksRetrieved -> {
                         _uiState.update { it.copy(currentChunks = turnEvent.chunks) }
@@ -266,7 +260,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         val newTurn = ConversationTurn(
                             question = question,
                             answer = turnEvent.finalAnswer,
-                            keywords = turnEvent.metrics.keywords,
                             chunks = turnEvent.chunksUsed,
                             metrics = turnEvent.metrics,
                             isStreaming = false
@@ -276,7 +269,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                                 stage = PipelineStage.IDLE,
                                 history = it.history + newTurn,
                                 currentStreamingAnswer = "",
-                                currentKeywords = "",
                                 currentChunks = emptyList()
                             )
                         }
@@ -306,7 +298,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 history = emptyList(),
                 currentQuestionInput = "",
                 currentStreamingAnswer = "",
-                currentKeywords = "",
                 currentChunks = emptyList(),
                 errorMessage = null
             )

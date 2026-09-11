@@ -11,7 +11,7 @@ import java.util.Locale
 /**
  * Registrador de telemetria local em formato JSONL (armazenado em filesDir/telemetry.jsonl).
  *
- * Registra breakdown de cada etapa: ASR, Rewrite (T1), Busca BM25, Prefill/TTFT e Decode (T2).
+ * Registra breakdown de cada etapa: ASR, Classificação+Busca BM25, Prefill/TTFT e Decode (síntese).
  */
 class TelemetryLogger(
     private val telemetryFile: File
@@ -37,12 +37,15 @@ class TelemetryLogger(
             append("\"turn_index\":$turnIndex,")
             append("\"question\":\"${escape(question)}\",")
             append("\"transcription\":\"${escape(transcription)}\",")
-            append("\"keywords\":\"${escape(metrics.keywords)}\",")
-            append("\"keywords_reused\":${metrics.keywordsReused},")
+            append("\"nr_top1\":\"${escape(metrics.nrTop1)}\",")
+            append("\"nr_top1_prob\":${metrics.nrTop1Prob},")
+            append("\"nr_top2\":\"${escape(metrics.nrTop2)}\",")
+            append("\"gate_mode\":\"${escape(metrics.gateMode)}\",")
+            append("\"boost_nrs\":\"${escape(metrics.boostNrs)}\",")
+            append("\"chunks_reused\":${metrics.chunksReused},")
             append("\"chunks_used\":$chunksJson,")
             append("\"response\":\"${escape(finalAnswer)}\",")
             append("\"asr_ms\":${metrics.asrMs},")
-            append("\"rewrite_ms\":${metrics.rewriteMs},")
             append("\"search_ms\":${metrics.searchMs},")
             append("\"ttft_ms\":${metrics.ttftMs},")
             append("\"decode_ms\":${metrics.decodeMs},")

@@ -36,19 +36,18 @@ import br.org.ceia.cemigpoc.ui.theme.CeiaSuccess
 import br.org.ceia.cemigpoc.ui.theme.CeiaWhite
 
 private val TimelineAsrColor = Color(0xFF3B82F6)      // Azul
-private val TimelineRewriteColor = Color(0xFF8B5CF6)  // Roxo
-private val TimelineSearchColor = Color(0xFF14B8A6)   // Teal
+private val TimelineSearchColor = Color(0xFF14B8A6)   // Teal (classificação + BM25)
 private val TimelineTtftColor = Color(0xFFF59E0B)     // Âmbar
 private val TimelineDecodeColor = Color(0xFF10B981)   // Verde
 
 /**
  * Card de diagnóstico e telemetria inline para o Modo Engenharia / Debug solicitado pelo Capitão.
  *
- * Exibe breakdown minucioso por etapa:
+ * Exibe breakdown minucioso do pipeline consolidado (sem Turno 1 de rewrite):
  * (1) Transcrição ASR + tempo
- * (2) Keywords geradas pelo Rewrite + tempo T1
+ * (2) Classificação NR + gate acionado (top-1/top-2, probs, modo do gate, NRs boostadas)
  * (3) Chunks recuperados (doc+seção+score BM25) + tempo busca
- * (4) Tokens de contexto T2, TTFT, tok/s decode + tempo total
+ * (4) Tokens de contexto, TTFT, tok/s decode + tempo total
  * (5) Barra visual proporcional do tempo total da pergunta
  */
 @Composable
@@ -98,8 +97,7 @@ fun DebugTurnCard(
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 TimelineLegendItem("ASR", TimelineAsrColor)
-                TimelineLegendItem("T1 Rewrite", TimelineRewriteColor)
-                TimelineLegendItem("BM25", TimelineSearchColor)
+                TimelineLegendItem("Classif+BM25", TimelineSearchColor)
                 TimelineLegendItem("TTFT", TimelineTtftColor)
                 TimelineLegendItem("Decode", TimelineDecodeColor)
             }
@@ -115,32 +113,42 @@ fun DebugTurnCard(
                 )
             }
 
-            // (2) Keywords Rewrite + Tempo Turno 1
+            // (2) Classificação NR + gate acionado (o capítão quer ver a decisão do estágio 1)
+            val gateLabel = when (metrics.gateMode) {
+                "hard" -> "FILTRO-DURO (prob ≥ 0.5)"
+                "soft" -> "BOOST-SUAVE 5x (top-2)"
+                "explicit" -> "NR EXPLÍCITA NA FALA"
+                "none" -> "SEM BOOST (fora de escopo)"
+                "reuso" -> "REUSO JACCARD > 0.7 (sem nova classificação)"
+                else -> metrics.gateMode.ifBlank { "-" }
+            }
+            val classDetail = if (metrics.gateMode == "reuso") {
+                "Chunks reaproveitados do turno anterior"
+            } else {
+                "top1=${metrics.nrTop1} (${"%.2f".format(metrics.nrTop1Prob)}) · top2=${metrics.nrTop2}" +
+                    if (metrics.boostNrs.isNotBlank()) " · boost=[${metrics.boostNrs}]" else ""
+            }
             DebugRow(
-                label = "2. Turno 1 (Rewrite)",
-                time = "${metrics.rewriteMs} ms",
-                detail = if (metrics.keywordsReused) {
-                    "Keywords: '${metrics.keywords}' [REUSO JACCARD > 0.7]"
-                } else {
-                    "Keywords: '${metrics.keywords}'"
-                }
+                label = "2. Classificador NR + Gate",
+                time = "[$gateLabel]",
+                detail = classDetail
             )
 
-            // (3) Chunks recuperados + Tempo BM25
+            // (3) Chunks recuperados + Tempo BM25 (busca usa a FALA BRUTA)
             val chunksSummary = if (chunks.isNotEmpty()) {
                 chunks.joinToString(", ") { "${it.doc} ${it.section} (score: ${"%.2f".format(it.score)})" }
             } else {
                 "Nenhum chunk recuperado"
             }
             DebugRow(
-                label = "3. Busca BM25 Top-2",
-                time = if (metrics.keywordsReused) "0 ms (reuso)" else "${metrics.searchMs} ms",
+                label = "3. Busca BM25 Top-2 (fala bruta)",
+                time = if (metrics.chunksReused) "0 ms (reuso)" else "${metrics.searchMs} ms",
                 detail = chunksSummary
             )
 
-            // (4) Tokens T2, TTFT, velocidade decode e total
+            // (4) Tokens de contexto, TTFT, velocidade decode e total
             DebugRow(
-                label = "4. Turno 2 (Síntese)",
+                label = "4. Síntese (LFM2.5)",
                 time = "${metrics.ttftMs + metrics.decodeMs} ms",
                 detail = "Contexto: ~${metrics.contextTokens} tok · TTFT: ${metrics.ttftMs} ms · Decode: ${metrics.decodeMs} ms (${metrics.completionTokens} tok @ ${metrics.tokPerSec} t/s)"
             )
@@ -151,16 +159,14 @@ fun DebugTurnCard(
 @Composable
 private fun TimelineBar(metrics: TurnMetrics) {
     val asr = maxOf(0L, metrics.asrMs)
-    val rewrite = maxOf(0L, metrics.rewriteMs)
     val search = maxOf(0L, metrics.searchMs)
     val ttft = maxOf(0L, metrics.ttftMs)
     val decode = maxOf(0L, metrics.decodeMs)
 
-    val sum = asr + rewrite + search + ttft + decode
+    val sum = asr + search + ttft + decode
     val total = if (sum > 0) sum.toFloat() else 1.0f
 
     val wAsr = asr.toFloat() / total
-    val wRewrite = rewrite.toFloat() / total
     val wSearch = search.toFloat() / total
     val wTtft = ttft.toFloat() / total
     val wDecode = decode.toFloat() / total
@@ -173,7 +179,6 @@ private fun TimelineBar(metrics: TurnMetrics) {
             .background(Color(0xFF1E293B))
     ) {
         if (wAsr > 0f) Box(modifier = Modifier.weight(wAsr).height(8.dp).background(TimelineAsrColor))
-        if (wRewrite > 0f) Box(modifier = Modifier.weight(wRewrite).height(8.dp).background(TimelineRewriteColor))
         if (wSearch > 0f) Box(modifier = Modifier.weight(wSearch).height(8.dp).background(TimelineSearchColor))
         if (wTtft > 0f) Box(modifier = Modifier.weight(wTtft).height(8.dp).background(TimelineTtftColor))
         if (wDecode > 0f) Box(modifier = Modifier.weight(wDecode).height(8.dp).background(TimelineDecodeColor))

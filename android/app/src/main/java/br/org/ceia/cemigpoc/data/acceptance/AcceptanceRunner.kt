@@ -36,12 +36,15 @@ data class AcceptanceResultItem(
     val referenceText: String,
     val transcribedText: String,
     val isMultiturn: Boolean,
-    val keywords: String,
-    val keywordsReused: Boolean,
+    val nrTop1: String,
+    val nrTop1Prob: Float,
+    val nrTop2: String,
+    val gateMode: String,
+    val boostNrs: String,
+    val chunksReused: Boolean,
     val chunksRetrieved: List<String>,
     val answerSnippet: String,
     val asrMs: Long,
-    val rewriteMs: Long,
     val searchMs: Long,
     val ttftMs: Long,
     val decodeMs: Long,
@@ -115,7 +118,6 @@ object AcceptanceRunner {
             retriever = retriever,
             llmEngine = realLlama,
             telemetryLogger = logger,
-            maxTurnsT1 = 6,
             maxTurnsT2 = 3,
             t2MaxBudgetTokens = 1000,
             jaccardThreshold = 0.7,
@@ -173,7 +175,6 @@ object AcceptanceRunner {
             val turn = ConversationTurn(
                 question = queryText,
                 answer = doneEvent.finalAnswer,
-                keywords = m.keywords,
                 chunks = doneEvent.chunksUsed,
                 metrics = m
             )
@@ -187,12 +188,15 @@ object AcceptanceRunner {
                 referenceText = q.referenceText,
                 transcribedText = transcribedText,
                 isMultiturn = q.isMultiturnContinuation,
-                keywords = m.keywords,
-                keywordsReused = m.keywordsReused,
+                nrTop1 = m.nrTop1,
+                nrTop1Prob = m.nrTop1Prob,
+                nrTop2 = m.nrTop2,
+                gateMode = m.gateMode,
+                boostNrs = m.boostNrs,
+                chunksReused = m.chunksReused,
                 chunksRetrieved = chunksDesc,
                 answerSnippet = doneEvent.finalAnswer.take(180),
                 asrMs = m.asrMs,
-                rewriteMs = m.rewriteMs,
                 searchMs = m.searchMs,
                 ttftMs = m.ttftMs,
                 decodeMs = m.decodeMs,
@@ -206,7 +210,7 @@ object AcceptanceRunner {
 
             Log.i(TAG, "RESULTADO ${q.id}:")
             Log.i(TAG, "  ASR:      ${m.asrMs} ms")
-            Log.i(TAG, "  T1 Rewr:  ${m.rewriteMs} ms (Keywords: '${m.keywords}', Reuso: ${m.keywordsReused})")
+            Log.i(TAG, "  Classif:  top1=${m.nrTop1} (%.2f) top2=${m.nrTop2} gate=${m.gateMode} boost=[${m.boostNrs}] reuso=${m.chunksReused}".format(m.nrTop1Prob))
             Log.i(TAG, "  BM25:     ${m.searchMs} ms (${chunksDesc.joinToString(", ")})")
             Log.i(TAG, "  TTFT:     ${m.ttftMs} ms")
             Log.i(TAG, "  Decode:   ${m.decodeMs} ms (${m.completionTokens} tok @ ${m.tokPerSec} t/s)")
@@ -282,12 +286,15 @@ object AcceptanceRunner {
                 append("      \"reference\": \"${escape(r.referenceText)}\",\n")
                 append("      \"transcription\": \"${escape(r.transcribedText)}\",\n")
                 append("      \"is_multiturn\": ${r.isMultiturn},\n")
-                append("      \"keywords\": \"${escape(r.keywords)}\",\n")
-                append("      \"keywords_reused\": ${r.keywordsReused},\n")
+                append("      \"nr_top1\": \"${escape(r.nrTop1)}\",\n")
+                append("      \"nr_top1_prob\": ${r.nrTop1Prob},\n")
+                append("      \"nr_top2\": \"${escape(r.nrTop2)}\",\n")
+                append("      \"gate_mode\": \"${escape(r.gateMode)}\",\n")
+                append("      \"boost_nrs\": \"${escape(r.boostNrs)}\",\n")
+                append("      \"chunks_reused\": ${r.chunksReused},\n")
                 append("      \"chunks\": [${r.chunksRetrieved.joinToString(",") { "\"$it\"" }}],\n")
                 append("      \"answer_snippet\": \"${escape(r.answerSnippet)}\",\n")
                 append("      \"asr_ms\": ${r.asrMs},\n")
-                append("      \"rewrite_ms\": ${r.rewriteMs},\n")
                 append("      \"search_ms\": ${r.searchMs},\n")
                 append("      \"ttft_ms\": ${r.ttftMs},\n")
                 append("      \"decode_ms\": ${r.decodeMs},\n")

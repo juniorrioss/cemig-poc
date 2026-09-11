@@ -22,10 +22,10 @@ import org.junit.rules.TemporaryFolder
 import java.io.File
 
 /**
- * Bateria de testes de unidade JVM do AskPipeline validando:
- * 1. Multiturno com histórico bruto no Turno 1 (rewrite);
- * 2. Reuso de chunks via similaridade Jaccard (> 0.7);
- * 3. Poda estrita de orçamento no Turno 2 (síntese <= 1000 tokens);
+ * Bateria de testes de unidade JVM do AskPipeline (pipeline consolidado, sem Turno 1 de rewrite):
+ * 1. Multiturno com histórico bruto no orçamento da síntese;
+ * 2. Reuso de chunks via similaridade Jaccard (> 0.7) entre falas BRUTAS consecutivas;
+ * 3. Poda estrita de orçamento na síntese (<= 1000 tokens);
  * 4. Sanitização FTS5 de normas com traços e diacríticos;
  * 5. Telemetria local com breakdown de tempos por etapa.
  */
@@ -44,14 +44,13 @@ class AskPipelineTest {
     }
 
     @Test
-    fun multiturno_continuaComHistoricoNoRewrite() = runTest {
+    fun multiturno_continuaComHistoricoNaSintese() = runTest {
         val retriever = FakeRetriever()
         val llm = FakeLlm()
         val pipeline = AskPipeline(
             retriever = retriever,
             llmEngine = llm,
             telemetryLogger = telemetryLogger,
-            maxTurnsT1 = 6,
             maxTurnsT2 = 3
         )
 
@@ -59,7 +58,6 @@ class AskPipelineTest {
         val turn1 = ConversationTurn(
             question = "Como faço a desenergização do painel?",
             answer = "Segundo a NR-10, item 10.5.1, você deve seguir o seccionamento e impedimento de reenergização.",
-            keywords = "NR-10 desenergizacao etapas seccionamento",
             chunks = listOf(
                 Chunk(id = 1, doc = "NR-10", section = "10.5.1", content = "Etapas de desenergização...", score = 1.2)
             )
@@ -68,12 +66,6 @@ class AskPipelineTest {
 
         // Pergunta de continuação dependente de contexto
         val continuationQuestion = "E qual o próximo passo depois do seccionamento?"
-
-        // Valida que a formatação do prompt do Turno 1 contém o histórico anterior
-        val formattedPromptT1 = pipeline.formatRewriteUserPrompt(history, continuationQuestion)
-        assertTrue(formattedPromptT1.contains("Histórico recente da conversa:"))
-        assertTrue(formattedPromptT1.contains("Como faço a desenergização"))
-        assertTrue(formattedPromptT1.contains("E qual o próximo passo"))
 
         val events = pipeline.execute(continuationQuestion, history = history).toList()
 
@@ -84,12 +76,9 @@ class AskPipelineTest {
     }
 
     @Test
-    fun reusoDeChunksPorJaccard_quandoKeywordsSemelhantes() = runTest {
+    fun reusoDeChunksPorJaccard_quandoFalasBrutasSemelhantes() = runTest {
         val retriever = FakeRetriever()
-        // Configura LLM para retornar keywords com alta sobreposição (> 0.7)
-        val llm = FakeLlm(
-            customRewriteOutput = "NR-10 desenergizacao etapas seccionamento aterramento"
-        )
+        val llm = FakeLlm()
         val pipeline = AskPipeline(
             retriever = retriever,
             llmEngine = llm,
@@ -98,16 +87,16 @@ class AskPipelineTest {
         )
 
         val previousChunk = Chunk(id = 42, doc = "NR-10", section = "Item 10.5.1", content = "Regras de desenergização", score = 0.8)
+        val prevQuestion = "Quais as etapas de desenergização da NR-10 no painel?"
         val turn1 = ConversationTurn(
-            question = "Quais as etapas de desenergização?",
+            question = prevQuestion,
             answer = "Conforme NR-10 item 10.5.1...",
-            keywords = "NR-10 desenergizacao etapas seccionamento aterramento",
             chunks = listOf(previousChunk)
         )
         val history = listOf(turn1)
 
-        // Nova pergunta muito similar
-        val events = pipeline.execute("Pode detalhar as etapas de desenergização da NR-10?", history = history).toList()
+        // Nova fala BRUTA quase idêntica à anterior (Jaccard > 0.7) -> reuso de chunks
+        val events = pipeline.execute("Quais as etapas de desenergização da NR-10 no painel agora?", history = history).toList()
 
         val chunksEvent = events.filterIsInstance<TurnEvent.ChunksRetrieved>().firstOrNull()
         assertNotNull(chunksEvent)
@@ -117,16 +106,13 @@ class AskPipelineTest {
 
         val doneEvent = events.filterIsInstance<TurnEvent.Done>().firstOrNull()
         assertNotNull(doneEvent)
-        assertTrue("Métricas devem registrar reuso de keywords", doneEvent!!.metrics.keywordsReused)
+        assertTrue("Métricas devem registrar reuso de chunks", doneEvent!!.metrics.chunksReused)
     }
 
     @Test
-    fun semReusoDeChunks_quandoKeywordsDiferentes() = runTest {
+    fun semReusoDeChunks_quandoFalasBrutasDiferentes() = runTest {
         val retriever = FakeRetriever()
-        // Keywords de tema totalmente diferente (queda / NR-35)
-        val llm = FakeLlm(
-            customRewriteOutput = "NR-35 trabalho altura protecao cinturão talabarte"
-        )
+        val llm = FakeLlm()
         val pipeline = AskPipeline(
             retriever = retriever,
             llmEngine = llm,
@@ -138,7 +124,6 @@ class AskPipelineTest {
         val turn1 = ConversationTurn(
             question = "Quais as etapas de desenergização?",
             answer = "Conforme NR-10...",
-            keywords = "NR-10 desenergizacao etapas seccionamento aterramento",
             chunks = listOf(previousChunk)
         )
         val history = listOf(turn1)
@@ -148,7 +133,7 @@ class AskPipelineTest {
         val chunksEvent = events.filterIsInstance<TurnEvent.ChunksRetrieved>().firstOrNull()
         assertNotNull(chunksEvent)
         assertFalse("Não deve reutilizar chunks quando o tema diverge", chunksEvent!!.reused)
-        assertTrue("Busca BM25 deve levar tempo maior que zero", chunksEvent.durationMs >= 0L)
+        assertTrue("Busca BM25 deve levar tempo maior ou igual a zero", chunksEvent.durationMs >= 0L)
     }
 
     @Test
@@ -211,8 +196,8 @@ class AskPipelineTest {
         assertEquals(1, telemetryLogger.getLogCount())
         val logContent = telemetryFile.readText()
         assertTrue("Log deve conter asr_ms", logContent.contains("\"asr_ms\":1500"))
-        assertTrue("Log deve conter rewrite_ms", logContent.contains("\"rewrite_ms\":"))
         assertTrue("Log deve conter search_ms", logContent.contains("\"search_ms\":"))
+        assertTrue("Log deve conter gate_mode", logContent.contains("\"gate_mode\":"))
         assertTrue("Log deve conter ttft_ms", logContent.contains("\"ttft_ms\":"))
         assertTrue("Log deve conter chunks_used", logContent.contains("\"chunks_used\":"))
     }

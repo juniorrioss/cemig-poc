@@ -1,7 +1,6 @@
 package br.org.ceia.cemigpoc.domain.pipeline
 
 import android.util.Log
-import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
 import br.org.ceia.cemigpoc.data.retriever.HybridRetriever
 import br.org.ceia.cemigpoc.data.telemetry.TelemetryLogger
 import br.org.ceia.cemigpoc.domain.engine.LlmEngine
@@ -17,23 +16,29 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 /**
- * Pipeline conversacional multiturno em Modo C Top-2 (Rewrite -> BM25 -> Injeção).
+ * Pipeline conversacional multiturno consolidado (sem Turno 1 de rewrite).
  *
- * Arquitetura de turnos decidida pelo Capitão:
- * - Turno 1 (Rewrite): Recebe histórico bruto (até MAX_TURNS_T1=6 trocas) + pergunta atual -> extrai 3 a 6 keywords técnicas.
- *   - Verificação Jaccard (> 0.7): se as palavras-chave forem quase idênticas às do turno anterior,
- *     reutiliza os chunks do turno anterior sem nova consulta BM25.
- * - Busca BM25 Top-2 no acervo consolidado de 36 NRs (`index_hf_36nr.db`).
- * - Turno 2 (Síntese): System prompt + histórico enxuto (últimas MAX_TURNS_T2=3 trocas brutas, sem chunks antigos)
- *   + 2 chunks recuperados + pergunta atual -> síntese com citação obrigatória de norma.
- *   - Orçamento rígido: T2 <= ~1000 tokens. Se estourar, poda a troca mais antiga do histórico.
- *   - Prefix cache estável: prefixo mantido na memória KV do llama.cpp para acelerar TTFT.
+ * Decisão do Capitão (POC consolidação): o Turno 1 de rewrite via LLM foi REMOVIDO do caminho.
+ * A bancada do classifier provou que keywords reescritas PIORAM a busca vs fala bruta
+ * (22.5% vs 28.5% R@2 — ver classifier/README.md) e o rewrite custava ~1-1.5 s por pergunta.
+ *
+ * Fluxo atual:
+ * - ASR -> transcrição da fala do trabalhador (medida fora, `asrMs`).
+ * - Estágio 1+2 (HybridRetriever): classificador leve de NR dá boost/filtro gated ao BM25;
+ *   a busca BM25 recebe a FALA BRUTA (não keywords). A decisão do gate é exposta para o
+ *   Modo Engenharia via TurnEvent.Classified.
+ * - Reuso por Jaccard: se a fala bruta atual for quase idêntica (> jaccardThreshold) à do
+ *   turno anterior e houver chunks, reutiliza os chunks sem nova consulta BM25. Mantido
+ *   porque em multiturno perguntas de continuação repetem a fala anterior; agora compara
+ *   falas BRUTAS consecutivas (antes comparava keywords do rewrite, que não existe mais).
+ * - Turno 2 (Síntese): system prompt + histórico enxuto (últimas maxTurnsT2 trocas brutas)
+ *   + chunks recuperados + pergunta atual -> síntese com citação obrigatória de norma.
+ *   - Orçamento rígido: T2 <= t2MaxBudgetTokens; se estourar, poda a troca mais antiga.
  */
 class AskPipeline(
     private val retriever: Retriever,
     private val llmEngine: LlmEngine,
     private val telemetryLogger: TelemetryLogger? = null,
-    val maxTurnsT1: Int = 6,
     val maxTurnsT2: Int = 3,
     val t2MaxBudgetTokens: Int = 1000,
     val jaccardThreshold: Double = 0.7,
@@ -41,16 +46,6 @@ class AskPipeline(
 ) {
     companion object {
         private const val TAG = "AskPipeline"
-
-        const val REWRITE_SYSTEM_PROMPT =
-            "Você é um especialista em busca técnica nas Normas Regulamentadoras (NRs de segurança do trabalho).\n" +
-            "Sua única tarefa é extrair e converter a dúvida do trabalhador em palavras-chave técnicas e conceituais para busca BM25 no acervo das NRs.\n" +
-            "Dado o histórico da conversa e a nova fala do trabalhador, gere de 3 a 6 palavras-chave técnicas para busca.\n" +
-            "Diretrizes mandatórias:\n" +
-            "1. Retorne APENAS de 3 a 6 palavras-chave técnicas na mesma linha, separadas por vírgula ou espaço.\n" +
-            "2. Foque nos termos específicos da situação, procedimentos, equipamentos, riscos ou medidas de proteção aplicáveis.\n" +
-            "3. NÃO inclua saudações, preâmbulos, justificativas ou listas longas de nomes de normas.\n" +
-            "4. NÃO responda à dúvida nesta etapa; retorne estritamente os termos de busca."
 
         const val SYNTHESIS_SYSTEM_PROMPT =
             "Você é o assistente técnico de campo da CEMIG, especialista em Normas Regulamentadoras (NR-10, NR-06, NR-35, NR-12, NR-18 e demais NRs aplicáveis).\n" +
@@ -73,89 +68,63 @@ class AskPipeline(
         val totalStart = System.currentTimeMillis()
 
         // ---------------------------------------------------------------------
-        // ETAPA 1: Turno 1 - Query Rewrite (Extração de palavras-chave técnicas)
+        // ETAPA 1: Classificação (estágio 1) + Busca BM25 (estágio 2) com fala bruta
         // ---------------------------------------------------------------------
-        emit(TurnEvent.StageChanged(PipelineStage.REWRITING))
-        val t1Start = System.currentTimeMillis()
+        emit(TurnEvent.StageChanged(PipelineStage.CLASSIFYING))
 
-        val rewriteHistory = history.takeLast(maxTurnsT1)
-        val userPromptT1 = formatRewriteUserPrompt(rewriteHistory, userQuestion)
-
-        var rawRewrite = ""
-        try {
-            if (llmEngine is RealLlamaEngine) {
-                // Execução rápida síncrona via chat template do GGUF
-                val pairs = listOf(
-                    "system" to REWRITE_SYSTEM_PROMPT,
-                    "user" to userPromptT1
-                )
-                val promptFormatted = llmEngine.applyChatTemplate(pairs, addAssistant = true)
-                rawRewrite = llmEngine.generateComplete(promptFormatted, maxTokens = 40)
-            } else {
-                // Fallback genérico para motores de teste / fakes
-                val messages = listOf(
-                    Message(role = Message.Role.SYSTEM, content = REWRITE_SYSTEM_PROMPT),
-                    Message(role = Message.Role.USER, content = userPromptT1)
-                )
-                val sb = StringBuilder()
-                llmEngine.streamChat(messages, REWRITE_SYSTEM_PROMPT).collect { chunk ->
-                    if (chunk is LlmResponseChunk.Text) {
-                        sb.append(chunk.delta)
-                    }
-                }
-                rawRewrite = sb.toString()
-            }
-        } catch (e: Throwable) {
-            Log.w(TAG, "Erro na reescrita do Turno 1; usando pergunta bruta como fallback", e)
-            rawRewrite = userQuestion
-        }
-
-        val rewriteMs = System.currentTimeMillis() - t1Start
-        val keywords = cleanKeywords(rawRewrite, fallback = userQuestion)
-
-        // ---------------------------------------------------------------------
-        // ETAPA 2: Similaridade Jaccard e Decisão de Reuso de Chunks
-        // ---------------------------------------------------------------------
+        // Reuso por Jaccard: compara a fala BRUTA atual com a do turno anterior.
         val previousTurn = history.lastOrNull()
-        val previousKeywords = previousTurn?.keywords.orEmpty()
-        val jaccard = calculateJaccardSimilarity(keywords, previousKeywords)
+        val jaccard = calculateJaccardSimilarity(userQuestion, previousTurn?.question.orEmpty())
         val canReuse = previousTurn != null &&
                 previousTurn.chunks.isNotEmpty() &&
                 jaccard >= jaccardThreshold
 
         val chunks: List<Chunk>
         val searchMs: Long
+        var decision: HybridRetriever.Decision? = null
 
         if (canReuse) {
             chunks = previousTurn!!.chunks
             searchMs = 0L
-            Log.i(TAG, "Turno 1: Keywords '$keywords' reutilizam chunks anteriores (Jaccard=%.2f)".format(jaccard))
-            emit(TurnEvent.KeywordsExtracted(keywords, reused = true, durationMs = rewriteMs))
+            Log.i(TAG, "Reuso de chunks anteriores (Jaccard=%.2f) para fala '%s'".format(jaccard, userQuestion))
             emit(TurnEvent.ChunksRetrieved(chunks, reused = true, durationMs = 0L))
         } else {
-            emit(TurnEvent.KeywordsExtracted(keywords, reused = false, durationMs = rewriteMs))
-            emit(TurnEvent.StageChanged(PipelineStage.SEARCHING))
-
             val searchStart = System.currentTimeMillis()
             chunks = try {
-                // Estágio 1 híbrido: classifica a FALA BRUTA (melhor sinal que keywords) e
-                // aplica boost suave/gated na busca; BM25 mantém as keywords do Turno 1.
+                // Estágio 1 híbrido: classifica a FALA BRUTA e aplica boost/filtro gated;
+                // o BM25 também recebe a fala bruta (melhor que keywords — ver AGENTS.md).
                 if (retriever is HybridRetriever) {
-                    retriever.searchWithRaw(bm25Query = keywords, rawQuestion = userQuestion, topK = topK)
+                    val r = retriever.searchWithRaw(bm25Query = userQuestion, rawQuestion = userQuestion, topK = topK)
+                    decision = retriever.lastDecision
+                    r
                 } else {
-                    retriever.search(query = keywords, topK = topK)
+                    retriever.search(query = userQuestion, topK = topK)
                 }
             } catch (e: Throwable) {
                 Log.e(TAG, "Erro na busca BM25", e)
                 emptyList()
             }
             searchMs = System.currentTimeMillis() - searchStart
-            Log.i(TAG, "Turno 1: Busca BM25 '$keywords' recuperou ${chunks.size} chunks em ${searchMs}ms")
+
+            // Expõe a decisão do gate para o Modo Engenharia (o capitão quer ver a escolha).
+            decision?.let { d ->
+                emit(
+                    TurnEvent.Classified(
+                        nrTop1 = d.top1,
+                        nrTop1Prob = d.top1Prob,
+                        nrTop2 = d.top2,
+                        gateMode = d.mode,
+                        boostNrs = d.boostNrs
+                    )
+                )
+            }
+
+            Log.i(TAG, "Busca BM25 (fala bruta) recuperou ${chunks.size} chunks em ${searchMs}ms")
             emit(TurnEvent.ChunksRetrieved(chunks, reused = false, durationMs = searchMs))
         }
 
         // ---------------------------------------------------------------------
-        // ETAPA 3: Turno 2 - Síntese Final com Orçamento de Contexto
+        // ETAPA 2: Turno 2 - Síntese Final com Orçamento de Contexto
         // ---------------------------------------------------------------------
         emit(TurnEvent.StageChanged(PipelineStage.RESPONDING))
         val t2Start = System.currentTimeMillis()
@@ -217,7 +186,6 @@ class AskPipeline(
 
         val metrics = TurnMetrics(
             asrMs = asrMs,
-            rewriteMs = rewriteMs,
             searchMs = searchMs,
             ttftMs = ttftMs,
             decodeMs = decodeMs,
@@ -225,8 +193,12 @@ class AskPipeline(
             contextTokens = estimatedContextTokens,
             completionTokens = completionTokens,
             tokPerSec = Math.round(tokPerSec * 100.0) / 100.0,
-            keywords = keywords,
-            keywordsReused = canReuse
+            nrTop1 = decision?.top1 ?: (if (canReuse) "-" else ""),
+            nrTop1Prob = decision?.top1Prob ?: 0f,
+            nrTop2 = decision?.top2 ?: "",
+            gateMode = decision?.mode ?: (if (canReuse) "reuso" else "-"),
+            boostNrs = decision?.boostNrs?.joinToString(",").orEmpty(),
+            chunksReused = canReuse
         )
 
         emit(TurnEvent.Done(finalAnswer = finalAnswer, chunksUsed = chunks, metrics = metrics))
@@ -247,42 +219,7 @@ class AskPipeline(
     }
 
     /**
-     * Formata o prompt do Turno 1 integrando o histórico conversacional recente.
-     */
-    fun formatRewriteUserPrompt(history: List<ConversationTurn>, currentQuestion: String): String {
-        if (history.isEmpty()) {
-            return "Dúvida do trabalhador: $currentQuestion\nTermos técnicos para busca:"
-        }
-
-        return buildString {
-            appendLine("Histórico recente da conversa:")
-            history.forEach { turn ->
-                appendLine("Usuário: ${turn.question}")
-                appendLine("Assistente: ${turn.answer.take(160)}")
-            }
-            appendLine()
-            appendLine("Nova dúvida do trabalhador: $currentQuestion")
-            append("Termos técnicos para busca:")
-        }
-    }
-
-    /**
-     * Limpa e padroniza a resposta de palavras-chave geradas pelo Turno 1.
-     */
-    fun cleanKeywords(raw: String, fallback: String): String {
-        var text = raw.lines().firstOrNull { it.isNotBlank() } ?: ""
-        text = text.replace(Regex("^(Termos técnicos|Palavras-chave|Busca|Keywords):", RegexOption.IGNORE_CASE), "")
-        text = text.replace(Regex("[*\"`']"), " ").trim()
-
-        val words = text.split(Regex("[,;\\s]+")).filter { it.length >= 2 }
-        if (words.isEmpty()) {
-            return fallback.trim()
-        }
-        return words.take(6).joinToString(" ")
-    }
-
-    /**
-     * Calcula a similaridade de Jaccard entre dois conjuntos de palavras-chave.
+     * Calcula a similaridade de Jaccard entre duas falas brutas (reuso de chunks em multiturno).
      */
     fun calculateJaccardSimilarity(text1: String, text2: String): Double {
         val s1 = tokenizeWords(text1)

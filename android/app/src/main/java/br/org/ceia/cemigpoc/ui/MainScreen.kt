@@ -426,9 +426,7 @@ fun MainScreen(
             if (uiState.currentStreamingAnswer.isNotEmpty() || (uiState.stage != PipelineStage.IDLE && uiState.stage != PipelineStage.ERROR)) {
                 item {
                     ActiveStreamingItem(
-                        stage = uiState.stage,
                         streamingAnswer = uiState.currentStreamingAnswer,
-                        keywords = uiState.currentKeywords,
                         chunks = uiState.currentChunks
                     )
                 }
@@ -544,9 +542,7 @@ private fun ConversationTurnItem(
  */
 @Composable
 private fun ActiveStreamingItem(
-    stage: PipelineStage,
     streamingAnswer: String,
-    keywords: String,
     chunks: List<br.org.ceia.cemigpoc.domain.model.Chunk>
 ) {
     Row(
@@ -580,17 +576,6 @@ private fun ActiveStreamingItem(
                 )
             }
 
-            if (keywords.isNotBlank()) {
-                Spacer(modifier = Modifier.height(6.dp))
-                Text(
-                    text = "Termos T1: $keywords",
-                    color = CeiaNavy800,
-                    fontSize = 11.sp,
-                    fontFamily = InterFontFamily,
-                    fontWeight = FontWeight.Medium
-                )
-            }
-
             Spacer(modifier = Modifier.height(8.dp))
 
             Text(
@@ -621,8 +606,7 @@ private fun StageIndicatorBanner(
         PipelineStage.IDLE -> Triple(CeiaGray100, CeiaGray700, "100% OFFLINE · PRONTO")
         PipelineStage.LISTENING -> Triple(CeiaDanger.copy(alpha = 0.15f), CeiaDanger, "GRAVANDO ÁUDIO DO OPERADOR...")
         PipelineStage.TRANSCRIBING -> Triple(CeiaBlue100, CeiaNavy800, "TRANSCREVENDO (WHISPER BASE Q5_1)...")
-        PipelineStage.REWRITING -> Triple(CeiaBlue100, CeiaNavy800, "EXTRAINDO TERMOS TÉCNICOS (TURNO 1)...")
-        PipelineStage.SEARCHING -> Triple(CeiaBlue100, CeiaNavy800, "BUSCANDO NORMAS BM25 (TOP-2)...")
+        PipelineStage.CLASSIFYING -> Triple(CeiaBlue100, CeiaNavy800, "CLASSIFICANDO NR + BUSCANDO BM25 (TOP-2)...")
         PipelineStage.RESPONDING -> Triple(CeiaBlue100, CeiaNavy800, "SINTETIZANDO RESPOSTA (LFM2.5)...")
         PipelineStage.DONE -> Triple(CeiaSuccess.copy(alpha = 0.15f), CeiaSuccess, "RESPOSTA CONCLUÍDA")
         PipelineStage.ERROR -> Triple(CeiaDanger.copy(alpha = 0.15f), CeiaDanger, errorMessage ?: "ERRO OPERACIONAL")
