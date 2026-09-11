@@ -25,6 +25,7 @@ CONFIG_DESC = {
     "v3_lfm1.2b": "v3 (RRF 3-sinais) x LFM2.5-1.2B QAD-Q4_0 (embarcado) x v1_rigido",
     "v3_lfm2.6b_noth": "v3 (RRF 3-sinais) x LFM2.5-2.6B-Q4_0 thinking-OFF x v1_rigido",
     "old_lfm1.2b_v1": "retrieval antigo x LFM2.5-1.2B QAD-Q4_0 x v1_rigido",
+    "lfm2.6b_noth_v1": "retrieval antigo x LFM2.5-2.6B-Q4_0 thinking-OFF x v1_rigido",
 }
 
 

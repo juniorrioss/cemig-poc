@@ -17,9 +17,11 @@ if ! curl -s --max-time 8 "$JUDGE_URL/models" >/dev/null 2>&1; then
   exit 1
 fi
 
-echo "=== (1) empacota harness v3 (3 configs) ==="
+echo "=== (1) empacota harness v3 (4 configs v1_rigido p/ paridade de prompt) ==="
+# Todas as 4 células com o prompt de produção v1_rigido: v3x{1.2B,2.6B} + antigo x{1.2B,2.6B}.
+# (responses_lfm2.6b_noth_v1 = antigo x 2.6B thinking-OFF v1_rigido; já gerado na consolidação.)
 "$PY" "$HERE/build_judge_input.py" \
-  --configs v3_lfm1.2b v3_lfm2.6b_noth old_lfm1.2b_v1 \
+  --configs v3_lfm1.2b v3_lfm2.6b_noth old_lfm1.2b_v1 lfm2.6b_noth_v1 \
   --out "$HERE/data/harness_v3.json"
 
 echo "=== (2) juiz vLLM 27B (4 eixos) ==="
