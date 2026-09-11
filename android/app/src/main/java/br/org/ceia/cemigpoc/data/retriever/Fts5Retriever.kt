@@ -99,11 +99,35 @@ class Fts5Retriever(
         return internalFile
     }
 
-    override suspend fun search(query: String, topK: Int): List<Chunk> = withContext(Dispatchers.IO) {
+    override suspend fun search(query: String, topK: Int): List<Chunk> =
+        searchBoosted(query, topK, boostNrs = emptyList(), boostFactor = 1.0, hardFilter = false)
+
+    /**
+     * Busca BM25 com BOOST SUAVE opcional nas NRs indicadas pelo classificador (estágio 1).
+     *
+     * O bm25() do FTS5 devolve score NEGATIVO (menor = melhor). No boost suave multiplicamos
+     * o score dos chunks das NRs previstas por `boostFactor` (>1 => mais negativo => melhor),
+     * SEM excluir as demais NRs (elas continuam elegíveis, só perdem prioridade relativa).
+     * Com `hardFilter=true`, restringe a busca às NRs previstas (com fallback amplo se faltar).
+     *
+     * @param boostNrs códigos nr-XX a privilegiar (ex.: top-1/top-2 do NrClassifier)
+     * @param boostFactor fator multiplicativo do boost suave (calibrado 5x no harness)
+     * @param hardFilter se true, aplica filtro duro na(s) norma(s) prevista(s)
+     */
+    suspend fun searchBoosted(
+        query: String,
+        topK: Int,
+        boostNrs: List<String>,
+        boostFactor: Double,
+        hardFilter: Boolean
+    ): List<Chunk> = withContext(Dispatchers.IO) {
         val sanitizedQuery = sanitizeFts5Query(query)
         if (sanitizedQuery.isBlank()) {
             return@withContext emptyList()
         }
+        val boostSet = boostNrs.map { it.lowercase() }.toSet()
+        // Pool amplo p/ reordenar quando há boost/filtro; sem boost, LIMIT direto = topK.
+        val poolLimit = if (boostSet.isEmpty()) topK else maxOf(topK, 60)
 
         val dbFile = resolveDatabaseFile()
         if (!dbFile.exists() || dbFile.length() == 0L) {
@@ -125,6 +149,11 @@ class Fts5Retriever(
             // Garante que o FTS5 esta disponivel; se nao, a query MATCH lancaria 'no such module: fts5'.
             ensureFts5(database)
 
+            // Filtro duro: restringe às NRs previstas via IN(...) (fallback amplo depois).
+            val docClause = if (hardFilter && boostSet.isNotEmpty()) {
+                "AND c.doc IN (${boostSet.joinToString(",") { "?" }})"
+            } else ""
+
             // Consulta com junção chunks_fts e chunks com pesos BM25 calibrados (v2 36 NRs)
             val sql = """
                 SELECT
@@ -137,12 +166,16 @@ class Fts5Retriever(
                     bm25(chunks_fts, 1.5, 3.0, 2.0, 1.0) AS score
                 FROM chunks_fts
                 JOIN chunks c ON c.id = chunks_fts.rowid
-                WHERE chunks_fts MATCH ?
+                WHERE chunks_fts MATCH ? $docClause
                 ORDER BY score ASC
                 LIMIT ?;
             """.trimIndent()
 
-            cursor = database.rawQuery(sql, arrayOf(sanitizedQuery, topK.toString()))
+            val args = ArrayList<String>()
+            args.add(sanitizedQuery)
+            if (hardFilter && boostSet.isNotEmpty()) args.addAll(boostSet)
+            args.add(poolLimit.toString())
+            cursor = database.rawQuery(sql, args.toTypedArray())
 
             while (cursor.moveToNext()) {
                 val rowId = cursor.getLong(0)
@@ -173,7 +206,17 @@ class Fts5Retriever(
             database?.close()
         }
 
-        results
+        // Reordenação em memória: boost suave (score negativo * fator) e corte em topK.
+        if (boostSet.isNotEmpty() && !hardFilter && boostFactor != 1.0) {
+            results.sortBy { c -> if (c.doc.lowercase() in boostSet) c.score * boostFactor else c.score }
+        }
+        // Filtro duro com fallback amplo quando o pool ficou abaixo de topK.
+        if (hardFilter && boostSet.isNotEmpty() && results.size < topK) {
+            val extra = searchBoosted(query, topK, emptyList(), 1.0, hardFilter = false)
+            val seen = results.map { it.id }.toHashSet()
+            results.addAll(extra.filter { it.id !in seen })
+        }
+        results.take(topK)
     }
 
     /**

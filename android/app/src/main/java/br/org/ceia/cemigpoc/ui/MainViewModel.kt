@@ -8,7 +8,9 @@ import br.org.ceia.cemigpoc.data.acceptance.AcceptanceRunner
 import br.org.ceia.cemigpoc.data.engine.RealAsrEngine
 import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
 import br.org.ceia.cemigpoc.data.model.ModelFileManager
+import br.org.ceia.cemigpoc.data.classifier.NrClassifier
 import br.org.ceia.cemigpoc.data.retriever.Fts5Retriever
+import br.org.ceia.cemigpoc.data.retriever.HybridRetriever
 import br.org.ceia.cemigpoc.data.telemetry.TelemetryLogger
 import br.org.ceia.cemigpoc.domain.engine.AsrEvent
 import br.org.ceia.cemigpoc.domain.model.Chunk
@@ -51,7 +53,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
     private val fileManager = ModelFileManager(application.applicationContext)
-    private val retriever = Fts5Retriever(application.applicationContext)
+    // Estágio 1 do pipeline híbrido: classificador leve de NR (TF-IDF+LogReg, Kotlin puro).
+    private val nrClassifier = NrClassifier.load(application.applicationContext)
+    private val retriever = HybridRetriever(
+        delegate = Fts5Retriever(application.applicationContext),
+        classifier = nrClassifier
+    )
     private val realLlamaEngine = RealLlamaEngine()
     private val realAsrEngine = RealAsrEngine()
     private val telemetryLogger = TelemetryLogger(File(application.applicationContext.filesDir, "telemetry.jsonl"))

@@ -1,0 +1,6 @@
+# Ambiente virtual dedicado (não versionar)
+.venv/
+__pycache__/
+*.pyc
+# Modelo intermediário regenerável via `make classic` (grande)
+models/classic_winner.pkl

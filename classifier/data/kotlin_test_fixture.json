@@ -1,0 +1,54 @@
+[
+  {
+    "text": "Tô na subestação e não dá pra desligar o circuito, posso usar só a luva de borracha?",
+    "top2": [
+      [
+        "nr-10",
+        0.9577
+      ],
+      [
+        "nr-01",
+        0.0083
+      ]
+    ]
+  },
+  {
+    "text": "Vou subir num poste de 8 metros pra trocar o transformador, preciso de cinto?",
+    "top2": [
+      [
+        "nr-35",
+        0.6329
+      ],
+      [
+        "nr-10",
+        0.3461
+      ]
+    ]
+  },
+  {
+    "text": "Minha bota furou na chuva, a empresa tem que trocar?",
+    "top2": [
+      [
+        "nr-06",
+        0.7545
+      ],
+      [
+        "nr-35",
+        0.0237
+      ]
+    ]
+  },
+  {
+    "text": "Como preencher o ponto pra receber hora extra?",
+    "top2": [
+      [
+        "nenhuma",
+        0.8405
+      ],
+      [
+        "nr-16",
+        0.0653
+      ]
+    ]
+  }
+]

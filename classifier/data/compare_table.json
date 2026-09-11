@@ -1,0 +1,75 @@
+{
+  "rows": [
+    {
+      "cand": "logreg",
+      "top1": 46.2,
+      "top2": 67.84,
+      "mf1": 0.459,
+      "lat_desktop_ms": 0.646,
+      "lat_s24_ms": 5.0,
+      "size_kb": 7780.2021484375,
+      "deploy": "BAIXA — TF-IDF + matriz linear portável em Kotlin puro OU ONNX (sklearn->onnx)"
+    },
+    {
+      "cand": "complementnb",
+      "top1": 49.12,
+      "top2": 65.5,
+      "mf1": 0.5089,
+      "lat_desktop_ms": 0.987,
+      "lat_s24_ms": 5.0,
+      "size_kb": 15267.900390625,
+      "deploy": "BAIXA-MÉDIA — log-probs por classe em Kotlin; modelo 15 MB"
+    },
+    {
+      "cand": "randomforest",
+      "top1": 49.71,
+      "top2": 64.33,
+      "mf1": 0.4881,
+      "lat_desktop_ms": 67.048,
+      "lat_s24_ms": null,
+      "size_kb": 129826.98828125,
+      "deploy": "ALTA — 300 árvores, 127 MB serializado; ONNX pesado, inviável mobile"
+    },
+    {
+      "cand": "linsvc",
+      "top1": 45.61,
+      "top2": 63.16,
+      "mf1": 0.4683,
+      "lat_desktop_ms": 0.575,
+      "lat_s24_ms": 5.0,
+      "size_kb": 7780.0927734375,
+      "deploy": "BAIXA — idêntico ao logreg (linear); sem probs calibradas p/ boost"
+    },
+    {
+      "cand": "decisiontree",
+      "top1": 23.39,
+      "top2": 25.15,
+      "mf1": 0.2554,
+      "lat_desktop_ms": 0.622,
+      "lat_s24_ms": 5.0,
+      "size_kb": 872.1083984375,
+      "deploy": "BAIXA — 1 árvore 384 KB, mas acurácia inaceitável (23%)"
+    },
+    {
+      "cand": "gradientboost",
+      "top1": 28.7,
+      "top2": 29.8,
+      "mf1": 0.065,
+      "lat_desktop_ms": null,
+      "lat_s24_ms": null,
+      "size_kb": 8910.0,
+      "deploy": "ALTA — exige entrada densa (25k dims); descartado"
+    },
+    {
+      "cand": "prompt-json",
+      "top1": 25.73,
+      "top2": null,
+      "mf1": null,
+      "lat_desktop_ms": 42.1,
+      "lat_s24_ms": 4348.0,
+      "size_kb": 0,
+      "deploy": "MÉDIA — sem novo artefato (LFM2.5 já residente), mas +~4.5s TTFT/consulta no S24+"
+    }
+  ],
+  "winner": "logreg"
+}

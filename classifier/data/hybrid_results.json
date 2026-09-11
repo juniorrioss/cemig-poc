@@ -1,0 +1,119 @@
+{
+  "subset": "qa_v2",
+  "n": 151,
+  "classifier": "logreg",
+  "classifier_top1": 50.99,
+  "classifier_top2": 73.51,
+  "classifier_ms_per_query": 0.132,
+  "baseline_r2": 13.91,
+  "best_soft": "soft_5x",
+  "best_real": "gated_05",
+  "meta_r2": 35.0,
+  "meta_met": false,
+  "results": {
+    "baseline": {
+      "label": "Baseline (fala bruta, sem boost)",
+      "recall_at_1": 9.93,
+      "recall_at_2": 13.91,
+      "recall_at_5": 20.53,
+      "mrr": 0.1375,
+      "n": 151
+    },
+    "soft_2x": {
+      "label": "Híbrido boost suave 2x (top-2 NR)",
+      "recall_at_1": 21.19,
+      "recall_at_2": 27.15,
+      "recall_at_5": 36.42,
+      "mrr": 0.2669,
+      "n": 151
+    },
+    "soft_5x": {
+      "label": "Híbrido boost suave 5x (top-2 NR)",
+      "recall_at_1": 21.19,
+      "recall_at_2": 28.48,
+      "recall_at_5": 37.75,
+      "mrr": 0.2744,
+      "n": 151
+    },
+    "soft_10x": {
+      "label": "Híbrido boost suave 10x (top-2 NR)",
+      "recall_at_1": 21.19,
+      "recall_at_2": 28.48,
+      "recall_at_5": 37.75,
+      "mrr": 0.2744,
+      "n": 151
+    },
+    "soft_5x_top1": {
+      "label": "Híbrido boost suave 5x (top-1 NR)",
+      "recall_at_1": 17.88,
+      "recall_at_2": 22.52,
+      "recall_at_5": 32.45,
+      "mrr": 0.2315,
+      "n": 151
+    },
+    "gated_05": {
+      "label": "Híbrido CONFIANÇA-GATED (thr 0.5) *REC*",
+      "recall_at_1": 22.52,
+      "recall_at_2": 29.8,
+      "recall_at_5": 41.06,
+      "mrr": 0.2927,
+      "n": 151
+    },
+    "hard": {
+      "label": "Referência: filtro DURO (top-2 NR)",
+      "recall_at_1": 21.19,
+      "recall_at_2": 28.48,
+      "recall_at_5": 39.74,
+      "mrr": 0.2792,
+      "n": 151
+    },
+    "hard_top1": {
+      "label": "Referência: filtro DURO (top-1 NR)",
+      "recall_at_1": 16.56,
+      "recall_at_2": 23.18,
+      "recall_at_5": 35.1,
+      "mrr": 0.2315,
+      "n": 151
+    },
+    "rw_soft5x": {
+      "label": "Híbrido rewrite+boost suave 5x (top-2)",
+      "recall_at_1": 14.57,
+      "recall_at_2": 22.52,
+      "recall_at_5": 32.45,
+      "mrr": 0.2135,
+      "n": 151
+    },
+    "rw_hard": {
+      "label": "Híbrido rewrite+filtro DURO (top-2)",
+      "recall_at_1": 15.23,
+      "recall_at_2": 25.83,
+      "recall_at_5": 37.75,
+      "mrr": 0.2397,
+      "n": 151
+    },
+    "oracle_soft5x": {
+      "label": "TETO: boost suave 5x com norma-OURO",
+      "recall_at_1": 27.15,
+      "recall_at_2": 35.76,
+      "recall_at_5": 48.34,
+      "mrr": 0.3531,
+      "n": 151
+    },
+    "oracle_hard": {
+      "label": "TETO: filtro DURO com norma-OURO",
+      "recall_at_1": 30.46,
+      "recall_at_2": 44.37,
+      "recall_at_5": 65.56,
+      "mrr": 0.4323,
+      "n": 151
+    },
+    "oracle_rw_hard": {
+      "label": "TETO: rewrite+filtro DURO norma-OURO",
+      "recall_at_1": 27.81,
+      "recall_at_2": 43.71,
+      "recall_at_5": 58.94,
+      "mrr": 0.4002,
+      "n": 151
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "n_holdout": 171,
+  "model": "LFM2.5-1.2B-Instruct-QAD-Q4_0",
+  "results": [
+    {
+      "format": "number",
+      "top1_acc": 5.85,
+      "unparseable_rate": 0.0,
+      "hallucination_rate": 0.0,
+      "lat_ms_median_5070": 34.8,
+      "lat_ms_p90_5070": 48.0,
+      "tokens_median": 4,
+      "tokens_max": 24,
+      "samples": [
+        {
+          "q": "Ô, tô aqui na subestação e o encarregado falou que não dá pra desligar",
+          "gold": "nr-10",
+          "raw": "nenhuma",
+          "pred": "nenhuma"
+        },
+        {
+          "q": "Como não dá pra desenergizar o painel, o pessoal falou de usar uma tal",
+          "gold": "nr-10",
+          "raw": "17",
+          "pred": "nr-17"
+        },
+        {
+          "q": "Tô no poste e minha camisa de trabalho rasgou. Posso terminar o serviç",
+          "gold": "nr-10",
+          "raw": "nenhuma",
+          "pred": "nenhuma"
+        },
+        {
+          "q": "Rapaz, casei semana passada e não queria tirar a aliança pra trabalhar",
+          "gold": "nr-10",
+          "raw": "nenhuma",
+          "pred": "nenhuma"
+        },
+        {
+          "q": "O encarregado quer que eu segure a lanterna com uma mão e aperte o con",
+          "gold": "nr-10",
+          "raw": "nenhuma",
+          "pred": "nenhuma"
+        },
+        {
+          "q": "Tem uma caixa de passagem aqui num canto apertado que eu só alcanço to",
+          "gold": "nr-10",
+          "raw": "Nenhuma",
+          "pred": "nenhuma"
+        }
+      ]
+    },
+    {
+      "format": "nrcode",
+      "top1_acc": 9.36,
+      "unparseable_rate": 0.0,
+      "hallucination_rate": 0.0,
+      "lat_ms_median_5070": 38.1,
+      "lat_ms_p90_5070": 47.3,
+      "tokens_median": 4,
+      "tokens_max": 5,
+      "samples": [
+        {
+          "q": "Ô, tô aqui na subestação e o encarregado falou que não dá pra desligar",
+          "gold": "nr-10",
+          "raw": "NR-05",
+          "pred": "nr-05"
+        },
+        {
+          "q": "Como não dá pra desenergizar o painel, o pessoal falou de usar uma tal",
+          "gold": "nr-10",
+          "raw": "NR-08",
+          "pred": "nr-08"
+        },
+        {
+          "q": "Tô no poste e minha camisa de trabalho rasgou. Posso terminar o serviç",
+          "gold": "nr-10",
+          "raw": "NR-05",
+          "pred": "nr-05"
+        },
+        {
+          "q": "Rapaz, casei semana passada e não queria tirar a aliança pra trabalhar",
+          "gold": "nr-10",
+          "raw": "NR-05",
+          "pred": "nr-05"
+        },
+        {
+          "q": "O encarregado quer que eu segure a lanterna com uma mão e aperte o con",
+          "gold": "nr-10",
+          "raw": "Nenhuma.",
+          "pred": "nenhuma"
+        },
+        {
+          "q": "Tem uma caixa de passagem aqui num canto apertado que eu só alcanço to",
+          "gold": "nr-10",
+          "raw": "NR-11",
+          "pred": "nr-11"
+        }
+      ]
+    },
+    {
+      "format": "json",
+      "top1_acc": 25.73,
+      "unparseable_rate": 0.0,
+      "hallucination_rate": 0.0,
+      "lat_ms_median_5070": 42.1,
+      "lat_ms_p90_5070": 48.9,
+      "tokens_median": 7,
+      "tokens_max": 9,
+      "samples": [
+        {
+          "q": "Ô, tô aqui na subestação e o encarregado falou que não dá pra desligar",
+          "gold": "nr-10",
+          "raw": "{\"nr\": 06}",
+          "pred": "nr-06"
+        },
+        {
+          "q": "Como não dá pra desenergizar o painel, o pessoal falou de usar uma tal",
+          "gold": "nr-10",
+          "raw": "{\"nr\": 08}",
+          "pred": "nr-08"
+        },
+        {
+          "q": "Tô no poste e minha camisa de trabalho rasgou. Posso terminar o serviç",
+          "gold": "nr-10",
+          "raw": "{\"nr\": 15}",
+          "pred": "nr-15"
+        },
+        {
+          "q": "Rapaz, casei semana passada e não queria tirar a aliança pra trabalhar",
+          "gold": "nr-10",
+          "raw": "{\"nr\": 05}",
+          "pred": "nr-05"
+        },
+        {
+          "q": "O encarregado quer que eu segure a lanterna com uma mão e aperte o con",
+          "gold": "nr-10",
+          "raw": "{\"nr\": 15}",
+          "pred": "nr-15"
+        },
+        {
+          "q": "Tem uma caixa de passagem aqui num canto apertado que eu só alcanço to",
+          "gold": "nr-10",
+          "raw": "{\"nr\": 11}",
+          "pred": "nr-11"
+        }
+      ]
+    }
+  ]
+}

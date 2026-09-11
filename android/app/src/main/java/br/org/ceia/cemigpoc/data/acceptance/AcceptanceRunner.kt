@@ -5,8 +5,10 @@ import android.os.PowerManager
 import android.util.Log
 import br.org.ceia.cemigpoc.data.engine.RealAsrEngine
 import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
+import br.org.ceia.cemigpoc.data.classifier.NrClassifier
 import br.org.ceia.cemigpoc.data.model.ModelFileManager
 import br.org.ceia.cemigpoc.data.retriever.Fts5Retriever
+import br.org.ceia.cemigpoc.data.retriever.HybridRetriever
 import br.org.ceia.cemigpoc.data.telemetry.TelemetryLogger
 import br.org.ceia.cemigpoc.domain.model.ConversationTurn
 import br.org.ceia.cemigpoc.domain.model.TurnEvent
@@ -71,7 +73,7 @@ object AcceptanceRunner {
         context: Context,
         existingAsr: RealAsrEngine? = null,
         existingLlama: RealLlamaEngine? = null,
-        existingRetriever: Fts5Retriever? = null
+        existingRetriever: br.org.ceia.cemigpoc.domain.engine.Retriever? = null
     ): List<AcceptanceResultItem> = withContext(Dispatchers.IO) {
         val powerManager = context.getSystemService(Context.POWER_SERVICE) as? PowerManager
         val wakeLock = powerManager?.newWakeLock(
@@ -93,7 +95,11 @@ object AcceptanceRunner {
         val asrFile = fileManager.getAsrModelFile()
         val llmFile = fileManager.getLlmModelFile()
 
-        val retriever = existingRetriever ?: Fts5Retriever(context, dbFile)
+        // Pipeline híbrido de 2 estágios: classificador NR (estágio 1) + BM25 com boost (estágio 2).
+        val retriever = existingRetriever ?: HybridRetriever(
+            delegate = Fts5Retriever(context, dbFile),
+            classifier = NrClassifier.load(context)
+        )
         val realAsr = existingAsr ?: RealAsrEngine().also {
             it.engine.initModel(asrFile.absolutePath)
         }

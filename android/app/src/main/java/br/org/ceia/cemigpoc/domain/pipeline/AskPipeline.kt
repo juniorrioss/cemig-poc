@@ -2,6 +2,7 @@ package br.org.ceia.cemigpoc.domain.pipeline
 
 import android.util.Log
 import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
+import br.org.ceia.cemigpoc.data.retriever.HybridRetriever
 import br.org.ceia.cemigpoc.data.telemetry.TelemetryLogger
 import br.org.ceia.cemigpoc.domain.engine.LlmEngine
 import br.org.ceia.cemigpoc.domain.engine.LlmResponseChunk
@@ -137,7 +138,13 @@ class AskPipeline(
 
             val searchStart = System.currentTimeMillis()
             chunks = try {
-                retriever.search(query = keywords, topK = topK)
+                // Estágio 1 híbrido: classifica a FALA BRUTA (melhor sinal que keywords) e
+                // aplica boost suave/gated na busca; BM25 mantém as keywords do Turno 1.
+                if (retriever is HybridRetriever) {
+                    retriever.searchWithRaw(bm25Query = keywords, rawQuestion = userQuestion, topK = topK)
+                } else {
+                    retriever.search(query = keywords, topK = topK)
+                }
             } catch (e: Throwable) {
                 Log.e(TAG, "Erro na busca BM25", e)
                 emptyList()
