@@ -1,0 +1,33 @@
+{
+  "four_cells": {
+    "old_x_1.2b": {
+      "n": 151,
+      "fac": 1.437,
+      "fid": 1.377,
+      "pt": 3.709,
+      "cit": 1.232,
+      "global": 1.719,
+      "gate_pct": 3.3,
+      "recall_top2_pct": 29.1,
+      "n_retrieval_ok": 44,
+      "conv_chunkcerto_aprovada_pct": 11.4,
+      "config_used": "lfm1.2b"
+    },
+    "old_x_2.6b": {
+      "n": 151,
+      "fac": 1.881,
+      "fid": 1.715,
+      "pt": 4.093,
+      "cit": 1.642,
+      "global": 2.115,
+      "gate_pct": 7.9,
+      "recall_top2_pct": 29.1,
+      "n_retrieval_ok": 44,
+      "conv_chunkcerto_aprovada_pct": 27.3,
+      "config_used": "lfm2.6b_noth"
+    },
+    "v3_x_1.2b": null,
+    "v3_x_2.6b": null
+  },
+  "note": "gate-pass = fac>=3 & fid>=3 & cit>=3 & global>=3.5; conv = % das perguntas com chunk-ouro no top-2 que viraram resposta aprovada."
+}

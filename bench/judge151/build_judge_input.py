@@ -21,6 +21,10 @@ CONFIG_DESC = {
     "lfm1.2b": "LFM2.5-1.2B-Instruct QAD-Q4_0 (embarcado, baseline)",
     "lfm2.6b": "LFM2.5-2.6B QAD-Q4_0 (reasoning ON)",
     "lfm2.6b_noth": "LFM2.5-2.6B QAD-Q4_0 (reasoning OFF / --reasoning-budget 0)",
+    # Configs da PARTE 1 (Retrieval v3): fusão RRF 3-sinais + prompt v1_rigido de produção.
+    "v3_lfm1.2b": "v3 (RRF 3-sinais) x LFM2.5-1.2B QAD-Q4_0 (embarcado) x v1_rigido",
+    "v3_lfm2.6b_noth": "v3 (RRF 3-sinais) x LFM2.5-2.6B-Q4_0 thinking-OFF x v1_rigido",
+    "old_lfm1.2b_v1": "retrieval antigo x LFM2.5-1.2B QAD-Q4_0 x v1_rigido",
 }
 
 
