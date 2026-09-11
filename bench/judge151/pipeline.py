@@ -37,6 +37,10 @@ logger = logging.getLogger("judge151.pipeline")
 _HERE = Path(__file__).resolve().parent
 _ROOT = _HERE.parent.parent
 
+# Ponteiros de função (main vs v3); reatribuídos em run() conforme --retriever.
+_format_context = format_context
+_retrieval_hit = retrieval_hit
+
 # System prompt de síntese IDÊNTICO ao AskPipeline.SYNTHESIS_SYSTEM_PROMPT (produção).
 SYNTHESIS_SYSTEM_PROMPT = (
     "Você é o assistente técnico de campo da CEMIG, especialista em Normas Regulamentadoras "
@@ -112,8 +116,19 @@ def run(args: argparse.Namespace) -> None:
         system_prompt = VARIANTS[args.prompt_key]
         logger.info("System prompt de síntese: variante de concisão '%s'", args.prompt_key)
 
-    retriever = HybridRetriever(args.db, args.model_pkl)
-    logger.info("Classificador: %s | índice: %s", retriever.clf_name, Path(args.db).name)
+    # Seletor de retriever: main (BM25-gated antigo) vs v3 (fusão RRF 3-sinais).
+    use_v3 = getattr(args, "retriever", "main") == "v3"
+    global _format_context, _retrieval_hit  # aponta p/ o módulo correto
+    if use_v3:
+        from retrieval_v3 import RetrieverV3, format_context as _fc_v3, retrieval_hit as _rh_v3
+        retriever = RetrieverV3(args.db if args.db_is_v3 else None, args.model_pkl)
+        _format_context, _retrieval_hit = _fc_v3, _rh_v3
+        logger.info("Retriever v3 (RRF 3-sinais) | classificador: %s", retriever.clf_name)
+    else:
+        retriever = HybridRetriever(args.db, args.model_pkl)
+        _format_context, _retrieval_hit = format_context, retrieval_hit
+        logger.info("Retriever main (BM25-gated) | classificador: %s | índice: %s",
+                    retriever.clf_name, Path(args.db).name)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -151,15 +166,18 @@ def run(args: argparse.Namespace) -> None:
         raw_q = qa_item["question"]
         gold = gold_pair(qa_item)
 
-        # Estágio 1+2: híbrido gated + BM25 top-2 (fala bruta).
+        # Estágio 1+2: híbrido gated + BM25 top-2 (fala bruta) OU fusão RRF 3-sinais (v3).
         t_ret = time.perf_counter()
-        sr = retriever.search(raw_q, top_k=args.top_k)
+        if use_v3:
+            sr = retriever.search(raw_q, top_k=args.top_k, item_id=qid)
+        else:
+            sr = retriever.search(raw_q, top_k=args.top_k)
         ret_ms = (time.perf_counter() - t_ret) * 1000
         chunks = sr["chunks"]
-        hit = retrieval_hit(chunks, gold)
+        hit = _retrieval_hit(chunks, gold)
 
         # Turno 2: síntese com system prompt de produção.
-        context = format_context(chunks)
+        context = _format_context(chunks)
         user_content = f"Contexto normativo consultado:\n{context}\n\nPergunta do eletricista:\n{raw_q}"
 
         last_err = None
@@ -225,6 +243,10 @@ def main() -> None:
     ap.add_argument("--db", default=str(_ROOT / "corpus" / "index_hf_36nr.db"))
     ap.add_argument("--model-pkl", default=str(_ROOT / "classifier" / "models" / "classic_winner.pkl"))
     ap.add_argument("--out", required=True)
+    ap.add_argument("--retriever", default="main", choices=["main", "v3"],
+                    help="main = BM25-gated (índice antigo) | v3 = fusão RRF 3-sinais")
+    ap.add_argument("--db-is-v3", action="store_true",
+                    help="usa o --db informado como índice expandido do v3 (default: auto)")
     ap.add_argument("--top-k", type=int, default=2)
     ap.add_argument("--prompt-key", default="base", help="base | v1_rigido | v2_exemplo | v3_radio")
     ap.add_argument("--max-tokens", type=int, default=1024)
