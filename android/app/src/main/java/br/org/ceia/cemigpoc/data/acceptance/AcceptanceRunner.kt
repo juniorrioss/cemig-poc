@@ -106,13 +106,17 @@ object AcceptanceRunner {
         // (BM25-gated-expandido + 2 densos EmbeddingGemma). Reusa o retriever do ViewModel
         // quando fornecido; senão monta um novo com encoder+índices densos.
         val retriever = existingRetriever ?: run {
+            // Encoder RESIDENTE (mesmo default do ViewModel p/ aparelhos >=8 GB): encode
+            // 20-40 ms/pergunta. Para <8 GB usar lazyEncoder=true (ver README_V3_INTEGRATION).
+            val embedPath = fileManager.getEmbedModelFile().absolutePath
             val emb = LlamaEmbedder().also {
-                val ok = it.load(fileManager.getEmbedModelFile().absolutePath)
-                if (!ok) Log.w(TAG, "Encoder denso não carregou; BM25-gated será usado")
+                if (!it.load(embedPath)) Log.w(TAG, "Encoder denso não carregou; BM25-gated será usado")
             }
-            val dense = DenseRetriever(context, emb).also {
-                if (emb.isLoaded) it.load()
-            }
+            val dense = DenseRetriever(
+                context = context,
+                embedder = emb,
+                embedModelPath = embedPath
+            ).also { it.load() }
             HybridRetriever(
                 delegate = Fts5Retriever(context, dbFile),
                 classifier = NrClassifier.load(context),

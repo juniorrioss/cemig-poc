@@ -68,6 +68,11 @@ class HybridRetriever(
     val hasDense: Boolean
         get() = denseRetriever != null
 
+    /** Custo do encode denso on-device do último searchV3 (ms), para telemetria. */
+    @Volatile
+    var lastDenseEncodeMs: Long = 0L
+        private set
+
     /**
      * Busca compatível com a interface Retriever. Sem a fala bruta separada, o estágio 1
      * classifica a própria query recebida (keywords). Preferir searchWithRaw() quando houver
@@ -192,6 +197,7 @@ class HybridRetriever(
 
         // sT, sE: rankings densos (1 encode serve os dois índices).
         val denseRes = dense.search(rawQuestion, fusionPool)
+        lastDenseEncodeMs = denseRes?.encodeMs ?: 0L
         if (denseRes == null) {
             // encode falhou -> fallback BM25 top-k.
             lastDecision = decision.copy(retrieval = "rrf3-fallback-bm25")

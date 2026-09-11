@@ -211,8 +211,9 @@ class AskPipeline(
             boostNrs = decision?.boostNrs?.joinToString(",").orEmpty(),
             chunksReused = canReuse,
             retrievalMode = decision?.retrieval ?: (if (canReuse) "reuso" else "bm25"),
-            // O encode denso está embutido no searchMs; expomos separadamente quando possível.
-            denseEncodeMs = if (decision?.retrieval == "rrf3") searchMs else 0L
+            // Encode denso on-device (EmbeddingGemma) medido dentro do searchV3.
+            denseEncodeMs = if (retriever is HybridRetriever && decision?.retrieval == "rrf3")
+                retriever.lastDenseEncodeMs else 0L
         )
 
         emit(TurnEvent.Done(finalAnswer = finalAnswer, chunksUsed = chunks, metrics = metrics))

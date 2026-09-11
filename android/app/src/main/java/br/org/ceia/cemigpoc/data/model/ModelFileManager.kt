@@ -35,6 +35,13 @@ class ModelFileManager(private val context: Context) {
         const val EMBED_MODEL_NAME = "embeddinggemma-300M-qat-Q4_0.gguf"
         const val DENSE_TEXT_BIN = "dense_text.bin"
         const val DENSE_EXPONLY_BIN = "dense_exponly.bin"
+
+        // Versão dos assets copiados: ao subir (ex.: index.db 4->5 campos do Retrieval v3),
+        // invalida a cópia interna obsoleta em filesDir (que NÃO é sobrescrita por install).
+        // Sem isto, um upgrade do app continuaria usando o índice antigo já copiado.
+        private const val ASSET_VERSION = 3  // v3: índice FTS5 expandido + índices densos
+        // Arquivos versionados: recopiar do APK se a versão do asset mudou.
+        private val VERSIONED_ASSETS = setOf(FTS5_DB_NAME, DENSE_TEXT_BIN, DENSE_EXPONLY_BIN)
     }
 
     suspend fun getLlmModelFile(onProgress: ((Float) -> Unit)? = null): File = withContext(Dispatchers.IO) {
@@ -53,7 +60,28 @@ class ModelFileManager(private val context: Context) {
         resolveOrCopy(EMBED_MODEL_NAME, onProgress)
     }
 
+    /**
+     * Invalida a cópia interna de assets versionados quando a ASSET_VERSION muda (ex.: novo
+     * índice v3). O marcador fica em filesDir/asset_version.txt. Idempotente.
+     */
+    private fun invalidateStaleAssetsIfNeeded() {
+        val marker = File(context.filesDir, "asset_version.txt")
+        val current = if (marker.exists()) marker.readText().trim().toIntOrNull() ?: -1 else -1
+        if (current == ASSET_VERSION) return
+        for (name in VERSIONED_ASSETS) {
+            val f = File(context.filesDir, name)
+            if (f.exists()) {
+                Log.i(TAG, "Asset versionado obsoleto (v$current -> v$ASSET_VERSION): removendo ${f.name}")
+                f.delete()
+            }
+        }
+        marker.writeText(ASSET_VERSION.toString())
+    }
+
     private fun resolveOrCopy(fileName: String, onProgress: ((Float) -> Unit)?): File {
+        // 0. Invalida cópias internas obsoletas de assets versionados (upgrade de índice).
+        if (fileName in VERSIONED_ASSETS) invalidateStaleAssetsIfNeeded()
+
         // 1. Verifica override externo (sdcard)
         val externalFile = context.getExternalFilesDir(null)?.resolve(fileName)
         if (externalFile != null && externalFile.exists() && externalFile.length() > 0) {

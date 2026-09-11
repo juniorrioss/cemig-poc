@@ -30,8 +30,18 @@ import java.nio.ByteOrder
  */
 class DenseRetriever(
     private val context: Context,
-    private val embedder: LlamaEmbedder
+    private val embedder: LlamaEmbedder,
+    // On-demand: carrega o encoder só na hora de codificar a query e o libera em seguida
+    // (encode 1x por pergunta), reduzindo o pico de RAM ~300 MB à custa do cold-load
+    // (~1.2 s). Acionado quando o pico estoura ~2.3 GB (ver brief; S21 6 GB coexistindo
+    // com Whisper). O caminho do modelo é injetado por embedModelPath quando lazy=true.
+    private val lazyEncoder: Boolean = false,
+    embedModelPath: String? = null
 ) {
+
+    // Caminho do encoder para carga sob demanda (pode ser definido após a resolução do arquivo).
+    @Volatile
+    var embedModelPath: String? = embedModelPath
 
     companion object {
         private const val TAG = "DenseRetriever"
@@ -97,20 +107,41 @@ class DenseRetriever(
             Log.w(TAG, "search chamado sem índices carregados")
             return@withContext null
         }
+        val tEnc = System.currentTimeMillis()
+        // On-demand: carrega o encoder agora e libera ao final (encode 1x por pergunta).
+        var loadedHere = false
+        if (lazyEncoder && !embedder.isLoaded) {
+            val path = embedModelPath
+            if (path == null) {
+                Log.w(TAG, "lazyEncoder ativo sem embedModelPath; não é possível carregar")
+                return@withContext null
+            }
+            if (!embedder.load(path)) {
+                Log.w(TAG, "lazyEncoder: falha ao carregar encoder sob demanda")
+                return@withContext null
+            }
+            loadedHere = true
+        }
         val qv = embedder.embedQuery(rawQuestion)
+        if (loadedHere) embedder.close()  // libera ~300 MB imediatamente
+        val encodeMs = System.currentTimeMillis() - tEnc
         if (qv == null || qv.size != ti.dim) {
             Log.w(TAG, "encode da query falhou (dim=${qv?.size} esperado=${ti.dim})")
             return@withContext null
         }
-        DenseResult(
-            textRanking = ti.search(qv, k),
-            expRanking = ei.search(qv, k)
-        )
+        val tSearch = System.currentTimeMillis()
+        val tr = ti.search(qv, k)
+        val er = ei.search(qv, k)
+        val searchMs = System.currentTimeMillis() - tSearch
+        Log.i(TAG, "denso: encode=${encodeMs}ms ann=${searchMs}ms")
+        DenseResult(textRanking = tr, expRanking = er, encodeMs = encodeMs, searchMs = searchMs)
     }
 
     data class DenseResult(
         val textRanking: List<Pair<Int, Float>>,
-        val expRanking: List<Pair<Int, Float>>
+        val expRanking: List<Pair<Int, Float>>,
+        val encodeMs: Long = 0L,
+        val searchMs: Long = 0L
     )
 
     private fun loadBin(file: File): DenseIndex {

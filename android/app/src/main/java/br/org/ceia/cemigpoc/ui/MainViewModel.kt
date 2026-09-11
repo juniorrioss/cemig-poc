@@ -57,8 +57,24 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // Estágio 1 do pipeline híbrido: classificador leve de NR (TF-IDF+LogReg, Kotlin puro).
     private val nrClassifier = NrClassifier.load(application.applicationContext)
     // Retrieval v3: encoder de embeddings on-device + busca densa (fusão RRF 3-sinais).
+    // RAM medida no S24+ (dumpsys): encoder RESIDENTE -> pico 2.44 GB PSS / 2.58 GB RSS;
+    // encoder ON-DEMAND (carrega+libera por pergunta) -> pico 1.92 GB PSS / 2.02 GB RSS.
+    //
+    // DECISÃO POR NÚMERO (ver README_V3_INTEGRATION.md):
+    // - Residente: E2E 10/10 <=10s, MÉDIA 7,6 s (encode 20-40 ms). RAM 2.44 GB cabe folgada
+    //   no S24+ (12 GB) e em qualquer aparelho >=8 GB -> DEFAULT.
+    // - On-demand: RAM -520 MB (cabe no S21 6 GB coexistindo com Whisper ~197 MB + LFM 1.4
+    //   GB), MAS o cold-load de ~2,1 s/pergunta sobe a média p/ ~9,1 s e estoura 10 s em
+    //   2/10. Fallback SÓ para aparelhos <8 GB, aceitando a latência maior.
     private val embedder = LlamaEmbedder()
-    private val denseRetriever = DenseRetriever(application.applicationContext, embedder)
+    private val useLazyEncoder = false
+    private var embedModelPathCache: String? = null
+    private val denseRetriever = DenseRetriever(
+        context = application.applicationContext,
+        embedder = embedder,
+        lazyEncoder = useLazyEncoder,
+        embedModelPath = null  // preenchido após resolver o arquivo (init)
+    )
     private val retriever = HybridRetriever(
         delegate = Fts5Retriever(application.applicationContext),
         classifier = nrClassifier,
@@ -115,16 +131,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     Log.e(TAG, "Falha ao inicializar LFM2.5")
                 }
 
-                // Retrieval v3: carrega o encoder de embeddings e os índices densos. Se algo
+                // Retrieval v3: prepara o encoder de embeddings + índices densos. Se algo
                 // falhar, o HybridRetriever degrada para BM25-gated (fallback honesto).
-                _uiState.update { it.copy(modelStatusMessage = "Carregando encoder denso (EmbeddingGemma)...") }
+                _uiState.update { it.copy(modelStatusMessage = "Preparando encoder denso (EmbeddingGemma)...") }
                 val embedFile = fileManager.getEmbedModelFile { progress ->
                     _uiState.update {
                         it.copy(modelStatusMessage = "Copiando EmbeddingGemma: ${(progress * 100).toInt()}%")
                     }
                 }
-                val embedOk = embedder.load(embedFile.absolutePath)
-                val denseOk = if (embedOk) denseRetriever.load() else false
+                embedModelPathCache = embedFile.absolutePath
+                denseRetriever.embedModelPath = embedFile.absolutePath
+                // Índices densos (.bin ~13.5 MB) sempre carregados; o ENCODER é carregado
+                // sob demanda quando useLazyEncoder=true (economiza ~300 MB de pico).
+                val denseOk = denseRetriever.load()
+                if (!useLazyEncoder) {
+                    val embedOk = embedder.load(embedFile.absolutePath)
+                    if (!embedOk) Log.w(TAG, "Encoder denso não carregou; BM25-gated será usado")
+                }
                 if (!denseOk) {
                     Log.w(TAG, "Busca densa indisponível; pipeline usará BM25-gated (fallback)")
                 }
