@@ -1,0 +1,161 @@
+{
+  "axis_table": [
+    {
+      "cfg": "lfm1.2b",
+      "n": 151,
+      "fac": 1.4370860927152318,
+      "fid": 1.3774834437086092,
+      "pt": 3.7086092715231787,
+      "cit": 1.2317880794701987,
+      "global": 1.7188741721854304,
+      "gate": 3.3112582781456954
+    },
+    {
+      "cfg": "lfm2.6b",
+      "n": 151,
+      "fac": 1.913907284768212,
+      "fid": 2.019867549668874,
+      "pt": 3.8211920529801326,
+      "cit": 1.7682119205298013,
+      "global": 2.2026490066225164,
+      "gate": 14.56953642384106
+    },
+    {
+      "cfg": "lfm2.6b_noth",
+      "n": 151,
+      "fac": 1.880794701986755,
+      "fid": 1.7152317880794703,
+      "pt": 4.0927152317880795,
+      "cit": 1.6423841059602649,
+      "global": 2.11523178807947,
+      "gate": 7.947019867549669
+    }
+  ],
+  "v2_baseline_1p2b": {
+    "recall": 20.8,
+    "fac": 1.12,
+    "fid": 1.11,
+    "pt": 3.23,
+    "cit": 1.05,
+    "global": 1.42,
+    "gate": 1.0,
+    "n": 101
+  },
+  "bottleneck": {
+    "lfm1.2b": {
+      "retrieval_ok": {
+        "n": 44,
+        "pass_pct": 11.363636363636363,
+        "fac4_pct": 13.636363636363637,
+        "fac3_pct": 25.0
+      },
+      "retrieval_bad": {
+        "n": 107,
+        "pass_pct": 0.0,
+        "fac4_pct": 0.0,
+        "fac3_pct": 5.607476635514018
+      },
+      "bad_refusal_pct": 45.794392523364486,
+      "bad_refusals": 49,
+      "bad_halluc_fac1_pct": 35.51401869158879,
+      "bad_halluc_fac1": 38,
+      "bad_n": 107
+    },
+    "lfm2.6b": {
+      "retrieval_ok": {
+        "n": 44,
+        "pass_pct": 38.63636363636363,
+        "fac4_pct": 36.36363636363637,
+        "fac3_pct": 38.63636363636363
+      },
+      "retrieval_bad": {
+        "n": 107,
+        "pass_pct": 4.672897196261682,
+        "fac4_pct": 9.345794392523365,
+        "fac3_pct": 16.822429906542055
+      },
+      "bad_refusal_pct": 39.25233644859813,
+      "bad_refusals": 42,
+      "bad_halluc_fac1_pct": 26.16822429906542,
+      "bad_halluc_fac1": 28,
+      "bad_n": 107
+    },
+    "lfm2.6b_noth": {
+      "retrieval_ok": {
+        "n": 44,
+        "pass_pct": 27.272727272727273,
+        "fac4_pct": 27.272727272727273,
+        "fac3_pct": 36.36363636363637
+      },
+      "retrieval_bad": {
+        "n": 107,
+        "pass_pct": 0.0,
+        "fac4_pct": 2.803738317757009,
+        "fac3_pct": 12.149532710280374
+      },
+      "bad_refusal_pct": 26.16822429906542,
+      "bad_refusals": 28,
+      "bad_halluc_fac1_pct": 32.71028037383178,
+      "bad_halluc_fac1": 35,
+      "bad_n": 107
+    }
+  },
+  "token_stats": {
+    "lfm1.2b": {
+      "avg_completion": 143.05960264900662,
+      "avg_reasoning": 0.0,
+      "avg_total_gen": 143.05960264900662,
+      "max_completion": 269
+    },
+    "lfm2.6b": {
+      "avg_completion": 1429.5761589403974,
+      "avg_reasoning": 615.7880794701987,
+      "avg_total_gen": 1429.5761589403974,
+      "max_completion": 2048
+    },
+    "lfm2.6b_noth": {
+      "avg_completion": 497.6225165562914,
+      "avg_reasoning": 0.0,
+      "avg_total_gen": 497.6225165562914,
+      "max_completion": 1024
+    }
+  },
+  "mobile_projection": {
+    "lfm1.2b": {
+      "prefill_toks": 219.0,
+      "decode_toks": 39.9,
+      "gen_tok": 143,
+      "ttft_s24_s": 3.88,
+      "decode_s24_s": 3.59,
+      "total_s24_s": 7.47,
+      "ttft_s21_s": 8.73,
+      "total_s21_s": 16.8,
+      "ram_mib_est": 1421,
+      "decode_above_reading": true
+    },
+    "lfm2.6b": {
+      "prefill_toks": 101.1,
+      "decode_toks": 18.4,
+      "gen_tok": 1430,
+      "ttft_s24_s": 8.41,
+      "decode_s24_s": 77.63,
+      "total_s24_s": 86.04,
+      "ttft_s21_s": 18.92,
+      "total_s21_s": 193.59,
+      "ram_mib_est": 3078,
+      "decode_above_reading": true
+    },
+    "lfm2.6b_noth": {
+      "prefill_toks": 101.1,
+      "decode_toks": 18.4,
+      "gen_tok": 498,
+      "ttft_s24_s": 8.41,
+      "decode_s24_s": 27.02,
+      "total_s24_s": 35.43,
+      "ttft_s21_s": 18.92,
+      "total_s21_s": 79.72,
+      "ram_mib_est": 3078,
+      "decode_above_reading": true
+    }
+  }
+}

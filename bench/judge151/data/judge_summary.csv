@@ -1,0 +1,4 @@
+model,description,mode,total_items,retrieval_recall_pct,acerto_factual,fidelidade_contexto,qualidade_pt,citacao_fonte,score_global,pass_gate_pct,latency_avg_s,latency_r1_s,latency_r2_s,speed_tok_s,tool_call_rate_pct,query_reformulation_rate_pct
+lfm1.2b,"LFM2.5-1.2B-Instruct QAD-Q4_0 (embarcado, baseline)",classic_rag,151,29.1,1.44,1.38,3.71,1.23,1.72,3.3,0,N/A,N/A,0,N/A,N/A
+lfm2.6b,LFM2.5-2.6B QAD-Q4_0 (reasoning ON),classic_rag,151,29.1,1.91,2.02,3.82,1.77,2.2,14.6,0,N/A,N/A,0,N/A,N/A
+lfm2.6b_noth,LFM2.5-2.6B QAD-Q4_0 (reasoning OFF / --reasoning-budget 0),classic_rag,151,29.1,1.88,1.72,4.09,1.64,2.12,7.9,0,N/A,N/A,0,N/A,N/A
