@@ -19,6 +19,13 @@ class ModelFileManager(private val context: Context) {
 
     companion object {
         private const val TAG = "ModelFileManager"
+        // Consolidação POC: 1.2B QAD-Q4_0 (Instruct, NÃO-reasoning) mantido como sintetizador.
+        // O experimento judge151 aprovou o 2.6B thinking-OFF por NÚMERO na GPU (gate 9.9%
+        // ≈ 3x do 1.2B, 178 tok), MAS o engine nativo do app (commit 434ddbb, C-API
+        // llama_chat_apply_template com add_assistant=true) FORÇA thinking ON no 2.6B: no
+        // aparelho gerou 700 tok de <think> e 44-54s de latência (inviável p/ voz). Não há
+        // --reasoning-budget no caminho JNI e /no_think não suprime. Fallback do brief -> 1.2B.
+        // Ver android/README_CONSOLIDACAO.md (seção "2.6B: aprovado na GPU, barrado no engine").
         const val LLM_MODEL_NAME = "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"
         const val ASR_MODEL_NAME = "ggml-base-q5_1.bin"
         const val FTS5_DB_NAME = "index.db"

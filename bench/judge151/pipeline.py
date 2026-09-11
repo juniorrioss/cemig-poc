@@ -71,12 +71,13 @@ def gold_pair(qa: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def synthesize(url: str, model: str, user_content: str, max_tokens: int, timeout: int) -> Dict[str, Any]:
+def synthesize(url: str, model: str, user_content: str, max_tokens: int, timeout: int,
+               system_prompt: str = SYNTHESIS_SYSTEM_PROMPT) -> Dict[str, Any]:
     """Chama o llama-server (Turno 2). Retorna resposta, tokens e latência de parede (GPU)."""
     payload = {
         "model": model,
         "messages": [
-            {"role": "system", "content": SYNTHESIS_SYSTEM_PROMPT},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_content},
         ],
         "max_tokens": max_tokens,
@@ -104,6 +105,13 @@ def run(args: argparse.Namespace) -> None:
     qa = load_qa(Path(args.qa))
     logger.info("Carregadas %d perguntas de %s", len(qa), args.qa)
 
+    # Concisão: permite trocar o system prompt de síntese (experimento do 2.6B thinking-OFF).
+    system_prompt = SYNTHESIS_SYSTEM_PROMPT
+    if getattr(args, "prompt_key", None) and args.prompt_key != "base":
+        from concision_prompts import VARIANTS  # import local p/ não quebrar quem não usa
+        system_prompt = VARIANTS[args.prompt_key]
+        logger.info("System prompt de síntese: variante de concisão '%s'", args.prompt_key)
+
     retriever = HybridRetriever(args.db, args.model_pkl)
     logger.info("Classificador: %s | índice: %s", retriever.clf_name, Path(args.db).name)
 
@@ -128,7 +136,8 @@ def run(args: argparse.Namespace) -> None:
         "max_tokens": args.max_tokens,
         "db": Path(args.db).name,
         "classifier": retriever.clf_name,
-        "synthesis_system_prompt": SYNTHESIS_SYSTEM_PROMPT,
+        "prompt_key": getattr(args, "prompt_key", "base"),
+        "synthesis_system_prompt": system_prompt,
         "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
     }
 
@@ -157,7 +166,7 @@ def run(args: argparse.Namespace) -> None:
         syn = None
         for attempt in range(3):
             try:
-                syn = synthesize(args.url, args.model_file, user_content, args.max_tokens, args.timeout)
+                syn = synthesize(args.url, args.model_file, user_content, args.max_tokens, args.timeout, system_prompt)
                 break
             except Exception as e:  # noqa: BLE001
                 last_err = e
@@ -217,6 +226,7 @@ def main() -> None:
     ap.add_argument("--model-pkl", default=str(_ROOT / "classifier" / "models" / "classic_winner.pkl"))
     ap.add_argument("--out", required=True)
     ap.add_argument("--top-k", type=int, default=2)
+    ap.add_argument("--prompt-key", default="base", help="base | v1_rigido | v2_exemplo | v3_radio")
     ap.add_argument("--max-tokens", type=int, default=1024)
     ap.add_argument("--timeout", type=int, default=180)
     ap.add_argument("--overwrite", action="store_true")
