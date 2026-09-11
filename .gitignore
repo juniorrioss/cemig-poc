@@ -1,5 +1,6 @@
 # Ambientes virtuais e dependências Python
 .venv/
+.venv-train/
 venv/
 env/
 __pycache__/
@@ -15,10 +16,16 @@ asr/data/clean/
 asr/data/noisy/
 finetune/checkpoints/
 finetune/merged_model/
-finetune/adapter/*.safetensors
-finetune/adapter/*.gguf
+finetune/merged_r8/
+finetune/merged_r16/
 *.safetensors
 *.gguf
+
+# M3: preserva os adapters LoRA pequenos (procedência/auditoria), exceto os merged (2GB)
+!finetune/adapter_r8/adapter_model.safetensors
+!finetune/adapter_r8/rewriter-lora-f16.gguf
+!finetune/adapter_r16/adapter_model.safetensors
+!finetune/adapter_r16/rewriter-lora-f16.gguf
 
 
 

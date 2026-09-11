@@ -215,9 +215,130 @@ def chunk_items(
     return refined_chunks
 
 
+def chunk_items_fine(
+    items: List[Dict[str, Any] | ExtractedItem],
+    merge_floor: int = 45,
+    soft_max: int = 160,
+) -> List[Dict[str, Any]]:
+    """Gera chunks em granularidade de ITEM numerado (ex.: 10.2.8.2) para BM25 discriminativo.
+
+    Ao contrário de chunk_items (que remescla itens em blocos grossos de ~380 tokens por
+    seção maior, soterrando o item exato), esta política preserva cada item como unidade:
+      - Um cabeçalho puro de seção (ex.: '10.2 - MEDIDAS DE CONTROLE', sem corpo) é fundido
+        para frente no primeiro item-filho, servindo de contexto sem virar chunk vazio.
+      - Itens minúsculos consecutivos (< merge_floor tokens) sob o MESMO pai são fundidos
+        entre si até soft_max, evitando chunks de 1-2 tokens que degradam o IDF.
+      - Itens com corpo real viram chunks próprios, mantendo a numeração fina recuperável.
+    """
+    normalized_items: List[Dict[str, Any]] = []
+    for it in items:
+        if isinstance(it, ExtractedItem):
+            normalized_items.append(asdict(it))
+        else:
+            normalized_items.append(it)
+
+    raw_chunks: List[Dict[str, Any]] = []
+    # Buffer de fusão de itens pequenos irmãos (mesmo pai)
+    buf: List[Dict[str, Any]] = []
+    buf_tok = 0
+    pending_header: Optional[Dict[str, Any]] = None  # cabeçalho de seção sem corpo
+
+    def is_header_only(item: Dict[str, Any]) -> bool:
+        """Detecta linha de cabeçalho de seção sem corpo normativo real."""
+        body = re.sub(r'^\d+(\.\d+)*\.?\s*[-–.]?\s*', '', item["text"].strip())
+        toks = count_tokens(body)
+        # Cabeçalho: título curto, tipicamente maiúsculo, sem frase normativa
+        return toks <= 8 and not body.rstrip().endswith(".")
+
+    def emit(item: Dict[str, Any], header: Optional[Dict[str, Any]]) -> None:
+        doc = item["doc"]
+        sec = item["section"]
+        title = format_title(item["title"])
+        body = item["text"].strip()
+        # Prefixa o título do cabeçalho de seção pai como contexto lexical
+        if header is not None:
+            head_body = re.sub(r'^\d+(\.\d+)*\.?\s*[-–.]?\s*', '', header["text"].strip())
+            if head_body:
+                body = f"{head_body}. {body}"
+        full_text = build_chunk_text(doc, sec, title, body)
+        raw_chunks.append({
+            "doc": doc,
+            "section": sec,
+            "title": title,
+            "page": item["page"],
+            "text": full_text,
+            "token_count": count_tokens(full_text),
+        })
+
+    def flush_buffer() -> None:
+        nonlocal buf, buf_tok
+        if not buf:
+            return
+        first = buf[0]
+        doc = first["doc"]
+        sec = first["section"]
+        title = format_title(first["title"])
+        body = " ".join(it["text"].strip() for it in buf if it["text"].strip())
+        full_text = build_chunk_text(doc, sec, title, body)
+        raw_chunks.append({
+            "doc": doc,
+            "section": sec,
+            "title": title,
+            "page": first["page"],
+            "text": full_text,
+            "token_count": count_tokens(full_text),
+        })
+        buf = []
+        buf_tok = 0
+
+    def same_parent(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
+        return a.get("parent_section") == b.get("parent_section") and a["doc"] == b["doc"]
+
+    for item in normalized_items:
+        it_tok = count_tokens(item["text"])
+
+        # Cabeçalho puro de seção: guarda como contexto do próximo item real
+        if is_header_only(item):
+            flush_buffer()
+            pending_header = item
+            continue
+
+        # Item grande (>= soft_max): emite sozinho (com header pendente se houver)
+        if it_tok >= soft_max:
+            flush_buffer()
+            emit(item, pending_header)
+            pending_header = None
+            continue
+
+        # Item pequeno: tenta fundir com irmãos pequenos do mesmo pai
+        if pending_header is not None:
+            # Anexa o header ao buffer que inicia
+            flush_buffer()
+            head_ctx = re.sub(r'^\d+(\.\d+)*\.?\s*[-–.]?\s*', '', pending_header["text"].strip())
+            merged = dict(item)
+            if head_ctx:
+                merged["text"] = f"{head_ctx}. {item['text'].strip()}"
+            buf = [merged]
+            buf_tok = count_tokens(merged["text"])
+            pending_header = None
+            continue
+
+        if buf and same_parent(buf[-1], item) and (buf_tok + it_tok) <= soft_max:
+            buf.append(item)
+            buf_tok += it_tok
+        else:
+            flush_buffer()
+            buf = [item]
+            buf_tok = it_tok
+
+    flush_buffer()
+    return raw_chunks
+
+
 def create_chunks_from_extracted_dir(
     extracted_dir: str | Path,
     target_nrs: Optional[List[str]] = None,
+    fine: bool = False,
 ) -> List[Chunk]:
     """Lê os arquivos JSON extraídos e produz a lista indexada de objetos Chunk."""
     extracted_dir = Path(extracted_dir)
@@ -243,7 +364,7 @@ def create_chunks_from_extracted_dir(
         if not items:
             continue
 
-        raw_doc_chunks = chunk_items(items)
+        raw_doc_chunks = chunk_items_fine(items) if fine else chunk_items(items)
         for rdc in raw_doc_chunks:
             chunk_obj = Chunk(
                 id=global_id,
@@ -273,13 +394,14 @@ def main() -> None:
     parser.add_argument("--extracted-dir", type=str, default="corpus/data/extracted", help="Diretório com JSONs de extração.")
     parser.add_argument("--output-file", type=str, default="corpus/data/chunks.json", help="Arquivo JSON de saída com os chunks.")
     parser.add_argument("--nrs", type=str, default=None, help="Lista de NRs separadas por vírgula (ex.: nr-10,nr-06,nr-35).")
+    parser.add_argument("--fine", action="store_true", help="Chunking em granularidade de item numerado (10.2.8.2) para BM25 discriminativo.")
     args = parser.parse_args()
 
     target_nrs = [nr.strip() for nr in args.nrs.split(",")] if args.nrs else None
     out_path = Path(args.output_file)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    chunks = create_chunks_from_extracted_dir(args.extracted_dir, target_nrs=target_nrs)
+    chunks = create_chunks_from_extracted_dir(args.extracted_dir, target_nrs=target_nrs, fine=args.fine)
     chunks_dict_list = [asdict(c) for c in chunks]
 
     with open(out_path, "w", encoding="utf-8") as f:

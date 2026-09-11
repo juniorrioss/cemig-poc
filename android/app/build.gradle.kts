@@ -104,6 +104,10 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 
+    // SQLite com FTS5 embutido (o SQLite do sistema Android NAO tem FTS5).
+    // Fork mantido do requery/sqlite-android (SQLite 3.50); pacote io.requery.android.database.sqlite.
+    implementation("mil.nga:sqlite-android:3500400")
+
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 

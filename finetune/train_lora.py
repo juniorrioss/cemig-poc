@@ -168,7 +168,7 @@ def prepare_tokenized_dataset(
 
         # Formatação completa e formatação do prompt (sem resposta do assistente)
         full_text = tokenizer.apply_chat_template(msgs, tokenize=False)
-        prompt_text = tokenizer.apply_chat_template(msgs[:-1], tokenize=False) + "<|im_start|>assistant\n"
+        prompt_text = tokenizer.apply_chat_template(msgs[:-1], tokenize=False, add_generation_prompt=True)
 
         full_toks = tokenizer(full_text, truncation=True, max_length=max_length, return_tensors="pt")
         prompt_toks = tokenizer(prompt_text, truncation=True, max_length=max_length, return_tensors="pt")
@@ -265,6 +265,8 @@ def main():
     parser.add_argument("--maint-ratio", type=float, default=0.10, help="Proporção de dados de manutenção de síntese (0.10)")
     parser.add_argument("--max-length", type=int, default=1024, help="Tamanho máximo de sequência")
     parser.add_argument("--seed", type=int, default=42, help="Seed randômica")
+    parser.add_argument("--suffix", type=str, default="", help="Sufixo dos arquivos de split (ex.: _clean -> train_clean.jsonl).")
+    parser.add_argument("--no-extra-maint", action="store_true", help="Não injeta manutenção extra (splits já contêm ancoragem).")
 
     args = parser.parse_args()
 
@@ -275,8 +277,8 @@ def main():
         torch.cuda.manual_seed_all(args.seed)
 
     data_dir = Path(args.data_dir)
-    train_path = data_dir / "train.jsonl"
-    val_path = data_dir / "val.jsonl"
+    train_path = data_dir / f"train{args.suffix}.jsonl"
+    val_path = data_dir / f"val{args.suffix}.jsonl"
 
     if not train_path.exists():
         raise FileNotFoundError(f"Arquivo de treino não encontrado: {train_path}. Execute validate_dataset.py primeiro.")
@@ -285,9 +287,13 @@ def main():
     val_items = load_chatml_jsonl(val_path)
     logger.info("Carregados %d itens de treino e %d de validação de %s", len(train_items), len(val_items), data_dir)
 
-    # Injeta ~10% de pares de manutenção de síntese (ancoragem)
-    maint_count = max(5, int(len(train_items) * args.maint_ratio))
-    maint_items = load_maintenance_pairs(Path(args.qa_path), Path(args.db_path), target_count=maint_count)
+    # Injeta ~10% de pares de manutenção de síntese (ancoragem), salvo se os splits já a contêm
+    if args.no_extra_maint:
+        maint_items = []
+        logger.info("Ancoragem extra desativada (--no-extra-maint); splits já contêm ancoragem.")
+    else:
+        maint_count = max(5, int(len(train_items) * args.maint_ratio))
+        maint_items = load_maintenance_pairs(Path(args.qa_path), Path(args.db_path), target_count=maint_count)
     full_train_items = train_items + maint_items
     random.shuffle(full_train_items)
 

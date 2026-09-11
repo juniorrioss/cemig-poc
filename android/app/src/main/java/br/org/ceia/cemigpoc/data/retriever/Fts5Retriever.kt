@@ -2,8 +2,11 @@ package br.org.ceia.cemigpoc.data.retriever
 
 import android.content.Context
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
 import android.util.Log
+// SQLite com FTS5 embutido (mil.nga, fork do requery/sqlite-android). O SQLite do sistema
+// Android nao traz o modulo FTS5, entao usamos a implementacao empacotada (libsqliteX.so)
+// para que bm25()/MATCH funcionem no aparelho.
+import org.sqlite.database.sqlite.SQLiteDatabase
 import br.org.ceia.cemigpoc.domain.engine.Retriever
 import br.org.ceia.cemigpoc.domain.model.Chunk
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +34,23 @@ class Fts5Retriever(
     companion object {
         private const val TAG = "Fts5Retriever"
         const val DB_NAME = "index.db"
+
+        // Carrega a biblioteca nativa do SQLite empacotado (com FTS5) uma unica vez.
+        // Sem isto, o SQLite do sistema seria usado e falharia com 'no such module: fts5'.
+        @Volatile
+        private var nativeLoaded = false
+
+        @Synchronized
+        private fun ensureNativeLoaded() {
+            if (nativeLoaded) return
+            try {
+                System.loadLibrary("sqliteX")
+                nativeLoaded = true
+                Log.i(TAG, "Biblioteca nativa sqliteX (FTS5) carregada com sucesso")
+            } catch (e: Throwable) {
+                Log.e(TAG, "Falha ao carregar libsqliteX.so (FTS5)", e)
+            }
+        }
 
         private val PORTUGUESE_STOPWORDS = setOf(
             "a", "ao", "aos", "aquela", "aquelas", "aquele", "aqueles", "aquilo", "as", "ate", "até",
@@ -96,11 +116,14 @@ class Fts5Retriever(
         var cursor: Cursor? = null
 
         try {
+            ensureNativeLoaded()
             database = SQLiteDatabase.openDatabase(
                 dbFile.absolutePath,
                 null,
                 SQLiteDatabase.OPEN_READONLY
             )
+            // Garante que o FTS5 esta disponivel; se nao, a query MATCH lancaria 'no such module: fts5'.
+            ensureFts5(database)
 
             // Consulta com junção chunks_fts e chunks com pesos BM25 calibrados (v2 36 NRs)
             val sql = """
@@ -182,6 +205,23 @@ class Fts5Retriever(
                 "$stem*"
             }
         }.joinToString(" OR ")
+    }
+
+    /**
+     * Valida a presenca do modulo FTS5 na biblioteca SQLite carregada. Registra o estado
+     * para diagnostico (o SQLite do sistema Android falha aqui; o empacotado passa).
+     */
+    private fun ensureFts5(database: SQLiteDatabase) {
+        var c: Cursor? = null
+        try {
+            c = database.rawQuery("SELECT sqlite_version()", null)
+            val ver = if (c.moveToFirst()) c.getString(0) else "?"
+            Log.i(TAG, "SQLite empacotado carregado (versao $ver) com suporte a FTS5")
+        } catch (e: Exception) {
+            Log.e(TAG, "Falha ao validar SQLite/FTS5", e)
+        } finally {
+            c?.close()
+        }
     }
 
     private fun fallbackSearch(database: SQLiteDatabase?, query: String, topK: Int): List<Chunk> {

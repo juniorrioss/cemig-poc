@@ -49,6 +49,7 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 - **Commands**: `make asr-data` generates audio sets; `make asr-bench` executes benchmark on connected Android device. Reference report at `asr/README.md`.
 
 ## Android Subproject (`android/`)
+- **CRÍTICO — FTS5 no Android**: O SQLite do sistema Android **não inclui o módulo FTS5**; `chunks_fts MATCH`/`bm25()` lançam `no such module: fts5` e o `Fts5Retriever` cai no `fallbackSearch` (LIKE ingênuo), retornando lixo e fazendo o app responder "Não sei". Correção (M3): dependência `mil.nga:sqlite-android:3500400` (fork do requery, SQLite 3.50, `libsqliteX.so`) + `import org.sqlite.database.sqlite.SQLiteDatabase` + `System.loadLibrary("sqliteX")` no `Fts5Retriever`. Nunca usar `android.database.sqlite` para queries FTS5. Detalhes: `android/README_M3.md`.
 - **Headless Toolchain**: Run `./android/setup-sdk.sh` to install OpenJDK 17 and Android SDK 34 (with build-tools, NDK, CMake) into `~/android-sdk`. Idempotent.
 - **Environment**: Set `JAVA_HOME="$HOME/android-sdk/jdk-17"` and `ANDROID_HOME="$HOME/android-sdk"` before building.
 - **Build & Test**: `./gradlew test` (runs JVM unit tests), `./gradlew assembleDebug` (debug APK), `./gradlew assembleRelease` (outputs signed 868 MB APK to `android/app/build/outputs/apk/release/app-release.apk` with all weights embedded).
@@ -59,6 +60,13 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   - Turn 2 (Synthesis): Raw history up to 3 turns + 2 chunks + question -> streaming synthesis with mandatory citation. Prunes oldest turn if prompt > 1000 tokens.
 - **Overrides**: `ModelFileManager` and `Fts5Retriever` check `getExternalFilesDir(null)/` before `filesDir/` or APK assets for `index.db`, `ggml-base-q5_1.bin`, and `LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf`.
 - **UI**: CeiaTheme, Push-to-Talk, editable transcription, expandable sources per answer, and prominent Modo Engenharia / Debug toggle (with proportional timeline breakdown bar).
+
+## Achados M3 (retrieval, rewriter, porte) — leia antes de repetir experimentos
+- **Sintoma "Não sei" no S24+ era o FTS5 ausente** (ver seção Android acima), não chunking nem rewriter. O fix elevou o roteiro de aceitação de ~2/10 para **8/10 fundamentadas com NR correta** (release, modo avião; `android/acceptance_results_m3.json`). Latência 10–15 s (acima do teto de 10 s de voz); alavanca = contexto topk2 lean (~820 tok), não porte.
+- **Chunking fino/médio PIORA o recall** (grosso R@2 teto 77.5% vs fino 51%, termos+filtro). Mantido `index_hf_36nr.db` grosso. Chunker de item disponível em `corpus/chunk.py --fine` (diagnóstico). Harness honesto (caminho de busca idêntico ao app): `corpus/eval_fino.py`. Relatório: `corpus/README_M3.md`.
+- **Avaliar SEMPRE nas 151 perguntas reais** (`corpus/qa_pairs_v2.jsonl`) com o caminho do app (`app_fts_query`: stem-6 + prefixo* + OR, pesos 1.5/3/2/1). O "85.4% R@5" do v2 usava match-exato + filtro-de-norma-ouro (artifícios que o app não faz); zero-shot real ≈ 14.6% R@2.
+- **LoRA do rewriter REGREDIU no holdout limpo** (r=8: −8.6pp; r=16: −4.6pp vs zero-shot 14.6% R@2). O "92%" anterior era zero-shot em dataset sintético invertido contaminado (falas copiavam o vocabulário do chunk). Trilha limpa e descontaminada: `finetune/gen_dataset_clean.py`, `validate_dataset_clean.py`, `eval_rewriter_clean.py`; relatório `finetune/README_M3.md`. Ambos gates falharam → treino parado por ordem.
+- **LFM2.5-2.6B descartado como rewriter**: é modelo de raciocínio (sempre "pensa", ~1010 tokens/~4 s por rewrite, inviável p/ voz) e pior (7.9% R@2). O GGUF oficial `Q4_K_M` gera lixo no build `434ddbb`; usar `Q4_0`. Ambiente de treino: `.venv-train` (uv, py3.10, torch cu128 p/ RTX 5070 Blackwell); adapters preservados em `finetune/adapter_r8/`, `finetune/adapter_r16/`.
 
 ## Fine-Tuning & Query Rewriter (`finetune/`)
 - **Rewriter directory**: `finetune/` contains inverted dataset generation, BM25 execution filter, PEFT LoRA training on `LiquidAI/LFM2.5-1.2B-Instruct`, and evaluation of Turn 1 query rewriting for Mode C.
