@@ -67,9 +67,13 @@
   },
   "winner": {
     "pipeline": "BM25-gated-expanded + EmbeddingGemma-300M dense(text+exp-only) via RRF k=30",
+    "delivery": "on-device puro (100% offline em campo) — ENTREGA v3 aceita",
     "r2_151": 52.32,
     "r5_151": 63.58,
-    "meta_r2_55_mobile_only": false,
-    "meta_r2_55_with_cloud_27B_rerank": true
+    "improvement_r2_pp": 22.5
+  },
+  "cloud_only_future_option_not_product": {
+    "note": "27B listwise rerank EXIGE nuvem; contraria o requisito offline fundacional. Só p/ cenário conectado opcional (ex.: modo escritório).",
+    "r2_151": 56.29
   }
 }

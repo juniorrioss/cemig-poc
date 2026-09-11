@@ -1,24 +1,33 @@
 # Retrieval v3 — Fechando o abismo de vocabulário (POC CEMIG)
 
 > **Intenção do capitão:** "o retriever ainda é um gargalo mto grande… 29% é muito
-> baixo… precisamos ter números melhores." Meta composta: **R@2 ≥ 55%** nas 151
-> perguntas coloquiais reais, com **holdout intocável** e **seleção de embeddings
-> mobile-first** (proibido bge/e5 como default; proibido tocar nos `vector_db` da
-> UFGCEMIGONA).
+> baixo… precisamos ter números melhores." Requisito fundacional da POC: **100%
+> offline na execução** (sem depender de internet na hora do uso em campo). Restrições:
+> **holdout intocável** e **seleção de embeddings mobile-first** (proibido bge/e5 como
+> default; proibido tocar nos `vector_db` da UFGCEMIGONA).
 
 ## TL;DR — resultado
 
-| Pipeline | R@1 | **R@2** | R@5 | MRR | Viável no aparelho? |
-|---|---|---|---|---|---|
-| E0 — main atual (híbrido classificador+BM25) | 22.5% | **29.8%** | 41.1% | 0.293 | sim (produção) |
-| E1 — + expansão de documento | 29.1% | **37.7%** | 52.3% | 0.374 | sim |
-| E3 — + denso EmbeddingGemma (fusão 2 sinais) | 39.7% | **49.0%** | 62.9% | 0.483 | sim |
-| **E3 — fusão 3 sinais (VENCEDOR MOBILE)** | 37.1% | **52.3%** | 63.6% | 0.478 | **sim** |
-| E4 — + reranker **27B listwise (cloud)** | 38.4% | **56.3%** | 68.2% | 0.509 | **não** (cloud) |
+**Entrega v3 aceita: pipeline 100% on-device com R@2 52.3% / R@5 63.6% nas 151** —
+salto de **+22.5 p.p. R@2 (1.75×)** sobre o main. "Números melhores" atendido dentro
+do requisito offline; ver `## Decisão` abaixo.
 
-**A meta de 55% R@2 é atingível, mas exige reranking na nuvem (27B).** O melhor
-pipeline **100% on-device** entrega **52.3% R@2 / 63.6% R@5** — um salto de **+22.5 p.p.
-R@2 (1.75×)** sobre o main. Ver `needs-decision` no fim.
+| Pipeline | R@1 | **R@2** | R@5 | MRR | Caminho do produto? |
+|---|---|---|---|---|---|
+| E0 — main atual (híbrido classificador+BM25) | 22.5% | **29.8%** | 41.1% | 0.293 | on-device (produção anterior) |
+| E1 — + expansão de documento | 29.1% | **37.7%** | 52.3% | 0.374 | on-device |
+| E3 — + denso EmbeddingGemma (fusão 2 sinais) | 39.7% | **49.0%** | 62.9% | 0.483 | on-device |
+| **E3 — fusão 3 sinais (VENCEDOR — ENTREGA v3)** | 37.1% | **52.3%** | 63.6% | 0.478 | **on-device (produto de campo)** |
+| E4 — + reranker 27B listwise | 38.4% | 56.3% | 68.2% | 0.509 | ✗ exige nuvem — **NÃO é o produto** (só modo conectado opcional) |
+
+## Decisão (capitão, 2026-09-11)
+
+**Caminho A — on-device puro — é a entrega v3.** O requisito fundacional da POC é
+execução 100% offline em campo; um reranker na nuvem contradiz a razão de existir do
+produto. Os **52.3% R@2 / 63.6% R@5 mobile-only** são a entrega aceita (a marca de 55%
+era projeção interna, não requisito). O **reranker 27B na nuvem fica registrado apenas
+como opção futura para cenário conectado opcional** (ex.: modo escritório), **nunca**
+como caminho do produto de campo.
 
 Métrica oficial: 151 perguntas reais de `corpus/qa_pairs_v2.jsonl`; o holdout (151 + 20
 smoke) **nunca** foi usado para ajustar nada (calibração só no dev-set sintético
@@ -58,12 +67,16 @@ ordem: **e5/MiniLM ficaram muito atrás** dense-puro (e5-small 10.6%, MiniLM-par
 4.0% — simétrico, impróprio p/ retrieval), **provando** que os mobile-first do capitão são
 superiores; bge/e5 **não** entram como default.
 
-### Etapa 4 — Reranker — só o 27B (cloud) cruza a meta
-Sobre os top-10 da fusão 3-sinais:
-- **27B listwise (teto/cloud): 56.3% R@2** — cruza a meta.
+### Etapa 4 — Reranker — NÃO faz parte do produto de campo
+Sobre os top-10 da fusão 3-sinais, buscando ultrapassar a marca interna de 55%:
+- **27B listwise: 56.3% R@2** — mas **exige nuvem**, o que contraria o requisito offline
+  fundacional. Registrado **apenas como opção futura p/ cenário conectado opcional**
+  (ex.: modo escritório com Wi-Fi), **nunca** o caminho do produto de campo.
 - Cross-encoders mobile (mMiniLM, bge-reranker, jina-v2) **regridem** (gap de domínio).
 - **LFM2.5-1.2B embarcado** como reranker (listwise ou pointwise sim/não) **piora**
   (43-46% R@2): modelo pequeno não ranqueia listwise de forma confiável.
+- Conclusão: **não há reranker on-device que ajude hoje**; a fusão 3-sinais (Etapa 3) é
+  o ponto final do produto de campo.
 - Artefatos: `rerank.py` (cross-encoder), `rerank_llm.py` (listwise), `rerank_pointwise.py`.
 
 ## Pipeline vencedor (mobile) — especificação p/ integração

@@ -104,19 +104,25 @@ def main() -> None:
         },
         "winner": {
             "pipeline": "BM25-gated-expanded + EmbeddingGemma-300M dense(text+exp-only) via RRF k=30",
+            "delivery": "on-device puro (100% offline em campo) — ENTREGA v3 aceita",
             "r2_151": rows["E3_fusion_3sig_WINNER"]["recall_at_2"],
             "r5_151": rows["E3_fusion_3sig_WINNER"]["recall_at_5"],
-            "meta_r2_55_mobile_only": rows["E3_fusion_3sig_WINNER"]["recall_at_2"] >= 55.0,
-            "meta_r2_55_with_cloud_27B_rerank": rr_27b.get("reranked_151", {}).get("recall_at_2", 0) >= 55.0,
+            "improvement_r2_pp": round(rows["E3_fusion_3sig_WINNER"]["recall_at_2"]
+                                       - rows["E0_hybrid_main"]["recall_at_2"], 1),
+        },
+        "cloud_only_future_option_not_product": {
+            "note": "27B listwise rerank EXIGE nuvem; contraria o requisito offline "
+                    "fundacional. Só p/ cenário conectado opcional (ex.: modo escritório).",
+            "r2_151": rr_27b.get("reranked_151", {}).get("recall_at_2", 0),
         },
     }
     (_HERE / "results" / "consolidation.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print("\nConsolidação salva em results/consolidation.json")
-    print(f"\nVENCEDOR MOBILE: R@2={out['winner']['r2_151']:.1f}% R@5={out['winner']['r5_151']:.1f}% (151)")
-    print(f"Meta 55% R@2 mobile-only: {'ATINGIDA' if out['winner']['meta_r2_55_mobile_only'] else 'NÃO'} "
-          f"| com reranker 27B (cloud): {'ATINGIDA' if out['winner']['meta_r2_55_with_cloud_27B_rerank'] else 'NÃO'} "
-          f"({rr_27b.get('reranked_151', {}).get('recall_at_2', 0):.1f}%)")
+    print(f"\nENTREGA v3 (on-device, 100% offline): R@2={out['winner']['r2_151']:.1f}% "
+          f"R@5={out['winner']['r5_151']:.1f}% (151) — +{out['winner']['improvement_r2_pp']:.1f} p.p. vs main")
+    print(f"[opção futura, NÃO produto] reranker 27B na nuvem: "
+          f"{out['cloud_only_future_option_not_product']['r2_151']:.1f}% R@2")
 
 
 if __name__ == "__main__":
