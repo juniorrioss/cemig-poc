@@ -15,9 +15,12 @@
 - **Paridade honesta comprovada**: o encoder GGUF QAT-Q4_0 on-device reproduz o recall do
   índice FP32 de referência — **R@2 51,0 % / R@5 63,6 %** nos arquivos `.bin` que o app embarca
   (vs 52,3 % / 63,6 % FP32; −1,3 p.p., dentro do ruído).
-- **Sintetizador**: mantém-se o **1.2B QAD-Q4_0** (decisão do brief); a comparação de bancada
-  1.2B vs 2.6B sobre a v3 (juiz vLLM 27B) informa se vale investir no upgrade do engine — **ver
-  a Tabela 4-células abaixo** (as 2 células novas dependem do vLLM do capitão).
+- **Sintetizador**: mantém-se o **1.2B QAD-Q4_0** embarcado (decisão do brief; ver veredito).
+  A comparação de bancada 1.2B vs 2.6B sobre a v3 (juiz vLLM 27B) já foi **rodada e fechada**: o
+  2.6B thinking-OFF entrega **gate-pass 18,5% = 7,1× o 1.2B (2,6%)** sobre a v3 — bem acima do
+  gatilho de 2×. Como o 2.6B segue **barrado no engine nativo** (thinking forçado ON, upgrade >1
+  dia), o resultado é **informativo**: justifica reabrir o upgrade do engine como tarefa dedicada,
+  não muda o que embarca agora. **Ver a Tabela 4-células abaixo.**
 
 ---
 
@@ -42,24 +45,33 @@ Retrieval efetivo por config (nas 151 reais):
 
 ### Tabela 4-células — [retrieval antigo × v3] × [1.2B × 2.6B]
 
-Métricas do juiz vLLM 27B (4 eixos; gate-pass = fac≥3 ∧ fid≥3 ∧ cit≥3 ∧ global≥3.5). As 2
-células "antigo" vêm do juiz-151 anterior; as 2 "v3" desta task.
+Métricas do juiz vLLM 27B (4 eixos; gate-pass = fac≥3 ∧ fid≥3 ∧ cit≥3 ∧ global≥3.5). **As 4
+células usam o MESMO prompt de produção `v1_rigido`** (paridade honesta): as 2 "antigo" foram
+re-julgadas nesta task (`old_lfm1.2b_v1`, `lfm2.6b_noth_v1`) e as 2 "v3" são desta task. Fonte:
+`bench/judge151/data/analysis_v3.json` (rodado 2026-09-11, vLLM 27B online).
 
 | célula | R@2 | Global | Gate-pass% | conv. chunk-certo→aprovada |
 | :-- | :--: | :--: | :--: | :--: |
-| antigo × 1.2B | 29,1% | 1,72 | 3,3% | 11,4% (5/44) |
-| antigo × 2.6B (thinking-OFF) | 29,1% | 2,12 | 7,9% | 27,3% |
-| **v3 × 1.2B** (embarcado) | **52,3%** | _pendente vLLM_ | _pendente_ | _pendente_ |
-| **v3 × 2.6B** (thinking-OFF) | **52,3%** | _pendente vLLM_ | _pendente_ | _pendente_ |
+| antigo × 1.2B | 29,1% | 1,69 | 0,0% | 0,0% (0/44) |
+| antigo × 2.6B (thinking-OFF) | 29,1% | 2,09 | 9,3% | 25,0% (11/44) |
+| **v3 × 1.2B** (embarcado) | **52,3%** | **1,79** | **2,6%** | **5,1% (4/79)** |
+| **v3 × 2.6B** (thinking-OFF) | **52,3%** | **2,40** | **18,5%** | **29,1% (23/79)** |
 
-> **Como preencher as 2 células v3** (quando o vLLM do capitão voltar):
+**Leituras da tabela:**
+- **Retrieval é a alavanca dominante**: subir o R@2 de 29,1%→52,3% (v3) quase dobra os chunks-ouro
+  entregues (44→79/151), e é o que puxa o gate-pass de ambos os modelos para cima.
+- **Dado o chunk certo, o LM ainda é gargalo real**: sobre a v3, o 1.2B converte só **5,1%** dos
+  chunks-ouro em resposta aprovada vs **29,1% do 2.6B (5,7×)** — confirma o Q10 do capitão (o LM
+  pequeno não capitaliza o retrieval melhor).
+- **v3 melhora ambos os modelos** vs retrieval antigo (com prompt idêntico): 1.2B global
+  1,69→1,79 e gate 0,0%→2,6%; 2.6B global 2,09→2,40 e gate 9,3%→18,5%.
+
+> Reproduzir (vLLM 27B em `http://10.100.0.111:8005/v1`):
 > ```bash
-> bench/judge151/run_judge_v3.sh        # guard de vLLM + juiz 27B + tabela
-> # popula bench/judge151/data/analysis_v3.json e imprime a tabela + a decisão 2× gate
+> bench/judge151/run_judge_v3.sh   # guard de vLLM + juiz 27B (8 workers, max_tokens 2048) + tabela
 > ```
-> As respostas já estão geradas (`bench/judge151/data/responses_v3_*.json`,
-> `responses_old_lfm1.2b_v1.json`) — o passo pendente é **apenas o julgamento**, que exige o
-> juiz 27B em `http://10.100.0.111:8005/v1` (offline no momento desta entrega).
+> Idempotente: reusa as respostas já geradas (`bench/judge151/data/responses_v3_*.json`,
+> `responses_old_lfm1.2b_v1.json`, `responses_lfm2.6b_noth_v1.json`); só re-executa o julgamento.
 
 ### Decisão de sintetizador (Parte 1)
 
@@ -75,10 +87,14 @@ thinking-OFF no engine nativo (≤1 dia → fazer e embarcar; senão documentar 
   com controle de reasoning por request **ou** um template jinja custom sem o bloco `<think>` no
   JNI. É mexer no submódulo nativo + rebuild KleidiAI/arm64 + revalidar geração — **acima de 1 dia
   de esforço com risco** (o GGUF oficial `Q4_K_M` já gera lixo neste build; usa-se `Q4_0`).
-- **Decisão desta entrega**: **manter o 1.2B QAD-Q4_0** (o embarcado) como sintetizador, salvo a
-  Tabela 4-células mostrar o 2.6B ≥2× o gate do 1.2B **sobre a v3** — nesse caso a recomendação é
-  reabrir o upgrade do engine como tarefa dedicada (não cabe no ≤1 dia). O `analyze_v3.py` imprime
-  o veredito `2.6B ≥ 2× 1.2B? SIM/NÃO` automaticamente.
+- **Veredito final (fechado com o vLLM online)**: sobre a v3, **gate-pass 2.6B / 1.2B = 18,5% /
+  2,6% = 7,12×** → o gatilho de **≥2× é SIM**. Pela regra do brief, isso **justifica reabrir o
+  upgrade do engine** para destravar thinking-OFF no path JNI **como tarefa dedicada** (custo >1
+  dia já avaliado). **Esta task NÃO faz o upgrade do engine** (fora de escopo, não toca o app).
+- **O que embarca AGORA permanece o 1.2B QAD-Q4_0**: o 2.6B só é embarcável após o upgrade do
+  engine nativo (thinking forçado ON hoje → 44–54 s no aparelho, inviável p/ voz). Logo o veredito
+  2×-SIM é **informativo para a decisão de investir no upgrade**, não uma troca imediata de
+  sintetizador. O `analyze_v3.py` imprime o veredito `2.6B ≥ 2× 1.2B? SIM/NÃO` automaticamente.
 
 ---
 
@@ -199,7 +215,7 @@ adb shell cat /sdcard/Android/data/br.org.ceia.cemigpoc/files/acceptance_results
 | `retrieval3/dense_gguf.py` | reencode dos densos com o encoder GGUF (paridade) |
 | `retrieval3/build_dense_gguf_index.py` / `export_dense_bin.py` | índices sqlite-vec / `.bin` DVEC1 |
 | `bench/judge151/retrieval_v3.py` / `run_v3.sh` | pipeline de bancada v3 (respostas p/ o juiz) |
-| `bench/judge151/run_judge_v3.sh` / `analyze_v3.py` | juiz + tabela 4-células (pendente vLLM) |
+| `bench/judge151/run_judge_v3.sh` / `analyze_v3.py` | juiz + tabela 4-células (fechada; `data/analysis_v3.json`) |
 
 ## Assets embarcados (novos/alterados)
 - `index.db` → índice FTS5 **expandido** (14 MB).
