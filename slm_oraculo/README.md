@@ -185,12 +185,25 @@ ssh walcyrios@spark-b431 'tail -f ~/cemig-poc/logs/train_sft.log'
 > mata todos no passo 1/3; geração e treino nunca coexistem. Reinício do zero é preferível
 > a retomar de checkpoint parcial (o treino inteiro leva ~70 min e o dataset já está pronto).
 
-Avaliar cada checkpoint (roda DEPOIS do treino, com 1 servidor por vez):
+Avaliar cada checkpoint em **bf16 E Q4_0** (msg 003 item 6: separa efeito do SFT do efeito
+da quantização; roda DEPOIS do treino, 1 servidor por vez):
 ```bash
-./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep1-Q4_0.gguf sft_ep1_q4 8471
-./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep2-Q4_0.gguf sft_ep2_q4 8471
-./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep3-Q4_0.gguf sft_ep3_q4 8471
+for ep in 1 2 3; do
+  ./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep${ep}-bf16.gguf sft_ep${ep}_bf16 8471
+  ./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep${ep}-Q4_0.gguf sft_ep${ep}_q4  8471
+done
 ../classifier/.venv/bin/python consolidate.py   # curva do gap + veredito
 ```
-**Gate de não-regressão**: se um checkpoint cair vs base (Q4_0 oráculo 45,0% / cobertura
-0,562) além do ruído, ABORTAR o embarque desse checkpoint (a lição do `finetune2/`).
+**Seleção do melhor adapter (não é abort automático)**: `train_sft.py` roda as 3 épocas e
+salva 1 adapter por época; a escolha do melhor é **externa**, por esta régua honesta em
+oráculo. **Critério de rejeição**: um checkpoint que caia vs base (Q4_0 oráculo 45,0% /
+cobertura 0,562) ou que **piore a alucinação** (base 2.6B ~25%; ordem do capitão: alucinação
+em segurança é critério de rejeição, não nota de rodapé) **não embarca** (lição do `finetune2/`).
+
+### wandb (telemetria offline)
+Treino roda com `WANDB_MODE=offline` (chave não configurada na Spark). Telemetria completa em
+`~/cemig-poc/wandb/`. Para subir retroativamente quando a chave existir (NUNCA imprimir/commitar):
+```bash
+ssh walcyrios@spark-b431 'cd ~/cemig-poc && ~/jupyterlab/.venv/bin/wandb login && \
+   ~/jupyterlab/.venv/bin/wandb sync wandb/offline-run-*'
+```
