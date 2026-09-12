@@ -1,0 +1,157 @@
+{
+  "variants": [
+    "base",
+    "base_f16",
+    "sft",
+    "dpo",
+    "dpo_f16"
+  ],
+  "cells": {
+    "base": {
+      "holdout": {
+        "score_global_avg": 2.495,
+        "gate_pass_pct": 21.2,
+        "conversao_chunk_certo_pct": 36.4,
+        "retrieval_recall_pct": 51.0,
+        "acerto_factual_avg": 2.238,
+        "fidelidade_contexto_avg": 2.199,
+        "qualidade_pt_avg": 4.232,
+        "citacao_fonte_avg": 2.086,
+        "gargalo_eixo": "citacao_fonte"
+      },
+      "ood": {
+        "score_global_avg": 2.4,
+        "gate_pass_pct": 22.9,
+        "conversao_chunk_certo_pct": 43.8,
+        "n": 35
+      },
+      "general": {
+        "qualidade_avg": 3.93,
+        "pt_avg": 4.85,
+        "seguranca_avg": 4.46
+      },
+      "behavioral": {
+        "qualidade_avg": 3.667,
+        "pt_avg": 4.8,
+        "seguranca_avg": 4
+      }
+    },
+    "base_f16": {
+      "holdout": {
+        "score_global_avg": 2.513,
+        "gate_pass_pct": 23.2,
+        "conversao_chunk_certo_pct": 36.4,
+        "retrieval_recall_pct": 51.0,
+        "acerto_factual_avg": 2.232,
+        "fidelidade_contexto_avg": 2.192,
+        "qualidade_pt_avg": 4.265,
+        "citacao_fonte_avg": 2.172,
+        "gargalo_eixo": "citacao_fonte"
+      }
+    },
+    "sft": {
+      "holdout": {
+        "score_global_avg": 2.019,
+        "gate_pass_pct": 7.9,
+        "conversao_chunk_certo_pct": 13.0,
+        "retrieval_recall_pct": 51.0,
+        "acerto_factual_avg": 1.675,
+        "fidelidade_contexto_avg": 1.675,
+        "qualidade_pt_avg": 4.113,
+        "citacao_fonte_avg": 1.563,
+        "gargalo_eixo": "citacao_fonte"
+      },
+      "ood": {
+        "score_global_avg": 2.071,
+        "gate_pass_pct": 11.4,
+        "conversao_chunk_certo_pct": 25.0,
+        "n": 35
+      },
+      "general": {
+        "qualidade_avg": 3.73,
+        "pt_avg": 4.83,
+        "seguranca_avg": 4.32
+      },
+      "behavioral": {
+        "qualidade_avg": 3.6,
+        "pt_avg": 4.767,
+        "seguranca_avg": 3.933
+      }
+    },
+    "dpo": {
+      "holdout": {
+        "score_global_avg": 2.077,
+        "gate_pass_pct": 9.3,
+        "conversao_chunk_certo_pct": 18.2,
+        "retrieval_recall_pct": 51.0,
+        "acerto_factual_avg": 1.781,
+        "fidelidade_contexto_avg": 1.762,
+        "qualidade_pt_avg": 4.02,
+        "citacao_fonte_avg": 1.609,
+        "gargalo_eixo": "citacao_fonte"
+      },
+      "ood": {
+        "score_global_avg": 2.08,
+        "gate_pass_pct": 11.4,
+        "conversao_chunk_certo_pct": 25.0,
+        "n": 35
+      },
+      "general": {
+        "qualidade_avg": 3.81,
+        "pt_avg": 4.78,
+        "seguranca_avg": 4.37
+      },
+      "behavioral": {
+        "qualidade_avg": 3.833,
+        "pt_avg": 4.8,
+        "seguranca_avg": 4.2
+      }
+    },
+    "dpo_f16": {
+      "holdout": {
+        "score_global_avg": 2.132,
+        "gate_pass_pct": 11.9,
+        "conversao_chunk_certo_pct": 22.1,
+        "retrieval_recall_pct": 51.0,
+        "acerto_factual_avg": 1.728,
+        "fidelidade_contexto_avg": 1.815,
+        "qualidade_pt_avg": 4.238,
+        "citacao_fonte_avg": 1.735,
+        "gargalo_eixo": "acerto_factual"
+      }
+    }
+  },
+  "regression_verdict": {
+    "base_f16": {
+      "regressions": [],
+      "verdict": "OK (sem regressão)"
+    },
+    "sft": {
+      "regressions": [
+        "holdout global 2.019 < base 2.495",
+        "holdout gate 7.9% < base 21.2%",
+        "holdout conv 13.0% < base 36.4%",
+        "OOD global 2.071 < base 2.4",
+        "geral qualidade 3.73 < base 3.93"
+      ],
+      "verdict": "MATA (regressão além de ruído)"
+    },
+    "dpo": {
+      "regressions": [
+        "holdout global 2.077 < base 2.495",
+        "holdout gate 9.3% < base 21.2%",
+        "holdout conv 18.2% < base 36.4%",
+        "OOD global 2.08 < base 2.4"
+      ],
+      "verdict": "MATA (regressão além de ruído)"
+    },
+    "dpo_f16": {
+      "regressions": [
+        "holdout global 2.132 < base 2.495",
+        "holdout gate 11.9% < base 21.2%",
+        "holdout conv 22.1% < base 36.4%"
+      ],
+      "verdict": "MATA (regressão além de ruído)"
+    }
+  }
+}
