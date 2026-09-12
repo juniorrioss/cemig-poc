@@ -1,13 +1,14 @@
 #!/bin/bash
-# run_train.sh — Retomada FOOLPROOF do SFT na DGX Spark (memory-safe).
+# run_train.sh — Retomada do SFT na DGX Spark.
 #
-# Ordem do capitao: nao derrubar a maquina de novo por OOM. Este launcher:
-#   1. MATA qualquer llama-server residente (libera a memoria unificada — a causa provavel
-#      do travamento: bf16+Q4 servers + LoRA competindo pelos 121 GB);
+# Ordem do capitao (msg 003): sem cautela excessiva no batch — a causa do travamento foi
+# treino + 2 llama-servers residentes competindo pelos 121 GB unificados, NAO o treino ser
+# grande. Este launcher mantem so o basico de higiene de memoria:
+#   1. MATA qualquer llama-server residente (o basico — geracao e treino nunca coexistem);
 #   2. verifica a integridade dos 3.000 pares antes de treinar;
-#   3. usa config memory-safe (bs=4 x ga=8, max_length=1536, group_by_length,
-#      expandable_segments) — ver analise no README;
-#   4. treina LoRA (3 epocas, checkpoint por epoca) e exporta GGUF por epoca.
+#   3. treina LoRA config ORIGINAL (bs=8 x ga=4, max_length=2048), checkpoint por epoca,
+#      export GGUF bf16+Q4_0 por epoca;
+#   4. WANDB_MODE=offline (telemetria completa em disco; sync retroativo quando houver chave).
 #
 # Uso (na Spark): setsid nohup bash ~/cemig-poc/slm_scripts/run_train.sh \
 #                   > ~/cemig-poc/logs/train_sft.log 2>&1 &
@@ -19,6 +20,11 @@ PY=~/jupyterlab/.venv/bin/python
 export PATH=/usr/local/cuda/bin:$PATH
 export TOKENIZERS_PARALLELISM=false
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+# Telemetria wandb em disco (chave nao configurada na Spark; sync retroativo depois).
+export WANDB_MODE=offline
+export WANDB_DIR=~/cemig-poc/wandb
+export WANDB_PROJECT=cemig-slm-oraculo
+mkdir -p "$WANDB_DIR"
 
 DATA=~/cemig-poc/train/train_sft.jsonl
 
@@ -53,13 +59,13 @@ assert n_ok >= 2900, f"esperava ~3000 pares, achei {n_ok} — abortando"
 print("integridade OK (0 NR reservada, 0 invalida)")
 EOF
 
-echo "== [3/3] treino LoRA memory-safe =="
+echo "== [3/3] treino LoRA (config original bs=8/max_len=2048) =="
 $PY slm_scripts/train_sft.py \
   --base ~/cemig-poc/base_hf \
   --data "$DATA" \
   --out-root ~/cemig-poc/train \
   --models-dir ~/cemig-poc/models \
   --llama-dir ~/cemig-poc/llama.cpp \
-  --epochs 3 --lr 1e-4 --bs 4 --grad-accum 8 --lora-r 16 --lora-alpha 32 \
-  --max-length 1536 --seed 42
+  --epochs 3 --lr 1e-4 --bs 8 --grad-accum 4 --lora-r 16 --lora-alpha 32 \
+  --max-length 2048 --seed 42
 echo "TRAIN_EXIT=$?"

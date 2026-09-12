@@ -11,14 +11,21 @@ Decisão de LoRA vs full (justificativa):
   - A GB10 tem 121 GB unificada e caberia full-FT, MAS o finetune2 mostrou que treino
     AGRESSIVO sobre distribuição estreita REGRIDE um base forte (encolhe resposta, cita item
     errado). LoRA com r moderado limita o dano e preserva a capacidade geral do base — é a
-    escolha conservadora pedida pelo brief. Salvamos 1 checkpoint POR ÉPOCA para avaliar a
-    curva e ABORTAR se regredir.
+    escolha conservadora pedida pelo brief. Salvamos 1 adapter POR ÉPOCA e SELECIONAMOS o
+    melhor pela régua externa em oráculo (train.py não aborta sozinho; a seleção é feita
+    por eval_checkpoint.sh + consolidate.py, ordem do capitão).
 
-Targets LoRA: atenção + MLP (q/k/v/out_proj, gate/up/down_proj). O shortconv (in_proj/conv)
-fica de fora (recorrente; instável a LoRA, como visto no engine-upgrade).
+ARQUITETURA DO LFM2.5-2.6B (verificada no weight_map, msg 003 do capitão):
+  - atenção: self_attn.(q_proj|k_proj|v_proj|out_proj)  [8 camadas de atenção]
+  - MLP:     feed_forward.(w1|w2|w3)                    [30 camadas — NÃO é gate/up/down_proj]
+  - ShortConv: conv.(in_proj|conv|out_proj)             [22 camadas recorrentes — EXCLUIR]
+Erro anterior: LORA_TARGETS=["...out_proj",...gate/up/down_proj] adaptou os 22 conv.out_proj
+(ShortConv, recorrente/instável) e NÃO tocou o MLP (gate/up/down_proj não existem). Corrigido
+para REGEX explícito que casa SÓ atenção + feed_forward.w1/w2/w3.
 
-Checkpoints por época em ~/cemig-poc/train/sft_ep{N}. Merge+GGUF Q4_0 por época (p/ avaliar
-no MESMO engine do teto). Comentários PT-BR; código em inglês.
+Checkpoints por época em ~/cemig-poc/train/sft_ep{N}. Merge+GGUF bf16+Q4_0 por época (p/
+avaliar no MESMO engine do teto, separando efeito do SFT do efeito da quantização).
+Comentários PT-BR; código em inglês.
 """
 
 from __future__ import annotations
@@ -26,20 +33,25 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, List
 
-import torch
-from datasets import Dataset
+# Reduz fragmentação do caching allocator na memória unificada — ANTES de importar torch.
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
+
+import torch  # noqa: E402
+from datasets import Dataset  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s",
                     datefmt="%H:%M:%S")
 logger = logging.getLogger("slm_oraculo.train_sft")
 
-LORA_TARGETS = ["q_proj", "k_proj", "v_proj", "out_proj",
-                "gate_proj", "up_proj", "down_proj"]
+# REGEX explícito (PEFT aceita str em target_modules): SÓ atenção + MLP (feed_forward.w1/w2/w3).
+# NÃO casa conv.* (ShortConv recorrente). O '$' ancora o fim do nome do módulo.
+LORA_TARGETS = r".*\.(self_attn\.(q_proj|k_proj|v_proj|out_proj)|feed_forward\.(w1|w2|w3))$"
 
 
 def load_sft(path: Path) -> Dataset:
@@ -103,22 +115,19 @@ def main() -> None:
     ap.add_argument("--llama-dir", default=str(Path.home() / "cemig-poc" / "llama.cpp"))
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--lr", type=float, default=1e-4)
-    # Memory-safe defaults (GB10 121 GB UNIFICADA; ver analise de OOM no README):
-    # bs=4 x grad-accum=8 = efetivo 32 (mesmo), mas metade do pico de ativacao.
-    ap.add_argument("--bs", type=int, default=4)
-    ap.add_argument("--grad-accum", type=int, default=8)
+    # Config ORIGINAL (ordem do capitão contra cautela excessiva, msg 003): bs=8, max_len=2048.
+    # A causa do travamento foi treino + 2 llama-servers residentes competindo pelos 121 GB
+    # unificados, NÃO o treino ser grande. run_train.sh mata os servers antes de treinar.
+    ap.add_argument("--bs", type=int, default=8)
+    ap.add_argument("--grad-accum", type=int, default=4)
     ap.add_argument("--lora-r", type=int, default=16)
     ap.add_argument("--lora-alpha", type=int, default=32)
-    # Dados maxam em ~1309 tokens (p90 1095); 1536 cobre com folga e corta padding a toa.
-    ap.add_argument("--max-length", type=int, default=1536)
+    ap.add_argument("--max-length", type=int, default=2048)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 
     if not torch.cuda.is_available():
         logger.error("CUDA indisponível."); sys.exit(2)
-    # Reduz fragmentacao do caching allocator na memoria unificada (evita picos).
-    import os
-    os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
     out_root = Path(args.out_root)
     out_root.mkdir(parents=True, exist_ok=True)
@@ -152,11 +161,19 @@ def main() -> None:
         gradient_checkpointing=True,
         gradient_checkpointing_kwargs={"use_reentrant": False},
         max_length=args.max_length,
-        completion_only_loss=True,
+        # Dataset é conversacional ({messages:[...]}); o chat template do LFM2.5 tem
+        # {% generation %}/{% endgeneration %}, então mascara-se a loss pelo turno do
+        # assistant (assistant_only_loss), NÃO por completion_only_loss (esse é p/
+        # datasets prompt/completion). Ordem do capitão, msg 003.
+        assistant_only_loss=True,
+        completion_only_loss=False,
         packing=False,
         group_by_length=True,   # agrupa por tamanho -> menos padding -> menor pico de VRAM
         dataloader_num_workers=2,
-        report_to="none",
+        report_to="wandb",
+        run_name=f"slm_oraculo_sft_r{args.lora_r}",
+        logging_first_step=True,
+        include_num_input_tokens_seen=True,  # throughput (tokens vistos) na telemetria
         seed=args.seed,
     )
 
@@ -169,12 +186,36 @@ def main() -> None:
             kw["model"].save_pretrained(str(adapter_dir))
             tok.save_pretrained(str(adapter_dir))
             logger.info("Época %d: adapter salvo em %s", ep, adapter_dir)
-            # Export GGUF é caro; fazemos por subprocess separado p/ não interromper o treino.
-            # Aqui só marcamos; o export roda no final por --export-epochs.
+            return control
+
+    class MemLogCb(TrainerCallback):
+        """Loga memória alocada/reservada por passo (lição do incidente: telemetria)."""
+        def on_log(self, cfg_, state, control, logs=None, **kw):
+            if logs is not None and torch.cuda.is_available():
+                logs["gpu_mem_alloc_gb"] = round(torch.cuda.memory_allocated() / 1e9, 2)
+                logs["gpu_mem_reserved_gb"] = round(torch.cuda.memory_reserved() / 1e9, 2)
+                logs["gpu_mem_peak_gb"] = round(torch.cuda.max_memory_allocated() / 1e9, 2)
             return control
 
     trainer = SFTTrainer(model=model, args=cfg, train_dataset=ds,
-                         processing_class=tok, peft_config=lora, callbacks=[ExportCb()])
+                         processing_class=tok, peft_config=lora,
+                         callbacks=[ExportCb(), MemLogCb()])
+
+    # VERIFICAÇÃO OBRIGATÓRIA (msg 003): os módulos adaptados DEVEM ser atenção + MLP
+    # (feed_forward.w1/w2/w3) e NENHUM conv.* (ShortConv recorrente). Assert, não log —
+    # isto teria pego o erro anterior na hora.
+    trainer.model.print_trainable_parameters()
+    targeted = set(getattr(trainer.model, "targeted_module_names", []))
+    logger.info("Módulos adaptados (%d): %s", len(targeted), sorted(targeted)[:12])
+    has_mlp = any(("feed_forward.w1" in m or "feed_forward.w2" in m or "feed_forward.w3" in m)
+                  for m in targeted)
+    has_conv = any(".conv." in m for m in targeted)
+    has_attn = any(("self_attn.q_proj" in m or "self_attn.out_proj" in m) for m in targeted)
+    assert has_mlp, f"LoRA NÃO cobre o MLP (feed_forward.w1/w2/w3)! targeted={sorted(targeted)[:20]}"
+    assert has_attn, f"LoRA NÃO cobre a atenção! targeted={sorted(targeted)[:20]}"
+    assert not has_conv, f"LoRA está adaptando o ShortConv (conv.*)! targeted={sorted(targeted)[:20]}"
+    logger.info("VERIFICAÇÃO OK: LoRA cobre atenção + MLP, e NÃO toca o ShortConv.")
+
     logger.info("SFT: iniciando %d épocas, %d exemplos, LoRA r=%d...",
                 args.epochs, len(ds), args.lora_r)
     res = trainer.train()
