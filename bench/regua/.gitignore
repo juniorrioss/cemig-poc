@@ -1,0 +1,4 @@
+# Checkpoints e temporários transitórios (reprodutíveis)
+data/*.ckpt.json
+data/*.tmp
+__pycache__/

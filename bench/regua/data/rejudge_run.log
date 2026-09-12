@@ -1,0 +1,87 @@
+[rejudge] 66 candidatos, threshold=0.5, judge=ON
+  [1/66] ctx_topk/k5_full                               aprov=6.0% cov=0.111 taut=0.0%
+  [2/66] ctx_topk/k5_trim                               aprov=2.6% cov=0.095 taut=0.0%
+  [3/66] ctx_topk/k4_trim                               aprov=2.0% cov=0.082 taut=0.0%
+  [4/66] ctx_topk/k4_full                               aprov=6.6% cov=0.129 taut=0.0%
+  [5/66] ctx_topk/k3_trim                               aprov=5.3% cov=0.117 taut=0.0%
+  [6/66] ctx_topk/k2_trim                               aprov=5.3% cov=0.113 taut=0.0%
+  [7/66] ctx_topk/k2_full                               aprov=5.3% cov=0.123 taut=0.0%
+  [8/66] judge151/old_lfm1.2b_v1                        aprov=3.3% cov=0.094 taut=0.7%
+  [9/66] ctx_topk/k3_full                               aprov=4.6% cov=0.133 taut=0.0%
+  [10/66] judge151/v3_lfm1.2b                            aprov=2.6% cov=0.099 taut=0.0%
+  [11/66] sintese2/minicpm1b_baseline                    aprov=0.0% cov=0.015 taut=0.7%
+  [12/66] judge151/lfm2.6b_cap1024                       aprov=15.2% cov=0.212 taut=0.0%
+  [13/66] sintese2/lfm1.2b_full                          aprov=0.0% cov=0.034 taut=0.0%
+  [14/66] judge151/lfm1.2b                               aprov=9.9% cov=0.193 taut=0.0%
+  [15/66] sintese2/lfm1.2b_baseline                      aprov=2.6% cov=0.102 taut=0.0%
+  [16/66] sintese2/minicpm1b_full                        aprov=4.0% cov=0.092 taut=0.7%
+  [17/66] judge151/lfm2.6b_noth_v1                       aprov=15.9% cov=0.326 taut=0.0%
+  [18/66] judge151/lfm2.6b                               aprov=21.2% cov=0.367 taut=0.0%
+  [19/66] sintese2/minicpm2b_baseline                    aprov=12.6% cov=0.202 taut=0.0%
+  [20/66] judge151/v3_lfm2.6b_noth                       aprov=24.5% cov=0.415 taut=0.0%
+  [21/66] judge151/lfm2.6b_noth                          aprov=17.9% cov=0.393 taut=0.0%
+  [22/66] sintese2/minicpm2b_full                        aprov=17.2% cov=0.269 taut=0.0%
+  [23/66] shootout-v2/gemma-3-1b/classic_rag             aprov=0.0% cov=0.006 taut=0.0%
+  [24/66] shootout-v2/gemma-3-1b/query_rewrite_inject    aprov=0.0% cov=0.016 taut=1.0%
+  [25/66] shootout-v2/lfm2-1.2b/tool_calling             aprov=3.0% cov=0.084 taut=0.0%
+  [26/66] shootout-v2/gemma-3-1b/query_rewrite_inject_topk2 aprov=0.0% cov=0.0 taut=0.0%
+  [27/66] shootout-v2/gemma-3-1b/classic_rag_topk2       aprov=0.0% cov=0.004 taut=0.0%
+  [28/66] sintese2/lfm2.6b_noth_baseline                 aprov=25.8% cov=0.429 taut=0.0%
+  [29/66] sintese2/lfm2.6b_noth_citation                 aprov=23.2% cov=0.411 taut=0.0%
+  [30/66] sintese2/lfm2.6b_noth_full                     aprov=23.2% cov=0.432 taut=0.0%
+  [31/66] sintese2/lfm2.6b_noth_ordering                 aprov=25.2% cov=0.431 taut=0.0%
+  [32/66] shootout-v2/lfm2-1.2b/query_rewrite_inject     aprov=8.9% cov=0.243 taut=0.0%
+  [33/66] finetune2/base_f16                             aprov=19.9% cov=0.4 taut=0.0%
+  [34/66] sintese2/lfm2.6b_noth_fewshot                  aprov=23.2% cov=0.395 taut=0.0%
+  [35/66] shootout-v2/lfm2-1.2b/classic_rag              aprov=2.0% cov=0.206 taut=0.0%
+  [36/66] finetune2/base                                 aprov=24.5% cov=0.425 taut=0.0%
+  [37/66] shootout-v2/lfm2-1.2b/query_rewrite_inject_topk2 aprov=2.0% cov=0.241 taut=0.0%
+  [38/66] shootout-v2/lfm2.5-1.2b-instruct/classic_rag   aprov=1.0% cov=0.043 taut=0.0%
+  [39/66] finetune2/dpo                                  aprov=15.9% cov=0.287 taut=1.3%
+  [40/66] shootout-v2/lfm2-1.2b/classic_rag_topk2        aprov=8.9% cov=0.237 taut=0.0%
+  [41/66] shootout-v2/lfm2.5-1.2b-instruct/classic_rag_topk2 aprov=2.0% cov=0.046 taut=0.0%
+  [42/66] finetune2/dpo_f16                              aprov=21.9% cov=0.289 taut=0.0%
+  [43/66] shootout-v2/qwen3-0.6b/classic_rag             aprov=0.0% cov=0.029 taut=0.0%
+  [44/66] shootout-v2/lfm2.5-1.2b-instruct/query_rewrite_inject aprov=4.0% cov=0.106 taut=0.0%
+  [45/66] shootout-v2/qwen3-0.6b/tool_calling            aprov=0.0% cov=0.0 taut=0.0%
+  [46/66] shootout-v2/lfm2.5-350m/classic_rag            aprov=0.0% cov=0.0 taut=0.0%
+  [47/66] shootout-v2/lfm2.5-350m/query_rewrite_inject   aprov=0.0% cov=0.0 taut=0.0%
+  [48/66] shootout-v2/qwen3-0.6b/query_rewrite_inject    aprov=0.0% cov=0.036 taut=0.0%
+  [49/66] shootout-v2/gemma-3-1b/tool_calling            aprov=5.0% cov=0.16 taut=0.0%
+  [50/66] shootout-v2/lfm2.5-1.2b-instruct/tool_calling  aprov=0.0% cov=0.084 taut=0.0%
+  [51/66] finetune2/sft                                  aprov=13.9% cov=0.267 taut=0.0%
+  [52/66] shootout-v2/llama-3.2-1b/tool_calling          aprov=0.0% cov=0.01 taut=0.0%
+  [53/66] shootout-v2/lfm2.5-1.2b-thinking/tool_calling  aprov=1.0% cov=0.045 taut=0.0%
+  [54/66] shootout-v2/qwen3.5-0.8b/classic_rag           aprov=1.0% cov=0.192 taut=0.0%
+  [55/66] shootout-v2/lfm2.5-1.2b-instruct/query_rewrite_inject_topk2 aprov=3.0% cov=0.088 taut=0.0%
+  [56/66] shootout-v2/lfm2.5-350m/tool_calling           aprov=0.0% cov=0.036 taut=0.0%
+  [57/66] shootout-v2/lfm2.5-1.2b-thinking/query_rewrite_inject aprov=4.0% cov=0.08 taut=0.0%
+  [58/66] shootout-v2/lfm2.5-1.2b-thinking/query_rewrite_inject_topk2 aprov=4.0% cov=0.076 taut=0.0%
+  [59/66] shootout-v2/llama-3.2-1b/classic_rag           aprov=7.5% cov=0.179 taut=2.5%
+  [60/66] shootout-v2/qwen3.5-0.8b/query_rewrite_inject_topk2 aprov=5.0% cov=0.199 taut=0.0%
+  [61/66] shootout-v2/llama-3.2-1b/query_rewrite_inject  aprov=7.5% cov=0.227 taut=0.0%
+  [62/66] shootout-v2/qwen3.5-0.8b/classic_rag_topk2     aprov=4.0% cov=0.18 taut=0.0%
+  [63/66] shootout-v2/qwen3.5-0.8b/query_rewrite_inject  aprov=7.9% cov=0.219 taut=0.0%
+  [64/66] shootout-v2/lfm2.5-1.2b-thinking/classic_rag   aprov=10.9% cov=0.157 taut=0.0%
+  [65/66] shootout-v2/lfm2.5-1.2b-thinking/classic_rag_topk2 aprov=6.9% cov=0.143 taut=0.0%
+  [66/66] shootout-v2/qwen3.5-0.8b/tool_calling          aprov=3.0% cov=0.329 taut=0.0%
+
+[ok] tabela -> /home/walcyrios/regua-poc/bench/regua/data/rejudge_table.json  (66 candidatos)
+[ok] itens  -> /home/walcyrios/regua-poc/bench/regua/data/rejudge_items.jsonl
+
+TOP 15 por aprovação:
+  sintese2/lfm2.6b_noth_baseline                 aprov= 25.8% cov=0.429 taut=  0.0% cit=100.0% n=151
+  sintese2/lfm2.6b_noth_ordering                 aprov= 25.2% cov=0.431 taut=  0.0% cit=100.0% n=151
+  finetune2/base                                 aprov= 24.5% cov=0.425 taut=  0.0% cit=100.0% n=151
+  judge151/v3_lfm2.6b_noth                       aprov= 24.5% cov=0.415 taut=  0.0% cit=100.0% n=151
+  sintese2/lfm2.6b_noth_full                     aprov= 23.2% cov=0.432 taut=  0.0% cit=100.0% n=151
+  sintese2/lfm2.6b_noth_citation                 aprov= 23.2% cov=0.411 taut=  0.0% cit=100.0% n=151
+  sintese2/lfm2.6b_noth_fewshot                  aprov= 23.2% cov=0.395 taut=  0.0% cit=100.0% n=151
+  finetune2/dpo_f16                              aprov= 21.9% cov=0.289 taut=  0.0% cit= 98.0% n=151
+  judge151/lfm2.6b                               aprov= 21.2% cov=0.367 taut=  0.0% cit= 90.7% n=151
+  finetune2/base_f16                             aprov= 19.9% cov=0.400 taut=  0.0% cit=100.0% n=151
+  judge151/lfm2.6b_noth                          aprov= 17.9% cov=0.393 taut=  0.0% cit=100.0% n=151
+  sintese2/minicpm2b_full                        aprov= 17.2% cov=0.269 taut=  0.0% cit= 76.2% n=151
+  judge151/lfm2.6b_noth_v1                       aprov= 15.9% cov=0.326 taut=  0.0% cit=100.0% n=151
+  finetune2/dpo                                  aprov= 15.9% cov=0.287 taut=  1.3% cit= 80.8% n=151
+  judge151/lfm2.6b_cap1024                       aprov= 15.2% cov=0.212 taut=  0.0% cit= 57.6% n=151
