@@ -1,0 +1,87 @@
+{
+ "task": "poc-slm-oraculo",
+ "regua": "bench/regua (ruler + judge_regua 27B), limiar 0.5, citação fora do gate",
+ "corpus": "CORRIGIDO (reparo cirúrgico Anexo II NR-10 via DocAI)",
+ "n": 151,
+ "teto_27b_oracle_pct": 82.1,
+ "base_2.6b_bf16_oracle_pct": 49.0,
+ "base_2.6b_q4_oracle_pct": 45.0,
+ "quant_cost_bf16_to_q4_pp": 4.0,
+ "gap_27b_minus_base_bf16_pp": 33.1,
+ "trained_oracle_pct": {},
+ "best_trained_oracle": null,
+ "best_trained_oracle_pct": null,
+ "gap_closed_pct": null,
+ "retrieved_v4": {
+  "27b": 46.4,
+  "2.6b_q4_base": 23.8
+ },
+ "table": [
+  {
+   "label": "27b",
+   "context": "oracle",
+   "approval_pct": 82.1,
+   "mean_coverage": 0.761,
+   "hallucination_pct": 2.6,
+   "conv_chunk_hit_pct": 82.1,
+   "citation_pct": 94.7,
+   "avg_completion_tokens": 107.1,
+   "file": "score_27b_oracle.json"
+  },
+  {
+   "label": "2.6b_bf16_base",
+   "context": "oracle",
+   "approval_pct": 49.0,
+   "mean_coverage": 0.59,
+   "hallucination_pct": 25.2,
+   "conv_chunk_hit_pct": 49.0,
+   "citation_pct": 98.7,
+   "avg_completion_tokens": 258.9,
+   "file": "score_2.6b_bf16_base_oracle.json"
+  },
+  {
+   "label": "2.6b_q4_base",
+   "context": "oracle",
+   "approval_pct": 45.0,
+   "mean_coverage": 0.562,
+   "hallucination_pct": 25.8,
+   "conv_chunk_hit_pct": 45.0,
+   "citation_pct": 97.4,
+   "avg_completion_tokens": 225.0,
+   "file": "score_2.6b_q4_base_oracle.json"
+  },
+  {
+   "label": "27b",
+   "context": "retrieved",
+   "approval_pct": 46.4,
+   "mean_coverage": 0.519,
+   "hallucination_pct": 25.2,
+   "conv_chunk_hit_pct": 70.1,
+   "citation_pct": 89.4,
+   "avg_completion_tokens": 110.6,
+   "file": "score_27b_retrieved.json"
+  },
+  {
+   "label": "2.6b_q4_base",
+   "context": "retrieved",
+   "approval_pct": 23.8,
+   "mean_coverage": 0.441,
+   "hallucination_pct": 51.0,
+   "conv_chunk_hit_pct": 36.4,
+   "citation_pct": 96.0,
+   "avg_completion_tokens": 218.8,
+   "file": "score_2.6b_q4_base_retrieved.json"
+  },
+  {
+   "label": "2.6b_bf16_base",
+   "context": "retrieved",
+   "approval_pct": 4.6,
+   "mean_coverage": 0.098,
+   "hallucination_pct": 7.3,
+   "conv_chunk_hit_pct": 40.0,
+   "citation_pct": 18.5,
+   "avg_completion_tokens": 53.5,
+   "file": "score_2.6b_bf16_base_retrieved.json"
+  }
+ ]
+}

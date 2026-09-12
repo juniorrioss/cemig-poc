@@ -1,0 +1,6 @@
+# Artefatos pesados/reprodutíveis — ficam na Spark (~/cemig-poc/), não no git.
+*.gguf
+*.safetensors
+logs/*.log
+data/_smoke*
+data/_tmp*
