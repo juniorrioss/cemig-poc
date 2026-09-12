@@ -133,14 +133,23 @@ Reprodução: `python3 asr/scripts/benchmark.py --models "base q5,small q5"`.
 > fallback reativado (re-decodes ocasionais) — troca deliberada de ~0,5 s por robustez em fala
 > real. Continua bem abaixo de 1,0.
 
-### 2.4 Limitação: voz humana real
+### 2.4 Limitação: voz humana real (bancada PRONTA, aguardando áudios)
 O relato do capitão ("só acerta se falar bem lento e pausado") é sobre **fala humana natural**.
 As medições de WER acima usam **áudio sintético TTS** (`edge-tts`), que tem prosódia estável e
 **não** captura sotaque, hesitações e respiração ofegante de campo — serve como **ranking
 relativo reprodutível**, não como WER de produção. A higiene de áudio e o prompt de domínio
 foram desenhados exatamente para o caso de fala natural (ganho baixo, silêncio nas pontas,
-jargão), mas **a validação de WER com voz real ainda não foi feita** — depende de amostras
-gravadas pelo capitão (voz humana, ritmo natural, ruído ambiente). Ver `needs-decision`.
+jargão), mas **a validação de WER com voz real depende de amostras gravadas pelo capitão**.
+
+**Bancada pronta para receber os áudios** (re-medição = só rodar):
+- Instruções de gravação (formato 16 kHz mono, 12–15 enunciados de 5–15 s, com/sem ruído,
+  falantes variados): `asr/data/real_voice/RECORDING_INSTRUCTIONS.md`.
+- Gabarito pré-preenchido: `asr/data/real_voice/manifest.jsonl` (edite `ref` se falar outro texto).
+- Harness: `python3 asr/scripts/bench_real_voice.py` — roda o Whisper Base Q5_1 no S24+ e
+  compara, no MESMO áudio real, a config **`old`** (JNI antigo: sem fallback/prompt) vs **`new`**
+  (JNI embarcado: fallback + gates + prompt de domínio), isolando o ganho real da mudança.
+  Saída em `asr/results/real_voice/real_voice_wer.json`. Validado end-to-end no aparelho
+  (mede WER, acurácia de termos, RTF/latência via `memtime`).
 
 ---
 

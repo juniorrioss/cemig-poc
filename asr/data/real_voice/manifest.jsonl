@@ -1,0 +1,19 @@
+# Gabarito da bancada de voz real. Uma linha JSON por áudio: {"id","file","ref"}.
+# 'ref' = transcrição EXATA do que foi falado (gabarito do WER). Ajuste se falar outro texto.
+# Coloque os .wav (16 kHz mono 16-bit) em asr/data/real_voice/audio/ e rode:
+#   python3 asr/scripts/bench_real_voice.py
+# Linhas iniciadas por # são ignoradas. Descomente/edite conforme os áudios gravados.
+{"id": "q01", "file": "q01.wav", "ref": "Quais são os procedimentos obrigatórios para a desenergização segundo a NR-10?"}
+{"id": "q02", "file": "q02.wav", "ref": "Qual a distância mínima de segurança pra trabalhar perto de uma rede de treze mil e oitocentos volts?"}
+{"id": "q03", "file": "q03.wav", "ref": "A luva isolante de borracha classe dois aguenta qual tensão máxima?"}
+{"id": "q04", "file": "q04.wav", "ref": "Onde é que eu instalo o aterramento temporário na chave seccionadora?"}
+{"id": "q05", "file": "q05.wav", "ref": "É obrigatório usar capacete com jugular e óculos de proteção?"}
+{"id": "q06", "file": "q06.wav", "ref": "Quais os requisitos da NR-35 pra ancoragem do cinto tipo paraquedista no poste?"}
+{"id": "q07", "file": "q07.wav", "ref": "Posso mexer no circuito energizado durante chuva forte?"}
+{"id": "q08", "file": "q08.wav", "ref": "Qual o equipamento de proteção coletiva pra abrir chave fusível?"}
+{"id": "q09", "file": "q09.wav", "ref": "O religador desarmou por sobrecorrente de fase na saída do alimentador."}
+{"id": "q10", "file": "q10.wav", "ref": "Quais ferramentas isoladas a mil volts têm que estar na bolsa de lona?"}
+{"id": "q11", "file": "q11.wav", "ref": "Como faço o bloqueio e etiquetagem do religador da subestação?"}
+{"id": "q12", "file": "q12.wav", "ref": "Qual a sequência certa pra constatar ausência de tensão na rede aérea?"}
+# Versões com ruído (opcional): repita os enunciados e salve como qNN_noisy.wav
+# {"id": "q01_noisy", "file": "q01_noisy.wav", "ref": "Quais são os procedimentos obrigatórios para a desenergização segundo a NR-10?"}

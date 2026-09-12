@@ -14,6 +14,8 @@ __pycache__/
 corpus/data/
 asr/data/clean/
 asr/data/noisy/
+# Áudio de voz real não é versionado; manifesto/instruções sim (ver asr/data/real_voice/)
+asr/data/real_voice/audio/*.wav
 finetune/checkpoints/
 finetune/merged_model/
 finetune/merged_r8/
