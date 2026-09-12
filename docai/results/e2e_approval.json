@@ -1,0 +1,654 @@
+{
+  "doc_filter": "nr-10",
+  "current": {
+    "n": 45,
+    "approved": 3,
+    "approval_pct": 6.7,
+    "mean_coverage": 0.116,
+    "tautology": 0,
+    "per_item": [
+      {
+        "id": "qa-001",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-002",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": false
+      },
+      {
+        "id": "qa-003",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-004",
+        "coverage": 0.333,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-005",
+        "coverage": 0.333,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-006",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-007",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-008",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-009",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": false
+      },
+      {
+        "id": "qa-010",
+        "coverage": 0.167,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-011",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-012",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-013",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-014",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-015",
+        "coverage": 0.333,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-016",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-017",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-018",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-019",
+        "coverage": 0.25,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-020",
+        "coverage": 0.5,
+        "approved": true,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-021",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-022",
+        "coverage": 0.4,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-023",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-024",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-025",
+        "coverage": 0.25,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-026",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-027",
+        "coverage": 0.8,
+        "approved": true,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-028",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": false
+      },
+      {
+        "id": "qa-029",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-030",
+        "coverage": 0.4,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-031",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-032",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-033",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-034",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-035",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-036",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-037",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-038",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-039",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-040",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-041",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-042",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-043",
+        "coverage": 0.833,
+        "approved": true,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-044",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-045",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      }
+    ]
+  },
+  "docai": {
+    "n": 45,
+    "approved": 2,
+    "approval_pct": 4.4,
+    "mean_coverage": 0.131,
+    "tautology": 0,
+    "per_item": [
+      {
+        "id": "qa-001",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-002",
+        "coverage": 0.667,
+        "approved": true,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-003",
+        "coverage": 0.4,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-004",
+        "coverage": 0.333,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-005",
+        "coverage": 0.333,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-006",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-007",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-008",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-009",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-010",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-011",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-012",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-013",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-014",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-015",
+        "coverage": 0.333,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-016",
+        "coverage": 0.25,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-017",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-018",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": false
+      },
+      {
+        "id": "qa-019",
+        "coverage": 0.25,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-020",
+        "coverage": 0.5,
+        "approved": true,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-021",
+        "coverage": 0.4,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-022",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-023",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-024",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-025",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-026",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-027",
+        "coverage": 0.4,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-028",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-029",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-030",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-031",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-032",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-033",
+        "coverage": 0.2,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-034",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-035",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-036",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-037",
+        "coverage": 0.25,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-038",
+        "coverage": 0.4,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-039",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-040",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-041",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-042",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-043",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-044",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      },
+      {
+        "id": "qa-045",
+        "coverage": 0.0,
+        "approved": false,
+        "tautology": false,
+        "citation": true
+      }
+    ]
+  },
+  "delta_approval_pct": -2.3,
+  "delta_coverage": 0.015,
+  "note": "régua honesta determinística (ruler.deterministic_pass, limiar 0.5); latência GPU não vale p/ aparelho (engine:cuda)."
+}

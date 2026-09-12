@@ -1,0 +1,324 @@
+{
+  "glyphs_total": {},
+  "per_nr": {
+    "nr-03": {
+      "n_tables_raw": 5,
+      "n_tables_stitched": 4,
+      "stitch": {
+        "stitched": 1,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 6,
+      "n_zona_sentences": 0
+    },
+    "nr-20": {
+      "n_tables_raw": 17,
+      "n_tables_stitched": 17,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 46,
+      "n_zona_sentences": 0
+    },
+    "nr-22": {
+      "n_tables_raw": 16,
+      "n_tables_stitched": 16,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 79,
+      "n_zona_sentences": 0
+    },
+    "nr-29": {
+      "n_tables_raw": 35,
+      "n_tables_stitched": 35,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 110,
+      "n_zona_sentences": 0
+    },
+    "nr-30": {
+      "n_tables_raw": 16,
+      "n_tables_stitched": 15,
+      "stitch": {
+        "stitched": 1,
+        "ambiguous": 1,
+        "ambiguous_detail": [
+          {
+            "page": 23,
+            "prev_page": 22,
+            "n_cols": 9
+          }
+        ]
+      },
+      "glyphs": {},
+      "n_sentences": 45,
+      "n_zona_sentences": 0
+    },
+    "nr-31": {
+      "n_tables_raw": 33,
+      "n_tables_stitched": 31,
+      "stitch": {
+        "stitched": 2,
+        "ambiguous": 2,
+        "ambiguous_detail": [
+          {
+            "page": 63,
+            "prev_page": 62,
+            "n_cols": 4
+          },
+          {
+            "page": 65,
+            "prev_page": 64,
+            "n_cols": 4
+          }
+        ]
+      },
+      "glyphs": {},
+      "n_sentences": 226,
+      "n_zona_sentences": 0
+    },
+    "nr-33": {
+      "n_tables_raw": 8,
+      "n_tables_stitched": 6,
+      "stitch": {
+        "stitched": 2,
+        "ambiguous": 2,
+        "ambiguous_detail": [
+          {
+            "page": 13,
+            "prev_page": 13,
+            "n_cols": 3
+          },
+          {
+            "page": 14,
+            "prev_page": 13,
+            "n_cols": 3
+          }
+        ]
+      },
+      "glyphs": {},
+      "n_sentences": 25,
+      "n_zona_sentences": 0
+    },
+    "nr-34": {
+      "n_tables_raw": 20,
+      "n_tables_stitched": 16,
+      "stitch": {
+        "stitched": 4,
+        "ambiguous": 3,
+        "ambiguous_detail": [
+          {
+            "page": 46,
+            "prev_page": 45,
+            "n_cols": 9
+          },
+          {
+            "page": 46,
+            "prev_page": 46,
+            "n_cols": 3
+          },
+          {
+            "page": 48,
+            "prev_page": 47,
+            "n_cols": 9
+          }
+        ]
+      },
+      "glyphs": {},
+      "n_sentences": 43,
+      "n_zona_sentences": 0
+    },
+    "nr-36": {
+      "n_tables_raw": 7,
+      "n_tables_stitched": 7,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 16,
+      "n_zona_sentences": 0
+    },
+    "nr-37": {
+      "n_tables_raw": 20,
+      "n_tables_stitched": 20,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 55,
+      "n_zona_sentences": 0
+    },
+    "nr-05": {
+      "n_tables_raw": 4,
+      "n_tables_stitched": 4,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 23,
+      "n_zona_sentences": 0
+    },
+    "nr-07": {
+      "n_tables_raw": 39,
+      "n_tables_stitched": 34,
+      "stitch": {
+        "stitched": 5,
+        "ambiguous": 5,
+        "ambiguous_detail": [
+          {
+            "page": 11,
+            "prev_page": 10,
+            "n_cols": 6
+          },
+          {
+            "page": 12,
+            "prev_page": 12,
+            "n_cols": 6
+          },
+          {
+            "page": 19,
+            "prev_page": 18,
+            "n_cols": 9
+          },
+          {
+            "page": 34,
+            "prev_page": 34,
+            "n_cols": 9
+          },
+          {
+            "page": 35,
+            "prev_page": 34,
+            "n_cols": 10
+          }
+        ]
+      },
+      "glyphs": {},
+      "n_sentences": 228,
+      "n_zona_sentences": 0
+    },
+    "nr-09": {
+      "n_tables_raw": 15,
+      "n_tables_stitched": 13,
+      "stitch": {
+        "stitched": 2,
+        "ambiguous": 2,
+        "ambiguous_detail": [
+          {
+            "page": 12,
+            "prev_page": 11,
+            "n_cols": 6
+          },
+          {
+            "page": 12,
+            "prev_page": 11,
+            "n_cols": 6
+          }
+        ]
+      },
+      "glyphs": {},
+      "n_sentences": 152,
+      "n_zona_sentences": 0
+    },
+    "nr-12": {
+      "n_tables_raw": 29,
+      "n_tables_stitched": 29,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 74,
+      "n_zona_sentences": 0
+    },
+    "nr-13": {
+      "n_tables_raw": 5,
+      "n_tables_stitched": 5,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 16,
+      "n_zona_sentences": 0
+    },
+    "nr-16": {
+      "n_tables_raw": 25,
+      "n_tables_stitched": 24,
+      "stitch": {
+        "stitched": 1,
+        "ambiguous": 1,
+        "ambiguous_detail": [
+          {
+            "page": 10,
+            "prev_page": 9,
+            "n_cols": 4
+          }
+        ]
+      },
+      "glyphs": {},
+      "n_sentences": 142,
+      "n_zona_sentences": 0
+    },
+    "nr-18": {
+      "n_tables_raw": 16,
+      "n_tables_stitched": 16,
+      "stitch": {
+        "stitched": 0,
+        "ambiguous": 0,
+        "ambiguous_detail": []
+      },
+      "glyphs": {},
+      "n_sentences": 68,
+      "n_zona_sentences": 0
+    },
+    "nr-19": {
+      "n_tables_raw": 21,
+      "n_tables_stitched": 17,
+      "stitch": {
+        "stitched": 4,
+        "ambiguous": 3,
+        "ambiguous_detail": [
+          {
+            "page": 22,
+            "prev_page": 21,
+            "n_cols": 6
+          },
+          {
+            "page": 22,
+            "prev_page": 21,
+            "n_cols": 6
+          },
+          {
+            "page": 23,
+            "prev_page": 23,
+            "n_cols": 6
+          }
+        ]
+      },
+      "glyphs": {},
+      "n_sentences": 99,
+      "n_zona_sentences": 0
+    }
+  }
+}

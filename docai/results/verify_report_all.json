@@ -1,0 +1,801 @@
+{
+  "per_nr": {
+    "nr-03": {
+      "nr": "nr-03",
+      "n_sentences": 6,
+      "verified_numbers": 22,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    },
+    "nr-04": {
+      "nr": "nr-04",
+      "n_sentences": 1049,
+      "verified_numbers": 3193,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 48,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-04",
+          "num": "3333333",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 01.14-8; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Cultivo de fumo; GR: 3333333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333333",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 01.33-4; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Cultivo de frutas de lavoura permanen"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333333",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 01.53-9; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Criação de caprinos e ovinos; GR: 333"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 01.62-8; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Atividades de apoio à pecuária; GR: 3"
+        },
+        {
+          "nr": "nr-04",
+          "num": "4444",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 07.24-3; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Extração de minério de metais precios"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 10.32-5; Fabricação de produtos de carne: Fabricação de conservas de legumes e outros vegetais; 3: 3 33"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 10.52-0; Fabricação de produtos de carne: Fabricação de laticínios; 3: 333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 10.63-5; Fabricação de produtos de carne: Fabricação de farinha de mandioca e derivados; 3: 333333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "3333333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 10.94-5; Fabricação de produtos de carne: Fabricação de massas alimentícias; 3: 3333333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 11.12-7; Fabricação de produtos de carne: Fabricação de vinho; 3: 333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "3333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 13.12-0; Fabricação de produtos de carne: Preparação e fiação de fibras têxteis naturais, exceto algodã"
+        },
+        {
+          "nr": "nr-04",
+          "num": "33333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 13.53-7; Fabricação de produtos de carne: Fabricação de artefatos de cordoaria; 3: 33333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "3333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 15.32-7; Fabricação de produtos de carne: Fabricação de tênis de qualquer material; 3: 3333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "222",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 17.32-0; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de embalagens de cartolina e papel-cartão; coluna 3: "
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 18.12-1; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Impressão de material de segurança; coluna 3: 333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "3333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.13-4; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de adubos e fertilizantes; coluna 3: 3333 3."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.22-3; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de intermediários para plastificantes, resinas e fibr"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.32-1; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de resinas termofixas; coluna 3: 333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "332",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.62-2; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de produtos de limpeza e polimento; coluna 3: 332."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.72-0; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de tintas de impressão; coluna 3: 333."
+        }
+      ]
+    },
+    "nr-05": {
+      "nr": "nr-05",
+      "n_sentences": 23,
+      "verified_numbers": 140,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 5,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-05",
+          "num": "558",
+          "kind": "generic",
+          "sentence": "(NR-05) GRAU de RISCO*: 1; Nº de INTEGRANTES da CIPA: Suplentes; DE 81 a 100: 1; EMPREGADOS 101 a 120: 1; 501 a 1000: 3;"
+        },
+        {
+          "nr": "nr-05",
+          "num": "2435",
+          "kind": "generic",
+          "sentence": "(NR-05) GRAU de RISCO*: 2; Nº de INTEGRANTES da CIPA: Efetivos; DE 81 a 100: 1; EMPREGADOS 101 a 120: 2; ESTABELECIMENTO"
+        },
+        {
+          "nr": "nr-05",
+          "num": "132424",
+          "kind": "generic",
+          "sentence": "(NR-05) Nº de INTEGRANTES da CIPA: Suplentes; NÚMERO 51 15 000 a 80: 112; DE 81 a 100: 1; EMPREGADOS 101 a 120: 1; NO 14"
+        },
+        {
+          "nr": "nr-05",
+          "num": "112",
+          "kind": "generic",
+          "sentence": "(NR-05) Nº de INTEGRANTES da CIPA: Suplentes; NÚMERO 51 15 000 a 80: 112; DE 81 a 100: 1; EMPREGADOS 101 a 120: 1; NO 14"
+        },
+        {
+          "nr": "nr-05",
+          "num": "1213242",
+          "kind": "generic",
+          "sentence": "(NR-05) GRAU de RISCO*: 3; Nº de INTEGRANTES da CIPA: Efetivos; 2220 a 29: 1; 30 310 a 50: 1; NÚMERO 51 15 000 a 80: 2; "
+        }
+      ]
+    },
+    "nr-07": {
+      "nr": "nr-07",
+      "n_sentences": 228,
+      "verified_numbers": 1102,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 4,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-07",
+          "num": "81855",
+          "kind": "generic",
+          "sentence": "(NR-07) 0: MONOBLO81855-1 60."
+        },
+        {
+          "nr": "nr-07",
+          "num": "2287787888",
+          "kind": "generic",
+          "sentence": "(NR-07) 0: 40 7-2287787888."
+        },
+        {
+          "nr": "nr-07",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-07) TABELA 2 - PRESSÃO DE TABELA 2.1 - PERÍODO DE PRESSÃO DE |(ATA TRABALHO ***: 2,8 a 2,9; A 2,9 ATA 30 MINUTOS DES"
+        },
+        {
+          "nr": "nr-07",
+          "num": "1525",
+          "kind": "generic",
+          "sentence": "(NR-07) 3,2: 3,6 a 3,8; coluna 3: 5; coluna 4: 1525; 15: 30; 35: 40; 40: 45; 95: 160; Linha 75: Linha 85."
+        }
+      ]
+    },
+    "nr-09": {
+      "nr": "nr-09",
+      "n_sentences": 152,
+      "verified_numbers": 606,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    },
+    "nr-10": {
+      "nr": "nr-10",
+      "n_sentences": 26,
+      "verified_numbers": 108,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 1,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-10",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-10) ZL = 김: 0 ZC =; Zona livre: Zona controlada, restrita a trabalhadores autorizados.."
+        }
+      ]
+    },
+    "nr-12": {
+      "nr": "nr-12",
+      "n_sentences": 74,
+      "verified_numbers": 268,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    },
+    "nr-13": {
+      "nr": "nr-13",
+      "n_sentences": 16,
+      "verified_numbers": 83,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    },
+    "nr-15": {
+      "nr": "nr-15",
+      "n_sentences": 1194,
+      "verified_numbers": 6481,
+      "generated_voltage_labels": 1,
+      "unrepairable_count": 123,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-15",
+          "num": "52205",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; )*: 52205; TEMPO TOTAL DE: 25."
+        },
+        {
+          "nr": "nr-15",
+          "num": "505",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,6 a 1,8; kgf/cm²: 10 505; )*: 30; TEMPO TOTAL DE: 40."
+        },
+        {
+          "nr": "nr-15",
+          "num": "5212",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; )*: 10 5212; TEMPO TOTAL DE: 10."
+        },
+        {
+          "nr": "nr-15",
+          "num": "5223",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; kgf/cm²: 10 5223; )*: 35 ||||; TEMPO TOTAL DE: 45."
+        },
+        {
+          "nr": "nr-15",
+          "num": "52822",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; )*: 30 52822; TEMPO TOTAL DE: 35."
+        },
+        {
+          "nr": "nr-15",
+          "num": "555",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,6 a 1,8; kgf/cm²: 555 15; )*: 40; TEMPO TOTAL DE: 55."
+        },
+        {
+          "nr": "nr-15",
+          "num": "555550",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; coluna 9: 555550."
+        },
+        {
+          "nr": "nr-15",
+          "num": "555",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 3,0 a 3,2; coluna 8: 555; TEMPO TOTAL DE DESCOMPRESSÃO**: 10."
+        },
+        {
+          "nr": "nr-15",
+          "num": "23244",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; (: 5; )*: 40 23244; TEMPO TOTAL DE: 65."
+        },
+        {
+          "nr": "nr-15",
+          "num": "5205",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,6 a 1,8; (: 10; kgf/cm²: 5205 30; )*: 45; TEMPO TOTAL DE: 85."
+        },
+        {
+          "nr": "nr-15",
+          "num": "5550",
+          "kind": "generic",
+          "sentence": "(NR-15) 1,2 a 1,4 1,4 a 1,6: 1,6 a 1,8; 30 35 15 40 260 55: 5550 5 25 45 75."
+        },
+        {
+          "nr": "nr-15",
+          "num": "122377",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,4 a 2,6; coluna 8: 10; coluna 9: 25 122377; TEMPO TOTAL DE DESCOMPRESSÃO**: 35."
+        },
+        {
+          "nr": "nr-15",
+          "num": "52212",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; coluna 8: 52212 10; coluna 9: 35; TEMPO TOTAL DE DESCOMPRESSÃO**: 50."
+        },
+        {
+          "nr": "nr-15",
+          "num": "555",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,8 a 3,0; DESCOMPRESSÃO: 555; coluna 8: 15; coluna 9: 40; TEMPO TOTAL DE DESCOMPRESSÃO"
+        },
+        {
+          "nr": "nr-15",
+          "num": "2035",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,8 a 3,0; cm²)*: 5555; DESCOMPRESSÃO: 20; coluna 8: 35 2035; coluna 9: 45 24444; TEMPO"
+        },
+        {
+          "nr": "nr-15",
+          "num": "24444",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,8 a 3,0; cm²)*: 5555; DESCOMPRESSÃO: 20; coluna 8: 35 2035; coluna 9: 45 24444; TEMPO"
+        },
+        {
+          "nr": "nr-15",
+          "num": "5555",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,8 a 3,0; cm²)*: 5555; DESCOMPRESSÃO: 20; coluna 8: 35 2035; coluna 9: 45 24444; TEMPO"
+        },
+        {
+          "nr": "nr-15",
+          "num": "4444444",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; DE (kgf/: 55US; cm²)*: 20 52222; DESCOMPRESSÃO: 30; coluna 8: 35; coluna 9: "
+        },
+        {
+          "nr": "nr-15",
+          "num": "52222",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; DE (kgf/: 55US; cm²)*: 20 52222; DESCOMPRESSÃO: 30; coluna 8: 35; coluna 9: "
+        },
+        {
+          "nr": "nr-15",
+          "num": "273444",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; cm²)*: 10; DESCOMPRESSÃO: 25; coluna 8: 35; coluna 9: 40 273444; TEMPO TOTAL"
+        }
+      ]
+    },
+    "nr-16": {
+      "nr": "nr-16",
+      "n_sentences": 142,
+      "verified_numbers": 408,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    },
+    "nr-18": {
+      "nr": "nr-18",
+      "n_sentences": 68,
+      "verified_numbers": 297,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    },
+    "nr-19": {
+      "nr": "nr-19",
+      "n_sentences": 99,
+      "verified_numbers": 642,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 2,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-19",
+          "num": "5622",
+          "kind": "generic",
+          "sentence": "(NR-19) Peso: 171; Líquido: 230; coluna 3: 200; Distâncias: 5622 70; mínimas (m): 135; coluna 6: 40."
+        },
+        {
+          "nr": "nr-19",
+          "num": "23374258685",
+          "kind": "generic",
+          "sentence": "(NR-19) 22.701 24.971: 2.721; 24.970 27.240: 3.620; 610 610: 311; 265 275: 156; 525 550: 78; 180 180: 23374258685."
+        }
+      ]
+    },
+    "nr-20": {
+      "nr": "nr-20",
+      "n_sentences": 46,
+      "verified_numbers": 180,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    },
+    "nr-22": {
+      "nr": "nr-22",
+      "n_sentences": 79,
+      "verified_numbers": 289,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 2,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-22",
+          "num": "49",
+          "kind": "generic",
+          "sentence": "(NR-22) N*: 38-49; A: 17 1712."
+        },
+        {
+          "nr": "nr-22",
+          "num": "1712",
+          "kind": "generic",
+          "sentence": "(NR-22) N*: 38-49; A: 17 1712."
+        }
+      ]
+    },
+    "nr-28": {
+      "nr": "nr-28",
+      "n_sentences": 4955,
+      "verified_numbers": 27605,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 10,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-28",
+          "num": "3333",
+          "kind": "generic",
+          "sentence": "(NR-28) 6.1.3.2 do Apêndice I e 6.1.7 e 6.1.7.1 do Apêndice II: 6.4.4 do Apêndice I e 6.4.4 do Apêndice II; 130929-3: 13"
+        },
+        {
+          "nr": "nr-28",
+          "num": "333333333333333333333333333333333333",
+          "kind": "generic",
+          "sentence": "(NR-28) 7.5.12, alínea \"a\": 7.5.4, alínea \"d\"; 107168-8: 107108-4; 3: 2; Σ: 333333333333333333333333333333333333."
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) 35.5.5.1, alínea \"m\": 4.1.1; 135201-6: 135270-9; coluna 3: 333; coluna 4: SS."
+        },
+        {
+          "nr": "nr-28",
+          "num": "222",
+          "kind": "generic",
+          "sentence": "(NR-28) 6.7: 36.9.3.2, alínea \"c\"; 312886-5: 136115-5; 4: 222; S: S."
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) NR-18 - ANEXO II 1: 9; 318474-9: 318482-0; 3: 333; S: SSS."
+        },
+        {
+          "nr": "nr-28",
+          "num": "33333",
+          "kind": "generic",
+          "sentence": "(NR-28) NR-20: 20.8.1; coluna 2: 220233-6; coluna 3: 33333; coluna 4: S."
+        },
+        {
+          "nr": "nr-28",
+          "num": "434",
+          "kind": "generic",
+          "sentence": "(NR-28) NR-20: 20.9.1.1; coluna 2: 220237-9; coluna 3: 434; coluna 4: S."
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) Item/Subitem: 29.8.1, alíneas \"a\", \"b\", \"c\", \"d\" e \"e\", 29.8.1.1 e 29.8.2; Código: 329404-8; Infração: 333; Tipo"
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) 29.15.1: 29.21.1, 29.21.2 e 29.21.3; 329441-2: 329476-5; 3: 333m; S: S."
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) NR-30: 30.15.2; coluna 2: 130820-3; coluna 3: 333; coluna 4: S."
+        }
+      ]
+    },
+    "nr-29": {
+      "nr": "nr-29",
+      "n_sentences": 110,
+      "verified_numbers": 351,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 5,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-29",
+          "num": "102",
+          "kind": "generic",
+          "sentence": "(NR-29) No médio de trabalhadores avulsos: e Nº de representantes titulares dos operadores portuários dos tomadores de s"
+        },
+        {
+          "nr": "nr-29",
+          "num": "90",
+          "kind": "generic",
+          "sentence": "(NR-29) No médio de trabalhadores avulsos: No de representantes titulares dos trabalhadores avulsos; a 50: 01; 2051 a 10"
+        },
+        {
+          "nr": "nr-29",
+          "num": "421",
+          "kind": "generic",
+          "sentence": "(NR-29) CLASSE 1.1, 1.2, 1.5: Gases inflamáveis * 2.1; 1.3, 1.6: *; 1.4: *; 2.1: X ×; 2.2: ☑; 2.3: ☑; 34.1: 21; 4.2: 2; "
+        },
+        {
+          "nr": "nr-29",
+          "num": "222",
+          "kind": "generic",
+          "sentence": "(NR-29) Substâncias oxidantes 5.1: Peróxidos orgânicos 5.2; *: *; *: *; *: *; 2: 2; X: 1; X: 2; 21: 22; coluna 11: 222; "
+        },
+        {
+          "nr": "nr-29",
+          "num": "222212",
+          "kind": "generic",
+          "sentence": "(NR-29) Substâncias oxidantes 5.1: Materiais radiativos 7; *: *; *: *; *: *; 2: 2; X: 1; X: 1; coluna 11: 222212; 1: X ×"
+        }
+      ]
+    },
+    "nr-30": {
+      "nr": "nr-30",
+      "n_sentences": 45,
+      "verified_numbers": 150,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 4,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-30",
+          "num": "111",
+          "kind": "generic",
+          "sentence": "(NR-30) ão STCW: 111/2; Aquaviário: oficiais; Outr O olho: 0,4; Os dois olhos juntos, com ou sem correção: OS; Core $³ 3"
+        },
+        {
+          "nr": "nr-30",
+          "num": "111",
+          "kind": "generic",
+          "sentence": "(NR-30) ão STCW: 111/3; Aquaviário: eletrotécnic; longe com correção¹ Um 특등。 olh: 0,4; Outr O olho: (Ver; Os dois olhos "
+        },
+        {
+          "nr": "nr-30",
+          "num": "111",
+          "kind": "generic",
+          "sentence": "(NR-30) ão STCW: 111/5; Aquaviário: subalternos; Outr O olho: a 5); Os dois olhos juntos, com ou sem correção: operar; V"
+        },
+        {
+          "nr": "nr-30",
+          "num": "111",
+          "kind": "generic",
+          "sentence": "(NR-30) ão STCW: 111/6; Aquaviário: eletrotécnic; Os dois olhos juntos, com ou sem correção: equipamen; coluna 8: S; dup"
+        }
+      ]
+    },
+    "nr-31": {
+      "nr": "nr-31",
+      "n_sentences": 226,
+      "verified_numbers": 647,
+      "generated_voltage_labels": 1,
+      "unrepairable_count": 15,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-31",
+          "num": "215",
+          "kind": "generic",
+          "sentence": "(NR-31) Abertura: 6<e≤8; coluna 4: 220; Distância de segurança: 215; sr: 25 S."
+        },
+        {
+          "nr": "nr-31",
+          "num": "280",
+          "kind": "generic",
+          "sentence": "(NR-31) Abertura: 8<e≤10; coluna 4: 280; Distância de segurança: 225; sr: ≥20."
+        },
+        {
+          "nr": "nr-31",
+          "num": "225",
+          "kind": "generic",
+          "sentence": "(NR-31) Abertura: 8<e≤10; coluna 4: 280; Distância de segurança: 225; sr: ≥20."
+        },
+        {
+          "nr": "nr-31",
+          "num": "280",
+          "kind": "generic",
+          "sentence": "(NR-31) Parte do: Dedo até articulação com a mão; Ilustração: S; Abertura: 10<es 12 12<es 20; coluna 4: 2100 2120 21209;"
+        },
+        {
+          "nr": "nr-31",
+          "num": "21209",
+          "kind": "generic",
+          "sentence": "(NR-31) Parte do: Dedo até articulação com a mão; Ilustração: S; Abertura: 10<es 12 12<es 20; coluna 4: 2100 2120 21209;"
+        },
+        {
+          "nr": "nr-31",
+          "num": "2100",
+          "kind": "generic",
+          "sentence": "(NR-31) Parte do: Dedo até articulação com a mão; Ilustração: S; Abertura: 10<es 12 12<es 20; coluna 4: 2100 2120 21209;"
+        },
+        {
+          "nr": "nr-31",
+          "num": "2120",
+          "kind": "generic",
+          "sentence": "(NR-31) Parte do: Dedo até articulação com a mão; Ilustração: S; Abertura: 10<es 12 12<es 20; coluna 4: 2100 2120 21209;"
+        },
+        {
+          "nr": "nr-31",
+          "num": "2120",
+          "kind": "generic",
+          "sentence": "(NR-31) Abertura: 20<es 30; coluna 4: 2 850¹); Distância de segurança: 2120; sr: 2120."
+        },
+        {
+          "nr": "nr-31",
+          "num": "2850",
+          "kind": "generic",
+          "sentence": "(NR-31) Parte do: Braço até Junção com; Abertura: 30<e ≤ 40; coluna 4: 2850; Distância de segurança: 2200; sr: 2120."
+        },
+        {
+          "nr": "nr-31",
+          "num": "2120",
+          "kind": "generic",
+          "sentence": "(NR-31) Parte do: Braço até Junção com; Abertura: 30<e ≤ 40; coluna 4: 2850; Distância de segurança: 2200; sr: 2120."
+        },
+        {
+          "nr": "nr-31",
+          "num": "8590",
+          "kind": "generic",
+          "sentence": "(NR-31) Parte do: o ombro; Abertura: 40 <e s 120; coluna 4: 2850 8590; Distância de segurança: 2850; sr: 2 850."
+        },
+        {
+          "nr": "nr-31",
+          "num": "2850",
+          "kind": "generic",
+          "sentence": "(NR-31) Parte do: o ombro; Abertura: 40 <e s 120; coluna 4: 2850 8590; Distância de segurança: 2850; sr: 2 850."
+        },
+        {
+          "nr": "nr-31",
+          "num": "5120",
+          "kind": "generic",
+          "sentence": "(NR-31) Limitação do movimento: Limitação do movimento apenas no ombro e axila; Distância de segurança sr: ≥850; Ilustra"
+        },
+        {
+          "nr": "nr-31",
+          "num": "550",
+          "kind": "generic",
+          "sentence": "(NR-31) Limitação do movimento: Braço apoiado até o cotovelo; Distância de segurança sr: ≥ 550; Ilustração: П 120 *07*."
+        },
+        {
+          "nr": "nr-31",
+          "num": "320",
+          "kind": "generic",
+          "sentence": "(NR-31) Limitação do movimento: Braço apoiado até o punho; Distância de segurança sr: ≥230; Ilustração: $320."
+        }
+      ]
+    },
+    "nr-32": {
+      "nr": "nr-32",
+      "n_sentences": 613,
+      "verified_numbers": 682,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 9,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Yersinia spp: Herpesvirus de cobaias; 2: 2; coluna 3: 0."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Yersinia spp: Shope fibroma virus; 2: 2; coluna 3: 0."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Yersinia spp: Vírus do Tumor Mamário de camundongos; 2: 2; coluna 3: 0."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Yersinia spp: Adenovirus 2 - Vírus Símio 40 (Ad2-SV40); 2: 2; coluna 3: 0+ ooo."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus da Leucemia de Gibões (GaLV); 2: 2; coluna 3: 0+."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus da Leucemia Felina (FeLV); 2: 2; coluna 3: 0+."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus da Leucose Aviária; 2: 2; coluna 3: 0."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus do Sarcoma de Símios (SSV-1); 2: 2; coluna 3: 0+."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus do Sarcoma Felino (FeSV); 2: 2; coluna 3: ±± 0+."
+        }
+      ]
+    },
+    "nr-33": {
+      "nr": "nr-33",
+      "n_sentences": 25,
+      "verified_numbers": 54,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 1,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-33",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-33) 3. Bloqueios, travamento e etiquetagem N/A: Oxigênio % 0₂ > 19,5; ( ) S ( ): % ou <; N ( ): 23,0%."
+        }
+      ]
+    },
+    "nr-34": {
+      "nr": "nr-34",
+      "n_sentences": 43,
+      "verified_numbers": 210,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    },
+    "nr-36": {
+      "nr": "nr-36",
+      "n_sentences": 16,
+      "verified_numbers": 61,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 1,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-36",
+          "num": "56",
+          "kind": "generic",
+          "sentence": "(NR-36) A ≥ 230: B VI 40 40; 450: 95 56; 550: 120."
+        }
+      ]
+    },
+    "nr-37": {
+      "nr": "nr-37",
+      "n_sentences": 55,
+      "verified_numbers": 224,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 0,
+      "unrepairable_sample": []
+    }
+  },
+  "totals": {
+    "verified": 43803,
+    "generated_voltage": 2,
+    "unrepairable": 230
+  }
+}

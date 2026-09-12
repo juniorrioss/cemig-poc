@@ -53,3 +53,8 @@ Thumbs.db
 *.swp
 *~
 Zone.Identifier
+
+# DocAI corpus reprocessing: bancos e dumps volumosos (reprodutíveis via scripts)
+docai/data/
+docai/data_all/
+docai/*.db

@@ -1,0 +1,414 @@
+{
+  "per_nr": {
+    "nr-10": {
+      "nr": "nr-10",
+      "n_sentences": 26,
+      "verified_numbers": 108,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 1,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-10",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-10) ZL = 김: 0 ZC =; Zona livre: Zona controlada, restrita a trabalhadores autorizados.."
+        }
+      ]
+    },
+    "nr-15": {
+      "nr": "nr-15",
+      "n_sentences": 1194,
+      "verified_numbers": 6481,
+      "generated_voltage_labels": 1,
+      "unrepairable_count": 123,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-15",
+          "num": "52205",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; )*: 52205; TEMPO TOTAL DE: 25."
+        },
+        {
+          "nr": "nr-15",
+          "num": "505",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,6 a 1,8; kgf/cm²: 10 505; )*: 30; TEMPO TOTAL DE: 40."
+        },
+        {
+          "nr": "nr-15",
+          "num": "5212",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; )*: 10 5212; TEMPO TOTAL DE: 10."
+        },
+        {
+          "nr": "nr-15",
+          "num": "5223",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; kgf/cm²: 10 5223; )*: 35 ||||; TEMPO TOTAL DE: 45."
+        },
+        {
+          "nr": "nr-15",
+          "num": "52822",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; )*: 30 52822; TEMPO TOTAL DE: 35."
+        },
+        {
+          "nr": "nr-15",
+          "num": "555",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,6 a 1,8; kgf/cm²: 555 15; )*: 40; TEMPO TOTAL DE: 55."
+        },
+        {
+          "nr": "nr-15",
+          "num": "555550",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; coluna 9: 555550."
+        },
+        {
+          "nr": "nr-15",
+          "num": "555",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 3,0 a 3,2; coluna 8: 555; TEMPO TOTAL DE DESCOMPRESSÃO**: 10."
+        },
+        {
+          "nr": "nr-15",
+          "num": "23244",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,4 a 1,6; (: 5; )*: 40 23244; TEMPO TOTAL DE: 65."
+        },
+        {
+          "nr": "nr-15",
+          "num": "5205",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE: 1,6 a 1,8; (: 10; kgf/cm²: 5205 30; )*: 45; TEMPO TOTAL DE: 85."
+        },
+        {
+          "nr": "nr-15",
+          "num": "5550",
+          "kind": "generic",
+          "sentence": "(NR-15) 1,2 a 1,4 1,4 a 1,6: 1,6 a 1,8; 30 35 15 40 260 55: 5550 5 25 45 75."
+        },
+        {
+          "nr": "nr-15",
+          "num": "122377",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,4 a 2,6; coluna 8: 10; coluna 9: 25 122377; TEMPO TOTAL DE DESCOMPRESSÃO**: 35."
+        },
+        {
+          "nr": "nr-15",
+          "num": "52212",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; coluna 8: 52212 10; coluna 9: 35; TEMPO TOTAL DE DESCOMPRESSÃO**: 50."
+        },
+        {
+          "nr": "nr-15",
+          "num": "555",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,8 a 3,0; DESCOMPRESSÃO: 555; coluna 8: 15; coluna 9: 40; TEMPO TOTAL DE DESCOMPRESSÃO"
+        },
+        {
+          "nr": "nr-15",
+          "num": "5555",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,8 a 3,0; cm²)*: 5555; DESCOMPRESSÃO: 20; coluna 8: 35 2035; coluna 9: 45 24444; TEMPO"
+        },
+        {
+          "nr": "nr-15",
+          "num": "24444",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,8 a 3,0; cm²)*: 5555; DESCOMPRESSÃO: 20; coluna 8: 35 2035; coluna 9: 45 24444; TEMPO"
+        },
+        {
+          "nr": "nr-15",
+          "num": "2035",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,8 a 3,0; cm²)*: 5555; DESCOMPRESSÃO: 20; coluna 8: 35 2035; coluna 9: 45 24444; TEMPO"
+        },
+        {
+          "nr": "nr-15",
+          "num": "4444444",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; DE (kgf/: 55US; cm²)*: 20 52222; DESCOMPRESSÃO: 30; coluna 8: 35; coluna 9: "
+        },
+        {
+          "nr": "nr-15",
+          "num": "52222",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; DE (kgf/: 55US; cm²)*: 20 52222; DESCOMPRESSÃO: 30; coluna 8: 35; coluna 9: "
+        },
+        {
+          "nr": "nr-15",
+          "num": "273444",
+          "kind": "generic",
+          "sentence": "(NR-15) PRESSÃO DE TRABALHO ***: 2,6 a 2,8; cm²)*: 10; DESCOMPRESSÃO: 25; coluna 8: 35; coluna 9: 40 273444; TEMPO TOTAL"
+        }
+      ]
+    },
+    "nr-28": {
+      "nr": "nr-28",
+      "n_sentences": 4955,
+      "verified_numbers": 27605,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 10,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-28",
+          "num": "3333",
+          "kind": "generic",
+          "sentence": "(NR-28) 6.1.3.2 do Apêndice I e 6.1.7 e 6.1.7.1 do Apêndice II: 6.4.4 do Apêndice I e 6.4.4 do Apêndice II; 130929-3: 13"
+        },
+        {
+          "nr": "nr-28",
+          "num": "333333333333333333333333333333333333",
+          "kind": "generic",
+          "sentence": "(NR-28) 7.5.12, alínea \"a\": 7.5.4, alínea \"d\"; 107168-8: 107108-4; 3: 2; Σ: 333333333333333333333333333333333333."
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) 35.5.5.1, alínea \"m\": 4.1.1; 135201-6: 135270-9; coluna 3: 333; coluna 4: SS."
+        },
+        {
+          "nr": "nr-28",
+          "num": "222",
+          "kind": "generic",
+          "sentence": "(NR-28) 6.7: 36.9.3.2, alínea \"c\"; 312886-5: 136115-5; 4: 222; S: S."
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) NR-18 - ANEXO II 1: 9; 318474-9: 318482-0; 3: 333; S: SSS."
+        },
+        {
+          "nr": "nr-28",
+          "num": "33333",
+          "kind": "generic",
+          "sentence": "(NR-28) NR-20: 20.8.1; coluna 2: 220233-6; coluna 3: 33333; coluna 4: S."
+        },
+        {
+          "nr": "nr-28",
+          "num": "434",
+          "kind": "generic",
+          "sentence": "(NR-28) NR-20: 20.9.1.1; coluna 2: 220237-9; coluna 3: 434; coluna 4: S."
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) Item/Subitem: 29.8.1, alíneas \"a\", \"b\", \"c\", \"d\" e \"e\", 29.8.1.1 e 29.8.2; Código: 329404-8; Infração: 333; Tipo"
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) 29.15.1: 29.21.1, 29.21.2 e 29.21.3; 329441-2: 329476-5; 3: 333m; S: S."
+        },
+        {
+          "nr": "nr-28",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-28) NR-30: 30.15.2; coluna 2: 130820-3; coluna 3: 333; coluna 4: S."
+        }
+      ]
+    },
+    "nr-04": {
+      "nr": "nr-04",
+      "n_sentences": 1049,
+      "verified_numbers": 3193,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 48,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-04",
+          "num": "3333333",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 01.14-8; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Cultivo de fumo; GR: 3333333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333333",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 01.33-4; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Cultivo de frutas de lavoura permanen"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333333",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 01.53-9; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Criação de caprinos e ovinos; GR: 333"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 01.62-8; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Atividades de apoio à pecuária; GR: 3"
+        },
+        {
+          "nr": "nr-04",
+          "num": "4444",
+          "kind": "generic",
+          "sentence": "(NR-04) Códigos: 07.24-3; 2.0), COM CORRESPONDENTE GRAU DE RISCO - GR Denominação: Extração de minério de metais precios"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 10.32-5; Fabricação de produtos de carne: Fabricação de conservas de legumes e outros vegetais; 3: 3 33"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 10.52-0; Fabricação de produtos de carne: Fabricação de laticínios; 3: 333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 10.63-5; Fabricação de produtos de carne: Fabricação de farinha de mandioca e derivados; 3: 333333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "3333333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 10.94-5; Fabricação de produtos de carne: Fabricação de massas alimentícias; 3: 3333333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 11.12-7; Fabricação de produtos de carne: Fabricação de vinho; 3: 333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "3333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 13.12-0; Fabricação de produtos de carne: Preparação e fiação de fibras têxteis naturais, exceto algodã"
+        },
+        {
+          "nr": "nr-04",
+          "num": "33333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 13.53-7; Fabricação de produtos de carne: Fabricação de artefatos de cordoaria; 3: 33333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "3333",
+          "kind": "generic",
+          "sentence": "(NR-04) 10.13-9: 15.32-7; Fabricação de produtos de carne: Fabricação de tênis de qualquer material; 3: 3333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "222",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 17.32-0; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de embalagens de cartolina e papel-cartão; coluna 3: "
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 18.12-1; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Impressão de material de segurança; coluna 3: 333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "3333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.13-4; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de adubos e fertilizantes; coluna 3: 3333 3."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.22-3; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de intermediários para plastificantes, resinas e fibr"
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.32-1; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de resinas termofixas; coluna 3: 333."
+        },
+        {
+          "nr": "nr-04",
+          "num": "332",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.62-2; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de produtos de limpeza e polimento; coluna 3: 332."
+        },
+        {
+          "nr": "nr-04",
+          "num": "333",
+          "kind": "generic",
+          "sentence": "(NR-04) 16: 20.72-0; FABRICAÇÃO DE PRODUTOS DE MADEIRA: Fabricação de tintas de impressão; coluna 3: 333."
+        }
+      ]
+    },
+    "nr-32": {
+      "nr": "nr-32",
+      "n_sentences": 613,
+      "verified_numbers": 682,
+      "generated_voltage_labels": 0,
+      "unrepairable_count": 9,
+      "unrepairable_sample": [
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Yersinia spp: Herpesvirus de cobaias; 2: 2; coluna 3: 0."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Yersinia spp: Shope fibroma virus; 2: 2; coluna 3: 0."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Yersinia spp: Vírus do Tumor Mamário de camundongos; 2: 2; coluna 3: 0."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Yersinia spp: Adenovirus 2 - Vírus Símio 40 (Ad2-SV40); 2: 2; coluna 3: 0+ ooo."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus da Leucemia de Gibões (GaLV); 2: 2; coluna 3: 0+."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus da Leucemia Felina (FeLV); 2: 2; coluna 3: 0+."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus da Leucose Aviária; 2: 2; coluna 3: 0."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus do Sarcoma de Símios (SSV-1); 2: 2; coluna 3: 0+."
+        },
+        {
+          "nr": "nr-32",
+          "num": "0",
+          "kind": "generic",
+          "sentence": "(NR-32) Vírus Candirú: Vírus do Sarcoma Felino (FeSV); 2: 2; coluna 3: ±± 0+."
+        }
+      ]
+    }
+  },
+  "totals": {
+    "verified": 38069,
+    "generated_voltage": 1,
+    "unrepairable": 191
+  }
+}
