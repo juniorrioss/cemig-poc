@@ -133,23 +133,34 @@ Reprodução: `python3 asr/scripts/benchmark.py --models "base q5,small q5"`.
 > fallback reativado (re-decodes ocasionais) — troca deliberada de ~0,5 s por robustez em fala
 > real. Continua bem abaixo de 1,0.
 
-### 2.4 Limitação: voz humana real (bancada PRONTA, aguardando áudios)
+### 2.4 WER de voz humana real: NÃO medido (decisão do capitão) — Whisper será substituído
 O relato do capitão ("só acerta se falar bem lento e pausado") é sobre **fala humana natural**.
 As medições de WER acima usam **áudio sintético TTS** (`edge-tts`), que tem prosódia estável e
-**não** captura sotaque, hesitações e respiração ofegante de campo — serve como **ranking
-relativo reprodutível**, não como WER de produção. A higiene de áudio e o prompt de domínio
-foram desenhados exatamente para o caso de fala natural (ganho baixo, silêncio nas pontas,
-jargão), mas **a validação de WER com voz real depende de amostras gravadas pelo capitão**.
+**não** captura sotaque, hesitações e respiração de campo — serve como **ranking relativo
+reprodutível**, não como WER de produção.
 
-**Bancada pronta para receber os áudios** (re-medição = só rodar):
+**Decisão (2026-09-12): o WER de voz real com Whisper ficou por medir, propositalmente.** O
+capitão determinou que o **Whisper sai** — a qualidade em termos técnicos é inaceitável para o
+domínio (ex.: "disjuntor" não é transcrito corretamente) — e a substituição será o **Nemotron
+ASR 3.5 INT8**, que os nossos próprios números no S24+ já mostram superior (ver `asr/README.md`):
+WER 6,8%/8,2% vs 9,5%/11,8%; acurácia de termos 91,9% vs 85,5%; latência 2,03 s vs 4,70 s.
+Medir WER real de um motor que será descartado seria trabalho perdido — e as amostras de voz
+real não chegaram a ser gravadas.
+
+> **O que continua valendo desta tarefa:** a correção do **defeito de reprocessamento** (Parte 1)
+> e a **higiene de áudio** (`AudioPreprocessing.kt`, 16 kHz mono / recorte de silêncio /
+> normalização de ganho) são **independentes do motor ASR** e permanecem úteis com o Nemotron.
+> Os ajustes específicos do Whisper (prompt de domínio + params do `whisper_jni.cpp`) valem só
+> enquanto o Whisper estiver embarcado.
+
+**Bancada de voz real PRONTA para a tarefa do Nemotron reaproveitar** (não descartar):
 - Instruções de gravação (formato 16 kHz mono, 12–15 enunciados de 5–15 s, com/sem ruído,
   falantes variados): `asr/data/real_voice/RECORDING_INSTRUCTIONS.md`.
-- Gabarito pré-preenchido: `asr/data/real_voice/manifest.jsonl` (edite `ref` se falar outro texto).
-- Harness: `python3 asr/scripts/bench_real_voice.py` — roda o Whisper Base Q5_1 no S24+ e
-  compara, no MESMO áudio real, a config **`old`** (JNI antigo: sem fallback/prompt) vs **`new`**
-  (JNI embarcado: fallback + gates + prompt de domínio), isolando o ganho real da mudança.
-  Saída em `asr/results/real_voice/real_voice_wer.json`. Validado end-to-end no aparelho
-  (mede WER, acurácia de termos, RTF/latência via `memtime`).
+- Gabarito pré-preenchido: `asr/data/real_voice/manifest.jsonl`.
+- Harness Whisper: `python3 asr/scripts/bench_real_voice.py` (validado end-to-end; mede WER,
+  acurácia de termos, RTF/latência via `memtime`). O `manifest.jsonl` e as instruções de
+  gravação são **reutilizáveis para benchmarkar o Nemotron com voz real** — basta um runner
+  análogo apontando para o `sherpa-onnx` (ver `asr/scripts/benchmark.py::run_sherpa_benchmark`).
 
 ---
 
