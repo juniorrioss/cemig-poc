@@ -30,7 +30,12 @@ class HybridRetriever(
     // Retrieval v3: busca densa opcional (fusão RRF 3-sinais). Se null, degrada para o
     // caminho BM25-gated legado (comportamento anterior preservado).
     private val denseRetriever: DenseRetriever? = null,
-    private val rrfK: Double = RrfFusion.DEFAULT_K,
+    // Retrieval v4: k e pesos da fusão calibrados no dev-set (nunca no holdout). O combo
+    // vencedor é BM25(2) + denso-texto(1) + denso-exp(2), k=10 (ver retrieval4/README.md).
+    private val rrfK: Double = 10.0,
+    private val weightBm25: Double = 2.0,
+    private val weightDenseText: Double = 1.0,
+    private val weightDenseExp: Double = 2.0,
     private val fusionPool: Int = 60
 ) : Retriever {
 
@@ -210,9 +215,9 @@ class HybridRetriever(
 
         val fused = RrfFusion.fuse(
             listOf(
-                RrfFusion.Signal(s1Ids, 1.0),
-                RrfFusion.Signal(sTIds, 1.0),
-                RrfFusion.Signal(sEIds, 1.0)
+                RrfFusion.Signal(s1Ids, weightBm25),
+                RrfFusion.Signal(sTIds, weightDenseText),
+                RrfFusion.Signal(sEIds, weightDenseExp)
             ),
             k = rrfK, limit = topK
         )

@@ -1,0 +1,21 @@
+{
+  "label": "v1+free",
+  "clf": "models/v4_v1free.pkl",
+  "rrf_k": 30.0,
+  "bm25_gated_exp": {
+    "n": 151,
+    "recall_at_1": 23.84,
+    "recall_at_2": 33.11,
+    "recall_at_5": 48.34,
+    "mrr": 0.3252,
+    "per_doc": {}
+  },
+  "fusion_3sig": {
+    "n": 151,
+    "recall_at_1": 33.77,
+    "recall_at_2": 45.03,
+    "recall_at_5": 60.26,
+    "mrr": 0.4371,
+    "per_doc": {}
+  }
+}

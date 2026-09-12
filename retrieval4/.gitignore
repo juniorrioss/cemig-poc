@@ -1,0 +1,14 @@
+# Artefatos pesados/derivados — NÃO versionar (reproduzíveis via README).
+# índices FTS5 (.db), reconstruíveis com build_index_v4.py
+indices/
+# binários DVEC1 (.bin), reconstruíveis com export_bins_v4.py
+export/
+# pkls do classificador (treináveis com train_v4.py)
+models/
+# WAVs do TTS (54 MB), regeráveis com asr_loop.py --tts
+data/asr_audio/
+# caches densos do dev-set (intermediários pesados)
+results/densev4_dev_exp_rank.json
+results/densev4_dev_text_rank.json
+results/densev4_exp_rank.json
+results/densev4_text_rank.json

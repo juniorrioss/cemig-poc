@@ -1,0 +1,21 @@
+{
+  "label": "v4_full",
+  "clf": "../classifier/models/classic_winner.pkl",
+  "rrf_k": 30.0,
+  "bm25_gated_exp": {
+    "n": 151,
+    "recall_at_1": 31.79,
+    "recall_at_2": 39.74,
+    "recall_at_5": 52.32,
+    "mrr": 0.393,
+    "per_doc": {}
+  },
+  "fusion_3sig": {
+    "n": 151,
+    "recall_at_1": 37.75,
+    "recall_at_2": 49.67,
+    "recall_at_5": 60.93,
+    "mrr": 0.4692,
+    "per_doc": {}
+  }
+}

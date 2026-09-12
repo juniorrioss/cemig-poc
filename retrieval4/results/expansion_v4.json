@@ -1,0 +1,38 @@
+{
+  "v3 (perguntas+sinonimos)": {
+    "raw": {
+      "n": 151,
+      "recall_at_1": 16.56,
+      "recall_at_2": 24.5,
+      "recall_at_5": 35.1,
+      "mrr": 0.2352,
+      "per_doc": {}
+    },
+    "gated": {
+      "n": 151,
+      "recall_at_1": 29.14,
+      "recall_at_2": 37.75,
+      "recall_at_5": 52.32,
+      "mrr": 0.3742,
+      "per_doc": {}
+    }
+  },
+  "v4 (+verbaliz+asr+sinon2)": {
+    "raw": {
+      "n": 151,
+      "recall_at_1": 19.87,
+      "recall_at_2": 30.46,
+      "recall_at_5": 42.38,
+      "mrr": 0.284,
+      "per_doc": {}
+    },
+    "gated": {
+      "n": 151,
+      "recall_at_1": 31.79,
+      "recall_at_2": 39.74,
+      "recall_at_5": 52.32,
+      "mrr": 0.393,
+      "per_doc": {}
+    }
+  }
+}

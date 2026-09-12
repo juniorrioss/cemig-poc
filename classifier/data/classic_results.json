@@ -9,9 +9,9 @@
       "top1_acc": 48.54,
       "top2_acc": 69.01,
       "macro_f1": 0.4709,
-      "fit_s": 5.32,
+      "fit_s": 5.42,
       "model_bytes": 7467443,
-      "lat_ms_desktop": 0.602,
+      "lat_ms_desktop": 0.625,
       "pipeline_bytes": 7966915
     },
     {
@@ -21,7 +21,7 @@
       "macro_f1": 0.5089,
       "fit_s": 0.01,
       "model_bytes": 15134865,
-      "lat_ms_desktop": 0.902,
+      "lat_ms_desktop": 0.915,
       "pipeline_bytes": 15634332
     },
     {
@@ -29,9 +29,9 @@
       "top1_acc": 49.71,
       "top2_acc": 64.33,
       "macro_f1": 0.4881,
-      "fit_s": 1.0,
+      "fit_s": 0.99,
       "model_bytes": 132416301,
-      "lat_ms_desktop": 66.878,
+      "lat_ms_desktop": 66.945,
       "pipeline_bytes": 132942838
     },
     {
@@ -41,7 +41,7 @@
       "macro_f1": 0.4683,
       "fit_s": 0.18,
       "model_bytes": 7467348,
-      "lat_ms_desktop": 0.555,
+      "lat_ms_desktop": 0.563,
       "pipeline_bytes": 7966817
     },
     {
@@ -51,19 +51,8 @@
       "macro_f1": 0.2554,
       "fit_s": 1.75,
       "model_bytes": 393540,
-      "lat_ms_desktop": 0.623,
+      "lat_ms_desktop": 0.547,
       "pipeline_bytes": 893041
-    },
-    {
-      "name": "gradientboost",
-      "top1_acc": 28.7,
-      "top2_acc": 29.8,
-      "macro_f1": 0.065,
-      "fit_s": 587.3,
-      "model_bytes": 9123840,
-      "lat_ms_desktop": null,
-      "pipeline_bytes": null,
-      "note": "DESQUALIFICADO: exige entrada densa (1970x25221), fit 587s, pior acuracia; inviavel mobile"
     }
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "v3 LIMPO (k30 iguais)": {
+    "n": 151,
+    "recall_at_2": 49.0,
+    "recall_at_5": 62.3,
+    "mrr": 0.4805
+  },
+  "v3 ASR   (k30 iguais)": {
+    "n": 151,
+    "recall_at_2": 41.1,
+    "recall_at_5": 57.0,
+    "mrr": 0.4065
+  },
+  "v4 LIMPO (k10 w2,1,2)": {
+    "n": 151,
+    "recall_at_2": 51.0,
+    "recall_at_5": 64.2,
+    "mrr": 0.4951
+  },
+  "v4 ASR   (k10 w2,1,2)": {
+    "n": 151,
+    "recall_at_2": 49.0,
+    "recall_at_5": 62.9,
+    "mrr": 0.4691
+  }
+}

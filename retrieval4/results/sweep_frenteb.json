@@ -1,0 +1,50 @@
+{
+  "BASE v3 (bm v3 + dense v3)": {
+    "n": 151,
+    "recall_at_1": 37.75,
+    "recall_at_2": 50.99,
+    "recall_at_5": 63.58,
+    "mrr": 0.4788,
+    "per_doc": {}
+  },
+  "bm v4 + dense v3": {
+    "n": 151,
+    "recall_at_1": 39.07,
+    "recall_at_2": 48.34,
+    "recall_at_5": 62.25,
+    "mrr": 0.4773,
+    "per_doc": {}
+  },
+  "bm v3 + dense v4": {
+    "n": 151,
+    "recall_at_1": 37.09,
+    "recall_at_2": 50.33,
+    "recall_at_5": 62.91,
+    "mrr": 0.4734,
+    "per_doc": {}
+  },
+  "bm v4 + dense v4": {
+    "n": 151,
+    "recall_at_1": 37.75,
+    "recall_at_2": 49.67,
+    "recall_at_5": 60.93,
+    "mrr": 0.4692,
+    "per_doc": {}
+  },
+  "bm v4 + dense v4text + v3exp": {
+    "n": 151,
+    "recall_at_1": 37.75,
+    "recall_at_2": 49.01,
+    "recall_at_5": 61.59,
+    "mrr": 0.4683,
+    "per_doc": {}
+  },
+  "bm v4 + dense v3text + v4exp": {
+    "n": 151,
+    "recall_at_1": 41.06,
+    "recall_at_2": 51.66,
+    "recall_at_5": 62.25,
+    "mrr": 0.4944,
+    "per_doc": {}
+  }
+}

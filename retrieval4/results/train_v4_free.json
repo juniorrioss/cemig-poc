@@ -1,0 +1,38 @@
+{
+  "datasets": [
+    "free"
+  ],
+  "nr_split": false,
+  "held_out_nrs": [
+    "nr-33",
+    "nr-16",
+    "nr-26"
+  ],
+  "n_train": 11982,
+  "feature_dim": 42379,
+  "fit_s": 16.78,
+  "holdout_171": {
+    "label": "holdout_171",
+    "n": 171,
+    "top1": 19.3,
+    "top2": 30.41,
+    "top3": 38.6
+  },
+  "holdout_held_nrs": {
+    "label": "holdout_held_nrs",
+    "n": 35,
+    "top1": 14.29,
+    "top2": 20.0,
+    "top3": 28.57
+  },
+  "test_samegen": {
+    "label": "test_samegen",
+    "n": 0
+  },
+  "test_diffgen": {
+    "label": "test_samegen",
+    "n": 0
+  },
+  "mask_size_pp": {},
+  "model_path": "models/v4_free.pkl"
+}

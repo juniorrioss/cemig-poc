@@ -1,0 +1,436 @@
+{
+  "dev_grid": [
+    {
+      "thr": 0.4,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 10.0,
+      "dev_r2": 41.5,
+      "dev_r5": 56.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 30.0,
+      "dev_r2": 41.5,
+      "dev_r5": 56.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 60.0,
+      "dev_r2": 41.5,
+      "dev_r5": 56.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 10.0,
+      "dev_r2": 42.0,
+      "dev_r5": 57.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 30.0,
+      "dev_r2": 42.0,
+      "dev_r5": 57.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 60.0,
+      "dev_r2": 42.0,
+      "dev_r5": 57.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 10.0,
+      "dev_r2": 37.5,
+      "dev_r5": 52.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 30.0,
+      "dev_r2": 37.5,
+      "dev_r5": 52.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 60.0,
+      "dev_r2": 37.5,
+      "dev_r5": 52.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 10.0,
+      "dev_r2": 38.5,
+      "dev_r5": 54.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 30.0,
+      "dev_r2": 38.5,
+      "dev_r5": 54.0
+    },
+    {
+      "thr": 0.4,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 60.0,
+      "dev_r2": 38.5,
+      "dev_r5": 54.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 10.0,
+      "dev_r2": 42.0,
+      "dev_r5": 58.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 30.0,
+      "dev_r2": 42.0,
+      "dev_r5": 58.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 60.0,
+      "dev_r2": 42.0,
+      "dev_r5": 58.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 10.0,
+      "dev_r2": 43.0,
+      "dev_r5": 59.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 30.0,
+      "dev_r2": 43.0,
+      "dev_r5": 59.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 60.0,
+      "dev_r2": 43.0,
+      "dev_r5": 59.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 10.0,
+      "dev_r2": 37.5,
+      "dev_r5": 53.5
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 30.0,
+      "dev_r2": 37.5,
+      "dev_r5": 53.5
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 60.0,
+      "dev_r2": 37.5,
+      "dev_r5": 53.5
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 10.0,
+      "dev_r2": 39.0,
+      "dev_r5": 56.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 30.0,
+      "dev_r2": 39.0,
+      "dev_r5": 56.0
+    },
+    {
+      "thr": 0.5,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 60.0,
+      "dev_r2": 39.0,
+      "dev_r5": 56.0
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 10.0,
+      "dev_r2": 42.5,
+      "dev_r5": 59.5
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 30.0,
+      "dev_r2": 42.5,
+      "dev_r5": 59.5
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 60.0,
+      "dev_r2": 42.5,
+      "dev_r5": 59.5
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 10.0,
+      "dev_r2": 43.5,
+      "dev_r5": 60.5
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 30.0,
+      "dev_r2": 43.5,
+      "dev_r5": 60.5
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 60.0,
+      "dev_r2": 43.5,
+      "dev_r5": 60.5
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 10.0,
+      "dev_r2": 38.0,
+      "dev_r5": 55.0
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 30.0,
+      "dev_r2": 38.0,
+      "dev_r5": 55.0
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 60.0,
+      "dev_r2": 38.0,
+      "dev_r5": 55.0
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 10.0,
+      "dev_r2": 39.5,
+      "dev_r5": 57.5
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 30.0,
+      "dev_r2": 39.5,
+      "dev_r5": 57.5
+    },
+    {
+      "thr": 0.6,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 60.0,
+      "dev_r2": 39.5,
+      "dev_r5": 57.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 10.0,
+      "dev_r2": 43.0,
+      "dev_r5": 60.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 30.0,
+      "dev_r2": 43.0,
+      "dev_r5": 60.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 2,
+      "factor": 5.0,
+      "rrf_k": 60.0,
+      "dev_r2": 43.0,
+      "dev_r5": 60.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 10.0,
+      "dev_r2": 44.0,
+      "dev_r5": 61.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 30.0,
+      "dev_r2": 44.0,
+      "dev_r5": 61.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 2,
+      "factor": 3.0,
+      "rrf_k": 60.0,
+      "dev_r2": 44.0,
+      "dev_r5": 61.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 10.0,
+      "dev_r2": 38.5,
+      "dev_r5": 55.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 30.0,
+      "dev_r2": 38.5,
+      "dev_r5": 55.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 3,
+      "factor": 5.0,
+      "rrf_k": 60.0,
+      "dev_r2": 38.5,
+      "dev_r5": 55.5
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 10.0,
+      "dev_r2": 40.0,
+      "dev_r5": 58.0
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 30.0,
+      "dev_r2": 40.0,
+      "dev_r5": 58.0
+    },
+    {
+      "thr": 0.7,
+      "boost_k": 3,
+      "factor": 3.0,
+      "rrf_k": 60.0,
+      "dev_r2": 40.0,
+      "dev_r5": 58.0
+    }
+  ],
+  "dev_best": {
+    "thr": 0.7,
+    "boost_k": 2,
+    "factor": 3.0,
+    "rrf_k": 10.0
+  },
+  "holdout_151": {
+    "v3_ref (thr0.5 k2 f5 rrf30)": {
+      "n": 151,
+      "recall_at_1": 37.75,
+      "recall_at_2": 50.99,
+      "recall_at_5": 63.58,
+      "mrr": 0.4788,
+      "per_doc": {}
+    },
+    "dev_best (thr0.7 k2 f3.0 rrf10)": {
+      "n": 151,
+      "recall_at_1": 35.1,
+      "recall_at_2": 49.67,
+      "recall_at_5": 62.91,
+      "mrr": 0.4618,
+      "per_doc": {}
+    },
+    "top3 (thr0.5 k3 f5 rrf30)": {
+      "n": 151,
+      "recall_at_1": 36.42,
+      "recall_at_2": 50.99,
+      "recall_at_5": 64.9,
+      "mrr": 0.4759,
+      "per_doc": {}
+    },
+    "thr0.6 k2 f5 rrf30": {
+      "n": 151,
+      "recall_at_1": 35.76,
+      "recall_at_2": 49.67,
+      "recall_at_5": 61.59,
+      "mrr": 0.4613,
+      "per_doc": {}
+    },
+    "thr0.7 k2 f5 rrf30": {
+      "n": 151,
+      "recall_at_1": 35.1,
+      "recall_at_2": 49.01,
+      "recall_at_5": 60.93,
+      "mrr": 0.4546,
+      "per_doc": {}
+    }
+  }
+}

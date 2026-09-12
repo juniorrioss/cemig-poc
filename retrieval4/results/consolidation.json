@@ -1,0 +1,43 @@
+{
+  "task": "poc-retrieval-v4",
+  "baseline_v3": {
+    "clf_holdout_top1": 48.5, "clf_holdout_top2": 69.0,
+    "fusion_bin_clean_r2": 51.0, "fusion_bin_clean_r5": 63.6,
+    "fusion_asr_r2": 41.1, "fusion_asr_r5": 57.0
+  },
+  "frente_a_classifier": {
+    "veredito": "DESCARTADA — mascarada confirmada: acuracia sobe, recall decisivo cai",
+    "three_way": [
+      {"recipe": "v1_baseline", "same_top2": 69.3, "diff_top2": 34.6, "holdout_top2": 69.0, "mask_top2_pp": 34.7, "dec_fus_r2": 51.0, "dec_fus_r5": 63.6},
+      {"recipe": "v1+free_all", "same_top2": 81.3, "diff_top2": 34.3, "holdout_top2": 71.3, "mask_top2_pp": 47.0, "dec_fus_r2": 45.0, "dec_fus_r5": 60.3},
+      {"recipe": "v1+free_cap100", "same_top2": 77.7, "diff_top2": 35.0, "holdout_top2": 74.8, "mask_top2_pp": 42.7, "dec_fus_r2": 47.7, "dec_fus_r5": 62.9},
+      {"recipe": "v1+free_cap60_w0.3", "same_top2": 75.3, "diff_top2": 34.6, "holdout_top2": 77.2, "mask_top2_pp": 40.7, "dec_fus_r2": 49.7, "dec_fus_r5": 62.9},
+      {"recipe": "v1+free_eleconly_cap150_w0.5", "same_top2": 69.7, "diff_top2": 33.6, "holdout_top2": 79.0, "mask_top2_pp": 36.2, "dec_fus_r2": 49.0, "dec_fus_r5": 64.2}
+    ],
+    "gate_topk_calibration": {"top3_boost_r5": 64.9, "top2_ref_r2": 51.0, "note": "top-3 boost sobe R@5 +1.3pp, R@2 igual; ganho marginal, nao embarcado"}
+  },
+  "frente_b_expansion": {
+    "veredito": "EMBARCADA — unica frente que sobe a regua decisiva",
+    "expansion_v4_stats": {"chunks": 2197, "verbalizacoes": 17504, "asr_variants": 13242, "sinonimos2": 19660},
+    "bm25_gated_r2_v3": 37.7, "bm25_gated_r2_v4": 39.7,
+    "component_sweep": {
+      "base_v3": {"r2": 51.0, "r5": 63.6},
+      "bm_v4_dense_v3text_v4exp_WINNER": {"r2": 51.7, "r5": 65.6, "mrr": 0.4944}
+    },
+    "dev_calibrated": {"rrf_k": 10, "weights": [2, 1, 2]}
+  },
+  "trava_4_asr_in_the_loop": {
+    "engine": "Whisper Base Q5_1 on S24+ (device)",
+    "v3_clean_r2": 49.0, "v3_asr_r2": 41.1, "v3_asr_drop_pp": -7.9,
+    "v4_clean_r2": 51.0, "v4_asr_r2": 49.0, "v4_asr_drop_pp": -2.0,
+    "ganho_v4_sob_asr_r2_pp": 7.9
+  },
+  "embarcado_v4": {
+    "index": "index_hf_36nr_expv4.db (19.1 MB, FTS5 5 campos, expansion v3+v4)",
+    "dense_text_bin": "v3 (inalterado)",
+    "dense_exponly_bin": "v4 (expansao v4-only reencodada, DVEC1 6.77 MB)",
+    "rrf": {"k": 10, "weights_bm_text_exp": [2, 1, 2]},
+    "bin_parity_r2": 51.7, "bin_parity_r5": 65.6,
+    "e2e_s24plus": {"nr_correta": "9/10", "latencia_media_s": 6.34, "latencia_max_s": 7.05, "todos_le_10s": true, "pss_gb": 2.42, "dense_encode_ms_med": 28}
+  }
+}

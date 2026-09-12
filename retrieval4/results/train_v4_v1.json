@@ -1,0 +1,47 @@
+{
+  "datasets": [
+    "v1"
+  ],
+  "nr_split": false,
+  "held_out_nrs": [
+    "nr-33",
+    "nr-16",
+    "nr-26"
+  ],
+  "n_train": 1970,
+  "feature_dim": 25221,
+  "fit_s": 7.59,
+  "holdout_171": {
+    "label": "holdout_171",
+    "n": 171,
+    "top1": 48.54,
+    "top2": 69.01,
+    "top3": 77.78
+  },
+  "holdout_held_nrs": {
+    "label": "holdout_held_nrs",
+    "n": 35,
+    "top1": 48.57,
+    "top2": 80.0,
+    "top3": 94.29
+  },
+  "test_samegen": {
+    "label": "test_samegen",
+    "n": 251,
+    "top1": 61.35,
+    "top2": 69.32,
+    "top3": 73.71
+  },
+  "test_diffgen": {
+    "label": "test_diffgen",
+    "n": 289,
+    "top1": 20.07,
+    "top2": 34.6,
+    "top3": 39.45
+  },
+  "mask_size_pp": {
+    "top1": 41.28,
+    "top2": 34.72
+  },
+  "model_path": "models/v4_v1.pkl"
+}

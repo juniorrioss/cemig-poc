@@ -45,7 +45,10 @@ class ModelFileManager(private val context: Context) {
         // Versão dos assets copiados: ao subir (ex.: index.db 4->5 campos do Retrieval v3),
         // invalida a cópia interna obsoleta em filesDir (que NÃO é sobrescrita por install).
         // Sem isto, um upgrade do app continuaria usando o índice antigo já copiado.
-        private const val ASSET_VERSION = 3  // v3: índice FTS5 expandido + índices densos
+        // v4: índice FTS5 com expansão v4 (verbalizações + variantes de ASR + sinônimos) e
+        // dense_exponly.bin reencodado com essa expansão (robustez a erro de transcrição em
+        // campo). dense_text.bin permanece o da v3 (a expansão v4 no texto piora o denso).
+        private const val ASSET_VERSION = 4  // v4: índice FTS5 expansão-rica + dense_exp v4
         // Arquivos versionados: recopiar do APK se a versão do asset mudou.
         private val VERSIONED_ASSETS = setOf(FTS5_DB_NAME, DENSE_TEXT_BIN, DENSE_EXPONLY_BIN)
     }

@@ -1,0 +1,30 @@
+{
+  "BM25 gated v3 (limpo->indice v3)": {
+    "n": 151,
+    "recall_at_1": 25.2,
+    "recall_at_2": 33.8,
+    "recall_at_5": 49.0,
+    "mrr": 0.3361
+  },
+  "BM25 gated v4 (limpo->indice v4)": {
+    "n": 151,
+    "recall_at_1": 26.5,
+    "recall_at_2": 35.1,
+    "recall_at_5": 50.3,
+    "mrr": 0.3498
+  },
+  "Fusão v3 (denso=piso limpo)": {
+    "n": 151,
+    "recall_at_1": 36.4,
+    "recall_at_2": 50.3,
+    "recall_at_5": 60.9,
+    "mrr": 0.4635
+  },
+  "Fusão v4bm+v3text+v4exp (denso=piso)": {
+    "n": 151,
+    "recall_at_1": 39.1,
+    "recall_at_2": 51.7,
+    "recall_at_5": 61.6,
+    "mrr": 0.4806
+  }
+}
