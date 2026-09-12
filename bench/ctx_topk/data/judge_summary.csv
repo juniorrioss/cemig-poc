@@ -1,0 +1,9 @@
+model,description,mode,total_items,retrieval_recall_pct,acerto_factual,fidelidade_contexto,qualidade_pt,citacao_fonte,score_global,pass_gate_pct,latency_avg_s,latency_r1_s,latency_r2_s,speed_tok_s,tool_call_rate_pct,query_reformulation_rate_pct
+k2_full,v4 embarcado × 1.2B QAD × topK=2 × trecho=full,classic_rag,151,51.7,1.6,1.62,3.7,1.25,1.85,1.3,0,N/A,N/A,0,N/A,N/A
+k2_trim,v4 embarcado × 1.2B QAD × topK=2 × trecho=trim,classic_rag,151,51.7,1.55,1.53,3.69,1.15,1.79,0.7,0,N/A,N/A,0,N/A,N/A
+k3_full,v4 embarcado × 1.2B QAD × topK=3 × trecho=full,classic_rag,151,59.6,1.54,1.55,3.68,1.23,1.8,2.0,0,N/A,N/A,0,N/A,N/A
+k3_trim,v4 embarcado × 1.2B QAD × topK=3 × trecho=trim,classic_rag,151,59.6,1.49,1.48,3.64,1.33,1.78,2.0,0,N/A,N/A,0,N/A,N/A
+k4_full,v4 embarcado × 1.2B QAD × topK=4 × trecho=full,classic_rag,151,64.2,1.64,1.74,3.62,1.21,1.88,1.3,0,N/A,N/A,0,N/A,N/A
+k4_trim,v4 embarcado × 1.2B QAD × topK=4 × trecho=trim,classic_rag,151,64.2,1.47,1.49,3.62,1.26,1.76,1.3,0,N/A,N/A,0,N/A,N/A
+k5_full,v4 embarcado × 1.2B QAD × topK=5 × trecho=full,classic_rag,151,65.6,1.6,1.61,3.56,1.11,1.8,1.3,0,N/A,N/A,0,N/A,N/A
+k5_trim,v4 embarcado × 1.2B QAD × topK=5 × trecho=trim,classic_rag,151,65.6,1.51,1.46,3.58,1.28,1.76,2.0,0,N/A,N/A,0,N/A,N/A

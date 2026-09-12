@@ -1,0 +1,4 @@
+# Intermediários reproduzíveis — não versionar.
+# Prompts reais gerados por gen_device_prompts.py (reconstrutíveis; manifest.json fica versionado).
+data/device_prompts/*/
+# .bin DVEC1 já cobertos pelo *.bin do gitignore raiz (puxados do S24+, reproduzíveis).

@@ -1,0 +1,844 @@
+{
+  "configs": {
+    "k2_full": {
+      "top_k": 2,
+      "trim": false,
+      "items": {
+        "R01": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 4297
+        },
+        "R02": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-01"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 4163
+        },
+        "R03": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 1479
+        },
+        "R04": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 4006
+        },
+        "R05": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 3530
+        },
+        "R06": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": false,
+          "user_chars": 4250
+        },
+        "R07": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 3857
+        },
+        "R08": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 3826
+        },
+        "R09": {
+          "chunks_docs": [
+            "nr-12",
+            "nr-18"
+          ],
+          "top_doc": "nr-12",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 3939
+        },
+        "R10": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 4385
+        },
+        "X01": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-34"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 4174
+        },
+        "X02": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 4066
+        },
+        "X03": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 3976
+        },
+        "X04": {
+          "chunks_docs": [
+            "nr-18",
+            "nr-12"
+          ],
+          "top_doc": "nr-18",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 3213
+        },
+        "X05": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-35"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-18",
+          "retrieval_hit_doc": false,
+          "user_chars": 3066
+        },
+        "X06": {
+          "chunks_docs": [
+            "nr-33",
+            "nr-33"
+          ],
+          "top_doc": "nr-33",
+          "expected_doc": "nr-33",
+          "retrieval_hit_doc": true,
+          "user_chars": 3424
+        },
+        "X07": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 4406
+        },
+        "X08": {
+          "chunks_docs": [
+            "nr-16",
+            "nr-16"
+          ],
+          "top_doc": "nr-16",
+          "expected_doc": "nr-16",
+          "retrieval_hit_doc": true,
+          "user_chars": 3474
+        },
+        "X09": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 4294
+        },
+        "X10": {
+          "chunks_docs": [
+            "nr-12",
+            "nr-12"
+          ],
+          "top_doc": "nr-12",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 3264
+        }
+      }
+    },
+    "k5_full": {
+      "top_k": 5,
+      "trim": false,
+      "items": {
+        "R01": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-28"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 8211
+        },
+        "R02": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-01",
+            "nr-10",
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 10243
+        },
+        "R03": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-09",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 6270
+        },
+        "R04": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-35"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 9907
+        },
+        "R05": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-15"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 8213
+        },
+        "R06": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-12"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": false,
+          "user_chars": 8627
+        },
+        "R07": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06",
+            "nr-31",
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 9784
+        },
+        "R08": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-18",
+            "nr-35"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 10187
+        },
+        "R09": {
+          "chunks_docs": [
+            "nr-12",
+            "nr-18",
+            "nr-12",
+            "nr-12",
+            "nr-10"
+          ],
+          "top_doc": "nr-12",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 9689
+        },
+        "R10": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-34",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 10070
+        },
+        "X01": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-34",
+            "nr-31",
+            "nr-34",
+            "nr-18"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 10339
+        },
+        "X02": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-31",
+            "nr-35"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 9199
+        },
+        "X03": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06",
+            "nr-31",
+            "nr-06",
+            "nr-38"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 9654
+        },
+        "X04": {
+          "chunks_docs": [
+            "nr-18",
+            "nr-12",
+            "nr-36",
+            "nr-34",
+            "nr-12"
+          ],
+          "top_doc": "nr-18",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 8937
+        },
+        "X05": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-35"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-18",
+          "retrieval_hit_doc": false,
+          "user_chars": 8519
+        },
+        "X06": {
+          "chunks_docs": [
+            "nr-33",
+            "nr-33",
+            "nr-33",
+            "nr-33",
+            "nr-33"
+          ],
+          "top_doc": "nr-33",
+          "expected_doc": "nr-33",
+          "retrieval_hit_doc": true,
+          "user_chars": 8079
+        },
+        "X07": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-16",
+            "nr-10",
+            "nr-33"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 9600
+        },
+        "X08": {
+          "chunks_docs": [
+            "nr-16",
+            "nr-16",
+            "nr-16",
+            "nr-16",
+            "nr-16"
+          ],
+          "top_doc": "nr-16",
+          "expected_doc": "nr-16",
+          "retrieval_hit_doc": true,
+          "user_chars": 8947
+        },
+        "X09": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06",
+            "nr-06",
+            "nr-38",
+            "nr-06"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 9573
+        },
+        "X10": {
+          "chunks_docs": [
+            "nr-12",
+            "nr-12",
+            "nr-12",
+            "nr-12",
+            "nr-12"
+          ],
+          "top_doc": "nr-12",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 8683
+        }
+      }
+    },
+    "k5_trim": {
+      "top_k": 5,
+      "trim": true,
+      "items": {
+        "R01": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-28"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 3280
+        },
+        "R02": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-01",
+            "nr-10",
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 3739
+        },
+        "R03": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-09",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 2905
+        },
+        "R04": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-35"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 3861
+        },
+        "R05": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-15"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 3820
+        },
+        "R06": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-12"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": false,
+          "user_chars": 3264
+        },
+        "R07": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06",
+            "nr-31",
+            "nr-10",
+            "nr-10"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 3898
+        },
+        "R08": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-18",
+            "nr-35"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 3580
+        },
+        "R09": {
+          "chunks_docs": [
+            "nr-12",
+            "nr-18",
+            "nr-12",
+            "nr-12",
+            "nr-10"
+          ],
+          "top_doc": "nr-12",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 3476
+        },
+        "R10": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-10",
+            "nr-34",
+            "nr-10"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 3366
+        },
+        "X01": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-34",
+            "nr-31",
+            "nr-34",
+            "nr-18"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 3458
+        },
+        "X02": {
+          "chunks_docs": [
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-31",
+            "nr-35"
+          ],
+          "top_doc": "nr-35",
+          "expected_doc": "nr-35",
+          "retrieval_hit_doc": true,
+          "user_chars": 3626
+        },
+        "X03": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06",
+            "nr-31",
+            "nr-06",
+            "nr-38"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 3900
+        },
+        "X04": {
+          "chunks_docs": [
+            "nr-18",
+            "nr-12",
+            "nr-36",
+            "nr-34",
+            "nr-12"
+          ],
+          "top_doc": "nr-18",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 3612
+        },
+        "X05": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-35",
+            "nr-35",
+            "nr-35",
+            "nr-35"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-18",
+          "retrieval_hit_doc": false,
+          "user_chars": 3777
+        },
+        "X06": {
+          "chunks_docs": [
+            "nr-33",
+            "nr-33",
+            "nr-33",
+            "nr-33",
+            "nr-33"
+          ],
+          "top_doc": "nr-33",
+          "expected_doc": "nr-33",
+          "retrieval_hit_doc": true,
+          "user_chars": 3718
+        },
+        "X07": {
+          "chunks_docs": [
+            "nr-10",
+            "nr-10",
+            "nr-16",
+            "nr-10",
+            "nr-33"
+          ],
+          "top_doc": "nr-10",
+          "expected_doc": "nr-10",
+          "retrieval_hit_doc": true,
+          "user_chars": 3519
+        },
+        "X08": {
+          "chunks_docs": [
+            "nr-16",
+            "nr-16",
+            "nr-16",
+            "nr-16",
+            "nr-16"
+          ],
+          "top_doc": "nr-16",
+          "expected_doc": "nr-16",
+          "retrieval_hit_doc": true,
+          "user_chars": 3871
+        },
+        "X09": {
+          "chunks_docs": [
+            "nr-06",
+            "nr-06",
+            "nr-06",
+            "nr-38",
+            "nr-06"
+          ],
+          "top_doc": "nr-06",
+          "expected_doc": "nr-06",
+          "retrieval_hit_doc": true,
+          "user_chars": 3921
+        },
+        "X10": {
+          "chunks_docs": [
+            "nr-12",
+            "nr-12",
+            "nr-12",
+            "nr-12",
+            "nr-12"
+          ],
+          "top_doc": "nr-12",
+          "expected_doc": "nr-12",
+          "retrieval_hit_doc": true,
+          "user_chars": 3479
+        }
+      }
+    }
+  },
+  "questions": {
+    "R01": {
+      "doc": "nr-10",
+      "source": "roteiro",
+      "question": "Quais são os procedimentos obrigatórios para a desenergização segundo a NR-10?"
+    },
+    "R02": {
+      "doc": "nr-10",
+      "source": "roteiro",
+      "question": "E se não for possível desenergizar, quais as medidas de proteção coletiva prioritárias?"
+    },
+    "R03": {
+      "doc": "nr-10",
+      "source": "roteiro",
+      "question": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?"
+    },
+    "R04": {
+      "doc": "nr-35",
+      "source": "roteiro",
+      "question": "Quais são os requisitos da NR-35 para ancoragem de cinto tipo paraquedista no poste?"
+    },
+    "R05": {
+      "doc": "nr-35",
+      "source": "roteiro",
+      "question": "E qual o fator de queda tolerado para o talabarte?"
+    },
+    "R06": {
+      "doc": "nr-06",
+      "source": "roteiro",
+      "question": "A luva isolante de borracha classe 2 suporta qual nível de tensão máxima?"
+    },
+    "R07": {
+      "doc": "nr-06",
+      "source": "roteiro",
+      "question": "É obrigatório o uso de capacete com jugular e óculos de proteção para eletricista?"
+    },
+    "R08": {
+      "doc": "nr-10",
+      "source": "roteiro",
+      "question": "Onde devo instalar o conjunto de aterramento temporário na chave seccionadora?"
+    },
+    "R09": {
+      "doc": "nr-12",
+      "source": "roteiro",
+      "question": "Qual equipamento de proteção coletiva é exigido para abertura de chave fusível?"
+    },
+    "R10": {
+      "doc": "nr-10",
+      "source": "roteiro",
+      "question": "Posso realizar intervenção em circuito energizado durante chuva forte?"
+    },
+    "X01": {
+      "doc": "nr-10",
+      "source": "extra",
+      "question": "Ô parceiro, o cabo tá pelado ali no quadro, posso enrolar fita isolante e seguir o serviço ou tem que parar?"
+    },
+    "X02": {
+      "doc": "nr-35",
+      "source": "nr-35",
+      "question": "Preciso subir num andaime a oito metros pra trocar a luminária, que treinamento a norma exige pra trabalho em altura?"
+    },
+    "X03": {
+      "doc": "nr-06",
+      "source": "extra",
+      "question": "Meu óculos de proteção quebrou hoje de manhã, a empresa é obrigada a me dar outro na hora ou posso trabalhar sem?"
+    },
+    "X04": {
+      "doc": "nr-12",
+      "source": "extra",
+      "question": "A serra de bancada aqui tá sem aquela proteção do disco, é seguro usar assim mesmo?"
+    },
+    "X05": {
+      "doc": "nr-18",
+      "source": "extra",
+      "question": "Na obra a gente tem que usar cinto e tal, quais medidas de proteção contra queda de altura são exigidas no canteiro?"
+    },
+    "X06": {
+      "doc": "nr-33",
+      "source": "extra",
+      "question": "Vou entrar num reservatório fechado pra fazer limpeza, o que a norma manda antes de entrar em espaço confinado?"
+    },
+    "X07": {
+      "doc": "nr-10",
+      "source": "extra",
+      "question": "O encarregado mandou eu mexer no painel energizado rapidinho, mas eu tô sozinho, pode isso?"
+    },
+    "X08": {
+      "doc": "nr-16",
+      "source": "extra",
+      "question": "Trabalho o dia todo perto de linha de alta tensão energizada, tenho direito ao adicional de periculosidade?"
+    },
+    "X09": {
+      "doc": "nr-06",
+      "source": "extra",
+      "question": "O calçado de segurança que a firma deu tá furado embaixo, posso continuar usando ou tem que trocar?"
+    },
+    "X10": {
+      "doc": "nr-12",
+      "source": "extra",
+      "question": "A máquina travou e eu quero destravar com ela ligada, precisa desligar e bloquear antes de meter a mão?"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{"id": "R01", "source": "roteiro", "doc": "nr-10", "question": "Quais são os procedimentos obrigatórios para a desenergização segundo a NR-10?"}
+{"id": "R02", "source": "roteiro", "doc": "nr-10", "question": "E se não for possível desenergizar, quais as medidas de proteção coletiva prioritárias?"}
+{"id": "R03", "source": "roteiro", "doc": "nr-10", "question": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?"}
+{"id": "R04", "source": "roteiro", "doc": "nr-35", "question": "Quais são os requisitos da NR-35 para ancoragem de cinto tipo paraquedista no poste?"}
+{"id": "R05", "source": "roteiro", "doc": "nr-35", "question": "E qual o fator de queda tolerado para o talabarte?"}
+{"id": "R06", "source": "roteiro", "doc": "nr-06", "question": "A luva isolante de borracha classe 2 suporta qual nível de tensão máxima?"}
+{"id": "R07", "source": "roteiro", "doc": "nr-06", "question": "É obrigatório o uso de capacete com jugular e óculos de proteção para eletricista?"}
+{"id": "R08", "source": "roteiro", "doc": "nr-10", "question": "Onde devo instalar o conjunto de aterramento temporário na chave seccionadora?"}
+{"id": "R09", "source": "roteiro", "doc": "nr-12", "question": "Qual equipamento de proteção coletiva é exigido para abertura de chave fusível?"}
+{"id": "R10", "source": "roteiro", "doc": "nr-10", "question": "Posso realizar intervenção em circuito energizado durante chuva forte?"}
+{"id": "X01", "source": "extra", "doc": "nr-10", "question": "Ô parceiro, o cabo tá pelado ali no quadro, posso enrolar fita isolante e seguir o serviço ou tem que parar?"}
+{"id": "X02", "source": "nr-35", "doc": "nr-35", "question": "Preciso subir num andaime a oito metros pra trocar a luminária, que treinamento a norma exige pra trabalho em altura?"}
+{"id": "X03", "source": "extra", "doc": "nr-06", "question": "Meu óculos de proteção quebrou hoje de manhã, a empresa é obrigada a me dar outro na hora ou posso trabalhar sem?"}
+{"id": "X04", "source": "extra", "doc": "nr-12", "question": "A serra de bancada aqui tá sem aquela proteção do disco, é seguro usar assim mesmo?"}
+{"id": "X05", "source": "extra", "doc": "nr-18", "question": "Na obra a gente tem que usar cinto e tal, quais medidas de proteção contra queda de altura são exigidas no canteiro?"}
+{"id": "X06", "source": "extra", "doc": "nr-33", "question": "Vou entrar num reservatório fechado pra fazer limpeza, o que a norma manda antes de entrar em espaço confinado?"}
+{"id": "X07", "source": "extra", "doc": "nr-10", "question": "O encarregado mandou eu mexer no painel energizado rapidinho, mas eu tô sozinho, pode isso?"}
+{"id": "X08", "source": "extra", "doc": "nr-16", "question": "Trabalho o dia todo perto de linha de alta tensão energizada, tenho direito ao adicional de periculosidade?"}
+{"id": "X09", "source": "extra", "doc": "nr-06", "question": "O calçado de segurança que a firma deu tá furado embaixo, posso continuar usando ou tem que trocar?"}
+{"id": "X10", "source": "extra", "doc": "nr-12", "question": "A máquina travou e eu quero destravar com ela ligada, precisa desligar e bloquear antes de meter a mão?"}
