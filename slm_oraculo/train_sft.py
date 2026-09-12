@@ -103,16 +103,22 @@ def main() -> None:
     ap.add_argument("--llama-dir", default=str(Path.home() / "cemig-poc" / "llama.cpp"))
     ap.add_argument("--epochs", type=int, default=3)
     ap.add_argument("--lr", type=float, default=1e-4)
-    ap.add_argument("--bs", type=int, default=8)
-    ap.add_argument("--grad-accum", type=int, default=4)
+    # Memory-safe defaults (GB10 121 GB UNIFICADA; ver analise de OOM no README):
+    # bs=4 x grad-accum=8 = efetivo 32 (mesmo), mas metade do pico de ativacao.
+    ap.add_argument("--bs", type=int, default=4)
+    ap.add_argument("--grad-accum", type=int, default=8)
     ap.add_argument("--lora-r", type=int, default=16)
     ap.add_argument("--lora-alpha", type=int, default=32)
-    ap.add_argument("--max-length", type=int, default=2048)
+    # Dados maxam em ~1309 tokens (p90 1095); 1536 cobre com folga e corta padding a toa.
+    ap.add_argument("--max-length", type=int, default=1536)
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
 
     if not torch.cuda.is_available():
         logger.error("CUDA indisponível."); sys.exit(2)
+    # Reduz fragmentacao do caching allocator na memoria unificada (evita picos).
+    import os
+    os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 
     out_root = Path(args.out_root)
     out_root.mkdir(parents=True, exist_ok=True)
@@ -148,7 +154,8 @@ def main() -> None:
         max_length=args.max_length,
         completion_only_loss=True,
         packing=False,
-        dataloader_num_workers=4,
+        group_by_length=True,   # agrupa por tamanho -> menos padding -> menor pico de VRAM
+        dataloader_num_workers=2,
         report_to="none",
         seed=args.seed,
     )

@@ -85,9 +85,34 @@ avaliado em oráculo pela régua; **aborta se regredir** vs base (a lição do f
 anterior: cobertura 0,40→0,28).
 
 > **Status**: treino iniciado na Spark (282 passos, ~70 min). **A Spark ficou
-> inacessível (100% packet loss no ssh/ping) durante a época 1** — provável thrash de
-> memória (bf16+Q4 servers + LoRA residentes). O treino foi lançado `setsid nohup` com
-> checkpoint por época; retomável quando a Spark voltar. Ver seção "Retomada" abaixo.
+> inacessível (100% packet loss no ssh/ping) durante a época 1** — travamento por memória.
+> Só o capitão pode religar a máquina fisicamente. O treino foi lançado `setsid nohup` com
+> checkpoint por época; **a config de retomada foi endurecida contra OOM** (ver abaixo)
+> antes de religar, para não derrubar a máquina de novo.
+
+### Análise de OOM (por que travou) e config memory-safe da retomada
+A GB10 tem **121 GB UNIFICADA** (CPU e GPU dividem o MESMO pool). No travamento, o
+`nvidia-smi` mostrou o processo de treino segurando **~56 GB** — anormalmente alto para um
+LoRA de 2.6B (esperado ~15-20 GB). Somado aos **dois `llama-server` residentes** (bf16 ~8 GB
++ Q4 ~5 GB de KV/pesos) que eu deixei no ar para gerar os baselines, o pool unificado foi
+para o limite e a máquina travou (thrash/OOM derrubou até a rede).
+
+**Causas e correções aplicadas em `run_train.sh` + `train_sft.py` (ANTES de religar):**
+1. **Servidores residentes competindo pelo pool** → `run_train.sh` agora **mata todo
+   `llama-server` antes de treinar** (passo 1/3). Geração/avaliação e treino **nunca**
+   coexistem.
+2. **Pico de ativação alto** → `bs 8→4` (efetivo 32 mantido via grad-accum 4→8), e
+   **`max_length 2048→1536`** (os dados maxam em ~1309 tokens, p90 1095 — 2048 era padding
+   à toa). `group_by_length=True` reduz padding por batch.
+3. **Fragmentação do allocator na memória unificada** → `PYTORCH_CUDA_ALLOC_CONF=
+   expandable_segments:True`.
+4. **Pico do export** (fim do treino recarrega o base 3×) → `export_epoch` já faz
+   `del base, merged; torch.cuda.empty_cache()` sequencialmente; com os servidores mortos há
+   folga de sobra.
+Config de retomada estimada: base bf16 5,4 GB + LoRA/otimizador ~0,7 GB + ativação (bs4,
+len1536, grad-ckpt) ~1 GB ≈ **~8-10 GB de pico**, muito abaixo dos 121 GB — **seguro**.
+**LoRA (não full)** é mantido: a lição do `finetune2/` é que treino agressivo regride o base
+forte; LoRA conservador é a escolha certa e também a mais leve.
 
 ---
 
@@ -134,12 +159,38 @@ $PY score.py --resp data/gen_27b_oracle.json --out data/score_27b_oracle.json
 $PY consolidate.py
 ```
 
-### Retomada do treino (Spark)
+### Retomada do treino (Spark) — À PROVA DE ERRO
 Artefatos de treino ficam em `~/cemig-poc/` na Spark (gitignored: reprodutíveis):
 - base HF patchado: `~/cemig-poc/base_hf/` (tokenizer_class TokenizersBackend→PreTrainedTokenizerFast)
 - GGUFs base: `~/cemig-poc/models/LFM2.5-2.6B-{bf16,Q4_0}.gguf`
-- dataset: `~/cemig-poc/train/train_sft.jsonl` (== `data/train_sft.jsonl`)
+- dataset: `~/cemig-poc/train/train_sft.jsonl` (== `data/train_sft.jsonl`, 3000 pares)
 - checkpoints por época: `~/cemig-poc/train/sft_ep{1,2,3}/` + `models/lfm2.5-2.6b-sft_ep{N}-Q4_0.gguf`
 - log: `~/cemig-poc/logs/train_sft.log`
-Relançar: `setsid nohup bash ~/cemig-poc/slm_scripts/run_train.sh > ~/cemig-poc/logs/train_sft.log 2>&1 &`
-Avaliar checkpoint: `./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep{N}-Q4_0.gguf sft_ep{N}_q4 8471`
+
+**Quando a Spark voltar**, copiar os scripts endurecidos e relançar (o launcher já verifica
+integridade e mata servidores antes de treinar — passo obrigatório contra OOM):
+```bash
+# 1) (deste host) subir os scripts atualizados p/ a Spark
+scp slm_oraculo/train_sft.py  walcyrios@spark-b431:~/cemig-poc/slm_scripts/train_sft.py
+scp slm_oraculo/run_train.sh  walcyrios@spark-b431:~/cemig-poc/slm_scripts/run_train.sh
+# 2) (na Spark) confirmar a máquina saudável e o pool livre
+ssh walcyrios@spark-b431 'free -g; nvidia-smi; pkill -f llama-server || true'
+# 3) (na Spark) relançar do zero (checkpoint por época; 3000 pares são baratos de refazer)
+ssh walcyrios@spark-b431 'cd ~/cemig-poc && setsid nohup bash slm_scripts/run_train.sh \
+   > logs/train_sft.log 2>&1 &'
+# 4) acompanhar
+ssh walcyrios@spark-b431 'tail -f ~/cemig-poc/logs/train_sft.log'
+```
+> **NÃO** treinar com `llama-server` no ar (foi a causa do travamento). O `run_train.sh`
+> mata todos no passo 1/3; geração e treino nunca coexistem. Reinício do zero é preferível
+> a retomar de checkpoint parcial (o treino inteiro leva ~70 min e o dataset já está pronto).
+
+Avaliar cada checkpoint (roda DEPOIS do treino, com 1 servidor por vez):
+```bash
+./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep1-Q4_0.gguf sft_ep1_q4 8471
+./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep2-Q4_0.gguf sft_ep2_q4 8471
+./eval_checkpoint.sh ~/cemig-poc/models/lfm2.5-2.6b-sft_ep3-Q4_0.gguf sft_ep3_q4 8471
+../classifier/.venv/bin/python consolidate.py   # curva do gap + veredito
+```
+**Gate de não-regressão**: se um checkpoint cair vs base (Q4_0 oráculo 45,0% / cobertura
+0,562) além do ruído, ABORTAR o embarque desse checkpoint (a lição do `finetune2/`).
