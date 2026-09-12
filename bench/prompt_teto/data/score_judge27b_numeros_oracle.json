@@ -1,0 +1,3012 @@
+{
+ "metrics": {
+  "resp_file": "resp_judge27b_numeros_oracle.json",
+  "model": "judge27b",
+  "variant": "numeros",
+  "context": "oracle",
+  "threshold": 0.5,
+  "n": 151,
+  "approval_pct": 84.1,
+  "mean_coverage": 0.748,
+  "tautology_pct": 0.0,
+  "hallucination_pct": 3.3,
+  "empty_pct": 0.0,
+  "citation_pct": 92.7,
+  "n_approved": 127,
+  "conv_chunk_hit_pct": 83.1,
+  "conv_chunk_miss_pct": 85.1,
+  "n_hit": 77,
+  "n_miss": 74,
+  "avg_completion_tokens": 104.3
+ },
+ "items": [
+  {
+   "item_id": "qa-006",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "membros superiores livres",
+    "posição de trabalho segura",
+    "NR 17 - Ergonomia"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-016",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "ordem de serviço específica",
+    "específica para data",
+    "específica para local",
+    "assinada por superior responsável"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-004",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 3,
+   "facts_present": [
+    "vedado uso de adornos pessoais",
+    "proximidades de instalações elétricas",
+    "trabalhos com instalações elétricas"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-010",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "destravamento e religação",
+    "retirada da zona controlada",
+    "trabalhadores não envolvidos",
+    "retirada dos equipamentos",
+    "retirada das ferramentas",
+    "retirada dos utensílios"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-007",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "impedimento de reenergização",
+    "instalação de aterramento temporário",
+    "seccionamento",
+    "instalação da sinalização de impedimento de reenergização",
+    "proteção dos elementos energizados",
+    "constatação da ausência de tensão"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-014",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "serviços em instalações elétricas energizadas em AT",
+    "assinada por superior responsável",
+    "ordem de serviço específica",
+    "serviços executados no SEP",
+    "não podem ser realizados individualmente"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-002",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 3,
+   "facts_present": [
+    "tensão de segurança",
+    "impossibilidade de desenergização",
+    "desenergização elétrica"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-009",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "destravamento",
+    "religação dos dispositivos",
+    "remoção da sinalização",
+    "retirada das ferramentas",
+    "retirada de trabalhadores",
+    "remoção do aterramento temporário"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-001",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "desenergização elétrica",
+    "medidas de proteção coletiva",
+    "isolamento das partes vivas"
+   ],
+   "facts_absent": [
+    "tensão de segurança"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-015",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": false,
+   "n_facts": 3,
+   "facts_present": [
+    "data e local",
+    "ordem de serviço específica",
+    "assinada por superior responsável"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-003",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "contemplar inflamabilidade",
+    "contemplar influências eletromagnéticas",
+    "EPIs específicos e adequados",
+    "vestimentas adequadas às atividades",
+    "contemplar condutibilidade"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-008",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "seqüência de procedimentos",
+    "instalação de aterramento temporário",
+    "equipotencialização dos condutores"
+   ],
+   "facts_absent": [
+    "proteção dos elementos energizados"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-028",
+   "coverage": 0.0,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [],
+   "facts_absent": [
+    "medidas de controle",
+    "sistemas preventivos",
+    "segurança e saúde",
+    "instalações elétricas",
+    "serviços com eletricidade"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-029",
+   "coverage": 0.0,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [],
+   "facts_absent": [
+    "zona de risco",
+    "zona controlada",
+    "profissionais autorizados",
+    "Anexo II da NR-10"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-030",
+   "coverage": 0.0,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [],
+   "facts_absent": [
+    "zona de risco: entorno imediato",
+    "zona controlada: faixa em volta",
+    "zona livre: área além da controlada",
+    "zona livre: circulação sem risco",
+    "distâncias no Anexo II"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-013",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "ordem de serviço específica",
+    "instalações elétricas energizadas em AT",
+    "assinada por superior responsável",
+    "não podem ser realizados individualmente"
+   ],
+   "facts_absent": [
+    "Sistema Elétrico de Potência - SEP"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-005",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 3,
+   "facts_present": [
+    "membros superiores livres",
+    "posição de trabalho segura",
+    "iluminação adequada"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-033",
+   "coverage": 0.4,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "treinamento de reciclagem bienal",
+    "troca de função"
+   ],
+   "facts_absent": [
+    "mudança de empresa",
+    "afastamento superior a três meses",
+    "modificações significativas nas instalações"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-012",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "corrente alternada",
+    "superior a 120 Volts",
+    "corrente contínua",
+    "trabalhadores que atendam ao item 10.8",
+    "instalações elétricas energizadas",
+    "tensão igual ou superior a 50 Volts"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-011",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "treinamento de segurança",
+    "tensão superior a 120 Volts",
+    "instalações elétricas energizadas",
+    "tensão igual ou superior a 50 Volts"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-017",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "especificações do fabricante",
+    "procedimentos da empresa",
+    "ensaios de laboratório periódicos",
+    "testes elétricos periódicos",
+    "anualmente"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-019",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "registro no competente conselho de classe",
+    "conclusão de curso específico",
+    "reconhecido pelo Sistema Oficial de Ensino"
+   ],
+   "facts_absent": [
+    "área elétrica"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-018",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "obedecendo-se as especificações do fabricante",
+    "ensaios de laboratório periódicos",
+    "testes elétricos periódicos"
+   ],
+   "facts_absent": [
+    "procedimentos da empresa",
+    "anualmente"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-023",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "acionar socorro especializado",
+    "treinar equipe em resgate",
+    "massagem cardíaca",
+    "padronizar procedimentos de resgate",
+    "executar reanimação cardiorrespiratória"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-021",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "ordens de serviço específicas",
+    "aprovadas por trabalhador autorizado",
+    "referências aos procedimentos de trabalho",
+    "procedimentos de trabalho específicos",
+    "tipo, data, local"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-024",
+   "coverage": 0.833,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "obrigação da empresa",
+    "primeiros socorros",
+    "custeada pelo empregador",
+    "métodos de resgate",
+    "reanimação cardiorrespiratória"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-031",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "resultados dos testes de isolação",
+    "inspeções e medições do SPDA",
+    "especificação dos EPC e EPI",
+    "procedimentos e instruções técnicas",
+    "Prontuário de Instalações Elétricas",
+    "documentação comprobatória da qualificação"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-034",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 3,
+   "facts_present": [
+    "retorno de afastamento",
+    "período superior a três meses",
+    "treinamento de reciclagem"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-020",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "Sistema Oficial de Ensino",
+    "conclusão de curso específico",
+    "registro no competente conselho de classe",
+    "área elétrica"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-035",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "Sistema Brasileiro de Certificação",
+    "seccionamento automático",
+    "treinamento específico"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-026",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "interromper a tarefa",
+    "comunicar imediatamente ao superior"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-022",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "descrição detalhada de cada tarefa",
+    "ordens de serviço especificas",
+    "aprovadas por trabalhador autorizado",
+    "procedimentos de trabalho específicos"
+   ],
+   "facts_absent": [
+    "medidas de controle"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-037",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "identificação de equipamento ou circuito impedido",
+    "sinalização adequada de segurança",
+    "sinalização de impedimento de energização",
+    "travamentos e bloqueios"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-042",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "controlados periodicamente",
+    "inspecionados periodicamente",
+    "de acordo com regulamentações existentes",
+    "manter condições seguras de funcionamento",
+    "de acordo com definições de projetos"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-050",
+   "coverage": 0.0,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [],
+   "facts_absent": [
+    "usar as duas juntas",
+    "luva isolante de borracha",
+    "sobreluva de couro",
+    "proteção contra danos mecânicos",
+    "conjunto obrigatório"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-043",
+   "coverage": 0.667,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "possibilidade de energização",
+    "instalações elétricas desligadas",
+    "instalações elétricas energizadas",
+    "atender ao item 10.6"
+   ],
+   "facts_absent": [
+    "tensão igual ou superior a 50 Volts",
+    "tensão superior a 120 Volts"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-038",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "identificação de circuitos elétricos",
+    "identificação de equipamento ou circuito impedido",
+    "travamentos e bloqueios",
+    "sinalização adequada de segurança",
+    "sinalização de impedimento de energização"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-039",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "impedimento de reenergização",
+    "dispositivos de desligamento de circuitos"
+   ],
+   "facts_absent": [
+    "sinalização de advertência",
+    "indicação da condição operativa"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-041",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "demais equipamentos e dispositivos de proteção",
+    "especificações do sistema de aterramento",
+    "esquemas unifilares atualizados",
+    "instalações elétricas"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-044",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "obedecendo especificações do fabricante",
+    "ensaios de laboratório periódicos",
+    "testes elétricos periódicos",
+    "anualmente"
+   ],
+   "facts_absent": [
+    "obedecendo procedimentos da empresa"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-036",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "proteção contra incêndio e explosão",
+    "dispositivos de proteção",
+    "Sistema Brasileiro de Certificação",
+    "avaliados quanto à sua conformidade"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-032",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "certificações dos equipamentos em áreas classificadas",
+    "inspeções e medições do sistema de proteção",
+    "resultados dos testes de isolação elétrica",
+    "especificação dos equipamentos de proteção",
+    "procedimentos e instruções técnicas e administrativas",
+    "documentação comprobatória da qualificação"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-025",
+   "coverage": 0.25,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "não pode gerar punição"
+   ],
+   "facts_absent": [
+    "comunicar imediatamente ao superior"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-047",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "danificado",
+    "comunicar à organização",
+    "impróprio para uso"
+   ],
+   "facts_absent": [
+    "limpeza, guarda e conservação"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-040",
+   "coverage": 0.25,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "impedimento de reenergização"
+   ],
+   "facts_absent": [
+    "sinalização de advertência",
+    "indicação da condição operativa"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-027",
+   "coverage": 0.4,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "Baixa tensão até 1.000 V CA",
+    "800 V CA é baixa tensão"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-046",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "perfeito estado de conservação",
+    "EPI adequado ao risco",
+    "fornecer gratuitamente"
+   ],
+   "facts_absent": [
+    "Certificado de Aprovação - CA"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-063",
+   "coverage": 0.2,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "talabarte duplo"
+   ],
+   "facts_absent": [
+    "cinturão tipo paraquedista",
+    "conectar antes de soltar",
+    "100% do tempo conectado"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-055",
+   "coverage": 0.4,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "formalmente autorizado pela organização",
+    "considerado apto"
+   ],
+   "facts_absent": [
+    "estado de saúde avaliado"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-045",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "planejar as atividades",
+    "supervisão e condução dos trabalhos",
+    "responsável pela execução do serviço",
+    "trabalhador indicado",
+    "avaliação prévia"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-051",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "conjugado contra um ou mais riscos",
+    "riscos ocupacionais existentes",
+    "Equipamento Conjugado de Proteção Individual",
+    "composto por vários dispositivos"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-054",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 3,
+   "facts_present": [
+    "toda atividade",
+    "diferença de nível acima de 2,0m",
+    "risco de queda"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-068",
+   "coverage": 0.0,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [],
+   "facts_absent": [
+    "subir com as mãos livres",
+    "três pontos de contato",
+    "bolsa porta-ferramentas presa ao corpo",
+    "apoiada de forma estável"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-052",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 2,
+   "facts_present": [
+    "óculos para proteção dos olhos contra radiação ultravioleta",
+    "óculos para proteção dos olhos contra luminosidade intensa"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-059",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "AR no procedimento operacional",
+    "Análise de Risco obrigatória",
+    "AR nunca dispensada",
+    "PT para atividades não rotineiras"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-053",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "orientando sua utilização",
+    "processos de limpeza e higienização",
+    "manutenção",
+    "manual de instruções em língua portuguesa"
+   ],
+   "facts_absent": [
+    "restrição"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-057",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 3,
+   "facts_present": [
+    "modalidade presencial",
+    "carga horária mínima de 8 horas",
+    "treinamento teórico e prático"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-048",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "indicação do Certificado de Aprovação - CA",
+    "perfeito estado de conservação e funcionamento"
+   ],
+   "facts_absent": [
+    "expedido pelo órgão de âmbito nacional"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-061",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "resistência para suportar a força máxima",
+    "adequado à tarefa",
+    "elementos compatíveis",
+    "inspeção inicial, rotineira e periódica",
+    "selecionado de acordo com a AR"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-049",
+   "coverage": 0.833,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "descrição do equipamento",
+    "restrições e limitações",
+    "forma adequada de uso",
+    "risco ocupacional",
+    "prestar informações"
+   ],
+   "facts_absent": [
+    "manual de instruções"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-060",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "resistência força máxima",
+    "elementos compatíveis",
+    "inspeção rotineira"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-058",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "Atividades não rotineiras",
+    "Trabalho não pode ser iniciado",
+    "Análise de Risco obrigatória",
+    "Antes do início do serviço",
+    "Permissão de Trabalho obrigatória"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-062",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "cinturão tipo paraquedista",
+    "proteção contra quedas",
+    "cinturão abdominal não aceito"
+   ],
+   "facts_absent": [
+    "distribui esforços pelo corpo",
+    "posicionamento e restrição"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-056",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "trabalhador formalmente autorizado",
+    "carga horária mínima de 8 (oito) horas",
+    "realizado antes de iniciar a atividade"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-064",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "reduzir o tempo de suspensão inerte",
+    "capacitadas a executar o resgate",
+    "recursos necessários para as respostas às emergências",
+    "equipe de emergência e salvamento",
+    "tempo estimado para o resgate",
+    "procedimentos de respostas aos cenários de emergências"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-067",
+   "coverage": 0.833,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "identificação do fabricante",
+    "resistir à força máxima aplicável",
+    "marcação pelo fabricante",
+    "número máximo de trabalhadores",
+    "projetados por profissional legalmente habilitado"
+   ],
+   "facts_absent": [
+    "inspeção inicial e periódica"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-071",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "talabarte integrado com absorvedor de energia",
+    "força de impacto máximo 6 kN"
+   ],
+   "facts_absent": [
+    "recusando-se os elementos que apresentem defeitos",
+    "inspeção rotineira antes do início dos trabalhos"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-073",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "carcaças",
+    "normas técnicas oficiais vigentes",
+    "aterradas"
+   ],
+   "facts_absent": [
+    "partes condutoras"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-066",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "alterar as condições do local",
+    "condições meteorológicas adversas",
+    "influências externas"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-080",
+   "coverage": 0.833,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "ficar destacada na máquina",
+    "fácil compreensão",
+    "sinalização de segurança",
+    "localização claramente visível",
+    "advertir trabalhadores e terceiros"
+   ],
+   "facts_absent": [
+    "instruções de operação e manutenção"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-077",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "fora das zonas perigosas",
+    "impedir acionamento involuntário",
+    "não acarretar riscos adicionais"
+   ],
+   "facts_absent": [
+    "dificultar a burla"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-069",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 3,
+   "facts_present": [
+    "modalidade presencial",
+    "carga horária mínima de oito horas",
+    "treinamento periódico a cada dois anos"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-070",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "fixados de forma independente",
+    "pontos de ancoragem independentes",
+    "conectado a pelo menos duas cordas"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-079",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "capacitação providenciada pelo empregador",
+    "sem ônus para o trabalhador",
+    "trabalhadores habilitados ou qualificados",
+    "ocorrer antes que o trabalhador assuma a sua função"
+   ],
+   "facts_absent": [
+    "autorizados para este fim"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-072",
+   "coverage": 0.6,
+   "approved": false,
+   "tautology": false,
+   "hallucination": true,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "prevenir perigos de choque elétrico",
+    "proteção contra contatos abrasivos",
+    "proteção contra rompimento mecânico"
+   ],
+   "facts_absent": [
+    "bom estado de conservação"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-075",
+   "coverage": 0.667,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "impedir energização acidental",
+    "aplicar cadeado",
+    "etiqueta sinalização",
+    "bloqueio dispositivos acionamento"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-074",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "não podendo ser alternativa a medidas adequadas de proteção",
+    "não devem ser utilizados como dispositivos de acionamento",
+    "medida auxiliar",
+    "evitadas situações de perigo",
+    "dispositivos de parada de emergência",
+    "não devem ser utilizados como dispositivos de partida"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-065",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "equipe apta a resgate",
+    "procedimentos de resgate",
+    "pessoal capacitado disponível",
+    "acompanhamento e recursos de resgate"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-082",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "indicação da pressão máxima",
+    "pressão máxima de trabalho admissível",
+    "especificada pelo fabricante",
+    "não possa ser excedida"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-078",
+   "coverage": 0.833,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "proteções móveis",
+    "proteções fixas",
+    "impeçam o acesso",
+    "transmissões de força",
+    "dispositivos de segurança interligados"
+   ],
+   "facts_absent": [
+    "componentes móveis"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-085",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "atender ao disposto na NR-10",
+    "trabalhadores autorizados conforme NR-10",
+    "projeto elétrico",
+    "profissional legalmente habilitado"
+   ],
+   "facts_absent": [
+    "proibida partes vivas expostas"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-081",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "pressão máxima de trabalho admissível",
+    "não possa ser excedida",
+    "meios ou dispositivos"
+   ],
+   "facts_absent": [
+    "perdas de vácuo"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-083",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "protegidos pontos de esmagamento",
+    "proibida circulação sobre partes em movimento",
+    "protegidos pontos de agarramento"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-089",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "sistema de aterramento elétrico de proteção",
+    "instalações elétricas temporárias",
+    "partes condutoras conectadas ao aterramento"
+   ],
+   "facts_absent": [
+    "quadros de distribuição"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-086",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 3,
+   "facts_present": [
+    "projeto elétrico elaborado por profissional legalmente habilitado",
+    "trabalhadores autorizados conforme NR-10",
+    "atender ao disposto na NR-10"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-101",
+   "coverage": 0.2,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "independente de experiência anterior"
+   ],
+   "facts_absent": [
+    "mínimo 4 horas",
+    "antes de iniciar atividades",
+    "riscos específicos da obra"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-087",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "protegidos contra umidade",
+    "não obstruir a circulação",
+    "protegidos contra agentes danificantes",
+    "protegidos contra impactos mecânicos"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-076",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "impedir a reenergização",
+    "cartão ou etiqueta de bloqueio",
+    "motivo da manutenção",
+    "bloqueio mecânico e elétrico",
+    "posição “desligado” ou “fechado”",
+    "horário e a data do bloqueio"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-088",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "protegidos contra umidade",
+    "não obstruir a circulação de materiais",
+    "protegidos contra agentes capazes de danificar a isolação",
+    "não obstruir a circulação de pessoas",
+    "protegidos contra impactos mecânicos"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-091",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "medida de segurança adicional",
+    "dispositivo Diferencial Residual (DR)",
+    "instalações elétricas"
+   ],
+   "facts_absent": [
+    "obrigatória a utilização"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-090",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "conectadas ao sistema de aterramento",
+    "partes vivas inacessíveis",
+    "sistema de aterramento elétrico de proteção",
+    "dispositivo Diferencial Residual (DR)"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-094",
+   "coverage": 0.667,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 3,
+   "facts_present": [
+    "torção, ruptura ou abrasão",
+    "sem duplo isolamento"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-092",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "protegidas aos trabalhadores não autorizados",
+    "partes vivas inacessíveis",
+    "risco elétrico"
+   ],
+   "facts_absent": [
+    "identificados e sinalizados",
+    "instalação de bloqueio",
+    "sinalização de impedimento de ligação"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-097",
+   "coverage": 0.667,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "condições mínimas de privacidade",
+    "condições mínimas de segurança",
+    "local para refeição",
+    "condições mínimas de conforto"
+   ],
+   "facts_absent": [
+    "perfeito estado de conservação",
+    "perfeito estado de higiene"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-096",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "condições mínimas de privacidade",
+    "perfeito estado de conservação",
+    "condições mínimas de segurança",
+    "instalação sanitária",
+    "higiene e limpeza",
+    "condições mínimas de conforto"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-095",
+   "coverage": 0.167,
+   "approved": false,
+   "tautology": false,
+   "hallucination": true,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "distâncias mínimas de segurança"
+   ],
+   "facts_absent": [
+    "planejamento prévio do içamento",
+    "sinalização da área",
+    "proibido operar na zona de risco"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-093",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "risco de queda de trabalhadores",
+    "profissional legalmente habilitado",
+    "proteção coletiva",
+    "perímetro da construção"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-099",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "capacitação dos trabalhadores",
+    "treinamento básico em segurança",
+    "avaliação do conhecimento",
+    "treinamento presencial"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-102",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "medidas corretivas",
+    "protegido de consequências injustificadas",
+    "risco grave e iminente",
+    "não exigir retorno",
+    "interromper atividades",
+    "informar imediatamente superior hierárquico"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-098",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "higiene e limpeza",
+    "condições de conforto",
+    "perfeito estado de conservação",
+    "condições mínimas de segurança",
+    "vestiário",
+    "condições de privacidade"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-100",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "carga horária mínima de 4 horas",
+    "realizado antes de iniciar atividades"
+   ],
+   "facts_absent": [
+    "palestra de 30 minutos não atende"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-117",
+   "coverage": 0.0,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [],
+   "facts_absent": [
+    "não projetado para ocupação humana contínua",
+    "meios limitados de entrada e saída",
+    "atmosfera perigosa",
+    "deficiência ou enriquecimento de oxigênio",
+    "presença de contaminantes",
+    "atmosfera explosiva"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-103",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "informar medidas de prevenção",
+    "elaborar ordens de serviço",
+    "informar riscos ocupacionais",
+    "dar ciência aos trabalhadores"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-104",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "usar equipamento de proteção individual",
+    "submeter-se aos exames médicos",
+    "cumprir disposições legais e regulamentares",
+    "recusa injustificada constitui ato faltoso"
+   ],
+   "facts_absent": [
+    "colaborar com a organização na aplicação das NR"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-084",
+   "coverage": 1.0,
+   "approved": false,
+   "tautology": false,
+   "hallucination": true,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "transportadores contínuos acessíveis",
+    "ao longo de sua extensão",
+    "dispositivos de parada de emergência",
+    "acionados em todas as posições"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-108",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "formas de acompanhamento",
+    "plano de ação",
+    "cronograma com responsáveis"
+   ],
+   "facts_absent": [
+    "aferição de resultados"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-109",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 2,
+   "facts_present": [
+    "plano de ação",
+    "inventário de riscos"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-110",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "disponíveis à Inspeção do Trabalho",
+    "inventário de riscos",
+    "disponíveis aos trabalhadores"
+   ],
+   "facts_absent": [
+    "plano de ação"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-105",
+   "coverage": 0.833,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "abranger fatores ergonômicos",
+    "implementar gerenciamento de riscos ocupacionais",
+    "abranger fatores psicossociais",
+    "abranger riscos de acidentes",
+    "constituir Programa de Gerenciamento de Riscos"
+   ],
+   "facts_absent": [
+    "abranger agentes físicos, químicos, biológicos"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-114",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "treinamento periódico",
+    "periodicidade estabelecida nas NR",
+    "afastamento superior a 180 dias",
+    "treinamento eventual",
+    "prazo determinado pelo empregador"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-112",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "encaminhamento de acidentados",
+    "abandono de locais afetados",
+    "meios para primeiros socorros",
+    "responsáveis para primeiros socorros",
+    "recursos para primeiros socorros",
+    "estabelecer procedimentos de resposta a emergências"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-127",
+   "coverage": 0.0,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [],
+   "facts_absent": [
+    "sem gratificações",
+    "sem prêmios",
+    "sem participações nos lucros"
+   ],
+   "judged": false
+  },
+  {
+   "item_id": "qa-115",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "medidas corretivas",
+    "risco grave e iminente",
+    "superior hierárquico",
+    "informar imediatamente",
+    "interromper atividades"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-113",
+   "coverage": 0.667,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": false,
+   "retrieval_hit": true,
+   "n_facts": 3,
+   "facts_present": [
+    "antes de iniciar funções",
+    "treinamento inicial"
+   ],
+   "facts_absent": [
+    "prazo especificado em NR"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-111",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "resgate de acidentado",
+    "procedimentos de respostas a emergências",
+    "meios e recursos para primeiros socorros",
+    "esquema pronto de resgate"
+   ],
+   "facts_absent": [
+    "pessoal treinado"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-119",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "durante as operações em espaços confinados",
+    "não realizar outras tarefas"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-106",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "equipamento de proteção individual",
+    "EPI último recurso",
+    "eliminação dos fatores de risco"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-116",
+   "coverage": 0.833,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "protegido de consequências injustificadas",
+    "risco grave e iminente",
+    "informar superior hierárquico",
+    "não exigir retorno",
+    "interromper atividades"
+   ],
+   "facts_absent": [
+    "medidas corretivas"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-120",
+   "coverage": 0.333,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "emissão da PET",
+    "precedida da emissão"
+   ],
+   "facts_absent": [
+    "avaliação quantitativa da atmosfera",
+    "assinatura dos vigias"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-118",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "junto à entrada",
+    "permanecer fora do espaço confinado",
+    "contato permanente com trabalhadores",
+    "não realizar outras tarefas"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-123",
+   "coverage": 0.667,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "controle de energias perigosas",
+    "bloqueio",
+    "etiquetagem",
+    "isolamento ou desenergização"
+   ],
+   "facts_absent": [
+    "liberação para o início"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-125",
+   "coverage": 0.667,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "capacitação inicial, periódica e eventual",
+    "anuência do responsável técnico",
+    "Anexo III desta NR",
+    "tipo de espaço confinado e as atividades"
+   ],
+   "facts_absent": [
+    "avaliados de modo a aferir os conhecimentos"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-107",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "cronograma",
+    "plano de ação",
+    "responsáveis",
+    "acompanhamento"
+   ],
+   "facts_absent": [
+    "aferição de resultados"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-124",
+   "coverage": 0.4,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "cinturão de segurança tipo paraquedista",
+    "corda amarrada na cintura vedada"
+   ],
+   "facts_absent": [
+    "conectado ao sistema"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-126",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "encerrada quando ocorrer condição não prevista",
+    "nova avaliação da atmosfera"
+   ],
+   "facts_absent": [
+    "saída de todos os trabalhadores"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-130",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "sistema elétrico de potência",
+    "inspeção",
+    "redes de linhas aéreas",
+    "adicional de periculosidade"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-128",
+   "coverage": 0.333,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "linhas aéreas ou subterrâneas",
+    "instalações ou equipamentos integrantes do SEP"
+   ],
+   "facts_absent": [
+    "atividades de construção, operação e manutenção",
+    "alta e baixa tensão",
+    "manutenção de fontes de alimentação"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-121",
+   "coverage": 0.6,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "espaço confinado",
+    "durante a permanência",
+    "monitoramento contínuo"
+   ],
+   "facts_absent": [
+    "leitura instantânea",
+    "alarme sonoro, visual e vibratório"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-132",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "transformadores",
+    "adicionais de periculosidade",
+    "sistema elétrico de potência - SEP",
+    "manobras em subestação"
+   ],
+   "facts_absent": [
+    "chaves"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-141",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "Médico do Trabalho",
+    "disponível à inspeção do trabalho",
+    "disponível aos trabalhadores",
+    "Engenheiro de Segurança do Trabalho",
+    "laudo técnico"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-131",
+   "coverage": 0.4,
+   "approved": false,
+   "tautology": false,
+   "hallucination": true,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "sistema elétrico de potência - SEP",
+    "trabalho em proximidade"
+   ],
+   "facts_absent": [
+    "NR-10"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-139",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "liberados para o trabalho",
+    "sem possibilidade de energização acidental",
+    "equipamentos elétricos desenergizados"
+   ],
+   "facts_absent": [
+    "conforme estabelece a NR-10"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-136",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "liberados para o trabalho",
+    "desenergizados",
+    "sem possibilidade de energização acidental"
+   ],
+   "facts_absent": [
+    "NR-10"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-122",
+   "coverage": 0.333,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "ventilação mecânica contínua",
+    "manter a atmosfera respirável"
+   ],
+   "facts_absent": [
+    "toda a execução do serviço",
+    "parâmetros aceitáveis"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-137",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "conforme estabelece a NR-10",
+    "liberados para o trabalho",
+    "instalações ou equipamentos elétricos desenergizados",
+    "sem possibilidade de energização acidental"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-129",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "baixa tensão no SEC",
+    "alta tensão",
+    "trabalho em proximidade",
+    "descumprimento do item 10.2.8"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-138",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 3,
+   "facts_present": [
+    "liberados para o trabalho",
+    "sem possibilidade de energização acidental",
+    "equipamentos elétricos desenergizados"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-140",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "Médico do Trabalho",
+    "disponível aos trabalhadores",
+    "Engenheiro de Segurança do Trabalho",
+    "laudo técnico"
+   ],
+   "facts_absent": [
+    "responsabilidade do empregador"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-134",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 3,
+   "facts_present": [
+    "não é devido o pagamento",
+    "instalações ou equipamentos elétricos",
+    "extra-baixa tensão"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-135",
+   "coverage": 0.75,
+   "approved": false,
+   "tautology": false,
+   "hallucination": true,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "instalações ou equipamentos elétricos",
+    "extra-baixa tensão",
+    "adicional de periculosidade"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-142",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 4,
+   "facts_present": [
+    "indicar e advertir acerca dos perigos",
+    "não dispensa outras formas de prevenção",
+    "delimitar áreas",
+    "advertir contra riscos"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-144",
+   "coverage": 0.833,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "GHS",
+    "Sistema Globalmente Harmonizado",
+    "lista de classificação harmonizada",
+    "classificado quanto aos perigos",
+    "realização de ensaios"
+   ],
+   "facts_absent": [
+    "Organização das Nações Unidas"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-133",
+   "coverage": 0.5,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "empresas que operam em instalações",
+    "sistema elétrico de potência - SEP"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-143",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 3,
+   "facts_present": [
+    "prevenção de acidentes",
+    "emprego de outras formas de prevenção",
+    "utilização de cores não dispensa"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-145",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 5,
+   "facts_present": [
+    "identificação e composição do produto químico",
+    "palavra de advertência",
+    "pictograma(s) de perigo",
+    "frase(s) de perigo",
+    "frase(s) de precaução"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-147",
+   "coverage": 0.333,
+   "approved": false,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": true,
+   "n_facts": 6,
+   "facts_present": [
+    "compreender rotulagem preventiva",
+    "treinamento obrigatório"
+   ],
+   "facts_absent": [
+    "interpretar palavras de advertência"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-151",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "cores para comunicação de segurança",
+    "normas técnicas oficiais",
+    "indicar e advertir perigos",
+    "advertir contra riscos"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-148",
+   "coverage": 0.8,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 5,
+   "facts_present": [
+    "placa de advertência",
+    "complementa bloqueio físico",
+    "etiqueta de advertência",
+    "cadeado sozinho não basta"
+   ],
+   "facts_absent": [
+    "impedir energização indevida"
+   ],
+   "judged": true
+  },
+  {
+   "item_id": "qa-146",
+   "coverage": 1.0,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "acesso dos trabalhadores",
+    "fichas com dados de segurança",
+    "local de trabalho",
+    "produtos químicos que utilizam"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-150",
+   "coverage": 0.75,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 4,
+   "facts_present": [
+    "ficha com dados de segurança",
+    "disponível aos trabalhadores",
+    "procedimentos para atuação em situações de emergência"
+   ],
+   "facts_absent": [],
+   "judged": true
+  },
+  {
+   "item_id": "qa-149",
+   "coverage": 0.667,
+   "approved": true,
+   "tautology": false,
+   "hallucination": false,
+   "empty": false,
+   "citation": true,
+   "retrieval_hit": false,
+   "n_facts": 6,
+   "facts_present": [
+    "frase(s) de perigo",
+    "palavra de advertência",
+    "pictograma(s) de perigo",
+    "rotulagem preventiva"
+   ],
+   "facts_absent": [],
+   "judged": true
+  }
+ ],
+ "captain_cases": [
+  {
+   "item_id": "cap-poste",
+   "question": "o poste que preciso subir nao me parece firme, o que eu devo fazer?",
+   "response": "Não sei com base nas normas consultadas.",
+   "chunks_docs": [
+    "nr-10/Anexo Ii",
+    "nr-10/Anexo Ii"
+   ]
+  },
+  {
+   "item_id": "cap-13kv",
+   "question": "Qual a distancia segura para media tensao de 13,8kV?",
+   "response": "Não sei com base nas normas consultadas.",
+   "chunks_docs": [
+    "nr-10/10.6",
+    "nr-10/Anexo Ii"
+   ]
+  }
+ ]
+}

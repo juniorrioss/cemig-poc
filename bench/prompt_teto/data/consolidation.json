@@ -1,0 +1,427 @@
+{
+ "task": "poc-prompt-teto",
+ "n": 151,
+ "regua": "bench/regua (ruler.py + judge_regua 27B), limiar 0.5, sem citação no gate",
+ "retriever": "v4 embarcado (RRF k=10 w=2,1,2), R@2=51.0%",
+ "part1_prompt_variants_2.6b_retrieved": [
+  {
+   "resp_file": "resp_lfm2.6b_numeros_retrieved.json",
+   "model": "lfm2.6b",
+   "variant": "numeros",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 23.8,
+   "mean_coverage": 0.429,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 45.7,
+   "empty_pct": 0.0,
+   "citation_pct": 96.7,
+   "n_approved": 36,
+   "conv_chunk_hit_pct": 35.1,
+   "conv_chunk_miss_pct": 12.2,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 221.5
+  },
+  {
+   "resp_file": "resp_lfm2.6b_baseline_retrieved.json",
+   "model": "lfm2.6b",
+   "variant": "baseline",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 23.2,
+   "mean_coverage": 0.446,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 41.7,
+   "empty_pct": 0.0,
+   "citation_pct": 100.0,
+   "n_approved": 35,
+   "conv_chunk_hit_pct": 36.4,
+   "conv_chunk_miss_pct": 9.5,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 172.4
+  },
+  {
+   "resp_file": "resp_lfm2.6b_acao_primeiro_retrieved.json",
+   "model": "lfm2.6b",
+   "variant": "acao_primeiro",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 19.2,
+   "mean_coverage": 0.441,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 55.0,
+   "empty_pct": 0.0,
+   "citation_pct": 98.7,
+   "n_approved": 29,
+   "conv_chunk_hit_pct": 31.2,
+   "conv_chunk_miss_pct": 6.8,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 181.6
+  },
+  {
+   "resp_file": "resp_lfm2.6b_combinado_6f_retrieved.json",
+   "model": "lfm2.6b",
+   "variant": "combinado_6f",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 19.2,
+   "mean_coverage": 0.433,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 53.0,
+   "empty_pct": 0.0,
+   "citation_pct": 98.0,
+   "n_approved": 29,
+   "conv_chunk_hit_pct": 27.3,
+   "conv_chunk_miss_pct": 10.8,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 257.0
+  },
+  {
+   "resp_file": "resp_lfm2.6b_anti_evasao_retrieved.json",
+   "model": "lfm2.6b",
+   "variant": "anti_evasao",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 17.2,
+   "mean_coverage": 0.337,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 39.7,
+   "empty_pct": 0.0,
+   "citation_pct": 99.3,
+   "n_approved": 26,
+   "conv_chunk_hit_pct": 26.0,
+   "conv_chunk_miss_pct": 8.1,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 122.9
+  },
+  {
+   "resp_file": "resp_lfm2.6b_combinado_4f_retrieved.json",
+   "model": "lfm2.6b",
+   "variant": "combinado_4f",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 15.2,
+   "mean_coverage": 0.422,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 55.6,
+   "empty_pct": 0.0,
+   "citation_pct": 99.3,
+   "n_approved": 23,
+   "conv_chunk_hit_pct": 26.0,
+   "conv_chunk_miss_pct": 4.1,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 216.6
+  }
+ ],
+ "part1_best": {
+  "variant": "numeros",
+  "approval_pct": 23.8
+ },
+ "part2_ceiling_27b": {
+  "judge27b_baseline_retrieved": {
+   "resp_file": "resp_judge27b_baseline_retrieved.json",
+   "model": "judge27b",
+   "variant": "baseline",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 37.7,
+   "mean_coverage": 0.479,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 30.5,
+   "empty_pct": 0.0,
+   "citation_pct": 94.0,
+   "n_approved": 57,
+   "conv_chunk_hit_pct": 57.1,
+   "conv_chunk_miss_pct": 17.6,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 86.1
+  },
+  "judge27b_numeros_retrieved": {
+   "resp_file": "resp_judge27b_numeros_retrieved.json",
+   "model": "judge27b",
+   "variant": "numeros",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 44.4,
+   "mean_coverage": 0.534,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 27.8,
+   "empty_pct": 0.0,
+   "citation_pct": 90.7,
+   "n_approved": 67,
+   "conv_chunk_hit_pct": 64.9,
+   "conv_chunk_miss_pct": 23.0,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 108.4
+  },
+  "judge27b_baseline_oracle": {
+   "resp_file": "resp_judge27b_baseline_oracle.json",
+   "model": "judge27b",
+   "variant": "baseline",
+   "context": "oracle",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 76.2,
+   "mean_coverage": 0.673,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 2.0,
+   "empty_pct": 0.0,
+   "citation_pct": 95.4,
+   "n_approved": 115,
+   "conv_chunk_hit_pct": 84.4,
+   "conv_chunk_miss_pct": 67.6,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 82.1
+  },
+  "judge27b_numeros_oracle": {
+   "resp_file": "resp_judge27b_numeros_oracle.json",
+   "model": "judge27b",
+   "variant": "numeros",
+   "context": "oracle",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 84.1,
+   "mean_coverage": 0.748,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 3.3,
+   "empty_pct": 0.0,
+   "citation_pct": 92.7,
+   "n_approved": 127,
+   "conv_chunk_hit_pct": 83.1,
+   "conv_chunk_miss_pct": 85.1,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 104.3
+  }
+ },
+ "oracle_and_1.2b": {
+  "lfm2.6b_baseline_oracle": {
+   "resp_file": "resp_lfm2.6b_baseline_oracle.json",
+   "model": "lfm2.6b",
+   "variant": "baseline",
+   "context": "oracle",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 42.4,
+   "mean_coverage": 0.567,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 31.8,
+   "empty_pct": 0.0,
+   "citation_pct": 100.0,
+   "n_approved": 64,
+   "conv_chunk_hit_pct": 42.9,
+   "conv_chunk_miss_pct": 41.9,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 164.6
+  },
+  "lfm2.6b_numeros_oracle": {
+   "resp_file": "resp_lfm2.6b_numeros_oracle.json",
+   "model": "lfm2.6b",
+   "variant": "numeros",
+   "context": "oracle",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 46.4,
+   "mean_coverage": 0.565,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 28.5,
+   "empty_pct": 0.0,
+   "citation_pct": 98.0,
+   "n_approved": 70,
+   "conv_chunk_hit_pct": 53.2,
+   "conv_chunk_miss_pct": 39.2,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 213.5
+  },
+  "lfm1.2b_baseline_retrieved": {
+   "resp_file": "resp_lfm1.2b_baseline_retrieved.json",
+   "model": "lfm1.2b",
+   "variant": "baseline",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 4.6,
+   "mean_coverage": 0.118,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 16.6,
+   "empty_pct": 0.0,
+   "citation_pct": 70.2,
+   "n_approved": 7,
+   "conv_chunk_hit_pct": 6.5,
+   "conv_chunk_miss_pct": 2.7,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 47.4
+  },
+  "lfm1.2b_numeros_retrieved": {
+   "resp_file": "resp_lfm1.2b_numeros_retrieved.json",
+   "model": "lfm1.2b",
+   "variant": "numeros",
+   "context": "retrieved",
+   "threshold": 0.5,
+   "n": 151,
+   "approval_pct": 2.0,
+   "mean_coverage": 0.074,
+   "tautology_pct": 0.0,
+   "hallucination_pct": 6.6,
+   "empty_pct": 0.0,
+   "citation_pct": 53.6,
+   "n_approved": 3,
+   "conv_chunk_hit_pct": 3.9,
+   "conv_chunk_miss_pct": 0.0,
+   "n_hit": 77,
+   "n_miss": 74,
+   "avg_completion_tokens": 43.9
+  }
+ },
+ "captain_cases_by_variant_2.6b": {
+  "baseline": {
+   "cap-poste": {
+    "response": "Conforme a NR-10 Anexo Ii, item 10.5.1, a interposição de superfície de separação física adequada deve ser verificada quando há instabilidade ou instabilidade do poste. O eletricista deve confirmar se o poste está firmemente ancorado e, caso não seja, deve realizar a inspeção e correção da fundação conforme as normas de segurança elétrica. A NR-10 exige que superfícies de separação físicas sejam adequadas para evitar contactos indesejados com equipamentos energizados. Verifique se há necessidade de reforçar a base do poste ou de instalar uma barreira física adequada. Caso o poste não seja firme, deve-se interromper as atividades e corrigir a instalação antes de prosseguir.",
+    "chunks_docs": [
+     "nr-10/Anexo Ii",
+     "nr-10/Anexo Ii"
+    ]
+   },
+   "cap-13kv": {
+    "response": "Conforme a NR-10, item 10.6.2, os trabalhos que exigem ingresso na zona controlada devem ser realizados mediante procedimentos específicos respeitando as distâncias previstas no Anexo II. Para media tensão de 13,8kV (que se enquadra na faixa de 10-30kV), a distância segura é de 0,56m conforme o Anexo II desta norma.",
+    "chunks_docs": [
+     "nr-10/10.6",
+     "nr-10/Anexo Ii"
+    ]
+   }
+  },
+  "anti_evasao": {
+   "cap-poste": {
+    "response": "Eu devo desligar e aterrar o circuito antes de tocar no poste, conforme a NR-10, item 10.5.1, para garantir a segurança durante a operação. Verifique se o poste está seguro e funcional antes de realizar qualquer intervenção. Siga sempre os procedimentos de segurança da NR-10 para evitar riscos. Confirme a condição do poste e a integridade do sistema antes de prosseguir com a manutenção.",
+    "chunks_docs": [
+     "nr-10/Anexo Ii",
+     "nr-10/Anexo Ii"
+    ]
+   },
+   "cap-13kv": {
+    "response": "Para uma tensão média de 13,8 kV (que se enquadra na faixa \"≥ 30 e < 36 kV\" do Anexo II da NR-10, item 10.6.2), a distância segura deve ser de 0,58 metros, conforme as dimensões do tabela do Anexo II da norma.",
+    "chunks_docs": [
+     "nr-10/10.6",
+     "nr-10/Anexo Ii"
+    ]
+   }
+  },
+  "acao_primeiro": {
+   "cap-poste": {
+    "response": "Eu preciso verificar as normas de segurança NR-10 para orientar sobre a condição do poste. Vou consultar o contexto normativo fornecido para encontrar as diretrizes específicas sobre postes instáveis ou inseguros.\n\nDe acordo com o NR-10 Anexo Ii, as zonas de risco, controlada e livre são delimitadas por distâncias no ar. No entanto, a norma não especifica diretamente procedimentos para postes que não parecem firmes. A orientação geral do NR-10 exige que equipamentos e instalações sejam seguros e que trabalhadores autorizados utilizem técnicas apropriadas.\n\nPara um poste que não está firme, o procedimento correto é desligar a energia elétrica na instalação antes de realizar qualquer intervenção de manutenção ou reparo. Isso deve ser feito seguindo as procedências de desligamento de equipamentos energizados conforme estabelecido pela norma NR-10, garantindo a segurança do trabalhador e da instalação.\n\nSiga imediatamente o procedimento de desligamento de energia na instalação antes de subir no poste, conforme as práticas de segurança do NR-10. Mantenha distância de segurança durante a intervenção e utilize equipamentos de proteção individual adequados. Se houver dúvida sobre a condição do poste, solicite avaliação técnica antes de realizar qualquer trabalho.\n\nA norma NR-10 exige que todas as instalações elétricas sejam seguras e que os trabalhadores autorizados utilizem equipamentos e técnicas apropriados. A primeira ação deve ser sempre o desligamento de energia para garantir a segurança.",
+    "chunks_docs": [
+     "nr-10/Anexo Ii",
+     "nr-10/Anexo Ii"
+    ]
+   },
+   "cap-13kv": {
+    "response": "Pare o serviço imediatamente e suspenda todas as atividades em instalações energizadas com alta tensão (AT) até que a distância segura seja determinada conforme o Anexo II desta NR-10. O item 10.6.2 estabelece que os trabalhos que exigem ingresso na zona controlada devem ser realizados mediante procedimentos específicos respeitando as distâncias previstas no Anexo II. A distância segura para media tensão de 13,8kV (que se enquadra na faixa entre 30 e 36 kV) deve ser verificada no Anexo II desta norma. Sempre que inovações tecnológicas forem implementadas ou para novas instalações, devem ser elaboradas análises de risco e procedimentos de trabalho conforme o item 10.6.4. Mantenha distância de segurança conforme as normas estabelecidas no Anexo II para evitar riscos à vida dos trabalhadores.",
+    "chunks_docs": [
+     "nr-10/10.6",
+     "nr-10/Anexo Ii"
+    ]
+   }
+  },
+  "numeros": {
+   "cap-poste": {
+    "response": "Eu não posso responder a essa pergunta com base nas normas consultadas. As normas NR-10 - Anexo Ii apresentam apenas as definições e tabelas de distâncias para delimitação de zonas de risco, controle e livre, mas não contêm instruções específicas sobre como proceder quando um poste elétrico não está firme ou precisa ser instalado. Para este tipo de situação prática, seria necessário consultar normas técnicas complementares de instalação e segurança de postes, além de orientação técnica específica. A norma NR-10 - Anexo Ii apenas estabelece as distâncias radiais para delimitação de zonas, não fornece procedimentos operacionais para manutenção ou instalação de postes. Portanto, não posso fornecer uma resposta concreta baseada exclusivamente no contexto normativo fornecido.",
+    "chunks_docs": [
+     "nr-10/Anexo Ii",
+     "nr-10/Anexo Ii"
+    ]
+   },
+   "cap-13kv": {
+    "response": "Com base na NR-10 · Anexo Ii (item 10.6.2), as distâncias seguras para media tensão são definidas em tabela. Para uma tensão de 13,8 kV (que se enquadra na faixa \"≥ 30 e < 36\" com valor de 0,58), a distância segura é de 1,58 metros.\n\nA distância segura para media tensão de 13,8 kV é de 1,58 metros, conforme a tabela do Anexo II da NR-10 (item 10.6.2).",
+    "chunks_docs": [
+     "nr-10/10.6",
+     "nr-10/Anexo Ii"
+    ]
+   }
+  },
+  "combinado_6f": {
+   "cap-poste": {
+    "response": "Eu preciso verificar as normas de segurança elétrica para orientar o eletricista sobre o que fazer quando um poste parece instável. Vou consultar as normas fornecidas no contexto para obter orientações específicas sobre procedimentos de trabalho com postes instáveis.\n\nDe acordo com a NR-10, Anexo Ii - Anexo II, as zonas de risco e controladas são delimitadas por raios específicos em metros. Para postes que não parecem firmes, o procedimento correto é verificar se há uma superfície de separação física adequada conforme a norma. A distância mínima de segurança para trabalhar com equipamentos elétricos energizados deve ser mantida.\n\nConforme a NR-10, Anexo Ii - Anexo II, item referente à distância de segurança: \"Mantenha 0,70 m de distância entre o trabalhador e a superfície do poste, conforme a NR-10, item 10.6.2.\"\n\nAlém disso, para trabalhar com equipamentos elétricos em zona de risco controlada, é necessário seguir os procedimentos de isolamento adequados e garantir que a superfície de separação física esteja presente. A NR-10, Anexo Ii - Anexo II especifica que a distância mínima de 0,70 m deve ser mantida entre o trabalhador e a superfície do poste.\n\nPortanto, o eletricista deve verificar se há uma superfície de separação física adequada (mínimo 0,70 m) antes de prosseguir com o trabalho no poste instável. Se não houver, deve ser instalada antes de iniciar qualquer operação.",
+    "chunks_docs": [
+     "nr-10/Anexo Ii",
+     "nr-10/Anexo Ii"
+    ]
+   },
+   "cap-13kv": {
+    "response": "A distância segura para media tensão de 13,8 kV (que se enquadra na faixa ≥30 e <36 kV) é de 0,58 m, conforme o Anexo II da NR-10, item 10.6.2.",
+    "chunks_docs": [
+     "nr-10/10.6",
+     "nr-10/Anexo Ii"
+    ]
+   }
+  },
+  "combinado_4f": {
+   "cap-poste": {
+    "response": "Eu preciso verificar as normas de segurança elétrica para orientar o eletricista sobre o que fazer quando um poste parece instável. Vou consultar as normas NR-10 e o Anexo Ii para obter as orientações específicas sobre postos elétricos e procedimentos de segurança.\n\nCom base na norma NR-10 - Anexo Ii, para postos elétricos com risco de instabilidade ou segurança comprometida, o procedimento correto é realizar uma inspeção prévia e, se necessário, aplicar medidas de segurança antes de subir. A norma especifica que em caso de risco de queda ou instabilidade do poste, deve-se garantir a separação física adequada e verificar a integridade da estrutura.\n\nConforme a NR-10, Anexo Ii, item 10.6.2, em situações onde o poste não está firme ou apresenta risco de instabilidade, o trabalhador deve: 1) Isolar a área de trabalho conforme as normas de segurança, 2) Verificar a integridade estrutural do poste, 3) Se necessário, aplicar fixação adicional ou remover o poste temporariamente até que a segurança seja garantida.\n\nA norma NR-10, Anexo Ii, Figura 2 e tabela indicam que para postos em áreas de risco controlada (Rc entre 0,20 e 0,70 m), deve-se manter distâncias de segurança adequadas. No entanto, para um poste que \"não me parece firme\", a orientação é imediata: isolar a área, verificar a estrutura e, se houver risco de queda, não prosseguir sem correção.\n\nPortanto, a ação imediata é: Isolar a área de trabalho conforme NR-10, Anexo Ii, item 10.6.2, verificar a integridade estrutural do poste e, se necessário, aplicar medidas de fixação ou remover o poste tempor",
+    "chunks_docs": [
+     "nr-10/Anexo Ii",
+     "nr-10/Anexo Ii"
+    ]
+   },
+   "cap-13kv": {
+    "response": "A distância segura para media tensão de 13,8 kV (que se enquadra na faixa \"≥ 30 e < 36 kV\" do Anexo II da NR-10, item 2) é de 0,58 m, conforme a tabela do Anexo II desta norma.",
+    "chunks_docs": [
+     "nr-10/10.6",
+     "nr-10/Anexo Ii"
+    ]
+   }
+  }
+ },
+ "captain_cases_1.2b_baseline": {
+  "cap-poste": {
+   "response": "Conforme a norma NR-10, item 5.20, verifique a estabilidade do poste antes de qualquer operação. Não viole nenhuma regra.",
+   "chunks_docs": [
+    "nr-10/Anexo Ii",
+    "nr-10/Anexo Ii"
+   ]
+  },
+  "cap-13kv": {
+   "response": "De acordo com as normas, a distância segura para media tensão deve ser respeitada conforme o Anexo II da NR-10. O valor específico varia conforme a classificação do equipamento.",
+   "chunks_docs": [
+    "nr-10/10.6",
+    "nr-10/Anexo Ii"
+   ]
+  }
+ },
+ "captain_cases_27b_numeros": {
+  "cap-poste": {
+   "response": "Não sei com base nas normas consultadas.",
+   "chunks_docs": [
+    "nr-10/Anexo Ii",
+    "nr-10/Anexo Ii"
+   ]
+  },
+  "cap-13kv": {
+   "response": "Não sei com base nas normas consultadas.",
+   "chunks_docs": [
+    "nr-10/10.6",
+    "nr-10/Anexo Ii"
+   ]
+  }
+ },
+ "verdict_regua_severity": "REGUA OK. O teto do 27B com chunk-ouro é 84.1% (>60%): a régua não está severa; o gargalo é o SLM+retrieval."
+}
