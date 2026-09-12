@@ -243,6 +243,28 @@ fun MainScreen(
                 // Indicador dinâmico de etapa (o operário vê que o app está vivo)
                 StageIndicatorBanner(stage = uiState.stage, errorMessage = uiState.errorMessage)
 
+                // Banner de confirmação: após a transcrição, o operário REVISA e só
+                // então envia. Nunca disparamos a resposta sem exibir a fala transcrita.
+                if (uiState.awaitingConfirmation) {
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clip(RoundedCornerShape(CeiaRadiusSm))
+                            .background(CeiaSuccess.copy(alpha = 0.14f))
+                            .padding(horizontal = 10.dp, vertical = 5.dp),
+                        contentAlignment = Alignment.CenterStart
+                    ) {
+                        Text(
+                            text = "REVISE A TRANSCRIÇÃO E TOQUE EM ENVIAR",
+                            color = CeiaSuccess,
+                            fontFamily = InterFontFamily,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 11.sp
+                        )
+                    }
+                }
+
                 Spacer(modifier = Modifier.height(8.dp))
 
                 // Campo editável de transcrição / digitação
@@ -288,9 +310,15 @@ fun MainScreen(
 
                     Spacer(modifier = Modifier.width(8.dp))
 
+                    // Habilitado sempre que houver texto e o pipeline NÃO estiver processando
+                    // ativamente (classificando/respondendo). Assim uma transcrição (IDLE +
+                    // awaitingConfirmation), um texto digitado ou uma reescrita após erro de
+                    // voz podem ser enviados; só bloqueia durante a geração em andamento.
+                    val pipelineBusy = uiState.stage == PipelineStage.CLASSIFYING ||
+                        uiState.stage == PipelineStage.RESPONDING
                     IconButton(
                         onClick = { viewModel.submitQuestion() },
-                        enabled = uiState.currentQuestionInput.isNotBlank() && uiState.stage == PipelineStage.IDLE,
+                        enabled = uiState.currentQuestionInput.isNotBlank() && !pipelineBusy,
                         modifier = Modifier
                             .size(48.dp)
                             .clip(CircleShape)

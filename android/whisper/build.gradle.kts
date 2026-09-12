@@ -49,6 +49,14 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    testOptions {
+        unitTests {
+            // Retorna valores default para APIs Android (ex.: android.util.Log) nos
+            // testes JVM da higiene de áudio, que não dependem de dispositivo.
+            isReturnDefaultValues = true
+        }
+    }
 }
 
 dependencies {

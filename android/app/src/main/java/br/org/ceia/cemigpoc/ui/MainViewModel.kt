@@ -16,6 +16,7 @@ import br.org.ceia.cemigpoc.data.retriever.HybridRetriever
 import br.org.ceia.cemigpoc.llama.LlamaEmbedder
 import br.org.ceia.cemigpoc.data.telemetry.TelemetryLogger
 import br.org.ceia.cemigpoc.domain.engine.AsrEvent
+import br.org.ceia.cemigpoc.domain.engine.AsrStatus
 import br.org.ceia.cemigpoc.domain.model.Chunk
 import br.org.ceia.cemigpoc.domain.model.ConversationTurn
 import br.org.ceia.cemigpoc.domain.model.PipelineStage
@@ -39,6 +40,9 @@ data class MainUiState(
     val currentStreamingAnswer: String = "",
     val currentChunks: List<Chunk> = emptyList(),
     val isListening: Boolean = false,
+    // true entre o Final do ASR e a confirmação do operário: a transcrição está
+    // exibida e editável, aguardando o operário revisar antes de enviar ao pipeline.
+    val awaitingConfirmation: Boolean = false,
     val isModelReady: Boolean = false,
     val isDebugMode: Boolean = false,
     val modelStatusMessage: String = "Inicializando motores nativos ARM64...",
@@ -97,6 +101,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private var asrStartTimeMs = 0L
     private var lastAsrDurationMs = 0L
+    // Id da gravação corrente aceita pela UI. Eventos de ASR de gravações antigas
+    // (recordingId != este) são descartados — trava anti-reprocessamento do S24+.
+    @Volatile
+    private var activeRecordingId = 0L
 
     init {
         // Inicialização assíncrona dos motores nativos (Whisper Base Q5_1 + Liquid LFM2.5)
@@ -178,11 +186,33 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        // Observa eventos contínuos do ASR
+        // Observa eventos contínuos do ASR.
+        //
+        // Correção do bug do S24+ (task poc-asr-fix):
+        // 1) Descarta qualquer evento cujo recordingId != gravação corrente, então uma
+        //    transcrição antiga NUNCA é reaplicada nem reprocessada.
+        // 2) STATUS (Status) só mexe no indicador de estágio, jamais em currentQuestionInput.
+        // 3) CONTEÚDO (Partial/Final) vai para currentQuestionInput; o Final NÃO dispara
+        //    processQuestion automaticamente — o operário revisa/edita e confirma (botão
+        //    Enviar / submitQuestion). Assim a resposta sempre corresponde à fala atual.
         viewModelScope.launch {
             realAsrEngine.events.collect { event ->
+                // Trava anti-reprocessamento: ignora eventos de gravações que não são a corrente.
+                if (event.recordingId != activeRecordingId) {
+                    Log.d(TAG, "Evento ASR obsoleto ignorado (rec=${event.recordingId} != ativo=$activeRecordingId)")
+                    return@collect
+                }
                 when (event) {
+                    is AsrEvent.Status -> {
+                        // Apenas STATUS -> indicador de estágio. Nunca escreve no texto.
+                        val stage = when (event.stage) {
+                            AsrStatus.RECORDING -> PipelineStage.LISTENING
+                            AsrStatus.TRANSCRIBING -> PipelineStage.TRANSCRIBING
+                        }
+                        _uiState.update { it.copy(stage = stage) }
+                    }
                     is AsrEvent.Partial -> {
+                        // CONTEÚDO parcial -> preview editável, sem disparar o pipeline.
                         _uiState.update {
                             it.copy(
                                 stage = PipelineStage.TRANSCRIBING,
@@ -191,20 +221,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         }
                     }
                     is AsrEvent.Final -> {
+                        // CONTEÚDO final -> exibe para revisão. NÃO envia automaticamente.
                         lastAsrDurationMs = System.currentTimeMillis() - asrStartTimeMs
                         _uiState.update {
                             it.copy(
                                 isListening = false,
-                                stage = PipelineStage.CLASSIFYING,
+                                awaitingConfirmation = true,
+                                stage = PipelineStage.IDLE,
                                 currentQuestionInput = event.text
                             )
                         }
-                        processQuestion(event.text, asrMs = lastAsrDurationMs)
                     }
                     is AsrEvent.Error -> {
                         _uiState.update {
                             it.copy(
                                 isListening = false,
+                                awaitingConfirmation = false,
                                 stage = PipelineStage.ERROR,
                                 errorMessage = event.message
                             )
@@ -236,14 +268,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         if (!_uiState.value.isModelReady) return
 
         asrStartTimeMs = System.currentTimeMillis()
+        // Marca esta gravação como a corrente ANTES de emitir eventos: qualquer evento
+        // pendente de uma gravação anterior será descartado no coletor pelo recordingId.
+        activeRecordingId = realAsrEngine.startListening()
         _uiState.update {
             it.copy(
                 isListening = true,
+                awaitingConfirmation = false,
                 stage = PipelineStage.LISTENING,
+                currentQuestionInput = "",
                 errorMessage = null
             )
         }
-        realAsrEngine.startListening()
     }
 
     /**
@@ -259,7 +295,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun submitQuestion() {
         val question = _uiState.value.currentQuestionInput.trim()
         if (question.isNotBlank()) {
-            processQuestion(question, asrMs = 0L)
+            // Aproveita a latência de ASR medida se a pergunta veio da transcrição (voz).
+            val asrMs = if (_uiState.value.awaitingConfirmation) lastAsrDurationMs else 0L
+            _uiState.update { it.copy(awaitingConfirmation = false) }
+            processQuestion(question, asrMs = asrMs)
         }
     }
 
@@ -276,6 +315,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 it.copy(
                     stage = PipelineStage.CLASSIFYING,
                     currentQuestionInput = "",
+                    awaitingConfirmation = false,
                     currentStreamingAnswer = "",
                     currentChunks = emptyList(),
                     errorMessage = null
@@ -346,6 +386,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 stage = PipelineStage.IDLE,
                 history = emptyList(),
                 currentQuestionInput = "",
+                awaitingConfirmation = false,
                 currentStreamingAnswer = "",
                 currentChunks = emptyList(),
                 errorMessage = null

@@ -1,0 +1,22 @@
+# Ablação do prompt de domínio + temperature fallback (Whisper Base Q5_1, S24+, áudio noisy 10dB)
+# Config ANTIGA do JNI: -nf (sem fallback), -tpi 0.0, SEM prompt de domínio
+# Config NOVA do JNI:   -tpi 0.2 -et 2.4 -lpt -1.0 -nth 0.6 -sns + prompt de domínio pt-BR
+
+[01] ANTIGA: Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?
+[01] NOVA  : Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?
+
+[06] ANTIGA: É obrigatório o uso de capacete conjugular e óculos de proteção para eletricista?
+[06] NOVA  : É obrigatório o uso de capacete com jugular e óculos de proteção para eletricista?
+
+[12] ANTIGA: O religador desarmou por sobrecorrente de fase na saída do alimentador principal.
+[12] NOVA  : O religador desarmou por sobrecorrente de fase na saída do alimentador principal.
+
+[15] ANTIGA: A vestimenta anti-schama escategoria 2 protege contra arco elétrico de quantos cal semes sobre escrito 2?
+[15] NOVA  : A vestimenta anti-schema escategoria 2 protege contra arco elétrico de quantos cal, sim e sobre escrito 2?
+
+[19] ANTIGA: quais são os requisitos da NER-35 para um coragem de cinto tipo para que dista no poste?
+[19] NOVA  : Qual são os requisitos da NR-35 para um coragem de cinto tipo paraquedista no poste?
+
+[22] ANTIGA: O dejuntor avaco da cabine primária pode ser religado manualmente sem inspeção?
+[22] NOVA  : O dejuntor avaco da cabine primária pode ser religado manualmente sem inspeção?
+

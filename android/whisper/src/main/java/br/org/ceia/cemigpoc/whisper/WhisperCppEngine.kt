@@ -21,11 +21,15 @@ class WhisperCppEngine(
     companion object {
         private const val TAG = "WhisperCppEngine"
 
-        // Vocabulário de domínio calibrado na trilha ASR (eleva acurácia de termos técnicos para ~90%)
+        // Vocabulário de domínio calibrado na trilha ASR (eleva acurácia de termos técnicos para ~90%).
+        // Frase inicial em pt-BR + jargão de segurança/EPI para ancorar o decoder em fala natural
+        // (task poc-asr-fix): adiciona talabarte, trava-quedas, aterramento, cinto paraquedista.
         const val DEFAULT_DOMAIN_PROMPT =
-            "NR-10, NR-35, NR-06, NR-12, NR-18, 13,8 kV, 1000 V, desenergização, religador, " +
+            "Transcrição em português do Brasil de um eletricista em campo. " +
+            "Termos: NR-06, NR-10, NR-12, NR-18, NR-35, 13,8 kV, 1000 V, desenergização, religador, " +
             "chave seccionadora, chave fusível, LOTO, bloqueio e etiquetagem, aterramento temporário, " +
-            "linha viva, bastão de manobra, EPI, EPC, tensão de segurança."
+            "linha viva, bastão de manobra, EPI, EPC, tensão de segurança, talabarte, trava-quedas, " +
+            "cinto tipo paraquedista, luva isolante, capacete com jugular."
 
         const val DEFAULT_THREADS = 4
     }
@@ -86,9 +90,13 @@ class WhisperCppEngine(
             return@withContext ""
         }
 
+        // Higiene de áudio barata (recorte de silêncio + normalização de ganho) antes do
+        // Whisper. Aproxima fala natural do sinal esperado (task poc-asr-fix).
+        val cleaned = AudioPreprocessing.process(audioData)
+
         val rawText = bridge.nativeTranscribe(
             handle = nativeHandle,
-            audioData = audioData,
+            audioData = cleaned,
             numThreads = threads,
             language = language,
             initialPrompt = domainPrompt

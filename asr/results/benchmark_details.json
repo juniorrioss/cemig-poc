@@ -666,9 +666,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 6.768,
-        "latency_sec": 4.6962,
-        "rtf": 0.6938829787234043,
-        "rss_mb": 196.51171875
+        "latency_sec": 2.93864,
+        "rtf": 0.4341962174940898,
+        "rss_mb": 197.79296875
       },
       {
         "phrase_id": 2,
@@ -679,9 +679,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.616,
-        "latency_sec": 4.500859999999999,
-        "rtf": 0.8014351851851851,
-        "rss_mb": 195.97265625
+        "latency_sec": 2.8641300000000003,
+        "rtf": 0.5099946581196582,
+        "rss_mb": 197.64453125
       },
       {
         "phrase_id": 3,
@@ -692,9 +692,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.856,
-        "latency_sec": 4.5232399999999995,
-        "rtf": 0.7724112021857923,
-        "rss_mb": 196.671875
+        "latency_sec": 2.92042,
+        "rtf": 0.4987056010928962,
+        "rss_mb": 197.65234375
       },
       {
         "phrase_id": 4,
@@ -705,9 +705,9 @@
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 5.352,
-        "latency_sec": 4.60777,
-        "rtf": 0.8609435724962631,
-        "rss_mb": 196.21484375
+        "latency_sec": 2.9279499999999996,
+        "rtf": 0.5470758594917786,
+        "rss_mb": 197.6953125
       },
       {
         "phrase_id": 5,
@@ -718,9 +718,9 @@
         "kw_match": 1,
         "kw_total": 2,
         "duration_sec": 4.968,
-        "latency_sec": 4.5715,
-        "rtf": 0.9201892109500805,
-        "rss_mb": 196.32421875
+        "latency_sec": 2.85948,
+        "rtf": 0.5755797101449276,
+        "rss_mb": 197.46875
       },
       {
         "phrase_id": 6,
@@ -731,9 +731,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.952,
-        "latency_sec": 4.87293,
-        "rtf": 0.8187046370967742,
-        "rss_mb": 196.32421875
+        "latency_sec": 3.01809,
+        "rtf": 0.5070715725806452,
+        "rss_mb": 197.796875
       },
       {
         "phrase_id": 7,
@@ -744,9 +744,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.352,
-        "latency_sec": 4.832050000000001,
-        "rtf": 0.9028494020926757,
-        "rss_mb": 196.07421875
+        "latency_sec": 3.0501300000000002,
+        "rtf": 0.5699047085201794,
+        "rss_mb": 197.796875
       },
       {
         "phrase_id": 8,
@@ -757,9 +757,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.088,
-        "latency_sec": 4.26741,
-        "rtf": 0.8387205188679245,
-        "rss_mb": 195.6328125
+        "latency_sec": 2.7671,
+        "rtf": 0.5438482704402516,
+        "rss_mb": 197.640625
       },
       {
         "phrase_id": 9,
@@ -770,9 +770,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.28,
-        "latency_sec": 4.8167,
-        "rtf": 0.9122537878787879,
-        "rss_mb": 196.67578125
+        "latency_sec": 3.00408,
+        "rtf": 0.5689545454545455,
+        "rss_mb": 197.82421875
       },
       {
         "phrase_id": 10,
@@ -783,9 +783,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.496,
-        "latency_sec": 4.4725600000000005,
-        "rtf": 0.8137845705967977,
-        "rss_mb": 195.96484375
+        "latency_sec": 2.8607,
+        "rtf": 0.5205058224163027,
+        "rss_mb": 197.6953125
       },
       {
         "phrase_id": 11,
@@ -796,9 +796,9 @@
         "kw_match": 1,
         "kw_total": 3,
         "duration_sec": 4.968,
-        "latency_sec": 4.6631800000000005,
-        "rtf": 0.9386433172302738,
-        "rss_mb": 195.94921875
+        "latency_sec": 2.91933,
+        "rtf": 0.5876268115942029,
+        "rss_mb": 197.80078125
       },
       {
         "phrase_id": 12,
@@ -809,22 +809,22 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.544,
-        "latency_sec": 4.5666899999999995,
-        "rtf": 0.8237175324675324,
-        "rss_mb": 196.1796875
+        "latency_sec": 2.88451,
+        "rtf": 0.5202940115440116,
+        "rss_mb": 197.671875
       },
       {
         "phrase_id": 13,
         "ref": "É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?",
-        "hyp": "É permitida a abertura sobre carga de chave seccionadora sem dispositivo de interrupção?",
-        "wer": 0.07692307692307693,
-        "kw_acc": 0.6666666666666666,
-        "kw_match": 2,
+        "hyp": "É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.952,
-        "latency_sec": 4.87142,
-        "rtf": 0.818450940860215,
-        "rss_mb": 196.21484375
+        "latency_sec": 2.99262,
+        "rtf": 0.5027923387096774,
+        "rss_mb": 197.74609375
       },
       {
         "phrase_id": 14,
@@ -835,22 +835,22 @@
         "kw_match": 1,
         "kw_total": 2,
         "duration_sec": 5.064,
-        "latency_sec": 4.86709,
-        "rtf": 0.9611157187993681,
-        "rss_mb": 195.80078125
+        "latency_sec": 2.9076999999999997,
+        "rtf": 0.5741903633491311,
+        "rss_mb": 197.828125
       },
       {
         "phrase_id": 15,
         "ref": "A vestimenta antichamas categoria dois protege contra arco elétrico de quantos cal/cm²?",
-        "hyp": "A vestimenta antichamais categoria 2 protege contra arco elétrico de quantos cál, \"cm\" sobre escrito 2?",
-        "wer": 0.46153846153846156,
+        "hyp": "A vestimenta antichamais categoria 2 protege contra arco elétrico de quantos cal, sem e sobre escrito 2?",
+        "wer": 0.5384615384615384,
         "kw_acc": 0.6666666666666666,
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 7.2,
-        "latency_sec": 5.11317,
-        "rtf": 0.7101625,
-        "rss_mb": 196.328125
+        "latency_sec": 3.16593,
+        "rtf": 0.43971249999999995,
+        "rss_mb": 198.00390625
       },
       {
         "phrase_id": 16,
@@ -861,9 +861,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.928,
-        "latency_sec": 4.7228,
-        "rtf": 0.7966936572199731,
-        "rss_mb": 195.89453125
+        "latency_sec": 3.00565,
+        "rtf": 0.5070259784075574,
+        "rss_mb": 197.83984375
       },
       {
         "phrase_id": 17,
@@ -874,9 +874,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.64,
-        "latency_sec": 4.62004,
-        "rtf": 0.8191560283687944,
-        "rss_mb": 196.453125
+        "latency_sec": 2.90814,
+        "rtf": 0.5156276595744681,
+        "rss_mb": 197.8984375
       },
       {
         "phrase_id": 18,
@@ -887,9 +887,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.4,
-        "latency_sec": 4.519609999999999,
-        "rtf": 0.8369648148148147,
-        "rss_mb": 196.28125
+        "latency_sec": 2.8649400000000003,
+        "rtf": 0.5305444444444445,
+        "rss_mb": 197.70703125
       },
       {
         "phrase_id": 19,
@@ -900,9 +900,9 @@
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 6.384,
-        "latency_sec": 4.68788,
-        "rtf": 0.7343170426065162,
-        "rss_mb": 196.09765625
+        "latency_sec": 3.0341,
+        "rtf": 0.47526629072681703,
+        "rss_mb": 197.86328125
       },
       {
         "phrase_id": 20,
@@ -913,9 +913,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.88,
-        "latency_sec": 4.86773,
-        "rtf": 0.8278452380952381,
-        "rss_mb": 195.7734375
+        "latency_sec": 3.03111,
+        "rtf": 0.5154948979591837,
+        "rss_mb": 197.796875
       },
       {
         "phrase_id": 21,
@@ -926,9 +926,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.352,
-        "latency_sec": 4.68754,
-        "rtf": 0.8758482810164424,
-        "rss_mb": 196.015625
+        "latency_sec": 2.96806,
+        "rtf": 0.5545702541106128,
+        "rss_mb": 197.734375
       },
       {
         "phrase_id": 22,
@@ -939,9 +939,9 @@
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 5.568,
-        "latency_sec": 5.17968,
-        "rtf": 0.9302586206896553,
-        "rss_mb": 196.37109375
+        "latency_sec": 2.95699,
+        "rtf": 0.531068606321839,
+        "rss_mb": 197.796875
       },
       {
         "phrase_id": 23,
@@ -952,9 +952,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 4.992,
-        "latency_sec": 4.69502,
-        "rtf": 0.9405088141025642,
-        "rss_mb": 196.1484375
+        "latency_sec": 2.99836,
+        "rtf": 0.6006330128205128,
+        "rss_mb": 197.7421875
       },
       {
         "phrase_id": 24,
@@ -965,9 +965,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.976,
-        "latency_sec": 4.70398,
-        "rtf": 0.7871452476572958,
-        "rss_mb": 196.4375
+        "latency_sec": 2.9392,
+        "rtf": 0.4918340026773762,
+        "rss_mb": 197.87109375
       },
       {
         "phrase_id": 25,
@@ -978,24 +978,24 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.568,
-        "latency_sec": 4.69173,
-        "rtf": 0.8426239224137931,
-        "rss_mb": 196.296875
+        "latency_sec": 2.95363,
+        "rtf": 0.530465158045977,
+        "rss_mb": 197.7890625
       }
     ],
     "noisy": [
       {
         "phrase_id": 1,
         "ref": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?",
-        "hyp": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 KV?",
+        "hyp": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?",
         "wer": 0.0,
         "kw_acc": 1.0,
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 6.768,
-        "latency_sec": 4.6349,
-        "rtf": 0.6848256501182033,
-        "rss_mb": 195.921875
+        "latency_sec": 2.94558,
+        "rtf": 0.4352216312056738,
+        "rss_mb": 197.890625
       },
       {
         "phrase_id": 2,
@@ -1006,9 +1006,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.616,
-        "latency_sec": 4.51274,
-        "rtf": 0.8035505698005698,
-        "rss_mb": 196.8046875
+        "latency_sec": 2.86008,
+        "rtf": 0.5092735042735043,
+        "rss_mb": 197.625
       },
       {
         "phrase_id": 3,
@@ -1019,9 +1019,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.856,
-        "latency_sec": 4.68563,
-        "rtf": 0.8001417349726776,
-        "rss_mb": 196.5
+        "latency_sec": 2.92012,
+        "rtf": 0.49865437158469944,
+        "rss_mb": 197.90625
       },
       {
         "phrase_id": 4,
@@ -1032,9 +1032,9 @@
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 5.352,
-        "latency_sec": 4.78662,
-        "rtf": 0.8943609865470852,
-        "rss_mb": 196.22265625
+        "latency_sec": 2.91742,
+        "rtf": 0.545108370702541,
+        "rss_mb": 197.859375
       },
       {
         "phrase_id": 5,
@@ -1045,9 +1045,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 4.968,
-        "latency_sec": 4.55962,
-        "rtf": 0.9177979066022544,
-        "rss_mb": 196.39453125
+        "latency_sec": 2.81339,
+        "rtf": 0.5663023349436394,
+        "rss_mb": 197.71875
       },
       {
         "phrase_id": 6,
@@ -1058,9 +1058,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.952,
-        "latency_sec": 4.78885,
-        "rtf": 0.8045782930107527,
-        "rss_mb": 196.54296875
+        "latency_sec": 2.96667,
+        "rtf": 0.4984324596774194,
+        "rss_mb": 197.9765625
       },
       {
         "phrase_id": 7,
@@ -1071,9 +1071,9 @@
         "kw_match": 1,
         "kw_total": 2,
         "duration_sec": 5.352,
-        "latency_sec": 4.93752,
-        "rtf": 0.9225560538116592,
-        "rss_mb": 196.203125
+        "latency_sec": 3.06217,
+        "rtf": 0.5721543348281016,
+        "rss_mb": 197.87109375
       },
       {
         "phrase_id": 8,
@@ -1084,9 +1084,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.088,
-        "latency_sec": 4.50342,
-        "rtf": 0.8851061320754717,
-        "rss_mb": 196.15234375
+        "latency_sec": 2.7663800000000003,
+        "rtf": 0.5437067610062893,
+        "rss_mb": 197.68359375
       },
       {
         "phrase_id": 9,
@@ -1097,9 +1097,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.28,
-        "latency_sec": 4.9381,
-        "rtf": 0.9352462121212122,
-        "rss_mb": 195.98828125
+        "latency_sec": 2.98915,
+        "rtf": 0.5661268939393939,
+        "rss_mb": 197.74609375
       },
       {
         "phrase_id": 10,
@@ -1110,22 +1110,22 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.496,
-        "latency_sec": 4.5884,
-        "rtf": 0.8348617176128093,
-        "rss_mb": 196.5078125
+        "latency_sec": 2.80044,
+        "rtf": 0.5095414847161571,
+        "rss_mb": 197.5078125
       },
       {
         "phrase_id": 11,
         "ref": "Quais ferramentas isoladas a 1000 volts devem constar na bolsa de lona?",
-        "hyp": "quais ferramentas isoladas a Milvolt devem constar na Bolsa de Lona.",
-        "wer": 0.16666666666666666,
-        "kw_acc": 0.6666666666666666,
-        "kw_match": 2,
+        "hyp": "quais ferramentas isoladas a mil volt devem constar na bolsa de luna.",
+        "wer": 0.25,
+        "kw_acc": 0.3333333333333333,
+        "kw_match": 1,
         "kw_total": 3,
         "duration_sec": 4.968,
-        "latency_sec": 4.89591,
-        "rtf": 0.9854891304347826,
-        "rss_mb": 196.34765625
+        "latency_sec": 2.86863,
+        "rtf": 0.5774214975845411,
+        "rss_mb": 197.8359375
       },
       {
         "phrase_id": 12,
@@ -1136,9 +1136,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.544,
-        "latency_sec": 4.778239999999999,
-        "rtf": 0.8618759018759018,
-        "rss_mb": 196.53125
+        "latency_sec": 2.9152,
+        "rtf": 0.5258297258297259,
+        "rss_mb": 197.69921875
       },
       {
         "phrase_id": 13,
@@ -1149,9 +1149,9 @@
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 5.952,
-        "latency_sec": 4.83136,
-        "rtf": 0.8117204301075269,
-        "rss_mb": 196.27734375
+        "latency_sec": 2.98263,
+        "rtf": 0.5011139112903226,
+        "rss_mb": 197.73828125
       },
       {
         "phrase_id": 14,
@@ -1162,22 +1162,22 @@
         "kw_match": 1,
         "kw_total": 2,
         "duration_sec": 5.064,
-        "latency_sec": 4.75354,
-        "rtf": 0.9386927330173775,
-        "rss_mb": 196.28125
+        "latency_sec": 3.19244,
+        "rtf": 0.6304186413902053,
+        "rss_mb": 197.7265625
       },
       {
         "phrase_id": 15,
         "ref": "A vestimenta antichamas categoria dois protege contra arco elétrico de quantos cal/cm²?",
-        "hyp": "A vestimenta anti-schema escategoria 2 protege contra arco elétrico de quanto escalm sem me sobrescrito 2?",
-        "wer": 0.7692307692307693,
+        "hyp": "A vestimenta anti-schama escategoria 2 protege contra arco elétrico de quantos cal semes sobre escrito 2?",
+        "wer": 0.6153846153846154,
         "kw_acc": 0.3333333333333333,
         "kw_match": 1,
         "kw_total": 3,
         "duration_sec": 7.2,
-        "latency_sec": 5.39037,
-        "rtf": 0.7486625,
-        "rss_mb": 196.72265625
+        "latency_sec": 3.67522,
+        "rtf": 0.5104472222222222,
+        "rss_mb": 198.15625
       },
       {
         "phrase_id": 16,
@@ -1188,9 +1188,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.928,
-        "latency_sec": 4.87516,
-        "rtf": 0.822395411605938,
-        "rss_mb": 196.23828125
+        "latency_sec": 3.32717,
+        "rtf": 0.5612634952766532,
+        "rss_mb": 197.8984375
       },
       {
         "phrase_id": 17,
@@ -1201,9 +1201,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.64,
-        "latency_sec": 4.9033999999999995,
-        "rtf": 0.8693971631205674,
-        "rss_mb": 196.44921875
+        "latency_sec": 3.67638,
+        "rtf": 0.6518404255319149,
+        "rss_mb": 197.94140625
       },
       {
         "phrase_id": 18,
@@ -1214,9 +1214,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.4,
-        "latency_sec": 4.74133,
-        "rtf": 0.8780240740740739,
-        "rss_mb": 196.00390625
+        "latency_sec": 3.57821,
+        "rtf": 0.6626314814814814,
+        "rss_mb": 197.69921875
       },
       {
         "phrase_id": 19,
@@ -1227,22 +1227,22 @@
         "kw_match": 0,
         "kw_total": 3,
         "duration_sec": 6.384,
-        "latency_sec": 5.2934399999999995,
-        "rtf": 0.8291729323308269,
-        "rss_mb": 196.08984375
+        "latency_sec": 3.74972,
+        "rtf": 0.5873621553884711,
+        "rss_mb": 197.83203125
       },
       {
         "phrase_id": 20,
         "ref": "Como proceder em caso de choque elétrico com vítima presa ao condutor de alta tensão?",
-        "hyp": "como proceder em caso de choque elétrico com um vítima presa ao condutor de alta tensão.",
-        "wer": 0.06666666666666667,
+        "hyp": "como proceder em caso de choque elétrico com vítima presa ao condutor de alta tensão.",
+        "wer": 0.0,
         "kw_acc": 1.0,
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.88,
-        "latency_sec": 5.01696,
-        "rtf": 0.8532244897959184,
-        "rss_mb": 196.375
+        "latency_sec": 3.6986999999999997,
+        "rtf": 0.6290306122448979,
+        "rss_mb": 197.78125
       },
       {
         "phrase_id": 21,
@@ -1253,9 +1253,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.352,
-        "latency_sec": 4.83775,
-        "rtf": 0.9039144245142002,
-        "rss_mb": 196.5625
+        "latency_sec": 3.70094,
+        "rtf": 0.6915059790732436,
+        "rss_mb": 197.7109375
       },
       {
         "phrase_id": 22,
@@ -1266,22 +1266,22 @@
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 5.568,
-        "latency_sec": 4.99498,
-        "rtf": 0.8970869252873563,
-        "rss_mb": 196.25
+        "latency_sec": 3.72043,
+        "rtf": 0.6681806752873564,
+        "rss_mb": 197.94921875
       },
       {
         "phrase_id": 23,
         "ref": "Quais os critérios para descarte de vara de manobra telescópica com trinca?",
-        "hyp": "Quais os critérios para descarte de vara de manobra telescópica com trinca?",
+        "hyp": "quais os critérios para descarte de vara de manobra telescópica com trinca.",
         "wer": 0.0,
         "kw_acc": 1.0,
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 4.992,
-        "latency_sec": 4.86784,
-        "rtf": 0.9751282051282052,
-        "rss_mb": 196.14453125
+        "latency_sec": 3.6421300000000003,
+        "rtf": 0.7295933493589745,
+        "rss_mb": 197.640625
       },
       {
         "phrase_id": 24,
@@ -1292,22 +1292,22 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.976,
-        "latency_sec": 4.82321,
-        "rtf": 0.8070967202141902,
-        "rss_mb": 196.30078125
+        "latency_sec": 3.67169,
+        "rtf": 0.6144059571619812,
+        "rss_mb": 197.8984375
       },
       {
         "phrase_id": 25,
         "ref": "É obrigatória a presença de dois eletricistas habilitados em serviço de linha viva?",
-        "hyp": "É obrigatória presença de dois eletricistas habilitados em serviço de linha viva?",
+        "hyp": "É obrigatória presença de dois eletricistas habilitados em serviço de linha Viva?",
         "wer": 0.07692307692307693,
         "kw_acc": 1.0,
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.568,
-        "latency_sec": 4.89601,
-        "rtf": 0.8793121408045979,
-        "rss_mb": 196.17578125
+        "latency_sec": 3.6581300000000003,
+        "rtf": 0.6569917385057472,
+        "rss_mb": 197.796875
       }
     ]
   },
@@ -1322,9 +1322,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 6.768,
-        "latency_sec": 15.88903,
-        "rtf": 2.3476699172576834,
-        "rss_mb": 461.8125
+        "latency_sec": 12.45558,
+        "rtf": 1.840363475177305,
+        "rss_mb": 463.71484375
       },
       {
         "phrase_id": 2,
@@ -1335,9 +1335,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.616,
-        "latency_sec": 15.4092,
-        "rtf": 2.743803418803419,
-        "rss_mb": 461.61328125
+        "latency_sec": 12.22512,
+        "rtf": 2.176837606837607,
+        "rss_mb": 463.30859375
       },
       {
         "phrase_id": 3,
@@ -1348,9 +1348,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.856,
-        "latency_sec": 15.397639999999999,
-        "rtf": 2.6293784153005464,
-        "rss_mb": 461.6640625
+        "latency_sec": 12.27101,
+        "rtf": 2.0954593579234975,
+        "rss_mb": 463.5234375
       },
       {
         "phrase_id": 4,
@@ -1361,9 +1361,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.352,
-        "latency_sec": 15.814549999999999,
-        "rtf": 2.9548860239162926,
-        "rss_mb": 461.72265625
+        "latency_sec": 12.462489999999999,
+        "rtf": 2.328566890881913,
+        "rss_mb": 463.60546875
       },
       {
         "phrase_id": 5,
@@ -1374,9 +1374,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 4.968,
-        "latency_sec": 15.45159,
-        "rtf": 3.1102234299516907,
-        "rss_mb": 461.890625
+        "latency_sec": 12.219850000000001,
+        "rtf": 2.4597121578099843,
+        "rss_mb": 463.26953125
       },
       {
         "phrase_id": 6,
@@ -1387,9 +1387,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.952,
-        "latency_sec": 15.81156,
-        "rtf": 2.6565120967741938,
-        "rss_mb": 461.734375
+        "latency_sec": 12.46999,
+        "rtf": 2.095092405913978,
+        "rss_mb": 463.65234375
       },
       {
         "phrase_id": 7,
@@ -1400,9 +1400,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.352,
-        "latency_sec": 16.4458,
-        "rtf": 3.072832585949177,
-        "rss_mb": 461.91796875
+        "latency_sec": 12.5386,
+        "rtf": 2.3427877428998505,
+        "rss_mb": 463.68359375
       },
       {
         "phrase_id": 8,
@@ -1413,9 +1413,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.088,
-        "latency_sec": 14.95501,
-        "rtf": 2.939270833333333,
-        "rss_mb": 461.54296875
+        "latency_sec": 11.82931,
+        "rtf": 2.324943003144654,
+        "rss_mb": 463.37109375
       },
       {
         "phrase_id": 9,
@@ -1426,9 +1426,9 @@
         "kw_match": 1,
         "kw_total": 2,
         "duration_sec": 5.28,
-        "latency_sec": 16.034299999999998,
-        "rtf": 3.036799242424242,
-        "rss_mb": 461.921875
+        "latency_sec": 12.571879999999998,
+        "rtf": 2.3810378787878785,
+        "rss_mb": 463.39453125
       },
       {
         "phrase_id": 10,
@@ -1439,9 +1439,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.496,
-        "latency_sec": 15.26952,
-        "rtf": 2.7782969432314406,
-        "rss_mb": 461.36328125
+        "latency_sec": 12.46644,
+        "rtf": 2.2682751091703057,
+        "rss_mb": 463.26953125
       },
       {
         "phrase_id": 11,
@@ -1452,336 +1452,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 4.968,
-        "latency_sec": 15.66805,
-        "rtf": 3.1537942834138484,
-        "rss_mb": 462.15625
-      },
-      {
-        "phrase_id": 12,
-        "ref": "O religador desarmou por sobrecorrente de fase na saída do alimentador principal.",
-        "hyp": "O religador desarmou por sobrecorrente de fase na saída do alimentador principal.",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 5.544,
-        "latency_sec": 15.72165,
-        "rtf": 2.8357954545454547,
-        "rss_mb": 462.01953125
-      },
-      {
-        "phrase_id": 13,
-        "ref": "É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?",
-        "hyp": "É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 5.952,
-        "latency_sec": 15.78167,
-        "rtf": 2.651490255376344,
-        "rss_mb": 462.53125
-      },
-      {
-        "phrase_id": 14,
-        "ref": "Como verificar a integridade mecânica e dielétrica do bastão de manobra?",
-        "hyp": "Como verificar a integridade mecânica e de elétrica do bastão de manobra?",
-        "wer": 0.18181818181818182,
-        "kw_acc": 0.5,
-        "kw_match": 1,
-        "kw_total": 2,
-        "duration_sec": 5.064,
-        "latency_sec": 15.531559999999999,
-        "rtf": 3.0670537124802526,
-        "rss_mb": 461.80859375
-      },
-      {
-        "phrase_id": 15,
-        "ref": "A vestimenta antichamas categoria dois protege contra arco elétrico de quantos cal/cm²?",
-        "hyp": "A vestimenta antes chama-se Categoria 2 Proteste contra Arco Elétrico de Quantos Cal, CME sobre escrito 2?",
-        "wer": 0.6923076923076923,
-        "kw_acc": 0.3333333333333333,
-        "kw_match": 1,
-        "kw_total": 3,
-        "duration_sec": 7.2,
-        "latency_sec": 16.649060000000002,
-        "rtf": 2.3123694444444447,
-        "rss_mb": 462.04296875
-      },
-      {
-        "phrase_id": 16,
-        "ref": "Quais etapas compõem a liberação para trabalho em instalação elétrica desenergizada?",
-        "hyp": "Quais etapas compõem a liberação para trabalho em instalação elétrica desenergizada?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.928,
-        "latency_sec": 15.89958,
-        "rtf": 2.682115384615385,
-        "rss_mb": 461.890625
-      },
-      {
-        "phrase_id": 17,
-        "ref": "O aterramento temporário deve ser conectado primeiro à terra ou aos condutores de fase?",
-        "hyp": "O aterramento temporário deve ser conectado primeiro à terra ou aos condutores de fase.",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.64,
-        "latency_sec": 15.68036,
-        "rtf": 2.7802056737588656,
-        "rss_mb": 461.90234375
-      },
-      {
-        "phrase_id": 18,
-        "ref": "Quem pode emitir a autorização de trabalho para intervenção na rede subterrânea?",
-        "hyp": "quem pode emitir autorização de trabalho para intervenção na rede subterrânea.",
-        "wer": 0.08333333333333333,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.4,
-        "latency_sec": 15.54059,
-        "rtf": 2.877887037037037,
-        "rss_mb": 462.2265625
-      },
-      {
-        "phrase_id": 19,
-        "ref": "Quais são os requisitos da NR-35 para ancoragem de cinto tipo paraquedista no poste?",
-        "hyp": "Quais são os requisitos da NR35 para ancoragem de sinto tipo paraquedista no poste?",
-        "wer": 0.2,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 6.384,
-        "latency_sec": 16.20838,
-        "rtf": 2.53890664160401,
-        "rss_mb": 462.40234375
-      },
-      {
-        "phrase_id": 20,
-        "ref": "Como proceder em caso de choque elétrico com vítima presa ao condutor de alta tensão?",
-        "hyp": "Como proceder em caso de choque elétrico com vítima presa ao condutor de alta tensão?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 5.88,
-        "latency_sec": 15.95422,
-        "rtf": 2.7133027210884353,
-        "rss_mb": 461.77734375
-      },
-      {
-        "phrase_id": 21,
-        "ref": "Qual o prazo de validade do ensaio elétrico das luvas isolantes de borracha?",
-        "hyp": "Qual o prazo de validade do ensaio elétrico das luvas isolantes de borracha?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.352,
-        "latency_sec": 15.902040000000001,
-        "rtf": 2.9712331838565023,
-        "rss_mb": 462.23828125
-      },
-      {
-        "phrase_id": 22,
-        "ref": "O disjuntor a vácuo da cabine primária pode ser religado manualmente sem inspeção?",
-        "hyp": "O desjuntor avaco da cabine primária pode ser religado manualmente sem inspeção?",
-        "wer": 0.23076923076923078,
-        "kw_acc": 0.6666666666666666,
-        "kw_match": 2,
-        "kw_total": 3,
-        "duration_sec": 5.568,
-        "latency_sec": 15.98802,
-        "rtf": 2.871411637931035,
-        "rss_mb": 462.5234375
-      },
-      {
-        "phrase_id": 23,
-        "ref": "Quais os critérios para descarte de vara de manobra telescópica com trinca?",
-        "hyp": "Quais os critérios para descarte de vara de manobra telescópica com trinca?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 4.992,
-        "latency_sec": 15.79565,
-        "rtf": 3.164192708333333,
-        "rss_mb": 462.00390625
-      },
-      {
-        "phrase_id": 24,
-        "ref": "A sinalização de impedimento de reenergização deve ser fixada no comando da chave?",
-        "hyp": "A sinalização de impedimento de reenergização deve ser fixada no comando da chave?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.976,
-        "latency_sec": 15.738629999999999,
-        "rtf": 2.6336395582329315,
-        "rss_mb": 462.41796875
-      },
-      {
-        "phrase_id": 25,
-        "ref": "É obrigatória a presença de dois eletricistas habilitados em serviço de linha viva?",
-        "hyp": "É obrigatória a presença de dois eletricistas habilitados em serviço de linha vivo?",
-        "wer": 0.07692307692307693,
-        "kw_acc": 0.5,
-        "kw_match": 1,
-        "kw_total": 2,
-        "duration_sec": 5.568,
-        "latency_sec": 15.77817,
-        "rtf": 2.833723060344828,
-        "rss_mb": 461.828125
-      }
-    ],
-    "noisy": [
-      {
-        "phrase_id": 1,
-        "ref": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?",
-        "hyp": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 6.768,
-        "latency_sec": 15.85389,
-        "rtf": 2.3424778368794326,
-        "rss_mb": 462.09375
-      },
-      {
-        "phrase_id": 2,
-        "ref": "Como realizar o bloqueio e etiquetagem do religador automático da subestação?",
-        "hyp": "como realizar o bloqueio e etiquetagem do religador automático da subestação.",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 5.616,
-        "latency_sec": 15.4097,
-        "rtf": 2.7438924501424506,
-        "rss_mb": 461.90234375
-      },
-      {
-        "phrase_id": 3,
-        "ref": "Quais são os procedimentos obrigatórios para a desenergização segundo a NR-10?",
-        "hyp": "Quais são os procedimentos obrigatórios para desenergização segundo a NR10?",
-        "wer": 0.25,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.856,
-        "latency_sec": 15.51143,
-        "rtf": 2.648809767759563,
-        "rss_mb": 461.73046875
-      },
-      {
-        "phrase_id": 4,
-        "ref": "A luva isolante de borracha classe 2 suporta qual nível de tensão máxima?",
-        "hyp": "A luva isolante de borracha classe 2 suporta qual nível de tensão máxima?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 5.352,
-        "latency_sec": 15.759799999999998,
-        "rtf": 2.9446562032884898,
-        "rss_mb": 462.21875
-      },
-      {
-        "phrase_id": 5,
-        "ref": "Onde devo instalar o conjunto de aterramento temporário na chave seccionadora?",
-        "hyp": "onde devo instalar o conjunto de aterramento temporário na chave seccionadora.",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 4.968,
-        "latency_sec": 15.50001,
-        "rtf": 3.119969806763285,
-        "rss_mb": 462.04296875
-      },
-      {
-        "phrase_id": 6,
-        "ref": "É obrigatório o uso de capacete com jugular e óculos de proteção para eletricista?",
-        "hyp": "É obrigatório o uso de capacete conjugular e óculos de proteção para eletricista?",
-        "wer": 0.14285714285714285,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 5.952,
-        "latency_sec": 16.4125,
-        "rtf": 2.757476478494624,
-        "rss_mb": 462.0703125
-      },
-      {
-        "phrase_id": 7,
-        "ref": "Qual é a sequência correta para constatação de ausência de tensão na rede aérea?",
-        "hyp": "Qual é a sequência correta para constatação de ausência de tensão na rede aérea?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.352,
-        "latency_sec": 16.55543,
-        "rtf": 3.0933165171898356,
-        "rss_mb": 461.890625
-      },
-      {
-        "phrase_id": 8,
-        "ref": "Posso realizar intervenção em circuito energizado durante chuva forte?",
-        "hyp": "Posso realizar intervenção em circuito energizado durante chuva forte?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.088,
-        "latency_sec": 15.66866,
-        "rtf": 3.0795322327044024,
-        "rss_mb": 461.765625
-      },
-      {
-        "phrase_id": 9,
-        "ref": "Qual equipamento de proteção coletiva é exigido para abertura de chave fusível?",
-        "hyp": "Qual equipamento de proteção coletiva é exigido para abertura de chave fuzível?",
-        "wer": 0.08333333333333333,
-        "kw_acc": 0.5,
-        "kw_match": 1,
-        "kw_total": 2,
-        "duration_sec": 5.28,
-        "latency_sec": 16.64143,
-        "rtf": 3.151785984848485,
-        "rss_mb": 461.98046875
-      },
-      {
-        "phrase_id": 10,
-        "ref": "O detector de tensão por aproximação precisa de calibração antes da operação?",
-        "hyp": "O detector de tensão por aproximação precisa de calibração antes da operação?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 2,
-        "kw_total": 2,
-        "duration_sec": 5.496,
-        "latency_sec": 15.91621,
-        "rtf": 2.895962518195051,
-        "rss_mb": 462.04296875
-      },
-      {
-        "phrase_id": 11,
-        "ref": "Quais ferramentas isoladas a 1000 volts devem constar na bolsa de lona?",
-        "hyp": "Quais ferramentas isoladas a 1000 volts devem constar na bolsa de lona?",
-        "wer": 0.0,
-        "kw_acc": 1.0,
-        "kw_match": 3,
-        "kw_total": 3,
-        "duration_sec": 4.968,
-        "latency_sec": 16.57795,
-        "rtf": 3.3369464573268925,
-        "rss_mb": 462.078125
+        "latency_sec": 13.03488,
+        "rtf": 2.623768115942029,
+        "rss_mb": 463.30078125
       },
       {
         "phrase_id": 12,
@@ -1792,48 +1465,48 @@
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 5.544,
-        "latency_sec": 16.626009999999997,
-        "rtf": 2.9989195526695522,
-        "rss_mb": 461.98046875
+        "latency_sec": 13.516,
+        "rtf": 2.437950937950938,
+        "rss_mb": 463.78515625
       },
       {
         "phrase_id": 13,
         "ref": "É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?",
-        "hyp": "É permitida a abertura sobre carga de chave seccionadora sem dispositivo de interrupção?",
-        "wer": 0.07692307692307693,
-        "kw_acc": 0.6666666666666666,
-        "kw_match": 2,
+        "hyp": "É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.952,
-        "latency_sec": 16.78175,
-        "rtf": 2.819514448924731,
-        "rss_mb": 462.0703125
+        "latency_sec": 13.663969999999999,
+        "rtf": 2.295693884408602,
+        "rss_mb": 463.546875
       },
       {
         "phrase_id": 14,
         "ref": "Como verificar a integridade mecânica e dielétrica do bastão de manobra?",
-        "hyp": "como verificar a integridade mecânica e de elétrica do bastão de manobra.",
+        "hyp": "Como verificar a integridade mecânica e de elétrica do bastão de manobra?",
         "wer": 0.18181818181818182,
         "kw_acc": 0.5,
         "kw_match": 1,
         "kw_total": 2,
         "duration_sec": 5.064,
-        "latency_sec": 16.425639999999998,
-        "rtf": 3.2436097946287514,
-        "rss_mb": 461.7890625
+        "latency_sec": 13.76028,
+        "rtf": 2.7172748815165875,
+        "rss_mb": 463.5390625
       },
       {
         "phrase_id": 15,
         "ref": "A vestimenta antichamas categoria dois protege contra arco elétrico de quantos cal/cm²?",
-        "hyp": "A vestimenta antes chama-se Categoria 2 Protege contra Arco Elétrico de Quantos Cal, C.M. sobre escrito 2?",
-        "wer": 0.6153846153846154,
+        "hyp": "A vestimenta antes chama-se Categoria 2 Proteste contra Arco Elétrico de Quantos Cal, CME sobre escrito 2?",
+        "wer": 0.6923076923076923,
         "kw_acc": 0.3333333333333333,
         "kw_match": 1,
         "kw_total": 3,
         "duration_sec": 7.2,
-        "latency_sec": 18.57151,
-        "rtf": 2.579376388888889,
-        "rss_mb": 462.32421875
+        "latency_sec": 14.63097,
+        "rtf": 2.0320791666666667,
+        "rss_mb": 463.9609375
       },
       {
         "phrase_id": 16,
@@ -1844,9 +1517,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.928,
-        "latency_sec": 17.4291,
-        "rtf": 2.9401315789473683,
-        "rss_mb": 461.98828125
+        "latency_sec": 14.0092,
+        "rtf": 2.363225371120108,
+        "rss_mb": 463.69140625
       },
       {
         "phrase_id": 17,
@@ -1857,35 +1530,35 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.64,
-        "latency_sec": 16.6543,
-        "rtf": 2.9528900709219856,
-        "rss_mb": 462.30078125
+        "latency_sec": 13.770010000000001,
+        "rtf": 2.4414911347517734,
+        "rss_mb": 463.73828125
       },
       {
         "phrase_id": 18,
         "ref": "Quem pode emitir a autorização de trabalho para intervenção na rede subterrânea?",
-        "hyp": "quem pode emitir a autorização de trabalho para intervenção na rede subterrânea.",
-        "wer": 0.0,
+        "hyp": "quem pode emitir a autorização de trabalho para a intervenção na rede subterrânea.",
+        "wer": 0.08333333333333333,
         "kw_acc": 1.0,
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.4,
-        "latency_sec": 16.988139999999998,
-        "rtf": 3.1459518518518514,
-        "rss_mb": 461.95703125
+        "latency_sec": 13.678370000000001,
+        "rtf": 2.5330314814814816,
+        "rss_mb": 463.20703125
       },
       {
         "phrase_id": 19,
         "ref": "Quais são os requisitos da NR-35 para ancoragem de cinto tipo paraquedista no poste?",
-        "hyp": "Quais são os requisitos da NR35 para ancoragem de cinto tipo paraquedista no poste?",
-        "wer": 0.13333333333333333,
+        "hyp": "Quais são os requisitos da NR35 para ancoragem de sinto tipo paraquedista no poste?",
+        "wer": 0.2,
         "kw_acc": 1.0,
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 6.384,
-        "latency_sec": 18.16193,
-        "rtf": 2.8449138471177946,
-        "rss_mb": 462.25390625
+        "latency_sec": 14.20849,
+        "rtf": 2.2256406641604007,
+        "rss_mb": 463.390625
       },
       {
         "phrase_id": 20,
@@ -1896,9 +1569,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 5.88,
-        "latency_sec": 17.19162,
-        "rtf": 2.9237448979591836,
-        "rss_mb": 462.03515625
+        "latency_sec": 13.96186,
+        "rtf": 2.374465986394558,
+        "rss_mb": 463.6484375
       },
       {
         "phrase_id": 21,
@@ -1909,9 +1582,9 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.352,
-        "latency_sec": 17.147869999999998,
-        "rtf": 3.204011584454409,
-        "rss_mb": 461.64453125
+        "latency_sec": 13.98211,
+        "rtf": 2.6125018684603885,
+        "rss_mb": 463.703125
       },
       {
         "phrase_id": 22,
@@ -1922,9 +1595,9 @@
         "kw_match": 2,
         "kw_total": 3,
         "duration_sec": 5.568,
-        "latency_sec": 18.02939,
-        "rtf": 3.238036997126437,
-        "rss_mb": 462.4609375
+        "latency_sec": 14.02492,
+        "rtf": 2.518843390804598,
+        "rss_mb": 463.49609375
       },
       {
         "phrase_id": 23,
@@ -1935,9 +1608,9 @@
         "kw_match": 3,
         "kw_total": 3,
         "duration_sec": 4.992,
-        "latency_sec": 17.44201,
-        "rtf": 3.4939923878205126,
-        "rss_mb": 462.2890625
+        "latency_sec": 14.037469999999999,
+        "rtf": 2.811993189102564,
+        "rss_mb": 463.546875
       },
       {
         "phrase_id": 24,
@@ -1948,22 +1621,349 @@
         "kw_match": 2,
         "kw_total": 2,
         "duration_sec": 5.976,
-        "latency_sec": 17.751990000000003,
-        "rtf": 2.9705471887550208,
-        "rss_mb": 461.99609375
+        "latency_sec": 13.969280000000001,
+        "rtf": 2.3375635876840697,
+        "rss_mb": 463.72265625
       },
       {
         "phrase_id": 25,
         "ref": "É obrigatória a presença de dois eletricistas habilitados em serviço de linha viva?",
-        "hyp": "É obrigatória a presença de dois eletricistas habilitados em serviço de linha viva?",
+        "hyp": "É obrigatória a presença de dois eletricistas habilitados em serviço de linha vivo?",
+        "wer": 0.07692307692307693,
+        "kw_acc": 0.5,
+        "kw_match": 1,
+        "kw_total": 2,
+        "duration_sec": 5.568,
+        "latency_sec": 13.9574,
+        "rtf": 2.5067169540229886,
+        "rss_mb": 463.359375
+      }
+    ],
+    "noisy": [
+      {
+        "phrase_id": 1,
+        "ref": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kV?",
+        "hyp": "Qual é a distância mínima de segurança para trabalhar próximo a uma rede de 13,8 kilovoltes?",
+        "wer": 0.0625,
+        "kw_acc": 0.6666666666666666,
+        "kw_match": 2,
+        "kw_total": 3,
+        "duration_sec": 6.768,
+        "latency_sec": 13.955129999999999,
+        "rtf": 2.0619281914893617,
+        "rss_mb": 463.75
+      },
+      {
+        "phrase_id": 2,
+        "ref": "Como realizar o bloqueio e etiquetagem do religador automático da subestação?",
+        "hyp": "Como realizar o bloqueio e etiquetagem do religador automático da subestação.",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 3,
+        "kw_total": 3,
+        "duration_sec": 5.616,
+        "latency_sec": 13.6552,
+        "rtf": 2.4314814814814816,
+        "rss_mb": 463.46875
+      },
+      {
+        "phrase_id": 3,
+        "ref": "Quais são os procedimentos obrigatórios para a desenergização segundo a NR-10?",
+        "hyp": "Quais são os procedimentos obrigatórios para desenergização segundo a NR10?",
+        "wer": 0.25,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.856,
+        "latency_sec": 13.770790000000002,
+        "rtf": 2.351569330601093,
+        "rss_mb": 463.68359375
+      },
+      {
+        "phrase_id": 4,
+        "ref": "A luva isolante de borracha classe 2 suporta qual nível de tensão máxima?",
+        "hyp": "A luva isolante de borracha classe 2 suporta qual nível de tensão máxima?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 3,
+        "kw_total": 3,
+        "duration_sec": 5.352,
+        "latency_sec": 13.903780000000001,
+        "rtf": 2.5978662182361734,
+        "rss_mb": 463.69921875
+      },
+      {
+        "phrase_id": 5,
+        "ref": "Onde devo instalar o conjunto de aterramento temporário na chave seccionadora?",
+        "hyp": "Onde devo instalar o conjunto de aterramento temporário na chave seccionadora?",
         "wer": 0.0,
         "kw_acc": 1.0,
         "kw_match": 2,
         "kw_total": 2,
+        "duration_sec": 4.968,
+        "latency_sec": 13.728489999999999,
+        "rtf": 2.7633836553945246,
+        "rss_mb": 463.40625
+      },
+      {
+        "phrase_id": 6,
+        "ref": "É obrigatório o uso de capacete com jugular e óculos de proteção para eletricista?",
+        "hyp": "É obrigatório o uso de capacete conjugular e óculos de proteção para eletricista?",
+        "wer": 0.14285714285714285,
+        "kw_acc": 1.0,
+        "kw_match": 3,
+        "kw_total": 3,
+        "duration_sec": 5.952,
+        "latency_sec": 13.978959999999999,
+        "rtf": 2.3486155913978495,
+        "rss_mb": 463.55078125
+      },
+      {
+        "phrase_id": 7,
+        "ref": "Qual é a sequência correta para constatação de ausência de tensão na rede aérea?",
+        "hyp": "Qual é a sequência correta para constatação de ausência de tensão na rede aérea?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.352,
+        "latency_sec": 13.99942,
+        "rtf": 2.615736173393124,
+        "rss_mb": 463.328125
+      },
+      {
+        "phrase_id": 8,
+        "ref": "Posso realizar intervenção em circuito energizado durante chuva forte?",
+        "hyp": "Posso realizar intervenção em circuito energizado durante chuva forte?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.088,
+        "latency_sec": 13.30298,
+        "rtf": 2.6145794025157234,
+        "rss_mb": 463.48046875
+      },
+      {
+        "phrase_id": 9,
+        "ref": "Qual equipamento de proteção coletiva é exigido para abertura de chave fusível?",
+        "hyp": "Qual equipamento de proteção coletiva é exigido para abertura de chave fuzível?",
+        "wer": 0.08333333333333333,
+        "kw_acc": 0.5,
+        "kw_match": 1,
+        "kw_total": 2,
+        "duration_sec": 5.28,
+        "latency_sec": 14.06309,
+        "rtf": 2.663464015151515,
+        "rss_mb": 463.65625
+      },
+      {
+        "phrase_id": 10,
+        "ref": "O detector de tensão por aproximação precisa de calibração antes da operação?",
+        "hyp": "O detector de tensão por aproximação precisa de calibração antes da operação?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.496,
+        "latency_sec": 13.522860000000001,
+        "rtf": 2.460491266375546,
+        "rss_mb": 463.53515625
+      },
+      {
+        "phrase_id": 11,
+        "ref": "Quais ferramentas isoladas a 1000 volts devem constar na bolsa de lona?",
+        "hyp": "Quais ferramentas isoladas a 1000 volts devem constar na bolsa de lona?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 3,
+        "kw_total": 3,
+        "duration_sec": 4.968,
+        "latency_sec": 13.79849,
+        "rtf": 2.7774738325281803,
+        "rss_mb": 463.34765625
+      },
+      {
+        "phrase_id": 12,
+        "ref": "O religador desarmou por sobrecorrente de fase na saída do alimentador principal.",
+        "hyp": "O relegador desarmou por sobrecorrente de fase na saída do alimentador principal.",
+        "wer": 0.08333333333333333,
+        "kw_acc": 0.6666666666666666,
+        "kw_match": 2,
+        "kw_total": 3,
+        "duration_sec": 5.544,
+        "latency_sec": 13.83962,
+        "rtf": 2.496323953823954,
+        "rss_mb": 463.5078125
+      },
+      {
+        "phrase_id": 13,
+        "ref": "É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?",
+        "hyp": "É permitida a abertura sob carga de chave seccionadora sem dispositivo de interrupção?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 3,
+        "kw_total": 3,
+        "duration_sec": 5.952,
+        "latency_sec": 13.92183,
+        "rtf": 2.339017137096774,
+        "rss_mb": 463.49609375
+      },
+      {
+        "phrase_id": 14,
+        "ref": "Como verificar a integridade mecânica e dielétrica do bastão de manobra?",
+        "hyp": "como verificar a integridade mecânica e de elétrica do bastão de manobra.",
+        "wer": 0.18181818181818182,
+        "kw_acc": 0.5,
+        "kw_match": 1,
+        "kw_total": 2,
+        "duration_sec": 5.064,
+        "latency_sec": 13.70477,
+        "rtf": 2.7063131911532383,
+        "rss_mb": 463.6171875
+      },
+      {
+        "phrase_id": 15,
+        "ref": "A vestimenta antichamas categoria dois protege contra arco elétrico de quantos cal/cm²?",
+        "hyp": "A vestimenta antes chama-se Categoria 2 Proteste contra Arco Elétrico de Quantos Cal?",
+        "wer": 0.46153846153846156,
+        "kw_acc": 0.3333333333333333,
+        "kw_match": 1,
+        "kw_total": 3,
+        "duration_sec": 7.2,
+        "latency_sec": 14.62308,
+        "rtf": 2.0309833333333334,
+        "rss_mb": 463.63671875
+      },
+      {
+        "phrase_id": 16,
+        "ref": "Quais etapas compõem a liberação para trabalho em instalação elétrica desenergizada?",
+        "hyp": "Quais etapas compõem a liberação para trabalho em instalação elétrica desenergizada?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.928,
+        "latency_sec": 13.96664,
+        "rtf": 2.3560458839406206,
+        "rss_mb": 463.74609375
+      },
+      {
+        "phrase_id": 17,
+        "ref": "O aterramento temporário deve ser conectado primeiro à terra ou aos condutores de fase?",
+        "hyp": "O aterramento temporário deve ser conectado primeiro à terra ou aos condutores de fase.",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.64,
+        "latency_sec": 13.807540000000001,
+        "rtf": 2.4481453900709225,
+        "rss_mb": 463.5546875
+      },
+      {
+        "phrase_id": 18,
+        "ref": "Quem pode emitir a autorização de trabalho para intervenção na rede subterrânea?",
+        "hyp": "quem pode emitir a autorização de trabalho para intervenção na rede subterrânea.",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.4,
+        "latency_sec": 13.6921,
+        "rtf": 2.535574074074074,
+        "rss_mb": 463.359375
+      },
+      {
+        "phrase_id": 19,
+        "ref": "Quais são os requisitos da NR-35 para ancoragem de cinto tipo paraquedista no poste?",
+        "hyp": "Quais são os requisitos da NR35 para ancoragem de cinto tipo paraquedista no poste?",
+        "wer": 0.13333333333333333,
+        "kw_acc": 1.0,
+        "kw_match": 3,
+        "kw_total": 3,
+        "duration_sec": 6.384,
+        "latency_sec": 14.200629999999999,
+        "rtf": 2.2244094611528817,
+        "rss_mb": 463.63671875
+      },
+      {
+        "phrase_id": 20,
+        "ref": "Como proceder em caso de choque elétrico com vítima presa ao condutor de alta tensão?",
+        "hyp": "Como proceder em caso de choque elétrico com vítima presa ao condutor de alta tensão?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 3,
+        "kw_total": 3,
+        "duration_sec": 5.88,
+        "latency_sec": 14.006200000000002,
+        "rtf": 2.382006802721089,
+        "rss_mb": 463.609375
+      },
+      {
+        "phrase_id": 21,
+        "ref": "Qual o prazo de validade do ensaio elétrico das luvas isolantes de borracha?",
+        "hyp": "Qual o prazo de validade do ensaio elétrico das luvas isolantes de borracha?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.352,
+        "latency_sec": 14.03243,
+        "rtf": 2.6219039611360238,
+        "rss_mb": 465.68359375
+      },
+      {
+        "phrase_id": 22,
+        "ref": "O disjuntor a vácuo da cabine primária pode ser religado manualmente sem inspeção?",
+        "hyp": "O desjuntor avaco da cabine primária pode ser religado manualmente sem inspeção?",
+        "wer": 0.23076923076923078,
+        "kw_acc": 0.6666666666666666,
+        "kw_match": 2,
+        "kw_total": 3,
         "duration_sec": 5.568,
-        "latency_sec": 17.853939999999998,
-        "rtf": 3.20652658045977,
-        "rss_mb": 461.71875
+        "latency_sec": 14.04559,
+        "rtf": 2.522555675287357,
+        "rss_mb": 463.43359375
+      },
+      {
+        "phrase_id": 23,
+        "ref": "Quais os critérios para descarte de vara de manobra telescópica com trinca?",
+        "hyp": "Quais os critérios para descarte de vara de manobra telescópica com trinca?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 3,
+        "kw_total": 3,
+        "duration_sec": 4.992,
+        "latency_sec": 14.007969999999998,
+        "rtf": 2.8060837339743587,
+        "rss_mb": 463.8046875
+      },
+      {
+        "phrase_id": 24,
+        "ref": "A sinalização de impedimento de reenergização deve ser fixada no comando da chave?",
+        "hyp": "A sinalização de impedimento de reenergização deve ser fixada no comando da chave?",
+        "wer": 0.0,
+        "kw_acc": 1.0,
+        "kw_match": 2,
+        "kw_total": 2,
+        "duration_sec": 5.976,
+        "latency_sec": 13.97801,
+        "rtf": 2.3390244310575636,
+        "rss_mb": 463.6640625
+      },
+      {
+        "phrase_id": 25,
+        "ref": "É obrigatória a presença de dois eletricistas habilitados em serviço de linha viva?",
+        "hyp": "É obrigatória a presença de dois eletricistas habilitados em serviço de linha vivo?",
+        "wer": 0.07692307692307693,
+        "kw_acc": 0.5,
+        "kw_match": 1,
+        "kw_total": 2,
+        "duration_sec": 5.568,
+        "latency_sec": 14.00684,
+        "rtf": 2.5155962643678165,
+        "rss_mb": 463.3359375
       }
     ]
   },

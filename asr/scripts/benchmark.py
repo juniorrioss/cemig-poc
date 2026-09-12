@@ -109,7 +109,7 @@ def run_whisper_benchmark(model_name: str, model_file: str, model_size_mb: float
         out_txt_base = f"{DEVICE_DIR}/whisper_out_{pid}"
         
         cmd = (
-            f"{DEVICE_DIR}/memtime {DEVICE_DIR}/whisper-cli "
+            f"LD_LIBRARY_PATH={DEVICE_DIR} {DEVICE_DIR}/memtime {DEVICE_DIR}/whisper-cli "
             f"-m {DEVICE_DIR}/models/{model_file} "
             f"-f {wav_device} "
             f"-l pt -nt -np -otxt -of {out_txt_base}"

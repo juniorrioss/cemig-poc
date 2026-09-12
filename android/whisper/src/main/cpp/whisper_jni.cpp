@@ -84,8 +84,21 @@ Java_br_org_ceia_cemigpoc_whisper_WhisperBridge_nativeTranscribe(
     params.offset_ms = 0;
     params.no_context = true;
     params.no_timestamps = true;
-    params.temperature_inc = 0.0f;
     params.single_segment = false;
+
+    // Ajuste de qualidade p/ fala natural em campo (task poc-asr-fix):
+    // - temperature fallback reativado: se o greedy decode falhar nos gates de
+    //   entropia/logprob, o whisper.cpp re-decodifica com temperatura crescente,
+    //   reduzindo travas e repetições em fala espontânea (pausas, hesitações).
+    // - no_speech_thold um pouco mais alto descarta segmentos de puro ruído/silêncio,
+    //   cortando alucinações quando o operário solta o PTT sem falar.
+    params.temperature = 0.0f;
+    params.temperature_inc = 0.2f;
+    params.entropy_thold = 2.4f;
+    params.logprob_thold = -1.0f;
+    params.no_speech_thold = 0.6f;
+    params.suppress_blank = true;
+    params.suppress_nst = true; // suprime tokens non-speech (ruídos, música)
     if (prompt_chars && strlen(prompt_chars) > 0) {
         params.initial_prompt = prompt_chars;
     }
