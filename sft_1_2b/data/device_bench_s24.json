@@ -1,0 +1,22 @@
+{
+ "device": "Galaxy S24+ SM-S926B (Exynos 2400)",
+ "threads": 6,
+ "build": "434ddbb",
+ "protocol": "llama-bench pp1500 tg100 r2, 6 perf-cores",
+ "trained_r64_q4": {
+  "size_mib": 661.25,
+  "pp1500_tok_s": 294.29,
+  "tg100_tok_s": 50.82
+ },
+ "embarcado_qad_q4": {
+  "size_mib": 661.25,
+  "pp1500_tok_s": 298.58,
+  "tg100_tok_s": 48.22
+ },
+ "e2e_estimate_prefill1420_decode100": {
+  "trained": "TTFT 4.83s + decode 1.97s = 6.79s (SLM)",
+  "qad": "TTFT 4.76s + decode 2.07s = 6.83s (SLM)",
+  "nota": "+Nemotron ASR ~1.2s = ~8s E2E total, dentro do teto de voz de 10s"
+ },
+ "veredito": "paridade total de latencia/RAM (mesma arch/quant/tamanho); o SFT entra no app com custo ZERO de porte. Latencia de SLM ~6-8s cabe no teto de voz de 10s (igual embarcado hoje)."
+}
