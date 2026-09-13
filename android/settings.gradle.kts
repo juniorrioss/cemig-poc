@@ -17,3 +17,4 @@ rootProject.name = "cemig-poc"
 include(":app")
 include(":llama")
 include(":whisper")
+include(":sherpa")

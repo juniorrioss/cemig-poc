@@ -37,6 +37,17 @@ android {
         // O 2.6B é modelo de raciocínio (template prima <think>): thinking-OFF obrigatório.
         // No 1.2B (não-reasoning) a supressão é no-op seguro, mas só ativamos no 2.6B.
         buildConfigField("boolean", "SUPPRESS_REASONING", use26b.toString())
+
+        // --- Seleção do motor ASR por build (task poc-sft-v3, Parte 6) ---
+        // O capitão quer experimentar o Nemotron 3.5 INT8 (sherpa-onnx) no lugar do Whisper
+        // Base, "mesmo que fique bem apertado em RAM" — o Whisper não captura termo técnico
+        // ("disjuntor" não sai); o Nemotron acerta 91,9% dos termos (asr/README.md).
+        //   ./gradlew assembleRelease -Pcemig.asrEngine=nemotron  -> Nemotron 3.5 INT8 (sherpa)
+        //   (default / omitido)                                   -> Whisper Base Q5_1
+        val asrEngine = (project.findProperty("cemig.asrEngine") as String?)?.lowercase() ?: "whisper"
+        val useNemotron = asrEngine == "nemotron"
+        buildConfigField("String", "ASR_ENGINE", "\"$asrEngine\"")
+        buildConfigField("boolean", "USE_NEMOTRON_ASR", useNemotron.toString())
     }
 
     signingConfigs {
@@ -102,6 +113,7 @@ android {
 dependencies {
     implementation(project(":llama"))
     implementation(project(":whisper"))
+    implementation(project(":sherpa"))
 
     val composeBom = platform("androidx.compose:compose-bom:2024.04.01")
     implementation(composeBom)

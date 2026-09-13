@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import br.org.ceia.cemigpoc.BuildConfig
 import br.org.ceia.cemigpoc.data.acceptance.AcceptanceRunner
 import br.org.ceia.cemigpoc.data.engine.RealAsrEngine
+import br.org.ceia.cemigpoc.data.engine.RealNemotronAsrEngine
 import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
 import br.org.ceia.cemigpoc.data.model.ModelFileManager
 import br.org.ceia.cemigpoc.data.classifier.NrClassifier
@@ -86,7 +87,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         denseRetriever = denseRetriever
     )
     private val realLlamaEngine = RealLlamaEngine()
+    // Motor ASR selecionável por build (Parte 6 do poc-sft-v3): Nemotron 3.5 (sherpa-onnx) ou
+    // Whisper Base. Ambos implementam AsrEngine; o Nemotron só é usado se BuildConfig pedir E
+    // os pesos externos existirem (senão cai no Whisper — fallback honesto).
+    private val useNemotron = BuildConfig.USE_NEMOTRON_ASR
     private val realAsrEngine = RealAsrEngine()
+    private val nemotronAsrEngine = if (useNemotron) RealNemotronAsrEngine() else null
+    // Motor ativo (resolvido no init conforme disponibilidade dos pesos).
+    @Volatile
+    private var activeAsrEngine: br.org.ceia.cemigpoc.domain.engine.AsrEngine = realAsrEngine
     private val telemetryLogger = TelemetryLogger(File(application.applicationContext.filesDir, "telemetry.jsonl"))
 
     private val askPipeline = AskPipeline(
@@ -114,16 +123,38 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val dbFile = fileManager.getFts5DatabaseFile()
                 Log.i(TAG, "Índice FTS5 pronto em: ${dbFile.absolutePath}")
 
-                _uiState.update { it.copy(modelStatusMessage = "Carregando modelo ASR Whisper Base Q5_1...") }
-                val asrFile = fileManager.getAsrModelFile { progress ->
-                    _uiState.update {
-                        it.copy(modelStatusMessage = "Copiando Whisper Base: ${(progress * 100).toInt()}%")
+                // Motor ASR: Nemotron 3.5 (sherpa-onnx) se pedido por build E os pesos externos
+                // existirem; senão Whisper Base (fallback honesto).
+                val nemotronDir = if (useNemotron) fileManager.getNemotronModelDir() else null
+                val asrOk: Boolean
+                if (useNemotron && nemotronDir != null && nemotronAsrEngine != null) {
+                    _uiState.update { it.copy(modelStatusMessage = "Carregando ASR Nemotron 3.5 INT8...") }
+                    asrOk = nemotronAsrEngine.engine.initModel(nemotronDir.absolutePath, numThreads = 4)
+                    if (asrOk) {
+                        activeAsrEngine = nemotronAsrEngine
+                        Log.i(TAG, "ASR ativo: Nemotron 3.5 INT8 (sherpa-onnx)")
+                    } else {
+                        Log.e(TAG, "Falha ao inicializar Nemotron; caindo no Whisper Base")
                     }
+                } else {
+                    if (useNemotron) Log.w(TAG, "Nemotron pedido mas pesos ausentes; usando Whisper Base")
+                    asrOk = false
                 }
-                val asrOk = realAsrEngine.engine.initModel(asrFile.absolutePath)
-                if (!asrOk) {
-                    Log.e(TAG, "Falha ao inicializar Whisper Base")
+                // Whisper Base como motor principal (default) ou fallback do Nemotron.
+                val whisperOk: Boolean
+                if (activeAsrEngine === realAsrEngine) {
+                    _uiState.update { it.copy(modelStatusMessage = "Carregando modelo ASR Whisper Base Q5_1...") }
+                    val asrFile = fileManager.getAsrModelFile { progress ->
+                        _uiState.update {
+                            it.copy(modelStatusMessage = "Copiando Whisper Base: ${(progress * 100).toInt()}%")
+                        }
+                    }
+                    whisperOk = realAsrEngine.engine.initModel(asrFile.absolutePath)
+                    if (!whisperOk) Log.e(TAG, "Falha ao inicializar Whisper Base")
+                } else {
+                    whisperOk = false
                 }
+                val anyAsrOk = asrOk || whisperOk
 
                 _uiState.update { it.copy(modelStatusMessage = "Carregando modelo LFM2.5 1.2B Instruct...") }
                 val llmFile = fileManager.getLlmModelFile { progress ->
@@ -166,10 +197,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     Log.w(TAG, "Busca densa indisponível; pipeline usará BM25-gated (fallback)")
                 }
 
+                val asrLabel = if (activeAsrEngine === nemotronAsrEngine) "Nemotron 3.5" else "Whisper"
                 _uiState.update {
                     it.copy(
-                        isModelReady = asrOk && llmOk,
-                        modelStatusMessage = if (asrOk && llmOk) "Pronto (Whisper + LFM2.5)" else "Falha no carregamento dos modelos",
+                        isModelReady = anyAsrOk && llmOk,
+                        modelStatusMessage = if (anyAsrOk && llmOk) "Pronto ($asrLabel + LFM2.5)" else "Falha no carregamento dos modelos",
                         stage = PipelineStage.IDLE
                     )
                 }
@@ -195,14 +227,26 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         // 3) CONTEÚDO (Partial/Final) vai para currentQuestionInput; o Final NÃO dispara
         //    processQuestion automaticamente — o operário revisa/edita e confirma (botão
         //    Enviar / submitQuestion). Assim a resposta sempre corresponde à fala atual.
+        // Coleta os eventos dos DOIS motores (só o ativo emite, pois só nele chamamos
+        // startListening). Assim independe de qual motor o init resolveu (Nemotron/Whisper).
         viewModelScope.launch {
-            realAsrEngine.events.collect { event ->
-                // Trava anti-reprocessamento: ignora eventos de gravações que não são a corrente.
-                if (event.recordingId != activeRecordingId) {
-                    Log.d(TAG, "Evento ASR obsoleto ignorado (rec=${event.recordingId} != ativo=$activeRecordingId)")
-                    return@collect
-                }
-                when (event) {
+            realAsrEngine.events.collect { event -> handleAsrEvent(event) }
+        }
+        nemotronAsrEngine?.let { neng ->
+            viewModelScope.launch {
+                neng.events.collect { event -> handleAsrEvent(event) }
+            }
+        }
+    }
+
+    /** Processa um evento de ASR (comum aos motores Whisper e Nemotron). */
+    private fun handleAsrEvent(event: AsrEvent) {
+        // Trava anti-reprocessamento: ignora eventos de gravações que não são a corrente.
+        if (event.recordingId != activeRecordingId) {
+            Log.d(TAG, "Evento ASR obsoleto ignorado (rec=${event.recordingId} != ativo=$activeRecordingId)")
+            return
+        }
+        when (event) {
                     is AsrEvent.Status -> {
                         // Apenas STATUS -> indicador de estágio. Nunca escreve no texto.
                         val stage = when (event.stage) {
@@ -242,8 +286,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                             )
                         }
                     }
-                }
-            }
         }
     }
 
@@ -270,7 +312,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         asrStartTimeMs = System.currentTimeMillis()
         // Marca esta gravação como a corrente ANTES de emitir eventos: qualquer evento
         // pendente de uma gravação anterior será descartado no coletor pelo recordingId.
-        activeRecordingId = realAsrEngine.startListening()
+        activeRecordingId = activeAsrEngine.startListening()
         _uiState.update {
             it.copy(
                 isListening = true,
@@ -286,7 +328,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      * Encerra gravação Push-to-Talk.
      */
     fun stopPushToTalk() {
-        realAsrEngine.stopListening()
+        activeAsrEngine.stopListening()
     }
 
     /**
@@ -418,6 +460,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         super.onCleared()
         realLlamaEngine.engine.close()
         realAsrEngine.engine.close()
+        nemotronAsrEngine?.engine?.close()
         embedder.close()
     }
 }

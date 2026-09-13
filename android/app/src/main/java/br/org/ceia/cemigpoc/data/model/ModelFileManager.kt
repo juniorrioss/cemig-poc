@@ -34,6 +34,10 @@ class ModelFileManager(private val context: Context) {
         // O nome vem de BuildConfig.LLM_MODEL_NAME (definido em app/build.gradle.kts).
         val LLM_MODEL_NAME: String = BuildConfig.LLM_MODEL_NAME
         const val ASR_MODEL_NAME = "ggml-base-q5_1.bin"
+        // Nemotron 3.5 streaming INT8 (sherpa-onnx) — motor ASR alternativo selecionável por
+        // build (-Pcemig.asrEngine=nemotron). Os 3 ONNX (encoder ~657 MB) NÃO cabem no APK;
+        // são injetados por adb push em getExternalFilesDir(null)/<NEMOTRON_DIR_NAME>/.
+        const val NEMOTRON_DIR_NAME = "nemotron-3.5-official-560ms-int8"
         const val FTS5_DB_NAME = "index.db"
         // Retrieval v3: encoder de embeddings on-device (EmbeddingGemma-300M QAT-Q4_0) e os
         // dois índices densos binários (formato DVEC1). O index.db agora é o EXPANDIDO
@@ -67,6 +71,26 @@ class ModelFileManager(private val context: Context) {
 
     suspend fun getEmbedModelFile(onProgress: ((Float) -> Unit)? = null): File = withContext(Dispatchers.IO) {
         resolveOrCopy(EMBED_MODEL_NAME, onProgress)
+    }
+
+    /**
+     * Diretório do Nemotron 3.5 (sherpa-onnx). Só override externo (arquivos grandes, fora do
+     * APK): getExternalFilesDir(null)/nemotron-3.5-official-560ms-int8/ com encoder/decoder/
+     * joiner.int8.onnx + tokens.txt. Retorna null se ausente (o app cai no Whisper).
+     */
+    fun getNemotronModelDir(): File? {
+        val dir = context.getExternalFilesDir(null)?.resolve(NEMOTRON_DIR_NAME) ?: return null
+        val ok = dir.isDirectory &&
+            File(dir, "encoder.int8.onnx").exists() &&
+            File(dir, "decoder.int8.onnx").exists() &&
+            File(dir, "joiner.int8.onnx").exists() &&
+            File(dir, "tokens.txt").exists()
+        if (!ok) {
+            Log.w(TAG, "Nemotron ausente/incompleto em ${dir.absolutePath}")
+            return null
+        }
+        Log.i(TAG, "Nemotron encontrado em ${dir.absolutePath}")
+        return dir
     }
 
     /**

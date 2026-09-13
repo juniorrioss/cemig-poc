@@ -5,12 +5,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -267,10 +270,13 @@ fun MainScreen(
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Campo editável de transcrição / digitação
+                // Campo editável de transcrição / digitação.
+                // Fix (poc-sft-v3, reclamação do capitão): a caixa era singleLine e não crescia,
+                // "super difícil de ler a transcrição". Agora cresce com o conteúdo (multilinha),
+                // com altura mínima confortável, teto rolável e fonte legível (16sp).
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.Bottom
                 ) {
                     OutlinedTextField(
                         value = uiState.currentQuestionInput,
@@ -279,12 +285,22 @@ fun MainScreen(
                             Text(
                                 text = if (uiState.isListening) "Ouvindo microfone..." else "Fale pelo PTT ou digite sua dúvida...",
                                 color = CeiaGray500,
-                                fontSize = 13.sp,
+                                fontSize = 15.sp,
                                 fontFamily = InterFontFamily
                             )
                         },
-                        modifier = Modifier.weight(1f),
-                        singleLine = true,
+                        textStyle = androidx.compose.ui.text.TextStyle(
+                            fontSize = 16.sp,
+                            lineHeight = 22.sp,
+                            fontFamily = InterFontFamily
+                        ),
+                        modifier = Modifier
+                            .weight(1f)
+                            // Cresce com o conteúdo entre ~2,5 e ~7 linhas; acima disso rola.
+                            .heightIn(min = 64.dp, max = 168.dp)
+                            .verticalScroll(rememberScrollState()),
+                        singleLine = false,
+                        maxLines = 8,
                         shape = RoundedCornerShape(CeiaRadiusMd),
                         colors = OutlinedTextFieldDefaults.colors(
                             focusedBorderColor = CeiaBlue500,
@@ -292,8 +308,7 @@ fun MainScreen(
                             focusedContainerColor = CeiaWhite,
                             unfocusedContainerColor = CeiaWhite
                         ),
-                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Send),
-                        keyboardActions = KeyboardActions(onSend = { viewModel.submitQuestion() }),
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Default),
                         trailingIcon = {
                             if (uiState.currentQuestionInput.isNotEmpty()) {
                                 IconButton(onClick = { viewModel.onQuestionInputChanged("") }) {
