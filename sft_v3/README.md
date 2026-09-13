@@ -156,6 +156,9 @@ O capitão quis experimentar os DOIS motores juntos, "mesmo que fique bem aperta
 - **Módulo `:sherpa`** (`android/sherpa/`): sherpa-onnx JNI pré-compilado (`libsherpa-onnx-jni.so`
   + `libonnxruntime.so`, arm64-v8a) + API Kotlin oficial `com.k2fsa.sherpa.onnx` (casada com o
   JNI). `NemotronAsrEngine` (transducer streaming 560ms, idioma pt por-stream).
+  > **Sharp edge**: os dois `.so` são gitignorados (reprodutíveis). Antes de compilar com
+  > `-Pcemig.asrEngine=nemotron`, copie-os para `android/sherpa/src/main/jniLibs/arm64-v8a/`:
+  > `cp ~/sherpa-onnx/build-android-arm64-v8a/install/lib/{libsherpa-onnx-jni.so,libonnxruntime.so}`.
 - **`RealNemotronAsrEngine`** (app): implementa `AsrEngine` com o MESMO contrato
   anti-reprocessamento do S24+ (canal sem replay, recordingId monotônico, STATUS×CONTEÚDO,
   Final não auto-dispara). Reusa o `AudioRecordRecorder` do `:whisper`.
