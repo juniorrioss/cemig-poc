@@ -80,7 +80,11 @@ object AcceptanceRunner {
         context: Context,
         existingAsr: RealAsrEngine? = null,
         existingLlama: RealLlamaEngine? = null,
-        existingRetriever: br.org.ceia.cemigpoc.domain.engine.Retriever? = null
+        existingRetriever: br.org.ceia.cemigpoc.domain.engine.Retriever? = null,
+        // Override do transcritor (Parte 6 poc-sft-v3): quando o ASR ativo é o Nemotron 3.5,
+        // o ViewModel passa aqui a função de transcrição do motor Nemotron. Se null, usa o
+        // Whisper (realAsr) — comportamento histórico.
+        transcribeOverride: (suspend (FloatArray) -> String)? = null
     ): List<AcceptanceResultItem> = withContext(Dispatchers.IO) {
         val powerManager = context.getSystemService(Context.POWER_SERVICE) as? PowerManager
         val wakeLock = powerManager?.newWakeLock(
@@ -169,9 +173,10 @@ object AcceptanceRunner {
             val audioDurationS = audioSamples.size / 16000.0f
             Log.i(TAG, "Áudio: ${q.audioFileName} (%.2fs, %d amostras)".format(audioDurationS, audioSamples.size))
 
-            // 2. ASR Transcrição Whisper Base Q5_1
+            // 2. ASR Transcrição (Whisper Base Q5_1 ou Nemotron 3.5 via override).
             val tAsrStart = System.currentTimeMillis()
-            val transcribedText = realAsr.transcribeAudioSamples(audioSamples)
+            val transcribedText = transcribeOverride?.invoke(audioSamples)
+                ?: realAsr.transcribeAudioSamples(audioSamples)
             val asrMs = System.currentTimeMillis() - tAsrStart
             Log.i(TAG, "Transcrição ASR (${asrMs}ms): '$transcribedText'")
 

@@ -447,11 +447,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 kotlinx.coroutines.delay(500)
             }
             Log.i(TAG, "runAcceptanceTest: Motores prontos, iniciando AcceptanceRunner...")
+            // Se o ASR ativo for o Nemotron 3.5, roteia a transcrição do roteiro por ele.
+            val nemo = nemotronAsrEngine
+            val transcribeOverride: (suspend (FloatArray) -> String)? =
+                if (nemo != null && activeAsrEngine === nemo) { s -> nemo.transcribeAudioSamples(s) } else null
             AcceptanceRunner.run(
                 context = getApplication(),
                 existingAsr = realAsrEngine,
                 existingLlama = realLlamaEngine,
-                existingRetriever = retriever
+                existingRetriever = retriever,
+                transcribeOverride = transcribeOverride
             )
         }
     }
