@@ -1,0 +1,153 @@
+{
+ "task": "poc-sft-v3",
+ "question": "quanto a calibração (imatrix) recupera da perda bf16->Q4?",
+ "finding": "No v3 a perda bf16->Q4_0 é NEGLIGÍVEL (-0.6 p.p. oráculo), ao contrário do v2 (-9.3 p.p.), porque o v3 faz menos hedge (o hedge do v2 era sensível ao 4-bit). A calibração NÃO ajudou o Q4_0 (imatrix piorou levemente, -2.0 p.p. vs sem calib) e no Q4_K_M subiu alucinação (16.6->28.5%). Formato final = Q4_0 SEM calibração (F1 95.7, quase-bf16, menor complexidade).",
+ "calib_dataset": "sft_v3/data/calib_v3.txt (400 blocos estratificados do domínio, fora do holdout)",
+ "variants": {
+  "v3_r64_bf16": {
+   "oracle": {
+    "approval": 47.0,
+    "hallucination": 21.9,
+    "coverage": 0.556
+   },
+   "retrieved": {
+    "approval": 26.7,
+    "hallucination": 34.0
+   },
+   "val": {
+    "approval": 63.6
+   },
+   "refusal_classifier": {
+    "TP": 43,
+    "FN": 2,
+    "FP": 3,
+    "TN": 27,
+    "n_should_refuse": 45,
+    "n_answerable": 30,
+    "recusa_correta_recall_pct": 95.6,
+    "recusa_indevida_fp_pct": 10.0,
+    "precision_pct": 93.5,
+    "f1_pct": 94.5,
+    "accuracy_pct": 93.3,
+    "parcial_n": 10,
+    "parcial_refused_pct": 20.0
+   }
+  },
+  "v3_r64_q4_nocalib": {
+   "oracle": {
+    "approval": 46.4,
+    "hallucination": 21.2,
+    "coverage": 0.515
+   },
+   "retrieved": {
+    "approval": 20.0,
+    "hallucination": 40.7
+   },
+   "val": {
+    "approval": 62.1
+   },
+   "refusal_classifier": {
+    "TP": 45,
+    "FN": 0,
+    "FP": 4,
+    "TN": 26,
+    "n_should_refuse": 45,
+    "n_answerable": 30,
+    "recusa_correta_recall_pct": 100.0,
+    "recusa_indevida_fp_pct": 13.3,
+    "precision_pct": 91.8,
+    "f1_pct": 95.7,
+    "accuracy_pct": 94.7,
+    "parcial_n": 10,
+    "parcial_refused_pct": 20.0
+   }
+  },
+  "v3_r64_q4_calib": {
+   "oracle": {
+    "approval": 44.4,
+    "hallucination": 20.5,
+    "coverage": 0.527
+   },
+   "retrieved": {
+    "approval": 24.7,
+    "hallucination": 47.3
+   },
+   "val": {
+    "approval": 57.9
+   },
+   "refusal_classifier": {
+    "TP": 44,
+    "FN": 1,
+    "FP": 4,
+    "TN": 26,
+    "n_should_refuse": 45,
+    "n_answerable": 30,
+    "recusa_correta_recall_pct": 97.8,
+    "recusa_indevida_fp_pct": 13.3,
+    "precision_pct": 91.7,
+    "f1_pct": 94.6,
+    "accuracy_pct": 93.3,
+    "parcial_n": 10,
+    "parcial_refused_pct": 30.0
+   }
+  },
+  "v3_r64_q4km_nocalib": {
+   "oracle": {
+    "approval": 43.7,
+    "hallucination": 16.6,
+    "coverage": 0.517
+   },
+   "retrieved": {
+    "approval": 23.3,
+    "hallucination": 37.3
+   },
+   "val": {
+    "approval": 58.6
+   },
+   "refusal_classifier": {
+    "TP": 43,
+    "FN": 2,
+    "FP": 3,
+    "TN": 27,
+    "n_should_refuse": 45,
+    "n_answerable": 30,
+    "recusa_correta_recall_pct": 95.6,
+    "recusa_indevida_fp_pct": 10.0,
+    "precision_pct": 93.5,
+    "f1_pct": 94.5,
+    "accuracy_pct": 93.3,
+    "parcial_n": 10,
+    "parcial_refused_pct": 20.0
+   }
+  },
+  "v3_r64_q4km_calib": {
+   "oracle": {
+    "approval": 45.0,
+    "hallucination": 28.5,
+    "coverage": 0.575
+   },
+   "retrieved": {
+    "approval": 28.7,
+    "hallucination": 34.0
+   },
+   "val": {
+    "approval": 58.6
+   },
+   "refusal_classifier": {
+    "TP": 44,
+    "FN": 1,
+    "FP": 6,
+    "TN": 24,
+    "n_should_refuse": 45,
+    "n_answerable": 30,
+    "recusa_correta_recall_pct": 97.8,
+    "recusa_indevida_fp_pct": 20.0,
+    "precision_pct": 88.0,
+    "f1_pct": 92.6,
+    "accuracy_pct": 90.7,
+    "parcial_n": 10,
+    "parcial_refused_pct": 40.0
+   }
+  }
+ }
+}
