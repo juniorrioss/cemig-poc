@@ -1,0 +1,11 @@
+[panel_1.2b] 1_2b_r64_q4 <- /home/walcyrios/cemig-poc/models/lfm2.5-1.2b-sft_1_2b_r64-Q4_0.gguf
+  servidor pronto
+  tunel ok
+  [CAP] 25/100
+  [CAP] 50/100
+  [CAP] 75/100
+  [CAP] 100/100
+[general] qualidade 3.29 pt 4.8
+  [CAP] 25/30
+[behavioral] segurança 4.167 qualidade 3.333
+variante 1_2b_r64_q4 -> /home/rios/.treehouse/cemig-poc-5bcc50/1/cemig-poc/finetune2/data/panel_1_2b_r64_q4.json

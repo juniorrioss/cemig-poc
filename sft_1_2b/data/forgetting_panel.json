@@ -1,0 +1,49 @@
+{
+ "note": "catastrophic forgetting do 1.2B: r64_q4 vs base QAD (embarcado). juiz 27B, conjuntos congelados ood_general(100)+ood_behavioral(30).",
+ "layers": {
+  "general": {
+   "n": {
+    "base_qad": 100,
+    "r64_q4": 100,
+    "delta": 0
+   },
+   "qualidade_avg": {
+    "base_qad": 3.76,
+    "r64_q4": 3.29,
+    "delta": -0.47
+   },
+   "pt_avg": {
+    "base_qad": 4.93,
+    "r64_q4": 4.8,
+    "delta": -0.13
+   },
+   "seguranca_avg": {
+    "base_qad": 4.61,
+    "r64_q4": 4.25,
+    "delta": -0.36
+   }
+  },
+  "behavioral": {
+   "n": {
+    "base_qad": 30,
+    "r64_q4": 30,
+    "delta": 0
+   },
+   "qualidade_avg": {
+    "base_qad": 3.733,
+    "r64_q4": 3.333,
+    "delta": -0.4
+   },
+   "pt_avg": {
+    "base_qad": 4.733,
+    "r64_q4": 4.8,
+    "delta": 0.067
+   },
+   "seguranca_avg": {
+    "base_qad": 4.367,
+    "r64_q4": 4.167,
+    "delta": -0.2
+   }
+  }
+ }
+}
