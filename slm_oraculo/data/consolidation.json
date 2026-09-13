@@ -8,13 +8,53 @@
  "base_2.6b_q4_oracle_pct": 45.0,
  "quant_cost_bf16_to_q4_pp": 4.0,
  "gap_27b_minus_base_bf16_pp": 33.1,
- "trained_oracle_pct": {},
- "best_trained_oracle": null,
- "best_trained_oracle_pct": null,
- "gap_closed_pct": null,
+ "trained_oracle_pct": {
+  "sft_ep1_bf16": 61.6,
+  "sft_ep1_q4": 55.0,
+  "sft_ep2_bf16": 60.3,
+  "sft_ep2_q4": 58.3,
+  "sft_ep3_bf16": 58.9,
+  "sft_ep3_q4": 56.3
+ },
+ "best_trained_oracle": "sft_ep1_bf16",
+ "best_trained_oracle_pct": 61.6,
+ "gap_closed_pct": 44.7,
+ "best_bf16_oracle": {
+  "label": "sft_ep1_bf16",
+  "pct": 61.6,
+  "gap_closed_pct": 38.1
+ },
+ "best_q4_oracle": {
+  "label": "sft_ep2_q4",
+  "pct": 58.3,
+  "gap_closed_pct": 35.8
+ },
+ "hallucination_oracle_pct": {
+  "2.6b_bf16_base": 25.2,
+  "2.6b_q4_base": 25.8,
+  "27b": 2.6,
+  "sft_ep1_bf16": 25.2,
+  "sft_ep1_q4": 29.1,
+  "sft_ep2_bf16": 26.5,
+  "sft_ep2_q4": 25.2,
+  "sft_ep3_bf16": 29.8,
+  "sft_ep3_q4": 28.5
+ },
+ "embarque_recomendado": {
+  "label": "sft_ep2_q4",
+  "gguf": "lfm2.5-2.6b-sft_ep2-Q4_0.gguf",
+  "criterio": "melhor Q4 que NAO piora alucinacao vs base (25.2% vs 25.8%)"
+ },
+ "veredito": "Com contexto perfeito e o melhor treino, o 2.6B fecha ~36-38% do gap para o teto do 27B (Q4 45->58%, bf16 49->62%) SEM piorar alucinacao (ep2). Restam ~24 p.p. de capacidade (ex.: ler a faixa certa da tabela 13,8kV, que o treinado ainda erra: 0,25m vs 0,38m do 27B). Na busca v4 real o ganho embarcavel quase some (Q4 23.8->24.5%): o RETRIEVAL domina o teto pratico. No aparelho o 2.6B (treinado ou nao) nao cabe no orcamento de voz (~23s/4.3GB). CONCLUSAO: o SFT de destilacao e a receita certa e da salto real de qualidade, mas a POC em VOZ com 2.6B e proibitiva HOJE por latencia/RAM, e o teto util esta travado pelo retrieval, nao pelo SLM. Embarcado segue 1.2B; priorizar retrieval.",
  "retrieved_v4": {
   "27b": 46.4,
-  "2.6b_q4_base": 23.8
+  "2.6b_q4_base": 23.8,
+  "sft_ep1_bf16": 25.8,
+  "sft_ep1_q4": 25.2,
+  "sft_ep2_bf16": 30.5,
+  "sft_ep2_q4": 24.5,
+  "sft_ep3_bf16": 27.8,
+  "sft_ep3_q4": 25.8
  },
  "table": [
   {
@@ -27,6 +67,72 @@
    "citation_pct": 94.7,
    "avg_completion_tokens": 107.1,
    "file": "score_27b_oracle.json"
+  },
+  {
+   "label": "sft_ep1_bf16",
+   "context": "oracle",
+   "approval_pct": 61.6,
+   "mean_coverage": 0.725,
+   "hallucination_pct": 25.2,
+   "conv_chunk_hit_pct": 61.6,
+   "citation_pct": 94.7,
+   "avg_completion_tokens": 153.0,
+   "file": "score_sft_ep1_bf16_oracle.json"
+  },
+  {
+   "label": "sft_ep2_bf16",
+   "context": "oracle",
+   "approval_pct": 60.3,
+   "mean_coverage": 0.701,
+   "hallucination_pct": 26.5,
+   "conv_chunk_hit_pct": 60.3,
+   "citation_pct": 96.0,
+   "avg_completion_tokens": 135.2,
+   "file": "score_sft_ep2_bf16_oracle.json"
+  },
+  {
+   "label": "sft_ep3_bf16",
+   "context": "oracle",
+   "approval_pct": 58.9,
+   "mean_coverage": 0.73,
+   "hallucination_pct": 29.8,
+   "conv_chunk_hit_pct": 58.9,
+   "citation_pct": 97.4,
+   "avg_completion_tokens": 163.9,
+   "file": "score_sft_ep3_bf16_oracle.json"
+  },
+  {
+   "label": "sft_ep2_q4",
+   "context": "oracle",
+   "approval_pct": 58.3,
+   "mean_coverage": 0.645,
+   "hallucination_pct": 25.2,
+   "conv_chunk_hit_pct": 58.3,
+   "citation_pct": 93.4,
+   "avg_completion_tokens": 127.5,
+   "file": "score_sft_ep2_q4_oracle.json"
+  },
+  {
+   "label": "sft_ep3_q4",
+   "context": "oracle",
+   "approval_pct": 56.3,
+   "mean_coverage": 0.711,
+   "hallucination_pct": 28.5,
+   "conv_chunk_hit_pct": 56.3,
+   "citation_pct": 96.0,
+   "avg_completion_tokens": 162.3,
+   "file": "score_sft_ep3_q4_oracle.json"
+  },
+  {
+   "label": "sft_ep1_q4",
+   "context": "oracle",
+   "approval_pct": 55.0,
+   "mean_coverage": 0.68,
+   "hallucination_pct": 29.1,
+   "conv_chunk_hit_pct": 55.0,
+   "citation_pct": 91.4,
+   "avg_completion_tokens": 145.6,
+   "file": "score_sft_ep1_q4_oracle.json"
   },
   {
    "label": "2.6b_bf16_base",
@@ -62,6 +168,72 @@
    "file": "score_27b_retrieved.json"
   },
   {
+   "label": "sft_ep2_bf16",
+   "context": "retrieved",
+   "approval_pct": 30.5,
+   "mean_coverage": 0.472,
+   "hallucination_pct": 39.1,
+   "conv_chunk_hit_pct": 48.1,
+   "citation_pct": 98.0,
+   "avg_completion_tokens": 141.0,
+   "file": "score_sft_ep2_bf16_retrieved.json"
+  },
+  {
+   "label": "sft_ep3_bf16",
+   "context": "retrieved",
+   "approval_pct": 27.8,
+   "mean_coverage": 0.505,
+   "hallucination_pct": 47.0,
+   "conv_chunk_hit_pct": 41.6,
+   "citation_pct": 96.0,
+   "avg_completion_tokens": 175.7,
+   "file": "score_sft_ep3_bf16_retrieved.json"
+  },
+  {
+   "label": "sft_ep1_bf16",
+   "context": "retrieved",
+   "approval_pct": 25.8,
+   "mean_coverage": 0.507,
+   "hallucination_pct": 45.0,
+   "conv_chunk_hit_pct": 35.1,
+   "citation_pct": 92.7,
+   "avg_completion_tokens": 157.0,
+   "file": "score_sft_ep1_bf16_retrieved.json"
+  },
+  {
+   "label": "sft_ep3_q4",
+   "context": "retrieved",
+   "approval_pct": 25.8,
+   "mean_coverage": 0.528,
+   "hallucination_pct": 49.7,
+   "conv_chunk_hit_pct": 37.7,
+   "citation_pct": 97.4,
+   "avg_completion_tokens": 170.1,
+   "file": "score_sft_ep3_q4_retrieved.json"
+  },
+  {
+   "label": "sft_ep1_q4",
+   "context": "retrieved",
+   "approval_pct": 25.2,
+   "mean_coverage": 0.493,
+   "hallucination_pct": 45.7,
+   "conv_chunk_hit_pct": 35.1,
+   "citation_pct": 87.4,
+   "avg_completion_tokens": 150.1,
+   "file": "score_sft_ep1_q4_retrieved.json"
+  },
+  {
+   "label": "sft_ep2_q4",
+   "context": "retrieved",
+   "approval_pct": 24.5,
+   "mean_coverage": 0.426,
+   "hallucination_pct": 41.7,
+   "conv_chunk_hit_pct": 39.0,
+   "citation_pct": 96.7,
+   "avg_completion_tokens": 132.9,
+   "file": "score_sft_ep2_q4_retrieved.json"
+  },
+  {
    "label": "2.6b_q4_base",
    "context": "retrieved",
    "approval_pct": 23.8,
@@ -71,17 +243,6 @@
    "citation_pct": 96.0,
    "avg_completion_tokens": 218.8,
    "file": "score_2.6b_q4_base_retrieved.json"
-  },
-  {
-   "label": "2.6b_bf16_base",
-   "context": "retrieved",
-   "approval_pct": 4.6,
-   "mean_coverage": 0.098,
-   "hallucination_pct": 7.3,
-   "conv_chunk_hit_pct": 40.0,
-   "citation_pct": 18.5,
-   "avg_completion_tokens": 53.5,
-   "file": "score_2.6b_bf16_base_retrieved.json"
   }
  ]
 }

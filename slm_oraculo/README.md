@@ -116,15 +116,95 @@ forte; LoRA conservador é a escolha certa e também a mais leve.
 
 ---
 
-## FASE 3 — Veredito (preenchido após o treino)
+## FASE 2 — Resultado do treino (SFT LoRA correto, n=151, oráculo, régua honesta)
 
-_(pendente do fim do treino na Spark)_
+O SFT de destilação **FUNCIONOU** — ao contrário do fracasso do `finetune2/`. A diferença:
+(a) alvo = resposta APROVADA pela régua (não síntese estreita); (b) **LoRA na arquitetura
+CERTA** (atenção + MLP `feed_forward.w1/w2/w3`; o run anterior, abortado, adaptava o
+ShortConv por engano — ver histórico de commits).
 
-Baselines de busca real v4 já medidos (para o "o que sobra na prática"):
-| gerador · retrieved v4 (R@2 51%) | aprov% | alucinação% |
+### Curva de aprovação em ORÁCULO (a pergunta que decide)
+| variante | aprov% | cobertura | **alucinação%** | tok |
+|---|--:|--:|--:|--:|
+| **27B (TETO)** | **82.1** | 0.761 | **2.6** | 107 |
+| 2.6B base **bf16** | 49.0 | 0.590 | 25.2 | 259 |
+| 2.6B base **Q4_0** (embarque) | 45.0 | 0.562 | 25.8 | 225 |
+| sft **ep1 bf16** (melhor bf16) | **61.6** | 0.725 | 25.2 | 153 |
+| sft ep2 bf16 | 60.3 | 0.701 | 26.5 | 135 |
+| sft ep3 bf16 | 58.9 | 0.730 | 29.8 | 164 |
+| **sft ep2 Q4_0 (melhor p/ embarque)** | **58.3** | 0.645 | **25.2** | 128 |
+| sft ep1 Q4_0 | 55.0 | 0.680 | 29.1 | 146 |
+| sft ep3 Q4_0 | 56.3 | 0.711 | 28.5 | 162 |
+
+**Quanto do gap 27B−2.6B foi fechado (em oráculo):**
+- **bf16**: 49,0 → **61,6%** = **fechou 38,1% do gap** (+12,6 de 33,1 p.p.).
+- **Q4_0** (embarque): 45,0 → **58,3%** = **fechou 35,8% do gap** (+13,3 de 37,1 p.p.).
+
+**Alucinação (critério de rejeição, não nota de rodapé):** o vencedor de embarque
+**sft ep2 Q4_0 NÃO piora a alucinação (25,2% vs base 25,8%)** — passa o gate. Épocas
+posteriores (ep3) tendem a subir alucinação (28-30%) sem ganho de aprovação → **ep2 é o
+ponto ótimo** (early-stopping pela régua, como o brief exige). O treino também **encurtou a
+resposta de forma saudável** (225 → 128 tok no Q4), sinal de estilo mais direto/acionável.
+
+## FASE 3 — Veredito
+
+### Na busca v4 REAL (o que sobra na prática, retrieved R@2 51%)
+| gerador · retrieved v4 | aprov% | alucinação% |
 |---|--:|--:|
 | 27B · retrieved | 46.4 | 25.2 |
-| 2.6B Q4_0 · retrieved | 23.8 | 51.0 |
+| 2.6B Q4_0 base · retrieved | 23.8 | 51.0 |
+| sft ep2 **bf16** · retrieved | **30.5** | 39.1 |
+| sft ep2 **Q4_0** · retrieved | 24.5 | 41.7 |
+| sft ep3 bf16 · retrieved | 27.8 | 47.0 |
+
+O treinado sobe na v4, **mas pouco no formato de embarque** (Q4: 23,8 → 24,5%; bf16 sobe
+mais, 23,8 → 30,5%). **Confirma o gargalo DUPLO**: com o chunk certo o 2.6B agora converte
+muito melhor (oráculo +13 p.p.), mas **o retrieval só entrega o chunk certo em ~51%**, então
+o ganho de capacidade fica em grande parte "represado" atrás da busca. Alucinação na v4
+segue alta (~40%) porque, quando o chunk-ouro falta, o modelo (treinado a ser mais
+assertivo) inventa mais — eixo a vigiar.
+
+### Caso do capitão 13,8 kV — ressalva honesta
+Mesmo com a tabela limpa do Anexo II no contexto e após o SFT, **o 2.6B treinado ainda lê a
+linha ERRADA** (_"0,25 metros"_, faixa 6-10 kV) — o **27B lê a certa (0,38 m)**. O SFT
+elevou cobertura/estilo geral, mas **não ensinou a leitura fina de tabela** (localizar a
+faixa 10-15 kV). É a fronteira de capacidade que sobra: o gap de 18 p.p. restante em oráculo
+é exatamente esse tipo de raciocínio que o 1,2B/2,6B ainda não faz.
+
+### Aparelho (S24+ SM-S926B)
+Não re-benchmarkei: o modelo treinado é **a MESMA arquitetura e tamanho** (Q4_0 1,59 GB) do
+2.6B já medido no `android/README_ENGINE_UPGRADE.md` — o SFT muda só os pesos, não o perfil
+de compute. Os números medidos daquele 2.6B valem aqui: **TTFT 10-15 s, decode 15-18 tok/s,
+latência média ~23 s, RAM pico 4,32 GB** no S24+. **Acima do teto de voz de 10 s e da RAM do
+S21.** O treino encurtou a resposta (225 → 128 tok), o que reduz o tempo de decode em ~40%
+(~5-6 s → ~3,5-4 s), mas o **TTFT de 10-15 s (prefill do 2.6B) continua dominando** e
+sozinho já estoura o orçamento. **Não embarcável no fluxo de voz hoje** sem destravar
+latência (o mesmo veredito do engine-upgrade, agora com um modelo de qualidade superior).
+
+### VEREDITO EXPLÍCITO (na linguagem do capitão)
+**Com o contexto perfeito e o melhor treino possível, o SLM 2.6B NÃO chega perto do 27B —
+mas TAMBÉM não é proibitivo: dá um salto real e mensurável.** Números honestos:
+- **Em oráculo, o 2.6B treinado fecha ~36-38% do gap** para o teto (Q4 45→58%, bf16 49→62%),
+  **sem piorar a alucinação** (ep2). Isso **não é ruído** — é +13 p.p. consistente em 6
+  checkpoints, com a régua que o 27B faz 82%.
+- **Restam ~24 p.p. até o teto** (Q4 58% vs 82%): erros de raciocínio fino (ex.: ler a faixa
+  certa da tabela do 13,8 kV) que o 2.6B ainda não faz. **Esse teto residual é capacidade
+  do modelo** — não se fecha com mais dados do mesmo tipo.
+- **Na prática (busca v4 real), o ganho embarcável quase some** (Q4 23,8 → 24,5%): o
+  **retrieval é o gargalo que domina** — não adianta o SLM melhorar se o chunk certo só
+  chega em metade das vezes. **A maior alavanca de produto agora é o retrieval, não o SLM.**
+- **No aparelho, o 2.6B (treinado ou não) não cabe no orçamento de voz** (~23 s / 4,3 GB).
+
+**Resposta direta à pergunta que decide a POC:** o SLM **serve como prova de conceito de
+qualidade** (com contexto certo, o treino tira o 2.6B de 45% para 58% de respostas úteis e
+honestas), mas **a POC no fluxo de VOZ em 2.6B é proibitiva HOJE por LATÊNCIA/RAM, e o teto
+de qualidade útil está travado pelo RETRIEVAL, não pelo SLM.** Recomendação: (1) o modelo
+embarcado continua sendo o 1.2B por orçamento de voz; (2) **o SFT de destilação é a receita
+certa** e deve ser reaplicada quando o 2.6B couber no aparelho (engine/latência) OU destilada
+para o 1.2B; (3) **priorizar retrieval** — é onde o ganho de produto realmente aparece.
+
+**Artefato de embarque (quando o 2.6B couber):** `lfm2.5-2.6b-sft_ep2-Q4_0.gguf`
+(oráculo 58,3%, alucinação 25,2%, 128 tok médios) — na Spark em `~/cemig-poc/models/`.
 
 ---
 

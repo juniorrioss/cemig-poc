@@ -84,6 +84,27 @@ def main() -> None:
         if denom > 0:
             gap_closed = round(100 * (trained_o[best_trained] - base_q4_o) / denom, 1)
 
+    # Gap fechado separado por precisão (não misturar SFT com quantização).
+    def _best(prefix):
+        cands = {lb: v for lb, v in trained_o.items() if lb.endswith(prefix) and v is not None}
+        if not cands:
+            return None, None
+        k = max(cands, key=lambda x: cands[x])
+        return k, cands[k]
+
+    best_bf16_lb, best_bf16 = _best("bf16")
+    best_q4_lb, best_q4 = _best("q4")
+    gap_bf16 = (round(100 * (best_bf16 - base_bf16_o) / (tel_27b_o - base_bf16_o), 1)
+                if (best_bf16 and base_bf16_o and tel_27b_o) else None)
+    gap_q4 = (round(100 * (best_q4 - base_q4_o) / (tel_27b_o - base_q4_o), 1)
+              if (best_q4 and base_q4_o and tel_27b_o) else None)
+
+    # Alucinação por célula em oráculo (critério de rejeição — ordem do capitão).
+    halluc_oracle = {}
+    for r in rows:
+        if _match_ctx(r, "oracle"):
+            halluc_oracle[r.get("label")] = r.get("hallucination_pct")
+
     table = []
     for r in rows:
         table.append({
@@ -113,6 +134,24 @@ def main() -> None:
         "best_trained_oracle": best_trained,
         "best_trained_oracle_pct": (trained_o.get(best_trained) if best_trained else None),
         "gap_closed_pct": gap_closed,
+        "best_bf16_oracle": {"label": best_bf16_lb, "pct": best_bf16, "gap_closed_pct": gap_bf16},
+        "best_q4_oracle": {"label": best_q4_lb, "pct": best_q4, "gap_closed_pct": gap_q4},
+        "hallucination_oracle_pct": halluc_oracle,
+        "embarque_recomendado": {
+            "label": "sft_ep2_q4", "gguf": "lfm2.5-2.6b-sft_ep2-Q4_0.gguf",
+            "criterio": "melhor Q4 que NAO piora alucinacao vs base (25.2% vs 25.8%)",
+        },
+        "veredito": (
+            "Com contexto perfeito e o melhor treino, o 2.6B fecha ~36-38% do gap para o "
+            "teto do 27B (Q4 45->58%, bf16 49->62%) SEM piorar alucinacao (ep2). Restam ~24 "
+            "p.p. de capacidade (ex.: ler a faixa certa da tabela 13,8kV, que o treinado "
+            "ainda erra: 0,25m vs 0,38m do 27B). Na busca v4 real o ganho embarcavel quase "
+            "some (Q4 23.8->24.5%): o RETRIEVAL domina o teto pratico. No aparelho o 2.6B "
+            "(treinado ou nao) nao cabe no orcamento de voz (~23s/4.3GB). CONCLUSAO: o SFT de "
+            "destilacao e a receita certa e da salto real de qualidade, mas a POC em VOZ com "
+            "2.6B e proibitiva HOJE por latencia/RAM, e o teto util esta travado pelo "
+            "retrieval, nao pelo SLM. Embarcado segue 1.2B; priorizar retrieval."
+        ),
         "retrieved_v4": {
             "27b": ap("27b", "retrieved"),
             "2.6b_q4_base": ap("2.6b_q4_base", "retrieved"),

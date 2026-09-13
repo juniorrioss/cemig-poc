@@ -11,6 +11,8 @@
 # Comentários PT-BR; código em inglês.
 set -euo pipefail
 
+# NB: GGUF é caminho ABSOLUTO NA SPARK (ex.: /home/walcyrios/cemig-poc/models/...gguf).
+# NÃO use '~' — o shell LOCAL o expandiria para o home deste host.
 GGUF="$1"; LABEL="$2"; PORT="${3:-8471}"
 HERE="$(cd "$(dirname "$0")" && pwd)"
 PY="$HERE/../classifier/.venv/bin/python"
