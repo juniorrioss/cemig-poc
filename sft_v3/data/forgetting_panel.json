@@ -1,0 +1,42 @@
+{
+ "task": "poc-sft-v3",
+ "layer": "PARTE 5 — catastrophic forgetting (general+behavioral, OOD congelado)",
+ "note": "PEFT (LoRA) protege a capacidade geral, como o capitão previu. Nenhuma regressão além do ruído (limiar 0.20). Behavioral MELHOROU (qualidade +0.37, segurança +0.30). Base = finetune2 base 2.6B Q4_0 (mesmos pesos-base), mesmo juiz 27B, mesmos conjuntos CONGELADOS ood_general(100)/ood_behavioral(30).",
+ "comparison": {
+  "general": {
+   "qualidade_avg": {
+    "base": 3.93,
+    "v3_r64_q4": 3.85,
+    "delta": -0.08
+   },
+   "pt_avg": {
+    "base": 4.85,
+    "v3_r64_q4": 4.87,
+    "delta": 0.02
+   },
+   "seguranca_avg": {
+    "base": 4.46,
+    "v3_r64_q4": 4.46,
+    "delta": 0.0
+   }
+  },
+  "behavioral": {
+   "qualidade_avg": {
+    "base": 3.667,
+    "v3_r64_q4": 4.033,
+    "delta": 0.37
+   },
+   "pt_avg": {
+    "base": 4.8,
+    "v3_r64_q4": 4.733,
+    "delta": -0.07
+   },
+   "seguranca_avg": {
+    "base": 4,
+    "v3_r64_q4": 4.3,
+    "delta": 0.3
+   }
+  }
+ },
+ "veredito": "SEM catastrophic forgetting. O SFT de destilação v3 não degradou capacidade fora do domínio."
+}
