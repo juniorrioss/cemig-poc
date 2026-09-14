@@ -1,0 +1,73 @@
+{
+ "data": "/home/walcyrios/cemig-poc/tools_v1/data/train_full.jsonl",
+ "base": "/home/walcyrios/cemig-poc/base_hf",
+ "n": 4236,
+ "max_token_len": 2421,
+ "p50": 1364,
+ "p95": 2064,
+ "p99": 2225,
+ "per_max_length": {
+  "2048": {
+   "over": 227,
+   "over_pct": 5.36,
+   "over_by_family": {
+    "chamada_simples": {
+     "over": 0,
+     "total": 1575,
+     "pct": 0.0
+    },
+    "multiturno_nova_busca": {
+     "over": 227,
+     "total": 411,
+     "pct": 55.2
+    },
+    "multiturno_reuso": {
+     "over": 0,
+     "total": 900,
+     "pct": 0.0
+    },
+    "recusa_apos_busca": {
+     "over": 0,
+     "total": 675,
+     "pct": 0.0
+    },
+    "sem_ferramenta": {
+     "over": 0,
+     "total": 675,
+     "pct": 0.0
+    }
+   }
+  },
+  "3072": {
+   "over": 0,
+   "over_pct": 0.0,
+   "over_by_family": {
+    "chamada_simples": {
+     "over": 0,
+     "total": 1575,
+     "pct": 0.0
+    },
+    "multiturno_nova_busca": {
+     "over": 0,
+     "total": 411,
+     "pct": 0.0
+    },
+    "multiturno_reuso": {
+     "over": 0,
+     "total": 900,
+     "pct": 0.0
+    },
+    "recusa_apos_busca": {
+     "over": 0,
+     "total": 675,
+     "pct": 0.0
+    },
+    "sem_ferramenta": {
+     "over": 0,
+     "total": 675,
+     "pct": 0.0
+    }
+   }
+  }
+ }
+}

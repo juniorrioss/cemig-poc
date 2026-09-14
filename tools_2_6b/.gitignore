@@ -1,0 +1,5 @@
+# pesos GGUF, gerações e scores volumosos (reprodutíveis; pesos vivem na Spark)
+data/gen_*.json
+data/score_*.json
+*.gguf
+__pycache__/
