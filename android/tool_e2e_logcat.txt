@@ -1,0 +1,53 @@
+--------- beginning of main
+09-14 10:10:13.088 20074 20125 I CEMIG_TOOL_E2E: ==================== E2E TOOL-CALLING HÍBRIDO ====================
+09-14 10:10:13.088 20074 20125 I CEMIG_TOOL_E2E: Sintetizador=LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf ASR=nemotron
+09-14 10:10:13.090 20074 20125 I CEMIG_TOOL_E2E: System prompt tool: 2381 chars (esperado 2381)
+09-14 10:10:15.183 20074 20125 I CEMIG_TOOL_E2E: -----------------------------------------------------------------
+09-14 10:10:15.183 20074 20125 I CEMIG_TOOL_E2E: [A_deve_buscar] Pergunta técnica -> DEVE buscar
+09-14 10:10:15.183 20074 20125 I CEMIG_TOOL_E2E:   PERGUNTA: Qual a distância segura pra trabalhar perto de rede de 13,8 kV?
+09-14 10:10:18.462 20074 20125 I CEMIG_TOOL_E2E:   DECISÃO: buscar=true (3279ms)
+09-14 10:10:18.462 20074 20125 I CEMIG_TOOL_E2E:   TOOL_CALL LITERAL: <|tool_call_start|>[buscar_norma(consulta='distância segura trabalho proximidade rede 13,8 kV 13.8 kV')]<|tool_call_end|>
+09-14 10:10:18.700 20074 20125 I CEMIG_TOOL_E2E:   BUSCA(fala bruta): 2 chunks em 238ms · gate=soft top1=nr-10(0.4398539)
+09-14 10:10:18.700 20074 20125 I CEMIG_TOOL_E2E:     chunk[0] nr-10 Anexo Ii :: NR-10 · Anexo Ii Anexo Ii — ANEXO II ZONA DE RISCO E ZONA CONTROLADA Tabela de raios de de
+09-14 10:10:18.700 20074 20125 I CEMIG_TOOL_E2E:     chunk[1] nr-10 Anexo Ii :: NR-10 · Anexo Ii Anexo Ii — |  20 e  30 | | | 0,56 | | | 1,56 | | | |  30 e  36 | | | 
+09-14 10:10:25.471 20074 20125 I CEMIG_TOOL_E2E:   RESPOSTA: A distância segura para trabalhar perto de rede de 13,8 kV é de 0,20 a 0,70 metros. Essa faixa é definida na tabela de delimitação de zonas de risco e livre do Anexo II da NR-10.
+09-14 10:10:25.471 20074 20125 I CEMIG_TOOL_E2E:   TEMPOS: reason=3279ms search=238ms ttft=5299ms decode=1472ms TOTAL=10288ms (65 tok)
+09-14 10:10:25.472 20074 20125 I CEMIG_TOOL_E2E: -----------------------------------------------------------------
+09-14 10:10:25.472 20074 20125 I CEMIG_TOOL_E2E: [B_followup_reuso] Followup mesmo assunto -> REUSO
+09-14 10:10:25.472 20074 20125 I CEMIG_TOOL_E2E:   PERGUNTA: E se eu não conseguir desligar a rede?
+09-14 10:10:32.538 20074 20125 I CEMIG_TOOL_E2E:   DECISÃO: buscar=false (7066ms)
+09-14 10:10:32.538 20074 20125 I CEMIG_TOOL_E2E:   TOOL_CALL LITERAL: A norma consultada trata de zonas de risco e controle, não de procedimentos de desligamento. Para responder à sua dúvida, é preciso verificar as disposições específicas sobre segurança em energia elétrica e acesso a equipamentos.
+09-14 10:10:32.538 20074 20125 I CEMIG_TOOL_E2E:   SEM BUSCA (reuso/direto)
+09-14 10:10:32.538 20074 20125 I CEMIG_TOOL_E2E:   RESPOSTA: A norma consultada trata de zonas de risco e controle, não de procedimentos de desligamento. Para responder à sua dúvida, é preciso verificar as disposições específicas sobre segurança em energia elétrica e acesso a equipamentos.
+09-14 10:10:32.538 20074 20125 I CEMIG_TOOL_E2E:   TEMPOS: reason=7066ms search=0ms ttft=7066ms decode=0ms TOTAL=7066ms (0 tok)
+09-14 10:10:32.538 20074 20125 I CEMIG_TOOL_E2E: -----------------------------------------------------------------
+09-14 10:10:32.538 20074 20125 I CEMIG_TOOL_E2E: [C_muda_assunto] Mudança de assunto -> NOVA busca
+09-14 10:10:32.538 20074 20125 I CEMIG_TOOL_E2E:   PERGUNTA: Beleza. E o poste que não parece firme, posso subir?
+09-14 10:10:35.589 20074 20125 I CEMIG_TOOL_E2E:   DECISÃO: buscar=true (3049ms)
+09-14 10:10:35.589 20074 20125 I CEMIG_TOOL_E2E:   TOOL_CALL LITERAL: <|tool_call_start|>[buscar_norma(consulta='instabilidade estrutural poste não firme subida trabalho em altura')]<|tool_call_end|>
+09-14 10:10:35.626 20074 20125 I CEMIG_TOOL_E2E:   BUSCA(fala bruta): 2 chunks em 37ms · gate=soft top1=nr-10(0.47963417)
+09-14 10:10:35.626 20074 20125 I CEMIG_TOOL_E2E:     chunk[0] nr-35 Anexo Iii :: NR-35 · Anexo Iii Anexo Iii da Nr-35 Escadas de Uso Individual (aprovado Pela Portaria MTE
+09-14 10:10:35.626 20074 20125 I CEMIG_TOOL_E2E:     chunk[1] nr-34 34.10 :: NR-34 · 34.10 Movimentação de Cargas — 34.10.20 O operador deve obedecer unicamente às ins
+09-14 10:10:43.831 20074 20125 I CEMIG_TOOL_E2E:   RESPOSTA: A NR-35, item 5.2.1.4, exige verificação periódica das condições estruturais da escada, considerando a
+09-14 10:10:43.831 20074 20125 I CEMIG_TOOL_E2E:   TEMPOS: reason=3049ms search=37ms ttft=7289ms decode=916ms TOTAL=11293ms (36 tok)
+09-14 10:10:43.831 20074 20125 I CEMIG_TOOL_E2E: -----------------------------------------------------------------
+09-14 10:10:43.832 20074 20125 I CEMIG_TOOL_E2E: [D_saudacao] Saudação -> ZERO busca
+09-14 10:10:43.832 20074 20125 I CEMIG_TOOL_E2E:   PERGUNTA: Valeu, muito obrigado pela ajuda!
+09-14 10:10:46.862 20074 20125 I CEMIG_TOOL_E2E:   DECISÃO: buscar=false (3030ms)
+09-14 10:10:46.862 20074 20125 I CEMIG_TOOL_E2E:   TOOL_CALL LITERAL: De nada, é um prazer. Estou à disposição se precisar de mais alguma coisa.
+09-14 10:10:46.862 20074 20125 I CEMIG_TOOL_E2E:   SEM BUSCA (reuso/direto)
+09-14 10:10:46.862 20074 20125 I CEMIG_TOOL_E2E:   RESPOSTA: De nada, é um prazer. Estou à disposição se precisar de mais alguma coisa.
+09-14 10:10:46.862 20074 20125 I CEMIG_TOOL_E2E:   TEMPOS: reason=3030ms search=0ms ttft=3030ms decode=0ms TOTAL=3030ms (0 tok)
+09-14 10:10:46.862 20074 20125 I CEMIG_TOOL_E2E: -----------------------------------------------------------------
+09-14 10:10:46.862 20074 20125 I CEMIG_TOOL_E2E: [E_recusa] Contexto insuficiente -> RECUSA
+09-14 10:10:46.862 20074 20125 I CEMIG_TOOL_E2E:   PERGUNTA: Posso trabalhar de camiseta de algodão rasgada no serviço?
+09-14 10:10:50.383 20074 20125 I CEMIG_TOOL_E2E:   DECISÃO: buscar=true (3519ms)
+09-14 10:10:50.383 20074 20125 I CEMIG_TOOL_E2E:   TOOL_CALL LITERAL: <|tool_call_start|>[buscar_norma(consulta='trabalho em ambiente confinado camiseta de algodão rasgada EPI proteção contra riscos físicos')]<|tool_call_end|>
+09-14 10:10:50.425 20074 20125 I CEMIG_TOOL_E2E:   BUSCA(fala bruta): 2 chunks em 42ms · gate=soft top1=nr-01(0.40467384)
+09-14 10:10:50.425 20074 20125 I CEMIG_TOOL_E2E:     chunk[0] nr-38 38.10.1 :: NR-38 · 38.10.1 É Obrigatório O Fornecimento Gratuito de: — 38.10.5.1 As vestimentas de tr
+09-14 10:10:50.425 20074 20125 I CEMIG_TOOL_E2E:     chunk[1] nr-04 Anexo I :: NR-04 · Anexo I Anexo I Relação da Classificação Nacional de Atividades Econômicas - Cnae 
+09-14 10:10:58.428 20074 20125 I CEMIG_TOOL_E2E:   RESPOSTA: Não, a norma consultada trata de confecção de vestuário e não aborda o uso de camisetas de algodão rasgadas. Para responder à sua dúvida, é preciso verificar as diretrizes específicas de segurança do trabalho para atividades elétricas ou de construção.
+09-14 10:10:58.428 20074 20125 I CEMIG_TOOL_E2E:   TEMPOS: reason=3519ms search=42ms ttft=6166ms decode=1837ms TOTAL=11565ms (75 tok)
+09-14 10:10:58.517 20074 20125 I CEMIG_TOOL_E2E: RAM PSS total: 3859,2 MB
+09-14 10:10:58.518 20074 20125 I CEMIG_TOOL_E2E: Resultados E2E salvos em: /storage/emulated/0/Android/data/br.org.ceia.cemigpoc/files/tool_e2e_results.json
+09-14 10:10:58.653 20074 20125 I CEMIG_TOOL_E2E: ==================== E2E CONCLUÍDO (5 casos) ====================

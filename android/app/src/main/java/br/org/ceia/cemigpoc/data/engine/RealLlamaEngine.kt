@@ -45,6 +45,20 @@ class RealLlamaEngine(
         }
     }
 
+    /**
+     * Gera a partir de um prompt já renderizado no formato nativo (pipeline de tool-calling).
+     * NÃO aplica chat template — o prompt vem pronto do LfmToolRenderer (paridade com o treino).
+     */
+    override fun generateFromPrompt(
+        prompt: String,
+        maxTokens: Int
+    ): Flow<LlmResponseChunk> {
+        Log.i(TAG, "generateFromPrompt: prompt nativo pré-renderizado (${prompt.length} chars, max=$maxTokens)")
+        return engine.generateStream(prompt, maxTokens = maxTokens).map { delta ->
+            LlmResponseChunk.Text(delta)
+        }
+    }
+
     suspend fun generateComplete(prompt: String, maxTokens: Int = 50): String {
         return engine.generateComplete(prompt, maxTokens)
     }

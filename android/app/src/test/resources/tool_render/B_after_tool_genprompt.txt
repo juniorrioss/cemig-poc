@@ -1,0 +1,21 @@
+<|startoftext|><|im_start|>system
+Você é o assistente técnico de campo da CEMIG. O eletricista OUVE sua resposta por voz, então seja curto e direto.
+FERRAMENTA: você tem a ferramenta buscar_norma(consulta, nr) para consultar as Normas Regulamentadoras. Use-a para decidir sozinho quando buscar:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', REESCREVA a fala do eletricista em termos técnicos de busca e normalize números. Preencha 'nr' só quando a norma for citada ou inequívoca; senão deixe null.
+- NÃO CHAME para saudações, agradecimentos, pedidos de repetição, bom senso geral, assuntos fora do escopo das NRs, nem quando um trecho já consultado nesta conversa responde à nova pergunta (reuse o que está no contexto).
+REGRAS DA RESPOSTA FINAL (nunca viole):
+- Responda em NO MÁXIMO 4 frases curtas.
+- PROIBIDO markdown, títulos, negrito, listas, bullets ou numeração. Escreva em prosa corrida.
+- Cite a norma e o item DENTRO da frase (ex.: 'conforme a NR-10, item 10.5.1, ...').
+- Baseie-se EXCLUSIVAMENTE no contexto normativo consultado; não invente procedimentos, valores nem itens.
+- Se o contexto trouxer só PARTE da resposta, responda o que der e diga com franqueza o que não dá para afirmar com o que foi consultado.
+- Se o contexto NÃO responder à pergunta, não invente: diga que isso não está nas normas consultadas e, em uma frase, o que seria preciso verificar.
+List of tools: [{"type": "function", "function": {"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) de segurança do trabalho para fundamentar a resposta ao eletricista. Chame SOMENTE quando precisar consultar uma norma para responder; NÃO chame para saudações, agradecimentos, pedidos de repetição, bom senso geral ou quando o contexto já consultado nesta conversa responde à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "A fala do eletricista REESCRITA em termos técnicos de busca: converta a linguagem de campo em termos das NRs e normalize números (ex.: '13,8 kV' e '13.8 kV'). Ex.: 'o poste não parece firme pra subir' -> 'estabilidade estrutural poste inspeção antes de subir'."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando o eletricista a cita ou quando é inequívoca pela pergunta; caso contrário null."}}, "required": ["consulta"]}}}]<|im_end|>
+<|im_start|>user
+distância segura pra trabalhar perto de rede de 13,8 kV<|im_end|>
+<|im_start|>assistant
+<|tool_call_start|>[buscar_norma(consulta='distancia seguranca zona risco 13,8 kV 13.8 kV media tensao', nr='NR-10')]<|tool_call_end|><|im_end|>
+<|im_start|>tool
+[1] (NR-10 - 10.2.8.2 - Medidas de proteção coletiva):
+Nos trabalhos em instalações elétricas, quando não for possível o desligamento, a distância de segurança para a faixa de tensão de 13,8 kV deve respeitar o raio de delimitação da zona de risco definido no Anexo II.<|im_end|>
+<|im_start|>assistant

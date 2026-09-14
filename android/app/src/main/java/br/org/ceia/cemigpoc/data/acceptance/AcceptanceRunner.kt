@@ -141,13 +141,22 @@ object AcceptanceRunner {
         val telemetryFile = File(context.filesDir, "acceptance_telemetry.jsonl")
         val logger = TelemetryLogger(telemetryFile)
 
+        // System prompt de tool-calling IDÊNTICO ao do treino (asset, paridade byte-a-byte).
+        val toolSystemPrompt = runCatching {
+            context.assets.open("tools_system_prompt.txt")
+                .bufferedReader(Charsets.UTF_8).use { it.readText() }
+        }.getOrElse {
+            Log.e(TAG, "Falha ao ler tools_system_prompt.txt; usando fallback", it)
+            AskPipeline.SYNTHESIS_SYSTEM_PROMPT
+        }
+
         val pipeline = AskPipeline(
             retriever = retriever,
             llmEngine = realLlama,
             telemetryLogger = logger,
+            toolSystemPrompt = toolSystemPrompt,
             maxTurnsT2 = 3,
-            t2MaxBudgetTokens = 1000,
-            jaccardThreshold = 0.7,
+            maxPromptTokens = 1700,
             topK = 2
         )
 
@@ -204,7 +213,10 @@ object AcceptanceRunner {
                 question = queryText,
                 answer = doneEvent.finalAnswer,
                 chunks = doneEvent.chunksUsed,
-                metrics = m
+                metrics = m,
+                calledTool = m.calledTool,
+                toolConsulta = m.toolConsulta.ifBlank { null },
+                toolNr = m.toolNr.ifBlank { null }
             )
             turnsMap[q.id] = turn
 

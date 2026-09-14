@@ -8,7 +8,6 @@ import br.org.ceia.cemigpoc.domain.engine.LlmResponseChunk
 import br.org.ceia.cemigpoc.domain.engine.Retriever
 import br.org.ceia.cemigpoc.domain.model.Chunk
 import br.org.ceia.cemigpoc.domain.model.ConversationTurn
-import br.org.ceia.cemigpoc.domain.model.Message
 import br.org.ceia.cemigpoc.domain.model.PipelineStage
 import br.org.ceia.cemigpoc.domain.model.TurnEvent
 import br.org.ceia.cemigpoc.domain.model.TurnMetrics
@@ -16,42 +15,66 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 /**
- * Pipeline conversacional multiturno consolidado (sem Turno 1 de rewrite).
+ * Pipeline conversacional HÍBRIDO de tool-calling (task poc-app-tools).
  *
- * Decisão do Capitão (POC consolidação): o Turno 1 de rewrite via LLM foi REMOVIDO do caminho.
- * A bancada do classifier provou que keywords reescritas PIORAM a busca vs fala bruta
- * (22.5% vs 28.5% R@2 — ver classifier/README.md) e o rewrite custava ~1-1.5 s por pergunta.
+ * Arquitetura provada (tools_oraculo/README.md), implementada EXATAMENTE:
+ * - O PRÓPRIO MODELO (1.2B treinado em tool-calling, r128) decide QUANDO buscar e quando
+ *   reusar o contexto já em tela (decisão F1 95%, reuso-correto 84,8%, novo-tópico 100%).
+ * - Quando o modelo chama buscar_norma, o APP IGNORA a `consulta` reescrita pelo modelo e
+ *   executa a busca externa já existente com a FALA BRUTA + classificador de NR + RRF v4.
+ *   Motivo medido: a consulta reescrita pelo 1.2B PIORA a busca (got_gold 19-25% vs 51% da
+ *   fala crua; R@2 22,3 vs 30,5) e não melhora com mais dado nem rank.
+ * - A heurística Jaccard de reuso SAIU: quem decide reuso agora é o modelo (não chamar a
+ *   ferramenta = reusar o contexto/histórico já presente).
  *
- * Fluxo atual:
- * - ASR -> transcrição da fala do trabalhador (medida fora, `asrMs`).
- * - Estágio 1+2 (HybridRetriever): classificador leve de NR dá boost/filtro gated ao BM25;
- *   a busca BM25 recebe a FALA BRUTA (não keywords). A decisão do gate é exposta para o
- *   Modo Engenharia via TurnEvent.Classified.
- * - Reuso por Jaccard: se a fala bruta atual for quase idêntica (> jaccardThreshold) à do
- *   turno anterior e houver chunks, reutiliza os chunks sem nova consulta BM25. Mantido
- *   porque em multiturno perguntas de continuação repetem a fala anterior; agora compara
- *   falas BRUTAS consecutivas (antes comparava keywords do rewrite, que não existe mais).
- * - Turno 2 (Síntese): system prompt + histórico enxuto (últimas maxTurnsT2 trocas brutas)
- *   + chunks recuperados + pergunta atual -> síntese com citação obrigatória de norma.
- *   - Orçamento rígido: T2 <= t2MaxBudgetTokens; se estourar, poda a troca mais antiga.
+ * Laço por turno do usuário:
+ *   1. DECISÃO: renderiza o prompt nativo (system BAKED com `List of tools:` + histórico +
+ *      fala) e gera. O modelo emite `<|tool_call_start|>[buscar_norma(...)]` OU responde direto.
+ *   2a. Se HÁ tool_call: parseia (nome+args), IGNORA a `consulta`, roda a busca externa (fala
+ *       bruta + classificador + RRF v4), injeta o turno `tool` com os chunks, e gera a resposta
+ *       final (streaming). LIMITE: 1 busca por turno do usuário (ver maxSearchesPerTurn).
+ *   2b. Se NÃO há tool_call: a saída do turno de decisão É a resposta (reuso/saudação/fora de
+ *       escopo) — nenhuma busca é feita.
+ *
+ * Falhas tratadas: chamada malformada (intenção de buscar preservada -> busca com fala bruta);
+ * tool desconhecida (idem, cai no default seguro de fundamentar com as normas); segunda
+ * tool_call na síntese é ignorada (limite de 1 busca/turno).
+ *
+ * Multiturno / orçamento (n_ctx 2048): o histórico é reconstruído no formato nativo (turnos
+ * user + [tool_call + tool] + assistant). Se o prompt estimado passar de maxPromptTokens, a
+ * troca MAIS ANTIGA é podada primeiro (o contexto normativo recente e a fala atual ficam).
  */
 class AskPipeline(
     private val retriever: Retriever,
     private val llmEngine: LlmEngine,
     private val telemetryLogger: TelemetryLogger? = null,
+    // System prompt de tool-calling IDÊNTICO ao do treino (asset tools_system_prompt.txt).
+    // Default = SYNTHESIS_SYSTEM_PROMPT (fallback dos testes JVM); em produção o ViewModel
+    // injeta a string BAKED lida do asset (paridade byte-a-byte, SHA256 363185b7…).
+    private val toolSystemPrompt: String = SYNTHESIS_SYSTEM_PROMPT,
     val maxTurnsT2: Int = 3,
-    val t2MaxBudgetTokens: Int = 1000,
-    val jaccardThreshold: Double = 0.7,
-    val topK: Int = 2
+    // Orçamento do prompt de síntese (system + histórico + contexto + fala). O n_ctx é 2048;
+    // deixamos folga para os tokens gerados. Poda a troca mais antiga do histórico se estourar.
+    val maxPromptTokens: Int = 1700,
+    val topK: Int = 2,
+    // Teto de tokens do turno de DECISÃO: uma tool_call tem ~40 tok; uma resposta direta
+    // (saudação/reuso curto) cabe folgada. Se o modelo não chamar, isto limita a resposta.
+    val decisionMaxTokens: Int = 220,
+    // Teto de tokens da SÍNTESE final (resposta de voz, <=4 frases).
+    val synthesisMaxTokens: Int = 384
 ) {
     companion object {
         private const val TAG = "AskPipeline"
 
-        // Prompt de síntese CONCISO (variante 'v1_rigido' vencedora do experimento judge151):
-        // dev nas 20 smoke (fora do holdout) -> 144 tok médios, 100% sem markdown, 75% citação
-        // inline. Escolhido no experimento do 2.6B thinking-OFF (gate 9.9% na GPU), mas mantido
-        // no 1.2B embarcado (fallback do brief; ver ModelFileManager e README_CONSOLIDACAO):
-        // domar a verbosidade para o canal de VOZ vale para ambos os modelos. Limites duros.
+        // Limite RÍGIDO de buscas por turno do usuário (anti-loop de chamadas repetidas).
+        private const val MAX_SEARCHES_PER_TURN = 1
+
+        // Marcadores de tool-call reemitidos (ou não) pelo engine nativo.
+        private val TOOL_MARKERS = listOf("<|tool_call_start|>", "buscar_norma(")
+
+        // Prompt de síntese CONCISO herdado (fallback dos testes e do caminho não-tool). O
+        // system de PRODUÇÃO do pipeline de tool-calling é o BAKED do treino (asset), injetado
+        // via toolSystemPrompt. Mantido aqui para os testes JVM (FakeLlm) e compatibilidade.
         const val SYNTHESIS_SYSTEM_PROMPT =
             "Você é o assistente técnico de campo da CEMIG. O eletricista OUVE sua resposta por voz, então seja curto e direto.\n" +
             "REGRAS OBRIGATÓRIAS (nunca viole):\n" +
@@ -63,7 +86,7 @@ class AskPipeline(
     }
 
     /**
-     * Executa o processamento multiturno completo de uma pergunta.
+     * Executa o processamento híbrido de tool-calling de uma pergunta.
      */
     fun execute(
         userQuestion: String,
@@ -72,102 +95,139 @@ class AskPipeline(
     ): Flow<TurnEvent> = flow {
         val totalStart = System.currentTimeMillis()
 
+        // Reconstrói o histórico no formato nativo, podado ao orçamento (troca mais antiga sai).
+        val renderedHistory = buildRenderedHistory(history, userQuestion)
+
         // ---------------------------------------------------------------------
-        // ETAPA 1: Classificação (estágio 1) + Busca BM25 (estágio 2) com fala bruta
+        // TURNO 1 — DECISÃO: o modelo decide buscar (tool_call) ou responder direto (reuso).
         // ---------------------------------------------------------------------
         emit(TurnEvent.StageChanged(PipelineStage.CLASSIFYING))
+        val decisionStart = System.currentTimeMillis()
 
-        // Reuso por Jaccard: compara a fala BRUTA atual com a do turno anterior.
-        val previousTurn = history.lastOrNull()
-        val jaccard = calculateJaccardSimilarity(userQuestion, previousTurn?.question.orEmpty())
-        val canReuse = previousTurn != null &&
-                previousTurn.chunks.isNotEmpty() &&
-                jaccard >= jaccardThreshold
+        val decisionPrompt = LfmToolRenderer.renderDecisionPrompt(
+            systemPrompt = toolSystemPrompt,
+            history = renderedHistory,
+            userQuestion = userQuestion
+        )
 
-        val chunks: List<Chunk>
-        val searchMs: Long
-        var decision: HybridRetriever.Decision? = null
-
-        if (canReuse) {
-            chunks = previousTurn!!.chunks
-            searchMs = 0L
-            Log.i(TAG, "Reuso de chunks anteriores (Jaccard=%.2f) para fala '%s'".format(jaccard, userQuestion))
-            emit(TurnEvent.ChunksRetrieved(chunks, reused = true, durationMs = 0L))
-        } else {
-            val searchStart = System.currentTimeMillis()
-            chunks = try {
-                // Estágio 1 híbrido: classifica a FALA BRUTA e aplica boost/filtro gated;
-                // o BM25 também recebe a fala bruta (melhor que keywords — ver AGENTS.md).
-                if (retriever is HybridRetriever) {
-                    // Retrieval v3: se a busca densa estiver disponível, usa fusão RRF
-                    // 3-sinais (BM25-gated-exp + 2 densos EmbeddingGemma); senão BM25-gated.
-                    val r = if (retriever.hasDense) {
-                        retriever.searchV3(rawQuestion = userQuestion, topK = topK)
-                    } else {
-                        retriever.searchWithRaw(bm25Query = userQuestion, rawQuestion = userQuestion, topK = topK)
-                    }
-                    decision = retriever.lastDecision
-                    r
-                } else {
-                    retriever.search(query = userQuestion, topK = topK)
-                }
-            } catch (e: Throwable) {
-                Log.e(TAG, "Erro na busca BM25", e)
-                emptyList()
+        val decisionBuffer = StringBuilder()
+        try {
+            llmEngine.generateFromPrompt(decisionPrompt, maxTokens = decisionMaxTokens).collect { chunk ->
+                if (chunk is LlmResponseChunk.Text) decisionBuffer.append(chunk.delta)
             }
-            searchMs = System.currentTimeMillis() - searchStart
+        } catch (e: Throwable) {
+            Log.e(TAG, "Erro no turno de decisão (tool-calling)", e)
+            emit(TurnEvent.Error("Falha na decisão do modelo: ${e.message}", e))
+            return@flow
+        }
+        val decisionRaw = decisionBuffer.toString()
+        val reasonMs = System.currentTimeMillis() - decisionStart
 
-            // Expõe a decisão do gate para o Modo Engenharia (o capitão quer ver a escolha).
-            decision?.let { d ->
-                emit(
-                    TurnEvent.Classified(
-                        nrTop1 = d.top1,
-                        nrTop1Prob = d.top1Prob,
-                        nrTop2 = d.top2,
-                        gateMode = d.mode,
-                        boostNrs = d.boostNrs
-                    )
+        val looksLikeCall = LfmToolCallParser.looksLikeToolCall(decisionRaw)
+        val calls = if (looksLikeCall) LfmToolCallParser.parse(decisionRaw) else emptyList()
+        val validCall = calls.firstOrNull { it.name == LfmToolCallParser.TOOL_NAME }
+        // A intenção de buscar existe se: parseamos buscar_norma OU vimos o marcador (malformado
+        // ou tool desconhecida). Em ambos, o default SEGURO é buscar com a fala bruta.
+        val wantsSearch = validCall != null || looksLikeCall
+
+        val modelConsulta = validCall?.arguments?.get("consulta")?.trim().orEmpty()
+        val modelNr = validCall?.arguments?.get("nr")?.trim().orEmpty()
+
+        emit(TurnEvent.ToolDecided(called = wantsSearch, consulta = modelConsulta, nr = modelNr, reasonMs = reasonMs))
+        Log.i(TAG, "Decisão do modelo: buscar=$wantsSearch consulta='$modelConsulta' nr='$modelNr' (${reasonMs}ms)")
+
+        // ---------------------------------------------------------------------
+        // Ramo B — SEM tool_call: reuso/saudação/fora de escopo. A saída da decisão É a resposta.
+        // ---------------------------------------------------------------------
+        if (!wantsSearch) {
+            emit(TurnEvent.StageChanged(PipelineStage.RESPONDING))
+            // Emite a resposta direta acumulada (nenhuma busca; contexto já em tela é reusado).
+            emit(TurnEvent.ChunksRetrieved(emptyList(), reused = true, durationMs = 0L))
+            val directAnswer = stripToolResidue(decisionRaw).trim()
+            emit(TurnEvent.TextDelta(directAnswer))
+
+            val totalMs = System.currentTimeMillis() - totalStart
+            val metrics = TurnMetrics(
+                asrMs = asrMs, searchMs = 0L, ttftMs = reasonMs, decodeMs = 0L,
+                totalMs = totalMs, contextTokens = estimateTokens(decisionPrompt),
+                completionTokens = estimateTokens(directAnswer), tokPerSec = 0.0,
+                nrTop1 = "-", nrTop1Prob = 0f, nrTop2 = "", gateMode = "reuso",
+                boostNrs = "", chunksReused = true, retrievalMode = "reuso",
+                denseEncodeMs = 0L, calledTool = false, toolConsulta = "", toolNr = "",
+                reasonMs = reasonMs
+            )
+            emit(
+                TurnEvent.Done(
+                    finalAnswer = directAnswer, chunksUsed = emptyList(), metrics = metrics
                 )
-            }
-
-            Log.i(TAG, "Busca BM25 (fala bruta) recuperou ${chunks.size} chunks em ${searchMs}ms")
-            emit(TurnEvent.ChunksRetrieved(chunks, reused = false, durationMs = searchMs))
+            )
+            logTurnSafely(history.size + 1, userQuestion, directAnswer, emptyList(), metrics)
+            return@flow
         }
 
         // ---------------------------------------------------------------------
-        // ETAPA 2: Turno 2 - Síntese Final com Orçamento de Contexto
+        // Ramo A — COM tool_call: busca EXTERNA (IGNORA a consulta do modelo) + síntese.
+        // ---------------------------------------------------------------------
+        val searchStart = System.currentTimeMillis()
+        var decision: HybridRetriever.Decision? = null
+        val chunks: List<Chunk> = try {
+            // CRÍTICO: busca com a FALA BRUTA (userQuestion), não com modelConsulta. O
+            // classificador de NR + RRF v4 já vivem no HybridRetriever. Limite: 1 busca/turno.
+            if (retriever is HybridRetriever) {
+                val r = if (retriever.hasDense) {
+                    retriever.searchV3(rawQuestion = userQuestion, topK = topK)
+                } else {
+                    retriever.searchWithRaw(bm25Query = userQuestion, rawQuestion = userQuestion, topK = topK)
+                }
+                decision = retriever.lastDecision
+                r
+            } else {
+                retriever.search(query = userQuestion, topK = topK)
+            }
+        } catch (e: Throwable) {
+            Log.e(TAG, "Erro na busca externa (tool)", e)
+            emptyList()
+        }
+        val searchMs = System.currentTimeMillis() - searchStart
+
+        decision?.let { d ->
+            emit(
+                TurnEvent.Classified(
+                    nrTop1 = d.top1, nrTop1Prob = d.top1Prob, nrTop2 = d.top2,
+                    gateMode = d.mode, boostNrs = d.boostNrs
+                )
+            )
+        }
+        emit(TurnEvent.ChunksRetrieved(chunks, reused = false, durationMs = searchMs))
+        Log.i(TAG, "Busca externa (fala bruta) recuperou ${chunks.size} chunks em ${searchMs}ms")
+
+        // ---------------------------------------------------------------------
+        // SÍNTESE: injeta a tool_call do modelo + o turno `tool` com os chunks, gera resposta.
+        // A tool_call reconstruída usa a `consulta` do modelo (ou a fala bruta se malformada),
+        // pois é o que o modelo "acha" que pediu — a coerência do prompt exige espelhá-la.
         // ---------------------------------------------------------------------
         emit(TurnEvent.StageChanged(PipelineStage.RESPONDING))
+        val consultaForPrompt = modelConsulta.ifBlank { userQuestion }
+        val nrForPrompt = modelNr.ifBlank { null }
+        val toolContext = LfmToolRenderer.formatToolResult(chunks)
+
+        val synthesisPrompt = LfmToolRenderer.renderSynthesisPrompt(
+            systemPrompt = toolSystemPrompt,
+            history = renderedHistory,
+            userQuestion = userQuestion,
+            consulta = consultaForPrompt,
+            nr = nrForPrompt,
+            toolContext = toolContext
+        )
+
         val t2Start = System.currentTimeMillis()
-
-        val contextStr = if (chunks.isNotEmpty()) {
-            chunks.mapIndexed { idx, c ->
-                "[${idx + 1}] (${c.doc} - ${c.section} - ${c.title}):\n${c.content}"
-            }.joinToString("\n\n")
-        } else {
-            "Nenhum contexto normativo recuperado para a consulta."
-        }
-
-        val userContentT2 = "Contexto normativo consultado:\n$contextStr\n\nPergunta do eletricista:\n$userQuestion"
-
-        // Orçamento de Turno 2: poda trocas mais antigas se ultrapassar limite de tokens
-        val rawT2History = history.takeLast(maxTurnsT2)
-        val prunedT2History = pruneHistoryForBudget(rawT2History, SYNTHESIS_SYSTEM_PROMPT, userContentT2, t2MaxBudgetTokens)
-
-        val messagesT2 = mutableListOf<Message>()
-        for (turn in prunedT2History) {
-            messagesT2.add(Message(role = Message.Role.USER, content = turn.question))
-            messagesT2.add(Message(role = Message.Role.ASSISTANT, content = turn.answer))
-        }
-        messagesT2.add(Message(role = Message.Role.USER, content = userContentT2))
-
         val answerBuilder = StringBuilder()
         var ttftMs = 0L
         var firstTokenReceived = false
         var completionTokens = 0
 
         try {
-            llmEngine.streamChat(messagesT2, SYNTHESIS_SYSTEM_PROMPT).collect { chunk ->
+            llmEngine.generateFromPrompt(synthesisPrompt, maxTokens = synthesisMaxTokens).collect { chunk ->
                 if (chunk is LlmResponseChunk.Text) {
                     if (!firstTokenReceived) {
                         firstTokenReceived = true
@@ -179,7 +239,7 @@ class AskPipeline(
                 }
             }
         } catch (e: Throwable) {
-            Log.e(TAG, "Erro na síntese do Turno 2", e)
+            Log.e(TAG, "Erro na síntese do turno de tool", e)
             emit(TurnEvent.Error("Falha na síntese de resposta: ${e.message}", e))
             return@flow
         }
@@ -188,12 +248,8 @@ class AskPipeline(
         val totalMs = t2End - totalStart
         val decodeMs = maxOf(0L, (t2End - t2Start) - ttftMs)
         val tokPerSec = if (decodeMs > 0) (completionTokens.toDouble() / (decodeMs / 1000.0)) else 0.0
-
-        val estimatedContextTokens = estimateTokens(SYNTHESIS_SYSTEM_PROMPT) +
-                prunedT2History.sumOf { estimateTokens(it.question) + estimateTokens(it.answer) } +
-                estimateTokens(userContentT2)
-
-        val finalAnswer = answerBuilder.toString().trim()
+        // A síntese pode, por engano, emitir uma nova tool_call: descartamos (1 busca/turno).
+        val finalAnswer = stripToolResidue(answerBuilder.toString()).trim()
 
         val metrics = TurnMetrics(
             asrMs = asrMs,
@@ -201,30 +257,90 @@ class AskPipeline(
             ttftMs = ttftMs,
             decodeMs = decodeMs,
             totalMs = totalMs,
-            contextTokens = estimatedContextTokens,
+            contextTokens = estimateTokens(synthesisPrompt),
             completionTokens = completionTokens,
             tokPerSec = Math.round(tokPerSec * 100.0) / 100.0,
-            nrTop1 = decision?.top1 ?: (if (canReuse) "-" else ""),
+            nrTop1 = decision?.top1 ?: "",
             nrTop1Prob = decision?.top1Prob ?: 0f,
             nrTop2 = decision?.top2 ?: "",
-            gateMode = decision?.mode ?: (if (canReuse) "reuso" else "-"),
+            gateMode = decision?.mode ?: "-",
             boostNrs = decision?.boostNrs?.joinToString(",").orEmpty(),
-            chunksReused = canReuse,
-            retrievalMode = decision?.retrieval ?: (if (canReuse) "reuso" else "bm25"),
-            // Encode denso on-device (EmbeddingGemma) medido dentro do searchV3.
+            chunksReused = false,
+            retrievalMode = decision?.retrieval ?: "bm25",
             denseEncodeMs = if (retriever is HybridRetriever && decision?.retrieval == "rrf3")
-                retriever.lastDenseEncodeMs else 0L
+                retriever.lastDenseEncodeMs else 0L,
+            calledTool = true,
+            toolConsulta = modelConsulta,
+            toolNr = modelNr,
+            reasonMs = reasonMs
         )
 
         emit(TurnEvent.Done(finalAnswer = finalAnswer, chunksUsed = chunks, metrics = metrics))
+        logTurnSafely(history.size + 1, userQuestion, finalAnswer, chunks, metrics)
+    }
 
-        // Telemetria local JSONL
+    /**
+     * Reconstrói o histórico no formato nativo (RenderedTurn) e poda a troca mais antiga até o
+     * prompt estimado caber no orçamento (n_ctx 2048). O contexto normativo recente e a fala
+     * atual são preservados; some sempre a troca MAIS ANTIGA primeiro.
+     */
+    fun buildRenderedHistory(
+        history: List<ConversationTurn>,
+        currentQuestion: String
+    ): List<LfmToolRenderer.RenderedTurn> {
+        val recent = history.takeLast(maxTurnsT2).toMutableList()
+        // Poda por orçamento: estima o prompt (system + histórico + fala + folga da geração).
+        val baseTokens = estimateTokens(toolSystemPrompt) + estimateTokens(currentQuestion) + 32
+        while (recent.isNotEmpty()) {
+            val histTokens = recent.sumOf { renderedTurnTokens(it) }
+            if (baseTokens + histTokens <= maxPromptTokens) break
+            recent.removeAt(0) // remove a troca MAIS ANTIGA
+        }
+        return recent.map { turn ->
+            LfmToolRenderer.RenderedTurn(
+                userQuestion = turn.question,
+                calledTool = turn.calledTool,
+                consulta = turn.toolConsulta,
+                nr = turn.toolNr,
+                toolContext = if (turn.calledTool) LfmToolRenderer.formatToolResult(turn.chunks) else "",
+                answer = turn.answer
+            )
+        }
+    }
+
+    /** Estima os tokens de um turno reconstruído (fala + [tool_call + chunks] + resposta). */
+    private fun renderedTurnTokens(turn: ConversationTurn): Int {
+        var t = estimateTokens(turn.question) + estimateTokens(turn.answer)
+        if (turn.calledTool) {
+            t += estimateTokens(turn.toolConsulta ?: "") + 8
+            t += turn.chunks.sumOf { estimateTokens(it.content) + 12 }
+        }
+        return t
+    }
+
+    /** Remove resíduo de tokens/sintaxe de tool-call de um texto de resposta. */
+    fun stripToolResidue(text: String): String {
+        var out = text
+        for (mk in TOOL_MARKERS) {
+            val idx = out.indexOf(mk)
+            if (idx >= 0) out = out.substring(0, idx)
+        }
+        return out.replace("<|tool_call_end|>", "").replace("<|im_end|>", "")
+    }
+
+    private fun logTurnSafely(
+        turnIndex: Int,
+        question: String,
+        answer: String,
+        chunks: List<Chunk>,
+        metrics: TurnMetrics
+    ) {
         try {
             telemetryLogger?.logTurn(
-                turnIndex = history.size + 1,
-                question = userQuestion,
-                transcription = userQuestion,
-                finalAnswer = finalAnswer,
+                turnIndex = turnIndex,
+                question = question,
+                transcription = question,
+                finalAnswer = answer,
                 chunksUsed = chunks,
                 metrics = metrics
             )
@@ -234,53 +350,7 @@ class AskPipeline(
     }
 
     /**
-     * Calcula a similaridade de Jaccard entre duas falas brutas (reuso de chunks em multiturno).
-     */
-    fun calculateJaccardSimilarity(text1: String, text2: String): Double {
-        val s1 = tokenizeWords(text1)
-        val s2 = tokenizeWords(text2)
-        if (s1.isEmpty() && s2.isEmpty()) return 1.0
-        if (s1.isEmpty() || s2.isEmpty()) return 0.0
-
-        val intersection = s1.intersect(s2).size
-        val union = s1.union(s2).size
-        return if (union > 0) intersection.toDouble() / union.toDouble() else 0.0
-    }
-
-    private fun tokenizeWords(text: String): Set<String> {
-        return text.lowercase()
-            .replace(Regex("[^a-zA-Z0-9À-ÿ]"), " ")
-            .split(Regex("\\s+"))
-            .filter { it.length >= 3 }
-            .toSet()
-    }
-
-    /**
-     * Poda o histórico mais antigo para manter o contexto do Turno 2 rigorosamente abaixo do orçamento.
-     */
-    fun pruneHistoryForBudget(
-        history: List<ConversationTurn>,
-        systemPrompt: String,
-        userContent: String,
-        maxBudgetTokens: Int
-    ): List<ConversationTurn> {
-        val baseTokens = estimateTokens(systemPrompt) + estimateTokens(userContent)
-        val result = history.toMutableList()
-
-        while (result.isNotEmpty()) {
-            val historyTokens = result.sumOf { estimateTokens(it.question) + estimateTokens(it.answer) }
-            if (baseTokens + historyTokens <= maxBudgetTokens) {
-                break
-            }
-            // Remove a troca mais antiga
-            result.removeAt(0)
-        }
-
-        return result
-    }
-
-    /**
-     * Estimador rápido de contagem de tokens para controle de orçamento (1 token ~ 3.8 caracteres).
+     * Estimador rápido de contagem de tokens para controle de orçamento (1 token ~ 3.8 chars).
      */
     fun estimateTokens(text: String): Int {
         if (text.isBlank()) return 0

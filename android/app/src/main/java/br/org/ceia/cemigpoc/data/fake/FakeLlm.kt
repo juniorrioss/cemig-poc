@@ -41,6 +41,57 @@ class FakeLlm(
         emitStreamingText(synthesizeAnswer(userContent))
     }
 
+    /**
+     * Simula a geração a partir de prompt nativo pré-renderizado (pipeline de tool-calling).
+     *
+     * Heurística do mock (determinística, para os testes JVM do laço híbrido):
+     * - Prompt de SÍNTESE (contém um turno `tool`): sintetiza a resposta a partir dos chunks.
+     * - Prompt de DECISÃO (termina numa fala do usuário): decide chamar a ferramenta OU
+     *   responder direto conforme `mode` e o conteúdo da última fala (saudação/agradecimento
+     *   -> sem tool). A tool_call é emitida no formato nativo do LFM2.5.
+     */
+    override fun generateFromPrompt(
+        prompt: String,
+        maxTokens: Int
+    ): Flow<LlmResponseChunk> = flow {
+        // Prompt de síntese: já tem o turno `tool` com o contexto injetado.
+        if (prompt.contains("<|im_start|>tool")) {
+            val toolCtx = prompt.substringAfterLast("<|im_start|>tool\n").substringBefore("<|im_end|>")
+            emitStreamingText(synthesizeAnswer(toolCtx))
+            return@flow
+        }
+
+        // Prompt de decisão: a última fala do usuário está entre o último user e o assistant final.
+        val lastUser = prompt.substringAfterLast("<|im_start|>user\n").substringBefore("<|im_end|>").trim()
+        val decideCall = when (mode) {
+            FakeLlmMode.FORCE_TOOL -> true
+            FakeLlmMode.FORCE_NO_TOOL -> false
+            FakeLlmMode.AUTO -> !isSmallTalk(lastUser)
+        }
+        if (decideCall) {
+            // Emite a tool_call nativa; a `consulta` do mock imita a reescrita do modelo.
+            val call = "<|tool_call_start|>[buscar_norma(consulta='${lastUser.replace("'", "\\'")}')]<|tool_call_end|>"
+            emit(LlmResponseChunk.Text(call))
+        } else {
+            // Resposta direta (reuso/saudação): sem busca.
+            emitStreamingText(directReply(lastUser))
+        }
+    }
+
+    private fun isSmallTalk(text: String): Boolean {
+        val t = text.lowercase()
+        return listOf("bom dia", "boa tarde", "boa noite", "obrigad", "valeu", "tudo bem",
+            "tudo certo", "ok", "beleza").any { t.contains(it) }
+    }
+
+    private fun directReply(text: String): String {
+        return if (isSmallTalk(text)) {
+            "Tudo certo, estou aqui pra ajudar com as normas de segurança. Pode mandar sua dúvida."
+        } else {
+            "Como já vimos, mantenha o procedimento das normas consultadas."
+        }
+    }
+
     private suspend fun kotlinx.coroutines.flow.FlowCollector<LlmResponseChunk>.emitStreamingText(text: String) {
         val tokens = text.split(" ")
         for (i in tokens.indices) {

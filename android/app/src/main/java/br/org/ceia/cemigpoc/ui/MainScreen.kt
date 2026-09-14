@@ -33,7 +33,6 @@ import androidx.compose.material.icons.filled.AirplanemodeActive
 import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -130,10 +129,12 @@ fun MainScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
+                    // Ajuste de UI 2 (pedido do capitão): logo do CEIA um pouco maior (28->36dp),
+                    // ajuste discreto que não quebra o layout do cabeçalho.
                     Image(
                         painter = painterResource(id = R.drawable.ceia_logo_navy),
                         contentDescription = "CEIA CEMIG",
-                        modifier = Modifier.height(28.dp),
+                        modifier = Modifier.height(36.dp),
                         contentScale = ContentScale.Fit
                     )
 
@@ -274,87 +275,69 @@ fun MainScreen(
                 // Fix (poc-sft-v3, reclamação do capitão): a caixa era singleLine e não crescia,
                 // "super difícil de ler a transcrição". Agora cresce com o conteúdo (multilinha),
                 // com altura mínima confortável, teto rolável e fonte legível (16sp).
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    verticalAlignment = Alignment.Bottom
-                ) {
-                    OutlinedTextField(
-                        value = uiState.currentQuestionInput,
-                        onValueChange = { viewModel.onQuestionInputChanged(it) },
-                        placeholder = {
-                            Text(
-                                text = if (uiState.isListening) "Ouvindo microfone..." else "Fale pelo PTT ou digite sua dúvida...",
-                                color = CeiaGray500,
-                                fontSize = 15.sp,
-                                fontFamily = InterFontFamily
-                            )
-                        },
-                        textStyle = androidx.compose.ui.text.TextStyle(
-                            fontSize = 16.sp,
-                            lineHeight = 22.sp,
+                //
+                // Ajuste de UI 4: o pequeno '>' de enviar SAIU daqui (fácil de esbarrar). O
+                // envio agora é feito pelo botão contextual grande abaixo (mic <-> enviar). O
+                // ícone de LIMPAR fica no campo (limpar -> o botão volta a ser microfone).
+                OutlinedTextField(
+                    value = uiState.currentQuestionInput,
+                    onValueChange = { viewModel.onQuestionInputChanged(it) },
+                    placeholder = {
+                        Text(
+                            text = if (uiState.isListening) "Ouvindo microfone..." else "Fale pelo PTT ou digite sua dúvida...",
+                            color = CeiaGray500,
+                            fontSize = 15.sp,
                             fontFamily = InterFontFamily
-                        ),
-                        modifier = Modifier
-                            .weight(1f)
-                            // Cresce com o conteúdo entre ~2,5 e ~7 linhas; acima disso rola.
-                            .heightIn(min = 64.dp, max = 168.dp)
-                            .verticalScroll(rememberScrollState()),
-                        singleLine = false,
-                        maxLines = 8,
-                        shape = RoundedCornerShape(CeiaRadiusMd),
-                        colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = CeiaBlue500,
-                            unfocusedBorderColor = CeiaGray200,
-                            focusedContainerColor = CeiaWhite,
-                            unfocusedContainerColor = CeiaWhite
-                        ),
-                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Default),
-                        trailingIcon = {
-                            if (uiState.currentQuestionInput.isNotEmpty()) {
-                                IconButton(onClick = { viewModel.onQuestionInputChanged("") }) {
-                                    Icon(
-                                        imageVector = Icons.Filled.Clear,
-                                        contentDescription = "Limpar",
-                                        tint = CeiaGray500,
-                                        modifier = Modifier.size(18.dp)
-                                    )
-                                }
+                        )
+                    },
+                    textStyle = androidx.compose.ui.text.TextStyle(
+                        fontSize = 16.sp,
+                        lineHeight = 22.sp,
+                        fontFamily = InterFontFamily
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        // Cresce com o conteúdo entre ~2,5 e ~7 linhas; acima disso rola.
+                        .heightIn(min = 64.dp, max = 168.dp)
+                        .verticalScroll(rememberScrollState()),
+                    singleLine = false,
+                    maxLines = 8,
+                    shape = RoundedCornerShape(CeiaRadiusMd),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedBorderColor = CeiaBlue500,
+                        unfocusedBorderColor = CeiaGray200,
+                        focusedContainerColor = CeiaWhite,
+                        unfocusedContainerColor = CeiaWhite
+                    ),
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Default),
+                    trailingIcon = {
+                        if (uiState.currentQuestionInput.isNotEmpty()) {
+                            IconButton(onClick = { viewModel.onQuestionInputChanged("") }) {
+                                Icon(
+                                    imageVector = Icons.Filled.Clear,
+                                    contentDescription = "Limpar",
+                                    tint = CeiaGray500,
+                                    modifier = Modifier.size(18.dp)
+                                )
                             }
                         }
-                    )
-
-                    Spacer(modifier = Modifier.width(8.dp))
-
-                    // Habilitado sempre que houver texto e o pipeline NÃO estiver processando
-                    // ativamente (classificando/respondendo). Assim uma transcrição (IDLE +
-                    // awaitingConfirmation), um texto digitado ou uma reescrita após erro de
-                    // voz podem ser enviados; só bloqueia durante a geração em andamento.
-                    val pipelineBusy = uiState.stage == PipelineStage.CLASSIFYING ||
-                        uiState.stage == PipelineStage.RESPONDING
-                    IconButton(
-                        onClick = { viewModel.submitQuestion() },
-                        enabled = uiState.currentQuestionInput.isNotBlank() && !pipelineBusy,
-                        modifier = Modifier
-                            .size(48.dp)
-                            .clip(CircleShape)
-                            .background(if (uiState.currentQuestionInput.isNotBlank()) CeiaBlue500 else CeiaGray200)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Filled.Send,
-                            contentDescription = "Enviar Pergunta",
-                            tint = CeiaWhite,
-                            modifier = Modifier.size(20.dp)
-                        )
                     }
-                }
+                )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Botão gigante Push-To-Talk para uso com luvas de eletricista
+                // Botão contextual grande (ajuste de UI 4): microfone quando vazio, ENVIAR
+                // quando há texto. Uso com luvas de eletricista. O envio só é permitido quando
+                // o pipeline não está processando ativamente (evita envio acidental / duplo).
+                val pipelineBusy = uiState.stage == PipelineStage.CLASSIFYING ||
+                    uiState.stage == PipelineStage.RESPONDING
                 PushToTalkButton(
                     isListening = uiState.isListening,
+                    hasText = uiState.currentQuestionInput.isNotBlank(),
+                    sendEnabled = uiState.currentQuestionInput.isNotBlank() && !pipelineBusy,
                     onStartPress = { viewModel.startPushToTalk() },
-                    onRelease = { viewModel.stopPushToTalk() }
+                    onRelease = { viewModel.stopPushToTalk() },
+                    onSend = { viewModel.submitQuestion() }
                 )
             }
         }
@@ -417,7 +400,7 @@ fun MainScreen(
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "Motor LFM2.5 1.2B Instruct · Whisper Base Q5_1 · 36 NRs",
+                            text = "LFM2.5 1.2B tool-calling · Nemotron 3.5 INT8 · 36 NRs",
                             color = CeiaGray500,
                             fontFamily = InterFontFamily,
                             fontSize = 12.sp
@@ -582,6 +565,11 @@ private fun ConversationTurnItem(
 
 /**
  * Exibição do turno ativo enquanto o streaming está acontecendo.
+ *
+ * Ajuste de UI 1 (pedido do capitão): durante o streaming, as NORMAS CONSULTADAS ficam EM CIMA
+ * e o TEXTO GERADO ABAIXO. Assim o texto cresce no campo de visão (para baixo) em vez de
+ * empurrar as normas; combinado com o auto-scroll do LazyColumn (LaunchedEffect em MainScreen
+ * observando currentStreamingAnswer), a geração fica sempre acompanhável.
  */
 @Composable
 private fun ActiveStreamingItem(
@@ -619,20 +607,22 @@ private fun ActiveStreamingItem(
                 )
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
+            // NORMAS CONSULTADAS EM CIMA (ancoradas): não se movem enquanto o texto cresce.
+            if (chunks.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(10.dp))
+                SourcesSection(chunks = chunks)
+            }
 
+            Spacer(modifier = Modifier.height(10.dp))
+
+            // TEXTO GERADO ABAIXO das normas: cresce para baixo, no campo de visão.
             Text(
-                text = if (streamingAnswer.isNotEmpty()) streamingAnswer else "Processando raciocínio e consultando normas...",
+                text = if (streamingAnswer.isNotEmpty()) streamingAnswer else "Processando e consultando normas...",
                 color = if (streamingAnswer.isNotEmpty()) CeiaGray900 else CeiaGray500,
                 fontFamily = InterFontFamily,
                 fontSize = 14.sp,
                 lineHeight = 21.sp
             )
-
-            if (chunks.isNotEmpty()) {
-                Spacer(modifier = Modifier.height(10.dp))
-                SourcesSection(chunks = chunks)
-            }
         }
     }
 }
@@ -648,9 +638,9 @@ private fun StageIndicatorBanner(
     val (bg, textColor, text) = when (stage) {
         PipelineStage.IDLE -> Triple(CeiaGray100, CeiaGray700, "100% OFFLINE · PRONTO")
         PipelineStage.LISTENING -> Triple(CeiaDanger.copy(alpha = 0.15f), CeiaDanger, "GRAVANDO ÁUDIO DO OPERADOR...")
-        PipelineStage.TRANSCRIBING -> Triple(CeiaBlue100, CeiaNavy800, "TRANSCREVENDO (WHISPER BASE Q5_1)...")
-        PipelineStage.CLASSIFYING -> Triple(CeiaBlue100, CeiaNavy800, "CLASSIFICANDO NR + BUSCANDO BM25 (TOP-2)...")
-        PipelineStage.RESPONDING -> Triple(CeiaBlue100, CeiaNavy800, "SINTETIZANDO RESPOSTA (LFM2.5)...")
+        PipelineStage.TRANSCRIBING -> Triple(CeiaBlue100, CeiaNavy800, "TRANSCREVENDO (NEMOTRON 3.5 INT8)...")
+        PipelineStage.CLASSIFYING -> Triple(CeiaBlue100, CeiaNavy800, "MODELO DECIDINDO: BUSCAR OU REUSAR...")
+        PipelineStage.RESPONDING -> Triple(CeiaBlue100, CeiaNavy800, "SINTETIZANDO RESPOSTA (LFM2.5 1.2B)...")
         PipelineStage.DONE -> Triple(CeiaSuccess.copy(alpha = 0.15f), CeiaSuccess, "RESPOSTA CONCLUÍDA")
         PipelineStage.ERROR -> Triple(CeiaDanger.copy(alpha = 0.15f), CeiaDanger, errorMessage ?: "ERRO OPERACIONAL")
     }

@@ -19,9 +19,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.MicNone
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,17 +48,26 @@ import br.org.ceia.cemigpoc.ui.theme.CeiaWhite
 import br.org.ceia.cemigpoc.ui.theme.InterFontFamily
 
 /**
- * Botão Push-To-Talk gigante projetado especificamente para operários de campo (uso com luvas).
+ * Botão principal CONTEXTUAL (ajuste de UI 4, pedido do capitão).
  *
- * Interação:
- * - Ao tocar e segurar: inicia captura de voz no ASR.
- * - Ao soltar: envia transcrição final para o pipeline.
+ * - Campo de texto VAZIO -> botão de MICROFONE: segurar para falar (Push-To-Talk), soltar para
+ *   transcrever. Comportamento histórico com luvas de campo.
+ * - Campo de texto COM conteúdo (transcrito ou digitado) -> botão de ENVIAR: um TOQUE envia a
+ *   pergunta ao pipeline. Assim o operário não precisa mirar o pequeno '>' de play (fácil de
+ *   esbarrar). Limpar o campo volta ao microfone (permite regravar).
+ *
+ * A troca é clara: ícone (Mic/MicNone <-> Send), rótulo, cor e contentDescription mudam. O modo
+ * enviar usa clique simples (não gesto de segurar), evitando envio acidental por toque de
+ * gravação. Enquanto o pipeline está ocupado, o envio é desabilitado (sendEnabled=false).
  */
 @Composable
 fun PushToTalkButton(
     isListening: Boolean,
+    hasText: Boolean,
+    sendEnabled: Boolean,
     onStartPress: () -> Unit,
     onRelease: () -> Unit,
+    onSend: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "ptt_pulse")
@@ -70,13 +81,35 @@ fun PushToTalkButton(
         label = "pulse_scale"
     )
 
+    // Modo ENVIAR quando há texto e não estamos gravando; senão modo MICROFONE.
+    val sendMode = hasText && !isListening
     val currentScale = if (isListening) pulseScale else 1.0f
 
     val backgroundColor by animateColorAsState(
-        targetValue = if (isListening) CeiaDanger else CeiaBlue500,
+        targetValue = when {
+            isListening -> CeiaDanger
+            sendMode && !sendEnabled -> CeiaBlue500.copy(alpha = 0.5f)
+            sendMode -> CeiaBlue600
+            else -> CeiaBlue500
+        },
         animationSpec = tween(150),
         label = "ptt_color"
     )
+
+    // Modificador de interação: TOQUE (enviar) ou SEGURAR (gravar), conforme o modo.
+    val interactionModifier = if (sendMode) {
+        Modifier.clickable(enabled = sendEnabled) { onSend() }
+    } else {
+        Modifier.pointerInput(Unit) {
+            detectTapGestures(
+                onPress = {
+                    onStartPress()
+                    tryAwaitRelease()
+                    onRelease()
+                }
+            )
+        }
+    }
 
     Box(
         modifier = modifier
@@ -88,15 +121,7 @@ fun PushToTalkButton(
             )
             .clip(RoundedCornerShape(CeiaRadiusLg))
             .background(backgroundColor)
-            .pointerInput(Unit) {
-                detectTapGestures(
-                    onPress = {
-                        onStartPress()
-                        tryAwaitRelease()
-                        onRelease()
-                    }
-                )
-            }
+            .then(interactionModifier)
             .padding(vertical = 20.dp, horizontal = 16.dp),
         contentAlignment = Alignment.Center
     ) {
@@ -105,8 +130,12 @@ fun PushToTalkButton(
             horizontalArrangement = Arrangement.Center
         ) {
             Icon(
-                imageVector = if (isListening) Icons.Filled.Mic else Icons.Filled.MicNone,
-                contentDescription = "Microfone Push-To-Talk",
+                imageVector = when {
+                    isListening -> Icons.Filled.Mic
+                    sendMode -> Icons.Filled.Send
+                    else -> Icons.Filled.MicNone
+                },
+                contentDescription = if (sendMode) "Enviar pergunta" else "Microfone Push-To-Talk",
                 tint = CeiaWhite,
                 modifier = Modifier.size(36.dp)
             )
@@ -115,7 +144,11 @@ fun PushToTalkButton(
 
             Column {
                 Text(
-                    text = if (isListening) "SOLTE PARA ENVIAR" else "SEGURE PARA FALAR",
+                    text = when {
+                        isListening -> "SOLTE PARA ENVIAR"
+                        sendMode -> "TOQUE PARA ENVIAR"
+                        else -> "SEGURE PARA FALAR"
+                    },
                     color = CeiaWhite,
                     fontFamily = ActayWideFontFamily,
                     fontWeight = FontWeight.Bold,
@@ -123,7 +156,11 @@ fun PushToTalkButton(
                     letterSpacing = 0.5.sp
                 )
                 Text(
-                    text = if (isListening) "Gravando áudio do operador..." else "Assistente por voz 100% offline",
+                    text = when {
+                        isListening -> "Gravando áudio do operador..."
+                        sendMode -> "Revise a transcrição e envie sua dúvida"
+                        else -> "Assistente por voz 100% offline"
+                    },
                     color = CeiaWhite.copy(alpha = 0.85f),
                     fontFamily = InterFontFamily,
                     fontWeight = FontWeight.Normal,

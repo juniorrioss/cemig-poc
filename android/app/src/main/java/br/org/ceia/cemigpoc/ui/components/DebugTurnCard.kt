@@ -43,11 +43,12 @@ private val TimelineDecodeColor = Color(0xFF10B981)   // Verde
 /**
  * Card de diagnóstico e telemetria inline para o Modo Engenharia / Debug solicitado pelo Capitão.
  *
- * Exibe breakdown minucioso do pipeline consolidado (sem Turno 1 de rewrite):
- * (1) Transcrição ASR + tempo
- * (2) Classificação NR + gate acionado (top-1/top-2, probs, modo do gate, NRs boostadas)
- * (3) Chunks recuperados (doc+seção+score BM25) + tempo busca
- * (4) Tokens de contexto, TTFT, tok/s decode + tempo total
+ * ATUALIZADO (task poc-app-tools) para o pipeline HÍBRIDO de tool-calling e o stack atual:
+ * (1) Transcrição ASR (Nemotron 3.5 INT8) + tempo
+ * (2) DECISÃO do modelo: houve tool_call? argumento (consulta/nr) reescrito? OU reuso de contexto
+ * (3) Se buscou: classificador NR + gate + fusão RRF v4 (a busca IGNORA a consulta do modelo e
+ *     usa a FALA BRUTA) + chunks recuperados; se reusou: sem busca
+ * (4) Síntese (1.2B treinado tool Q4): tokens, TTFT, tok/s decode + tempo total
  * (5) Barra visual proporcional do tempo total da pergunta
  */
 @Composable
@@ -97,79 +98,87 @@ fun DebugTurnCard(
                 horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 TimelineLegendItem("ASR", TimelineAsrColor)
-                TimelineLegendItem("Classif+BM25", TimelineSearchColor)
+                TimelineLegendItem("Busca RRF", TimelineSearchColor)
                 TimelineLegendItem("TTFT", TimelineTtftColor)
                 TimelineLegendItem("Decode", TimelineDecodeColor)
             }
 
             Spacer(modifier = Modifier.height(2.dp))
 
-            // (1) ASR + Tempo
+            // (1) ASR + Tempo (motor Nemotron 3.5 INT8, streaming, PT-BR)
             if (metrics.asrMs > 0 || transcription.isNotBlank()) {
                 DebugRow(
-                    label = "1. ASR (Whisper)",
+                    label = "1. ASR (Nemotron 3.5 INT8)",
                     time = "${metrics.asrMs} ms",
                     detail = if (transcription.isNotBlank()) "\"$transcription\"" else "Áudio sintetizado / digitado"
                 )
             }
 
-            // (2) Classificação NR + gate acionado (o capítão quer ver a decisão do estágio 1)
-            val gateLabel = when (metrics.gateMode) {
-                "hard" -> "FILTRO-DURO (prob ≥ 0.5)"
-                "soft" -> "BOOST-SUAVE 5x (top-2)"
-                "explicit" -> "NR EXPLÍCITA NA FALA"
-                "none" -> "SEM BOOST (fora de escopo)"
-                "reuso" -> "REUSO JACCARD > 0.7 (sem nova classificação)"
-                else -> metrics.gateMode.ifBlank { "-" }
-            }
-            val classDetail = if (metrics.gateMode == "reuso") {
-                "Chunks reaproveitados do turno anterior"
+            // (2) DECISÃO do modelo (tool-calling híbrido): o PRÓPRIO 1.2B decide buscar ou reusar.
+            val decisionLabel = if (metrics.calledTool) "CHAMOU buscar_norma" else "SEM BUSCA (reuso/direto)"
+            val decisionDetail = if (metrics.calledTool) {
+                val consulta = metrics.toolConsulta.ifBlank { "(vazia)" }
+                val nr = metrics.toolNr.ifBlank { "null" }
+                "arg consulta='$consulta' · nr='$nr' (IGNORADOS na busca — usa-se a fala bruta)"
             } else {
-                "top1=${metrics.nrTop1} (${"%.2f".format(metrics.nrTop1Prob)}) · top2=${metrics.nrTop2}" +
-                    if (metrics.boostNrs.isNotBlank()) " · boost=[${metrics.boostNrs}]" else ""
+                "Modelo reusou o contexto em tela / respondeu direto (nenhuma busca disparada)"
             }
             DebugRow(
-                label = "2. Classificador NR + Gate",
-                time = "[$gateLabel]",
-                detail = classDetail
+                label = "2. Decisão do modelo (tool-calling)",
+                time = "[$decisionLabel] ${metrics.reasonMs} ms",
+                detail = decisionDetail
             )
 
-            // (3) Recuperação: Retrieval v3 (fusão RRF 3-sinais) ou BM25-gated legado.
-            val isRrf3 = metrics.retrievalMode == "rrf3"
-            val retrievalTitle = when (metrics.retrievalMode) {
-                "rrf3" -> "3. Fusão RRF 3-sinais (BM25+Denso×2)"
-                "rrf3-fallback-bm25" -> "3. BM25-gated (denso indisponível)"
-                else -> "3. Busca BM25 Top-2 (fala bruta)"
-            }
-            val chunksSummary = if (chunks.isNotEmpty()) {
-                if (isRrf3) {
-                    // Mostra os ranks por sinal e o score RRF (o capitão quer ver a fusão).
-                    chunks.joinToString("  |  ") { c ->
-                        val rb = if (c.rankBm25 > 0) "bm25#${c.rankBm25}" else "bm25–"
-                        val rt = if (c.rankDenseText > 0) "dTxt#${c.rankDenseText}" else "dTxt–"
-                        val re = if (c.rankDenseExp > 0) "dExp#${c.rankDenseExp}" else "dExp–"
-                        "${c.doc} ${c.section} [$rb $rt $re rrf=${"%.4f".format(c.rrfScore)}]"
+            // (3) Busca EXTERNA (só quando o modelo chamou): classificador NR + gate + RRF v4.
+            //     A busca usa a FALA BRUTA (não a consulta do modelo — medido melhor).
+            if (metrics.calledTool) {
+                val gateLabel = when (metrics.gateMode) {
+                    "hard" -> "FILTRO-DURO (prob ≥ 0.5)"
+                    "soft" -> "BOOST-SUAVE 5x (top-2)"
+                    "explicit" -> "NR EXPLÍCITA NA FALA"
+                    "none" -> "SEM BOOST (fora de escopo)"
+                    else -> metrics.gateMode.ifBlank { "-" }
+                }
+                val classDetail = "top1=${metrics.nrTop1} (${"%.2f".format(metrics.nrTop1Prob)}) · top2=${metrics.nrTop2}" +
+                    if (metrics.boostNrs.isNotBlank()) " · boost=[${metrics.boostNrs}]" else ""
+                DebugRow(
+                    label = "3a. Classificador NR + Gate",
+                    time = "[$gateLabel]",
+                    detail = classDetail
+                )
+
+                val isRrf3 = metrics.retrievalMode == "rrf3"
+                val retrievalTitle = when (metrics.retrievalMode) {
+                    "rrf3" -> "3b. Fusão RRF v4 3-sinais (BM25+Denso×2)"
+                    "rrf3-fallback-bm25" -> "3b. BM25-gated (denso indisponível)"
+                    else -> "3b. Busca BM25 Top-2 (fala bruta)"
+                }
+                val chunksSummary = if (chunks.isNotEmpty()) {
+                    if (isRrf3) {
+                        chunks.joinToString("  |  ") { c ->
+                            val rb = if (c.rankBm25 > 0) "bm25#${c.rankBm25}" else "bm25–"
+                            val rt = if (c.rankDenseText > 0) "dTxt#${c.rankDenseText}" else "dTxt–"
+                            val re = if (c.rankDenseExp > 0) "dExp#${c.rankDenseExp}" else "dExp–"
+                            "${c.doc} ${c.section} [$rb $rt $re rrf=${"%.4f".format(c.rrfScore)}]"
+                        }
+                    } else {
+                        chunks.joinToString(", ") { "${it.doc} ${it.section} (score: ${"%.2f".format(it.score)})" }
                     }
                 } else {
-                    chunks.joinToString(", ") { "${it.doc} ${it.section} (score: ${"%.2f".format(it.score)})" }
+                    "Nenhum chunk recuperado"
                 }
-            } else {
-                "Nenhum chunk recuperado"
+                val retrievalTime = if (isRrf3 && metrics.denseEncodeMs > 0)
+                    "${metrics.searchMs} ms (inclui encode denso)" else "${metrics.searchMs} ms"
+                DebugRow(
+                    label = retrievalTitle,
+                    time = retrievalTime,
+                    detail = chunksSummary
+                )
             }
-            val retrievalTime = when {
-                metrics.chunksReused -> "0 ms (reuso)"
-                isRrf3 && metrics.denseEncodeMs > 0 -> "${metrics.searchMs} ms (inclui encode denso)"
-                else -> "${metrics.searchMs} ms"
-            }
-            DebugRow(
-                label = retrievalTitle,
-                time = retrievalTime,
-                detail = chunksSummary
-            )
 
-            // (4) Tokens de contexto, TTFT, velocidade decode e total
+            // (4) Síntese: 1.2B treinado em tool-calling (r128 Q4).
             DebugRow(
-                label = "4. Síntese (LFM2.5)",
+                label = "4. Síntese (LFM2.5 1.2B tool Q4)",
                 time = "${metrics.ttftMs + metrics.decodeMs} ms",
                 detail = "Contexto: ~${metrics.contextTokens} tok · TTFT: ${metrics.ttftMs} ms · Decode: ${metrics.decodeMs} ms (${metrics.completionTokens} tok @ ${metrics.tokPerSec} t/s)"
             )

@@ -98,13 +98,24 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var activeAsrEngine: br.org.ceia.cemigpoc.domain.engine.AsrEngine = realAsrEngine
     private val telemetryLogger = TelemetryLogger(File(application.applicationContext.filesDir, "telemetry.jsonl"))
 
+    // System prompt de tool-calling IDÊNTICO ao do treino (asset tools_system_prompt.txt,
+    // SHA256 363185b7…). Lido dos assets no construtor; se faltar, usa o fallback conciso
+    // (nunca deve faltar — está force-adicionado aos assets).
+    private val toolSystemPrompt: String = runCatching {
+        application.applicationContext.assets.open("tools_system_prompt.txt")
+            .bufferedReader(Charsets.UTF_8).use { it.readText() }
+    }.getOrElse {
+        Log.e(TAG, "Falha ao ler tools_system_prompt.txt dos assets; usando fallback", it)
+        AskPipeline.SYNTHESIS_SYSTEM_PROMPT
+    }
+
     private val askPipeline = AskPipeline(
         retriever = retriever,
         llmEngine = realLlamaEngine,
         telemetryLogger = telemetryLogger,
+        toolSystemPrompt = toolSystemPrompt,
         maxTurnsT2 = 3,
-        t2MaxBudgetTokens = 1000,
-        jaccardThreshold = 0.7,
+        maxPromptTokens = 1700,
         topK = 2
     )
 
@@ -375,6 +386,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     is TurnEvent.StageChanged -> {
                         _uiState.update { it.copy(stage = turnEvent.stage) }
                     }
+                    is TurnEvent.ToolDecided -> {
+                        // Decisão de tool-calling do modelo (visível no Modo Engenharia).
+                        Log.i(TAG, "ToolDecided: buscar=${turnEvent.called} consulta='${turnEvent.consulta}' nr='${turnEvent.nr}'")
+                    }
                     is TurnEvent.ChunksRetrieved -> {
                         _uiState.update { it.copy(currentChunks = turnEvent.chunks) }
                     }
@@ -388,12 +403,16 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         }
                     }
                     is TurnEvent.Done -> {
+                        val m = turnEvent.metrics
                         val newTurn = ConversationTurn(
                             question = question,
                             answer = turnEvent.finalAnswer,
                             chunks = turnEvent.chunksUsed,
-                            metrics = turnEvent.metrics,
-                            isStreaming = false
+                            metrics = m,
+                            isStreaming = false,
+                            calledTool = m.calledTool,
+                            toolConsulta = m.toolConsulta.ifBlank { null },
+                            toolNr = m.toolNr.ifBlank { null }
                         )
                         _uiState.update {
                             it.copy(
