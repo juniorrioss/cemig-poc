@@ -30,9 +30,22 @@ android {
         // llama_jni.cpp). A troca definitiva ocorre quando o treino DPO fechar.
         //   ./gradlew assembleRelease -Pcemig.synthModel=2.6b   -> LFM2.5-2.6B-Q4_0 + thinking-OFF
         //   (default / omitido)                                 -> LFM2.5-1.2B-Instruct-QAD-Q4_0
+        // toolModel: escolhe o modelo TOOL-CALLING do pipeline híbrido (task poc-tools-2.6b).
+        // O capitão quer DUAS opções comparáveis de embarque, selecionáveis por build:
+        //   (default / omitido)            -> 1.2B tool r128 Q4 (latência de voz ~6-8s; embarcado)
+        //   -Pcemig.toolModel=2.6b         -> 2.6B tool r64 Q4 (qualidade maior, mas ~18-23s/4.3GB)
+        // O 2.6B é reasoning: SUPPRESS_REASONING=true (thinking-OFF via llama_jni). O GGUF do 2.6B
+        // tool entra por override externo sob o nome LFM2.5-2.6B-tools-Q4_0.gguf.
+        val toolModel = (project.findProperty("cemig.toolModel") as String?)?.lowercase() ?: "1.2b"
+        val useTool26b = toolModel == "2.6b"
+        // synthModel (legado, task poc-engine-upgrade): sintetizador NÃO-tool (pipeline fixo antigo).
         val synthModel = (project.findProperty("cemig.synthModel") as String?)?.lowercase() ?: "1.2b"
-        val use26b = synthModel == "2.6b"
-        val llmModelName = if (use26b) "LFM2.5-2.6B-Q4_0.gguf" else "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"
+        val use26b = synthModel == "2.6b" || useTool26b
+        val llmModelName = when {
+            useTool26b -> "LFM2.5-2.6B-tools-Q4_0.gguf"
+            synthModel == "2.6b" -> "LFM2.5-2.6B-Q4_0.gguf"
+            else -> "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"
+        }
         buildConfigField("String", "LLM_MODEL_NAME", "\"$llmModelName\"")
         // O 2.6B é modelo de raciocínio (template prima <think>): thinking-OFF obrigatório.
         // No 1.2B (não-reasoning) a supressão é no-op seguro, mas só ativamos no 2.6B.

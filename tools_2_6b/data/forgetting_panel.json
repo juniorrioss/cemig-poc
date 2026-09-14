@@ -1,0 +1,45 @@
+{
+ "task": "poc-tools-2.6b",
+ "layer": "forgetting (general+behavioral)",
+ "comparison": {
+  "general": {
+   "qualidade": {
+    "base": 3.93,
+    "tools_2_6b_r64_q4": 3.79,
+    "delta": -0.14
+   },
+   "pt": {
+    "base": 4.8,
+    "tools_2_6b_r64_q4": 4.52,
+    "delta": -0.28
+   },
+   "seguranca": {
+    "base": 4.49,
+    "tools_2_6b_r64_q4": 4.38,
+    "delta": -0.11
+   }
+  },
+  "behavioral": {
+   "qualidade": {
+    "base": 3.8,
+    "tools_2_6b_r64_q4": 3.367,
+    "delta": -0.433
+   },
+   "pt": {
+    "base": 4.8,
+    "tools_2_6b_r64_q4": 4.067,
+    "delta": -0.733
+   },
+   "seguranca": {
+    "base": 4.1,
+    "tools_2_6b_r64_q4": 3.533,
+    "delta": -0.567
+   }
+  }
+ },
+ "sft_v3_ref": {
+  "general_qualidade_delta": -0.08,
+  "behavioral_qualidade_delta": 0.37,
+  "note": "sft_v3 sem tool NAO teve forgetting; o tool-calling introduz regressao leve (general) e maior (behavioral)."
+ }
+}

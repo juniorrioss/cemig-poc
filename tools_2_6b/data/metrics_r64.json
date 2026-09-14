@@ -1,0 +1,7 @@
+{
+ "train_loss": 0.7405897426226783,
+ "eval_loss": 0.648365318775177,
+ "eval_runtime": 68.1688,
+ "eval_samples_per_second": 3.095,
+ "eval_steps_per_second": 0.396
+}

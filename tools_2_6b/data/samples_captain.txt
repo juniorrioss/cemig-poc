@@ -1,0 +1,183 @@
+================================================================================
+### qa-013 — 13,8 kV (trabalhar sozinho na rede de 13,8 kV)
+PERGUNTA: Meu parceiro faltou hoje e tenho um serviço na rede de 13,8 kV. Posso subir e resolver sozinho pra não atrasar?
+
+--- modo ORACLE ---
+[2.6B tool]
+  called=False got_gold=False nr=None
+  RESPOSTA: Não posso avaliar a situação sem verificar as condições específicas do local. A norma exige que você avalie a segurança antes de qualquer intervenção.
+[1.2B tool r128]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'substituição de trabalhador ausência trabalho em rede 13,8 kV segurança trabalho em altura'
+  contexto: nr-10/10.6
+  RESPOSTA: Não, você não pode subir sozinho. A NR-10, item 10.7.3, determina que os serviços em instalações energizadas com alta tensão não podem ser realizados individualmente. Além disso, o item 10.6.4 exige que a atividade seja suspensa imediatamente se o risco não puder ser eliminado. Portanto, é obrigatório aguardar a ordem de serviço específica assinada por superior responsável pela área.
+
+--- modo HIBRIDO ---
+[2.6B tool]
+  called=False got_gold=False nr=None
+  RESPOSTA: Não posso avaliar a situação específica sem verificar as condições de segurança da área. Você precisa confirmar se há proteção adequada e se o equipamento está em bom estado antes de prosseguir.
+[1.2B tool r128]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'substituição de trabalhador ausência trabalho em rede 13,8 kV autônomo solução de emergência'
+  contexto: nr-10/10.6, nr-10/10.5
+  RESPOSTA: Não, você não pode subir sozinho. A NR-10, item 10.6.3, exige que serviços em instalações energizadas sejam suspensos imediatamente na iminência de perigo. O item 10.7.4 determina que o trabalho em AT só pode ser realizado mediante ordem de serviço específica assinada por superior responsável. Portanto, a segurança exige a presença de um supervisor e a ausência de você no local.
+
+--- modo PURE ---
+[2.6B tool]
+  called=False got_gold=False nr=None
+  RESPOSTA: Não posso avaliar a situação sem verificar o trecho específico da NR-10 que trata das condições de acesso e permissão de trabalho. Você precisa consultar a seção sobre condições de segurança para essa tensão específica antes de prosseguir.
+[1.2B tool r128]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'substituição de trabalhador ausência trabalho em rede 13,8 kV segurança do trabalho'
+  contexto: nr-16/Anexo Iv, nr-10/10.1
+  RESPOSTA: A norma consultada trata de segurança em instalações elétricas e não aborda o trabalho em redes subterrâneas. Para responder à sua dúvida, é preciso verificar as disposições específicas sobre serviços técnicos e operação de energia elétrica na NR-16.
+
+================================================================================
+### qa-025 — poste podre/bambo (encarregado mandando subir)
+PERGUNTA: Cheguei no serviço e a estrutura do poste tá toda podre, balançando. O encarregado tá mandando subir mesmo assim. Eu posso me negar a subir ou levo advertência?
+
+--- modo ORACLE ---
+[2.6B tool]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'estrutura de apoio em estado degradado risco de queda de energia trabalho em altura estrutura instável posicionamento de trabalhadores'
+  contexto: nr-10/10.1
+  RESPOSTA: Não pode subir em estrutura instável ou degradada, pois a NR-10 exige medidas preventivas para garantir a segurança e a saúde. O encarregado não pode autorizar o trabalho em condições que representem risco iminente. Você tem o direito de se recusar a realizar a tarefa, pois a norma exige a implementação de controles de risco antes de iniciar. A recusa é justificada quando a estrutura está em estado de desgaste ou instabilidade.
+[1.2B tool r128]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'subida de pessoal em estrutura instável poste balanço proibição recusa autorização trabalho em altura advertência segurança'
+  contexto: nr-10/10.1
+  RESPOSTA: A norma consultada trata da segurança em instalações elétricas e não aborda o direito de recusa à subida de trabalhadores. Para responder à sua dúvida, é preciso verificar as disposições específicas sobre direitos de segurança e liberação de trabalho em altura na NR-18.
+
+--- modo HIBRIDO ---
+[2.6B tool]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'estrutura de apoio em estado de deterioração risco de queda trabalho em altura comunicação de risco recusa de trabalho'
+  contexto: nr-18/18.12.21, nr-35/35.5
+  RESPOSTA: Não pode subir em estrutura podre ou instável. A NR-18, item 18.12.21, exige que o andaime suspenso seja feito de cabos de aço, nivelado e verificado diariamente. O uso de trechos em balanço é proibido, conforme o item 18.12.23. Se o andaime for motorizado, ele deve ter cabo de segurança adicional e dispositivos de bloqueio mecânico, segundo o item 18.12.27. A NR-35, item 35.5.2, exige que todo trabalho em altura tenha plano de trabalho definido pela AR. Você tem direito a recusar a execução do serviço se o risco for inerente e não houver alternativa segura.
+[1.2B tool r128]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'subida de pessoal em estrutura instável poste balanço proibição recusa autorização'
+  contexto: nr-18/18.12.21, nr-35/35.5
+  RESPOSTA: Não, você não pode negar a subida. A NR-18, item 18.12.24, proíbe explicitamente o uso de trechos em balanço e interligação das estruturas. Além disso, o item 18.12.25 veda o transporte de pessoas ou materiais que não estejam vinculados aos serviços em execução. Portanto, a subida é proibida e você deve recusar com justificativa clara.
+
+--- modo PURE ---
+[2.6B tool]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'estrutura de apoio em estado degradado risco de queda de energia trabalho em altura estrutura instável posicionamento de trabalhadores'
+  contexto: nr-35/Anexo Ii, nr-18/18.7.7
+  RESPOSTA: Não pode subir em estrutura instável. A NR-35 exige que a estrutura suporte as forças aplicáveis e seja projetada por profissional habilitado. Se o poste estiver podre e balançando, isso viola o item 3.1.1 do Anexo II da NR-35. Você tem direito a se recusar a realizar a tarefa. A norma não permite o trabalho em condições de risco iminente.
+[1.2B tool r128]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'subida de pessoal em estrutura instável poste balanço proibição recusa autorização trabalho em altura advertência segurança'
+  contexto: nr-12/Anexo Iii, nr-18/18.7.7
+  RESPOSTA: Não, você não pode negar a subida, pois a NR-12, item 3, exige plataformas estáveis e seguras para acessos acima do piso. O encarregado não pode ser obrigado a subir se a estrutura for instável. A norma proíbe o uso de rampas com inclinação superior a 20 graus, conforme o item 6.1 da NR-12. Portanto, a subida continua permitida desde que a plataforma seja estável e segura.
+
+================================================================================
+### qa-029 — 13,8 kV / distância segura do cabo energizado
+PERGUNTA: Tô no poste e o cabo energizado tá bem pertinho do meu braço. Até que distância eu posso chegar dele sem tá com luva e ferramenta isolada?
+
+--- modo ORACLE ---
+[2.6B tool]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'distância mínima segurança trabalho em altura proximidade equipamentos elétricos capacitados EPIs isolamento elétrico'
+  contexto: nr-10/10.1, nr-10/10.2, nr-10/10.2.8
+  RESPOSTA: A norma consultada trata de medidas de controle e proteção em instalações elétricas, não de distâncias de segurança para trabalho em altura. Para responder à sua dúvida, é preciso consultar as normas de segurança em altura e os procedimentos específicos de trabalho em altura.
+[1.2B tool r128]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'distância segura cabo energizado poste braço mãos ferramentas isoladas proteção contra choque elétrico'
+  contexto: nr-10/10.1, nr-10/10.2, nr-10/10.2.8
+  RESPOSTA: O trecho consultado trata de medidas de proteção coletiva e individual, não respondendo à sua pergunta sobre distância de segurança. Para responder corretamente, é preciso verificar as normas técnicas específicas de distância de segurança para trabalhos em proximidade de equipamentos elétricos.
+
+--- modo HIBRIDO ---
+[2.6B tool]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'distância mínima segurança trabalho em altura proximidade equipamentos elétricos capacitados EPIs isolamento elétrico'
+  contexto: nr-10/Glossário, nr-10/Anexo Ii
+  RESPOSTA: A distância máxima de proximidade com a zona de risco é de 0,56 m para tensões entre 20 e 30 kV, 0,58 m para 30 a 36 kV, 0,63 m para 36 a 45 kV, 0,83 m para 45 a 60 kV, 1,00 m para 60 a 70 kV, 1,10 m para 70 a 110 kV, 1,20 m para 110 a 132 kV, 1,60 m para 132 a 150 kV, 1,80 m para 150 a 220 kV, 2,50 m para 220 a 275 kV e 3,20 m para 275 a 380 kV. Para tensões acima de 380 kV, a distância mínima é de 3,60 m. Isso está definido na NR-10, Anexo II, que estabelece as dimensões da zona de risco conforme o nível de tensão.
+[1.2B tool r128]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'distância segura cabo energizado proximidade corpo mãos EPI proteção contra choque elétrico'
+  contexto: nr-10/Glossário, nr-10/Anexo Ii
+  RESPOSTA: A distância máxima permitida é de 220 metros. Acima dessa distância, a aproximação só é permitida a profissionais autorizados. Essa regra está definida no item 30 da NR-10, que define a Zona de Risco.
+
+--- modo PURE ---
+[2.6B tool]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'distância mínima segurança proximidade equipamento elétrico capacitado equipamento isolado trabalho em altura'
+  contexto: nr-19/19.5, nr-10/Anexo Iii.I
+  RESPOSTA: [buscar_norma(consulta='distância mínima segurança proximidade partes energizadas contato capacitado equipamentos isolados')]
+[1.2B tool r128]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'distância segura cabo energizado proximidade corpo mão ferramenta isolada proteção contra choque elétrico'
+  contexto: nr-12/Anexo Xii, nr-12/Anexo Xii
+  RESPOSTA: A norma consultada trata de guindastes e não responde à sua pergunta sobre distâncias de segurança em postes. Para responder corretamente, é preciso verificar as disposições específicas da NR-10 sobre trabalho em altura e distâncias de acesso.
+
+================================================================================
+### qa-003 — camiseta rasgada no poste (adornos)
+PERGUNTA: Tô no poste e minha camisa de trabalho rasgou. Posso terminar o serviço com uma camiseta comum de algodão que eu tenho no carro?
+
+--- modo ORACLE ---
+[2.6B tool]
+  called=False got_gold=False nr=None
+  RESPOSTA: Não, não pode usar a camiseta comum de algodão. Você precisa usar o EPI obrigatório da NR-10, que é a camisa de proteção individual específica para o trabalho. A norma exige o uso de equipamento de proteção individual adequado para evitar riscos de choque e curto-circuito.
+[1.2B tool r128]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'EPI vestimenta uniforme camisa de trabalho rasgo substituição EPI não conformidade'
+  contexto: nr-10/10.2.8
+  RESPOSTA: Não, é vedado o uso de adornos pessoais nos trabalhos com instalações elétricas ou em suas proximidades. A camisa rasgada não garante a segurança contra choques, pois a NR-10 exige que as vestimentas sejam adequadas às atividades. O foco deve ser na desenergização elétrica ou no emprego de tensão de segurança. Verifique se o serviço foi feito com medidas de proteção coletiva adequadas.
+
+--- modo HIBRIDO ---
+[2.6B tool]
+  called=False got_gold=False nr=None
+  RESPOSTA: Não, não pode usar a camiseta comum de algodão. O equipamento de proteção individual obrigatório é a EPI de proteção contra choques elétricos, que deve ser um uniforme específico para o ambiente onde você está trabalhando. Você precisa trocar imediatamente para garantir sua segurança.
+[1.2B tool r128]
+  called=False got_gold=False nr=None
+  RESPOSTA: Não, não é permitido usar vestuário pessoal como camisa de trabalho para fins de segurança. O equipamento de proteção individual (EPI) deve ser o único item de vestimenta usado em qualquer situação. Você precisa usar o uniforme específico da empresa ou o EPI adequado para a tarefa.
+
+--- modo PURE ---
+[2.6B tool]
+  called=False got_gold=False nr=None
+  RESPOSTA: Não, não pode usar a camiseta comum de algodão. Você precisa trocar imediatamente para uma vestimenta de proteção individual adequada para o trabalho. Isso é obrigatório pela NR-10, item 6.1, que exige EPIs específicos para cada atividade.
+[1.2B tool r128]
+  called=False got_gold=False nr=None
+  RESPOSTA: Não, não é permitido usar vestuário comum para trabalhar em altura. O equipamento de proteção individual obrigatório deve ser usado sempre que houver risco de queda ou queda de materiais. A camisa rasgada não atende ao padrão de segurança exigido para o seu cargo.
+
+================================================================================
+### qa-004 — aliança no barramento
+PERGUNTA: Rapaz, casei semana passada e não queria tirar a aliança pra trabalhar no barramento. Se eu usar luva por cima, libera?
+
+--- modo ORACLE ---
+[2.6B tool]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'EPI luvas de proteção elétrica EPI proteção contra choque elétrico uso de luvas de proteção'
+  contexto: nr-10/10.2.8
+  RESPOSTA: Não, o uso de luvas de proteção não substitui as medidas de proteção coletiva obrigatórias. A NR-10 exige desenergização ou isolação das partes vivas como prioridade. Se isso não for possível, você deve usar equipamentos de proteção individual específicos e adequados. Além disso, é vedado o uso de adornos pessoais em áreas com instalações elétricas. Siga as medidas de proteção coletiva e as vestimentas adequadas conforme a NR-10.
+[1.2B tool r128]
+  called=True got_gold=True nr=None
+  consulta_modelo: 'EPI proteção contra lâminas lâmina de corte lâmina de corte de metal lâmina de corte de máquinas luvas de proteção luvas de proteção contra lâminas'
+  contexto: nr-10/10.2.8
+  RESPOSTA: A norma consultada trata de segurança em instalações elétricas e não responde à sua dúvida sobre luvas de proteção. Para saber se é permitido usar luvas, você precisa consultar a NR-18, que rege o uso de EPIs e vestimentas de trabalho.
+
+--- modo HIBRIDO ---
+[2.6B tool]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'EPI luvas de proteção elétrica uso de luvas de proteção contra choques elétricos EPI'
+  contexto: nr-36/Anexo I, nr-34/34.11.22
+  RESPOSTA: Não, o uso de luvas de proteção elétrica é proibido para você. A NR-34, item 34.11.22, veda expressamente o trabalho com luvas de proteção em condições de risco. Você deve seguir a norma que exige o uso de EPIs adequados e a substituição imediata quando houver comprometimento da eficácia.
+[1.2B tool r128]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'EPI proteção contra lâminas de corte barramento corte de metal proteção contra lâminas de corte'
+  contexto: nr-36/Anexo I, nr-34/34.11.22
+  RESPOSTA: A liberação para utilização do andaime é proibida se a área estiver sinalizada com placas vermelhas indicando a proibição ou verde após a liberação. Você deve aguardar a aprovação do profissional de segurança e saúde no trabalho ou do responsável pelo cumprimento da norma para que o andaime seja liberado. Essa exigência está prevista no item 34.11.30 da NR-34.
+
+--- modo PURE ---
+[2.6B tool]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'EPI luvas de proteção elétrica EPI proteção contra choques elétricos uso de luvas de proteção'
+  contexto: nr-06/Anexo I.F, nr-36/Anexo Ii.I
+  RESPOSTA: Não, não use luvas de proteção contra choques elétricos para trabalhar no barramento. A NR-06, item F.1, lista apenas luvas para agentes abrasivos, cortantes, térmicos, químicos e biológicos, sem menção a choques elétricos. O uso de luvas de proteção contra choques elétricos é obrigatório para essa finalidade.
+[1.2B tool r128]
+  called=True got_gold=False nr=None
+  consulta_modelo: 'EPI proteção contra lâminas lâmina de corte lâmina de corte de metal EPI luvas de segurança luvas de proteção contra lâminas'
+  contexto: nr-06/Anexo I.F, nr-38/38.10
+  RESPOSTA: A norma consultada trata de EPIs para atividades de coleta de resíduos de saúde, não de proteção contra lâminas ou cortantes. Para responder à sua dúvida, é preciso verificar as disposições específicas da NR-12 sobre proteção contra lâminas e cortantes.

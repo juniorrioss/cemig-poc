@@ -1,0 +1,539 @@
+{
+ "task": "poc-tools-2.6b",
+ "candidate_label": "tools_2_6b_r64",
+ "regua": "bench/regua (ruler + judge_regua 27B), limiar 0.5, citação FORA do gate",
+ "judge": "vLLM 27B 10.100.0.111:8005",
+ "note_thinking": "2.6B é reasoning; toda a bateria roda thinking-OFF (render_jinja_2_6b), corpo dos turnos byte-a-byte idêntico ao 1.2B (verify_2_6b.py).",
+ "master_table": {
+  "1.2B_base_qad_q4": {
+   "oracle": {
+    "approval": 2.7,
+    "hallucination": 2.0
+   },
+   "retrieved": {
+    "approval": 1.4,
+    "hallucination": 8.8
+   },
+   "refusal_f1": 73.8,
+   "src": "sft_1_2b"
+  },
+  "1.2B_sft_r64_q4": {
+   "oracle": {
+    "approval": 22.3,
+    "hallucination": 23.0
+   },
+   "retrieved": {
+    "approval": 10.1,
+    "hallucination": 33.1
+   },
+   "refusal_f1": 90.2,
+   "src": "sft_1_2b"
+  },
+  "1.2B_sft_r64_bf16": {
+   "oracle": {
+    "approval": 24.3,
+    "hallucination": 18.9
+   },
+   "retrieved": {
+    "approval": 16.2,
+    "hallucination": 30.4
+   },
+   "refusal_f1": 90.7,
+   "src": "sft_1_2b"
+  },
+  "1.2B_tool_r128_q4": {
+   "oracle": {
+    "approval": 31.4,
+    "hallucination": 28.2
+   },
+   "retrieved_hibrido": {
+    "approval": 19.2,
+    "hallucination": 34.2
+   },
+   "refusal_f1": 85.4,
+   "src": "tools_oraculo"
+  },
+  "1.2B_tool_r128_bf16": {
+   "oracle": {
+    "approval": 34.9,
+    "hallucination": 24.3
+   },
+   "retrieved_hibrido": {
+    "approval": 19.2,
+    "hallucination": 31.8
+   },
+   "refusal_f1": 90.5,
+   "src": "tools_oraculo"
+  },
+  "2.6B_sft_v3_r64_q4": {
+   "oracle": {
+    "approval": 46.4,
+    "hallucination": 21.2
+   },
+   "retrieved": {
+    "approval": 20.0,
+    "hallucination": 40.7
+   },
+   "refusal_f1": 95.7,
+   "src": "sft_v3"
+  },
+  "2.6B_sft_v3_r64_bf16": {
+   "oracle": {
+    "approval": 47.0,
+    "hallucination": 21.9
+   },
+   "retrieved": {
+    "approval": 26.7,
+    "hallucination": 34.0
+   },
+   "refusal_f1": 94.5,
+   "src": "sft_v3"
+  },
+  "2.6B_tool_q4": {
+   "oracle": {
+    "approval": 46.1,
+    "hallucination": 21.9
+   },
+   "retrieved_hibrido": {
+    "approval": 24.0,
+    "hallucination": 38.4
+   },
+   "refusal_f1": 91.6,
+   "src": "ESTE"
+  },
+  "2.6B_tool_bf16": {
+   "oracle": {
+    "approval": 53.8,
+    "hallucination": 21.4
+   },
+   "retrieved_hibrido": {
+    "approval": 28.9,
+    "hallucination": 35.1
+   },
+   "refusal_f1": 95.3,
+   "src": "ESTE"
+  },
+  "27B_ceiling": {
+   "oracle": {
+    "approval": 84.3,
+    "hallucination": 2.6
+   },
+   "retrieved": {
+    "approval": 45.7,
+    "hallucination": 27.8
+   },
+   "refusal_f1": 96.6,
+   "src": "slm_oraculo"
+  }
+ },
+ "medicao1_oraculo": {
+  "tools_2_6b_q4": {
+   "approval": {
+    "mean": 46.1,
+    "std": 1.1,
+    "n": 3
+   },
+   "hallucination": {
+    "mean": 21.9,
+    "std": 1.4,
+    "n": 3
+   },
+   "coverage": {
+    "mean": 0.5,
+    "std": 0.0,
+    "n": 3
+   },
+   "avg_tok": {
+    "mean": 148.6,
+    "std": 1.2,
+    "n": 3
+   },
+   "n_runs": 3
+  },
+  "tools_2_6b_bf16": {
+   "approval": {
+    "mean": 53.8,
+    "std": 1.4,
+    "n": 3
+   },
+   "hallucination": {
+    "mean": 21.4,
+    "std": 2.3,
+    "n": 3
+   },
+   "coverage": {
+    "mean": 0.6,
+    "std": 0.0,
+    "n": 3
+   },
+   "avg_tok": {
+    "mean": 153.6,
+    "std": 2.3,
+    "n": 3
+   },
+   "n_runs": 3
+  }
+ },
+ "medicao2_recusa": {
+  "tools_2_6b_bf16": {
+   "TP": 41,
+   "FN": 4,
+   "FP": 0,
+   "TN": 30,
+   "n_should_refuse": 45,
+   "n_answerable": 30,
+   "recusa_correta_recall_pct": 91.1,
+   "recusa_indevida_fp_pct": 0.0,
+   "precision_pct": 100.0,
+   "f1_pct": 95.3,
+   "accuracy_pct": 94.7,
+   "parcial_n": 10,
+   "parcial_refused_pct": 10.0
+  },
+  "tools_2_6b_q4": {
+   "TP": 38,
+   "FN": 7,
+   "FP": 0,
+   "TN": 30,
+   "n_should_refuse": 45,
+   "n_answerable": 30,
+   "recusa_correta_recall_pct": 84.4,
+   "recusa_indevida_fp_pct": 0.0,
+   "precision_pct": 100.0,
+   "f1_pct": 91.6,
+   "accuracy_pct": 90.7,
+   "parcial_n": 10,
+   "parcial_refused_pct": 10.0
+  }
+ },
+ "medicao3_hibrido": {
+  "q4": {
+   "A_hibrido": {
+    "approval": {
+     "mean": 24.0,
+     "std": 1.4,
+     "n": 3
+    },
+    "hallucination": {
+     "mean": 38.4,
+     "std": 3.5,
+     "n": 3
+    },
+    "coverage": {
+     "mean": 0.4,
+     "std": 0.0,
+     "n": 3
+    },
+    "avg_tok": {
+     "mean": 153.2,
+     "std": 3.2,
+     "n": 3
+    },
+    "n_runs": 3,
+    "called_pct": {
+     "mean": 91.8,
+     "std": 0.6,
+     "n": 3
+    },
+    "got_gold_when_called_pct": {
+     "mean": 49.5,
+     "std": 1.2,
+     "n": 3
+    }
+   },
+   "B_tools_puro": {
+    "approval": {
+     "mean": 14.8,
+     "std": 1.6,
+     "n": 3
+    },
+    "hallucination": {
+     "mean": 42.6,
+     "std": 3.3,
+     "n": 3
+    },
+    "coverage": {
+     "mean": 0.3,
+     "std": 0.0,
+     "n": 3
+    },
+    "avg_tok": {
+     "mean": 150.2,
+     "std": 3.1,
+     "n": 3
+    },
+    "n_runs": 3,
+    "called_pct": {
+     "mean": 92.5,
+     "std": 0.6,
+     "n": 3
+    },
+    "got_gold_when_called_pct": {
+     "mean": 21.2,
+     "std": 0.5,
+     "n": 3
+    }
+   }
+  },
+  "bf16": {
+   "A_hibrido": {
+    "approval": {
+     "mean": 28.9,
+     "std": 1.4,
+     "n": 3
+    },
+    "hallucination": {
+     "mean": 35.1,
+     "std": 1.4,
+     "n": 3
+    },
+    "coverage": {
+     "mean": 0.4,
+     "std": 0.0,
+     "n": 3
+    },
+    "avg_tok": {
+     "mean": 156.6,
+     "std": 3.4,
+     "n": 3
+    },
+    "n_runs": 3,
+    "called_pct": {
+     "mean": 96.2,
+     "std": 0.3,
+     "n": 3
+    },
+    "got_gold_when_called_pct": {
+     "mean": 51.4,
+     "std": 0.5,
+     "n": 3
+    }
+   },
+   "B_tools_puro": {
+    "approval": {
+     "mean": 14.8,
+     "std": 1.7,
+     "n": 3
+    },
+    "hallucination": {
+     "mean": 45.0,
+     "std": 1.1,
+     "n": 3
+    },
+    "coverage": {
+     "mean": 0.3,
+     "std": 0.0,
+     "n": 3
+    },
+    "avg_tok": {
+     "mean": 155.3,
+     "std": 1.5,
+     "n": 3
+    },
+    "n_runs": 3,
+    "called_pct": {
+     "mean": 96.2,
+     "std": 0.3,
+     "n": 3
+    },
+    "got_gold_when_called_pct": {
+     "mean": 24.8,
+     "std": 2.0,
+     "n": 3
+    }
+   }
+  }
+ },
+ "medicao4_alucinacao": {
+  "A_hibrido_q4": {
+   "total_items": 453,
+   "total_hall": 174,
+   "by_condition": {
+    "gold_ok": {
+     "n": 206,
+     "hall_count": 86,
+     "hall_rate_pct": 41.7,
+     "share_pct": 49.4
+    },
+    "gold_wrong": {
+     "n": 210,
+     "hall_count": 84,
+     "hall_rate_pct": 40.0,
+     "share_pct": 48.3
+    },
+    "no_call": {
+     "n": 37,
+     "hall_count": 4,
+     "hall_rate_pct": 10.8,
+     "share_pct": 2.3
+    }
+   }
+  },
+  "A_hibrido_bf16": {
+   "total_items": 453,
+   "total_hall": 159,
+   "by_condition": {
+    "gold_ok": {
+     "n": 224,
+     "hall_count": 79,
+     "hall_rate_pct": 35.3,
+     "share_pct": 49.7
+    },
+    "gold_wrong": {
+     "n": 212,
+     "hall_count": 80,
+     "hall_rate_pct": 37.7,
+     "share_pct": 50.3
+    },
+    "no_call": {
+     "n": 17,
+     "hall_count": 0,
+     "hall_rate_pct": 0.0,
+     "share_pct": 0.0
+    }
+   }
+  },
+  "B_tools_puro_q4": {
+   "total_items": 453,
+   "total_hall": 193,
+   "by_condition": {
+    "gold_ok": {
+     "n": 89,
+     "hall_count": 33,
+     "hall_rate_pct": 37.1,
+     "share_pct": 17.1
+    },
+    "gold_wrong": {
+     "n": 330,
+     "hall_count": 157,
+     "hall_rate_pct": 47.6,
+     "share_pct": 81.3
+    },
+    "no_call": {
+     "n": 34,
+     "hall_count": 3,
+     "hall_rate_pct": 8.8,
+     "share_pct": 1.6
+    }
+   }
+  },
+  "B_tools_puro_bf16": {
+   "total_items": 453,
+   "total_hall": 204,
+   "by_condition": {
+    "gold_ok": {
+     "n": 108,
+     "hall_count": 49,
+     "hall_rate_pct": 45.4,
+     "share_pct": 24.0
+    },
+    "gold_wrong": {
+     "n": 328,
+     "hall_count": 154,
+     "hall_rate_pct": 47.0,
+     "share_pct": 75.5
+    },
+    "no_call": {
+     "n": 17,
+     "hall_count": 1,
+     "hall_rate_pct": 5.9,
+     "share_pct": 0.5
+    }
+   }
+  }
+ },
+ "decisao": {
+  "confusion": {
+   "tp": 93,
+   "fp": 11,
+   "fn": 0,
+   "tn": 49,
+   "n": 153,
+   "precision": 89.4,
+   "recall": 100.0,
+   "f1": 94.4,
+   "accuracy": 92.8,
+   "call_when_should_not_pct": 18.3,
+   "miss_when_should_pct": 0.0
+  },
+  "syntactic": {
+   "n_called": 104,
+   "n_valid": 104,
+   "valid_pct": 100.0
+  },
+  "reuse": {
+   "reuse_cases": 70,
+   "reuse_correct_pct": 72.9,
+   "called_when_should_reuse_pct": 27.1,
+   "newtopic_cases": 50,
+   "newtopic_correct_pct": 100.0
+  }
+ },
+ "argumento_recall": {
+  "raw_question": {
+   "n": 151,
+   "recall_at_1": 19.9,
+   "recall_at_2": 30.5,
+   "recall_at_5": 42.4
+  },
+  "model_rewrite": {
+   "n": 151,
+   "recall_at_1": 16.6,
+   "recall_at_2": 23.2,
+   "recall_at_5": 40.4
+  },
+  "llm27b_rewrite": {
+   "n": 151,
+   "recall_at_1": 19.9,
+   "recall_at_2": 29.8,
+   "recall_at_5": 51.7
+  },
+  "delta_model_minus_raw": {
+   "recall_at_1": -3.3,
+   "recall_at_2": -7.3,
+   "recall_at_5": -2.0
+  },
+  "delta_model_minus_27b": {
+   "recall_at_1": -3.3,
+   "recall_at_2": -6.6,
+   "recall_at_5": -11.3
+  }
+ },
+ "e2e_retrieval_real": {
+  "approval_pct": 32.2,
+  "hallucination_pct": 51.1,
+  "got_gold_pct": 62.2,
+  "conv_goldcorrect_to_approved_pct": 48.2
+ },
+ "saturation_curve_2_6b": {
+  "750": {
+   "dec_f1": 94.4,
+   "model_r2": 23.8,
+   "reuse_correct_pct": 75.7,
+   "newtopic_correct_pct": 96.0,
+   "syntactic_pct": 96.2
+  },
+  "1500": {
+   "dec_f1": 96.4,
+   "model_r2": 23.2,
+   "reuse_correct_pct": 84.3,
+   "newtopic_correct_pct": 92.0,
+   "syntactic_pct": 94.0
+  },
+  "3000": {
+   "dec_f1": 94.9,
+   "model_r2": 29.1,
+   "reuse_correct_pct": 64.3,
+   "newtopic_correct_pct": 100.0,
+   "syntactic_pct": 92.2
+  },
+  "full": {
+   "dec_f1": 95.4,
+   "model_r2": 25.2,
+   "reuse_correct_pct": 58.6,
+   "newtopic_correct_pct": 100.0,
+   "syntactic_pct": 95.1
+  }
+ },
+ "saturation_curve_1_2b_ref": "ver tools_v1/README (dec satura ~1500, sintaxe ~750, argumento nunca melhora)"
+}

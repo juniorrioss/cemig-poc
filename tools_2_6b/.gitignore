@@ -3,3 +3,4 @@ data/gen_*.json
 data/score_*.json
 *.gguf
 __pycache__/
+logs_*.log

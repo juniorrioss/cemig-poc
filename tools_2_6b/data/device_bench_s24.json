@@ -1,0 +1,30 @@
+{
+ "task": "poc-tools-2.6b",
+ "device": "Galaxy S24+ (SM-S926B, Exynos 2400)",
+ "config": "6 threads (Cortex-X4/A720 perf cluster), pp1500 / tg100, llama-bench build 434ddbb",
+ "note": "device thermally throttles under sustained benching; pp varia 98-131, tg 14-22 conforme estado térmico. Números frios (1ª execução) no topo da faixa.",
+ "results": {
+  "lfm2.5-2.6b-tools_2_6b_r64-Q4_0": {
+   "size": "1.48 GiB (1.6 GB no disco)", "params": "2.70B",
+   "pp1500_tok_s": {"cold": 131.3, "warm_range": [83.9, 131.3]},
+   "tg100_tok_s": {"cold": 22.3, "warm_range": [12.5, 22.3]},
+   "ttft_s_1450tok": {"cold": 11.0, "warm": 17.3},
+   "decode_s_150tok": {"cold": 6.7, "warm": 12.0},
+   "e2e_s_est": {"cold": 17.7, "warm": "~23-29"}
+  },
+  "LFM2.5-2.6B-Q4_0_base_parity": {
+   "note": "MESMA arch/tamanho/quant do tool r64 -> latência idêntica (diferenças = ruído térmico).",
+   "pp1500_tok_s_warm_range": [83.9, 131.3], "tg100_tok_s_warm_range": [10.3, 22.3]
+  },
+  "LFM2.5-1.2B-Instruct-QAD-Q4_0_embarcado": {
+   "size": "661 MiB", "params": "1.17B",
+   "pp1500_tok_s": 285.3, "tg100_tok_s": 45.2,
+   "ttft_s_1450tok": 5.1, "decode_s_150tok": 3.3, "e2e_s": "~6-8 (cabe na voz)"
+  }
+ },
+ "ram_ref": {
+  "note": "RAM do 2.6B já medida na POC (mesma arch/quant): engine-upgrade S24+ PSS 4.32 GB (encoder residente); com Nemotron+2.6B ~4.75 GB (sft_v3). 1.2B tool + Nemotron = 3.86 GB (android/tool_e2e_results). LMK mata apps de FUNDO; aperta <8 GB, inviável S21.",
+  "2.6b_pss_gb_s24": 4.32, "2.6b_com_nemotron_gb": 4.75, "1.2b_tool_com_nemotron_gb": 3.86
+ },
+ "verdict": "2.6B tool r64 Q4 = mesma arch/tamanho do 2.6B base -> latência ~18-23s E2E (TTFT 11-17s + decode 7-12s) e RAM ~4.3-4.75 GB no S24+: ACIMA do teto de voz de 10s e inviável no S21. O 1.2B tool (~6-8s, 3.86 GB) segue o único viável para voz. Troca de latência/RAM = decisão do capitão (qualidade vs custo)."
+}

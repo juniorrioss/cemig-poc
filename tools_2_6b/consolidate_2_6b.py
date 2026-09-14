@@ -127,6 +127,8 @@ def hallucination_decomposition(prefixes: Dict[str, str], runs=(1, 2, 3)) -> Dic
 def saturation_curve(rank=32, steps=(750, 1500, 3000)) -> Dict[str, Any]:
     """Curva de saturação do 2.6B (decisão/argumento/reuso por degrau) vs a do 1.2B."""
     curve = {}
+    # curva de saturação = rank FIXO r32 nos degraus 750/1500/3000/4236 (o 'full' r32 é o degrau
+    # completo com o MESMO rank, p/ isolar a variável 'volume de dados' — igual ao tools_v1).
     for s in list(steps) + ["full"]:
         lbl = f"tools_2_6b_step{s}_r{rank}" if s != "full" else f"tools_2_6b_r{rank}"
         ev = _eval(lbl)

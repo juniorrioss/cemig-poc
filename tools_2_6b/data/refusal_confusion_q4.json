@@ -1,0 +1,17 @@
+{
+ "tools_2_6b_r64_q4": {
+  "TP": 38,
+  "FN": 7,
+  "FP": 0,
+  "TN": 30,
+  "n_should_refuse": 45,
+  "n_answerable": 30,
+  "recusa_correta_recall_pct": 84.4,
+  "recusa_indevida_fp_pct": 0.0,
+  "precision_pct": 100.0,
+  "f1_pct": 91.6,
+  "accuracy_pct": 90.7,
+  "parcial_n": 10,
+  "parcial_refused_pct": 10.0
+ }
+}
