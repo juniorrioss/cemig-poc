@@ -18,7 +18,7 @@ Comentários PT-BR; identificadores em inglês.
 from __future__ import annotations
 
 import sys
-from functools import lru_cache
+import threading
 from pathlib import Path
 from typing import List, Optional
 
@@ -32,10 +32,22 @@ from bm25 import Bm25Retriever  # noqa: E402
 V4_INDEX = _ROOT / "retrieval4" / "indices" / "index_hf_36nr_expv4.db"
 APP_W5 = (1.5, 3.0, 2.0, 1.0, 1.0)
 
+# CRÍTICO: uma conexão sqlite por THREAD. O gerador roda 24 workers; compartilhar uma
+# única conexão sqlite entre threads causa erros silenciosos (resultado vazio) e derrubava
+# o yield da família oráculo de ~72% para ~1%. thread-local resolve.
+_tls = threading.local()
 
-@lru_cache(maxsize=2)
+
 def _retriever(db_path: str = str(V4_INDEX)) -> Bm25Retriever:
-    return Bm25Retriever(db_path, weights=APP_W5)
+    cache = getattr(_tls, "retrievers", None)
+    if cache is None:
+        cache = {}
+        _tls.retrievers = cache
+    r = cache.get(db_path)
+    if r is None:
+        r = Bm25Retriever(db_path, weights=APP_W5)
+        cache[db_path] = r
+    return r
 
 
 def rank_ids(query: str, limit: int = 10, db_path: str = str(V4_INDEX)) -> List[int]:
