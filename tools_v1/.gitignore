@@ -1,9 +1,18 @@
-# dados e artefatos reprodutíveis (não commitar pesados)
+# dados e artefatos reprodutíveis pesados (não commitar)
 data/*.jsonl
 data/*.bin
 data/responses_*.json
+data/cache_27b_queries.json
 logs/*.log
 __pycache__/
 *.pyc
-# manter: passo0_render.txt, premises, consolidations leves, amostras
+# manter artefatos LEVES de procedência/relatório:
 !data/passo0_render.txt
+!data/prep_manifest.json
+!data/truncation*.json
+!data/eval_decision.json
+!data/eval_args.json
+!data/eval_reuse.json
+!data/eval_lexical_discards.json
+!data/lexical_discards.json
+!data/consolidation.json

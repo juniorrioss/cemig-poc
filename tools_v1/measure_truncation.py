@@ -38,8 +38,9 @@ def main() -> None:
     fam_total: Counter = Counter()
     for r in rows:
         # tools já estão no system (baked); renderiza com tools=None
-        ids = tok.apply_chat_template(r["messages"], tools=None, tokenize=True)
-        n = len(ids)
+        enc = tok.apply_chat_template(r["messages"], tools=None, tokenize=True,
+                                      return_dict=True)
+        n = len(enc["input_ids"])
         lengths.append(n)
         fam = r["meta"]["family"]
         fam_total[fam] += 1

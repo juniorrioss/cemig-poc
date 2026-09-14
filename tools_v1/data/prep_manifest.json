@@ -1,0 +1,18 @@
+{
+  "n_dialogs": 4236,
+  "by_family": {
+    "chamada_simples": 1575,
+    "sem_ferramenta": 675,
+    "multiturno_reuso": 900,
+    "multiturno_nova_busca": 411,
+    "recusa_apos_busca": 675
+  },
+  "steps": {
+    "750": 748,
+    "1500": 1500,
+    "3000": 2961
+  },
+  "full": 4236,
+  "seed": 42,
+  "system_prompt_sha": "d7635ae4fa71a988"
+}

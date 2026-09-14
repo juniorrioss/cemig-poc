@@ -1,0 +1,1692 @@
+{
+ "metadata": {
+  "suite": "args",
+  "note": "holdout 151 SÓ para medir recall",
+  "created": "2026-09-14T03:04:36.462201+00:00"
+ },
+ "items": [
+  {
+   "id": "qa-001",
+   "question": "Ô, tô aqui na subestação e o encarregado falou que não dá pra desligar o circuito hoje. Posso trabalhar só com a luva de borracha mesmo ou tem outro jeito antes de partir pro EPI?",
+   "gold_chunk_id": 16,
+   "relevant_ids": [
+    16,
+    17
+   ],
+   "doc": "nr-10",
+   "section": "10.2.8"
+  },
+  {
+   "id": "qa-002",
+   "question": "Como não dá pra desenergizar o painel, o pessoal falou de usar uma tal de tensão de segurança. Que negócio é esse?",
+   "gold_chunk_id": 16,
+   "relevant_ids": [
+    16,
+    17
+   ],
+   "doc": "nr-10",
+   "section": "10.2.8"
+  },
+  {
+   "id": "qa-003",
+   "question": "Tô no poste e minha camisa de trabalho rasgou. Posso terminar o serviço com uma camiseta comum de algodão que eu tenho no carro?",
+   "gold_chunk_id": 17,
+   "relevant_ids": [
+    17
+   ],
+   "doc": "nr-10",
+   "section": "10.2.9"
+  },
+  {
+   "id": "qa-004",
+   "question": "Rapaz, casei semana passada e não queria tirar a aliança pra trabalhar no barramento. Se eu usar luva por cima, libera?",
+   "gold_chunk_id": 17,
+   "relevant_ids": [
+    17
+   ],
+   "doc": "nr-10",
+   "section": "10.2.9"
+  },
+  {
+   "id": "qa-005",
+   "question": "O encarregado quer que eu segure a lanterna com uma mão e aperte o conector com a outra dentro do painel, porque a luz do local tá queimada. Tá certo isso?",
+   "gold_chunk_id": 20,
+   "relevant_ids": [
+    20
+   ],
+   "doc": "nr-10",
+   "section": "10.4.5"
+  },
+  {
+   "id": "qa-006",
+   "question": "Tem uma caixa de passagem aqui num canto apertado que eu só alcanço torcendo o corpo todo. Posso fazer o serviço assim mesmo pra adiantar?",
+   "gold_chunk_id": 20,
+   "relevant_ids": [
+    20
+   ],
+   "doc": "nr-10",
+   "section": "10.4.5"
+  },
+  {
+   "id": "qa-007",
+   "question": "Vou desligar a chave faca ali do circuito pra gente trabalhar. Como é mesmo a ordem certinha dos passos pra deixar o trecho morto de verdade?",
+   "gold_chunk_id": 20,
+   "relevant_ids": [
+    20,
+    21
+   ],
+   "doc": "nr-10",
+   "section": "10.5.1"
+  },
+  {
+   "id": "qa-008",
+   "question": "Já abri a chave e testei com o detector, não tem tensão nenhuma. Posso pular o aterramento temporário pra ganhar tempo, já que o circuito tá morto?",
+   "gold_chunk_id": 20,
+   "relevant_ids": [
+    20,
+    21
+   ],
+   "doc": "nr-10",
+   "section": "10.5.1"
+  },
+  {
+   "id": "qa-009",
+   "question": "Terminamos o serviço na rede. Pra ligar de novo, é só tirar o cadeado e fechar a chave, ou tem ordem certa pra devolver a tensão?",
+   "gold_chunk_id": 21,
+   "relevant_ids": [
+    21
+   ],
+   "doc": "nr-10",
+   "section": "10.5.2"
+  },
+  {
+   "id": "qa-010",
+   "question": "O pessoal já tá afobado querendo religar o alimentador, mas ainda tem gente recolhendo ferramenta lá no vão. Posso mandar fechar a chave e o pessoal termina depois?",
+   "gold_chunk_id": 21,
+   "relevant_ids": [
+    21
+   ],
+   "doc": "nr-10",
+   "section": "10.5.2"
+  },
+  {
+   "id": "qa-011",
+   "question": "Ô, tô aqui no pé do transformador e o serviço é com a rede viva. Qualquer um da equipe pode meter a mão ou tem que ser alguém específico?",
+   "gold_chunk_id": 21,
+   "relevant_ids": [
+    21
+   ],
+   "doc": "nr-10",
+   "section": "10.6.1"
+  },
+  {
+   "id": "qa-012",
+   "question": "O encarregado falou que eu não posso nem chegar perto da parte viva, só o pessoal liberado. Isso procede? Onde tá escrito?",
+   "gold_chunk_id": 21,
+   "relevant_ids": [
+    21
+   ],
+   "doc": "nr-10",
+   "section": "10.6.1"
+  },
+  {
+   "id": "qa-013",
+   "question": "Meu parceiro faltou hoje e tenho um serviço na rede de 13,8 kV. Posso subir e resolver sozinho pra não atrasar?",
+   "gold_chunk_id": 22,
+   "relevant_ids": [
+    22
+   ],
+   "doc": "nr-10",
+   "section": "10.7.1"
+  },
+  {
+   "id": "qa-014",
+   "question": "Tô sozinho na viatura e apareceu um chamado no SEP aqui perto. Dou andamento ou espero apoio?",
+   "gold_chunk_id": 22,
+   "relevant_ids": [
+    22
+   ],
+   "doc": "nr-10",
+   "section": "10.7.1"
+  },
+  {
+   "id": "qa-015",
+   "question": "Como é a ordem pra desligar a chave faca lá no alimentador? O rádio só me passou o serviço por voz, posso executar assim mesmo?",
+   "gold_chunk_id": 22,
+   "relevant_ids": [
+    22
+   ],
+   "doc": "nr-10",
+   "section": "10.7.4"
+  },
+  {
+   "id": "qa-016",
+   "question": "A OS que tá comigo é de ontem, de outro poste. Serve pra esse serviço de hoje na subestação ou tenho que pedir outra?",
+   "gold_chunk_id": 22,
+   "relevant_ids": [
+    22
+   ],
+   "doc": "nr-10",
+   "section": "10.7.4"
+  },
+  {
+   "id": "qa-017",
+   "question": "O bastão isolante tá com a capa meio riscada, mas parece firme. Posso usar ele direto no circuito vivo ou tenho que conferir antes?",
+   "gold_chunk_id": 23,
+   "relevant_ids": [
+    23
+   ],
+   "doc": "nr-10",
+   "section": "10.7.5"
+  },
+  {
+   "id": "qa-018",
+   "question": "A luva de borracha passou no teste do laboratório mês passado. Preciso testar de novo aqui no campo antes de mexer na rede viva?",
+   "gold_chunk_id": 23,
+   "relevant_ids": [
+    23
+   ],
+   "doc": "nr-10",
+   "section": "10.7.5"
+  },
+  {
+   "id": "qa-019",
+   "question": "Fiz o curso do SENAI de eletricista. Isso já me faz ser o tal do 'qualificado' que o pessoal fala, ou preciso de mais alguma coisa pra trabalhar na rede?",
+   "gold_chunk_id": 23,
+   "relevant_ids": [
+    23
+   ],
+   "doc": "nr-10",
+   "section": "10.8.1"
+  },
+  {
+   "id": "qa-020",
+   "question": "Qual a diferença entre o qualificado, o habilitado, o capacitado e o autorizado? O fiscal vive perguntando isso e eu embananado.",
+   "gold_chunk_id": 23,
+   "relevant_ids": [
+    23
+   ],
+   "doc": "nr-10",
+   "section": "10.8.1"
+  },
+  {
+   "id": "qa-021",
+   "question": "Tô chegando aqui na subestação pra trocar uma chave fusível. O encarregado falou que tem que preencher uma papelada antes de começar. É obrigado mesmo ou dá pra ir direto pro serviço?",
+   "gold_chunk_id": 26,
+   "relevant_ids": [
+    26
+   ],
+   "doc": "nr-10",
+   "section": "10.11.2"
+  },
+  {
+   "id": "qa-022",
+   "question": "O rapaz novo da equipe perguntou pra que serve aquela reunião rapidinha que a gente faz no pé do poste antes de subir. Como explico isso pra ele direitinho?",
+   "gold_chunk_id": 26,
+   "relevant_ids": [
+    26
+   ],
+   "doc": "nr-10",
+   "section": "10.11.2"
+  },
+  {
+   "id": "qa-023",
+   "question": "Se um companheiro tomar um choque lá em cima do poste e apagar, eu posso fazer a massagem no peito dele ou tem que esperar o SAMU chegar?",
+   "gold_chunk_id": 27,
+   "relevant_ids": [
+    27
+   ],
+   "doc": "nr-10",
+   "section": "10.12.2"
+  },
+  {
+   "id": "qa-024",
+   "question": "O pessoal da turma nunca fez curso de resgate de vítima em altura. A firma é obrigada a dar esse treinamento pra gente ou é por nossa conta?",
+   "gold_chunk_id": 27,
+   "relevant_ids": [
+    27
+   ],
+   "doc": "nr-10",
+   "section": "10.12.2"
+  },
+  {
+   "id": "qa-025",
+   "question": "Cheguei no serviço e a estrutura do poste tá toda podre, balançando. O encarregado tá mandando subir mesmo assim. Eu posso me negar a subir ou levo advertência?",
+   "gold_chunk_id": 28,
+   "relevant_ids": [
+    28
+   ],
+   "doc": "nr-10",
+   "section": "10.14.1"
+  },
+  {
+   "id": "qa-026",
+   "question": "Parei o serviço porque a rede tava com fio caído perto de água e avisei o supervisor pelo rádio. Fiz certo ou tinha que ter continuado até ele chegar?",
+   "gold_chunk_id": 28,
+   "relevant_ids": [
+    28
+   ],
+   "doc": "nr-10",
+   "section": "10.14.1"
+  },
+  {
+   "id": "qa-027",
+   "question": "A gente vai mexer num circuito de 800 volts em corrente alternada aqui na indústria. Isso já conta como alta tensão ou ainda é baixa?",
+   "gold_chunk_id": 29,
+   "relevant_ids": [
+    29,
+    30,
+    31
+   ],
+   "doc": "nr-10",
+   "section": "Glossário"
+  },
+  {
+   "id": "qa-028",
+   "question": "Vou trabalhar num banco de baterias de 1300 volts em corrente contínua. O colega falou que isso já é alta tensão. Ele tá certo?",
+   "gold_chunk_id": 29,
+   "relevant_ids": [
+    29,
+    30,
+    31
+   ],
+   "doc": "nr-10",
+   "section": "Glossário"
+  },
+  {
+   "id": "qa-029",
+   "question": "Tô no poste e o cabo energizado tá bem pertinho do meu braço. Até que distância eu posso chegar dele sem tá com luva e ferramenta isolada?",
+   "gold_chunk_id": 29,
+   "relevant_ids": [
+    29,
+    30,
+    31
+   ],
+   "doc": "nr-10",
+   "section": "Glossário"
+  },
+  {
+   "id": "qa-030",
+   "question": "O encarregado vive falando de zona controlada e zona livre na hora de isolar a área. Qual a diferença entre uma e outra na prática?",
+   "gold_chunk_id": 29,
+   "relevant_ids": [
+    29,
+    30,
+    31
+   ],
+   "doc": "nr-10",
+   "section": "Glossário"
+  },
+  {
+   "id": "qa-031",
+   "question": "Fala, chefia! Tô aqui na subestação da fábrica, o pessoal falou que a carga instalada lá passa de 75 kW. O fiscal pode pedir algum documento das instalações? Que papelada é essa que tem que ter?",
+   "gold_chunk_id": 16,
+   "relevant_ids": [
+    16
+   ],
+   "doc": "nr-10",
+   "section": "10.2.4"
+  },
+  {
+   "id": "qa-032",
+   "question": "O encarregado pediu pra eu conferir se o prontuário elétrico da planta tá completo antes da auditoria. O que não pode faltar dentro dessa pasta do PIE?",
+   "gold_chunk_id": 16,
+   "relevant_ids": [
+    16
+   ],
+   "doc": "nr-10",
+   "section": "10.2.4"
+  },
+  {
+   "id": "qa-033",
+   "question": "Ô parceiro, fiz o curso da NR-10 faz uns dois anos e pouco. Ainda tô valendo ou tenho que fazer de novo? O supervisor falou que ia me escalar pra turma da manutenção.",
+   "gold_chunk_id": 24,
+   "relevant_ids": [
+    24,
+    25
+   ],
+   "doc": "nr-10",
+   "section": "10.8.8"
+  },
+  {
+   "id": "qa-034",
+   "question": "Fiquei encostado pelo INSS uns cinco meses por causa do joelho. Voltando agora, posso pegar serviço direto na rede ou tem que reciclar o curso antes?",
+   "gold_chunk_id": 24,
+   "relevant_ids": [
+    24,
+    25
+   ],
+   "doc": "nr-10",
+   "section": "10.8.8"
+  },
+  {
+   "id": "qa-035",
+   "question": "Vou fazer um serviço na área dos tanques de combustível, aquele setor que o pessoal fala que é área classificada por causa do vapor. Tem regra diferente pra mexer com elétrica ali?",
+   "gold_chunk_id": 25,
+   "relevant_ids": [
+    25
+   ],
+   "doc": "nr-10",
+   "section": "10.9.1"
+  },
+  {
+   "id": "qa-036",
+   "question": "Posso levar minha furadeira comum pra instalar um eletroduto lá dentro da cabine perto do setor de pintura? O cheiro de solvente lá é forte demais.",
+   "gold_chunk_id": 25,
+   "relevant_ids": [
+    25
+   ],
+   "doc": "nr-10",
+   "section": "10.9.1"
+  },
+  {
+   "id": "qa-037",
+   "question": "Desliguei o disjuntor geral pra trocar o barramento do QGBT. Basta desligar e avisar o pessoal no rádio, ou tem que pendurar plaquinha e cadeado também?",
+   "gold_chunk_id": 26,
+   "relevant_ids": [
+    26
+   ],
+   "doc": "nr-10",
+   "section": "10.10.1"
+  },
+  {
+   "id": "qa-038",
+   "question": "Tô no pátio da subestação e tem um monte de circuito parecido. Como o pessoal identifica qual painel tá impedido e qual pode operar? Só na fita zebrada resolve?",
+   "gold_chunk_id": 26,
+   "relevant_ids": [
+    26
+   ],
+   "doc": "nr-10",
+   "section": "10.10.1"
+  },
+  {
+   "id": "qa-039",
+   "question": "O engenheiro tá desenhando o projeto do painel novo da oficina. Falei pra ele que a chave tem que ter onde passar o cadeado, é isso mesmo? Isso é exigência de norma ou frescura minha?",
+   "gold_chunk_id": 17,
+   "relevant_ids": [
+    17,
+    19
+   ],
+   "doc": "nr-10",
+   "section": "10.3.1"
+  },
+  {
+   "id": "qa-040",
+   "question": "Como é a ordem pra desligar a chave faca do circuito e garantir que ninguém liga ela de novo enquanto eu tô lá em cima mexendo? O projeto do painel antigo nem tem lugar de cadeado, pode isso?",
+   "gold_chunk_id": 17,
+   "relevant_ids": [
+    17,
+    19
+   ],
+   "doc": "nr-10",
+   "section": "10.3.1"
+  },
+  {
+   "id": "qa-041",
+   "question": "Ô chefia, cheguei aqui na subestação do cliente pra fazer a manutenção e o diagrama que tá na parede é véio, todo rabiscado, nem bate com o que tá montado no painel. A empresa é obrigada a ter esse desenho atualizado ou eu me viro com o que tem?",
+   "gold_chunk_id": 15,
+   "relevant_ids": [
+    15,
+    16
+   ],
+   "doc": "nr-10",
+   "section": "10.2.3"
+  },
+  {
+   "id": "qa-042",
+   "question": "O encarregado falou que o disjuntor geral do galpão nunca foi testado desde que instalaram, uns cinco anos atrás. Isso pode? Não tem que fazer uma inspeção de tempo em tempo nesses sistemas de proteção não?",
+   "gold_chunk_id": 20,
+   "relevant_ids": [
+    20
+   ],
+   "doc": "nr-10",
+   "section": "10.4.4"
+  },
+  {
+   "id": "qa-043",
+   "question": "Tô no poste numa linha que já foi desligada lá na chave, mas o pessoal avisou que tem outro circuito vivo passando do lado e pode dar indução no condutor. Como que eu trato esse serviço? Sigo como se tivesse desenergizado mesmo?",
+   "gold_chunk_id": 21,
+   "relevant_ids": [
+    21
+   ],
+   "doc": "nr-10",
+   "section": "10.5.4"
+  },
+  {
+   "id": "qa-044",
+   "question": "Minha luva de borracha da alta tensão tá com o ensaio vencido faz uns dois meses, mas ela tá inteirinha, sem furo nenhum. Posso usar ela hoje no serviço da rede ou tem que mandar pro laboratório primeiro?",
+   "gold_chunk_id": 23,
+   "relevant_ids": [
+    23
+   ],
+   "doc": "nr-10",
+   "section": "10.7.8"
+  },
+  {
+   "id": "qa-045",
+   "question": "Vamos sair em três na turma hoje pra trocar uma cruzeta, mas ninguém falou quem é que manda no serviço lá no campo. Toda equipe tem que ter um responsável indicado ou a gente se resolve na hora?",
+   "gold_chunk_id": 27,
+   "relevant_ids": [
+    27
+   ],
+   "doc": "nr-10",
+   "section": "10.11.6"
+  },
+  {
+   "id": "qa-046",
+   "question": "Fala aí, chefia! Entrei ontem na turma da linha viva e o almoxarifado falou que eu tinha que comprar minha luva e meu capacete do meu bolso. Isso tá certo? A firma não tem que dar esse material pra gente não?",
+   "gold_chunk_id": 2,
+   "relevant_ids": [
+    2,
+    3,
+    4
+   ],
+   "doc": "nr-06",
+   "section": "6.5.1"
+  },
+  {
+   "id": "qa-047",
+   "question": "Ô parceiro, minha luva isolante rasgou aqui no meio do serviço no poste. Posso dar um jeitinho com fita e terminar o dia, ou tenho que parar e falar com o encarregado agora?",
+   "gold_chunk_id": 4,
+   "relevant_ids": [
+    4
+   ],
+   "doc": "nr-06",
+   "section": "6.6.1"
+  },
+  {
+   "id": "qa-048",
+   "question": "O encarregado achou umas luva de borracha novinha no depósito, mas o número do CA que tá gravado nela já venceu faz tempo. Ele falou que como nunca foi usada dá pra levar pro campo. Pode isso?",
+   "gold_chunk_id": 2,
+   "relevant_ids": [
+    2
+   ],
+   "doc": "nr-06",
+   "section": "6.4.1"
+  },
+  {
+   "id": "qa-049",
+   "question": "Chegou um bastão de manobra novo pra equipe, modelo diferente do que a gente usava. O supervisor só entregou e mandou usar. Não era pra ter alguma explicação ou treinamento antes de sair usando o troço?",
+   "gold_chunk_id": 4,
+   "relevant_ids": [
+    4
+   ],
+   "doc": "nr-06",
+   "section": "6.7.2"
+  },
+  {
+   "id": "qa-050",
+   "question": "Tô indo trocar um jumper na rede energizada e o colega falou que só a luva de borracha já segura o choque, que a sobreluva de couro é frescura. É isso mesmo ou tenho que usar as duas juntas?",
+   "gold_chunk_id": 1,
+   "relevant_ids": [
+    1,
+    3,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+   ],
+   "doc": "nr-06",
+   "section": "Anexo I"
+  },
+  {
+   "id": "qa-051",
+   "question": "Ô, tô num serviço aqui que tem barulho e poeira ao mesmo tempo. Em vez de ficar trocando de equipamento toda hora, não tem um trem que já vem tudo junto não? Como que fica isso pela norma?",
+   "gold_chunk_id": 1,
+   "relevant_ids": [
+    1
+   ],
+   "doc": "nr-06",
+   "section": "6.3.2"
+  },
+  {
+   "id": "qa-052",
+   "question": "Tô no poste e o sol tá rachando, fora o clarão quando abre arco na chave. Esse óculos escuro comum que eu comprei na banca serve ou tem que ser óculos especial da firma?",
+   "gold_chunk_id": 1,
+   "relevant_ids": [
+    1,
+    3,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+   ],
+   "doc": "nr-06",
+   "section": "Anexo I"
+  },
+  {
+   "id": "qa-053",
+   "question": "Chegou umas luvas novas aí pro pessoal, mas o papelzinho de instrução veio tudo em inglês, ninguém entende nada. Isso pode? O fabricante não é obrigado a mandar em português não?",
+   "gold_chunk_id": 5,
+   "relevant_ids": [
+    5,
+    6
+   ],
+   "doc": "nr-06",
+   "section": "6.8.1"
+  },
+  {
+   "id": "qa-054",
+   "question": "O encarregado pediu pra eu subir numa plataforma de uns dois metros e pouco pra trocar uma conexão. Isso aí já conta como trabalho em altura ou só vale pra coisa bem alta, tipo torre?",
+   "gold_chunk_id": 311,
+   "relevant_ids": [
+    311
+   ],
+   "doc": "nr-35",
+   "section": "35.2.1"
+  },
+  {
+   "id": "qa-055",
+   "question": "Entrou um menino novo na turma e o encarregado já quer mandar ele subir na escada pra ajudar no vão. Ele ainda não fez aquele curso de altura nem passou no médico. Pode mandar ele subir desse jeito?",
+   "gold_chunk_id": 312,
+   "relevant_ids": [
+    312
+   ],
+   "doc": "nr-35",
+   "section": "35.4.1"
+  },
+  {
+   "id": "qa-056",
+   "question": "Ô, chegou um peão novo aqui na turma e o encarregado quer subir ele no poste amanhã. Ele fez só umas 4 horinhas de curso lá na firma. Pode subir assim ou tem que completar o treinamento?",
+   "gold_chunk_id": 312,
+   "relevant_ids": [
+    312,
+    313,
+    324
+   ],
+   "doc": "nr-35",
+   "section": "35.4.2"
+  },
+  {
+   "id": "qa-057",
+   "question": "O curso de altura que a firma dá pode ser só na sala de aula, só teoria mesmo, ou tem que ter aquela parte prática de subir e usar o cinto?",
+   "gold_chunk_id": 312,
+   "relevant_ids": [
+    312,
+    313,
+    324
+   ],
+   "doc": "nr-35",
+   "section": "35.4.2"
+  },
+  {
+   "id": "qa-058",
+   "question": "Tô aqui na obra e o encarregado mandou subir logo na estrutura pra adiantar o serviço, sem preencher papel nenhum. Serviço em altura precisa daquela análise de risco e da permissão antes ou posso ir direto?",
+   "gold_chunk_id": 313,
+   "relevant_ids": [
+    313
+   ],
+   "doc": "nr-35",
+   "section": "35.5.1"
+  },
+  {
+   "id": "qa-059",
+   "question": "Esse serviço aqui de trocar cruzeta é coisa que a gente faz todo dia. Mesmo sendo rotina, tem que tirar PT toda vez ou a análise de risco já resolve?",
+   "gold_chunk_id": 313,
+   "relevant_ids": [
+    313
+   ],
+   "doc": "nr-35",
+   "section": "35.5.1"
+  },
+  {
+   "id": "qa-060",
+   "question": "Rapaz, me explica uma coisa: quando falam de sistema de proteção contra queda, é só o cinto mesmo ou tem mais coisa que eu tenho que conferir antes de subir?",
+   "gold_chunk_id": 315,
+   "relevant_ids": [
+    315,
+    316,
+    317,
+    318
+   ],
+   "doc": "nr-35",
+   "section": "35.6.1"
+  },
+  {
+   "id": "qa-061",
+   "question": "Tô no poste e não achei ponto bom pra prender o talabarte. Posso me amarrar em qualquer ferragem que aguentar o tranco?",
+   "gold_chunk_id": 315,
+   "relevant_ids": [
+    315,
+    316,
+    317,
+    318
+   ],
+   "doc": "nr-35",
+   "section": "35.6.1"
+  },
+  {
+   "id": "qa-062",
+   "question": "Meu cinto é daquele modelo antigo, tipo cinturão de eletricista só com a cintura. Pra subir na torre serve ele ou tem que ser o de paraquedista com as perneiras?",
+   "gold_chunk_id": 316,
+   "relevant_ids": [
+    316
+   ],
+   "doc": "nr-35",
+   "section": "35.6.4"
+  },
+  {
+   "id": "qa-063",
+   "question": "Na hora de passar da escada pra plataforma da torre eu fico um tempinho sem tá preso em nada. O pessoal falou de talabarte duplo, é obrigado usar ele nessa hora?",
+   "gold_chunk_id": 316,
+   "relevant_ids": [
+    316
+   ],
+   "doc": "nr-35",
+   "section": "35.6.4"
+  },
+  {
+   "id": "qa-064",
+   "question": "Se o companheiro cair e ficar pendurado no cinto lá no alto da torre, o que a gente faz? Espera o bombeiro chegar ou a equipe tem que ter um esquema pronto pra tirar ele de lá?",
+   "gold_chunk_id": 318,
+   "relevant_ids": [
+    318,
+    319
+   ],
+   "doc": "nr-35",
+   "section": "35.7.1"
+  },
+  {
+   "id": "qa-065",
+   "question": "O encarregado quer mandar só eu pra fazer um serviço em altura num alimentador afastado, sem ninguém junto. Se der ruim e eu ficar pendurado, quem me tira? Pode isso?",
+   "gold_chunk_id": 318,
+   "relevant_ids": [
+    318,
+    319
+   ],
+   "doc": "nr-35",
+   "section": "35.7.1"
+  },
+  {
+   "id": "qa-066",
+   "question": "Tô aqui no pé da torre e o tempo fechou, tá ventando forte e começou a trovejar lá longe. O encarregado tá me apressando pra subir e terminar o serviço. Posso subir mesmo assim ou tenho que esperar?",
+   "gold_chunk_id": 314,
+   "relevant_ids": [
+    314
+   ],
+   "doc": "nr-35",
+   "section": "35.5.4"
+  },
+  {
+   "id": "qa-067",
+   "question": "O pessoal quer amarrar a linha de vida num suporte velho que já tava lá na estrutura, meio enferrujado. Serve qualquer ponto pra prender o talabarte ou tem regra pra isso?",
+   "gold_chunk_id": 326,
+   "relevant_ids": [
+    326,
+    329
+   ],
+   "doc": "nr-35",
+   "section": "Anexo II"
+  },
+  {
+   "id": "qa-068",
+   "question": "Vou subir na escada de fibra pra trocar uma conexão baixa. Dá pra eu levar a ferramenta na mão enquanto subo, ou tenho que subir de mão vazia mesmo?",
+   "gold_chunk_id": 329,
+   "relevant_ids": [
+    329
+   ],
+   "doc": "nr-35",
+   "section": "Anexo III"
+  },
+  {
+   "id": "qa-069",
+   "question": "Fiz o curso de altura faz uns dois anos, quando entrei na firma. O cara do SESMT falou que meu certificado ia vencer. Isso vence mesmo? De quanto em quanto tempo tenho que refazer?",
+   "gold_chunk_id": 313,
+   "relevant_ids": [
+    313,
+    324
+   ],
+   "doc": "nr-35",
+   "section": "35.4.3"
+  },
+  {
+   "id": "qa-070",
+   "question": "No serviço de rapel na torre, o colega novato quer descer pendurado numa corda só, diz que aguenta o peso tranquilo. Pode isso ou tem que ter duas cordas obrigatório?",
+   "gold_chunk_id": 324,
+   "relevant_ids": [
+    324,
+    326,
+    329
+   ],
+   "doc": "nr-35",
+   "section": "Anexo I"
+  },
+  {
+   "id": "qa-071",
+   "question": "Tô subindo na torre aqui e o meu talabarte tá sem aquele amortecedor, só o cabo com os mosquetão. O encarregado falou que dá pra ir assim mesmo porque é rapidinho. Pode ou não pode?",
+   "gold_chunk_id": 316,
+   "relevant_ids": [
+    316,
+    317
+   ],
+   "doc": "nr-35",
+   "section": "35.6.6"
+  },
+  {
+   "id": "qa-072",
+   "question": "A fiação do painel da máquina de bancada aqui da oficina tá com o cabo descascado, aparecendo o cobre perto do quadro. O pessoal enrolou uma fita isolante e tá usando. Isso tá certo?",
+   "gold_chunk_id": 40,
+   "relevant_ids": [
+    40,
+    41,
+    42,
+    62,
+    72,
+    73
+   ],
+   "doc": "nr-12",
+   "section": "12.3"
+  },
+  {
+   "id": "qa-073",
+   "question": "Fui ligar a esmerilhadeira de bancada e levei um formigamento na carcaça dela. O colega falou que é normal, que é só estática. Preciso me preocupar com fio terra nesse trem?",
+   "gold_chunk_id": 41,
+   "relevant_ids": [
+    41
+   ],
+   "doc": "nr-12",
+   "section": "12.3.4"
+  },
+  {
+   "id": "qa-074",
+   "question": "Aqui na prensa o pessoal desliga a máquina no fim do turno apertando o botão vermelho de emergência, aquele cogumelo. Falei que achava errado e riram de mim. Quem tá certo?",
+   "gold_chunk_id": 51,
+   "relevant_ids": [
+    51,
+    52,
+    53,
+    63,
+    73,
+    112,
+    114,
+    117,
+    119,
+    121,
+    126,
+    133,
+    161,
+    165,
+    166,
+    168,
+    175,
+    177,
+    180,
+    186
+   ],
+   "doc": "nr-12",
+   "section": "12.6"
+  },
+  {
+   "id": "qa-075",
+   "question": "O encarregado pediu pra eu trocar o rolamento do motor da esteira agora no almoço, enquanto o pessoal come. Basta desligar na botoeira e mandar ver, ou tem que fazer aquele negócio do cadeado na chave?",
+   "gold_chunk_id": 56,
+   "relevant_ids": [
+    56,
+    59,
+    60,
+    61,
+    62,
+    72,
+    159
+   ],
+   "doc": "nr-12",
+   "section": "12.11"
+  },
+  {
+   "id": "qa-076",
+   "question": "Ô, vou trocar o contator do painel da esteira aqui. O encarregado falou que não basta desligar a chave, tem que pôr cadeado. É isso mesmo? Só o meu cadeado resolve ou tem que ter plaquinha também?",
+   "gold_chunk_id": 56,
+   "relevant_ids": [
+    56,
+    60,
+    61,
+    159
+   ],
+   "doc": "nr-12",
+   "section": "12.11.3"
+  },
+  {
+   "id": "qa-077",
+   "question": "Tô aqui na prensa e o botão de ligar fica coladinho na parte que esmaga, quase dentro da máquina. Pra apertar eu tenho que enfiar o braço perto da zona de prensagem. Isso tá certo ou a botoeira tinha que ficar mais afastada?",
+   "gold_chunk_id": 43,
+   "relevant_ids": [
+    43,
+    45,
+    46,
+    63,
+    110,
+    124,
+    165,
+    166
+   ],
+   "doc": "nr-12",
+   "section": "12.4.1"
+  },
+  {
+   "id": "qa-078",
+   "question": "A grade de proteção da polia do motor tá solta, dá pra abrir com a máquina rodando e enxergar a correia girando. O pessoal tirou pra limpar e nunca mais prendeu direito. Posso operar assim ou tem que travar essa grade antes?",
+   "gold_chunk_id": 46,
+   "relevant_ids": [
+    46,
+    49,
+    50,
+    51,
+    55,
+    72,
+    94,
+    117,
+    126,
+    127,
+    129,
+    145,
+    159,
+    168,
+    179,
+    186,
+    187,
+    194
+   ],
+   "doc": "nr-12",
+   "section": "12.5.1"
+  },
+  {
+   "id": "qa-079",
+   "question": "Chegou um menino novo na equipe e o chefe já quer botar ele pra operar a guilhotina hoje. O rapaz nunca mexeu com isso, não fez curso nenhum. Pode isso ou ele tem que ser treinado antes de pegar na máquina?",
+   "gold_chunk_id": 68,
+   "relevant_ids": [
+    68,
+    69,
+    70,
+    71,
+    73,
+    74
+   ],
+   "doc": "nr-12",
+   "section": "12.16.1"
+  },
+  {
+   "id": "qa-080",
+   "question": "Aqui no setor tem uns painéis energizados e um transportador que já quase pegou a manga da camisa de um colega, mas não tem placa nenhuma avisando do perigo. Era pra ter alguma sinalização nessas áreas ou só o aviso de boca do encarregado já serve?",
+   "gold_chunk_id": 62,
+   "relevant_ids": [
+    62,
+    72
+   ],
+   "doc": "nr-12",
+   "section": "12.12.1"
+  },
+  {
+   "id": "qa-081",
+   "question": "Ô, tô aqui na prensa e a mangueira do sistema pneumático tá estufando quando a pressão sobe. O mecânico falou que não precisa de válvula nenhuma não. Isso tá certo ou tem que ter alívio nesse sistema?",
+   "gold_chunk_id": 53,
+   "relevant_ids": [
+    53,
+    54,
+    55,
+    63,
+    72,
+    136,
+    145,
+    150,
+    169,
+    170,
+    171,
+    173,
+    174,
+    175,
+    176,
+    178,
+    179,
+    182,
+    186,
+    187,
+    188,
+    189,
+    190
+   ],
+   "doc": "nr-12",
+   "section": "12.7"
+  },
+  {
+   "id": "qa-082",
+   "question": "A unidade hidráulica da plataforma aqui tá batendo pressão acima do que o manômetro marca de trabalho. Posso seguir operando ou tem alguma exigência de norma pra esse tipo de coisa?",
+   "gold_chunk_id": 53,
+   "relevant_ids": [
+    53,
+    54,
+    55,
+    63,
+    72,
+    136,
+    145,
+    150,
+    169,
+    170,
+    171,
+    173,
+    174,
+    175,
+    176,
+    178,
+    179,
+    182,
+    186,
+    187,
+    188,
+    189,
+    190
+   ],
+   "doc": "nr-12",
+   "section": "12.7"
+  },
+  {
+   "id": "qa-083",
+   "question": "Tô trabalhando do lado da esteira que leva brita e os roletes e o tambor tão tudo expostos, sem carenagem nenhuma. Posso ficar circulando ali do lado ou isso tá irregular?",
+   "gold_chunk_id": 55,
+   "relevant_ids": [
+    55,
+    56,
+    57,
+    63
+   ],
+   "doc": "nr-12",
+   "section": "12.8"
+  },
+  {
+   "id": "qa-084",
+   "question": "A esteira transportadora aqui da obra não tem aquele cordão de emergência do lado pra parar ela se alguém enroscar. O encarregado falou que o botão lá no painel resolve. Tá valendo isso?",
+   "gold_chunk_id": 55,
+   "relevant_ids": [
+    55,
+    56,
+    57,
+    63
+   ],
+   "doc": "nr-12",
+   "section": "12.8"
+  },
+  {
+   "id": "qa-085",
+   "question": "O encarregado mandou eu puxar uma instalação provisória pra ligar as máquinas do canteiro e falou que por ser provisória não precisa seguir norma de elétrica não. É isso mesmo, chefe?",
+   "gold_chunk_id": 239,
+   "relevant_ids": [
+    239,
+    240,
+    241
+   ],
+   "doc": "nr-18",
+   "section": "18.6.1"
+  },
+  {
+   "id": "qa-086",
+   "question": "Sou eletricista mas não fiz o curso da NR-10 ainda. Posso montar o quadro provisório da obra mesmo assim, já que é só pra tocar o serviço por uns dias?",
+   "gold_chunk_id": 239,
+   "relevant_ids": [
+    239,
+    240,
+    241
+   ],
+   "doc": "nr-18",
+   "section": "18.6.1"
+  },
+  {
+   "id": "qa-087",
+   "question": "Tem um cabo de força jogado no chão atravessando bem onde o pessoal passa com o carrinho de massa. Posso deixar ele ali no chão mesmo ou tenho que suspender esse cabo?",
+   "gold_chunk_id": 239,
+   "relevant_ids": [
+    239
+   ],
+   "doc": "nr-18",
+   "section": "18.6.4"
+  },
+  {
+   "id": "qa-088",
+   "question": "Preciso levar energia do gerador até a betoneira do outro lado do canteiro. Qual o jeito certo de passar esse cabo sem deixar ele largado no meio do caminho do pessoal?",
+   "gold_chunk_id": 239,
+   "relevant_ids": [
+    239
+   ],
+   "doc": "nr-18",
+   "section": "18.6.4"
+  },
+  {
+   "id": "qa-089",
+   "question": "O mestre falou que o contêiner do almoxarifado e os quadros de força da obra não precisam de aterramento porque é tudo provisório. Procede isso ou tenho que aterrar tudo?",
+   "gold_chunk_id": 240,
+   "relevant_ids": [
+    240
+   ],
+   "doc": "nr-18",
+   "section": "18.6.10"
+  },
+  {
+   "id": "qa-090",
+   "question": "Encostei no quadro de distribuição aqui da obra e tomei um choquezinho de leve. O que deve tá faltando nesse quadro pra dar isso?",
+   "gold_chunk_id": 240,
+   "relevant_ids": [
+    240
+   ],
+   "doc": "nr-18",
+   "section": "18.6.10"
+  },
+  {
+   "id": "qa-091",
+   "question": "Ô, tô montando a parte elétrica do canteiro aqui e o mestre quer ligar a betoneira e a serra circular direto no quadro pra ganhar tempo. Precisa mesmo daquele disjuntor DR ou posso ligar direto sem ele?",
+   "gold_chunk_id": 240,
+   "relevant_ids": [
+    240
+   ],
+   "doc": "nr-18",
+   "section": "18.6.11"
+  },
+  {
+   "id": "qa-092",
+   "question": "O quadro de força aqui da obra vive escancarado e todo mundo mete a mão pra ligar e desligar as coisas. Tá certo isso ou tem que trancar esse trem?",
+   "gold_chunk_id": 240,
+   "relevant_ids": [
+    240
+   ],
+   "doc": "nr-18",
+   "section": "18.6.7"
+  },
+  {
+   "id": "qa-093",
+   "question": "Tô na laje do segundo andar, bem na beirada que dá de frente pra rede da rua, e não tem guarda-corpo nenhum montado. O encarregado falou pra tocar o serviço assim mesmo. Posso continuar?",
+   "gold_chunk_id": 258,
+   "relevant_ids": [
+    258
+   ],
+   "doc": "nr-18",
+   "section": "18.9.1"
+  },
+  {
+   "id": "qa-094",
+   "question": "Minha furadeira tá com o cabo descascado e o colega emendou com fita isolante comum pra quebrar o galho. Dá pra usar assim hoje ou tenho que parar?",
+   "gold_chunk_id": 273,
+   "relevant_ids": [
+    273,
+    274,
+    275
+   ],
+   "doc": "nr-18",
+   "section": "18.10.2"
+  },
+  {
+   "id": "qa-095",
+   "question": "O guindaste vai içar umas vigas hoje coladas na rede de média tensão da rua. Quanto que eu tenho que afastar a lança pra não dar ruim?",
+   "gold_chunk_id": 239,
+   "relevant_ids": [
+    239,
+    241
+   ],
+   "doc": "nr-18",
+   "section": "18.6.2"
+  },
+  {
+   "id": "qa-096",
+   "question": "Ô, chegamo nessa obra nova aqui e o banheiro do canteiro tá um caos, sem água e a fossa vazando. A gente é obrigado a usar assim mesmo ou a empresa tem que arrumar?",
+   "gold_chunk_id": 237,
+   "relevant_ids": [
+    237
+   ],
+   "doc": "nr-18",
+   "section": "18.5.1"
+  },
+  {
+   "id": "qa-097",
+   "question": "Tamo almoçando sentado no chão do lado do material, no sol. O encarregado falou que não precisa de refeitório porque a obra é pequena. Isso tá certo?",
+   "gold_chunk_id": 237,
+   "relevant_ids": [
+    237
+   ],
+   "doc": "nr-18",
+   "section": "18.5.1"
+  },
+  {
+   "id": "qa-098",
+   "question": "Aqui no canteiro não tem vestiário não, o pessoal troca de roupa atrás do container e deixa a mochila jogada. Pode isso ou tem que ter um lugar certo?",
+   "gold_chunk_id": 237,
+   "relevant_ids": [
+    237
+   ],
+   "doc": "nr-18",
+   "section": "18.5.1"
+  },
+  {
+   "id": "qa-099",
+   "question": "Fui contratado ontem e o mestre já quer me botar hoje direto na frente de serviço, sem passar por integração nenhuma. Posso começar assim ou tenho que fazer treinamento antes?",
+   "gold_chunk_id": 292,
+   "relevant_ids": [
+    292
+   ],
+   "doc": "nr-18",
+   "section": "18.14.1"
+  },
+  {
+   "id": "qa-100",
+   "question": "O encarregado deu uma palestrinha de meia hora pro pessoal novo e mandou assinar a lista dizendo que era a integração. Meia hora vale como treinamento admissional?",
+   "gold_chunk_id": 292,
+   "relevant_ids": [
+    292
+   ],
+   "doc": "nr-18",
+   "section": "18.14.1"
+  },
+  {
+   "id": "qa-101",
+   "question": "Trabalhei 3 anos em obra em outra empreiteira e agora entrei nessa nova. Como já sou experiente, eles falaram que eu não preciso fazer a integração de novo. Procede?",
+   "gold_chunk_id": 292,
+   "relevant_ids": [
+    292
+   ],
+   "doc": "nr-18",
+   "section": "18.14.1"
+  },
+  {
+   "id": "qa-102",
+   "question": "Tô no poste aqui e o isolador tá rachado, soltando estalo perto do condutor. Se eu descer e parar o serviço agora, a firma pode me punir ou vou ter que continuar?",
+   "gold_chunk_id": 5,
+   "relevant_ids": [
+    5
+   ],
+   "doc": "nr-01",
+   "section": "1.4.3"
+  },
+  {
+   "id": "qa-103",
+   "question": "O encarregado me mandou direto pro serviço na rede sem passar nada, nem OS assinada nem falar dos riscos. A firma não era obrigada a me informar isso antes de eu subir?",
+   "gold_chunk_id": 3,
+   "relevant_ids": [
+    3
+   ],
+   "doc": "nr-01",
+   "section": "1.4.1"
+  },
+  {
+   "id": "qa-104",
+   "question": "Meu colega vive falando que essas regras de segurança são só frescura da empresa pra encher o saco. Eu sou obrigado mesmo a seguir tudo isso ou é opcional?",
+   "gold_chunk_id": 4,
+   "relevant_ids": [
+    4
+   ],
+   "doc": "nr-01",
+   "section": "1.4.2"
+  },
+  {
+   "id": "qa-105",
+   "question": "A firma que a gente presta serviço de rede precisa ter aquele negócio de gerenciamento de risco pros trabalho que a turma faz na rua, ou isso é só pra fábrica?",
+   "gold_chunk_id": 6,
+   "relevant_ids": [
+    6
+   ],
+   "doc": "nr-01",
+   "section": "1.5.3.1"
+  },
+  {
+   "id": "qa-106",
+   "question": "Antes de só me entregar luva e capacete, a firma não tinha que tentar tirar o perigo do serviço primeiro? Qual que é a ordem certa dessas proteção?",
+   "gold_chunk_id": 9,
+   "relevant_ids": [
+    9
+   ],
+   "doc": "nr-01",
+   "section": "1.5.4.4.2"
+  },
+  {
+   "id": "qa-107",
+   "question": "O técnico de segurança falou que achou um risco lá na subestação e anotou no papel. Mas e aí, fica só anotado? Não tem que ter um prazo pra empresa resolver isso não?",
+   "gold_chunk_id": 11,
+   "relevant_ids": [
+    11
+   ],
+   "doc": "nr-01",
+   "section": "1.5.5.1.1"
+  },
+  {
+   "id": "qa-108",
+   "question": "Tô no canteiro e o encarregado disse que a medida de proteção nova só sai ano que vem. Pode isso? Como que cobra a empresa do prazo?",
+   "gold_chunk_id": 11,
+   "relevant_ids": [
+    11
+   ],
+   "doc": "nr-01",
+   "section": "1.5.5.1.1"
+  },
+  {
+   "id": "qa-109",
+   "question": "O fiscal chegou aqui na obra pedindo os papel do PGR. Que documento que a firma é obrigada a mostrar no mínimo?",
+   "gold_chunk_id": 13,
+   "relevant_ids": [
+    13
+   ],
+   "doc": "nr-01",
+   "section": "1.5.7.1"
+  },
+  {
+   "id": "qa-110",
+   "question": "Pedi pro pessoal do escritório a lista dos riscos do meu setor e falaram que é documento interno da empresa. Eles podem negar isso pra gente?",
+   "gold_chunk_id": 13,
+   "relevant_ids": [
+    13
+   ],
+   "doc": "nr-01",
+   "section": "1.5.7.1"
+  },
+  {
+   "id": "qa-111",
+   "question": "Se um companheiro tomar um choque lá em cima do poste, a firma tem que ter um esquema pronto de resgate ou a gente se vira na hora?",
+   "gold_chunk_id": 13,
+   "relevant_ids": [
+    13
+   ],
+   "doc": "nr-01",
+   "section": "1.5.6.1"
+  },
+  {
+   "id": "qa-112",
+   "question": "A gente vai trabalhar numa linha afastada, longe de tudo. Quem que tinha que definir como chama socorro e quem tira o cara da rede se der ruim?",
+   "gold_chunk_id": 13,
+   "relevant_ids": [
+    13
+   ],
+   "doc": "nr-01",
+   "section": "1.5.6.1"
+  },
+  {
+   "id": "qa-113",
+   "question": "Entrei na firma essa semana e já querem me mandar pro campo amanhã. Posso começar o serviço sem ter feito o treinamento ainda?",
+   "gold_chunk_id": 16,
+   "relevant_ids": [
+    16
+   ],
+   "doc": "nr-01",
+   "section": "1.7.1"
+  },
+  {
+   "id": "qa-114",
+   "question": "Fiz o curso quando entrei, faz uns três anos já. O encarregado falou que tá valendo pra sempre. É isso mesmo ou tem que reciclar?",
+   "gold_chunk_id": 16,
+   "relevant_ids": [
+    16
+   ],
+   "doc": "nr-01",
+   "section": "1.7.1"
+  },
+  {
+   "id": "qa-115",
+   "question": "Cheguei no serviço e vi que a estrutura tá podre, com risco de vir tudo abaixo. Vou recusar subir. Eu preciso avisar alguém ou posso só largar e ir embora?",
+   "gold_chunk_id": 5,
+   "relevant_ids": [
+    5
+   ],
+   "doc": "nr-01",
+   "section": "1.4.3.1"
+  },
+  {
+   "id": "qa-116",
+   "question": "Me recusei a entrar na vala sem escoramento e agora o chefe tá ameaçando descontar o dia e me mandar embora. Ele pode fazer isso comigo?",
+   "gold_chunk_id": 5,
+   "relevant_ids": [
+    5
+   ],
+   "doc": "nr-01",
+   "section": "1.4.3.1"
+  },
+  {
+   "id": "qa-117",
+   "question": "Ô, chefia, me tira uma dúvida: essa caixa de passagem aqui embaixo da calçada e o poço de visita conta como espaço confinado ou eu posso descer direto pra emendar o cabo?",
+   "gold_chunk_id": 1889,
+   "relevant_ids": [
+    1889
+   ],
+   "doc": "nr-33",
+   "section": "33.1.2"
+  },
+  {
+   "id": "qa-118",
+   "question": "Tô escalado de vigia na boca da galeria hoje. Eu posso entrar um pouquinho pra ajudar o pessoal a puxar o cabo lá dentro ou tenho que ficar plantado aqui fora o tempo todo?",
+   "gold_chunk_id": 1887,
+   "relevant_ids": [
+    1887
+   ],
+   "doc": "nr-33",
+   "section": "33.3.4"
+  },
+  {
+   "id": "qa-119",
+   "question": "O encarregado pediu pra eu, enquanto tô de vigia na caixa subterrânea, ir adiantando a separação de material e atender o rádio de outra equipe. Posso quebrar esse galho?",
+   "gold_chunk_id": 1887,
+   "relevant_ids": [
+    1887
+   ],
+   "doc": "nr-33",
+   "section": "33.3.4"
+  },
+  {
+   "id": "qa-120",
+   "question": "A galera já tá com pressa pra descer na galeria e resolver o defeito. Precisa mesmo esperar sair aquele papel de permissão ou dá pra entrar logo e regularizar depois?",
+   "gold_chunk_id": 1891,
+   "relevant_ids": [
+    1891
+   ],
+   "doc": "nr-33",
+   "section": "33.5.4"
+  },
+  {
+   "id": "qa-121",
+   "question": "Já medi o gás aqui na boca do poço antes de descer e deu tudo limpo. Posso desligar o detector pra economizar bateria enquanto o serviço rola lá embaixo?",
+   "gold_chunk_id": 1895,
+   "relevant_ids": [
+    1895
+   ],
+   "doc": "nr-33",
+   "section": "33.5.15"
+  },
+  {
+   "id": "qa-122",
+   "question": "Tô aqui na frente da caixa subterrânea pra fazer a emenda, o pessoal trouxe o ventilador. Posso ligar ele só de vez em quando pra economizar bateria ou tem que ficar soprando ar lá pra dentro o tempo todo enquanto a gente trabalha?",
+   "gold_chunk_id": 1896,
+   "relevant_ids": [
+    1896
+   ],
+   "doc": "nr-33",
+   "section": "33.5.16"
+  },
+  {
+   "id": "qa-123",
+   "question": "Vou descer na câmara pra mexer na emenda, mas passa uns cabo energizado do lado. O encarregado falou que é só sinalizar e tomar cuidado. Não precisa bloquear e desligar esses cabo antes de eu entrar não?",
+   "gold_chunk_id": 1894,
+   "relevant_ids": [
+    1894
+   ],
+   "doc": "nr-33",
+   "section": "33.5.14"
+  },
+  {
+   "id": "qa-124",
+   "question": "A gente vai entrar num poço de inspeção bem fundo hoje. Precisa mesmo armar aquele tripé com guincho e vestir o cinto paraquedista, ou dá pra descer pela escada só com uma corda amarrada na cintura pro colega segurar?",
+   "gold_chunk_id": 1897,
+   "relevant_ids": [
+    1897
+   ],
+   "doc": "nr-33",
+   "section": "33.5.20"
+  },
+  {
+   "id": "qa-125",
+   "question": "Fiz o curso de espaço confinado já faz um tempo e o encarregado falou que eu tenho que fazer a reciclagem pra continuar entrando como autorizado. Quantas horas tem que ter esse treinamento?",
+   "gold_chunk_id": 1899,
+   "relevant_ids": [
+    1899
+   ],
+   "doc": "nr-33",
+   "section": "33.6.1"
+  },
+  {
+   "id": "qa-126",
+   "question": "Tava lá embaixo na galeria trabalhando e o detector de gás começou a apitar do nada. O colega falou pra esperar um pouco pra ver se para de apitar. E aí, continuo o serviço ou saio fora?",
+   "gold_chunk_id": 1892,
+   "relevant_ids": [
+    1892
+   ],
+   "doc": "nr-33",
+   "section": "33.5.11"
+  },
+  {
+   "id": "qa-127",
+   "question": "Fala aí, chefia: esse adicional de perigo que a gente recebe por mexer com rede energizada é quanto mesmo? Cai em cima do salário todo ou só do básico? O pessoal aqui na turma tá na dúvida se conta hora extra e prêmio nessa conta.",
+   "gold_chunk_id": 884,
+   "relevant_ids": [
+    884
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4, item 3"
+  },
+  {
+   "id": "qa-128",
+   "question": "Tô escalado pra trabalhar na subestação e depois na linha de transmissão, na parte de manutenção. O encarregado falou que mesmo com o trecho desligado eu recebo periculosidade. Isso procede? Trabalho no SEP dá direito mesmo se a instalação tiver desenergizada?",
+   "gold_chunk_id": 902,
+   "relevant_ids": [
+    902
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4, item 1, alínea b"
+  },
+  {
+   "id": "qa-129",
+   "question": "Ô, me tira uma dúvida: hoje eu fiquei trabalhando do lado de um barramento vivo, em alta tensão, sem encostar, só na proximidade mesmo. E tem dia que pego serviço em baixa tensão energizada no padrão do cliente. Nesses dois casos eu tenho direito ao adicional ou só quando boto a mão no circuito?",
+   "gold_chunk_id": 902,
+   "relevant_ids": [
+    902
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4, item 1"
+  },
+  {
+   "id": "qa-130",
+   "question": "Tô no poste agora fazendo inspeção na rede de distribuição da rua, aquela aérea de média tensão. Meu serviço é só olhar e apontar defeito, nem sempre mexo em nada. Mesmo assim entra na periculosidade ou só quem faz manutenção pesada recebe?",
+   "gold_chunk_id": 904,
+   "relevant_ids": [
+    904
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4, quadro de atividades/áreas de risco"
+  },
+  {
+   "id": "qa-131",
+   "question": "O encarregado me mandou fazer o desligamento do trecho e testar com o detector se a linha tá morta antes da turma entrar. Como eu tô lá justamente pra desligar e conferir se não tem tensão, esse serviço conta como perigoso ou como ainda não tem confirmação de que tá desenergizado eu fico por fora do adicional?",
+   "gold_chunk_id": 903,
+   "relevant_ids": [
+    903
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4, item 1, alínea b"
+  },
+  {
+   "id": "qa-132",
+   "question": "Ô, meu serviço é ficar manobrando chave seccionadora e disjuntor no pátio da subestação, às vezes mexo no transformador também. Esse serviço aí me dá direito à periculosidade ou não?",
+   "gold_chunk_id": 884,
+   "relevant_ids": [
+    884
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4"
+  },
+  {
+   "id": "qa-133",
+   "question": "O encarregado me escalou pra ficar de apoio dentro do pátio da subestação enquanto o pessoal opera os equipamentos. Mesmo sem encostar em nada energizado, eu pego adicional?",
+   "gold_chunk_id": 906,
+   "relevant_ids": [
+    906
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4"
+  },
+  {
+   "id": "qa-134",
+   "question": "Tô trabalhando num circuito de comando que é só 24 volts, coisa pequena. Nesse caso eu continuo recebendo a periculosidade igual ou esse dinheiro some?",
+   "gold_chunk_id": 902,
+   "relevant_ids": [
+    902
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4"
+  },
+  {
+   "id": "qa-135",
+   "question": "Meu serviço agora é só em painel de sinalização de 48 volts CA. O pessoal do escritório falou que eu perco o adicional por causa disso, é isso mesmo?",
+   "gold_chunk_id": 902,
+   "relevant_ids": [
+    902
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4"
+  },
+  {
+   "id": "qa-136",
+   "question": "A gente desligou tudo, aterrou o circuito, travou o disjuntor com cadeado e sinalizou. Trabalhando assim, com a linha morta, eu ainda ganho a periculosidade ou já era?",
+   "gold_chunk_id": 907,
+   "relevant_ids": [
+    907
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4"
+  },
+  {
+   "id": "qa-137",
+   "question": "O encarregado falou que quando o circuito tá completamente morto e aterrado a firma não paga mais o adicional. Isso tem base na norma ou é conversa dele?",
+   "gold_chunk_id": 908,
+   "relevant_ids": [
+    908
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4"
+  },
+  {
+   "id": "qa-138",
+   "question": "Vou trocar umas tomadas e mexer no quadro de luz de uma sala, tudo desligado no disjuntor geral, sem chance nenhuma de voltar energia. Rola periculosidade num serviço desse?",
+   "gold_chunk_id": 902,
+   "relevant_ids": [
+    902
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4"
+  },
+  {
+   "id": "qa-139",
+   "question": "Fui fazer manutenção num motor de bomba 220 volts, desligado, liberado pelo eletricista e sem risco de ligar sozinho. Tenho direito ao adicional nesse serviço ou não?",
+   "gold_chunk_id": 902,
+   "relevant_ids": [
+    902
+   ],
+   "doc": "nr-16",
+   "section": "Anexo 4"
+  },
+  {
+   "id": "qa-140",
+   "question": "Como é que a firma decide se eu tenho ou não direito à periculosidade? É o chefe que bate o martelo sozinho ou tem que ter documento?",
+   "gold_chunk_id": 884,
+   "relevant_ids": [
+    884
+   ],
+   "doc": "nr-16",
+   "section": "16.2"
+  },
+  {
+   "id": "qa-141",
+   "question": "Falaram que vão cortar minha periculosidade sem mostrar papel nenhum, só no aviso do RH. Pode isso, ou tem que ter laudo assinado por engenheiro?",
+   "gold_chunk_id": 884,
+   "relevant_ids": [
+    884
+   ],
+   "doc": "nr-16",
+   "section": "16.2"
+  },
+  {
+   "id": "qa-142",
+   "question": "Tô aqui na subestação e o pessoal pintou umas faixas amarela e vermelha no chão perto do transformador. Isso aí é só enfeite ou tem que respeitar mesmo? Pra que serve essas cores?",
+   "gold_chunk_id": 1251,
+   "relevant_ids": [
+    1251
+   ],
+   "doc": "nr-26",
+   "section": "26.1.1"
+  },
+  {
+   "id": "qa-143",
+   "question": "O encarregado mandou pintar de laranja a proteção da chave lá do painel e disse que agora tá sinalizado. Só a pintura já resolve ou ainda tem que colocar a grade e travar o circuito do mesmo jeito?",
+   "gold_chunk_id": 1251,
+   "relevant_ids": [
+    1251
+   ],
+   "doc": "nr-26",
+   "section": "26.1.2"
+  },
+  {
+   "id": "qa-144",
+   "question": "Chegou uns tambor de óleo de transformador e umas lata de solvente no almoxarifado sem etiqueta nenhuma. Como é que eu sei se esse produto é perigoso? Tem alguma regra pra classificar isso aí?",
+   "gold_chunk_id": 1251,
+   "relevant_ids": [
+    1251
+   ],
+   "doc": "nr-26",
+   "section": "26.4.1"
+  },
+  {
+   "id": "qa-145",
+   "question": "A gente passou um solvente pra um frasco menor pra levar pro campo. O que é que tem que ter escrito no rótulo desse frasco? Serve só o nome do produto escrito de caneta?",
+   "gold_chunk_id": 1251,
+   "relevant_ids": [
+    1251
+   ],
+   "doc": "nr-26",
+   "section": "26.4.2"
+  },
+  {
+   "id": "qa-146",
+   "question": "Um colega respingou produto no braço e ninguém achou aquela ficha que explica o que fazer. Essa tal de FISPQ tem que ficar guardada com o encarregado ou tem que estar ali na mão da equipe?",
+   "gold_chunk_id": 1252,
+   "relevant_ids": [
+    1252
+   ],
+   "doc": "nr-26",
+   "section": "26.4.3"
+  },
+  {
+   "id": "qa-147",
+   "question": "Ô, chegou uns tambor de produto químico novo aqui no almoxarifado da subestação e o pessoal tá na dúvida do que significa aqueles desenho de caveira e chama no rótulo. A empresa tem que dar treinamento pra gente entender isso ou é só ir lendo por conta?",
+   "gold_chunk_id": 1253,
+   "relevant_ids": [
+    1253
+   ],
+   "doc": "nr-26",
+   "section": "26.4.4"
+  },
+  {
+   "id": "qa-148",
+   "question": "Tô aqui no painel da cabine primária e vou fazer o bloqueio pra manutenção. Além do cadeado na chave, precisa pendurar aquela plaquinha de aviso pra ninguém religar, ou o cadeado sozinho já resolve?",
+   "gold_chunk_id": 1251,
+   "relevant_ids": [
+    1251
+   ],
+   "doc": "nr-26",
+   "section": "26.1.1"
+  },
+  {
+   "id": "qa-149",
+   "question": "O encarregado mandou eu passar um pouco do solvente do tambor grande pra uns galão menor pra levar na viatura, junto com a graxa dielétrica. Posso usar aquelas embalagem de água mineral vazia que tem aqui na base ou tem regra pra isso?",
+   "gold_chunk_id": 1251,
+   "relevant_ids": [
+    1251
+   ],
+   "doc": "nr-26",
+   "section": "26.4.2"
+  },
+  {
+   "id": "qa-150",
+   "question": "Vazou óleo isolante do transformador aqui no pátio e melou tudo. Onde eu vejo o que fazer de primeiros socorros se alguém se lambuzar e como apagar se pegar fogo? Tem que ter algum papel do produto aqui na base?",
+   "gold_chunk_id": 1252,
+   "relevant_ids": [
+    1252
+   ],
+   "doc": "nr-26",
+   "section": "26.4.3"
+  },
+  {
+   "id": "qa-151",
+   "question": "A gente terminou de montar a cerca nova da subestação e o fiscal perguntou das placa de perigo de morte no alambrado e no portão. Pode ser qualquer placa amarela que a gente imprimir ou tem padrão certinho de cor e escrita?",
+   "gold_chunk_id": 1253,
+   "relevant_ids": [
+    1253
+   ],
+   "doc": "nr-26",
+   "section": "26.1.2"
+  }
+ ]
+}

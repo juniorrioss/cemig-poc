@@ -1,0 +1,19 @@
+{
+  "n": 4236,
+  "max_length": 2048,
+  "over_count": 369,
+  "over_pct": 8.71,
+  "over_by_family": {
+    "chamada_simples": "1/1575",
+    "sem_ferramenta": "0/675",
+    "multiturno_reuso": "0/900",
+    "multiturno_nova_busca": "368/411",
+    "recusa_apos_busca": "0/675"
+  },
+  "tokens_p50": 1511,
+  "tokens_p90": 1847,
+  "tokens_p95": 2276,
+  "tokens_p99": 2458,
+  "tokens_max": 2683,
+  "tokens_min": 770
+}

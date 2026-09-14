@@ -1,0 +1,1682 @@
+{
+ "metadata": {
+  "suite": "decision",
+  "created": "2026-09-14T03:04:36.460808+00:00",
+  "n_pos": 93,
+  "n_neg": 60
+ },
+ "items": [
+  {
+   "id": "pos_673",
+   "question": "Se não tiver perito na cidade, o governo pode fazer a fiscalização sozinho?",
+   "should_call": true,
+   "gold_chunk_id": 673,
+   "doc": "nr-15",
+   "section": "15.7",
+   "facts": [
+    "O disposto no item 15.5 não prejudica a ação fiscalizadora do Mtb.",
+    "A fiscalização pode ser realizada ex-officio quando solicitado pela Justiça.",
+    "Essa ação se aplica nas localidades onde não houver perito."
+   ],
+   "gold_text": "NR-15 · 15.7 O Disposto no Item 15.5. Não Prejudica A Ação Fiscalizadora do Mtb Nem A Realização Ex- Officio da Perícia, Quando Solicitado Pela Justiça, nas Localidades Onde Não Houver Perito. — 70 1:10 23 31:10 80 1:00 3 31 42:30 90 1:00 7 39 54:30 24 100 1:00 11 46 65:30 110 1:00 13 53 74:30 120 1:00 17 56 81:30 130 1:00 19 63 90:30 140 1:00 26 69 126:30 150 1:00 32 77 146:30 40 1:20 7 15:20 50 1:20 18 26:20 60 1:20 25 33:20 70 1:10 7 30 45:40 27 80 1:10 13 40 71:40 90 1:10 18 48 89:40 100 1:10 21 54 101:40 110 1:10 24 61 114:40 120 1:10 32 68 137:40 130 1:00 5 36 36 74 156:40 40 1:30 15 23:30 50 1:20 3 24 35:50 60 1:20 9 28 45:50 70 1:20 17 39 64:50 30 80 1:20 23 48 99:50 90 1:10 3 23 23 57 111:50 100 1:10 7 23 23 66 124:50 110 1:10 10 34 34 72 155:50 120 1:10 12 41 41 78 177:50 TABELA DE DESCOMPRESSÃO NA SUPERFÍCIE COM AR | Profundidad e (metros) | Tempo de Fundo (min) | Tempo p/ 1ª Parada (min:seg) | Paradas de Descompressão na Água. Tempo em minutos Respirando Ar | | | | | Intervalo de Superfície | Paradas na Câmara (minutos) | | Tempo Total de p/Subida (min:seg) | |---|---|---|---|---|---|---|---|---|---|---|---| | | | | | 15m 12m 9m | | 6m | 3m | | 6m | 3m | |"
+  },
+  {
+   "id": "pos_597",
+   "question": "Meu, quando eu volto de trabalhar em profundidade, qual a velocidade máxima que eu posso subir para descomprimir sem ter problema?",
+   "should_call": true,
+   "gold_chunk_id": 597,
+   "doc": "nr-15",
+   "section": "15.7",
+   "facts": [
+    "A descompressão deve ser feita a uma velocidade não superior a 0,4 kgf/cm² por minuto.",
+    "Essa regra de velocidade vale tanto para o primeiro estágio quanto para os estágios seguintes."
+   ],
+   "gold_text": "NR-15 · 15.7 O Disposto no Item 15.5. Não Prejudica A Ação Fiscalizadora do Mtb Nem A Realização Ex- Officio da Perícia, Quando Solicitado Pela Justiça, nas Localidades Onde Não Houver Perito. — TABELA DE DESCOMPRESSÃO Período de trabalho de ½ a 1 hora. | PRESSÃO DE TRABALHO *** (kgf/cm 2 ) | ESTÁGIO DE DESCOMPRESSÃO (kgf/cm 2 )* | | | | | | | | | TEMPO TOTAL DE DESCOMPRESSÃO** (min.) | |---|---|---|---|---|---|---|---|---|---|---| | | | | | | 1,8 1,6 1,4 1,2 1,0 0,8 0,6 0,4 0,2 | | | | | | | 1,0 a 1,2 | | | | | | | | | | - | |---|---|---|---|---|---|---|---|---|---|---| | 1,2 a 1,4 | | | | | | | | | | - | | 1,4 a 1,6 | | | | | | | | | 5 | 5 | | 1,6 a 1,8 | | | | | | | | | 10 | 10 | | 1,8 a 2,0 | | | | | | | | 5 | 15 | 20 | NOTAS: (*) A descompressão tanto para o 1 o estágio quanto entre os estágios subseqüentes deverá ser feita a velocidade não superior a 0,4 kgf/cm 2 /minuto. (**) Não está incluído o tempo entre estágios. (***) Para os valores limite de pressão de trabalho use a maior descompressão. TABELA DE DESCOMPRESSÃO Período de trabalho de 1h a 1 ½ hora | PRESSÃO DE TRABALHO *** (kgf/cm 2 ) | ESTÁGIO DE DESCOMPRESSÃO (kgf/cm 2 )* | | | | | | | | | TEMPO TOTAL DE DESCOMPRESSÃO** (min.) |"
+  },
+  {
+   "id": "pos_1909",
+   "question": "O que é aquele cara que fica lá fora vigiando a gente dentro do espaço confinado?",
+   "should_call": true,
+   "gold_chunk_id": 1909,
+   "doc": "nr-33",
+   "section": "Glossário",
+   "facts": [
+    "É um trabalhador designado para permanecer fora do espaço confinado.",
+    "Tem a responsabilidade de acompanhar os trabalhadores que estão dentro.",
+    "Fica encarregado da comunicação com quem está no interior.",
+    "É responsável por dar a ordem de abandono aos trabalhadores."
+   ],
+   "gold_text": "NR-33 · Glossário Glossário — Oxigênio puro: atmosfera contendo somente oxigênio (100%). PET: documento contendo o conjunto de medidas de controle visando à entrada e Entra em vigor no dia 03 de outubro de 2022 (Portaria MTP n.º 1.690, de 15 de junho de 2022) desenvolvimento de trabalho seguro, além de medidas de emergência e resgate em espaços confinados. Plano de resgate: documento previamente escrito, para ser utilizado pela equipe que irá executar o resgate, contendo o planejamento do resgate e primeiros socorros. Proficiência: competência, aptidão, capacitação e habilidade aliadas à experiência. Purga: método de limpeza que torna a atmosfera interior do espaço confinado isenta de gases, vapores e outras impurezas indesejáveis através de ventilação ou lavagem com água ou vapor. Responsável técnico: profissional legalmente habilitado ou qualificado, em segurança do trabalho, para executar as medidas previstas no item 33.3.2 desta NR. Supervisor de entrada: pessoa capacitada para operar a permissão de entrada com responsabilidade para preencher e assinar a PET para o desenvolvimento de entrada e trabalho seguro no interior de espaços confinados. Teste de resposta ou “bumptest”: tem por finalidade verificar a funcionalidade dos sensores e alarme, sem medir a precisão dos sensores nem fazer eventuais ajustes necessários. Trabalhador autorizado: trabalhador capacitado para entrar no espaço confinado, ciente dos seus direitos e deveres e com conhecimento dos riscos e das medidas de controle existentes. Vigia: trabalhador designado para permanecer fora do espaço confinado e que é responsável pelo acompanhamento, comunicação e ordem de abandono para os trabalhadores."
+  },
+  {
+   "id": "pos_677",
+   "question": "Se eu sentir falta de ar ou dor no peito enquanto estou mergulhando, o que eu devo fazer na hora?",
+   "should_call": true,
+   "gold_chunk_id": 677,
+   "doc": "nr-15",
+   "section": "15.7",
+   "facts": [
+    "Não permitir o uso de oxigênio em profundidades maiores que 18 metros",
+    "Iniciar imediatamente o método de ressuscitação boca-a-boca em caso de parada respiratória",
+    "Não permitir a permanência em posições que interfiram na completa circulação sanguínea"
+   ],
+   "gold_text": "NR-15 · 15.7 O Disposto no Item 15.5. Não Prejudica A Ação Fiscalizadora do Mtb Nem A Realização Ex- Officio da Perícia, Quando Solicitado Pela Justiça, nas Localidades Onde Não Houver Perito. — em qualquer parada. 16 - Não espere por um ressuscitador. Inicie imediatamente o método de ressuscitação boca-a- boca no caso de parada respiratória. 17 - Não quebre o ritmo durante a ressuscitação 18 - Não permita o uso de oxigênio em profundidades maiores que 18 metros. 19 - Instrua o paciente para reportar imediatamente os sintomas quando sentir. 20 - Não hesite em tratar casos duvidosos. 21 - Não permita ao paciente ou acompanhante a permanência em posições que possam interferir com a completa circulação sangüínea dos seus organismos. DIAGNÓSTICO DE DOENÇA DESCOMPRESSIVA E EMBOLIA GASOSA | SINAIS E SINTOMAS | DOENÇA DESCOMPRESSIVA | | | | EMBOLIA GASOSA | | | | |---|---|---|---|---|---|---|---|---| | | Pele | Dor Somente | Sintomas Sérios | | Sintomas no Sistema Nervoso Central | | Pneumo- Tórax | Enfisema do Mediastin o | | | | | Sistema Nervos o Central | Sufocaçã o | Lesão Cerebral | Lesão na Medula Espinhal | | | | DOR NA CABEÇA | | | | | ** | | | | | DOR NAS COSTAS | | | * | | | | | | | DOR NO PESCOÇO | | | | | | | | ** | | DOR NO PEITO | | | * | ** | | * | ** | * |"
+  },
+  {
+   "id": "pos_893",
+   "question": "Qual a distância mínima que eu preciso me manter de um caminhão-tanque enquanto ele está sendo encheido de líquido inflamável?",
+   "should_call": true,
+   "gold_chunk_id": 893,
+   "doc": "nr-16",
+   "section": "Anexo Ii",
+   "facts": [
+    "A área de risco é definida por um círculo com raio de 15 metros.",
+    "O centro dessa área fica exatamente nas bocas de enchimento dos tanques.",
+    "Essa regra se aplica ao enchimento de caminhões-tanques com inflamáveis líquidos."
+   ],
+   "gold_text": "NR-16 · Anexo Ii Anexo Ii Atividades e Operações Perigosas com Inflamáveis — 3. São consideradas áreas de risco: | ATIVIDADE | ÁREA DE RISCO | |---|---| | a. Poços de petróleo em produção de gás. b. Unidade de processamento das refinarias. c. Outros locais de refinaria onde se realizam operações com inflamáveis em estado de volatilização ou possibilidade de volatilização decorrente de falha ou defeito dos sistemas de segurança e fechamento das válvulas. d. Tanques de inflamáveis líquidos e. Tanques elevados de inflamáveis gasosos f. Carga e descarga de inflamáveis líquidos contidos em navios, chatas e batelões. g. Abastecimento de aeronaves h. Enchimento de vagões - tanques e caminhões - tanques com inflamáveis líquidos. i. Enchimento de vagões-tanques e caminhões- tanques inflamáveis gasosos liquefeitos. j. Enchimento de vasilhames com inflamáveis gasosos liquefeitos. | círculo com raio de 30 metros, no mínimo, com centro na boca do poço. Faixa de 30 metros de largura, no mínimo, contornando a área de operação. Faixa de 15 metros de largura, no mínimo, contornando a área de operação. Toda a bacia de segurança Círculo com raio de 3 metros com centro nos pontos de vazamento eventual (válvula registros, dispositivos de medição por escapamento, gaxetas). Afastamento de 15 metros da beira do cais, durante a operação, com extensão correspondente ao comprimento da embarcação. Toda a área de operação. Círculo com raio de 15 metros com centro nas bocas de enchimento dos tanques. Círculo com 7,5 metros centro nos pontos de vazamento eventual (válvula e registros). Círculos com raio de 15 metros com centro nos bicos de enchimentos. |"
+  },
+  {
+   "id": "pos_981",
+   "question": "Antes de começar a soldar ou cortar no canteiro, o que eu preciso conferir no chão e nos arredores pra não dar problema?",
+   "should_call": true,
+   "gold_chunk_id": 981,
+   "doc": "nr-18",
+   "section": "18.7.6",
+   "facts": [
+    "O local e as áreas adjacentes devem estar limpos, secos e sem agentes combustíveis, inflamáveis, tóxicos ou contaminantes.",
+    "É necessário verificar se as áreas foram liberadas após a constatação de que não há atividades incompatíveis com o trabalho a quente."
+   ],
+   "gold_text": "NR-18 · 18.7.6 Trabalho A Quente — 18.7.6.5 Nos locais onde se realizam trabalhos a quente, deve ser efetuada inspeção preliminar, de modo a assegurar que o local de trabalho e áreas adjacentes: a) estejam limpos, secos e isentos de agentes combustíveis, inflamáveis, tóxicos e contaminantes; b) sejam liberados após constatação da ausência de atividades incompatíveis com o trabalho a quente. 18.7.6.6 Devem ser tomadas as seguintes medidas de prevenção contra incêndio nos locais onde se realizam trabalhos a quente: a) eliminar ou manter sob controle possíveis riscos de incêndios; b) instalar proteção contra o fogo, respingos, calor, fagulhas ou borras, de modo a evitar o contato com materiais combustíveis ou inflamáveis, bem como evitar a interferência em atividades paralelas ou na circulação de pessoas; c) manter sistema de combate a incêndio desobstruído e próximo à área de trabalho; d) inspecionar, ao término do trabalho, o local e as áreas adjacentes, a fim de evitar princípios de incêndio. 18.7.6.7 Para o controle de fumos e contaminantes decorrentes dos trabalhos a quente, devem ser implementadas as seguintes medidas: a) limpar adequadamente a superfície e remover os produtos de limpeza utilizados, antes de realizar qualquer operação; b) providenciar renovação de ar em ambientes fechados a fim de eliminar gases, vapores e fumos empregados e/ou gerados durante os trabalhos a quente. 18.7.6.8 Sempre que ocorrer mudança nas condições ambientais, as atividades devem ser interrompidas, avaliando-se as condições ambientais e adotando-se as medidas necessárias para adequar a renovação de ar."
+  },
+  {
+   "id": "pos_1995",
+   "question": "Quando a escada está quebrada ou com defeito, quem pode consertar e o que tem que fazer depois do conserto?",
+   "should_call": true,
+   "gold_chunk_id": 1995,
+   "doc": "nr-35",
+   "section": "Anexo Iii",
+   "facts": [
+    "A escada deve ser retirada de uso imediatamente ao apresentar defeitos ou imperfeições.",
+    "O reparo deve ser feito pelo fabricante, por empresa especializada ou por trabalhador capacitado.",
+    "Após o reparo, a escada só pode ser usada após passar por inspeção do responsável."
+   ],
+   "gold_text": "NR-35 · Anexo Iii Anexo Iii da Nr-35 Escadas de Uso Individual (aprovado Pela Portaria MTE Nº 1.680, de 02 de Outubro de 2025) — 5.1.2 A escada de uso individual deve: a) resistir às cargas aplicadas; b) ser construída com materiais e acabamento que não causem lesões ao usuário durante o uso; c) ser submetida a inspeção inicial e periódica; e d) se construída de madeira, as peças devem ser aplainadas em todas as suas faces e, em caso de aplicação de revestimento, este deve ser transparente, facilitando a visualização de defeitos e imperfeições. 5.1.3 A escada de uso individual deve ser usada por uma pessoa de cada vez, exceto quando especificado pelo fabricante ou projetista o uso simultâneo. 5.1.4 A escada de uso individual deve ser retirada de uso quando apresentar defeitos ou imperfeições suscetíveis de comprometer o seu desempenho. 5.1.4.1 Quando suscetível de recuperação, a escada de uso individual deve ser reparada pelo fabricante ou por empresa especializada ou por trabalhador capacitado. 5.1.4.1.1 Após reparada a escada, esta deve ser liberada após inspeção do responsável. 5.2 Requisitos Específicos 5.2.1 Escada fixa vertical de uso individual"
+  },
+  {
+   "id": "pos_1886",
+   "question": "Meu chefe, quem é que tem que montar o plano de resgate e treinar a galera antes de a gente entrar naquele espaço apertado?",
+   "should_call": true,
+   "gold_chunk_id": 1886,
+   "doc": "nr-33",
+   "section": "33.3",
+   "facts": [
+    "Compete ao Responsável Técnico elaborar o plano de resgate.",
+    "Compete ao Responsável Técnico coordenar a capacitação inicial e periódica dos trabalhadores.",
+    "A capacitação deve abranger supervisores de entrada, vigias, trabalhadores autorizados e a equipe de emergência e salvamento."
+   ],
+   "gold_text": "NR-33 · 33.3 Compete ao Responsável Técnico: — 33.3.2 Compete ao responsável técnico: a) identificar e elaborar o cadastro de espaços confinados; b) adaptar o modelo da Permissão de Entrada e Trabalho - PET de modo a contemplar as peculiaridades dos espaços confinados da organização; c) elaborar os procedimentos de segurança relacionados ao espaço confinado; d) indicar os equipamentos para trabalho em espaços confinados; e) elaborar o plano de resgate; e f) coordenar a capacitação inicial e periódica dos supervisores de entrada, vigias, trabalhadores autorizados e da equipe de emergência e salvamento. 33.3.3 Compete ao supervisor de entrada: a) emitir a PET antes do início das atividades; b) executar os testes e conferir os equipamentos, antes da utilização; c) implementar os procedimentos contidos na PET; d) assegurar que os serviços de emergência e salvamento estejam disponíveis e que os meios para os acionar estejam operantes; e) cancelar os procedimentos de entrada e trabalho, quando necessário; f) encerrar a PET após o término dos serviços; g) desempenhar a função de vigia, quando previsto na PET; e h) assegurar que o vigia esteja operante durante a realização dos trabalhos em espaço confinado."
+  },
+  {
+   "id": "pos_910",
+   "question": "Se eu preciso de uma moto pro serviço, quem é o cara que tem que dar o laudo pra ver se a função é perigosa?",
+   "should_call": true,
+   "gold_chunk_id": 910,
+   "doc": "nr-16",
+   "section": "Anexo V",
+   "facts": [
+    "A responsabilidade pela caracterização ou descaracterização da periculosidade é da organização.",
+    "A análise deve ser feita mediante laudo técnico.",
+    "O laudo deve ser elaborado por um Médico do Trabalho.",
+    "O laudo pode ser elaborado por um Engenheiro de Segurança do Trabalho."
+   ],
+   "gold_text": "NR-16 · Anexo V Anexo V Atividades Perigosas em Motocicleta (aprovado Pela Portaria MTE Nº 2.021, de 03 e Dezembro de 2025) — 4.1 É responsabilidade da organização a caracterização ou descaracterização da periculosidade, nas hipóteses dos itens 3.1 e 3.2 deste anexo, que deve ser feita mediante laudo técnico elaborado por Médico do Trabalho ou Engenheiro de Segurança do Trabalho, nos termos do artigo 195 da CLT e do item 16.3 da NR-16. (Aprovado pela Portaria MTE nº 1.565, de 13 e outubro de 2014) ANULADO POR DECISÃO JUDICIAL ANEXO VI ATIVIDADES PERIGOSAS DOS AGENTES DAS AUTORIDADES DE TRÂNSITO 1. Objetivo 1.1 O objetivo deste Anexo é estabelecer critérios para regulamentação das atividades ou operações perigosas realizadas por Agentes das Autoridades de Trânsito. 2. Campo de aplicação 2.1 Este anexo aplica-se às atividades profissionais realizadas pelos Agentes das Autoridades de Trânsito com exposição ao risco de colisões, atropelamentos ou outras espécies de acidentes ou violências. 2.1.1 Para efeitos deste anexo, são considerados agentes das autoridades de trânsito aqueles previstos nos conceitos e definições no Anexo I da Lei nº 9.503, de 23 de setembro de 1997 (Código de Trânsito Brasileiro)."
+  },
+  {
+   "id": "pos_1892",
+   "question": "Aquele papel de autorização pra entrar no espaço confinado, quanto tempo tem que guardar e quem guarda a cópia?",
+   "should_call": true,
+   "gold_chunk_id": 1892,
+   "doc": "nr-33",
+   "section": "33.5",
+   "facts": [
+    "A autorização emitida em papel deve ter duas vias: uma fica com o supervisor de entrada e a outra é entregue ao vigia.",
+    "As autorizações emitidas devem ser arquivadas pelo período de 5 anos.",
+    "Durante o período de arquivamento, as autorizações devem ficar disponíveis para consulta pelos trabalhadores quando solicitado."
+   ],
+   "gold_text": "NR-33 · 33.5 Medidas de Prevenção em Espaços Confinados — 33.5.7.1 A PET emitida em meio físico deve conter 2 (duas) vias, devendo a primeira via permanecer com o supervisor de entrada e a segunda entregue ao vigia. 33.5.7.2 A PET emitida em meio digital deve atender aos seguintes requisitos: a) estar acessível permanentemente ao vigia durante a execução da atividade; e b) ser adotado procedimento de certificação de assinatura em conformidade com o disposto na NR-01. 33.5.7.2.1 Os dispositivos eletrônicos utilizados para a emissão da PET devem: a) possuir grau de proteção adequado ao local de utilização; e b) atender ao disposto no subitem 33.5.17.1, quando em área classificada. 33.5.8 As PETs emitidas devem ser rastreáveis. 33.5.9 As PETs emitidas devem ser arquivadas pelo período de 5 (cinco) anos. 33.5.9.1 Durante o período de arquivamento, as PETs emitidas devem estar disponíveis aos trabalhadores, quando solicitado. 33.5.10 Os trabalhadores devem ser informados dos perigos identificados e das medidas de controle previstas e adotadas antes da entrada no espaço confinado. 33.5.11 A PET deve ser encerrada quando: a) as atividades forem completadas; b) ocorrer uma condição não prevista; c) ocorrer a saída de todos os trabalhadores do espaço confinado; ou d) houver a substituição de vigia por outro não relacionado na PET. 33.5.12 A validade da PET deve ser limitada a uma jornada de trabalho."
+  },
+  {
+   "id": "pos_466",
+   "question": "Como é que eu ligo aquela máquina de pregar rebite na fábrica de sapato sem me machucar?",
+   "should_call": true,
+   "gold_chunk_id": 466,
+   "doc": "nr-12",
+   "section": "Anexo X",
+   "facts": [
+    "O acionamento da pressão de trabalho deve ser feito por um dispositivo bimanual.",
+    "A aproximação do cilindro deve ser feita por um dispositivo de ação continuada com força.",
+    "Se for usado pedal para aproximação, ele deve ter acesso por uma única direção e por um só pé.",
+    "O pedal deve ser protegido para evitar acionamento acidental."
+   ],
+   "gold_text": "NR-12 · Anexo X Anexo X da Nr-12 Máquinas para Fabricação de Calçados e Afins — 17.9 As máquinas injetoras rotativas de carrossel móvel com abertura e fechamento do molde por força humana ficam dispensadas do subitem 17.8 deste Anexo. Figura 25: Máquina injetora rotativa de carrossel móvel Legenda: 1. zona de operação 2. conjunto de injeção 3. zona de injeção 4. carrossel 5. proteção fixa ou móvel intertravada da região inferior do carrossel 18. Máquina manual de pregar enfeite (rebitadeira) 18.1 As máquinas manuais de pregar enfeite (rebitadeira) devem possuir os seguintes requisitos específicos de segurança: a) acionamento de aproximação do cilindro por meio de um dispositivo de ação continuada com força de aproximação, conforme subitens 12.7.8 e 12.7.8.1 desta NR; b) acionamento da pressão de trabalho, por meio de dispositivo de acionamento bimanual, em conformidade com as alíneas “a”, “c”, “d”, “e”, “f” e “g” do subitem 12.4.3 desta NR, que somente poderá ocorrer após o cilindro de posicionamento estar no ponto morto inferior. 18.2 Caso seja utilizado pedal de acionamento para operação de aproximação, o mesmo deve possuir acesso somente por uma única direção e por um pé, devendo ser protegido para evitar seu acionamento acidental. 18.3 Para as máquinas manuais de pregar enfeite, não é necessária a instalação de proteções fixas ou móveis intertravadas para região periférica da máquina, laterais, traseira e superior. Figura 26: Máquina manual de pregar enfeite (rebitadeira) - Vista isométrica Legenda: 1. dispositivo de acionamento bimanual 2. cilindro de aproximação 3. proteção fixa do pedal de acionamento 19. Máquina de dublar ou unir componentes de calçados com acionamento pneumático"
+  },
+  {
+   "id": "pos_1243",
+   "question": "Chefe, quem paga a roupa de trabalho? E se ela rasgar, a empresa tem que trocar?",
+   "should_call": true,
+   "gold_chunk_id": 1243,
+   "doc": "nr-24",
+   "section": "24.8",
+   "facts": [
+    "O empregador deve fornecer as vestimentas de trabalho gratuitamente.",
+    "O empregador é responsável por substituir as peças quando estas forem danificadas ou atingirem o fim da vida útil.",
+    "A vestimenta deve ser fornecida em material e tamanho adequados para garantir conforto e segurança.",
+    "A vestimenta não substitui a necessidade de uso de EPI, podendo ser usada em conjunto com ele."
+   ],
+   "gold_text": "NR-24 · 24.8 Vestimenta de Trabalho — 24.8.2 O empregador deve fornecer gratuitamente as vestimentas de trabalho. 24.8.3 A vestimenta não substitui a necessidade do EPI, podendo seu uso ser conjugado. 24.8.4 Cabe ao empregador quanto às vestimentas de trabalho: a) fornecer peças que sejam confeccionadas com material e em tamanho adequado, visando o conforto e a segurança necessária à atividade desenvolvida pelo trabalhador; b) substituir as peças conforme sua vida útil ou sempre que danificadas; c) fornecer em quantidade adequada ao uso, levando em consideração a necessidade de troca da vestimenta; e d) responsabilizar-se pela higienização com periodicidade necessária nos casos em que a lavagem ofereça riscos de contaminação. 24.8.4.1 Nos casos em que seja inviável o fornecimento de vestimenta exclusiva para cada trabalhador, deverá ser assegurada a higienização prévia ao uso. 24.8.5 As peças de vestimentas de trabalho, quando usadas na cabeça ou face, não devem restringir o campo de visão do trabalhador. 24.9 Disposições gerais 24.9.1 Em todos os locais de trabalho deverá ser fornecida aos trabalhadores água potável, sendo proibido o uso de copos coletivos. 24.9.1.1 O fornecimento de água deve ser feito por meio de bebedouros na proporção de, no mínimo, 1 (um) para cada grupo de 50 (cinquenta) trabalhadores ou fração, ou outro sistema que ofereça as mesmas condições. 24.9.1.2 Quando não for possível obter água potável corrente, esta deverá ser fornecida em recipientes portáteis próprios e hermeticamente fechados. 24.9.2 Os locais de armazenamento de água potável devem passar periodicamente por limpeza, higienização e manutenção, em conformidade com a legislação local. 24.9.3 Deve ser realizada periodicamente análise de potabilidade da água dos reservatórios para verificar sua qualidade, em conformidade com a legislação."
+  },
+  {
+   "id": "pos_1412",
+   "question": "O que acontece se a fiscalização achar que a gente não está seguindo as regras de segurança aqui no canteiro?",
+   "should_call": true,
+   "gold_chunk_id": 1412,
+   "doc": "nr-28",
+   "section": "Anexo Ii",
+   "facts": [
+    "Ao identificar infrações às regras de segurança (NR-22), são aplicadas multas com códigos específicos.",
+    "A maioria das infrações listadas no trecho é classificada com grau de penalidade 4.",
+    "Existe uma infração específica (22.22.30.1) com grau de penalidade 3.",
+    "O campo 'S' indica que a penalidade é aplicada imediatamente ou é de caráter grave."
+   ],
+   "gold_text": "NR-28 · Anexo Ii Infrações Nr-22 — | 22.22.27.1, alínea \"b\" | 322505-4 | 4 | S | | 22.22.28 | 322506-2 | 4 | S | | 22.22.29 | 322507-0 | 4 | S | | 22.22.30 | 322508-9 | 4 | S | | 22.22.30, alínea \"a\" | 322509-7 | 4 | S | | 22.22.30, alínea \"b\" | 322510-0 | 4 | S | | 22.22.30, alínea \"c\" | 322511-9 | 4 | S | | 22.22.30.1 | 322512-7 | 3 | S | | 22.22.31 | 322513-5 | 4 | S | | 22.22.32, alínea \"a\" | 322514-3 | 4 | S | | 22.22.32, alínea \"b\" | 322515-1 | 4 | S | | 22.23.1 | 322516-0 | 4 | S | | 22.23.2, alínea \"a\" | 322517-8 | 4 | S | | 22.23.2, alínea \"b\" | 322518-6 | 4 | S | | 22.23.3, alínea \"a\" | 322519-4 | 4 | S | | 22.23.3, alínea \"b\" | 322520-8 | 4 | S | | 22.23.3, alínea \"c\" | 322521-6 | 4 | S | | 22.23.3, alínea \"d\" | 322522-4 | 4 | S | | 22.23.3, alínea \"e\" | 322523-2 | 4 | S | | 22.23.3, alínea \"f\" | 322524-0 | 4 | S |"
+  },
+  {
+   "id": "pos_1585",
+   "question": "O que eu preciso cuidar na parte elétrica do cais quando tem navio carregando gás ou gasolina?",
+   "should_call": true,
+   "gold_chunk_id": 1585,
+   "doc": "nr-29",
+   "section": "29.27",
+   "facts": [
+    "A fiação e os terminais elétricos devem ter isolamento perfeito e tampões instalados, inclusive nos guindastes.",
+    "É obrigatório instalar sinalização proibindo o uso de fontes de ignição, incluindo avisos de não fumar e não usar lâmpadas desprotegidas.",
+    "As tomadas e válvulas de gases e líquidos inflamáveis na área delimitada do cais devem possuir sinalização de segurança."
+   ],
+   "gold_text": "NR-29 · 29.27 Operações com Cargas Perigosas — 29.27.19 Nas operações com explosivos - Classe 1, além das disposições previstas na NR-19: a) serão previstos procedimentos para embarque diretamente à embarcação ou recebimento em área fora da instalação portuária. b) será impedido o abastecimento de combustíveis na embarcação, durante essas operações; c) será proibida a realização de trabalhos de reparos nas embarcações atracadas, carregadas com explosivos ou em outras, a menos de 40 m (quarenta metros) dessa embarcação; e d) haverá determinação para que os explosivos sejam as últimas cargas a embarcar e as primeiras a desembarcar. 29.27.20 Nas operações com gases inflamáveis - Classe 2.1 e líquidos inflamáveis e combustíveis - Classe 3, além das disposições da NR-20: a) devem ser prevenidos impactos e quedas dos recipientes nas plataformas do cais, nos armazéns e porões; b) a fiação e terminais elétricos devem ser mantidos com isolamento perfeito e com os respectivos tampões, inclusive os instalados nos guindastes; c) os guindastes devem ser mantidos totalmente travados, tanto no solo como nas superestruturas; d) as mangueiras, tubulações e demais componentes pressurizados devem ser inspecionados e periodicamente testados, conforme instruções do fabricante; e) em toda a área da operação ou próximos a equipamentos, devem ser instaladas sinalização proibindo o uso de fontes de ignição, incluindo os avisos NÃO FUME - NO SMOKING ; NÃO USE LÂMPADAS DESPROTEGIDAS - NO OPEN LIGHTS ; f) as tomadas e válvulas de gases e líquidos inflamáveis na área delimitada da faixa do cais devem possuir sinalização de segurança; e g) deve ser monitorada de forma permanente a operação em embarcações tanque com a adoção de medidas imediatas em caso de anormalidade da operação."
+  },
+  {
+   "id": "pos_490",
+   "question": "Ei, quando a gente precisa colocar aquele cercado na escada fixa da máquina e qual é a altura que ele tem que ter lá em cima?",
+   "should_call": true,
+   "gold_chunk_id": 490,
+   "doc": "nr-12",
+   "section": "Anexo Xi",
+   "facts": [
+    "Gaiolas de proteção são obrigatórias quando a altura da escada é superior a 3,50 m.",
+    "As gaiolas devem ser instaladas a partir de 2,0 m do piso.",
+    "A proteção deve ultrapassar a plataforma de descanso ou o piso superior em pelo menos 1,10 m a 1,20 m."
+   ],
+   "gold_text": "NR-12 · Anexo Xi Anexo Xi da Nr-12 — 15.15 Em máquinas estacionárias as escadas fixas do tipo marinheiro devem ter: a) dimensionamento, construção e fixação seguras e resistentes, de forma a suportar os esforços solicitantes; b) constituição de materiais ou revestimentos resistentes a intempéries e corrosão, caso estejam expostas em ambiente externo ou corrosivo; c) gaiolas de proteção, caso possuam altura superior a 3,50 m (três metros e meio), instaladas a partir de 2,0 m (dois metros) do piso, ultrapassando a plataforma de descanso ou o piso superior em pelo menos de 1,10 m (um metro e dez centímetros) a 1,20 m (um metro e vinte centímetros); d) corrimão ou continuação dos montantes da escada ultrapassando a plataforma de descanso ou o piso superior de 1,10 m (um metro e dez centímetros) a 1,20 m (um metro e vinte centímetros); e) largura de 0,40 m (quarenta centímetros) a 0,60 m (sessenta centímetros); f) altura total máxima de 10,00 m (dez metros), se for de um único lance; g) altura máxima de 6,00 m (seis metros) entre duas plataformas de descanso, se for de múltiplos lances, construídas em lances consecutivos com eixos paralelos, distanciados no mínimo em 0,70 m (setenta centímetros); h) espaçamento entre barras horizontais de 0,25 m (vinte e cinco centímetros) a 0,30"
+  },
+  {
+   "id": "pos_1706",
+   "question": "Fala, como é que funciona essa regra de mulher grávida no serviço com veneno de lavoura?",
+   "should_call": true,
+   "gold_chunk_id": 1706,
+   "doc": "nr-31",
+   "section": "31.7",
+   "facts": [
+    "O empregador rural deve afastar imediatamente a mulher gestante das atividades com agrotóxicos",
+    "O afastamento aplica-se também para mulheres em período de lactação",
+    "O afastamento é obrigatório tanto para exposição direta quanto indireta aos produtos",
+    "O afastamento deve ocorrer assim que o empregador for informado da gestação",
+    "O afastamento inclui o acesso a locais de armazenamento dos produtos"
+   ],
+   "gold_text": "NR-31 · 31.7 Agrotóxicos, Aditivos, Adjuvantes e Produtos Afins — 31.7 Agrotóxicos, Aditivos, Adjuvantes e Produtos Afins 31.7.1 Para fins desta Norma, consideram-se: a) trabalhadores em exposição direta, os que manipulam os agrotóxicos, aditivos, adjuvantes e produtos afins, em qualquer uma das etapas de armazenamento, transporte, preparo, aplicação, descarte e descontaminação de equipamentos e vestimentas; e b) trabalhadores em exposição indireta, os que não manipulam diretamente os agrotóxicos, aditivos, adjuvantes e produtos afins, mas circulam e desempenham suas atividades de trabalho em áreas vizinhas aos locais onde se faz a manipulação dos agrotóxicos em qualquer uma das etapas de armazenamento, transporte, preparo, aplicação, descarte e descontaminação de equipamentos e vestimentas, ou, ainda, os que desempenham atividades de trabalho em áreas recém-tratadas. 31.7.1.1 Para fins desta NR, o transporte e o armazenamento de embalagens lacradas e não violadas são considerados como exposição indireta. 31.7.1.2 Devem ser fornecidas instruções para os trabalhadores que transportam e armazenam embalagens lacradas e não violadas. 31.7.1.3 As instruções podem ser fornecidas por meio de Diálogos Diários de Segurança - DDS, panfleto escrito e outras, desde que documentadas pelo empregador. 31.7.1.4 Não se aplica a definição do subitem 31.7.1.1 desta Norma se houver embalagens não lacradas ou violadas no transporte e no local de armazenamento. 31.7.2 O empregador rural ou equiparado afastará as mulheres gestantes e em período de lactação das atividades com exposição direta ou indireta a agrotóxicos, aditivos, adjuvantes e produtos afins, incluindo os locais de armazenamento, imediatamente após ser informado da gestação."
+  },
+  {
+   "id": "pos_909",
+   "question": "Aí, quando eu rodo de moto no serviço, é considerado trabalho perigoso?",
+   "should_call": true,
+   "gold_chunk_id": 909,
+   "doc": "nr-16",
+   "section": "Anexo V",
+   "facts": [
+    "Atividades laborais com utilização de motocicleta em vias abertas à circulação pública são consideradas perigosas.",
+    "O deslocamento entre a residência e o local de trabalho (id e volta) não é considerado perigoso.",
+    "A condução exclusivamente em locais privados ou vias internas não é considerada perigosa.",
+    "O anexo não se aplica a veículos que não necessitem de emplacamento ou que não exijam CNH."
+   ],
+   "gold_text": "NR-16 · Anexo V Anexo V Atividades Perigosas em Motocicleta (aprovado Pela Portaria MTE Nº 2.021, de 03 e Dezembro de 2025) — 1. Objetivo 1.1 O objetivo deste Anexo é estabelecer critérios para caracterizar ou descaracterizar as atividades ou operações perigosas realizadas por trabalhadores com utilização de motocicletas. 2. Campo de aplicação 2.1 Este anexo aplica-se a todas as atividades ou operações de trabalho que envolvam deslocamento de trabalhadores em motocicletas nas vias terrestres normatizadas pela Lei nº 9.503, de 23 de setembro de 1991 (Código de Trânsito Brasileiro). 2.2 Motocicleta, para fins deste anexo, é todo veículo automotor de duas rodas, com ou sem side-car, destinado ao transporte individual de passageiros ou de cargas, conduzido por operador em posição montada ou sentada (motonetas). 2.3 O presente anexo não se aplica às atividades em veículos que não necessitem de emplacamento ou que não exijam carteira nacional de habilitação para conduzi-los. 3. Caracterização da atividade ou operação perigosa 3.1 As atividades laborais com utilização de motocicleta no deslocamento de trabalhador em vias abertas à circulação pública são consideradas perigosas. 3.2 Não são consideradas perigosas, para efeitos desse anexo: a) o deslocamento em motocicleta exclusivamente no percurso entre a residência do trabalhador até a ocupação do posto de trabalho e para o seu retorno, após a conclusão de sua jornada; b) as atividades com a condução de motocicleta exclusivamente em locais privados ou em vias internas ou em vias terrestres não abertas à circulação pública, mesmo quando a motocicleta transitar de forma eventual por vias de circulação pública; c) as atividades com uso de motocicleta exclusivamente em estradas locais destinadas principalmente a dar acesso a propriedades lindeiras ou em caminhos que ligam povoações contíguas; e d) as atividades com uso de motocicleta de forma eventual, assim considerado o fortuito, ou o que, sendo habitual, dá-se por tempo extremamente reduzido. 4. Laudo técnico para caracterização ou descaracterização da atividade perigosa"
+  },
+  {
+   "id": "pos_1543",
+   "question": "E aí, se a fiscalização cair na obra e encontrar irregularidade na segurança, qual é a multa que a empresa leva?",
+   "should_call": true,
+   "gold_chunk_id": 1543,
+   "doc": "nr-28",
+   "section": "Anexo Ii.NR-37",
+   "facts": [
+    "A maioria das infrações listadas possui grau de risco 3.",
+    "A maioria das infrações listadas possui natureza de sanção 'S'.",
+    "Existe uma infração específica (37.28.1 e 37.28.1.1) com grau de risco 4.",
+    "As infrações são identificadas por códigos numéricos específicos (ex: 137590-3)."
+   ],
+   "gold_text": "NR-28 · Anexo Ii.NR-37 Infrações Nr-37 — | 37.27.2, 37.27.3 e 37.27.3.1 | 137590-3 | 3 | S | | 37.27.4 | 137591-1 | 3 | S | | 37.27.5, 37.27.5.1, 37.27.5.2, 37.27.5.2.1 e 37.27.5.2.1.1 | 137592-0 | 3 | S | | 37.27.5.2.2, 37.27.5.2.3, 37.27.5.2.4 e 37.27.5.2.4.1 | 137593-8 | 3 | S | | 37.27.5.2.5, alíneas, \"a\", \"b\", \"c\", \"d\", \"e\" e \"f\", 37.27.5.2.6, 37.27.5.2.7 e 37.27.5.2.8 | 137594-6 | 3 | S | | 37.27.6, 37.27.6.1, 37.27.6.2 e 37.27.6.3 | 137595-4 | 3 | S | | 37.27.7 e 37.27.8 | 137596-2 | 3 | S | | 37.27.9, 37.27.9.1 37.27.9.2 e 37.27.9.3, alíneas \"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\" e \"i\" | 137597-0 | 3 | S | | 37.27.9.4 | 137598-9 | 3 | S | | 37.27.9.6, 37.27.9.6.1, 37.27.9.6.2 e 37.27.9.7 | 137599-7 | 3 | S | | 37.28.1 e 37.28.1.1 | 137600-4 | 4 | S | | 37.28.2, alíneas \"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\", \"l\", \"m\", \"n\", \"o\" e \"p\", e 37.28.2.1 | 137601-2 | 3 | S | | 37.28.3, 37.28.3.1, 37.28.3.1.1 e 37.28.4, alíneas, \"a\", \"b\", \"c\" e \"d\" | 137602-0 | 3 | S | | 37.29.1, 37.29.1.1, 37.29.2 e 37.29.2.1 | 137603-9 | 3 | S |"
+  },
+  {
+   "id": "pos_880",
+   "question": "Se o cara que tá mergulhando com a gente precisar de mais tempo no fundo, quanto tempo a mais a gente pode ficar e em que profundidade?",
+   "should_call": true,
+   "gold_chunk_id": 880,
+   "doc": "nr-15",
+   "section": "Anexo Ix.I",
+   "facts": [
+    "A tabela pode ser prolongada por 25 minutos adicionais a 18 metros.",
+    "O prolongamento de 25 minutos a 18 metros consiste em 20 minutos de oxigênio e 5 minutos de ar.",
+    "A tabela pode ser prolongada por 75 minutos adicionais a 9 metros.",
+    "O prolongamento de 75 minutos a 9 metros consiste em 15 minutos no ar e 60 minutos de oxigênio."
+   ],
+   "gold_text": "NR-15 · Anexo Ix.I Idade — 6 - O Acompanhante Deve Respirar Ar. Se O Tratamento É Um Mergulho Repetitivo Para O Acompanhante Ou A Tabela For Prolongada, Deve Respirar Oxigênio Durante Os Últimos 30 Minutos Até A Chegada À Superfície. 7 - A Tabela 6 pode ser prolongada por 25 minutos adicionais a 18 metros (20 minutos de oxigênio e 5 minutos de Ar) ou por 75 minutos adicionais a 9 metros (15 minutos no ar e 60 minutos de oxigênio) ou ambos. TABELA 6A PERFIL PROFUNDIDADE/TEMPO TABELA 1A TRATAMENTO, COM AR, DE DOENÇA DESCOMPRESSIVA DOR SOMENTE TRATAMENTO A 30 METROS | PROFUNDIDADE (METROS) | TEMPO (MINUTOS) | MISTURA RESPIRATÓRIA | TEMPO TOTAL DECORRIDO (Hs : MIN) | |---|---|---|---| | 30 24 18 15 12 9 6 3 0 | 30 12 30 30 30 60 60 120 1 | AR AR AR AR AR AR AR AR AR | 0:30 0:43 1:14 1:45 2:16 3:17 4:18 6:9 6:20 | 1 - Tratamento de doença descompressiva - dor somente, quando não se dispuser de oxigênio e a dor é aliviada à profundidade menor que 20 metros. 2 - Velocidade de descida = 7,5 m/min. 3 - Velocidade de subida = 1 minuto entre cada parada."
+  },
+  {
+   "id": "pos_861",
+   "question": "Cara, se eu tiver que fazer um mergulho depois de mais de doze horas parado, conta como repetitivo pra mim?",
+   "should_call": true,
+   "gold_chunk_id": 861,
+   "doc": "nr-15",
+   "section": "Anexo Ix.I",
+   "facts": [
+    "Mergulhos seguidos de intervalos de superfície maiores que 12 horas não são considerados mergulhos repetitivos.",
+    "Devem ser usados os tempos reais de fundo nas tabelas padrão de descompressão com ar para computar tais mergulhos."
+   ],
+   "gold_text": "NR-15 · Anexo Ix.I Idade — 0:2 4 0:3 9 0:5 4 1:1 1 1:3 0 1:5 3 2:1 8 2:4 7 3:2 2 4:0 4 5:0 3 6:3 2 9:4 3 12:00* O 0:10 0:2 4 0:3 7 0:5 2 1:0 8 1:2 5 1:4 4 2:0 5 2:3 0 3:0 0 3:3 4 4:1 8 5:1 7 6:4 5 9:55 0:23 0:3 6 0:5 1 1:0 7 1:2 4 1:4 3 2:0 4 2:2 9 2:5 9 3:3 3 4:1 7 5:1 6 6:4 4 9:5 4 12:00* Z 0:1 0 0:23 0:3 5 0:4 9 1:0 3 1:1 9 1:3 7 1:5 6 2:1 8 2:4 3 3:1 1 3:4 6 4:3 0 5:2 8 6:5 7 10:06 0:2 2 0:34 0:4 8 1:0 2 1:1 8 1:3 6 1:5 5 2:1 7 2:4 2 3:1 0 3:4 5 4:2 9 5:2 7 6:5 6 10: 05 12:00 Nova significação Z O N M L K J I H G F E D C B A de Grupo (*) Mergulos seguidos de intervalos de superficie maiores que 12 horas não são mergulhos repetitivos. Use os tempos reais de fundo nas tabelas padrão de descompressão com ar para computar tais mergulhos. Profundidade de Mergulho"
+  },
+  {
+   "id": "pos_1072",
+   "question": "Cara, quando o cabo passa dos 100 metros, a distância entre os suportes muda pra 660?",
+   "should_call": true,
+   "gold_chunk_id": 1072,
+   "doc": "nr-19",
+   "section": "Anexo Ii",
+   "facts": [
+    "Para cabos com diâmetro entre 102.151 e 113.500, a distância horizontal entre suportes é 660",
+    "Para cabos com diâmetro entre 102.151 e 113.500, a distância vertical é 390",
+    "Para cabos com diâmetro entre 102.151 e 113.500, a distância ao solo é 780"
+   ],
+   "gold_text": "NR-19 · Anexo Ii Anexo Ii da Nr-19 Tabelas de Quantidades-distâncias — | 22.701 | 24.970 | 610 | 265 | 525 | 180 | |---|---|---|---|---|---| | 24.971 | 27.240 | 610 | 275 | 550 | 180 | | 27.241 | 29.510 | 610 | 285 | 565 | 190 | | 29.511 | 30.780 | 610 | 295 | 585 | 190 | | 31.781 | 34.050 | 610 | 300 | 600 | 200 | | 34.051 | 36.320 | 610 | 310 | 615 | 210 | | 36.321 | 38.590 | 610 | 315 | 625 | 210 | | 38.591 | 40.860 | 610 | 320 | 640 | 220 | | 40.861 | 43.130 | 610 | 325 | 645 | 220 | | 43.131 | 45.400 | 610 | 330 | 655 | 230 | | 45.401 | 56.750 | 610 | 330 | 660 | 260 | | 56.751 | 68.100 | 610 | 345 | 685 | 290 | | 68.101 | 79.450 | 610 | 355 | 710 | 320 | | 79.451 | 90.800 | 620 | 370 | 735 | 350 | | 90.801 | 102.150 | 640 | 380 | 760 | 380 | | 102.151 | 113.500 | 660 | 390 | 780 | 410 |"
+  },
+  {
+   "id": "pos_1305",
+   "question": "Qual a multa se eu for pego com máquina parada sem trava e sem bloqueio?",
+   "should_call": true,
+   "gold_chunk_id": 1305,
+   "doc": "nr-28",
+   "section": "Anexo Ii",
+   "facts": [
+    "A infração à alínea 'd' do item 12.11.3.1 tem código 312445-2.",
+    "A infração à alínea 'e' do item 12.11.3.1 tem código 312446-0.",
+    "A infração à alínea 'f' do item 12.11.3.1 tem código 312447-9.",
+    "O grau de risco para essas infrações é 3.",
+    "A natureza da penalidade é S (Suspensão)."
+   ],
+   "gold_text": "NR-28 · Anexo Ii Infrações Nr-12 — | 12.11.3.1, alínea \"d\" | 312445-2 | 3 | S | | 12.11.3.1, alínea \"e\" | 312446-0 | 3 | S | | 12.11.3.1, alínea \"f\" | 312447-9 | 3 | S | | 12.11.3.2 | 312448-7 | 3 | S | | 12.11.3.3 | 312449-5 | 3 | S | | 12.11.4.1 | 312450-9 | 3 | S | | 12.11.5 | 312451-7 | 3 | S | | 12.12.1 | 312452-5 | 3 | S | | 12.12.1.2 | 312453-3 | 3 | S | | 12.12.1.3 | 312454-1 | 3 | S | | 12.12.2, alíneas \"a\", \"b\" e \"c\" | 312455-0 | 2 | S | |---|---|---|---| | 12.12.3 | 312456-8 | 2 | S | | 12.12.4 e 12.12.4.1 | 312457-6 | 2 | S | | 12.12.5 | 312458-4 | 2 | S | | 12.12.6, alíneas \"a\" e \"b\" | 312459-2 | 2 | S | | 12.12.7, alíneas \"a\", \"b\", \"c\", \"d\" e \"e\" | 312460-6 | 2 | S | | 12.12.7.1, alíneas \"a\" e \"b\" | 312461-4 | 3 | S | | 12.12.8 e 12.12.8.1 | 312462-2 | 3 | S | | 12.13.1, 12.13.2, alíneas \"a\", \"b\", \"c\" e \"d\", e 12.13.3 | 312463-0 | 2 | S |"
+  },
+  {
+   "id": "pos_475",
+   "question": "O que precisa ter de segurança na máquina rotográfica e no pedal dela?",
+   "should_call": true,
+   "gold_chunk_id": 475,
+   "doc": "nr-12",
+   "section": "Anexo X",
+   "facts": [
+    "A força entre os rolos não pode ser suficiente para causar danos físicos aos trabalhadores.",
+    "O sistema de transmissão de força deve ter proteção fixa.",
+    "Deve haver dispositivo de parada de emergência duplo canal, sem monitoramento por interface, atendendo à categoria 1 da ABNT NBR 14153.",
+    "O pedal de aproximação deve ter acesso apenas por uma única direção e por um pé, com proteção contra acionamento acidental.",
+    "A zona de aplicação de tinta (rolos) está dispensada do atendimento da proteção fixa no sistema de transmissão de força."
+   ],
+   "gold_text": "NR-12 · Anexo X Anexo X da Nr-12 Máquinas para Fabricação de Calçados e Afins — 30.4 Caso seja utilizado acionamento por dispositivo de acionamento bimanual, este deve estar em conformidade com as alíneas “a”, “c”, “d”, “e”, “f” e “g” do subitem 12.4.3 desta NR. 31. Máquina rotográfica 31.1 As máquinas rotográficas devem possuir os seguintes requisitos específicos de segurança: a) força exercida entre os rolos não pode ser suficiente para provocar danos à integridade física dos trabalhadores, obedecendo ao disposto nos subitens 12.7.8 e 12.7.8.1 desta NR; b) proteção fixa no sistema de transmissão de força, conforme item 12.5 - Sistemas de Segurança e seus subitens; c) dispositivo de parada de emergência, duplo canal, sem a necessidade de monitoramento por interface de segurança, atendendo à categoria 1, conforme a norma ABNT NBR 14153. 31.2 Caso seja utilizado pedal de acionamento para operação de aproximação, o mesmo deve possuir acesso somente por uma única direção e por um pé, devendo ser protegido para evitar seu acionamento acidental. 31.3 A zona de aplicação de tinta (rolos) está dispensada do atendimento da alínea “b” do subitem 31.1 deste Anexo. 32. Máquina de costura 32.1 As máquinas de costura devem possuir, como requisito específico de segurança, proteções fixas no sistema de transmissão de força, exceto no volante de regulagem, conforme item 12.5 - Sistemas de Segurança e seus subitens. 32.2 Os pedais de acionamento das máquinas de costura ficam dispensados da adoção de proteção fixa, exceto para os pedais de acionamento do tipo bolha. 33. Disposições gerais"
+  },
+  {
+   "id": "pos_904",
+   "question": "O que eu posso fazer de arriscado com energia elétrica que a lei considera perigoso?",
+   "should_call": true,
+   "gold_chunk_id": 904,
+   "doc": "nr-16",
+   "section": "Anexo Iv",
+   "facts": [
+    "Verificação, inspeção (inclusive aérea), fiscalização, levantamento de dados e supervisão de serviços técnicos.",
+    "Montagem, instalação, substituição, manutenção e reparos de barramentos, transformadores, disjuntores, chaves e seccionadoras, condensadores, chaves a óleo, transformadores para instrumentos, cabos subterrâneos e subaquáticos, painéis, circuitos elétricos, contatos, muflas e isoladores.",
+    "Construção civil, instalação, substituição e limpeza de valas, bancos de dutos, dutos, condutos, canaletas, galerias, túneis, caixas ou poços de inspeção, câmaras."
+   ],
+   "gold_text": "NR-16 · Anexo Iv Anexo Iv Atividades e Operações Perigosas com Energia Elétrica — n) verificação, inspeção, inclusive aérea, fiscalização, levantamento de dados e supervisão de serviços técnicos; o) montagem, instalação, substituição, manutenção e reparos de: barramentos, transformadores, disjuntores, chaves e seccionadoras, condensadores, chaves a óleo, transformadores para instrumentos, cabos subterrâneos e subaquáticos, painéis, circuitos elétricos, contatos, muflas e isoladores e demais componentes de redes subterrâneas; p) construção civil, instalação, substituição e limpeza de: valas, bancos de dutos, dutos, condutos, canaletas, galerias, túneis, caixas ou poços de inspeção, câmaras; q) medição, verificação, ensaios, testes, inspeção, fiscalização, levantamento de dados e supervisões de serviços técnicos."
+  },
+  {
+   "id": "pos_2179",
+   "question": "O que é isso de emissão fugitiva que a gente tem que cuidar?",
+   "should_call": true,
+   "gold_chunk_id": 2179,
+   "doc": "nr-37",
+   "section": "Glossário",
+   "facts": [
+    "São liberações involuntárias de gases e vapores",
+    "Ocorrem de maneira contínua ou intermitente",
+    "Acontecem durante as operações normais dos equipamentos e instrumentos"
+   ],
+   "gold_text": "NR-37 · Glossário Glossário — Convenção SOLAS ( International Convention for the Safety of Life at Sea ): Convenção Internacional para a Salvaguarda da Vida Humana no Mar, ratificada pelo Brasil, da Organização Marítima Internacional. Damper : dispositivo que regula ou interrompe o fluxo de ar em sistemas de ventilação ou climatização. Descomissionamento: conjunto de técnicas e procedimentos de engenharia aplicados de forma integrada à instalação ou parte dela, visando retirá-la de operação, de acordo com os requisitos especificados em projeto e na legislação. Desmonte : consiste na desmontagem completa da plataforma em local destinado para esse fim, visando à reciclagem de seus componentes, após o término do período de vida útil da plataforma. Emissões fugitivas : liberações involuntárias de gases e vapores que ocorrem de maneira contínua ou intermitente durante as operações normais dos equipamentos e instrumentos. Exercícios simulados : exercícios práticos de simulação de um cenário de acidente, durante o qual deve ser testada a eficiência do plano de resposta a emergências, com foco nos procedimentos, no desempenho das equipes, na funcionalidade das instalações e dos equipamentos, dentre outros aspectos. Fonte de radiação : equipamento ou material que emite ou é capaz de emitir radiação ionizante ou de liberar substâncias ou materiais radioativos."
+  },
+  {
+   "id": "pos_494",
+   "question": "O que precisa ter na proteção das plataformas de máquinas grandes pra evitar queda?",
+   "should_call": true,
+   "gold_chunk_id": 494,
+   "doc": "nr-12",
+   "section": "Anexo Xi",
+   "facts": [
+    "Deve ter uma barra superior instalada a 1 m ou 1,1 m do piso.",
+    "Deve ter uma barra intermediária instalada entre 0,4 m e 0,6 m abaixo da barra superior.",
+    "A plataforma só pode ser acessada quando a máquina estiver parada."
+   ],
+   "gold_text": "NR-12 · Anexo Xi Anexo Xi da Nr-12 — 15.23.1 O sistema de proteção contra quedas de plataformas que não sejam a de operação em colhedoras está dispensado de atender aos requisitos da figura 3 do Anexo III dessa NR, desde que disponham de barra superior, instalada em um dos lados, tendo altura de 1 m (um metro) a 1,1 m (um metro e dez centímetros) em relação ao piso e barra intermediária instalada de 0,4 m (quarenta centímetros) a 0,6 m (sessenta centímetros) abaixo da barra superior. 15.23.1.1 As plataformas indicadas no subitem 15.23.1 somente podem ser acessadas quando a máquina estiver parada. 15.24 A plataforma de operação ou piso de trabalho das máquinas autopropelidas e implementos deve: a) ser plana, nivelada e fixada de modo seguro e resistente; b) possuir superfície antiderrapante; c) possuir meios de drenagem, se necessário; d) ser contínua, exceto para tratores denominados “acavalados”, em que poderá ser de dois níveis; e e) não possuir rodapé no vão de entrada da plataforma. 15.24.1 Os meios de acesso móveis ou retráteis das plataformas e cabines, para fins de transporte, devem possuir sistema para limitação do vão de acesso. 15.25 O bocal de abastecimento do tanque de combustível e de outros materiais deve ser localizado, no máximo, a 1,5m (um metro e cinquenta centímetros) acima do ponto de apoio do operador. 15.25.1 Caso não seja possível atender ao disposto no subitem 15.25 para as operações de abastecimento de combustível e de outros materiais, nas máquinas autopropelidas deve ser instalado degrau de acesso com manípulos que garantam três pontos de contato durante toda a tarefa."
+  },
+  {
+   "id": "pos_1154",
+   "question": "O que a gente tem que fazer com o material que tá no topo da escavação pra evitar que caia?",
+   "should_call": true,
+   "gold_chunk_id": 1154,
+   "doc": "nr-22",
+   "section": "22.13",
+   "facts": [
+    "É obrigatória a estabilização do material com risco de queda das cristas da bancada superior",
+    "É obrigatória a remoção do material com risco de queda das cristas da bancada superior"
+   ],
+   "gold_text": "NR-22 · 22.13 Estabilidade dos Maciços — 22.13.4 A deposição de qualquer material próximo às cristas das bancadas e o estacionamento de máquinas devem obedecer a uma distância mínima de segurança, definida em função da estabilidade e da altura da bancada e deve constar do PGR. 22.13.5 É obrigatória a estabilização ou remoção de material com risco de queda das cristas da bancada superior. 22.14 Aberturas subterrâneas: desenvolvimento, tratamento e sistemas de suporte e sinalização 22.14.1 As aberturas subterrâneas devem ser projetadas, executadas e mantidas, durante o período de sua vida útil, observando-se o disposto nesta norma, nas normas da ANM e nas normas nacionais e internacionais vigentes. 22.14.1.1 Todas as aberturas subterrâneas devem ser avaliadas e tratadas segundo suas características hidrogeomecânicas e às finalidades a que se destinam, sob responsabilidade por profissional legalmente habilitado. 22.14.1.2 Para as minas que necessitam de tratamentos, os respectivos planos devem estar disponíveis, atualizados, com descrição e fundamentação técnica dos sistemas utilizados. 22.14.1.3 Os serviços de tratamento e sua recuperação devem ser executados somente por trabalhadores capacitados. 22.14.1.4 No desenvolvimento de galerias, poços, planos inclinados, rampas e eixos principais, locais onde há trabalho fixo, lavra em áreas já mineradas, intemperizadas ou ao longo de zonas com distúrbios geológicos devem ser utilizadas técnicas de tratamento adequadas de segurança. 22.14.2 Nos colares dos poços e os acessos à mina devem existir medidas de controle para não permitir a entrada de água em quantidades que comprometam a sua estabilidade ou a ocorrência de desmoronamentos. 22.14.3 As galerias devem ser projetadas e construídas de forma a garantir a segurança dos operadores das máquinas e equipamentos que por elas transitam, assegurando condições adequadas de trafegabilidade e impedindo o contato acidental com o teto e paredes. (Alterado pela Portaria MTE nº 105, de 29 de janeiro de 2026)"
+  },
+  {
+   "id": "pos_1296",
+   "question": "Qual é o código da infração para quem descumprir o item 4.2 dessa norma de equipamentos?",
+   "should_call": true,
+   "gold_chunk_id": 1296,
+   "doc": "nr-28",
+   "section": "Anexo Ii.NR-11",
+   "facts": [
+    "O código da infração para o item 4.2 é 111103-5",
+    "A classificação da infração é 4",
+    "O tipo da infração é S"
+   ],
+   "gold_text": "NR-28 · Anexo Ii.NR-11 Infrações Nr-11 — | 11.4.1 | 111035-7 | 4 | S | | NR-11 - ANEXO I | | | | |---|---|---|---| | Item/Subitem | Código | Infração | Tipo | | 1.2, 1.2.1, 1.2.1.1 e 1.2.2 | 111130-2 | 4 | S | | 1.3, 1.3.1, 1.3.2 e 1.3.3 | 111131-0 | 4 | S | | 1.4 e 1.4.1 | 111132-9 | 4 | S | | 2.1.1, 2.1.1.1, 2.1.2, 2.1.2.1, 2.1.3 e 2.1.4 | 111133-7 | 4 | S | |---|---|---|---| | 2.2.1, 2.2.2, 2.2.3 e 2.2.4 | 111134-5 | 4 | S | | 2.3.1, alíneas \"a\" e\"b\" | 111135-3 | 4 | S | | 2.4.1 | 111084-5 | 4 | S | | 2.5.1 e 2.5.2 | 111136-1 | 4 | S | | 2.6.1, 2.6.1.1, 2.6.2, 2.6.3 e 2.6.4 | 111137-0 | 4 | S | | 3.1, 3.1.1, 3.1.1.1, 3.1.1.1.1 e 3.2 | 111138-8 | 4 | S | | 3.3 e 3.3.1 | 111139-6 | 4 | S | | 4.1, 4.1.1 e 4.1.1.1 | 111140-0 | 4 | S | | 4.2 | 111103-5 | 4 | S | | 4.3 | 111104-3 | 4 | S | | 4.4, 4.5, 4.6 e 4.7 | 111141-8 | 4 | S |"
+  },
+  {
+   "id": "pos_788",
+   "question": "Qual o limite de pressão que a gente pode aguentar trabalhando no túnel e quanto tempo máximo pode ficar lá dentro?",
+   "should_call": true,
+   "gold_chunk_id": 788,
+   "doc": "nr-15",
+   "section": "Anexo Ix",
+   "facts": [
+    "Nenhuma pessoa pode ser exposta a pressão superior a 3,4 kgf/cm2, exceto em emergência ou tratamento médico.",
+    "O tempo máximo de trabalho em pressões de 0 a 1,0 kgf/cm2 é de 8 horas.",
+    "O tempo máximo de trabalho em pressões acima de 1,0 kgf/cm2 é de 6 horas."
+   ],
+   "gold_text": "NR-15 · Anexo Ix Anexo Ix (avaliação das Concentrações de Benzeno em Ambientes de Trabalho) da Instrução Normativa - In Nº 02, de 2021, por Quarenta Anos; — que a do ar atmosférico excluindo-se o período de descompressão; i) Pressão de Trabalho - É a maior pressão de ar à qual é submetido o trabalhador no tubulão ou túnel durante o período de trabalho; j) Túnel Pressurizado - É uma escavação, abaixo da superfície do solo, cujo maior eixo faz um ângulo não superior a 45º (quarenta e cinco graus) com a horizontal, fechado nas duas extremidades, em cujo interior haja pressão superior a uma atmosfera; l) Tubulão de Ar Comprimido - É uma estrutura vertical que se estende abaixo da superfície da água ou solo, através da qual os trabalhadores devem descer, entrando pela campânula, para uma pressão maior que atmosférica. A atmosfera pressurizada opõe-se à pressão da água e permite que os homens trabalhem em seu interior. 1.3 O disposto neste item aplica-se a trabalhos sob ar comprimido em tubulões pneumáticos e túneis pressurizados. 1.3.1 Todo trabalho sob ar comprimido será executado de acordo com as prescrições dadas a seguir e quaisquer modificações deverão ser previamente aprovadas pelo órgão nacional competente em segurança e medicina do trabalho. 1.3.2 O trabalhador não poderá sofrer mais que uma compressão num período de 24 (vinte e quatro) horas. 1.3.3 Durante o transcorrer dos trabalhos sob ar comprimido, nenhuma pessoa poderá ser exposta à pressão superior a 3,4 kgf/cm2, exceto em caso de emergência ou durante tratamento em câmara de recompressão, sob supervisão direta do médico responsável. 1.3.4 A duração do período de trabalho sob ar comprimido não poderá ser superior a 8 (oito) horas, em pressões de trabalho de 0 a 1,0 kgf/cm2; a 6 (seis) horas em pressões de trabalho de 1,1 a 2,5 kgf/cm2; e a 4 (quatro) horas, em pressão de trabalho de 2,6 a 3,4 kgf/cm2."
+  },
+  {
+   "id": "pos_687",
+   "question": "Ei, se eu ficar exposto à luz negra aqui no serviço, isso conta como insalubridade?",
+   "should_call": true,
+   "gold_chunk_id": 687,
+   "doc": "nr-15",
+   "section": "15.7",
+   "facts": [
+    "As operações que exponham trabalhadores à luz negra (ultravioleta na faixa de 400-320 nanômetros) não são consideradas insalubres",
+    "As radiações não-ionizantes incluem microondas, ultravioletas e laser"
+   ],
+   "gold_text": "NR-15 · 15.7 O Disposto no Item 15.5. Não Prejudica A Ação Fiscalizadora do Mtb Nem A Realização Ex- Officio da Perícia, Quando Solicitado Pela Justiça, nas Localidades Onde Não Houver Perito. — TABELA 4 TRATAMENTO, COM AR, DE DOENÇA DESCOMPRESSIVA SINTOMAS SÉRIOS OU EMBOLIA GASOSA | PROFUNDIDADE (METROS) | TEMPO | MISTURA RESPIRATÓRIA | TEMPO TOTAL DECORRIDO (Hs : MIN) | |---|---|---|---| | 50 42 36 30 24 18 15 12 9 9 6 6 3 3 3 a 0 | l/2 a 2 h l/2 h l/2 h l/2 h l/2 h 6 h 6 h 6 h 11 h 1 h 1 h 1 h 1 h 1 h 1 min | AR AR AR AR AR AR AR AR AR OXIGÊNIO (OU AR) AR OXIGÊNIO (OU AR) AR OXIGÊNIO (OU AR) OXIGÊNIO (OU AR) | 2:00 2:31 3:02 3:33 4:04 10:05 16:06 22:07 33:08 34:08 35:09 36:09 37:10 38:10 38:11 | TABELA 4 PERFIL PROFUNDIDADE/TEMPO ANEXO Nº 7 RADIAÇÕES NÃO-IONIZANTES 1. Para os efeitos desta norma, são radiações não-ionizantes as microondas, ultravioletas e laser. 2. As operações ou atividades que exponham os trabalhadores às radiações não-ionizantes, sem a proteção adequada, serão consideradas insalubres, em decorrência de laudo de inspeção realizada no local de trabalho. 3. As atividades ou operações que exponham os trabalhadores às radiações da luz negra (ultravioleta na faixa - 400-320 nanômetros) não serão consideradas insalubres. ANEXO Nº 8 (Redação dada pela Portaria MTE nº 1.297, de 13 de agosto de 2014) VIBRAÇÃO Sumário : 1. Objetivos 2. Caracterização e classificação da insalubridade"
+  },
+  {
+   "id": "pos_1884",
+   "question": "O que define exatamente um lugar como espaço confinado?",
+   "should_call": true,
+   "gold_chunk_id": 1884,
+   "doc": "nr-33",
+   "section": "33.1",
+   "facts": [
+    "O local não foi projetado para ocupação humana contínua",
+    "O local possui meios limitados de entrada e saída",
+    "Existe ou pode existir atmosfera perigosa no local"
+   ],
+   "gold_text": "NR-33 · 33.1 Objetivo — 33.1. Objetivo 33.1.1 Esta Norma Regulamentadora tem como objetivo estabelecer os requisitos para a caracterização dos espaços confinados, os critérios para o gerenciamento de riscos ocupacionais em espaços confinados e as medidas de prevenção, de forma a garantir a segurança e a saúde dos trabalhadores que interagem direta ou indiretamente com estes espaços. 33.2 Campo de aplicação 33.2.1 Esta Norma Regulamentadora se aplica às organizações que possuem ou realizam trabalhos em espaços confinados. 33.2.2 Considera-se espaço confinado qualquer área ou ambiente que atenda simultaneamente aos seguintes requisitos: a) não ser projetado para ocupação humana contínua; b) possuir meios limitados de entrada e saída; e c) em que exista ou possa existir atmosfera perigosa. 33.2.2.1 Considera-se atmosfera perigosa aquela em que estejam presentes uma das seguintes condições: a) deficiência ou enriquecimento de oxigênio; b) presença de contaminantes com potencial de causar danos à saúde do trabalhador; ou c) seja caracterizada como uma atmosfera explosiva. 33.2.2.2 Os espaços não destinados à ocupação humana, com meios limitados de entrada e saída, utilizados para armazenagem de material com potencial para engolfar ou afogar o trabalhador são caracterizados como espaços confinados. 33.3 Responsabilidades"
+  },
+  {
+   "id": "pos_1290",
+   "question": "Se eu não tiver o plano de riscos no serviço, qual a classificação da multa que o fiscal vai aplicar?",
+   "should_call": true,
+   "gold_chunk_id": 1290,
+   "doc": "nr-28",
+   "section": "Anexo Ii",
+   "facts": [
+    "A infração referente ao item 3.1 do Anexo III da NR-9 tem código 109202-2.",
+    "O grau da infração para o item 3.1 é 3.",
+    "O tipo da penalidade para o item 3.1 é Suspensão (S)."
+   ],
+   "gold_text": "NR-28 · Anexo Ii Infrações Nr-9 — | 5.3.4 e 5.3.5 | 109199-9 | 3 | S | | 6.1, alíneas \"a\", \"b\", \"c\" e \"d\" | 109200-6 | 3 | S | | 6.2, alíneas \"a\", \"b\", \"c\" e \"d\" | 109201-4 | 3 | S | | NR-9 - Anexo III | | | | |---|---|---|---| | Item/Subitem | Código | Infração | Tipo | | 3.1 | 109202-2 | 3 | S | | 3.1.1, alíneas \"a\", \"b\", \"c\", \"d\", \"e\" e \"f\", e 3.1.2 | 109203-0 | 2 | S | | 3.2, alíneas \"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\" e \"l\" | 109204-9 | 3 | S | | 3.2.1 e 3.2.1.1, alíneas \"a\", \"b\" e \"c\" | 109205-7 | 3 | S | | 3.3, alíneas \"a\", \"b\", \"c\" e \"d\" | 109206-5 | 2 | S | | 4.1.1, alíneas \"a\" e \"b\", e 4.1.2 | 109207-3 | 3 | S | | 4.2.2, alíneas \"a\", \"b\" e \"c\", e 4.2.2.1, alíneas \"a\", \"b\", \"c\", \"d\" e \"e\" | 109208-1 | 3 | S | |---|---|---|---| | 4.2.3 | 109209-0 | 3 | M | | 5.1 e 5.2 | 109210-3 | 3 | S |"
+  },
+  {
+   "id": "pos_478",
+   "question": "O que é considerado uma proteção fixa e qual a regra para a proteção móvel em relação às ferramentas?",
+   "should_call": true,
+   "gold_chunk_id": 478,
+   "doc": "nr-12",
+   "section": "Anexo Xi",
+   "facts": [
+    "A proteção fixa deve ser mantida em posição permanente ou só removida/aberta com uso de ferramentas.",
+    "A proteção móvel pode ser aberta sem o uso de ferramentas.",
+    "A proteção móvel deve estar ligada por elementos mecânicos à estrutura da máquina ou a um elemento fixo próximo.",
+    "A proteção móvel deve se associar a dispositivos de intertravamento."
+   ],
+   "gold_text": "NR-12 · Anexo Xi Anexo Xi da Nr-12 — 6.2 Para fins de aplicação deste Anexo, considera-se proteção o elemento especificamente utilizado para prover segurança por meio de barreira física, podendo ser: a) proteção fixa, que deve ser mantida em sua posição de maneira permanente ou por meio de elementos de fixação que só permitam sua remoção ou abertura com o uso de ferramentas; b) proteção móvel, que pode ser aberta sem o uso de ferramentas, geralmente ligada por elementos mecânicos à estrutura da máquina ou a um elemento fixo próximo, e deve se associar a dispositivos de intertravamento. 6.3 Para fins de aplicação deste Anexo, consideram-se dispositivos de segurança os componentes que, por si só ou interligados ou associados a proteções, reduzam os riscos de acidentes e de outros agravos à saúde, sendo classificados em: a) comandos elétricos ou interfaces de segurança; b) dispositivos de intertravamento; c) sensores de segurança; d) válvulas e blocos de segurança ou sistemas pneumáticos e hidráulicos de mesma eficácia; e) dispositivos mecânicos; e f) dispositivos de validação. 6.3.1 Os componentes relacionados aos sistemas de segurança e comandos de acionamento e parada das máquinas estacionárias, inclusive de emergência, devem garantir a manutenção do estado seguro da máquina quando ocorrerem flutuações no nível de energia além dos limites considerados no projeto, incluindo o corte e restabelecimento do fornecimento de energia."
+  },
+  {
+   "id": "pos_896",
+   "question": "Chefe, qual o tamanho máximo desses tambores de metal e plástico pra guardar produto inflamável aqui no canteiro?",
+   "should_call": true,
+   "gold_chunk_id": 896,
+   "doc": "nr-16",
+   "section": "Anexo Ii",
+   "facts": [
+    "Tambores de aço, alumínio ou plástico com tampa removível ou fixa têm limite de 250 litros para grupos de embalagem I, II e III.",
+    "Tambores de aço com tampa não removível podem ter até 450 litros para grupos de embalagem II e III.",
+    "Bombonas de aço, alumínio ou plástico têm limite de 60 litros para todos os grupos de embalagem (I, II e III)."
+   ],
+   "gold_text": "NR-16 · Anexo Ii Anexo Ii Atividades e Operações Perigosas com Inflamáveis — | | | 75 kg | 400 kg | 400 kg | | | | 75 kg | 400 kg | 400 kg | | | | 60 kg | 60 kg | 60 kg | | | | 150 kg | 400 kg | 400 kg | | | Bombonas Aço ou Alumínio Plástico | 120 kg 120 kg | 120 kg 120 kg | 120 kg 120 kg | | Embalagens Simples | | | | | | | Grupo de Embalagens* I | Grupo de Embalagens* II | | Grupo de Embalagens* III | | Tambores Aço, tampa não removível Aço, tampa removível Alumínio, tampa não removível Alumínio, tampa removível Outros metais, tampa não removível | 250 L 250 L 250 L** 250 L** 250 L | 450 L | | 450 L | | Outros metais, tampa removível Plástico, tampa não removível Plástico, tampa removível | 250 L** 250 L** 250 L** | | | |---|---|---|---| | Bombonas Aço, tampa não removível Aço, tampa removível Alumínio, tampa não removível Alumínio, tampa removível Outros metais, tampa não removível Outros metais, tampa removível Plástico, tampa não removível Plástico, tampa removível | 60 L 60 L 60 L** 60 L** 60 L 60 L** 60 L 60 L** | 60 L | 60 L |"
+  },
+  {
+   "id": "pos_901",
+   "question": "O que eu tenho que fazer pra conseguir o adicional de periculosidade se eu trabalho como vigia ou escolta?",
+   "should_call": true,
+   "gold_chunk_id": 901,
+   "doc": "nr-16",
+   "section": "Anexo Iii",
+   "facts": [
+    "A exposição a roubos ou violência física precisa atender a uma das condições do item 2 da norma.",
+    "Vigilância patrimonial em estabelecimentos públicos ou privados é uma atividade perigosa.",
+    "Transporte de valores e escolta armada são atividades perigosas.",
+    "Segurança pessoal, que é o acompanhamento e proteção da integridade física de pessoas, é uma atividade perigosa."
+   ],
+   "gold_text": "NR-16 · Anexo Iii Anexo Iii Atividades e Operações Perigosas com Exposição A Roubos Ou Outras Espécies de Violência Física nas Atividades Profissionais de Segurança Pessoal Ou Patrimonial — 3. As atividades ou operações que expõem os empregados a roubos ou outras espécies de violência física, desde que atendida uma das condições do item 2, são as constantes do quadro abaixo: | ATIVIDADES OU OPERAÇÕES | DESCRIÇÃO | |---|---| | Vigilância patrimonial | Segurança patrimonial e/ou pessoal na preservação do patrimônio em estabelecimentos públicos ou privados e da incolumidade física de pessoas. | | Segurança de eventos | Segurança patrimonial e/ou pessoal em espaços públicos ou privados, de uso comum do povo. | | Segurança nos transportes coletivos | Segurança patrimonial e/ou pessoal nos transportes coletivos e em suas respectivas instalações. | | Segurança ambiental e florestal | Segurança patrimonial e/ou pessoal em áreas de conservação de fauna, flora natural e de reflorestamento. | | Transporte de valores | Segurança na execução do serviço de transporte de valores. | | Escolta armada | Segurança no acompanhamento de qualquer tipo de carga ou de valores. | | Segurança pessoal | Acompanhamento e proteção da integridade física de pessoa ou de grupos. | | Supervisão/fiscalização Operacional | Supervisão e/ou fiscalização direta dos locais de trabalho para acompanhamento e orientação dos vigilantes. | | Telemonitoramento/telecontrole | Execução de controle e/ou monitoramento de locais, através de sistemas eletrônicos de segurança. |"
+  },
+  {
+   "id": "pos_436",
+   "question": "Cara, o que significa quando falam que o motor elétrico tá em estado de parada segura?",
+   "should_call": true,
+   "gold_chunk_id": 436,
+   "doc": "nr-12",
+   "section": "Anexo Ix",
+   "facts": [
+    "É uma condição onde não há movimento de uma parte da máquina com eixo elétrico.",
+    "São tomadas medidas adicionais durante esse estado.",
+    "O objetivo dessas medidas é evitar um disparo inesperado."
+   ],
+   "gold_text": "NR-12 · Anexo Ix Anexo Ix da Nr-12 — i) máquina injetora multi-estações com unidade de injeção móvel: máquina com unidade de injeção móvel vinculada a duas ou mais unidades de fechamento fixas; j) máquina injetora com mesa porta-molde de deslocamento transversal: máquina projetada para conter uma ou mais partes inferiores do molde fixadas a uma mesa porta-molde de deslocamento transversal, que vincula a parte inferior do molde por meio de movimento de deslocamento ou rotação da mesa, à parte superior e à unidade de injeção; k) máquina injetora elétrica: máquina injetora em que os acionamentos dos eixos são executados por atuadores elétricos - servomotores; l) motor elétrico: qualquer tipo de motor que usa energia elétrica, como servomotor ou motor linear; m) unidade de controle do motor: unidade para controlar o movimento, o processo de parada e interrupção de movimento de um motor elétrico, com ou sem dispositivo eletrônico integrado, tais como conversor de frequência e contator; n) eixo elétrico: sistema composto por um motor elétrico, uma unidade de controle motor e os contatores adicionais; o) estado de parada: condição no qual não há movimento de uma parte da máquina com um eixo elétrico; p) estado de parada segura: estado de parada durante o qual medidas adicionais são tomadas para evitar disparo inesperado; q) parada: desaceleração de um movimento de uma parte da máquina até que o estado de parada seja alcançado; r) parada segura: parada durante a qual medidas adicionais são tomadas para evitar interrupção perigosa de movimento; s) entrada de comando de segurança monitorada: entrada de uma unidade de controle do motor usada para interrupção do fornecimento de energia para o motor do eixo elétrico; t) equipamento periférico: equipamento que interage com a máquina injetora, por exemplo, manipulador para retirada de peças, equipamento para troca de molde e presilhas de fixação automática do molde. 1.2. Requisitos específicos de segurança nas zonas de perigo das injetoras. 1.2.1. Perigos relacionados à área do molde."
+  },
+  {
+   "id": "pos_1530",
+   "question": "O que acontece se a empresa não seguir as regras de segurança nas obras?",
+   "should_call": true,
+   "gold_chunk_id": 1530,
+   "doc": "nr-28",
+   "section": "Anexo Ii.NR-37",
+   "facts": [
+    "As infrações são classificadas em diferentes níveis de gravidade.",
+    "Há infrações classificadas como nível 1.",
+    "Há infrações classificadas como nível 2.",
+    "Há infrações classificadas como nível 3.",
+    "Cada infração possui um código de identificação específico."
+   ],
+   "gold_text": "NR-28 · Anexo Ii.NR-37 Infrações Nr-37 — | 37.11.6 e 37.11.6.1, alíneas \"a\" e \"b\" | 137393-5 | 3 | S | | 37.11.7, alíneas \"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\" e \"j\", e 37.11.7.1 | 137394-3 | 3 | s | | 37.11.8 | 137395-1 | 3 | S | | 37.12.1.1 | 137396-0 | 1 | S | | 37.12.2, alíneas \"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\" e \"i\", e 37.12.2.2 | 137397-8 | 2 | S | | 37.12.2.3 | 137398-6 | 3 | S | | 37.12.3.1, alíneas \"a\", \"b\", \"c\" e \"d\" | 137399-4 | 2 | S | | 37.12.3.2 | 137400-1 | 3 | S | | 37.12.3.3 | 137401-0 | 3 | S | | 37.12.4.1, alíneas \"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\" e \"k\" | 137402-8 | 2 | S | | 37.12.4.1, alínea \"l\" | 137403-6 | 2 | S | | 37.12.4.2, alíneas \"a\", \"b\", \"c\", \"e\", \"f\" e \"g\", 37.12.4.2.1 e 37.12.4.4 | 137404-4 | 2 | S | | 37.12.4.2, alínea \"d\" | 137405-2 | 2 | S | | 37.12.4.3 e 37.12.4.3.1 | 137406-0 | 2 | S | | 37.12.4.4 | 137407-9 | 2 | S |"
+  },
+  {
+   "id": "pos_1900",
+   "question": "O que precisa ter no papel antes de entrar naquele espaço fechado pra trabalhar?",
+   "should_call": true,
+   "gold_chunk_id": 1900,
+   "doc": "nr-33",
+   "section": "33.7",
+   "facts": [
+    "O documento deve conter o nome da organização e o local do espaço confinado.",
+    "É obrigatório registrar a data e o horário de emissão e de término do trabalho.",
+    "O papel deve listar o trabalho a ser realizado, os trabalhadores autorizados, o vigia, a equipe de resgate e o supervisor de entrada.",
+    "Devem ser registrados os resultados do teste inicial da atmosfera, incluindo os valores de oxigênio, inflamáveis, gases tóxicos e poeiras/fumos."
+   ],
+   "gold_text": "NR-33 · 33.7 Disposições Gerais — 33.7.2 No que não conflitar com as disposições constantes desta NR, recomenda-se a adoção das disposições previstas na norma técnica ABNT NBR 16577 e suas revisões referente(s) a: a) equipamentos de sondagem inicial e de monitoramento contínuo da atmosfera; b) serviço de emergência e salvamento; e c) prevenção de riscos em espaços confinados mediante projeto. ANEXO I SINALIZAÇÃO OBRIGATÓRIA PARA ESPAÇO CONFINADO Entra em vigor no dia 03 de outubro de 2022 (Portaria MTP n.º 1.690, de 15 de junho de 2022) ANEXO II MODELO DE PET Modelo de caráter informativo para elaboração da PET em Espaço Confinado Nome da organização: Local do espaço confinado: Espaço confinado nº: Data e horário da emissão: Data e horário do término: Trabalho a ser realizado: Trabalhadores autorizados: Vigia: Equipe de resgate: Supervisor de Entrada: Entra em vigor no dia 03 de outubro de 2022 (Portaria MTP n.º 1.690, de 15 de junho de 2022) | Procedimentos que devem ser completados antes da entrada | | | | | | | |---|---|---|---|---|---|---| | 1. Isolamento | | | | | S ( ) | N ( ) | | 2. Teste inicial da atmosfera: horário | | | | | | | | Oxigênio_________________________________________________ % O 2 | | | | | | | | Inflamáveis_______________________________________________ % LIE | | | | | | | | Gases / vapores tóxicos _____________________________________ ppm | | | | | | | | Gases / vapores tóxicos (listar na PET adaptada os gases monitorados pelo instrumento detector de gás)______________________________________________________ppm | | | | | | | | Poeiras / fumos / névoas tóxicas ______________________________ mg/m³ | | | | | | | | Nome legível / assinatura do Supervisor dos testes: | | | | | | |"
+  },
+  {
+   "id": "pos_1682",
+   "question": "O que a empresa tem que fazer se tiver CIPA pra combater assédio e violência no trabalho?",
+   "should_call": true,
+   "gold_chunk_id": 1682,
+   "doc": "nr-31",
+   "section": "31.2.5",
+   "facts": [
+    "Incluir regras de conduta sobre assédio e violência nas normas internas da empresa e divulgar aos empregados",
+    "Criar procedimentos para receber e acompanhar denúncias, garantindo o anonimato de quem denuncia",
+    "Realizar ações de capacitação e sensibilização sobre violência e assédio no mínimo a cada 12 meses para todos os níveis hierárquicos"
+   ],
+   "gold_text": "NR-31 · 31.2.5 São Direitos dos Trabalhadores: — 31.2.6 As organizações obrigadas a constituir CIPA nos termos da NR 5 devem adotar as seguintes medidas, além de outras que entenderem necessárias, com vistas à prevenção e ao combate ao assédio sexual e às demais formas de violência no âmbito do trabalho: (inserido pela Portaria MTP nº 4.219, de 20 de dezembro de 2022) a) inclusão de regras de conduta a respeito do assédio sexual e de outras formas de violência nas normas internas da empresa, com ampla divulgação do seu conteúdo aos empregados e às empregadas; (Inserida pela Portaria MTP nº 4.219, de 20 de dezembro de 2022) b) fixação de procedimentos para recebimento e acompanhamento de denúncias, para apuração dos fatos e, quando for o caso, para aplicação de sanções administrativas aos responsáveis diretos e indiretos pelos atos de assédio sexual e de violência, garantido o anonimato da pessoa denunciante, sem prejuízo dos procedimentos jurídicos cabíveis; e (Inserida pela Portaria MTP nº 4.219, de 20 de dezembro de 2022) c) realização, no mínimo a cada 12 (doze) meses, de ações de capacitação, de orientação e de sensibilização dos empregados e das empregadas de todos os níveis hierárquicos da empresa sobre temas relacionados à violência, ao assédio, à igualdade e à diversidade no âmbito do trabalho, em formatos acessíveis, apropriados e que apresentem máxima efetividade de tais ações. (inserida pela Portaria MTP nº 4.219, de 20 de dezembro de 2022) 31.2.6.1 O empregador rural ou equiparado deve promover capacitação e treinamento dos trabalhadores em conformidade com o disposto nesta NR. 31.2.6.1.1 Ao término dos treinamentos ou capacitações, deve ser emitido certificado contendo o nome do trabalhador, o conteúdo programático, a carga horária, a data, o local de realização do treinamento, o nome e a qualificação dos instrutores e a assinatura do responsável técnico, devendo a assinatura do trabalhador constar em lista de presença ou certificado."
+  },
+  {
+   "id": "pos_1860",
+   "question": "O que a gente precisa usar quando for mexer com amostras de malária, como o plasmodium falciparum?",
+   "should_call": true,
+   "gold_chunk_id": 1860,
+   "doc": "nr-32",
+   "section": "Anexo Ii",
+   "facts": [
+    "O agente biológico Plasmodium falciparum é classificado no Grupo 2 de risco biológico.",
+    "A lista de agentes biológicos do Grupo 2 inclui também Plasmodium vivax, P. malariae e P. ovale."
+   ],
+   "gold_text": "NR-32 · Anexo Ii Anexo Ii — | Leishmania mexicana | 2 | | | Leishmania peruviana | 2 | | | Leishmania spp | 2 | | | Leishmania tropica | 2 | | | Leishmanla ethiopica | 2 | | | Loa loa | 2 | | | Madurella grisea | 2 | | | Madurella mycetomatis | 2 | | | Mansonella ozzardi | 2 | | | Mansonella perstans | 2 | | | Microsporidium spp | 2 | | | Naegleria fowleri | 2 | | | Naegleria gruberi | 2 | | | Necator americanus | 2 | | | Onchocerca volvulus | 2 | | | Opisthorchis felineus | 2 | | | Opisthorchis spp | 2 | | | Paragonimus westermani | 2 | | | Plasmodium cynomolgi | 2 | | | Plasmodium falciparum | 2 | (*) | | Plasmodium malariae | 2 | | |---|---|---| | Plasmodium ovale | 2 | | | Plasmodium spp (humano e símio) | 2 | | | Plasmodium vivax | 2 | | | Sarcocystis suihominis | 2 | | | Scedosporium apiospermum ( Pseudallescheria boidii ) | 2 | | | Scedosporium prolificans ( inflatum ) | 2 | |"
+  },
+  {
+   "id": "pos_1207",
+   "question": "O que é aquele plano de emergência pra barragem que a lei manda registrar?",
+   "should_call": true,
+   "gold_chunk_id": 1207,
+   "doc": "nr-22",
+   "section": "Glossário",
+   "facts": [
+    "É um documento técnico que estabelece procedimentos para situações de emergência.",
+    "Ele integra o Plano de Segurança de Barragem (PSB).",
+    "Deve ser registrado nas prefeituras e nas Defesas Civis (municipais, estaduais e federais).",
+    "É uma exigência regulamentada pela Resolução ANM nº 95."
+   ],
+   "gold_text": "NR-22 · Glossário Glossário da Nr-22 — Operação unitária - Constitui cada uma das atividades necessárias à realização da lavra, tais como: perfuração, carregamento com explosivos, desmonte, carga e transporte de material, saneamento e suporte de teto, laterais e piso e ventilação e outras análogas Organização - Pessoa ou grupo de pessoas com suas próprias funções com responsabilidades, autoridades e relações para alcançar seus objetivos. Inclui, mas não é limitado a empregador, permissionário de lavra garimpeira, tomador de serviços, a empresa, a empreendedor individual, produtor rural, companhia, corporação, firma, autoridade, parceria, organização de caridade ou instituição, ou parte ou combinação desses, seja incorporada ou não, pública ou privada. Painel de lavra - É um o setor da mina que abrange um conjunto de frentes de trabalho (de lavra, de serviço e/ou de desenvolvimento) que operam de forma integrada utilizando a mesma infraestrutura e independente de painéis distintos ou adjacentes. Plano de Ações Emergenciais para Barragens de Mineração (PAEBM) - O PAEBM, que integra o Plano de Segurança de Barragem (PSB), é um documento técnico registrado nas prefeituras e nas Defesas Civis (municipais, estaduais e federais), estabelecendo procedimentos a serem tomados em situações de emergência. É uma exigência regulamentada pela RESOLUÇÃO ANM nº 95, de 07 de fevereiro de 2022, da Agência Nacional de Mineração (ANM), prevista na Lei nº 12.334, de 20 de setembro de 2010, que estabeleceu a Política Nacional de Segurança de Barragens (PNSB) e criou o Sistema Nacional de Informações sobre Segurança de Barragens (SNISB)."
+  },
+  {
+   "id": "pos_499",
+   "question": "O que é essa distância que o fabricante usa pra dizer qual a altura máxima da cesta de trabalho?",
+   "should_call": true,
+   "gold_chunk_id": 499,
+   "doc": "nr-12",
+   "section": "Anexo Xii",
+   "facts": [
+    "É a distância medida na elevação máxima.",
+    "A medição vai do fundo da caçamba até o solo.",
+    "É acrescida de 1,5 metros à distância medida.",
+    "Aplica-se a cestas aéreas e cestos acoplados."
+   ],
+   "gold_text": "NR-12 · Anexo Xii Anexo Xii da Nr-12 — 1. Para fins deste Anexo, consideram-se as seguintes definições: Altura nominal de trabalho (para cestas aéreas e cestos acoplados): Distância medida na elevação máxima desde o fundo da caçamba até o solo, acrescida de 1,5 m. Berço: Suporte de apoio da lança do guindaste na sua posição recolhida. Caçamba ou plataforma (vide figura 1): Componente destinado à acomodação e movimentação de pessoas à posição de trabalho. Carga nominal (carga bruta): Capacidade estabelecida pelo fabricante ou por Profissional Legalmente Habilitado para determinada configuração do equipamento de guindar e caçamba ou plataforma. Capacidade nominal da caçamba ou plataforma: A capacidade máxima da caçamba, estabelecida pelo fabricante, em termos de peso e número de ocupantes previsto. Chassi (vide figura 1): É a estrutura de todo o conjunto onde se monta o mecanismo de giro, coluna, braços e lanças, bem como o sistema de estabilizadores. Classificação de capacidade de carga (tabela de carga): Conjunto de cargas nominais para as configurações estipuladas de equipamentos de guindar e condições operacionais. Comando: Sistema responsável pela execução de uma função. Controle: Atuador de interface entre o operador e o comando. Cuba isolante ou Liner: Componente projetado para ser acomodado dentro da caçamba, plataforma ou suporte similar, capaz de modificar as propriedades elétricas da caçamba/plataforma. Pode ser de duas naturezas:"
+  },
+  {
+   "id": "pos_2085",
+   "question": "O que a empresa tem que fazer antes de desligar a plataforma e mandar todo mundo embora?",
+   "should_call": true,
+   "gold_chunk_id": 2085,
+   "doc": "nr-37",
+   "section": "37.10",
+   "facts": [
+    "A operadora da instalação deve protocolar um comunicado de descomissionamento em sistema eletrônico da inspeção do trabalho.",
+    "O comunicado deve ser enviado até 30 dias antes do encerramento das operações."
+   ],
+   "gold_text": "NR-37 · 37.10 Comissionamento, Ampliação, Modificação, Reparo, Descomissionamento e Desmonte — 37.10.3 A operadora da instalação deve protocolar, em sistema eletrônico disponibilizado pela inspeção do trabalho, comunicado de descomissionamento da plataforma, em até 30 (trinta) dias antes do encerramento das suas operações. 37.10.4 Para os trabalhadores embarcados, próprios ou terceirizados, durante as fases de comissionamento, ampliação, modificação, reparo, descomissionamento ou desmonte, devem ser asseguradas as condições de vivência, conforme os requisitos estabelecidos nesta NR. 37.10.4.1 Em situação emergencial, quando as condições de vivência não sejam plenamente atendidas segundo o capítulo 37.12 desta NR, a operadora da instalação deve assegurar: a) o direito de recusa aos trabalhadores envolvidos nas ações de resposta, sem a necessidade de justificativa; b) a aplicação do item 3.5.4 da NR-03 (Embargo e Interdição), na existência de condições de risco grave e iminente a bordo; c) o desembarque dos trabalhadores envolvidos nas ações de resposta, durante o seu período de descanso; e d) o atendimento ao prescrito no subitem 37.12.4.5 desta NR para as áreas de vivência. 37.11 Acesso à Plataforma 37.11.1 Os deslocamentos dos trabalhadores entre o continente e a plataforma ou entre plataformas não interligadas, e vice-versa, devem ser realizados por meio de helicópteros. 37.11.1.1 As aeronaves, os heliportos e os procedimentos de transporte aéreo devem obedecer aos requisitos de segurança exigidos pelas autoridades competentes."
+  },
+  {
+   "id": "pos_691",
+   "question": "Chefe, se a gente passar do limite de cheiro no serviço, é a média das medições que conta ou se uma medida alta já dá problema?",
+   "should_call": true,
+   "gold_chunk_id": 691,
+   "doc": "nr-15",
+   "section": "15.7",
+   "facts": [
+    "O limite de tolerância é considerado excedido quando a média aritmética das concentrações ultrapassa os valores fixados no quadro.",
+    "Para agentes químicos com 'valor teto' assinalado, o limite é excedido se qualquer uma das concentrações obtidas nas amostragens ultrapassar o valor fixado."
+   ],
+   "gold_text": "NR-15 · 15.7 O Disposto no Item 15.5. Não Prejudica A Ação Fiscalizadora do Mtb Nem A Realização Ex- Officio da Perícia, Quando Solicitado Pela Justiça, nas Localidades Onde Não Houver Perito. — | QUADRO Nº 2 | | |---|---| | L.T. | F.D. | | (pp, ou mg/m³) 0 a 1 1 a 10 10 a 100 100 a 1000 acima de 1000 | 3 2 1,5 1,25 1,1 | 8. O limite de tolerância será considerado excedido quando a média aritmética das concentrações ultrapassar os valores fixados no Quadro n.° 1. 9. Para os agentes químicos que tenham \"VALOR TETO\" assinalado no Quadro n.° 1 (Tabela de Limites de Tolerância) considerar-se-á excedido o limite de tolerância, quando qualquer uma das concentrações obtidas nas amostragens ultrapassar os valores fixados no mesmo quadro. 10. Os limites de tolerância fixados no Quadro n.° 1 são válidos para jornadas de trabalho de até 48 (quarenta e oito) horas por semana, inclusive. 10.1 Para jornadas de trabalho que excedam as 48 (quarenta e oito) horas semanais dever-se-á cumprir o disposto no art. 60 da CLT. QUADRO Nº 1 TABELA DE LIMITES DE TOLERÂNCIA | AGENTES QUÍMICOS | Valor teto | Absorção também p/pele | Até 48 horas/semana | | Grau de insalubridade a ser considerado no caso de sua caracterização | |---|---|---|---|---|---| | | | | ppm* | mg/m3* * | | | Acetaldeído | | | 78 | 140 | máximo | | Acetato de cellosolve | | + | 78 | 420 | médio |"
+  },
+  {
+   "id": "pos_2101",
+   "question": "Posso guardar material no refeitório ou comer na área onde tem produto químico?",
+   "should_call": true,
+   "gold_chunk_id": 2101,
+   "doc": "nr-37",
+   "section": "37.12.4",
+   "facts": [
+    "É proibida a utilização do refeitório como depósito, mesmo que em caráter provisório.",
+    "É proibido o consumo de qualquer alimento em ambientes com exposição a agentes químicos, físicos ou biológicos.",
+    "As principais refeições devem ser tomadas apenas nos locais específicos destinados para isso."
+   ],
+   "gold_text": "NR-37 · 37.12.4 Instalações Sanitárias — 37.12.5.4 É proibida, ainda que em caráter provisório, a utilização do refeitório como depósito. 37.12.5.5 As plataformas desabitadas devem dispor de condições sanitárias, de higiene e de conforto suficientes para as refeições dos trabalhadores, bem como atender aos seguintes requisitos mínimos: a) dispor de local adequado e isolado da área de trabalho; b) possuir piso e anteparas apropriados para limpeza e desinfecção; c) ter ventilação artificial ou natural; d) ter iluminação geral e difusa, com nível de iluminamento, conforme previsto em norma técnica; e) dispor de mesas e assentos em número compatível com a quantidade de trabalhadores a bordo; f) possuir lavatório nas proximidades; g) fornecer água potável; h) dispor de equipamento para aquecer a refeição ou de dispositivo térmico que a mantenha aquecida em condições de higiene, conservação e consumo até o final do horário da refeição; i) fornecer refeições que atendam às exigências de conservação da alimentação em recipientes apropriados, adequados aos equipamentos de aquecimento disponíveis; j) disponibilizar pratos, talheres e copos individuais higienizados, podendo ser descartáveis; e k) possuir compartimento para guarda e proteção dos utensílios. 37.12.5.5.1 Em plataforma desabitada que não ofereça ambiente com condições para as refeições, o tempo de permanência dos trabalhadores a bordo deve ser de, no máximo, 4 (quatro) horas. 37.12.5.6 É proibida a tomada das principais refeições fora dos locais referidos nos subitens 37.12.5.2 e 37.12.5.5. 37.12.5.6.1 É proibido o consumo de qualquer alimento em ambientes com exposição a agentes químicos, físicos ou biológicos, devendo ser asseguradas as condições adequadas de conforto e higiene, descritas no item 37.12.5 e respectivos subitens desta NR."
+  },
+  {
+   "id": "pos_1472",
+   "question": "Se eu for multado por não seguir a regra de segurança elétrica, como eu sei qual é o código da infração?",
+   "should_call": true,
+   "gold_chunk_id": 1472,
+   "doc": "nr-28",
+   "section": "Anexo Ii.NR-30.6.3",
+   "facts": [
+    "As infrações da norma de segurança elétrica são identificadas por códigos numéricos específicos.",
+    "Cada item da norma possui um código de infração único correspondente.",
+    "Existe um código específico para a infração do item 31.13.13.3.",
+    "Existe um código específico para a infração do item 31.14.1.",
+    "Os códigos de infração podem incluir alíneas específicas (como a, b, c) para itens com subdivisões."
+   ],
+   "gold_text": "NR-28 · Anexo Ii.NR-30.6.3 Infrações Nr-30 — | 31.13.13.3 | 231496-7 | | 31.13.13.4 | 231497-5 | | 31.13.13.5 | 231498-3 | | 31.13.13.6, alíneas \"a\", \"b\", \"c\", \"d\", \"e\", \"f\", \"g\", \"h\", \"i\", \"j\", \"k\" e \"l\" | 231499-1 | | 31.13.13.7 | 231500-9 | | 31.13.13.8 | 231501-7 | | 31.13.13.9 | 231502-5 | | 31.13.13.10 | 231503-3 | | 31.13.13.11 | 231504-1 | |---|---| | 31.13.13.12 | 231505-0 | | 31.13.13.13 | 231506-8 | | 31.14.1 | 231507-6 | | 31.14.2 | 231508-4 | | 31.14.2.1, alínea \"a\" | 231509-2 | | 31.14.2.1, alínea \"b\" | 231510-6 | | 31.14.2.1, alínea \"c\" | 231511-4 | | 31.14.2.1, alínea \"d\" | 231512-2 | | 31.14.3 | 231513-0 | | 31.14.3.1 | 231514-9 | | 31.14.4 | 231515-7 | | 31.14.5 | 231516-5 | | 31.14.6 | 231517-3 | | 31.14.7 | 231518-1 | | 31.14.8 | 231519-0 | | 31.14.9 | 231520-3 | | 31.14.10 | 231521-1 | | 31.14.11 | 231522-0 | | 31.14.12 | 231523-8 | | 31.14.13 | 231524-6 | | 31.14.14, alínea \"a\" | 231525-4 | | 31.14.14, alínea \"b\" | 231526-2 | | 31.14.14, alínea \"c\" | 231527-0 | | 31.15.1.1 | 231528-9 | | 31.15.2 | 231529-7 | | 31.15.2.1 | 231530-0 |"
+  },
+  {
+   "id": "pos_362",
+   "question": "Meu parceiro, o que é isso que a norma chama de ação positiva numa máquina?",
+   "should_call": true,
+   "gold_chunk_id": 362,
+   "doc": "nr-12",
+   "section": "Glossário",
+   "facts": [
+    "Ocorre quando um componente mecânico móvel move inevitavelmente outro componente.",
+    "O movimento pode ser por contato direto ou através de elementos rígidos.",
+    "O segundo componente é considerado atuado em modo positivo pelo primeiro."
+   ],
+   "gold_text": "NR-12 · Glossário Glossário Ação Positiva : Quando Um Componente Mecânico Móvel Inevitavelmente Move Outro Componente Consigo, por Contato Direto Ou Através de Elementos Rígidos, O Segundo Componente É Dito Como Atuado em Modo Positivo, Ou Positivamente, Pelo Primeiro. Adubadora Automotriz : Máquina Destinada à Aplicação de Fertilizante Sólido Granulado e Desenvolvida para O Setor Canavieiro. — Assento instrucional : Assento de máquina autopropelida projetado para fins exclusivamente instrucionais. Autoteste : Teste funcional executado automaticamente pelo próprio dispositivo, na inicialização do sistema e durante determinados períodos, para verificação de falhas e defeitos, levando o dispositivo para uma condição segura. Avaliação de Risco : julgamento com base na análise de risco, do quanto os objetivos de redução de risco foram atingidos. (NBR 12.100) Baixa velocidade ou velocidade reduzida : velocidade inferior à de operação, compatível com o trabalho seguro. Balancim de braço móvel manual - balancim jacaré : Máquina destinada ao corte de couro e materiais similares, operada por um trabalhador, dotada de uma superfície de corte não móvel correspondente à área útil total disponível e de um braço que contém a superfície de impacto móvel, ou seja, base prensora, que é capaz de se deslocar em um movimento de arco horizontal sobre a superfície de corte. Balancim tipo ponte manual - balancim ponte : Máquina destinada ao corte de couro e materiais similares, operada por um trabalhador, na qual a superfície de impacto fica conectada ou presa à ponte que se desloca horizontal e verticalmente sobre uma superfície de corte não móvel. Batedeira : Máquina concebida para uso industrial ou comercial destinada a obter uma mistura homogênea para massas ou cremes, de consistência leve ou média. É composta basicamente por estrutura, acionamento, batedores intercambiáveis que podem ter diversas geometrias, bacia e proteções. Para seu funcionamento, o motor transmite potência para o batedor, fazendo-o girar e misturar os ingredientes para a produção da massa, mantendo a bacia fixa. Durante o processo de operação, o batedor apresenta movimento de rotação sobre seu eixo, podendo ainda ter movimento de translação circular, denominado planetário, enquanto a bacia permanece fixa. O batedor pode ter velocidade de rotação e translação contínua ou variável. Em alguns casos a bacia pode ser movimentada manual ou eletricamente na direção vertical para ajuste operacional."
+  },
+  {
+   "id": "pos_298",
+   "question": "Ei, quando a gente tem que fazer a inspeção nesses equipamentos e quem manda assinar o relatório?",
+   "should_call": true,
+   "gold_chunk_id": 298,
+   "doc": "nr-11",
+   "section": "Anexo I",
+   "facts": [
+    "A inspeção deve ter periodicidade anual",
+    "O relatório de inspeção deve ser elaborado por profissional legalmente habilitado com ART recolhida"
+   ],
+   "gold_text": "NR-11 · Anexo I Anexo I — 1.3.1 Após a inspeção do equipamento ou elemento de sustentação, deve ser emitido “Relatório de Inspeção”, com periodicidade anual, elaborado por profissional legalmente habilitado com ART - Anotação de Responsabilidade Técnica - recolhida, que passa a fazer parte da documentação do equipamento. 1.3.2 As inspeções rotineiras e manutenções devem ser realizadas por profissional capacitado ou qualificado. 1.3.3 A empresa deve manter no estabelecimento nota fiscal do equipamento adquirido ou, no caso de fabricação própria, os projetos, laudos, cálculos e as especificações técnicas. 1.4 As áreas de movimentação de chapas devem propiciar condições para a realização do trabalho com segurança. 1.4.1 A circulação de pessoas nas áreas de movimentação de chapas deve ser interrompida durante a realização desta atividade. 2. Requisitos técnicos para equipamentos utilizados para movimentação, armazenagem e manuseio de chapas de rochas ornamentais 2.1 Fueiros ou “L” 2.1.1 As proteções laterais (“L” ou Fueiros) devem possuir sistema de trava que impeça a sua saída acidental dos encaixes do carro porta-bloco. 2.1.1. 1 O carro porta-bloco deve possuir no mínimo duas guias para evitar o deslocamento lateral do “L”. 2.1.2 Deve-se instalar a proteção lateral (“L” ou Fueiro) no carro porta-bloco previamente à retirada do sistema de sustentação do equipamento de elevação das frações de bloco (“enteras”). 2.1.2.1 A retirada das proteções laterais (“L” ou Fueiros) somente poderá ser realizada dentro do alojamento do tear. 2.1.3 Os blocos serrados, ainda sobre o carro porta-bloco e dentro do alojamento do tear, devem possuir ou receber, no mínimo, três proteções laterais (“L” ou Fueiros) de cada lado, para impedir a queda das chapas."
+  },
+  {
+   "id": "pos_2098",
+   "question": "Quanto de água limpa a empresa tem que garantir pra cada um a gente usar no banheiro e no chuveiro por dia?",
+   "should_call": true,
+   "gold_chunk_id": 2098,
+   "doc": "nr-37",
+   "section": "37.12.4",
+   "facts": [
+    "A empresa deve fornecer no mínimo 60 litros de água tratada por dia para cada trabalhador",
+    "Essa água é destinada ao uso nas instalações sanitárias"
+   ],
+   "gold_text": "NR-37 · 37.12.4 Instalações Sanitárias — 37.12.4.9 A operadora da instalação deve assegurar, no mínimo, 60 (sessenta) litros diários de água tratada, por trabalhador, para serem utilizados nas instalações sanitárias. 37.12.4.10 É vedado o uso de banheiro químico, inclusive no módulo de acomodação temporária, exceto nos casos previstos nesta NR. 37.12.4.10.1 Ao constatar a inoperância do sistema de esgotamento de todas as instalações sanitárias, sem o devido restabelecimento em até 3 (três) horas, os seguintes procedimentos devem ser adotados: a) iniciar os procedimentos de parada da produção da plataforma; b) providenciar, imediatamente, a logística para o desembarque de todos os trabalhadores, com o retorno da tripulação somente após a normalização do sistema de esgotamento; c) manter a bordo apenas o contingente mínimo para garantir a segurança da instalação e o reparo do sistema; e d) providenciar banheiros químicos para os trabalhadores que compõem o contingenciamento mínimo, até a normalização do sistema de esgotamento. 37.12.4.11 A operadora da instalação deve elaborar, por plataforma, os procedimentos de controle e de vigilância para transportar, manter e controlar a qualidade da água distribuída para o consumo humano a bordo, em conformidade com as regulamentações do Ministério da Saúde e da ANVISA. 37.12.4.11.1 O plano de amostragem deve ser realizado por plataforma, respeitando os planejamentos mínimos de amostragem expressos nas regulamentações do Ministério da Saúde e da ANVISA. 37.12.4.12 Os procedimentos de vigilância e controle da qualidade de água adotados no tratamento, armazenamento e distribuição para o consumo humano a bordo devem considerar as informações contidas nas análises de riscos da instalação."
+  },
+  {
+   "id": "pos_916",
+   "question": "Cara, o que a norma fala sobre lidar com lixo radioativo e desativar essas instalações nucleares?",
+   "should_call": true,
+   "gold_chunk_id": 916,
+   "doc": "nr-16",
+   "section": "Anexo Vi",
+   "facts": [
+    "A segregação, manuseio, tratamento, acondicionamento e estocagem de rejeitos radioativos são atividades perigosas.",
+    "O descomissionamento de instalações nucleares e radioativas, incluindo áreas contaminadas, é considerado atividade perigosa.",
+    "O descomissionamento de minas, moinhos e usinas de tratamento de minerais radioativos é uma atividade perigosa.",
+    "O gerenciamento de rejeitos radioativos (líquidos, sólidos, gasosos e aerossóis), incluindo transporte e deposição, é classificado como perigoso.",
+    "Atividades em áreas que utilizam equipamentos móveis de Raios X para diagnóstico médico não são consideradas perigosas."
+   ],
+   "gold_text": "NR-16 · Anexo Vi Anexo Vi Atividades Perigosas dos Agentes das Autoridades de Trânsito — | 5.4. Segregação, manuseio, tratamento, acondicionamento e estocagem de rejeitos radioativos. | Laboratórios para descontaminação e coleta de rejeitos radioativos. | | 6. Descomissionamento de instalações nucleares e radioativas, que inclui: | Áreas de instalações nucleares e radioativas contaminadas e com rejeitos. | | 6.1 Todas as descontaminações radioativas inerentes. | Depósitos provisórios e definitivos de rejeitos radioativos. | | 6.2. Gerenciamento dos rejeitos radioativos existentes, ou sejam; tratamento e acondicionamento dos rejeitos líquidos, sólidos, | Instalações para contenção de rejeitos radioativos. | | gasosos e aerossóis; transporte e deposição dos mesmos. | Instalações para asfaltamento de rejeitos radioativos. Instalações para cimentação de rejeitos radioativos. | |---|---| | 7. Descomissionamento de minas, moinhos e usinas de tratamento de minerais radioativos. | Tratamento de rejeitos minerais. Repositório de rejeitos naturais (bacia de contenção de rádio e outros radioisótopos). Deposição de gangas e rejeitos de mineração. | | Nota Explicativa: | | | (Inserida pela Portaria MTE nº 595, de 07 de maio de 2015) | | | 1. Não são consideradas perigosas, para efeito deste anexo, as atividades desenvolvidas em áreas que | | | utilizam equipamentos móveis de Raios X para diagnóstico médico. | | | 2. Áreas tais como emergências, centro de tratamento intensivo, sala de recuperação e leitos de | | | internação não são classificadas como salas de irradiação em razão do uso do equipamento móvel de | | | Raios X. | | | (*) Anexo acrescentado pela Portaria nº 3.393, de 17-12-1987. | |"
+  },
+  {
+   "id": "pos_1313",
+   "question": "Se eu for multado por deixar máquina sem proteção, qual a gravidade da falta e o tipo de infração?",
+   "should_call": true,
+   "gold_chunk_id": 1313,
+   "doc": "nr-28",
+   "section": "Anexo Ii.NR-12",
+   "facts": [
+    "A maioria das infrações listadas possui grau de infração 4.",
+    "O tipo de infração para todos os itens listados é 'S'.",
+    "Algumas infrações específicas, como a alínea 'b' do item 1.3.1, possuem grau de infração 3."
+   ],
+   "gold_text": "NR-28 · Anexo Ii.NR-12 Infrações Nr-12 — | 3.2 | 312600-5 | 4 | S | | 3.3 | 312601-3 | 4 | S | | 3.4 | 312602-1 | 4 | S | | 4.2 | 312603-0 | 4 | S | | 4.3 | 312604-8 | 4 | S | | 4.4 | 312605-6 | 4 | S | | NR-12 - ANEXO VIII | | | | |---|---|---|---| | Item/Subitem | Código | Infração | Tipo | | 1.3.1, alínea \"a\" | 312606-4 | 4 | S | | 1.3.1, alínea \"b\" | 312607-2 | 3 | S | | 1.3.1, alínea \"c\" | 312608-0 | 4 | S | | 1.3.1, alínea \"d\" | 312609-9 | 4 | S | |---|---|---|---| | 1.5 | 312610-2 | 4 | S | | 2.1, alínea \"a\" | 312611-0 | 4 | S | | 2.1, alínea \"b\" | 312612-9 | 4 | S | | 2.1, alínea \"c\" | 312613-7 | 4 | S | | 2.1.1 | 312614-5 | 4 | S | | 2.1.2 | 312615-3 | 4 | S | | 2.1.3 | 312616-1 | 4 | S | | 2.1.4 | 312617-0 | 4 | S | | 2.1.4.1 | 312618-8 | 4 | S |"
+  },
+  {
+   "id": "pos_375",
+   "question": "Fala, o que significa quando uma peça de máquina empurra outra direto, sem falhar?",
+   "should_call": true,
+   "gold_chunk_id": 375,
+   "doc": "nr-12",
+   "section": "Glossário",
+   "facts": [
+    "Acontece quando um componente móvel move outro componente.",
+    "O movimento é inevitável.",
+    "Ocorre por contato direto ou através de elementos rígidos.",
+    "O segundo componente é dito atuado em modo positivo."
+   ],
+   "gold_text": "NR-12 · Glossário Glossário Ação Positiva : Quando Um Componente Mecânico Móvel Inevitavelmente Move Outro Componente Consigo, por Contato Direto Ou Através de Elementos Rígidos, O Segundo Componente É Dito Como Atuado em Modo Positivo, Ou Positivamente, Pelo Primeiro. Adubadora Automotriz : Máquina Destinada à Aplicação de Fertilizante Sólido Granulado e Desenvolvida para O Setor Canavieiro. — Fatiadora de pães : máquina concebida para uso profissional destinada a cortar pães em fatias uniformes e paralelas. É basicamente composta por estrutura, acionamento, proteções e dispositivo de corte. O dispositivo de corte pode seccionar o produto tanto na vertical quanto na horizontal e pode ser constituído por um conjunto de facas serrilhadas que cortam por movimento oscilatório ou por uma serra contínua que corta pelo movimento em um único sentido. Para seu funcionamento, o motor transmite potência para o dispositivo de corte movimentando-o enquanto o pão é introduzido para o corte na região de carga, conduzido pelo dispositivo de alimentação. Feller buncher : trator florestal cortador-enfeixador de troncos para abate de árvores inteiras por meio do uso de implemento de corte com disco ou serra circular e garras para segurar e enfeixar vários troncos simultaneamente. Ferramenta portátil: ferramenta destina a realizar o trabalho mecânico, com ou sem provisões para montagem em um suporte, e projetada de tal forma que o motor e a máquina formem um conjunto que possa ser facilmente carregado até o local de uso, e que possa ser seguro ou suportado pela mão ou suspenso durante a operação. Ferramenta transportável (semiestacionária): ferramenta que possui as seguintes características:"
+  },
+  {
+   "id": "pos_86",
+   "question": "Qual o tamanho da equipe de SESMT para uma empresa que vende no atacado computadores e peças de informática?",
+   "should_call": true,
+   "gold_chunk_id": 86,
+   "doc": "nr-04",
+   "section": "Anexo I",
+   "facts": [
+    "A classificação CNAE 46.51-6 corresponde ao comércio atacadista de computadores, periféricos e suprimentos de informática.",
+    "Para esta atividade econômica, a NR-04 determina a equipe do SESMT com nível 3."
+   ],
+   "gold_text": "NR-04 · Anexo I Anexo I Relação da Classificação Nacional de Atividades Econômicas - Cnae (versão — | | 46.42-7 Comércio atacadista de artigos do vestuário e acessórios | 2 | | | 46.43-5 Comércio atacadista de calçados e artigos de viagem | 2 | | | 46.44-3 Comércio atacadista de produtos farmacêuticos para uso humano e veterinário | 2 | | 46.45-1 | Comércio atacadista de instrumentos e materiais para uso médico, cirúrgico, ortopédico e odontológico | 2 | | | 46.46-0 Comércio atacadista de cosméticos, produtos de perfumaria e de higiene pessoal | 2 | | 46.47-8 | Comércio atacadista de artigos de escritório e de papelaria; livros, jornais e outras publicações | 2 | | 46.49-4 | Comércio atacadista de equipamentos e artigos de uso pessoal e doméstico não especificados anteriormente | 2 | | 46.5 | Comércio atacadista de equipamentos e produtos de tecnologias de informação e comunicação | | | | 46.51-6 Comércio atacadista de computadores, periféricos e suprimentos de informática | 3 | | 46.52-4 | Comércio atacadista de componentes eletrônicos e equipamentos de telefonia e comunicação | 3 | | 46.6 | Comércio atacadista de máquinas, aparelhos e equipamentos, exceto de tecnologias de informação e comunicação | | | 46.61-3 | Comércio atacadista de máquinas, aparelhos e equipamentos para uso agropecuário; partes e peças | 3 |"
+  },
+  {
+   "id": "pos_2099",
+   "question": "O que precisa ser feito na água depois de mexer na plataforma pra ela voltar a ser segura?",
+   "should_call": true,
+   "gold_chunk_id": 2099,
+   "doc": "nr-37",
+   "section": "37.12.4",
+   "facts": [
+    "É obrigatório realizar as análises previstas pela ANVISA e pelo Ministério da Saúde",
+    "Se necessário, deve-se efetuar os tratamentos adequados antes de voltar a fornecer a água"
+   ],
+   "gold_text": "NR-37 · 37.12.4 Instalações Sanitárias — 37.12.4.13 Após a realização de serviços de manutenção, reparo, ampliação e outras intervenções na plataforma que possam contaminar a água para o consumo humano, a operadora da instalação deve realizar as análises previstas pela ANVISA e Ministério da Saúde e, se necessário, efetuar os tratamentos adequados antes de voltar a fornecer a água. 37.12.4.14 A operadora da instalação deve estabelecer mecanismos para o recebimento de reclamações e manter registros atualizados sobre a qualidade da água distribuída, sistematizando-os de forma compreensível aos consumidores e disponibilizando-os para pronto acesso e consulta pela inspeção do trabalho, trabalhadores e seus representantes. 37.12.5 Higiene, segurança e conforto por ocasião das refeições 37.12.5.1 Nas plataformas habitadas, é obrigatória a existência de refeitório para os trabalhadores."
+  },
+  {
+   "id": "pos_926",
+   "question": "Ei, quanto de luz e barulho tem que ter no escritório pra gente não sentir desconforto?",
+   "should_call": true,
+   "gold_chunk_id": 926,
+   "doc": "nr-17",
+   "section": "17.8",
+   "facts": [
+    "A iluminação deve ser adequada à natureza da atividade e evitar ofuscamento, reflexos incômodos, sombras e contrastes excessivos.",
+    "Em ambientes internos, os níveis mínimos de iluminação devem seguir a Norma de Higiene Ocupacional nº 11 (NHO 11) da Fundacentro.",
+    "O nível de ruído de fundo aceitável para conforto acústico é de até 65 dB(A) (ponderado em A, resposta Slow).",
+    "Devem ser adotadas medidas de controle da temperatura, velocidade do ar e umidade para garantir conforto térmico."
+   ],
+   "gold_text": "NR-17 · 17.8 Condições de Conforto no Ambiente de Trabalho — 17.8 Condições de conforto no ambiente de trabalho 17.8.1 Em todos os locais e situações de trabalho deve haver iluminação, natural ou artificial, geral ou suplementar, apropriada à natureza da atividade. 17.8.2 A iluminação deve ser projetada e instalada de forma a evitar ofuscamento, reflexos incômodos, sombras e contrastes excessivos. 17.8.3 Em todos os locais e situações de trabalho internos, deve haver iluminação em conformidade com os níveis mínimos de iluminamento a serem observados nos locais de trabalho estabelecidos na Norma de Higiene Ocupacional nº 11 (NHO 11) da Fundacentro - Avaliação dos Níveis de Iluminamento em Ambientes Internos de Trabalho, versão 2018. 17.8.4 Nos locais de trabalho em ambientes internos onde são executadas atividades que exijam manutenção da solicitação intelectual e atenção constantes, devem ser adotadas medidas de conforto acústico e de conforto térmico, conforme disposto nos subitens seguintes. 17.8.4.1 A organização deve adotar medidas de controle do ruído nos ambientes internos com a finalidade de proporcionar conforto acústico nas situações de trabalho. 17.8.4.1.1 O nível de ruído de fundo para o conforto deve respeitar os valores de referência para ambientes internos de acordo com sua finalidade de uso estabelecidos em normas técnicas oficiais. 17.8.4.1.2 Para os demais casos, o nível de ruído de fundo aceitável para efeito de conforto acústico será de até 65 dB(A), nível de pressão sonora contínuo equivalente ponderado em A e no circuito de resposta Slow (S). 17.8.4.2 A organização deve adotar medidas de controle da temperatura, da velocidade do ar e da umidade com a finalidade de proporcionar conforto térmico nas situações de trabalho, observando-se o parâmetro de faixa de temperatura do ar entre 18 e 25 °C para ambientes climatizados."
+  },
+  {
+   "id": "pos_1907",
+   "question": "Cara, qual é o limite de oxigênio que a gente pode ter dentro do espaço pra não ser considerado perigoso?",
+   "should_call": true,
+   "gold_chunk_id": 1907,
+   "doc": "nr-33",
+   "section": "Glossário",
+   "facts": [
+    "A deficiência de oxigênio é definida como uma atmosfera com menos de 20,9% de oxigênio em volume.",
+    "Essa medição de 20,9% se aplica à pressão atmosférica normal.",
+    "A redução do percentual de oxigênio é aceita apenas se for devidamente monitorada e controlada."
+   ],
+   "gold_text": "NR-33 · Glossário Glossário — Entra em vigor no dia 03 de outubro de 2022 (Portaria MTP n.º 1.690, de 15 de junho de 2022) Bloqueio: dispositivo que impede a liberação de energias perigosas, tais como pressão, vapor, fluidos, combustíveis, água e outros, visando à contenção de energias perigosas para trabalho seguro em espaços confinados. Calibração operação que estabelece, sob condições especificadas, em uma primeira etapa, uma relação entre os valores e as incertezas de medição fornecidos por padrões e as indicações correspondentes com as incertezas associadas; em uma segunda etapa, utiliza esta informação visando à obtenção de um resultado de medição a partir de uma indicação. Calibração acreditada: calibração realizada por laboratório acreditado pelo Instituto Nacional de Metrologia, Qualidade e Tecnologia - Inmetro. Chama aberta: mistura de gases incandescentes emitindo energia, que é também denominada chama ou fogo. Conaminantes: gases, vapores, névoas, fumos e poeiras presentes na atmosfera do espaço confinado. Deficiência de oxigênio: atmosfera contendo menos de 20,9% de oxigênio em volume na pressão atmosférica normal, a não ser que a redução do percentual seja devidamente monitorada e controlada. Energia perigosa: qualquer forma de energia que possa causar a morte, ferimentos ou danos à saúde dos trabalhadores. Equipe de emergência e salvamento: trabalhadores capacitados e equipados para resgatar e prestar os primeiros socorros a trabalhadores em caso de emergência."
+  },
+  {
+   "id": "pos_1952",
+   "question": "O que tem que ter no plano de emergência do canteiro?",
+   "should_call": true,
+   "gold_chunk_id": 1952,
+   "doc": "nr-34",
+   "section": "34.17",
+   "facts": [
+    "Identificação da empresa com razão social, CNPJ e formas de contato",
+    "Identificação do responsável técnico pela elaboração e revisão do plano",
+    "Ações de resposta para cada cenário de emergência identificado",
+    "Matriz de atribuições e dimensionamento dos recursos, incluindo primeiros socorros",
+    "Definição dos meios de acesso e evacuação das instalações"
+   ],
+   "gold_text": "NR-34 · 34.17 O Pre Deve Conter: — 34.17.3 O PRE deve conter: a) identificação da empresa (razão social e número do CNPJ) e forma de contato (endereço, telefone, endereço eletrônico); b) identificação do responsável técnico pela elaboração e revisão do PRE; c) delimitação da abrangência das ações do PRE; d) ações de resposta para cada cenário de emergência; e) matriz de atribuições; f) dimensionamento dos recursos em função dos cenários de emergências identificados, incluindo primeiros socorros; g) definição dos meios de acessos e de evacuação das instalações industriais e das embarcações, abrangendo as estruturas flutuantes, quando couber; h) procedimento de comunicação com empresas contratadas; i) procedimentos para orientação de visitantes, quanto aos riscos existentes e como proceder em situações de emergência; j) procedimentos para acionamento de recursos e estruturas de resposta complementares e das autoridades públicas pertinentes, bem como o desencadeamento do Plano de Ajuda Mútua - PAM, caso haja; k) procedimentos para comunicação do evento que desencadeou o acionamento do PRE; l) a periodicidade, o conteúdo programático e a carga horária dos treinamentos da equipe de emergência. 34.17.3.1 A empresa deve manter uma relação atualizada, de acordo com a matriz de atribuições, dos envolvidos nas ações de resposta à emergência. 34.17.3.2 O PRE deve estar articulado com as demais Normas Regulamentadoras e com os PRE das embarcações onde estão sendo realizados os serviços (navios, plataformas, unidades de apoio marítimo, unidades de manutenção e segurança e outros tipos de embarcações). 34.17.4 A empresa deve realizar exercícios simulados para avaliar a eficácia do PRE. 34.17.4.1 Os exercícios simulados devem: a) ser realizados de acordo com os cenários de emergência mapeados; b) atender o planejamento e cronograma estabelecidos pelo responsável técnico; c) ser realizados durante o horário normal de trabalho, considerando os turnos de trabalho, quando houver."
+  },
+  {
+   "id": "pos_1071",
+   "question": "Cara, quando eu tô trabalhando em linha de 13 mil volts, qual é a distância mínima que eu preciso ter do fio pra não apanhar?",
+   "should_call": true,
+   "gold_chunk_id": 1071,
+   "doc": "nr-19",
+   "section": "Anexo Ii",
+   "facts": [
+    "Para faixas de tensão entre 13.621 e 15.890 volts, a distância mínima de segurança é 610 milímetros.",
+    "Para faixas de tensão entre 13.621 e 15.890 volts, a distância mínima com barreira é 220 milímetros.",
+    "Para faixas de tensão entre 13.621 e 15.890 volts, a distância mínima de isolamento é 435 milímetros."
+   ],
+   "gold_text": "NR-19 · Anexo Ii Anexo Ii da Nr-19 Tabelas de Quantidades-distâncias — | 911 | 1.350 | 355 | 120 | 235 | 70 | | 1.351 | 1.720 | 385 | 130 | 255 | 70 | | 1.721 | 2.270 | 420 | 135 | 270 | 80 | | 2.271 | 2.720 | 445 | 145 | 285 | 80 | | 2.721 | 3.180 | 470 | 150 | 295 | 90 | | 3.181 | 3.630 | 490 | 150 | 300 | 90 | | 3.631 | 4.090 | 510 | 155 | 310 | 100 | | 4.091 | 4.540 | 530 | 160 | 315 | 100 | | 4.541 | 6.810 | 545 | 160 | 325 | 110 | | 6.811 | 9.080 | 595 | 175 | 355 | 120 | | 9.081 | 11.350 | 610 | 190 | 385 | 130 | | 11.351 | 13.620 | 610 | 205 | 410 | 140 | | 13.621 | 15.890 | 610 | 220 | 435 | 150- | | 15.891 | 18.160 | 610 | 230 | 460 | 160 | | 18.161 | 20.430 | 610 | 240 | 485 | 160 | | 20.431 | 22.700 | 610 | 255 | 505 | 170 |"
+  },
+  {
+   "id": "pos_34",
+   "question": "Cara, como é que o fiscal calcula se o risco aqui no canteiro é grande ou pequeno na hora da vistoria?",
+   "should_call": true,
+   "gold_chunk_id": 34,
+   "doc": "nr-03",
+   "section": "3.3",
+   "facts": [
+    "O cálculo é feito em três etapas: avaliar o risco atual, definir o risco de referência e comparar os dois.",
+    "O risco atual considera a situação encontrada e as medidas de controle que já existem.",
+    "O risco de referência é o nível que ficaria se todas as prevenções necessárias fossem implementadas.",
+    "O excesso de risco é determinado pela comparação entre o risco atual e o risco de referência na tabela.",
+    "Os níveis de excesso de risco são classificados como extremo, substancial, moderado, pequeno ou nenhum."
+   ],
+   "gold_text": "NR-03 · 3.3 Caracterização do Grave e Iminente Risco — 3.3.8 A Tabela 3.3 deve ser utilizada pelo Auditor-Fiscal do Trabalho em caso de exposição individual ou de reduzido número de potenciais vítimas expostas ao risco avaliado. 3.3.9 A Tabela 3.4 deve ser utilizada para a avaliação de situação onde a exposição ao risco pode resultar em lesão ou adoecimento de diversas vítimas simultaneamente. 3.3.10 Os descritores do excesso de risco são: E - extremo, S - substancial, M - moderado, P - pequeno ou N - nenhum. 3.3.11 Para estabelecer o excesso de risco, o Auditor-Fiscal do Trabalho deve seguir as seguintes etapas: a) primeira etapa: avaliar o risco atual (situação encontrada) decorrente das circunstâncias encontradas, levando em consideração as medidas de controle existentes, ou seja, o nível total de risco que se observa ou se considera existir na atividade, utilizando a classificação indicada nas colunas do lado esquerdo das Tabelas 3.3 ou 3.4 (Retificação no DOU de 23/01/2020 – seção 1 – pág. 57) ; b) segunda etapa: estabelecer o risco de referência (situação objetivo), ou seja, o nível de risco remanescente quando da implementação das medidas de prevenção necessárias, utilizando a classificação nas linhas da parte inferior das Tabelas 3.3 ou 3.4 (Retificação no DOU de 23/01/2020 – seção 1 – pág. 57) ; c) terceira etapa: determinar o excesso de risco por comparação entre o risco atual e o risco de referência, localizando a interseção entre os dois riscos na tabela 3.3 ou 3.4 (Retificação no DOU de 23/01/2020 – seção 1 – pág. 57) ."
+  },
+  {
+   "id": "pos_2045",
+   "question": "Cheguei no serviço e vi aquela máquina de descascar couro parada há muito tempo. O que eu tenho que fazer antes de ligar ela?",
+   "should_call": true,
+   "gold_chunk_id": 2045,
+   "doc": "nr-36",
+   "section": "Anexo Ii.I",
+   "facts": [
+    "É obrigatória uma avaliação de risco antes de usar a máquina",
+    "A avaliação deve ser feita após a instalação da máquina",
+    "A avaliação deve ser feita se a máquina ficou muito tempo parada",
+    "A avaliação deve ser feita se o processo de trabalho mudou",
+    "O objetivo é evitar riscos para o trabalhador e o ambiente"
+   ],
+   "gold_text": "NR-36 · Anexo Ii.I Máquina Automática para Descourear e Retirar Pele e Película — 1.2.2.1 Deve ser realizada uma prévia avaliação de risco da máquina, após a sua instalação, longo período de inatividade ou quando ocorrer mudança do processo operacional, em relação ao trabalhador, para evitar riscos adicionais oriundos do processo e das condições do ambiente de trabalho. Figura 8 - Zonas de perigo da máquina aberta de descourear e retirar a pele e a membrana Legenda: 1. Zona 1: Zona de corte; 2. Zona 2: Zona de descarga; 3. Zona 3: Zona interna - entre cilindros e partes fixas da máquina e dispositivos de limpeza (se existentes); 4. Zona 4: Zona motriz; 5. Zona 5: Zona do sistema de rodízio para facilitar o transporte; H. Altura da mesa de alinhamento em relação ao solo. Fonte: Norma Técnica EN 12355:2003 + A1: 2010 Figura 9 - Detalhe das zonas de perigo 1, 2 e 3 da máquina aberta de descourear e retirar a pele e a membrana (com pente raspador) Legenda: 1. Cilindro dentado giratório e porta lâmina ajustável na altura com a lâmina montada; 2. Cilindro dentado giratório e pente raspador; 3. Cilindro dentado giratório e as partes fixas da máquina. Fonte: Norma Técnica EN 12355:2003 + A1: 2010 Figura 10 - Detalhe das zonas de perigo 1, 2 e 3 da máquina aberta de descourear e retirar a pele e a membrana (com cilindro raspador giratório). Legenda: 1. Cilindro de arraste giratório e porta lâmina fixo com a lâmina montada; 2. Cilindro de arraste giratório e cilindro raspador giratório; 3. Cilindro de arraste/cilindro raspador giratórios, com as partes fixas da máquina e o dispositivo de limpeza por jato de ar. Fonte: Norma Técnica EN 12355:2003 + A1: 2010"
+  },
+  {
+   "id": "pos_2118",
+   "question": "Quem fica encarregado de checar a comida e o pessoal que cuida do refeitório toda semana?",
+   "should_call": true,
+   "gold_chunk_id": 2118,
+   "doc": "nr-37",
+   "section": "37.13",
+   "facts": [
+    "O gerente da plataforma ou seu preposto deve realizar inspeções semanais.",
+    "As inspeções verificam a quantidade, qualidade e validade dos víveres e da água potável.",
+    "As inspeções verificam o estado das instalações e equipamentos de armazenamento e manuseio.",
+    "As inspeções verificam as condições de higiene e funcionamento da cozinha, refeitório e exaustor.",
+    "As inspeções verificam a ausência de animais sinantrópicos."
+   ],
+   "gold_text": "NR-37 · 37.13 Alimentação A Bordo — 37.13.7 O gerente da plataforma ou seu preposto deve realizar inspeções semanais para verificar: a) a quantidade, a qualidade e a validade do aprovisionamento de víveres e de água potável; b) o estado das instalações e equipamentos utilizados para armazenamento e manuseio de víveres e de água potável; c) as condições de higiene e funcionamento da cozinha e do refeitório, seus equipamentos e acessórios, incluído o exaustor; e d) a ausência de animais sinantrópicos. 37.13.7.1 Os resultados das inspeções devem ser: a) consignados em relatório, datado e assinado pelo comissário ou responsável pela hotelaria e pelo gerente da plataforma ou seu preposto; e b) divulgados à força de trabalho mediante afixação em quadro de avisos, próximo à entrada do refeitório. 37.13.8 A operadora da instalação deve proceder, no mínimo semestralmente, à desinsetização e à desratização, de acordo com os procedimentos estabelecidos pela ANVISA. 37.14 Climatização 37.14.1 A plataforma habitada deve ser provida de sistema de climatização adequado para as áreas de vivência e locais de trabalho que exijam solicitação intelectual e atenção constantes, garantindo a saúde, a segurança, o bem-estar e o conforto térmico. 37.14.1.1 O sistema de climatização deve ser mantido em funcionamento contínuo, provendo ambiente climatizado com ar interno de boa qualidade, sempre que houver trabalhadores a bordo. 37.14.1.1.1 A qualidade do ar interior deve atender aos critérios estabelecidos pela ANVISA e Ministério da Saúde. 37.14.1.1.2 Em caso de deficiência na qualidade do ar interno que exponha os trabalhadores a risco grave e iminente, a operadora da instalação deve providenciar o imediato deslocamento da força de trabalho para um local seguro e acionar o Plano de Resposta a Emergências - PRE, de acordo com o capítulo 37.28 desta NR, com retorno somente após a normalização do sistema."
+  },
+  {
+   "id": "pos_1652",
+   "question": "O que o chefe precisa ensinar pra gente antes de subir no barco e quem garante que o patrão do barco está apto?",
+   "should_call": true,
+   "gold_chunk_id": 1652,
+   "doc": "nr-30",
+   "section": "Anexo I",
+   "facts": [
+    "O treinamento deve incluir combate a incêndios e uso de meios de salvamento.",
+    "O treinamento deve cobrir o uso adequado dos aparelhos de pesca e equipamentos de tração.",
+    "O treinamento deve abordar métodos de sinalização e comunicação por sinais.",
+    "É responsabilidade do armador garantir que o comandante esteja habilitado pela autoridade marítima."
+   ],
+   "gold_text": "NR-30 · Anexo I Anexo I da Nr-30 Pesca Comercial — 6.2 A formação dos pescadores profissionais deve incluir instruções precisas compreendendo, em especial: a) o treinamento para o combate a incêndios; b) a utilização de meios de salvamento e sobrevivência; c) o uso adequado dos aparelhos de pesca e dos equipamentos de tração; e d) os diferentes métodos de sinalização, especialmente os de comunicação por sinais. 6.2.1 Quando de modificações nas atividades do barco, novas informações devem ser ministradas sempre que necessário. 6.3 É responsabilidade do armador garantir que toda pessoa contratada para comandar um barco esteja devidamente habilitada pela autoridade marítima. 6.3.1 A formação profissional especializada deve incluir, no mínimo, os seguintes tópicos: a) prevenção de enfermidades profissionais e acidentes de trabalho a bordo e as providências a serem adotadas em caso de acidentes; b) combate a incêndio e utilização dos meios de salvamento e sobrevivência; c) estabilidade do barco e manutenção da estabilidade em todas as condições previsíveis de carga e durante as operações de pesca; e d) procedimentos de navegação e comunicação via rádio. 7. Disposição Final 7.1 Cabe à Fundacentro elaborar e manter atualizado um Guia Técnico, de caráter recomendatório, para a avaliação e a prevenção dos riscos relativos à utilização de barcos de pesca. APÊNDICE I Disposições Mínimas de Segurança e Saúde Aplicáveis aos Barcos de Pesca Novos 1. Campo de aplicação 1.1 As obrigações previstas no presente apêndice aplicam-se aos barcos de pesca novos, considerando: a) as características operacionais para as quais foram projetados; b) a distância máxima de operação; c) a autonomia de tempo de navegação e pesca; d) os requisitos de segurança dos locais de trabalho ou da atividade pesqueira; e e) as circunstâncias ou a evidência de riscos a bordo. 2. Navegabilidade e estabilidade 2.1 O barco deve ser mantido em boas condições de navegabilidade e ser dotado de equipamentos apropriados ao seu destino e utilização."
+  },
+  {
+   "id": "pos_703",
+   "question": "Fala, qual é o limite máximo de exposição pra quem trabalha com tolueno ou xileno?",
+   "should_call": true,
+   "gold_chunk_id": 703,
+   "doc": "nr-15",
+   "section": "15.7",
+   "facts": [
+    "O limite de tolerância para tolueno é de 78 ppm.",
+    "O limite de tolerância para xileno é de 78 ppm.",
+    "A classificação de risco para tolueno é de gravidade média.",
+    "A classificação de risco para xileno é de gravidade média."
+   ],
+   "gold_text": "NR-15 · 15.7 O Disposto no Item 15.5. Não Prejudica A Ação Fiscalizadora do Mtb Nem A Realização Ex- Officio da Perícia, Quando Solicitado Pela Justiça, nas Localidades Onde Não Houver Perito. — | Tetracloroetano | | + | 4 | 27 | máximo | | Tetracloroetileno (vide percloroetileno) | | | - | - | - | | Tetrahidrofurano | | | 156 | 460 | máximo | | Tolueno (toluol) | | + | 78 | 290 | médio | | Tolueno-2,4-diisocianato (TDI) (vide 2,4 diisocianato de tolueno) | | | - | - | - | | Tribromometano (vide bromofórmio) | | | - | - | - | | Tricloreto de vinila (vide 1,1,2 tricloroetano) | | | - | - | - | | 1,1,1 Tricloroetano (vide metil clorofórmio) | | | - | - | - | |---|---|---|---|---|---| | 1,1,2 Tricloroetano | | + | 8 | 35 | médio | | Tricloroetileno | | | 78 | 420 | máximo | | Triclorometano (vide clorofórmio) | | | - | - | - | | 1,2,3 Tricloropropano | | | 40 | 235 | máximo | | 1,1,2 Tricloro-1,2,2 trifluoretano (freon 113) | | | 780 | 5930 | médio | | Trietilamina | | | 20 | 78 | máximo | | Trifluormonobramometano | | | 780 | 4760 | médio | | Vinibenzeno (vide estireno) | | | - | - | - | | Xileno (xilol) | | + | 78 | 340 | médio |"
+  },
+  {
+   "id": "pos_755",
+   "question": "Qual é o limite de concentração máxima para formaldeído no ar do serviço?",
+   "should_call": true,
+   "gold_chunk_id": 755,
+   "doc": "nr-15",
+   "section": "Anexo Ix",
+   "facts": [
+    "O limite de concentração máxima para formaldeído é 1,6 ppm.",
+    "O valor correspondente a 2,3 ppm não é o limite máximo citado no trecho para formaldeído, mas sim um outro valor listado (provavelmente TLV-TWA ou similar, embora o texto não especifique a sigla, apenas o número e a classificação 'máximo' para o 1,6). *Correção*: O texto lista 1,6 com classificação 'máximo' e 2,3 na coluna seguinte. A pergunta pede o limite máximo. O fato deve focar no valor 1,6 como o limite máximo.",
+    "A substância em questão é o formaldeído (formol)."
+   ],
+   "gold_text": "NR-15 · Anexo Ix Anexo Ix (avaliação das Concentrações de Benzeno em Ambientes de Trabalho) da Instrução Normativa - In Nº 02, de 2021, por Quarenta Anos; — | Etilamina | | | 8 | 14 | máximo | | Etilbenzeno | | | 78 | 340 | médio | | Etileno | | | Asfixiante | simples | _ | | Etilenoimina | | + | 0,4 | 0,8 | máximo | | Etil mercaptana | | | 0,4 | 0,8 | médio | | n-Etil morfolina | | + | 16 | 74 | médio | | 2-Etoxietanol | | + | 78 | 290 | médio | | Fenol | | + | 4 | 15 | máximo | | Fluortriclorometano (freon 11) | | | 780 | 4370 | médio | | Formaldeído (formol) | + | | 1,6 | 2,3 | máximo | | Fosfina (fosfamina) | | | 0,23 | 0,3 | máximo | | Fosgênio | | | 0,08 | 0,3 | máximo | | Freon 11 (vide flortriclorometano) | | | _ | _ | _ | | Freon 12 (vide diclorodiflormetano) | | | _ | _ | _ | | Freon 22 (vide clorodifluormetano) | | | _ | _ | _ | | Freon 113 (vide 1,1,2,tricloro-1,2,2- trifluoretano) | | | _ | _ | _ |"
+  },
+  {
+   "id": "pos_1565",
+   "question": "Fala, quando tem um buraco ou vão grande no convés com mais de dois metros de altura, o que a gente precisa ter ali pra não cair?",
+   "should_call": true,
+   "gold_chunk_id": 1565,
+   "doc": "nr-29",
+   "section": "29.11",
+   "facts": [
+    "É obrigatório instalar guarda-corpo com 1,10 m de altura em vãos com diferença de nível superior a 2,00 m.",
+    "O trânsito de pessoas sobre vãos entre cargas apenas é permitido se os vãos estiverem cobertos com pranchas.",
+    "Pranchas de madeira devem ser de boa qualidade, sem nós ou rachaduras, sendo proibido o uso de madeira verde."
+   ],
+   "gold_text": "NR-29 · 29.11 Porões — 29.11.8 Os pisos dos porões devem estar limpos, livres de contaminantes e de materiais inservíveis antes do início da operação. 29.11.9 Quando empregada a forração das cargas, esta deve: a) oferecer equilíbrio à carga; e b) resultar em um piso de trabalho regular e seguro. 29.11.10 As plataformas de trabalho devem ser confeccionadas de maneira que não ofereçam riscos de desmoronamento e propiciem espaço seguro de trabalho. 29.11.11 Passarelas, plataformas, beiras de cobertas abertas, bocas de celas de contêineres e grandes vãos entre cargas, com diferença de nível superior a 2,00 m (dois metros), devem possuir guarda- corpo com 1,10 m (um metro e dez centímetros) de altura. 29.11.12 O trânsito de pessoas sobre os vãos entre cargas estivadas só será permitido se cobertos os vãos com pranchas. 29.11.12.1 As pranchas devem ser de material resistente. 29.11.12.2 Caso seja usada madeira, esta deve ser de boa qualidade, sem nós ou rachaduras que comprometam a sua resistência, sendo proibido o uso de madeira verde e de pintura que encubra imperfeições. 29.11.13 É obrigatório o uso de escadas para a transposição de obstáculos de altura superior a 1,50 m (um metro e cinquenta centímetros). 29.11.14 As escotilhas e aberturas similares devem estar sempre em perfeito estado de conservação e niveladas, a fim de não prejudicarem a circulação. 29.11.15 As escotilhas e aberturas similares devem permanecer fechadas por ocasião de trabalho na mesma coberta. 29.11.16 Em locais em que não haja atividade, os vãos livres com risco de quedas, como bocas de agulheiros, cobertas e outros, devem estar fechados. 29.11.16.1 Quando em atividade, os vãos livres devem ser devidamente sinalizados, iluminados e protegidos com guarda-corpo, redes ou madeiramento resistente."
+  },
+  {
+   "id": "pos_898",
+   "question": "O que a norma considera uma embalagem composta?",
+   "should_call": true,
+   "gold_chunk_id": 898,
+   "doc": "nr-16",
+   "section": "Glossário",
+   "facts": [
+    "Consiste em uma embalagem externa e um recipiente interno",
+    "O recipiente interno e a embalagem externa formam uma unidade integrada",
+    "A unidade permanece integrada durante o enchimento, manuseio, armazenamento, transporte e esvaziamento"
+   ],
+   "gold_text": "NR-16 · Glossário Glossário — GLOSSÁRIO (Publicado pela Portaria SIT nº 26, de 2 de agosto de 2000) Bombonas : Elementos de metal ou plástico, com seção retangular ou poligonal. Caixas : Elementos com faces retangulares ou poligonais, feitas de metal, madeira, papelão, plástico flexível, plástico rígido ou outros materiais compatíveis. Embalagens ou Embalagens Simples : Recipientes ou quaisquer outros componentes ou materiais necessários para embalar, com a função de conter e proteger líquidos inflamáveis. Embalagens Combinadas : Uma combinação de embalagens, consistindo em uma ou mais embalagens internas acondicionadas numa embalagem externa. Embalagens Compostas : Consistem em uma embalagem externa e um recipiente interno, construídos de tal forma que o recipiente interno e a embalagem externa formam uma unidade que permanece integrada, que se enche, manuseia, armazena, transporta e esvazia como tal. Embalagens Certificadas : São aquelas aprovadas nos ensaios e padrões de desempenho fixados para embalagens, da NBR 11564/91. Embalagens Externas : São a proteção exterior de uma embalagem composta ou combinada, juntamente com quaisquer outros componentes necessários para conter e proteger recipientes ou embalagens. Embalagens Internas : São as que para serem manuseadas, armazenadas ou transportadas, necessitam de uma embalagem externa. Grupo de Embalagens : Os líquidos inflamáveis classificam-se para fins de embalagens segundo 3 grupos, conforme o nível de risco:"
+  },
+  {
+   "id": "pos_2095",
+   "question": "Ei, quanto banheiro a gente precisa ter na plataforma pra galera não ficar na fila?",
+   "should_call": true,
+   "gold_chunk_id": 2095,
+   "doc": "nr-37",
+   "section": "37.12.4",
+   "facts": [
+    "Deve haver no mínimo 1 vaso sanitário e 1 lavatório para cada 15 trabalhadores ou fração",
+    "O cálculo deve considerar o turno de trabalho com maior efetivo",
+    "Nos banheiros masculinos, 50% dos vasos podem ser trocados por mictórios",
+    "Na substituição por mictórios, é obrigatório manter no mínimo 2 vasos sanitários"
+   ],
+   "gold_text": "NR-37 · 37.12.4 Instalações Sanitárias — 37.12.4.2 Além do disposto no subitem 37.12.4.1, as instalações sanitárias para uso coletivo devem: a) estar situadas em locais de fácil e seguro acesso, próximas aos locais de trabalho ou das refeições; b) ser localizadas de maneira a não se comunicarem diretamente com os locais destinados às refeições, cozinha e dormitórios; c) garantir a privacidade de seus usuários em relação ao ambiente externo; d) para plataformas com a maior dimensão do deck principal acima de 200 m (duzentos metros), deve existir um banheiro o mais próximo possível da meia-nau, em área não classificada; (Vide prazo - Portaria MTP n.º 90, de 18 de janeiro de 2022) e) possuir vasos sanitários em conjunto com lavatórios; f) dispor de cabines privativas para os vasos sanitários, quando houver mais de uma unidade ou forem acompanhados de mictórios; e g) ser separadas por sexo, de forma permanente. 37.12.4.2.1 O dimensionamento das instalações sanitárias de uso coletivo, para cada sexo, deve levar em conta os seus respectivos quantitativos a bordo e os postos de trabalho. 37.12.4.3 A plataforma deve possuir instalações sanitárias para uso coletivo distribuídas pelos diferentes pisos ou decks , na proporção de, no mínimo, 1 (um) vaso sanitário e 1 (um) lavatório para cada 15 (quinze) trabalhadores ou fração, considerando o turno de trabalho com maior efetivo. (Vide prazo - Portaria MTP n.º 90, de 18 de janeiro de 2022) 37.12.4.3.1 Em instalações sanitárias masculinas de uso coletivo, é permitida a substituição de 50% (cinquenta por cento) dos vasos por mictórios para uso coletivo, desde que sejam assegurados, no mínimo, dois vasos."
+  },
+  {
+   "id": "pos_871",
+   "question": "O que eu tenho que fazer se alguém parar de respirar na hora da descompressão?",
+   "should_call": true,
+   "gold_chunk_id": 871,
+   "doc": "nr-15",
+   "section": "Anexo Ix.I.2.5",
+   "facts": [
+    "Iniciar imediatamente o método de ressuscitação boca-a-boca",
+    "Não esperar por um ressuscitador profissional",
+    "Não quebrar o ritmo durante a ressuscitação"
+   ],
+   "gold_text": "NR-15 · Anexo Ix.I.2.5 Idade (parte 2) — 11 - Observe o paciente pelo mínimo de 6 horas após o tratamento, atento para sintomas de recorrência. 12 - Mantenha uma acurada cronometragem dos tempos e relatórios escritos. 13 - Mantenha à mão e bem guardado o kit de socorros médicos. 14 - Não permita qualquer encurtamento ou outra alteração nas tabelas, exceto aquelas autorizadas pelo órgão competente sob a supervisão direta de um médico qualificado. 15 - Não permita ao paciente dormir entre as paradas de descompressão ou por mais de 1 hora em qualquer parada. 16 - Não espere por um ressuscitador. Inicie imediatamente o método de ressuscitação boca-a- boca no caso de parada respiratória. 17 - Não quebre o ritmo durante a ressuscitação 18 - Não permita o uso de oxigênio em profundidades maiores que 18 metros. 19 - Instrua o paciente para reportar imediatamente os sintomas quando sentir. 20 - Não hesite em tratar casos duvidosos. 21 - Não permita ao paciente ou acompanhante a permanência em posições que possam interferir com a completa circulação sangüínea dos seus organismos. DIAGNÓSTICO DE DOENÇA DESCOMPRESSIVA E EMBOLIA GASOSA | SINAIS E SINTOMAS | DOENÇA DESCOMPRESSIVA | | | | EMBOLIA GASOSA | | | | |---|---|---|---|---|---|---|---|---| | | Pele | Dor Somente | Sintomas Sérios | | Sintomas no Sistema Nervoso Central | | Pneumo- Tórax | Enfisema do Mediastin o | | | | | Sistema Nervos o Central | Sufocaçã o | Lesão Cerebral | Lesão na Medula Espinhal | | | | DOR NA CABEÇA | | | | | ** | | | | | DOR NAS COSTAS | | | * | | | | | | | DOR NO PESCOÇO | | | | | | | | ** | | DOR NO PEITO | | | * | ** | | * | ** | * | | DOR NO ESTÔMAGO | | | ** | | | * | | |"
+  },
+  {
+   "id": "pos_111",
+   "question": "Meu chefe disse que a gente vai trabalhar numa clínica de idosos e num teatro. Preciso de SESMT em cada um desses lugares ou não?",
+   "should_call": true,
+   "gold_chunk_id": 111,
+   "doc": "nr-04",
+   "section": "Anexo I",
+   "facts": [
+    "Atividades de assistência a idosos em residências coletivas e particulares exigem SESMT (número 1).",
+    "Atividades de assistência psicossocial e à saúde a portadores de distúrbios psíquicos exigem SESMT (número 1).",
+    "Serviços de assistência social sem alojamento exigem SESMT (número 1).",
+    "Artes cênicas e espetáculos exigem SESMT (número 2).",
+    "Criação artística exige SESMT (número 2)."
+   ],
+   "gold_text": "NR-04 · Anexo I Anexo I Relação da Classificação Nacional de Atividades Econômicas - Cnae (versão — | 87.11-5 | Atividades de assistência a idosos, deficientes físicos, imunodeprimidos e convalescentes prestadas em residências coletivas e particulares | 1 | | 87.12-3 | Atividades de fornecimento de infra-estrutura de apoio e assistência a paciente no domicílio | 1 | | 87.2 | Atividades de assistência psicossocial e à saúde a portadores de distúrbios psíquicos, deficiência mental e dependência química | | | 87.20-4 | Atividades de assistência psicossocial e à saúde a portadores de distúrbios psíquicos, deficiência mental e dependência química | 1 | | 87.3 | Atividades de assistência social prestadas em residências coletivas e particulares | 1 | | | 87.30-1 Atividades de assistência social prestadas em residências coletivas e particulares | 1 | | 88 | SERVIÇOS DE ASSISTÊNCIA SOCIAL SEM ALOJAMENTO | | | 88.0 | Serviços de assistência social sem alojamento | | | | 88.00-6 Serviços de assistência social sem alojamento | 1 | | R | ARTES, CULTURA, ESPORTE E RECREAÇÃO | | | 90 | ATIVIDADES ARTÍSTICAS, CRIATIVAS E DE ESPETÁCULOS | | | 90.0 | Atividades artísticas, criativas e de espetáculos | | | | 90.01-9 Artes cênicas, espetáculos e atividades complementares | 2 | | | 90.02-7 Criação artística | 2 |"
+  },
+  {
+   "id": "pos_1303",
+   "question": "Se o fiscal chegar aqui e achar que a gente não tá seguindo as regras de segurança nas máquinas, qual é a multa que a empresa vai pagar?",
+   "should_call": true,
+   "gold_chunk_id": 1303,
+   "doc": "nr-28",
+   "section": "Anexo Ii",
+   "facts": [
+    "A multa para a infração referente ao item 12.7.1 é de 312403-7.",
+    "A multa para a infração referente ao item 12.7.2 é de 312404-5.",
+    "A multa para a infração referente ao item 12.8.1 é de 312412-6.",
+    "A multa para a infração referente ao item 12.8.9 é de 312423-1."
+   ],
+   "gold_text": "NR-28 · Anexo Ii Infrações Nr-12 — | 12.7.1 | 312403-7 | 2 | S | | 12.7.2 | 312404-5 | 4 | S | | 12.7.3 | 312405-3 | 4 | S | | 12.7.4, alínea \"a\", 12.7.4, alínea \"b\" | 312406-1 | 4 | S | | 12.7.5 | 312408-8 | 4 | S | | 12.7.6 | 312409-6 | 4 | S | | 12.7.7, alíneas \"a\" e \"b\" | 312410-0 | 4 | S | | 12.7.8.1 | 312411-8 | 4 | S | | 12.8.1 | 312412-6 | 3 | S | | 12.8.1.1 | 312413-4 | 3 | S | |---|---|---|---| | 12.8.1.2 | 312414-2 | 3 | S | | 12.8.2 | 312415-0 | 3 | S | | 12.8.2.1 | 312416-9 | 3 | S | | 12.8.3 | 312417-7 | 3 | S | | 12.8.4 | 312418-5 | 3 | S | | 12.8.5 | 312419-3 | 4 | S | | 12.8.6 e 12.8.6.1 | 312420-7 | 4 | S | | 12.8.7 | 312421-5 | 3 | S | | 12.8.8 | 312422-3 | 3 | S | | 12.8.9 e 12.8.9.1 | 312423-1 | 3 | S | | 12.8.9.2.1 | 312424-0 | 3 | S |"
+  },
+  {
+   "id": "pos_2172",
+   "question": "O que precisa ter na papelada da plataforma marítima e quanto tempo antes de começar o serviço a gente tem que entregar?",
+   "should_call": true,
+   "gold_chunk_id": 2172,
+   "doc": "nr-37",
+   "section": "37.30",
+   "facts": [
+    "A declaração deve conter a razão social, CNPJ, localização, descrição da plataforma, tipo de operação, datas de início e término, e o número máximo de trabalhadores embarcados.",
+    "A declaração deve ser protocolizada no mínimo 90 dias antes do início da operação ou da conclusão da montagem/ancoragem.",
+    "Se houver mudanças nas informações, a declaração deve ser atualizada em até 30 dias.",
+    "Se a plataforma for movida por emergência, a atualização deve ocorrer em até 7 dias corridos após o evento."
+   ],
+   "gold_text": "NR-37 · 37.30 Declaração da Instalação Marítima - Dim — 37.30.2 A DIM deve conter as seguintes informações: a) razão social e CNPJ da operadora da instalação; b) localização (bacia, bloco ou campo e suas coordenadas geográficas); c) descrição sucinta da plataforma; d) tipo de operação; e) início e término previstos da operação; e f) número máximo de trabalhadores embarcados. 37.30.3 A DIM deve ser protocolizada, no mínimo, 90 (noventa) dias antes: a) do início da primeira operação de perfuração, no caso de plataforma de perfuração; b) do final da ancoragem no local de operação, em se tratando de plataforma de produção flutuante; e c) do término da montagem no local de operação, no caso de plataforma fixa. 37.30.3.1 A operadora da instalação deve atualizar a DIM em até 30 (trinta) dias após a efetivação de mudanças nas informações estabelecidas no item 37.30.2. 37.30.3.2 Se ocorrer mudança da locação da plataforma, a operadora da instalação deve atualizar a DIM antes do início do deslocamento. 37.30.3.2.1 Em caso de mudança de locação decorrente de situações de emergência, a comunicação referida no subitem 37.30.3.2 deverá ser feita em até sete dias corridos após a ocorrência do sinistro, anexando cópia da comunicação do incidente prevista no subitem 37.29.1.1 desta NR. 37.31 Documentação"
+  },
+  {
+   "id": "pos_2143",
+   "question": "Opa, quando eu vou mexer no alarme de gás pra calibrar, qual é a regra pra poder desligar ou mudar o limite dele sem tomar bronca?",
+   "should_call": true,
+   "gold_chunk_id": 2143,
+   "doc": "nr-37",
+   "section": "37.23",
+   "facts": [
+    "É necessário ter autorização de um gestor designado pelo empregador.",
+    "Deve haver um procedimento ou planejamento específico para a ação.",
+    "As recomendações das análises de riscos devem ser implementadas.",
+    "A desativação ou alteração só é permitida mediante o cumprimento desses três requisitos."
+   ],
+   "gold_text": "NR-37 · 37.23 Sistema de Detecção e Alarme de Incêndio e Gases — 37.23.7 O ajuste do alarme ( set point ) deve considerar, quando aplicável, os seguintes aspectos: a) a toxidez dos materiais presentes; b) os limites inferior e superior de explosividade dos materiais inflamáveis; c) o tempo máximo requerido para a resposta do detector; d) as ações a serem tomadas após soar o alarme; e e) o tempo necessário para evacuar os trabalhadores do ambiente contaminado ou em chamas. 37.23.7.1 Para os detectores fixos dedicados a pontos de emanação contínua ou intermitente de gases tóxicos, o primeiro nível de alarme deve ser ajustado para os limites de exposição estabelecidos pelas normas brasileiras ou internacionais. 37.23.8 Após instalação e comissionamento, os detectores e alarmes devem ser testados periodicamente por profissional capacitado, conforme instruções do fabricante ou fornecedor, devendo os resultados ser consignados em relatório. 37.23.8.1 Os detectores fixos devem ser mantidos em perfeito estado de conservação e funcionamento de acordo com as determinações do fabricante e normas técnicas nacionais e internacionais. 37.23.9 Os detectores e os alarmes fixos devem ser energizáveis pelo sistema elétrico de emergência da plataforma, conforme NORMAM-01/DPC. 37.23.10 Somente é permitido desativar, contornar (bypass), mudar o nível de ação (set point) ou utilizar qualquer meio que impeça o correto funcionamento dos detectores ou alarmes, mediante: a) a autorização de gestor designado pelo empregador; b) o procedimento ou planejamento específico; e c) a implementação das recomendações contempladas pelas análises de riscos. 37.23.11 Ao menos dois instrumentos portáteis devem estar disponíveis a bordo para detecção de CH4, H2S, O2, CO e Compostos Orgânicos Voláteis - COV. 37.23.12 Os detectores portáteis devem ser calibrados, aprovados e certificados por laboratório acreditado pelo INMETRO."
+  },
+  {
+   "id": "pos_686",
+   "question": "Se a justiça pedir uma investigação e não tiver perito ali, quem entra no lugar?",
+   "should_call": true,
+   "gold_chunk_id": 686,
+   "doc": "nr-15",
+   "section": "15.7",
+   "facts": [
+    "A ação fiscalizadora do MTb não é prejudicada",
+    "A perícia pode ser realizada ex-officio (de ofício)",
+    "A perícia é feita quando solicitada pela justiça",
+    "Aplica-se nas localidades onde não houver perito"
+   ],
+   "gold_text": "NR-15 · 15.7 O Disposto no Item 15.5. Não Prejudica A Ação Fiscalizadora do Mtb Nem A Realização Ex- Officio da Perícia, Quando Solicitado Pela Justiça, nas Localidades Onde Não Houver Perito. — |---|---|---|---| | 30 24 18 15 12 9 6 3 0 | 30 12 30 30 30 60 60 120 1 | AR AR AR AR AR AR AR AR AR | 0:30 0:43 1:14 1:45 2:16 3:17 4:18 6:9 6:20 | TABELA 1A PERFIL PROFUNDIDADE/TEMPO TABELA 2A TRATAMENTO, COM AR, DE DOENÇA DESCOMPRESSIVA DOR SOMENTE TRATAMENTO A 50 METROS | PROFUNDIDADE (METROS) | TEMPO (MINUTOS) | MISTURA RESPIRATÓRIA | TEMPO TOTAL DECORRIDO (Hs : MIN) | |---|---|---|---| | 50 42 36 30 24 18 15 12 9 6 3 3 a 0 | 30 12 12 12 12 30 30 30 120 120 240 1 | AR AR AR AR AR AR AR AR AR AR AR AR | 0:30 0:43 0:56 1:09 1:22 1:53 2:24 2:55 4:56 6:57 10:58 10:59 | TABELA 2 A PERFIL PROFUNDIDADE/TEMPO TABELA 3 TRATAMENTO, COM AR, DE DOENÇA DESCOMPRESSIVA SINTOMAS SÉRIOS OU EMBOLIA GASOSA | PROFUNDIDADE (METROS) | TEMPO | MISTURA RESPIRATÓRIA | TEMPO TOTAL DECORRIDO (Hs : MIN) | |---|---|---|---| | 50 42 36 30 2 18 15 12 9 6 3 3 a 0 | 30 min 12 min 12 min 12 min 12 min 30 min 30 min 30 min 12h 2h 2h 1 min | AR AR AR AR AR AR AR AR AR AR AR AR | 0:30 0:43 0:56 1:09 1:22 1:53 2:24 2:55 14:56 16:57 18:58 18:59 |"
+  },
+  {
+   "id": "pos_996",
+   "question": "Cara, quando a gente vai içar uma carga lá no canteiro, o que a gente precisa ter em mãos pra não dar problema e garantir que ninguém se machuque?",
+   "should_call": true,
+   "gold_chunk_id": 996,
+   "doc": "nr-18",
+   "section": "18.10.1",
+   "facts": [
+    "É obrigatória a elaboração de uma análise de risco para a movimentação de cargas.",
+    "Se a movimentação for rotineira, a análise de risco pode estar descrita em um procedimento operacional.",
+    "Para movimentações não-rotineiras, é necessária uma análise de risco específica e uma permissão de trabalho.",
+    "A área sob a carga suspensa deve manter isolamento e sinalização.",
+    "Se houver dois ou mais equipamentos de guindar no mesmo local com risco de interferência, é necessário um sistema anticolisão ou um sinaleiro capacitado para coordenar os movimentos."
+   ],
+   "gold_text": "NR-18 · 18.10.1 Máquinas e Equipamentos — 18.10.1.17.1 Para grua, além do disposto neste subitem, deve ser indicada a altura inicial e final, o comprimento da lança, a capacidade de carga na ponta, a capacidade máxima de carga, se provida ou não de coletor elétrico e a planilha de esforços sobre a base e sobre os locais de ancoragens do equipamento. 18.10.1.18 Deve ser elaborada análise de risco para movimentação de cargas, sendo que, quando a movimentação for rotineira, a análise pode estar descrita em procedimento operacional. 18.10.1.19 Deve ser elaborada análise de risco específica para movimentação de cargas não- rotineiras, com a respectiva permissão de trabalho. 18.10.1.20 Quando da utilização de equipamento de guindar sobre base móvel, a sua estabilidade deve ser garantida, assim como a da superfície onde será utilizado, atendendo às recomendações do fabricante ou do profissional legalmente habilitado. 18.10.1.21 Devem ser mantidos o isolamento e a sinalização da área sob carga suspensa. 18.10.1.22 Quando no mesmo local houver dois ou mais equipamentos de guindar com risco de interferência entre seus movimentos, deve haver sistema automatizado anticolisão instalado nos equipamentos ou sinaleiro capacitado e autorizado para coordenar os movimentos desses equipamentos."
+  },
+  {
+   "id": "pos_357",
+   "question": "Qual a largura mínima da escada fixa que leva até a máquina?",
+   "should_call": true,
+   "gold_chunk_id": 357,
+   "doc": "nr-12",
+   "section": "Anexo Iii",
+   "facts": [
+    "A largura útil mínima da escada deve ser de 0,60 m.",
+    "Para escadas com único lance de altura inferior a 1,50 m, a largura útil mínima pode ser reduzida para 0,50 m."
+   ],
+   "gold_text": "NR-12 · Anexo Iii Anexo Iii da Nr-12 Meios de Acesso A Máquinas e Equipamentos — 12. As escadas de degraus com espelho devem ter: a) largura útil mínima de 0,60 m (sessenta centímetros); b) degraus com profundidade mínima de 0,20 m (vinte centímetros); c) degraus e lances uniformes, nivelados e sem saliências; d) altura entre os degraus de 0,20 m (vinte centímetros) a 0,25 m (vinte e cinco centímetros); e) plataforma de descanso com largura útil mínima de 0,60 m (sessenta centímetros) e comprimento a intervalos de, no máximo, 3,00 m (três metros) de altura. 12.1 Para escadas com único lance cuja altura for inferior a 1,50 m (um metro e cinquenta centímetros), a largura útil mínima poderá ser reduzida para 0,50 m (cinquenta centímetros). 12.2 As escadas de degraus com espelho das máquinas e equipamentos instaladas antes da publicação da Portaria SIT n.º 197/2010 ficam dispensadas do atendimento das alíneas “a”, “b”, “d” e “e” do item 12 deste Anexo, exceto quanto ao intervalo de até três metros, devendo ser garantida largura útil mínima de 0,50 m (cinquenta centímetros)."
+  },
+  {
+   "id": "pos_1280",
+   "question": "Qual a multa se eu pegar alguma dessas infrações do item 7.5.8, inciso II, alínea a, subitem 1?",
+   "should_call": true,
+   "gold_chunk_id": 1280,
+   "doc": "nr-28",
+   "section": "Anexo Ii",
+   "facts": [
+    "A multa prevista é 3",
+    "A natureza da penalidade é M"
+   ],
+   "gold_text": "NR-28 · Anexo Ii Infrações Nr-7 — | 7.5.6, alínea \"c\" | 107112-2 | 3 | M | | 7.5.6, alínea \"d\" | 107113-0 | 3 | M | | 7.5.6, alínea \"e\" | 107114-9 | 3 | M | | 7.5.8, inciso I | 107115-7 | 3 | M | | 7.5.8, inciso II, alínea \"a\", \"1\" | 107165-3 | 3 | M | | 7.5.8, inciso II, alínea \"a\", \"2\" | 107166-1 | 3 | M | | 7.5.8, inciso II, alínea \"a\", itens \"1\" e \"2\", e alínea \"b\" | 107116-5 | 3 | M | | 7.5.8, inciso II, alínea \"b\" | 107167-0 | 3 | M | | 7.5.8, inciso II, alíneas \"a\" e \"b\" | 107164-5 | 3 | M | | 7.5.9 | 107117-3 | 3 | M | | 7.5.9.1 | 107118-1 | 2 | M | | 7.6.1 | 107135-1 | 2 | M | | 7.6.1.1 | 107136-0 | 2 | M | | 7.6.1.2 | 107180-7 | 2 | M | |---|---|---|---| | 7.6.1.3 | 107181-5 | 1 | M | | 7.6.2 | 107137-8 | 3 | M | | 7.6.2, alínea \"a\" | 107182-3 | 2 | M | | 7.6.2, alínea \"b\" | 107183-1 | 2 | M |"
+  },
+  {
+   "id": "pos_1598",
+   "question": "Como é que a gente tem que separar os cilindros de gás inerte dos tanques de combustível inflamável na hora de guardar?",
+   "should_call": true,
+   "gold_chunk_id": 1598,
+   "doc": "nr-29",
+   "section": "Anexo V",
+   "facts": [
+    "Gases não tóxicos e não inflamáveis (classe 2.2) podem ser armazenados juntos com líquidos inflamáveis (classe 3).",
+    "Gases não tóxicos e não inflamáveis (classe 2.2) podem ser armazenados juntos com sólidos inflamáveis (classe 4.1).",
+    "Líquidos inflamáveis (classe 3) devem ser separados de substâncias sujeitas à combustão espontânea (classe 4.2)."
+   ],
+   "gold_text": "NR-29 · Anexo V Anexo V Segregação de Cargas Perigosas — | Gases não tóxicos, não inflamáveis 2.2 | * | * | * | x | x | x | | 1 x | 1 | x | x | 1 | x | 2 | | 1 x x | | | Gases venenosos 2.3 | * | * | * | x | x | x | | 2 x | 2 | x | x | 2 | x | 2 | | 1 x x | | | Líquidos inflamáveis 3 | * | * | * | 2 | 1 | 2 | | X x | 2 | 1 | 2 | 2 | x | 3 | | 2 x x | | | Sólidos inflamáveis 4.1 | * | * | * | 1 | x | x | | X x | 1 | x | 1 | 2 | x | 3 | | 2 1 x | | | Substâncias sujeitas à combustão espontânea 4.2 | * | * | * | 2 | 1 | 2 | | 2 1 | x | 1 | 2 | 2 | 1 | 3 | | 2 1 x | |"
+  },
+  {
+   "id": "pos_1456",
+   "question": "Qual a multa que pega a gente se esquecer de botar a sinalização de perigo no circuito desligado?",
+   "should_call": true,
+   "gold_chunk_id": 1456,
+   "doc": "nr-28",
+   "section": "Anexo Ii.NR-30",
+   "facts": [
+    "A infração relacionada ao item 8.2.5 do Apêndice I é classificada como grau de risco 2.",
+    "A penalidade para a infração do item 8.2.5 é de multa.",
+    "O código da infração para o item 8.2.5 e 8.2.5.1 é 130959-5."
+   ],
+   "gold_text": "NR-28 · Anexo Ii.NR-30 Infrações Nr-30 — | 7.9, alíneas \"a\" e \"b\", do Apêndice I | 130950-1 | 3 | S | | 7.10 do Apêndice I e 7.10 do Apêndice II | 130951-0 | 2 | S | | 8.1.1 e 8.1.1.1 do Apêndice II | 130952-8 | 2 | S | | 8.1.2, 8.1.2.1 e 8.1.2.2 do Apêndice I | 130953-6 | 2 | S | | 8.1.3, 8.1.3.1 e 8.1.3.2 do Apêndice I | 130954-4 | 2 | S | | 8.1.7, alíneas \"a\", \"b\" e \"c\" do Apêndice II | 130955-2 | 2 | S | | 8.2.1 e 8.2.1.1 do Apêndice I | 130956-0 | 2 | S | | 8.2.3 e 8.2.3.1 do Apêndice I | 130957-9 | 2 | S | | 8.2.4 e 8.2.4.1 do Apêndice I | 130958-7 | 2 | S | | 8.2.5 e 8.2.5.1 do Apêndice I | 130959-5 | 2 | S | | 8.3.2, 8.3.2.1 e 8.3.2.2 do Apêndice I | 130960-9 | 2 | S | | 8.3.3 e 8.3.3.1 do Apêndice I, e 8.1.2 e 8.1.2.1 do Apêndice II | 130961-7 | 2 | S | | 8.3.4 do Apêndice I e 8.1.3 do Apêndice II | 130962-5 | 1 | S |"
+  },
+  {
+   "id": "pos_726",
+   "question": "Ei, qual a meta de qualidade do ar pra aquele veneno que causa câncer que a gente usa na área? E se bater essa meta, tá liberado sem risco?",
+   "should_call": true,
+   "gold_chunk_id": 726,
+   "doc": "nr-15",
+   "section": "Anexo Ix",
+   "facts": [
+    "A meta de referência (VRT) é obrigatória para a empresa cumprir.",
+    "Cumprir a meta não elimina o risco à saúde do trabalhador.",
+    "Não existe nenhum limite seguro de exposição para essa substância.",
+    "A substância é comprovadamente cancerígena."
+   ],
+   "gold_text": "NR-15 · Anexo Ix Anexo Ix (avaliação das Concentrações de Benzeno em Ambientes de Trabalho) da Instrução Normativa - In Nº 02, de 2021, por Quarenta Anos; — 6. Valor de Referência Tecnológico - VRT se refere à concentração de benzeno no ar considerada exeqüível do ponto de vista técnico, definido em processo de negociação tripartite. O VRT deve ser considerado como referência para os programas de melhoria contínua das condições dos ambientes de trabalho. O cumprimento do VRT é obrigatório e não exclui risco à saúde. 6.1. O princípio da melhoria contínua parte do reconhecimento de que o benzeno é uma substância comprovadamente carcinogênica, para a qual não existe limite seguro de exposição. Todos os esforços devem ser dispendidos continuamente no sentido de buscar a tecnologia mais adequada para evitar a exposição do trabalhador ao benzeno. 6.2. Para fins de aplicação do contido neste Anexo, é definida uma categoria de VRT: a VRT- MPT, que corresponde à concentração média de benzeno no ar ponderada pelo tempo, para uma jornada de trabalho de oito horas, obtida na zona de respiração dos trabalhadores, individualmente ou de Grupos Homogêneos de Exposição - GHE, conforme definido no Anexo IX (Avaliação das Concentrações de Benzeno em Ambientes de Trabalho) da Instrução Normativa - IN nº 2, de 2021. (Alterado pela Portaria MTP nº 806, de 13 de abril de 2022) 6.2.1 Os valores Limites de Concentração - LC a serem utilizados no Anexo IX (Avaliação das Concentrações de Benzeno em Ambientes de Trabalho) da Instrução Normativa - IN nº 2, de 2021, para o cálculo do Índice de Julgamento \"I\", são os VRT-MPT estabelecidos a seguir. (Alterado pela Portaria MTP nº 806, de 13 de abril de 2022) 7. Os valores estabelecidos para os VRT-MPT são: - 1,0 (um) ppm para as empresas abrangidas por este Anexo (com exceção das empresas siderúrgicas, as produtoras de álcool anidro e aquelas que deverão substituir o benzeno a partir de 1º.01.97). - 2,5 (dois e meio) ppm para as empresas siderúrgicas."
+  },
+  {
+   "id": "pos_1550",
+   "question": "Se a empresa não cumprir as regras de trabalho em altura, qual é o nível de gravidade da multa?",
+   "should_call": true,
+   "gold_chunk_id": 1550,
+   "doc": "nr-28",
+   "section": "Anexo Ii",
+   "facts": [
+    "O nível de gravidade da infração é classificado como 2.",
+    "A classificação da penalidade é 'S'."
+   ],
+   "gold_text": "NR-28 · Anexo Ii Infrações Nr-38 — | 38.10.3, alínea \"b\" | 138094-0 | 2 | S | | 38.10.4 | 138095-8 | 2 | S | | 38.10.4.1 | 138096-6 | 1 | S | | 38.10.5 | 138097-4 | 2 | S | | 38.10.5.1, alínea \"a\" | 138098-2 | 2 | S | | 38.10.5.1, alínea \"b\" | 138099-0 | 2 | S | | 38.10.5.1, alínea \"c\" | 138100-8 | 2 | S | | 38.10.5.1.1, alíneas \"a\" e \"b\" | 138101-6 | 2 | S | | 38.10.6 | 138102-4 | 2 | S | | 38.10.7, alíneas \"a\" e \"b\" | 138103-2 | 2 | S | 38.10.7, alíneas \"a\" e \"b\" 138103-2 2 S"
+  },
+  {
+   "id": "pos_1712",
+   "question": "Oi, qual a distância mínima que a barraca de guardar veneno tem que ficar da casa das pessoas?",
+   "should_call": true,
+   "gold_chunk_id": 1712,
+   "doc": "nr-31",
+   "section": "31.7.3",
+   "facts": [
+    "A edificação de armazenamento deve estar situada a mais de 15 metros das habitações.",
+    "A edificação de armazenamento deve estar situada a mais de 15 metros dos locais onde são conservados ou consumidos alimentos, medicamentos ou outros materiais."
+   ],
+   "gold_text": "NR-31 · 31.7.3 São Vedados: — 31.7.14 As edificações destinadas ao armazenamento de agrotóxicos, aditivos, adjuvantes e produtos afins devem: (Numeração retificada pela Portaria MTP nº 698, de 04 de abril de 2022) a) ter paredes e cobertura resistentes; b) ter acesso restrito aos trabalhadores devidamente capacitados a manusear os referidos produtos; c) possuir ventilação, comunicando-se exclusivamente com o exterior e dotada de proteção que não permita o acesso de animais; d) ter afixadas placas ou cartazes com símbolos de perigo; e) possibilitar a limpeza e descontaminação; e f) estar situadas a mais de 15 (quinze) metros das habitações e locais onde são conservados ou consumidos alimentos, medicamentos ou outros materiais. 31.7.14.1 A distância de fontes e cursos de água às edificações de armazenamento de agrotóxicos, aditivos, adjuvantes e produtos afins deve atender às normas da legislação vigente. 31.7.15 O armazenamento deve obedecer às normas da legislação vigente, às especificações do fabricante constantes dos rótulos e bulas e às seguintes recomendações básicas: a) as embalagens devem ser colocadas sobre estrados, evitando-se contato com o piso, e mantendo-se as pilhas estáveis e afastadas das paredes e do teto, ou nos armários de que trata o subitem 31.7.16 desta Norma; e b) os produtos inflamáveis devem ser mantidos em local ventilado, protegido contra centelhas e outras fontes de combustão."
+  },
+  {
+   "id": "pos_1164",
+   "question": "Cara, quando a gente vai explodir em duas frentes debaixo da terra, o que tem que fazer com o pessoal e a distância de segurança?",
+   "should_call": true,
+   "gold_chunk_id": 1164,
+   "doc": "nr-22",
+   "section": "22.19",
+   "facts": [
+    "É obrigatório retirar todo o pessoal das duas frentes de trabalho antes da detonação de cada uma.",
+    "As duas frentes não podem ser detonadas ao mesmo tempo (detonação não simultânea).",
+    "É necessário estabelecer uma distância mínima de segurança para parar a atividade em uma das frentes."
+   ],
+   "gold_text": "NR-22 · 22.19 Operações com Explosivos e Acessórios — 22.19.5.1.1 Na interligação de duas frentes de trabalho em subsolo, devem ser observados os seguintes critérios: a) retirada total do pessoal das duas frentes, quando da detonação de cada uma delas; b) detonação não simultânea das frentes; e c) estabelecer a distância mínima de segurança para a paralisação de uma das frentes. 22.19.5.2 Em mina a céu aberto, além do disposto no item 22.19.5 desta NR, devem ser obedecidas às seguintes condições: a) adoção de medidas para evitar o lançamento de fragmentos de rocha além dos limites da área de detonação; b) não realizar a detonação no período noturno ou na possibilidade de ocorrência de descargas atmosféricas; e c) não realizar a detonação em condição de baixo nível de iluminamento, salvo na excepcionalidade com aplicação de medidas de controle previstas em análise de risco. 22.19.5.3 Em função do processo produtivo, se necessário a detonação fora dos horários previamente definidos, a organização deve implementar procedimento de segurança específico para realização da atividade de detonação, observados os itens 22.19.5.1, 22.19.5.1.1 e 22.19.5.2 desta NR, no que couber. 22.19.6 A localização, construção, armazenagem e manutenção dos depósitos principais e secundários de explosivos e acessórios devem estar de acordo com esta norma e com a Norma Regulamentadora nº 19. 22.19.6.1 É proibida a deposição de qualquer material que não sejam explosivos ou acessórios dentro dos locais de armazenamento. (Inserido pela Portaria MTE nº 105, de 29 de janeiro de 2026) 22.19.7 Os depósitos de explosivos e acessórios, no subsolo, não podem estar localizados junto a galerias de acesso de pessoal e de ventilação principal da mina."
+  },
+  {
+   "id": "pos_1969",
+   "question": "O que tem que ter num bloco que fica deitado e tá só amarrado no cachorro?",
+   "should_call": true,
+   "gold_chunk_id": 1969,
+   "doc": "nr-34",
+   "section": "Anexo Ii",
+   "facts": [
+    "O item deve ser classificado como 'G' (Gancho/Grampo).",
+    "O item deve ser classificado como 'E' (Estabilizador)."
+   ],
+   "gold_text": "NR-34 · Anexo Ii Anexo Ii (inserido Pela Portaria MTE Nº 592, de 28 de Abril de 2014) — | | | OUTRAS ESTRUTURAS E ESTABILIZADO POR CACHORROS | | | | | | | |---|---|---|---|---|---|---|---|---| | | VERTICAL | APOIADO EM OUTRAS ESTRUTURAS E ESTABILIZADO POR PONTOS DE SOLDA | N/A | G | E | N/A | G | E | | | HORIZONTA L | PENDURADO EM CACHORROS | G | G | E | G | G | E | | | VERTICAL | PENDURADO E ESTABILIZADO POR CACHORROS | G | G | E | G | G | E | | BLOCOS | HORIZONTA L | APOIADO EM CACHORROS | N/A | G | E | N/A | G | E | | | HORIZONTA L | APOIADO EM PONTOS DE SOLDA | N/A | G | E | N/A | G | E | | | VERTICAL | APOIADO EM OUTRAS ESTRUTURAS E ESTABILIZADO POR CACHORROS | N/A | G | E | N/A | G | E | | | VERTICAL | APOIADO EM OUTRAS ESTRUTURAS E ESTABILIZADO POR PONTOS DE SOLDA | N/A | G | E | N/A | G | E | | | HORIZONTA L | PENDURADO EM CACHORROS | G | G | E | G | G | E |"
+  },
+  {
+   "id": "pos_1825",
+   "question": "Chefe, tem que deixar o prontuário de saúde de quem trabalha com raio-x guardado por quanto tempo depois que a pessoa sai?",
+   "should_call": true,
+   "gold_chunk_id": 1825,
+   "doc": "nr-32",
+   "section": "32.4.6",
+   "facts": [
+    "O prontuário clínico individual deve ser conservado por 30 anos.",
+    "O prazo de conservação começa após o término da ocupação do trabalhador."
+   ],
+   "gold_text": "NR-32 · 32.4.6 Cabe ao Empregador: — 32.4.7.1 O registro individual dos trabalhadores deve ser mantido no local de trabalho e à disposição da inspeção do trabalho . 32.4.8 O prontuário clínico individual previsto pela NR-07 deve ser mantido atualizado e ser conservado por 30 (trinta) anos após o término de sua ocupação. 32.4.9 Toda instalação radiativa deve possuir um serviço de proteção radiológica . 32.4.9.1 O serviço de proteção radiológica deve estar localizado no mesmo ambiente da instalação radiativa e serem garantidas as condições de trabalho compatíveis com as atividades desenvolvidas, observando as normas da CNEN e da ANVISA . 32.4.9.2 O serviço de proteção radiológica deve possuir, de acordo com o especificado no PPR, equipamentos para: a) monitoração individual dos trabalhadores e de área; b) proteção individual; c) medições ambientais de radiações ionizantes específicas para práticas de trabalho. 32.4.9.3 O serviço de proteção radiológica deve estar diretamente subordinado ao Titular da instalação radiativa. 32.4.9.4 Quando o estabelecimento possuir mais de um serviço, deve ser indicado um responsável técnico para promover a integração das atividades de proteção radiológica destes serviços. 32.4.10 O médico coordenador do PCMSO ou o encarregado pelos exames médicos, previstos na NR-07, deve estar familiarizado com os efeitos e a terapêutica associados à exposição decorrente das atividades de rotina ou de acidentes com radiações ionizantes. 32.4.11 As áreas da instalação radiativa devem ser classificadas e ter controle de acesso definido pelo responsável pela proteção radiológica."
+  },
+  {
+   "id": "pos_1181",
+   "question": "Cara, se aparecer alguma coisa estranha na represa do minério que exija uma checagem especial, pra quem a empresa tem que avisar logo em seguida?",
+   "should_call": true,
+   "gold_chunk_id": 1181,
+   "doc": "nr-22",
+   "section": "22.24",
+   "facts": [
+    "A organização deve informar ao SESMT (quando houver).",
+    "A organização deve informar à representação sindical profissional da categoria preponderante.",
+    "A organização deve informar ao órgão regional competente em segurança e saúde do trabalho.",
+    "A notificação é obrigatória em casos de anomalias que impliquem no desencadeamento de inspeção especial."
+   ],
+   "gold_text": "NR-22 · 22.24 Deposição de Estéril, Rejeitos e Produtos — 22.24.9 A organização que possuir barragens inseridas na Política Nacional de Segurança de Barragens (PNSB) deve manter, à disposição do Serviço Especializado em Segurança e em Medicina do Trabalho (SESMT), quando houver, e da representação sindical profissional da categoria preponderante o Plano de Segurança das Barragens incluindo o Plano de Ação de Emergência para Barragens de Mineração (PAEBM). (Alterado pela Portaria MTE nº 105, de 29 de janeiro de 2026) 22.24.10 A organização deve informar ao SESMT, quando houver, à representação sindical profissional da categoria preponderante e ao órgão regional competente em segurança e saúde do trabalho os casos de anomalias que impliquem no desencadeamento de inspeção especial, conforme exigência da ANM. (Alterado pela Portaria MTE nº 105, de 29 de janeiro de 2026) 22.24.11 O Relatório de Inspeção de Segurança Regular da barragem e a respectiva Declaração de Condição de Estabilidade (DCE) e o Relatório de Conformidade e Operacionalidade do PAEBM e respectiva Declaração de Conformidade e Operacionalidade (DCO), conforme previsto nas normas da ANM, devem ser disponibilizados ao SESMT, quando houver, e encaminhados à representação sindical profissional, quando solicitado, no prazo de 10 (dez) dias. (Alterado pela Portaria MTE nº 105, de 29 de janeiro de 2026) 22.24.12 A organização deve informar ao SESMT, quando houver, à representação sindical profissional da categoria preponderante e ao órgão regional competente em segurança e saúde do trabalho os casos de anomalias que impliquem no desencadeamento de inspeção especial, conforme exigência da ANM. (Alterado pela Portaria MTE nº 105, de 29 de janeiro de 2026)"
+  },
+  {
+   "id": "pos_1932",
+   "question": "O que eu tenho que checar no guincho antes de começar o turno e quem pode certificar esse equipamento?",
+   "should_call": true,
+   "gold_chunk_id": 1932,
+   "doc": "nr-34",
+   "section": "34.10",
+   "facts": [
+    "O sinaleiro deve inspecionar e registrar em lista de verificação (check-list) os acessórios de movimentação de cargas antes de iniciar a jornada.",
+    "A certificação dos equipamentos deve ser realizada por profissional legalmente habilitado com registro no CREA.",
+    "A certificação deve ser registrada em Relatório de Inspeção.",
+    "O equipamento somente será liberado para operar após a correção das não conformidades impeditivas.",
+    "É proibida a utilização de cabos de fibras naturais na movimentação de cargas."
+   ],
+   "gold_text": "NR-34 · 34.10 Movimentação de Cargas — 34.10.5 Antes de iniciar a jornada de trabalho, o sinaleiro deve inspecionar e registrar em lista de verificação ( check-list ) os acessórios de movimentação de cargas, contemplando, no mínimo, os seguintes itens: a) moitões; b) grampos; c) ganchos; d) manilhas; e) distorcedores; f) cintas, estropos e correntes; g) cabos de aço; h) clips; i) pinos de conexões, parafusos, travas e demais dispositivos; j) roldanas da ponta da lança e do moitão; k) olhais; l) patolas; m) grampo de içamento; n) balanças. 34.10.6 A certificação dos equipamentos de movimentação de cargas e seus assessórios deve obedecer aos seguintes critérios: a) ser realizada por profissional legalmente habilitado, com registro no Conselho Regional de Engenharia e Arquitetura - CREA; b) ser registrada em Relatório de Inspeção; c) atender à periodicidade especificada pelo órgão certificador e/ou fabricante. 34.10.6.1 O Relatório de Inspeção deve conter: a) os itens inspecionados e as não conformidades encontradas, descrevendo as impeditivas e as não impeditivas à operação do equipamento de guindar; b) as medidas corretivas adotadas para as não conformidades impeditivas; c) o cronograma de correção para as irregularidades não impeditivas, que não representem perigo à segurança e à saúde, isoladamente ou em conjunto. 34.10.6.2 O equipamento somente será liberado para operar após a correção das não conformidades impeditivas. 34.10.7 O equipamento reprovado e/ou inoperante deve ter essa situação consignada em seu Prontuário, e somente poderá operar após nova certificação. 34.10.8 É proibida a utilização de cabos de fibras naturais na movimentação de cargas ou de pessoas. Procedimentos de movimentação de cargas 34.10.9 Deve ser realizada APR quando a Segurança no Trabalho e/ou responsável da operação considerar necessário."
+  },
+  {
+   "id": "pos_484",
+   "question": "Fala, quando eu for acoplar um reboque na máquina, o que precisa ter no engate pra não sair sozinho no meio do serviço?",
+   "should_call": true,
+   "gold_chunk_id": 484,
+   "doc": "nr-12",
+   "section": "Anexo Xi",
+   "facts": [
+    "O sistema de engate deve impedir o desacoplamento acidental durante a utilização.",
+    "O engate deve permitir acoplamento e desacoplamento de forma fácil e segura.",
+    "A indicação de uso do sistema de engate deve estar afixada em local próximo da conexão e de fácil visualização."
+   ],
+   "gold_text": "NR-12 · Anexo Xi Anexo Xi da Nr-12 — 12. As máquinas e equipamentos tracionados devem possuir sistemas de engate para reboque pelo sistema de tração, de modo a assegurar o acoplamento e desacoplamento fácil e seguro, bem como a impedir o desacoplamento acidental durante a utilização. 12.1 A indicação de uso dos sistemas de engate mencionados no item 12 deve ficar em local de fácil visualização e afixada em local próximo da conexão. 12.2 Os implementos tracionados, caso o peso da barra do reboque assim exija, devem possuir dispositivo de apoio que possibilite a redução do esforço e a conexão segura ao sistema de tração. 13. As correias transportadoras devem possuir: a) sistema de frenagem ao longo dos trechos em que haja acesso de trabalhadores; b) dispositivo que interrompa seu acionamento quando necessário; c) partida precedida de sinal sonoro audível em toda a área de operação que indique seu acionamento; d) sistema de proteção contra quedas de materiais, quando oferecer risco de acidentes aos trabalhadores que operem ou circulem em seu entorno; e) sistemas e passarelas que permitam que os trabalhos de manutenção sejam desenvolvidos de forma segura; f) passarelas com sistema de proteção contra queda ao longo de toda a extensão elevada onde possa haver circulação de trabalhadores; e g) sistema de travamento para ser utilizado nos serviços de manutenção. 13.1 Excetuam-se da obrigação do item 13 as correias transportadoras instaladas em máquinas autopropelidas, implementos e em esteiras móveis para carga e descarga. 14. As máquinas e implementos devem possuir manual de instruções fornecido pelo fabricante ou importador, com informações relativas à segurança nas fases de transporte, montagem, instalação, ajuste, operação, limpeza, manutenção, inspeção, desativação e desmonte."
+  },
+  {
+   "id": "pos_1885",
+   "question": "O que a empresa é obrigada a fazer pra garantir a segurança da galera que trabalha dentro dos tanques e silos?",
+   "should_call": true,
+   "gold_chunk_id": 1885,
+   "doc": "nr-33",
+   "section": "33.3",
+   "facts": [
+    "Indicar formalmente um responsável técnico pelo cumprimento das normas.",
+    "Prover meios e recursos para que o responsável técnico cumpra suas atribuições.",
+    "Sinalizar e bloquear os espaços confinados para evitar entrada de não autorizados.",
+    "Fornecer capacitação inicial e periódica para supervisores, vigias, trabalhadores autorizados e equipe de emergência.",
+    "Assegurar a disponibilidade de serviços de emergência, salvamento e simulados."
+   ],
+   "gold_text": "NR-33 · 33.3 É Responsabilidade da Organização: — 33.3.1 É responsabilidade da organização: a) indicar formalmente o responsável técnico pelo cumprimento das atribuições previstas no item 33.3.2 desta NR; b) assegurar os meios e recursos para o responsável técnico cumprir as suas atribuições; c) assegurar que o gerenciamento de riscos ocupacionais contemple as medidas de prevenção Entra em vigor no dia 03 de outubro de 2022 (Portaria MTP n.º 1.690, de 15 de junho de 2022) para garantir a segurança e a saúde dos trabalhadores que interagem direta ou indiretamente com os espaços confinados; d) providenciar a sinalização de segurança e bloqueio dos espaços confinados para evitar a entrada de pessoas não autorizadas; e) providenciar a capacitação inicial e periódica dos supervisores de entrada, vigias, trabalhadores autorizados e da equipe de emergência e salvamento; f) fornecer as informações sobre os riscos e as medidas de prevenção, previstos no Programa de Gerenciamento de Riscos, da NR-01 (Disposições Gerais e Gerenciamento de Riscos Ocupacionais), aos trabalhadores que interagem direta ou indiretamente com os espaços confinados; g) garantir os equipamentos necessários para o controle de riscos previstos no Programa de Gerenciamento de Riscos; h) assegurar a disponibilidade dos serviços de emergência e salvamento, e de simulados, quando da realização de trabalhos em espaços confinados; e i) supervisionar as atividades em espaços confinados executadas pelas organizações contratadas, observado o disposto no subitem 1.5.8.1 da NR-01, visando ao atendimento do disposto nesta NR."
+  },
+  {
+   "id": "pos_888",
+   "question": "Cara, quando a gente vai explodir coisa, precisa ter barreira física marcando o perímetro de segurança?",
+   "should_call": true,
+   "gold_chunk_id": 888,
+   "doc": "nr-16",
+   "section": "Anexo I",
+   "facts": [
+    "É obrigatória a existência física de delimitação da área de risco.",
+    "A delimitação deve impedir o ingresso de pessoas não autorizadas."
+   ],
+   "gold_text": "NR-16 · Anexo I Anexo I Atividades e Operações Perigosas com Explosivos — | mais de 270 até 300 mais de 300 até 360 mais de 360 até 400 mais de 400 até 450 mais de 450 até 680 mais de 680 até 900 mais de 900 até 1.300 mais de 1.300 até 1.800 mais de 1.800 até 2.200 mais de 2.200 até 2.700 mais de 2.700 até 3.100 mais de 3.100 até 3.600 mais de 3.600 até 4.000 mais de 4.000 até 4.500 mais de 4.500 até 6.800 mais de 6.800 até 9.000 mais de 9.000 até 11.300 mais de 11.300 até 13.600 mais de 13.600 até 18.100 mais de 18.100 até 22.600 mais de 22.600 até 34.000 mais de 34.000 até 45.300 mais de 45.300 até 68.000 mais de 68.000 até 90.700 mais de 90.700 até 113.300 | 265 metros 280 metros 300 metros 310 metros 345 metros 365 metros 405 metros 435 metros 460 metros 480 metros 490 metros 510 metros 520 metros 530 metros 570 metros 620 metros 660 metros 700 metros 780 metros 860 metros 1.000 metros 1.100 metros 1.150 metros 1.250 metros 1.350 metros | |---|---| risco, as distâncias previstas no Quadro nº 4 podem ser reduzidas à metade. e) será obrigatória a existência física de delimitação da área de risco, assim entendido qualquer obstáculo que impeça o ingresso de pessoas não autorizadas."
+  },
+  {
+   "id": "pos_725",
+   "question": "O que a gente precisa fazer pra evitar que o pessoal fique exposto a esse produto perigoso no trabalho?",
+   "should_call": true,
+   "gold_chunk_id": 725,
+   "doc": "nr-15",
+   "section": "Anexo Ix",
+   "facts": [
+    "Definir procedimentos de manutenção (emergenciais, rotineiros e preditivos) para minimizar vazamentos.",
+    "Levantar situações com concentrações elevadas do produto usando dados qualitativos e quantitativos.",
+    "Implementar medidas de proteção coletiva e individual, incluindo ventilação adequada e proteção respiratória.",
+    "Descrever procedimentos rigorosos para operações como drenagem, lavagem, purga e controle de vazamentos."
+   ],
+   "gold_text": "NR-15 · Anexo Ix Anexo Ix (avaliação das Concentrações de Benzeno em Ambientes de Trabalho) da Instrução Normativa - In Nº 02, de 2021, por Quarenta Anos; — Anexo IX (Avaliação das Concentrações de Benzeno em Ambientes de Trabalho) da Instrução Normativa - IN nº 02, de 2021, por quarenta anos; - adequação da proteção respiratória ao disposto no Programa de Proteção Respiratória, em conformidade com o Capítulo II da Portaria MTP nº 672, de 8 de novembro de 2021; - definição dos procedimentos operacionais de manutenção, atividades de apoio e medidas de organização do trabalho necessárias para a prevenção da exposição ocupacional ao benzeno. Nos procedimentos de manutenção deverão ser descritos os de caráter emergencial, rotineiros e preditivos, objetivando minimizar possíveis vazamentos ou emissões fugitivas; - levantamento de todas as situações em que possam ocorrer concentrações elevadas de benzeno, com dados qualitativos e quantitativos que contribuam para a avaliação ocupacional dos trabalhadores; - procedimentos para proteção coletiva e individual dos trabalhadores, do risco de exposição ao benzeno nas situações críticas verificadas no item anterior, através de medidas tais como: organização do trabalho, sinalização apropriada, isolamento de área, treinamento específico, ventilação apropriada, proteção respiratória adequada e proteção para evitar contato com a pele; - descrição dos procedimentos usuais nas operações de drenagem, lavagem, purga de equipamentos, operação manual de válvulas, transferências, limpezas, controle de vazamentos, partidas e paradas de unidades que requeiram procedimentos rigorosos de controle de emanação de vapores e prevenção de contato direto do trabalhador com o benzeno; - descrição dos procedimentos e recursos necessários para o controle da situação de emergência, até o retorno à normalidade; - cronograma detalhado das mudanças que deverão ser realizadas na empresa para a prevenção da exposição ocupacional ao benzeno e a adequação ao Valor de Referência Tecnológico; - exigências contratuais pertinentes, que visem adequar as atividades de empresas contratadas à observância do Programa de contratante; e - procedimentos específicos de proteção para o trabalho do menor de dezoito anos, mulheres grávidas ou em período de amamentação."
+  },
+  {
+   "id": "cap_13_8kv",
+   "question": "qual a distância segura pra trabalhar perto de rede de 13,8 kV?",
+   "should_call": true,
+   "captain_case": true
+  },
+  {
+   "id": "cap_poste",
+   "question": "o poste que eu preciso subir não parece firme, e agora?",
+   "should_call": true,
+   "captain_case": true
+  },
+  {
+   "id": "cap_camiseta",
+   "question": "posso trabalhar de camiseta rasgada nesse calor?",
+   "should_call": true,
+   "captain_case": true
+  },
+  {
+   "id": "neg_saudacao_86464",
+   "question": "Oi, tudo bem?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_saudacao_44240",
+   "question": "Oi, tudo bem por aí?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_saudacao_48895",
+   "question": "Oi, tudo bem? Pode me ouvir?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_saudacao_63646",
+   "question": "Oi, tudo bem? Pode me ajudar?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_agradecimento_78858",
+   "question": "Show, muito obrigado pela ajuda!",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_saudacao_3914",
+   "question": "Oi, tudo certo? Bora começar?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_agradecimento_45279",
+   "question": "Show, valeu mesmo pela ajuda, me salvou ali.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_repeticao_97124",
+   "question": "Desculpa, pode repetir o que você acabou de dizer?",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_agradecimento_98751",
+   "question": "Muito obrigado, me ajudou bastante.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_repeticao_50474",
+   "question": "Pode repetir o que você acabou de falar? Não entendi direito.",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_agradecimento_40529",
+   "question": "Muito obrigado pela ajuda, você é muito prestativo.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_repeticao_26899",
+   "question": "Pode repetir o que você disse agora? Não entendi direito.",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_agradecimento_89578",
+   "question": "Muito obrigado pela ajuda, ficou tudo claro.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_repeticao_51700",
+   "question": "Cara, não entendi direito, pode repetir isso aí de novo?",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_repeticao_57945",
+   "question": "Pô, me explica de novo aquele passo que você falou agora, não entendi nada.",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_fora_de_escopo_69671",
+   "question": "Sabe me dizer qual é a melhor pizzaria aqui perto da subestação?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_bom_senso_78988",
+   "question": "Se eu não tiver o óculos de proteção à mão agora, posso usar óculos de grau comum só pra ficar mais tranquilo?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_fora_de_escopo_61087",
+   "question": "Ei, você sabe me dizer qual o melhor time pra apostar no jogo de hoje?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_fora_de_escopo_37265",
+   "question": "Ei, você sabe me dizer qual é o preço do café aqui na padaria da esquina?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_fora_de_escopo_73795",
+   "question": "Ei, você sabe me dizer quem é o vencedor da Champions League de futebol?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_bom_senso_520",
+   "question": "Oi, e se eu suar muito no canteiro, eu preciso tirar o capacete por uns segundos pra ventilar?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_bom_senso_17919",
+   "question": "Opa, só uma dúvida rápida, se eu suar muito nesse calor, é melhor eu tirar essa luva de cabedal?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_saudacao_31592",
+   "question": "Oi, tudo bem com você?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_bom_senso_68429",
+   "question": "Ei, se a tampa da caixa de passagem estiver trincada mas ainda cobrindo a fiação, dá pra trabalhar nela ou é melhor trocar logo?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_bom_senso_63184",
+   "question": "Ei, mas eu uso óculos de grau, tem algum problema eu colocar o capacete por cima?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_agradecimento_54758",
+   "question": "Muito obrigado pela ajuda, ficou bem claro.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_saudacao_50567",
+   "question": "E aí, como vai?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_agradecimento_84998",
+   "question": "Show, valeu mesmo pela ajuda rapidinha.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_saudacao_81389",
+   "question": "E aí, tudo certo?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_fora_de_escopo_67463",
+   "question": "E aí, sabe me dizer se o Flamengo vai ganhar o jogo de hoje?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_fora_de_escopo_49963",
+   "question": "Qual a melhor receita de feijoada para o fim de semana?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_repeticao_33632",
+   "question": "Fala, pode repetir o que você acabou de dizer? Não entendi direito.",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_repeticao_38550",
+   "question": "Não entendi direito, pode repetir o que disse sobre a fiação?",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_repeticao_83538",
+   "question": "Pode repetir isso de novo? Não entendi bem o que você disse.",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_saudacao_48592",
+   "question": "Oi, tudo certo?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_agradecimento_88272",
+   "question": "Cara, muito obrigado pela ajuda, você me salvou agora há pouco.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_fora_de_escopo_29989",
+   "question": "E aí, sabe me dizer qual é a melhor churrascaria aqui perto?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_saudacao_86464",
+   "question": "Oi, tudo bem?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_bom_senso_91742",
+   "question": "Cara, se a fiação estiver toda organizada e sem furos, não precisa de proteção extra, né?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_agradecimento_54758",
+   "question": "Muito obrigado pela ajuda, ficou bem claro.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_fora_de_escopo_34033",
+   "question": "Ei, sabe me dizer qual é o preço do churrasco na lanchonete da esquina?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_agradecimento_64180",
+   "question": "Show, obrigado pela ajuda, pôs.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_repeticao_23736",
+   "question": "Tá, fala de novo, não peguei bem o que o senhor disse.",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_repeticao_79858",
+   "question": "Caro, pode repetir isso que não entendi direito?",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_bom_senso_78981",
+   "question": "Cê acha que posso usar uma escada de alumínio perto da rede?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_bom_senso_72435",
+   "question": "Ei, aquele cabo de extensão que tá ali no chão molhado, eu posso pisar em cima dele com a bota?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_saudacao_81389",
+   "question": "E aí, tudo certo?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_saudacao_69192",
+   "question": "E aí, tudo bem?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_fora_de_escopo_84854",
+   "question": "E aí, sabe me dizer se o Flamengo vai ganhar o campeonato esse ano?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_agradecimento_71120",
+   "question": "Cara, valeu mesmo pela ajuda, me salvou ali no campo.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_fora_de_escopo_57182",
+   "question": "E aí, você sabe qual é a melhor pizzaria aqui perto da obra?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_repeticao_2674",
+   "question": "Cara, não entendi direito, pode repetir isso pra mim?",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_saudacao_19157",
+   "question": "Opa, tudo bem aí?",
+   "should_call": false,
+   "categoria": "saudacao"
+  },
+  {
+   "id": "neg_agradecimento_96176",
+   "question": "Muito obrigado pela ajuda, ficou muito claro.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_agradecimento_23587",
+   "question": "Muito obrigado pela ajuda, me esclareceu tudo.",
+   "should_call": false,
+   "categoria": "agradecimento"
+  },
+  {
+   "id": "neg_fora_de_escopo_80696",
+   "question": "E aí, qual a melhor pizza da cidade hoje?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  },
+  {
+   "id": "neg_bom_senso_95053",
+   "question": "Ei, eu sei que já vi isso mil vezes, mas é normal a fiação esquentar um pouco quando tem muita carga, né?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_repeticao_72832",
+   "question": "Opa, pode repetir isso aí? Não entendi direito.",
+   "should_call": false,
+   "categoria": "repeticao"
+  },
+  {
+   "id": "neg_bom_senso_11362",
+   "question": "Cara, se eu sentir aquele cheiro de queimado na rede, eu ligo pro chefe agora ou só anoto pra depois?",
+   "should_call": false,
+   "categoria": "bom_senso"
+  },
+  {
+   "id": "neg_fora_de_escopo_42565",
+   "question": "Oi, sabe me dizer qual é o melhor time de futebol de Belo Horizonte?",
+   "should_call": false,
+   "categoria": "fora_de_escopo"
+  }
+ ]
+}
