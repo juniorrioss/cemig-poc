@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<!--
+  Relatório de apresentação da POC CEMIG — assistente de voz offline para as 36 NRs.
+  Documento autocontido: CSS embutido, gráficos em SVG inline, zero dependência externa.
+  Abre offline com duplo clique e imprime bem em A4 (ver @media print no fim do <style>).
+  Fonte de cada número: rodapés e a nota técnica no fim; onde o brief divergiu da fonte,
+  prevaleceu a fonte (ver "Nota técnica — divergências").
+  Comentários em português; identificadores/código em inglês.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>POC CEMIG — Assistente de voz offline para as NRs | Relatório de apresentação</title>
+<style>
+  /* Paleta oficial CEIA (android/ui/theme/Color.kt) */
+  :root{
+    --navy:#001A5B; --navy800:#1B3983; --blue600:#1C4AB8; --blue:#2866E5;
+    --blue100:#DCE7FB; --blue50:#EEF3FD; --teal:#0CD4AA; --teal700:#0A8F73;
+    --teal100:#D5F8EE; --cream:#F2F1EE;
+    --g900:#101832; --g700:#3A4463; --g500:#66708F; --g300:#C3C9D9;
+    --g200:#DDE1EA; --g100:#ECEEF4; --g50:#F7F8FB; --white:#fff;
+    --danger:#D92626; --dangerBg:#FDE3E3; --warn:#B45309; --warnBg:#FDF0D9;
+    --ok:#0A9D7F; --okBg:#D9F7EF;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{
+    margin:0; color:var(--g900); background:var(--g50);
+    font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55; font-size:15px;
+  }
+  .wrap{max-width:940px; margin:0 auto; background:var(--white)}
+  section{padding:38px 54px; border-bottom:1px solid var(--g100)}
+  h1,h2,h3{line-height:1.2; color:var(--navy)}
+  h2{font-size:23px; margin:0 0 4px; padding-bottom:8px; border-bottom:3px solid var(--teal)}
+  h2 .num{color:var(--teal700); font-weight:800; margin-right:8px}
+  h3{font-size:17px; margin:26px 0 6px; color:var(--navy800)}
+  p{margin:10px 0}
+  a{color:var(--blue)}
+  .lead{font-size:16px; color:var(--g700)}
+  small,.src{font-size:12px; color:var(--g500)}
+  .src{display:block; margin-top:6px}
+  code{background:var(--g100); padding:1px 5px; border-radius:4px; font-size:13px;
+    font-family:"SF Mono",Consolas,Menlo,monospace; color:var(--navy800)}
+  strong{color:var(--navy)}
+
+  /* Capa */
+  .cover{background:linear-gradient(135deg,var(--navy) 0%,var(--blue600) 65%,var(--blue) 100%);
+    color:#fff; padding:64px 54px 52px; border:none}
+  .cover h1{color:#fff; font-size:38px; margin:0 0 10px; letter-spacing:-.5px}
+  .cover .kicker{text-transform:uppercase; letter-spacing:3px; font-size:12px;
+    color:var(--teal); font-weight:700; margin-bottom:22px}
+  .cover .sub{font-size:18px; color:var(--blue100); max-width:640px}
+  .cover .meta{margin-top:30px; font-size:13px; color:#cfe0ff; display:flex; gap:28px; flex-wrap:wrap}
+  .cover .meta b{color:#fff; font-weight:700}
+
+  /* Blocos de destaque */
+  .grid{display:flex; gap:16px; flex-wrap:wrap; margin:18px 0}
+  .card{flex:1 1 200px; background:var(--g50); border:1px solid var(--g200);
+    border-radius:10px; padding:16px 18px}
+  .card .big{font-size:28px; font-weight:800; color:var(--navy); line-height:1.1}
+  .card .lbl{font-size:12.5px; color:var(--g500); margin-top:4px}
+  .card.tealtop{border-top:4px solid var(--teal)}
+  .card.bluetop{border-top:4px solid var(--blue)}
+
+  .callout{border-left:5px solid var(--teal); background:var(--teal100);
+    padding:14px 18px; border-radius:0 8px 8px 0; margin:18px 0}
+  .callout.warn{border-color:var(--warn); background:var(--warnBg)}
+  .callout.danger{border-color:var(--danger); background:var(--dangerBg)}
+  .callout.blue{border-color:var(--blue); background:var(--blue50)}
+  .callout p{margin:6px 0}
+
+  /* Citações do capitão */
+  .quote{margin:20px 0; padding:16px 22px; background:var(--navy); color:#fff;
+    border-radius:10px; font-size:16px; position:relative}
+  .quote::before{content:"\201C"; font-size:52px; line-height:0; color:var(--teal);
+    position:absolute; left:12px; top:26px; opacity:.6}
+  .quote p{margin:0 0 0 26px; font-style:italic}
+  .quote .who{margin:8px 0 0 26px; font-style:normal; font-size:12.5px; color:var(--teal); font-weight:700}
+
+  /* Tabelas */
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:13.5px}
+  th,td{padding:7px 10px; text-align:left; border-bottom:1px solid var(--g200)}
+  th{background:var(--navy); color:#fff; font-weight:600; font-size:12.5px}
+  td.n,th.n{text-align:right; font-variant-numeric:tabular-nums}
+  tbody tr:nth-child(even){background:var(--g50)}
+  tr.win td{background:var(--teal100); font-weight:600}
+  tr.win td:first-child{box-shadow:inset 4px 0 0 var(--teal)}
+  tr.bad td{color:var(--danger)}
+  .tag{display:inline-block; font-size:11px; font-weight:700; padding:2px 8px;
+    border-radius:20px; vertical-align:middle}
+  .tag.ok{background:var(--okBg); color:var(--ok)}
+  .tag.no{background:var(--dangerBg); color:var(--danger)}
+  .tag.proj{background:var(--warnBg); color:var(--warn)}
+
+  /* Amostras de resposta */
+  .samples{display:flex; flex-direction:column; gap:10px; margin:14px 0}
+  .resp{border:1px solid var(--g200); border-radius:8px; padding:12px 14px; background:var(--white)}
+  .resp .h{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.5px;
+    margin-bottom:5px}
+  .resp.base{border-left:4px solid var(--danger)} .resp.base .h{color:var(--danger)}
+  .resp.trained{border-left:4px solid var(--blue)} .resp.trained .h{color:var(--blue)}
+  .resp.top{border-left:4px solid var(--teal700)} .resp.top .h{color:var(--teal700)}
+  .resp p{margin:0; font-size:14px}
+
+  ol.steps{padding-left:20px} ol.steps li{margin:8px 0}
+  ul.clean{list-style:none; padding-left:0} ul.clean li{padding:6px 0 6px 26px; position:relative}
+  ul.clean li::before{content:"›"; position:absolute; left:8px; color:var(--teal700); font-weight:800}
+
+  figure{margin:20px 0; text-align:center}
+  figcaption{font-size:12.5px; color:var(--g500); margin-top:8px}
+  .svgbox{background:var(--g50); border:1px solid var(--g200); border-radius:10px; padding:16px}
+
+  .toc{columns:2; column-gap:40px; font-size:14px}
+  .toc a{display:block; padding:3px 0; color:var(--g700); text-decoration:none}
+  .toc a:hover{color:var(--blue)}
+  .toc .n{color:var(--teal700); font-weight:700; margin-right:8px}
+
+  @media print{
+    body{background:#fff; font-size:11.5px}
+    .wrap{max-width:none}
+    section{padding:22px 0; page-break-inside:avoid; border-bottom:1px solid #ddd}
+    .cover{padding:40px 0}
+    h2{page-break-after:avoid}
+    .quote,.callout,figure,table,.card{page-break-inside:avoid}
+    .toc{columns:2}
+    a{color:var(--navy); text-decoration:none}
+  }
+  @media(max-width:640px){
+    section,.cover{padding:26px 20px}
+    .toc{columns:1}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ======================= CAPA ======================= -->
+<section class="cover">
+  <div class="kicker">POC CEMIG · CEIA · Assistente de voz offline</div>
+  <h1>Um especialista em normas de segurança no bolso do eletricista</h1>
+  <p class="sub">A história de como levamos as 36 Normas Regulamentadoras para dentro de um
+    celular, sem internet — do ponto de partida (13,9% de acerto) ao aparelho que responde
+    por voz hoje, e o que ainda separa a POC de um produto.</p>
+  <div class="meta">
+    <span><b>Dispositivo-referência:</b> Galaxy S24+ (SM-S926B)</span>
+    <span><b>Operação:</b> 100% offline</span>
+    <span><b>Público:</b> apresentação CEMIG / CEIA</span>
+  </div>
+</section>
+
+<!-- ======================= SUMÁRIO EXECUTIVO ======================= -->
+<section>
+  <h2><span class="num">§</span>Sumário executivo</h2>
+  <p class="lead">Construímos um assistente de voz que roda inteiramente no celular do
+    eletricista — sem rede, sem nuvem — para consultar as 36 NRs em campo. Hoje ele
+    <strong>transcreve a fala com 91,9% de acerto nos termos técnicos</strong>, decide sozinho
+    quando buscar na norma, encontra o trecho certo e responde em <strong>6 a 12 segundos</strong>,
+    tudo em ~3,86 GB de RAM. Cinco casos-teste ponta a ponta foram validados no aparelho.</p>
+
+  <div class="grid">
+    <div class="card tealtop"><div class="big">13,9% → 51,7%</div>
+      <div class="lbl">acerto do buscador (R@2) — 3,7× sobre o ponto de partida</div></div>
+    <div class="card bluetop"><div class="big">49,0%</div>
+      <div class="lbl">acerto do buscador em <b>voz real</b> (com erros de transcrição)</div></div>
+    <div class="card tealtop"><div class="big">84,1%</div>
+      <div class="lbl">teto de qualidade (juiz 27B com o trecho certo na mão)</div></div>
+    <div class="card bluetop"><div class="big">~6 s</div>
+      <div class="lbl">resposta por voz no S24+ sem nova busca (10–12 s com busca)</div></div>
+  </div>
+
+  <p><strong>Onde chegamos:</strong> o app funciona por voz, offline, com o modelo embarcado
+    decidindo quando buscar (arquitetura híbrida) e recusando honestamente quando a norma não
+    responde. <strong>O que falta:</strong> o gargalo prático hoje é o <em>buscador</em> — ele
+    entrega o trecho certo em ~51% das perguntas. Corrigir isso transfere o limite de volta para
+    a capacidade do modelo, e é lá que estão os maiores ganhos por real investido.</p>
+
+  <div class="callout blue">
+    <p><strong>A mensagem central desta apresentação:</strong> a POC provou que o conceito
+    funciona no aparelho e mediu com honestidade onde está o teto. O próximo salto <em>não</em>
+    é um modelo maior — é melhorar o buscador. Toda a decisão de engenharia foi guiada por uma
+    régua de avaliação que não se deixa enganar por respostas que apenas "parecem" boas.</p>
+  </div>
+
+  <h3>Roteiro</h3>
+  <nav class="toc">
+    <a href="#p1"><span class="n">1</span>O problema e a restrição</a>
+    <a href="#p2"><span class="n">2</span>A escada do buscador</a>
+    <a href="#p3"><span class="n">3</span>A crise de medição e a régua honesta</a>
+    <a href="#p4"><span class="n">4</span>O que tentamos e falhou</a>
+    <a href="#p5"><span class="n">5</span>Armadilhas técnicas: quantização, LoRA, corpus</a>
+    <a href="#p6"><span class="n">6</span>O que funcionou</a>
+    <a href="#p7"><span class="n">7</span>As-is: o que roda no aparelho hoje</a>
+    <a href="#p8"><span class="n">8</span>O teto e o buscador</a>
+    <a href="#p9"><span class="n">9</span>Próximos passos</a>
+    <a href="#p10"><span class="n">10</span>Nota técnica e divergências</a>
+  </nav>
+</section>
+
+<!-- ======================= 1. PROBLEMA ======================= -->
+<section id="p1">
+  <h2><span class="num">1</span>O problema e a restrição</h2>
+  <p>O eletricista de campo da CEMIG trabalha em ambiente hostil — tráfego pesado,
+    caminhão-cesto, geradores diesel, vento e chuva — e precisa consultar normas de segurança
+    do trabalho <em>durante</em> a tarefa. As 36 NRs somam centenas de páginas de linguagem
+    jurídica. Perguntar "qual a distância segura para 13,8 kV?" a um manual em PDF, de luva, no
+    alto de um poste, é inviável.</p>
+
+  <p>A proposta: um <strong>assistente por voz</strong> que ouve a pergunta em linguagem
+    coloquial e responde citando a norma. As restrições são o que torna o problema difícil:</p>
+
+  <ul class="clean">
+    <li><strong>100% offline</strong> — sem garantia de sinal em campo; nada pode depender da nuvem.</li>
+    <li><strong>No bolso</strong> — roda em um Galaxy S24+ (e idealmente até no S21, 6 GB de RAM),
+      dividindo memória entre transcritor de voz e modelo de linguagem.</li>
+    <li><strong>Voz</strong> — a resposta precisa chegar em segundos (teto prático de ~10 s), ou
+      o operário desiste e não usa.</li>
+    <li><strong>Segurança do trabalho</strong> — uma resposta errada com confiança é pior que
+      "não sei". Aqui, alucinação não é um detalhe de qualidade: é um risco.</li>
+  </ul>
+
+  <p><strong>O ponto de partida honesto:</strong> pegar a fala bruta do operário e jogar direto
+    no buscador acertava o trecho certo em apenas <strong>13,9%</strong> das perguntas (R@2, ou
+    seja, o trecho certo entre os 2 primeiros resultados). Esse é o número-base contra o qual
+    toda a POC foi medida.</p>
+  <span class="src">Fonte: <code>corpus/README_M3.md</code> (pergunta bruta / voz: 13,9% R@2);
+    <code>asr/README.md</code> (ambiente acústico e vocabulário crítico).</span>
+</section>
+
+<!-- ======================= 2. ESCADA DO RETRIEVER ======================= -->
+<section id="p2">
+  <h2><span class="num">2</span>A escada do buscador</h2>
+  <p>Antes de treinar qualquer modelo, medimos <em>quanto vale cada informação</em> para o
+    buscador. Essa "escada" foi o mapa que guiou toda a POC: mostrou que a maior alavanca não
+    era o modelo de linguagem, e sim <strong>saber qual norma consultar</strong> e
+    <strong>falar a língua técnica</strong>.</p>
+
+  <figure>
+    <div class="svgbox">
+      <!-- Gráfico de barras da escada do buscador (R@2). SVG inline, sem biblioteca. -->
+      <svg viewBox="0 0 720 340" width="100%" role="img"
+           aria-label="Escada do buscador: 13,9% fala bruta; 44,4% com a norma certa; 51,0% com termos técnicos; 77,5% termos + norma certa.">
+        <!-- eixo -->
+        <line x1="60" y1="290" x2="700" y2="290" stroke="#C3C9D9" stroke-width="1.5"/>
+        <line x1="60" y1="40" x2="60" y2="290" stroke="#C3C9D9" stroke-width="1.5"/>
+        <!-- grade 0/25/50/75/100 -->
+        <g font-size="11" fill="#66708F" text-anchor="end">
+          <text x="52" y="294">0%</text><line x1="60" y1="290" x2="700" y2="290" stroke="#ECEEF4"/>
+          <text x="52" y="232">25%</text><line x1="60" y1="228" x2="700" y2="228" stroke="#ECEEF4"/>
+          <text x="52" y="169">50%</text><line x1="60" y1="165" x2="700" y2="165" stroke="#ECEEF4"/>
+          <text x="52" y="107">75%</text><line x1="60" y1="103" x2="700" y2="103" stroke="#ECEEF4"/>
+        </g>
+        <!-- barras: base y=290, escala 2.5px por % (100% -> 250px) -->
+        <!-- 13,9 -> 34.75px -->
+        <rect x="110" y="255.25" width="90" height="34.75" fill="#8B94AE" rx="3"/>
+        <text x="155" y="248" text-anchor="middle" font-size="14" font-weight="800" fill="#3A4463">13,9%</text>
+        <!-- 44,4 -> 111px -->
+        <rect x="255" y="179" width="90" height="111" fill="#2866E5" rx="3"/>
+        <text x="300" y="171" text-anchor="middle" font-size="14" font-weight="800" fill="#1C4AB8">44,4%</text>
+        <!-- 51,0 -> 127.5px -->
+        <rect x="400" y="162.5" width="90" height="127.5" fill="#1B3983" rx="3"/>
+        <text x="445" y="155" text-anchor="middle" font-size="14" font-weight="800" fill="#1B3983">51,0%</text>
+        <!-- 77,5 -> 193.75px -->
+        <rect x="545" y="96.25" width="90" height="193.75" fill="#0CD4AA" rx="3"/>
+        <text x="590" y="88" text-anchor="middle" font-size="14" font-weight="800" fill="#0A8F73">77,5%</text>
+        <!-- rótulos -->
+        <g font-size="11.5" fill="#3A4463" text-anchor="middle">
+          <text x="155" y="308">fala bruta</text><text x="155" y="322">(voz do operário)</text>
+          <text x="300" y="308">+ norma certa</text><text x="300" y="322">(oráculo)</text>
+          <text x="445" y="308">+ termos técnicos</text><text x="445" y="322">(curados)</text>
+          <text x="590" y="308">termos + norma</text><text x="590" y="322">(oráculo)</text>
+        </g>
+        <text x="20" y="165" transform="rotate(-90 20 165)" font-size="12" fill="#66708F"
+              text-anchor="middle">acerto do trecho certo (R@2)</text>
+      </svg>
+    </div>
+    <figcaption>A escada do buscador nas 151 perguntas reais. Saber a norma certa vale ~+30 p.p.;
+      falar em termos técnicos vale outros tantos. Fonte: <code>corpus/README_M3.md</code>.</figcaption>
+  </figure>
+
+  <table>
+    <thead><tr><th>Configuração do buscador</th><th class="n">R@2</th><th class="n">R@5</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr><td>Fala bruta (voz do operário)</td><td class="n">13,9%</td><td class="n">20,5%</td><td>ponto de partida</td></tr>
+      <tr><td>Fala bruta + norma certa conhecida (oráculo)</td><td class="n">44,4%</td><td class="n">65,6%</td><td>só saber a NR vale +30,5 p.p.</td></tr>
+      <tr><td>Termos técnicos curados</td><td class="n">51,0%</td><td class="n">68,2%</td><td>a língua técnica também vale ~+30 p.p.</td></tr>
+      <tr class="win"><td>Termos curados + norma certa (oráculo)</td><td class="n">77,5%</td><td class="n">91,4%</td><td>teto do desenho de busca</td></tr>
+    </tbody>
+  </table>
+  <span class="src">Fonte: <code>corpus/README_M3.md</code> (índice grosso <code>index_hf_36nr.db</code>, 151 reais, caminho do app).</span>
+
+  <h3>De onde viemos até o buscador de hoje</h3>
+  <p>Com a escada como bússola, atacamos as duas alavancas de forma embarcável (sem depender do
+    oráculo, que não existe em produção):</p>
+  <ul class="clean">
+    <li><strong>Classificador de NR + boost</strong> — um modelo leve (LogisticRegression, 4 MB,
+      Kotlin puro, &lt;8 ms no aparelho) adivinha a norma a partir da fala e dá preferência a ela
+      na busca. Subiu o R@2 de 13,9% para <strong>29,8%</strong> (2,1×).</li>
+    <li><strong>Expansão coloquial dos documentos (v3)</strong> — ensinamos o índice a "falar
+      como o operário", gerando por trecho dezenas de verbalizações leigas. Foi a
+      <strong>maior alavanca isolada da POC</strong>: fusão de 3 sinais chegou a
+      <strong>52,3% R@2 / 63,6% R@5</strong>.</li>
+    <li><strong>Expansão robusta a erros de voz (v4)</strong> — adicionamos variantes com o tipo
+      de erro que o transcritor comete. Em texto limpo o ganho é pequeno (R@5 63,6% → 65,6%), mas
+      <strong>em voz real o buscador deixou de desabar</strong>.</li>
+  </ul>
+
+  <table>
+    <thead><tr><th>Cenário de voz real</th><th class="n">v3 R@2</th><th class="n">v4 R@2</th><th class="n">Δ</th></tr></thead>
+    <tbody>
+      <tr><td>Texto limpo</td><td class="n">49,0%</td><td class="n">51,0%</td><td class="n">+2,0</td></tr>
+      <tr class="win"><td><b>Sob transcrição real</b> (Whisper Base no próprio S24+)</td><td class="n">41,1%</td><td class="n">49,0%</td><td class="n">+7,9</td></tr>
+    </tbody>
+  </table>
+  <p>Esse é o ganho que <em>não aparece</em> em avaliação de laboratório: quando o transcritor
+    erra, só a v4 continua encontrando o trecho certo. É exatamente o cenário de campo.</p>
+  <span class="src">Fontes: <code>classifier/README.md</code> (híbrido gated 29,8% R@2);
+    <code>retrieval3/README.md</code> (fusão v3 52,3% R@2); <code>retrieval4/README.md</code>
+    (v4 texto limpo 51,7% R@2 nos bins embarcados; voz real 41,1% → 49,0%).</span>
+</section>
+
+<!-- ======================= 3. RÉGUA HONESTA ======================= -->
+<section id="p3">
+  <h2><span class="num">3</span>A crise de medição — a régua que não se deixa enganar</h2>
+  <p>No meio da POC houve uma virada metodológica que redefiniu tudo. O capitão pegou uma
+    resposta que <em>passava</em> no nosso teste da época:</p>
+
+  <div class="quote">
+    <p>"O EPI para trabalho em altura acima de 2 metros é obrigatório." — isso não responde
+      nada, só reescreve a pergunta. Se isso for considerado uma boa resposta no nosso teste,
+      tudo está equivocado.</p>
+    <p class="who">— o capitão, ao flagrar a resposta tautológica</p>
+  </div>
+
+  <p>Investigamos e o diagnóstico foi duro: <strong>a nota antiga era dominada por citação</strong>.
+    Uma resposta que citasse "conforme a NR-35" ganhava pontos mesmo sem dizer <em>o que</em>
+    fazer. Cruzando o histórico: <strong>108 de 334 aprovações antigas (32,3%) eram ocas</strong>
+    — reprovam na régua honesta — e <strong>100% delas carregavam citação</strong>. Uma em cada
+    três "boas respostas" apenas citava a norma sem conter a informação pedida.</p>
+
+  <h3>A régua honesta, em três passos</h3>
+  <ol class="steps">
+    <li><strong>Gabarito de fatos por pergunta.</strong> Para cada uma das 151 perguntas reais, o
+      juiz 27B extrai do trecho-ouro a lista de fatos obrigatórios que qualquer resposta correta
+      precisa conter (média 4,74 fatos/pergunta).</li>
+    <li><strong>Uma única pergunta:</strong> a resposta <em>contém</em> a informação pedida?
+      Mede-se cobertura de fatos, com detector determinístico de tautologia (resposta que só
+      repete a pergunta reprova) e checagem de alucinação. <strong>Citação sai do critério</strong>
+      — vira coluna informativa; o usuário já vê a fonte na tela.</li>
+    <li><strong>Rejulgamento retroativo.</strong> Sem gerar uma resposta nova sequer,
+      re-avaliamos <strong>66 candidatos já salvos</strong> em disco com a régua nova. A
+      metodologia mudou; os experimentos não precisaram ser refeitos.</li>
+  </ol>
+
+  <div class="callout">
+    <p><strong>O teste do teto (ideia do capitão).</strong> Uma régua exigente pode ser
+      <em>injusta</em> — condenar modelos por uma prova impossível. Então medimos o próprio juiz
+      27B respondendo com os mesmos trechos: <strong>84,1% de aprovação em oráculo</strong>
+      (trecho certo na mão). Como o teto é bem acima de 60%, a régua <strong>não é severa: é
+      passável</strong> por um modelo competente. Sem essa verificação, teríamos reprovado
+      modelos por uma medida inatingível.</p>
+  </div>
+
+  <p>A partir daí, todo número neste relatório é da régua honesta: cobertura de fatos, alucialação
+    medida à parte, citação fora do gate. É por isso que os números são mais baixos (e mais
+    verdadeiros) que os de qualquer relatório anterior.</p>
+  <span class="src">Fonte: <code>bench/regua/README.md</code> (32,3% de aprovações ocas; 66
+    candidatos rejulgados; gabarito 151/151, 4,74 fatos/item); teto 84,1% em
+    <code>bench/prompt_teto/README.md</code>.</span>
+</section>
+
+<!-- ======================= 4. O QUE FALHOU ======================= -->
+<section id="p4">
+  <h2><span class="num">4</span>O que tentamos e falhou — o valor de saber onde não investir</h2>
+  <p>Boa parte do valor de uma POC é <strong>descobrir cedo o que não paga</strong>. Três frentes
+    plausíveis foram medidas e descartadas com número — cada uma é um investimento evitado.</p>
+
+  <h3>a) Engenharia de prompt — ganho ~zero, e às vezes negativo</h3>
+  <p>Seis variantes de prompt no melhor sintetizador (2.6B): a aprovação honesta ficou entre
+    15,2% e 23,8%, e a melhor (<code>numeros</code>, 23,8%) <strong>empatou com o baseline
+    (23,2%)</strong> dentro do ruído. Pior: as variantes "anti-evasão" (que proíbem o modelo de
+    dizer "consulte a norma") <strong>pioraram</strong> — forçado a agir, o modelo passa a
+    <em>inventar</em> a ação. Trocaríamos "não disse nada" por "errado com confiança".</p>
+  <span class="src">Fonte: <code>bench/prompt_teto/README.md</code> (Parte 1: baseline 23,2% → melhor 23,8%; anti-evasão 17,2%, alucinação 39,7%).</span>
+
+  <h3>b) Janela de contexto maior — vê mais, não responde melhor</h3>
+  <p>Mandar mais trechos ao modelo aumenta a <em>visão</em> (o trecho certo visível vai de 51,7%
+    a 65,6%), mas a <strong>qualidade fica plana</strong> (aprovação ~1–2% em todas as 8
+    configurações testadas). E o custo no aparelho é proibitivo: com 5 trechos o prompt triplica
+    e o <strong>tempo até a primeira palavra (TTFT) vai de 7,9 s para 21,8 s</strong>. Mais
+    contexto = mais espera por zero ganho.</p>
+  <span class="src">Fonte: <code>bench/ctx_topk/README.md</code> (visão 51,7%→65,6%; gate flat; TTFT 7,9→21,8 s; decisão: manter topK=2).</span>
+
+  <h3>c) O primeiro fine-tuning (SFT+DPO) — regrediu de verdade</h3>
+  <p>A primeira tentativa de treinar o sintetizador <strong>piorou o modelo</strong>: a cobertura
+    de fatos caiu de <strong>0,40 (base) para 0,27–0,29 (treinado)</strong>. Não foi ilusão da
+    régua — o painel completo confirmou a regressão, inclusive em normas nunca vistas no treino.
+    A lição virou desenho do treino seguinte (seção 6).</p>
+  <span class="src">Fonte: <code>finetune2/README.md</code> (base cobertura 0,40 → SFT/DPO 0,27–0,29; "não embarcar"); confirmado em <code>bench/regua/README.md</code>.</span>
+
+  <div class="callout blue">
+    <p><strong>Custo evitado.</strong> Sem essas medições, o caminho "intuitivo" seria gastar
+      semanas ajustando prompts, ampliando contexto e treinando o sintetizador — três becos sem
+      saída. A régua honesta os fechou antes do gasto e apontou as alavancas reais: buscador e
+      capacidade do modelo com o desenho de treino <em>correto</em>.</p>
+  </div>
+</section>
+
+<!-- ======================= 5. ARMADILHAS TÉCNICAS ======================= -->
+<section id="p5">
+  <h2><span class="num">5</span>Armadilhas técnicas: quantização, o bug de LoRA, o corpus corrompido</h2>
+
+  <h3>5.1 Quantização — o que custa comprimir o modelo para caber no celular</h3>
+  <p>Para rodar num telefone, os modelos são <em>quantizados</em> (comprimidos de 16 bits para
+    4 bits). Isso economiza memória, mas pode custar qualidade. Medimos esse custo caso a caso —
+    e a lição central é que <strong>ele varia muito por modelo e por métrica</strong>. Onde havia
+    dados, apresentamos bf16 (alta precisão) e Q4 (embarcado) lado a lado.</p>
+
+  <table>
+    <thead><tr><th>Situação</th><th class="n">bf16</th><th class="n">Q4</th><th>O que a comparação ensina</th></tr></thead>
+    <tbody>
+      <tr><td>2.6B v2 — aprovação (oráculo)</td><td class="n">57,0%</td><td class="n">47,7%</td><td>−9,3 p.p.: o "hedge" (recusa) é sensível ao 4 bits</td></tr>
+      <tr><td>2.6B v3 — aprovação (oráculo)</td><td class="n">47,0%</td><td class="n">46,4%</td><td>−0,6 p.p.: quase de graça…</td></tr>
+      <tr class="bad"><td>2.6B v3 — alucinação (busca real)</td><td class="n">34,0%</td><td class="n">40,7%</td><td>…mas a <b>alucinação piorou +6,7 p.p.</b> no 4 bits</td></tr>
+      <tr><td>2.6B tool — aprovação (oráculo)</td><td class="n">53,8%</td><td class="n">46,1%</td><td>−7,7 p.p.: capacidade nova é mais sensível</td></tr>
+      <tr><td>2.6B destilado — teto (oráculo)</td><td class="n">49,0%</td><td class="n">45,0%</td><td>−4,0 p.p. no modelo base</td></tr>
+    </tbody>
+  </table>
+  <span class="src">Fontes: <code>sft_v2/</code>, <code>sft_v3/README.md</code> (calibração), <code>tools_2_6b/README.md</code>, <code>slm_oraculo/README.md</code>.</span>
+
+  <ul class="clean">
+    <li><strong>Calibração de quantização (imatrix) foi testada e não pagou</strong> quando a
+      perda já era desprezível: no v3 a imatrix chegou a <em>piorar</em> levemente o resultado.
+      Formato final: Q4_0 sem calibração.</li>
+    <li><strong>O QAD não tinha vantagem real no nosso domínio.</strong> O 1.2B de fábrica é
+      "quantization-aware distilled" — teoricamente melhor a 4 bits. Medido na régua honesta, ele
+      era praticamente o <strong>piso (2,7% em oráculo)</strong>. Como não havia vantagem a
+      preservar, treinar o modelo comum e requantizar de forma simples foi ganho líquido.</li>
+    <li><strong>A célula que separou treino de quantização.</strong> Quando o primeiro treino
+      regrediu, a dúvida era: culpa dos 4 bits? Medimos em alta precisão: base f16 23,2% →
+      DPO f16 11,9% (−11,3 p.p.). O dano do treino era ~5× maior que o dos 4 bits (~2 p.p.). A
+      regressão vinha do <strong>treino, não da quantização</strong>.</li>
+  </ul>
+  <span class="src">Fontes: <code>tools_oraculo/</code>/<code>sft_1_2b/README.md</code> (QAD 2,7%); <code>finetune2/README.md</code> (base f16 23,2% → dpo f16 11,9%).</span>
+
+  <h3>5.2 O bug de LoRA — "diversos erros pequenos formam um erro grande"</h3>
+  <p>Ao treinar, mirávamos módulos com nomes genéricos (<code>gate_proj/up_proj/down_proj</code>)
+    <strong>que não existem na arquitetura do LFM2</strong>. Consequência silenciosa: as 90
+    matrizes do MLP (<code>w1/w2/w3</code>) ficaram sem treino algum, e o alvo genérico
+    <code>out_proj</code> acabou pegando por engano o componente recorrente (ShortConv). O treino
+    "rodava" sem erro — e não treinava o que devia.</p>
+  <div class="callout warn">
+    <p><strong>A correção e a lição.</strong> Passamos a mirar os módulos por expressão regular
+      explícita <em>e</em> a abortar o treino com um <code>assert</code> se o alvo não cobrir
+      MLP + atenção e não tocar o ShortConv. O bug se tornou impossível. Nas palavras do capitão:
+      <em>"diversos erros pequenos formam um erro grande"</em> — nenhum sozinho gritava, mas
+      juntos anulavam o treino.</p>
+  </div>
+  <span class="src">Fonte: <code>slm_oraculo/README.md</code> e <code>sft_v2/README.md</code> (regex de alvo + 3 asserts mlp✓ attn✓ conv✗, 122 módulos no 2.6B / 72 no 1.2B).</span>
+
+  <h3>5.3 O corpus corrompido — o caso "13,8 kV" que não existia</h3>
+  <p>A pergunta emblemática — "qual a distância segura para 13,8 kV?" — era
+    <strong>impossível de responder</strong>: a tabela do Anexo II da NR-10 (raios de zona de
+    risco por faixa de tensão) saiu destruída da extração do PDF, e o índice tinha
+    <strong>zero trechos com "13,8"</strong>. Reprocessamos com o Google Document AI Form Parser:</p>
+  <ul class="clean">
+    <li>As <strong>18 faixas de tensão</strong> do Anexo II foram reconstruídas e conferidas
+      célula a célula (ex.: 10–15 kV → 0,38 / 1,38 m).</li>
+    <li><strong>43.803 números verificados</strong> contra a fonte; apenas
+      <strong>230 (0,5%) não-reparáveis</strong> — todos artefatos de OCR, nenhuma corrupção de
+      valor. Preferimos reportar os 230 para olho humano a fingir cobertura total.</li>
+  </ul>
+  <div class="callout">
+    <p><strong>Lição contraintuitiva:</strong> despejar <em>todas</em> as tabelas reprocessadas no
+      buscador <strong>piorou</strong> o recall geral (13,9% → 11,9%) — o mesmo efeito de poluição
+      já visto com os manuais. Só a tabela <em>estruturada</em> (zona de risco) tem valor;
+      despejos genéricos (portarias, CNAE) são ruído. <strong>Reparo cirúrgico vence
+      reprocessamento em massa.</strong></p>
+  </div>
+  <span class="src">Fonte: <code>docai/README.md</code> (18/18 faixas; 43.803 números; 230 não-reparáveis; aditivo-23 R@2 13,9→11,9).</span>
+</section>
+
+<!-- ======================= 6. O QUE FUNCIONOU ======================= -->
+<section id="p6">
+  <h2><span class="num">6</span>O que funcionou</h2>
+
+  <h3>6.1 Destilação do juiz 27B para o modelo pequeno</h3>
+  <p>Corrigido o desenho (alvo = respostas do 27B <em>aprovadas pela própria régua</em>, não
+    síntese sintética estreita), o treino <strong>funcionou</strong>: com o trecho certo na mão,
+    o 2.6B saltou de <strong>45,0% para 58,3% de aprovação em oráculo</strong> (Q4), sem piorar a
+    alucinação. Fechou ~36% da distância até o teto — não é ruído, é ganho consistente em vários
+    checkpoints.</p>
+  <span class="src">Fonte: <code>slm_oraculo/README.md</code> (Q4 45,0→58,3%, ep2; alucinação estável 25,2% vs 25,8% base).</span>
+
+  <h3>6.2 Dados de recusa — ensinar a dizer "isso não está na norma" (ideia do capitão)</h3>
+  <p>O modelo treinado só com o trecho certo <em>nunca aprende a recusar</em> — e alucinava
+    25% em oráculo, 41–51% no mundo real. A solução: fabricar dados <strong>com e sem</strong> o
+    trecho certo (recusa, parcial, distrator). Resultado:</p>
+  <table>
+    <thead><tr><th>Métrica de recusa</th><th class="n">antes</th><th class="n">depois</th></tr></thead>
+    <tbody>
+      <tr><td>Recusa correta (recall)</td><td class="n">46,7%</td><td class="n">100%</td></tr>
+      <tr><td>Alucinação com contexto errado</td><td class="n">51,8%</td><td class="n">~30%</td></tr>
+    </tbody>
+  </table>
+  <p>Um refinamento seguinte (rebalancear recusa para ≤25% do treino) derrubou o efeito colateral
+    — a <strong>recusa indevida</strong> (recusar quando dava para responder) caiu de 23–27% para
+    10–13%, com <strong>F1 de recusa 95,7</strong> (teto do 27B: 96,6). O modelo aprendeu a
+    calibrar quando responder e quando recuar.</p>
+  <span class="src">Fontes: <code>sft_v2/README.md</code> (recusa correta 46,7→100%; alucinação 51,8→~30%); <code>sft_v3/README.md</code> (recusa-indevida 23–27→10–13%; F1 95,7 vs teto 96,6).</span>
+
+  <h3>6.3 Tool-calling nativo — o modelo decide quando buscar</h3>
+  <p>Em vez de uma heurística fixa decidir quando consultar a norma, treinamos o próprio 1.2B para
+    <strong>decidir</strong>: chamar a busca, reusar o contexto anterior, ou responder direto
+    (saudação). Funcionou bem:</p>
+  <div class="grid">
+    <div class="card"><div class="big">95%</div><div class="lbl">F1 na decisão de chamar</div></div>
+    <div class="card"><div class="big">100%</div><div class="lbl">sintaxe válida da chamada</div></div>
+    <div class="card"><div class="big">84,8%</div><div class="lbl">reuso correto (multiturno)</div></div>
+    <div class="card"><div class="big">100%</div><div class="lbl">detecção de novo tópico</div></div>
+  </div>
+  <span class="src">Fonte: <code>tools_v1/README.md</code> (r128, 3 runs).</span>
+
+  <h3>6.4 A arquitetura híbrida (ideia do capitão) — o modelo decide, mas a fala crua busca</h3>
+  <p>Um achado repetido em toda a POC: <strong>a consulta reescrita pelo modelo pequeno
+    <em>piora</em> a busca</strong>. Daí o desenho híbrido: o modelo decide <em>quando</em>
+    buscar, mas a busca em si ignora a reescrita e usa a <strong>fala crua + classificador de
+    NR + fusão v4</strong>. O híbrido venceu a versão "pura" por 11–12 p.p. — porque entrega o
+    trecho certo em ~51% das buscas, contra 19–25% da consulta reescrita. Confirmado no 1.2B
+    <em>e</em> no 2.6B.</p>
+  <table>
+    <thead><tr><th>Configuração (busca real)</th><th class="n">Q4 aprov.</th><th class="n">bf16 aprov.</th><th class="n">trecho certo quando buscou</th></tr></thead>
+    <tbody>
+      <tr class="win"><td>(A) Híbrido — fala crua + v4</td><td class="n">19,2%</td><td class="n">19,2%</td><td class="n">~51%</td></tr>
+      <tr><td>(B) Tools puro — consulta do próprio modelo</td><td class="n">7,1%</td><td class="n">8,2%</td><td class="n">19–25%</td></tr>
+      <tr><td>(C) Pipeline fixo sem decisão</td><td class="n">10,1%</td><td class="n">16,2%</td><td class="n">51% (sempre busca)</td></tr>
+    </tbody>
+  </table>
+  <span class="src">Fonte: <code>tools_oraculo/README.md</code> (1.2B tools r128; híbrido +12,1 p.p. Q4 / +11,0 bf16 sobre puro); confirmado no 2.6B em <code>tools_2_6b/README.md</code>.</span>
+
+  <h3>6.5 A curva de saturação — mais dados não compram tudo</h3>
+  <figure>
+    <div class="svgbox">
+      <!-- Curva de saturação: decisão sobe e satura ~1500; argumento fica flat. SVG inline. -->
+      <svg viewBox="0 0 720 320" width="100%" role="img"
+           aria-label="Curva de saturação: a decisão de chamar sobe de 87,6 para 95 e satura em ~1500 exemplos; a qualidade do argumento fica plana em torno de 20% em todos os volumes.">
+        <line x1="70" y1="270" x2="690" y2="270" stroke="#C3C9D9" stroke-width="1.5"/>
+        <line x1="70" y1="30" x2="70" y2="270" stroke="#C3C9D9" stroke-width="1.5"/>
+        <g font-size="11" fill="#66708F" text-anchor="end">
+          <text x="62" y="274">0%</text>
+          <text x="62" y="210">40%</text><line x1="70" y1="206" x2="690" y2="206" stroke="#ECEEF4"/>
+          <text x="62" y="146">70%</text><line x1="70" y1="142" x2="690" y2="142" stroke="#ECEEF4"/>
+          <text x="62" y="82">100%</text><line x1="70" y1="78" x2="690" y2="78" stroke="#ECEEF4"/>
+        </g>
+        <!-- eixo x: 750 / 1500 / 3000 / 4236  → posições -->
+        <g font-size="11" fill="#3A4463" text-anchor="middle">
+          <text x="150" y="290">750</text><text x="320" y="290">1500</text>
+          <text x="490" y="290">3000</text><text x="640" y="290">4236 exemplos</text>
+        </g>
+        <!-- escala y: 100% -> y=78, 0% -> y=270 => y = 270 - v*1.92 -->
+        <!-- decisão F1: 87.6, 94.8, 94.9, 95.4 -->
+        <polyline fill="none" stroke="#0CD4AA" stroke-width="3"
+          points="150,101.8 320,88.0 490,87.8 640,86.8"/>
+        <g fill="#0A8F73">
+          <circle cx="150" cy="101.8" r="4.5"/><circle cx="320" cy="88.0" r="4.5"/>
+          <circle cx="490" cy="87.8" r="4.5"/><circle cx="640" cy="86.8" r="4.5"/>
+        </g>
+        <text x="150" y="120" font-size="11" fill="#0A8F73" text-anchor="middle">87,6</text>
+        <text x="320" y="80" font-size="11" fill="#0A8F73" text-anchor="middle">94,8</text>
+        <text x="640" y="79" font-size="11" fill="#0A8F73" text-anchor="middle">95,4</text>
+        <!-- argumento R@2: 21.2, 17.9, 22.5, 21.9 -->
+        <polyline fill="none" stroke="#D92626" stroke-width="3" stroke-dasharray="6 4"
+          points="150,229.3 320,235.6 490,226.8 640,227.9"/>
+        <g fill="#D92626">
+          <circle cx="150" cy="229.3" r="4.5"/><circle cx="320" cy="235.6" r="4.5"/>
+          <circle cx="490" cy="226.8" r="4.5"/><circle cx="640" cy="227.9" r="4.5"/>
+        </g>
+        <text x="490" y="219" font-size="11" fill="#D92626" text-anchor="middle">~20% (plano)</text>
+        <!-- legenda -->
+        <g font-size="12">
+          <rect x="360" y="34" width="16" height="4" fill="#0CD4AA"/>
+          <text x="382" y="39" fill="#3A4463">decisão de chamar (F1) — satura em ~1500</text>
+          <rect x="360" y="52" width="16" height="4" fill="#D92626"/>
+          <text x="382" y="57" fill="#3A4463">qualidade do argumento (R@2) — nunca melhora</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>A decisão de chamar aprende rápido e satura em ~1.500 exemplos; a sintaxe satura em
+      ~750. Já a qualidade da consulta reescrita <strong>nunca melhora</strong> — é teto de
+      capacidade do modelo pequeno, não falta de dados. Fonte: <code>tools_v1/README.md</code>.</figcaption>
+  </figure>
+  <p>Esse achado é economia pura: sabemos exatamente quanto dado gerar (mais que ~1.500 exemplos
+    para a decisão não paga) e sabemos que insistir na reescrita do modelo pequeno é inútil — a
+    fala crua sempre vence.</p>
+</section>
+
+<!-- ======================= 7. AS-IS ======================= -->
+<section id="p7">
+  <h2><span class="num">7</span>As-is: o que roda no aparelho hoje</h2>
+  <p>O app instalado no Galaxy S24+ hoje combina o melhor de cada frente, tudo offline:</p>
+
+  <div class="grid">
+    <div class="card bluetop"><div class="big">Nemotron 3.5</div><div class="lbl">transcritor de voz (ASR) INT8</div></div>
+    <div class="card tealtop"><div class="big">1.2B tool</div><div class="lbl">modelo de linguagem treinado (Q4)</div></div>
+    <div class="card bluetop"><div class="big">3,86 GB</div><div class="lbl">RAM em pico com os dois residentes</div></div>
+    <div class="card tealtop"><div class="big">5/5</div><div class="lbl">casos E2E validados no aparelho</div></div>
+  </div>
+
+  <h3>Por que o Nemotron substituiu o Whisper</h3>
+  <table>
+    <thead><tr><th>Transcritor</th><th class="n">Acerto de termos técnicos</th><th class="n">Latência (bancada)</th><th>Observação</th></tr></thead>
+    <tbody>
+      <tr><td>Whisper Base Q5_1</td><td class="n">85,5%</td><td class="n">4,70 s</td><td>leve (197 MB RAM), mas erra siglas (kV, LOTO)</td></tr>
+      <tr class="win"><td>Nemotron 3.5 INT8</td><td class="n">91,9%</td><td class="n">2,03 s</td><td>captura todos os termos técnicos; ~1,2 s no app</td></tr>
+    </tbody>
+  </table>
+  <span class="src">Fonte: <code>asr/README.md</code> (termos 85,5% vs 91,9%; latência de bancada 4,70 s vs 2,03 s); no E2E do app o Nemotron mediu ~1,2 s (<code>android/README_TOOLS_HYBRID.md</code>).</span>
+
+  <h3>O que o usuário sente</h3>
+  <ul class="clean">
+    <li><strong>Fala, confere, envia.</strong> O operário segura para falar, vê a transcrição
+      (caixa multilinha, legível) e confirma — a resposta nunca dispara sozinha.</li>
+    <li><strong>Resposta em 6–12 s.</strong> Sem nova busca (reuso/saudação) ~6–7 s; com busca na
+      norma 10–12 s. A busca em si é instantânea no aparelho (37–238 ms).</li>
+    <li><strong>Multiturno natural.</strong> O modelo decide sozinho: pergunta nova sobre o mesmo
+      assunto reusa o contexto; assunto diferente dispara nova busca; agradecimento não busca nada.</li>
+    <li><strong>Recusa honesta.</strong> Quando a norma recuperada não responde (ex.: "camiseta
+      rasgada"), o modelo <em>recusa</em> em vez de inventar.</li>
+  </ul>
+
+  <table>
+    <thead><tr><th>Caso E2E no S24+</th><th>Comportamento</th><th class="n">Tempo</th></tr></thead>
+    <tbody>
+      <tr><td>A — "distância segura p/ 13,8 kV?"</td><td>Buscou NR-10 Anexo II, citou a faixa <span class="tag ok">✓</span></td><td class="n">10,3 s</td></tr>
+      <tr><td>B — followup mesmo assunto</td><td>Reusou, sem nova busca <span class="tag ok">✓</span></td><td class="n">7,1 s</td></tr>
+      <tr><td>C — "poste não parece firme"</td><td>Nova busca (NR-35/34), sem erro "adornos" <span class="tag ok">✓</span></td><td class="n">11,3 s</td></tr>
+      <tr><td>D — agradecimento</td><td>Zero busca <span class="tag ok">✓</span></td><td class="n">3,0 s</td></tr>
+      <tr><td>E — "camiseta de algodão rasgada"</td><td>Buscou mas RECUSOU honestamente <span class="tag ok">✓</span></td><td class="n">11,6 s</td></tr>
+    </tbody>
+  </table>
+  <span class="src">Fonte: <code>android/README_TOOLS_HYBRID.md</code> + <code>android/tool_e2e_results.json</code> (release, modo avião; RAM PSS 3,86 GB).</span>
+
+  <div class="callout warn">
+    <p><strong>Opção 2.6B (mais capaz) disponível por flag.</strong> O 2.6B destilado aprova
+      46,1% em oráculo (Q4), bem acima do 1.2B, mas custa <strong>18–29 s por resposta e
+      4,3–4,75 GB de RAM</strong> — acima do teto de voz de 10 s e inviável no S21. Fica
+      selecionável por build (<code>-Pcemig.synthModel=2.6b</code>), como alvo para quando
+      latência/RAM destravarem.</p>
+  </div>
+  <span class="src">Fonte: <code>tools_2_6b/README.md</code> (oráculo Q4 46,1%; device 18–29 s, RAM 4,3–4,75 GB); <code>sft_v3/README.md</code> (E2E ~20 s, PSS 4,75 GB com Nemotron).</span>
+</section>
+
+<!-- ======================= 8. O TETO E O RETRIEVER ======================= -->
+<section id="p8">
+  <h2><span class="num">8</span>O teto e o buscador — onde está o gargalo e o que muda se resolvê-lo</h2>
+
+  <p>Esta é a mensagem central da POC. Há <strong>dois tetos</strong> em série: o buscador
+    (entregar o trecho certo) e o modelo (transformar o trecho em resposta). Medimos os dois.</p>
+
+  <table>
+    <thead><tr><th>Modelo</th><th class="n">Com trecho perfeito (oráculo)</th><th class="n">Com a busca real (~51% de acerto)</th><th class="n">Queda</th></tr></thead>
+    <tbody>
+      <tr class="win"><td>Juiz 27B (teto / nuvem)</td><td class="n">84,3%</td><td class="n">45,7%</td><td class="n">−38,6</td></tr>
+      <tr><td>2.6B tool (opção)</td><td class="n">46,1% (Q4)</td><td class="n">24,0% (Q4)</td><td class="n">−22,1</td></tr>
+      <tr><td>1.2B tool (embarcado)</td><td class="n">31,4% (Q4)</td><td class="n">19,2% (híbrido)</td><td class="n">−12,2</td></tr>
+    </tbody>
+  </table>
+  <span class="src">Fonte: <code>tools_oraculo/README.md</code> (tabela mestre) e <code>sft_v3/README.md</code> (27B oráculo 84,3% / busca real 45,7%).</span>
+
+  <p><strong>Todos caem ~20–38 p.p. da mesma causa: a busca não entrega o trecho certo.</strong>
+    Até o juiz 27B — que faz 84% com o trecho na mão — despenca para 45,7% quando depende da busca
+    real. O buscador é o teto prático de <em>todo mundo</em> hoje.</p>
+
+  <div class="callout blue">
+    <p><strong>A virada na origem da alucinação.</strong> Na arquitetura "pura", 70–80% das
+      alucinações vinham de <em>contexto errado</em> (busca falhou). No híbrido, com a busca
+      corrigida, a alucinação passa a ocorrer majoritariamente <strong>com o trecho certo
+      presente</strong> (~53–60%) — ou seja, o limite deixa de ser a busca e vira a capacidade do
+      modelo. Isso mostra o mecanismo com clareza: <strong>corrigir o buscador transfere o teto de
+      volta para o modelo</strong>, onde a destilação já provou que sabe subir.</p>
+  </div>
+
+  <h3>O que dá para esperar — projeção (não medição)</h3>
+  <p>Usando a taxa de conversão condicional medida (quanto cada modelo aprova <em>dado</em> que
+    recebeu o trecho certo), é possível projetar o efeito de melhorar o buscador de ~51% para
+    ~80% de entrega do trecho certo:</p>
+  <table>
+    <thead><tr><th>Cenário <span class="tag proj">PROJEÇÃO</span></th><th class="n">Busca hoje (~51%)</th><th class="n">Busca ~80% (projetado)</th></tr></thead>
+    <tbody>
+      <tr><td>Aprovação do 1.2B (embarcado)</td><td class="n">19,2%</td><td class="n">~25–28%</td></tr>
+      <tr><td>Aprovação do 2.6B (opção)</td><td class="n">24,0%</td><td class="n">~37–42%</td></tr>
+    </tbody>
+  </table>
+  <div class="callout warn">
+    <p><strong>Leitura honesta.</strong> Os valores da coluna "~80%" são <em>projeção</em>
+      baseada na conversão condicional já medida, <strong>não medição</strong>. Servem para
+      dimensionar o retorno de investir no buscador — não como promessa. O ganho real depende de
+      levar o buscador aos ~80% (hoje ele está em ~51%).</p>
+  </div>
+
+  <h3>Amostras literais — a diferença que se vê a olho nu</h3>
+  <p><strong>Caso 1 — "o poste que preciso subir não me parece firme, o que faço?"</strong>
+    (a busca traz a norma <em>errada</em>, NR-10, quando deveria ser NR-35/NR-01):</p>
+  <div class="samples">
+    <div class="resp base"><div class="h">1.2B — estilo antigo do app (a evasão que o capitão flagrou)</div>
+      <p>"Conforme a NR-10, item 5.20, verifique a estabilidade do poste… Não viole nenhuma regra."</p></div>
+    <div class="resp base"><div class="h">2.6B — variante "anti-evasão" (inventa a ação)</div>
+      <p>"Eu devo desligar e aterrar o circuito antes de tocar no poste, conforme a NR-10, item 10.5.1…" — desligar o circuito não resolve poste bambo.</p></div>
+    <div class="resp top"><div class="h">Juiz 27B (o teto — reconhece a norma errada)</div>
+      <p>"Não sei com base nas normas consultadas." — com o trecho errado, a resposta correta é admitir.</p></div>
+  </div>
+  <p class="src">Fonte: <code>bench/prompt_teto/README.md</code> (P1). Mostra que o problema é de
+    <em>dado/busca</em>, não de prompt: nenhum modelo, nem o 27B, contorna a norma errada.</p>
+
+  <p><strong>Caso 2 — "qual a distância segura para 13,8 kV?"</strong> (com a tabela do Anexo II já
+    reconstruída pelo Document AI e entregue ao modelo):</p>
+  <div class="samples">
+    <div class="resp base"><div class="h">2.6B (base e destilado) — lê a linha errada</div>
+      <p>"…é de 0,25 metros…" — faixa de tensão errada, mesmo com a tabela limpa e completa no contexto.</p></div>
+    <div class="resp trained"><div class="h">1.2B tool no aparelho — cita a tabela certa, valor aproximado</div>
+      <p>"A distância segura para 13,8 kV é de 0,20 a 0,70 metros. Essa faixa é definida na tabela do Anexo II da NR-10."</p></div>
+    <div class="resp top"><div class="h">Juiz 27B — lê a linha certa</div>
+      <p>"Para 13,8 kV, mantenha distância mínima de 0,38 metros da zona de risco e 1,38 metros da zona controlada…"</p></div>
+  </div>
+  <p class="src">Fonte: <code>slm_oraculo/README.md</code> (13,8 kV: 27B lê 0,38 m; 2.6B lê 0,25 m
+    mesmo com a tabela limpa) e <code>android/README_TOOLS_HYBRID.md</code> (resposta do 1.2B no
+    aparelho). O dado corrigido é <em>necessário mas não suficiente</em>: a leitura fina de tabela
+    é fronteira de capacidade do modelo pequeno.</p>
+</section>
+
+<!-- ======================= 9. PRÓXIMOS PASSOS ======================= -->
+<section id="p9">
+  <h2><span class="num">9</span>Próximos passos, por retorno esperado</h2>
+  <ol class="steps">
+    <li><strong>Buscador intra-norma (maior retorno).</strong> É o teto prático de todos os
+      modelos. Levar a entrega do trecho certo de ~51% para ~80% é o que mais multiplica o
+      pipeline inteiro — cada ponto de recall aparece na ponta. Inclui re-extração cirúrgica das
+      tabelas restantes (padrão validado no Anexo II da NR-10).</li>
+    <li><strong>Capacidade do sintetizador embarcável.</strong> A destilação do 27B já provou o
+      caminho (2.6B 45→58% em oráculo). Reaplicá-la ao 1.2B (ou destilar 27B→1.2B) sobe o teto do
+      modelo que <em>cabe</em> na voz, sem esperar hardware.</li>
+    <li><strong>Destravar o 2.6B na voz.</strong> Ele é mais capaz (46,1% vs 31,4% em oráculo),
+      mas custa 18–29 s hoje. Vale quando latência/RAM permitirem (aparelhos ≥8 GB, otimização de
+      TTFT). Já está pronto por flag de build.</li>
+    <li><strong>Prompt fica por último.</strong> Retorno ~zero medido; mexer pode trocar "não
+      disse nada" por "errado com confiança". Não é alavanca.</li>
+  </ol>
+  <div class="callout">
+    <p>A ordem acima não é opinião — é a leitura direta dos números da POC. O buscador domina o
+      teto; a capacidade do modelo é o segundo teto; prompt e janela já foram descartados com
+      medição.</p>
+  </div>
+</section>
+
+<!-- ======================= 10. NOTA TÉCNICA ======================= -->
+<section id="p10">
+  <h2><span class="num">10</span>Nota técnica: metodologia, limitações e divergências</h2>
+
+  <h3>Metodologia da régua honesta</h3>
+  <ul class="clean">
+    <li><strong>Conjunto de avaliação:</strong> 151 perguntas reais coloquiais
+      (<code>corpus/qa_pairs_v2.jsonl</code>), holdout intocável — nunca vistas em treino ou
+      calibração de hiperparâmetro.</li>
+    <li><strong>Critério:</strong> aprovação = cobertura de fatos ≥ 0,5 <em>e</em> não-tautológica
+      <em>e</em> sem alucinação. Citação é informativa, fora do gate (decisão do capitão).</li>
+    <li><strong>Juiz:</strong> vLLM Qwen 27B (FP8). O mesmo juiz serve de teto (respondendo com os
+      trechos) — verificado passável (84,1% em oráculo).</li>
+    <li><strong>Anti-contaminação:</strong> normas NR-33/16/26 reservadas fora do treino (teste
+      out-of-distribution); filtro lexical Jaccard &lt; 0,4 entre treino e holdout.</li>
+  </ul>
+
+  <h3>Limitações conhecidas (o que não foi medido)</h3>
+  <ul class="clean">
+    <li><strong>n = 151.</strong> Diferenças menores que ~3 p.p. estão dentro do ruído
+      amostral/juiz e não devem ser lidas como ganho. Onde havia risco, rodamos 3 vezes e
+      reportamos média ± desvio.</li>
+    <li><strong>Voz humana real ainda pendente.</strong> A robustez a ASR foi medida com fala
+      sintética (TTS) transcrita no próprio S24+; falta a bateria com voz humana em campo real.</li>
+    <li><strong>Latência de GPU não vale para o aparelho.</strong> Números de qualidade vêm da
+      bancada (GPU); latência/RAM sempre do dispositivo real (S24+, dumpsys).</li>
+    <li><strong>Projeções são projeções.</strong> A tabela "busca ~80%" da seção 8 é extrapolação
+      da conversão condicional medida, não medição.</li>
+  </ul>
+
+  <h3>Divergências brief × fonte (prevaleceu a fonte)</h3>
+  <ul class="clean">
+    <li><strong>v3 do buscador:</strong> o brief cita 52,3% R@2. É correto para a fusão FP32
+      (<code>retrieval3</code>); nos bins efetivamente <strong>embarcados</strong> a v4 mede
+      51,7% R@2 (<code>retrieval4</code>). Usamos ambos, rotulados.</li>
+    <li><strong>Teto do 27B em oráculo:</strong> 84,1% (<code>bench/prompt_teto</code>, prompt
+      <code>numeros</code>) e 84,3% (<code>tools_oraculo</code>/<code>sft_v3</code>); refeito com o
+      corpus corrigido deu <strong>82,1%</strong> (<code>slm_oraculo</code>) — diferença dentro do
+      ruído, porque nenhum dos 151 trechos-ouro do holdout resolve para a tabela corrompida.</li>
+    <li><strong>Custo bf16→Q4 no v3:</strong> o brief resume "−0,6 p.p. mas alucinação +6,7 p.p.".
+      Confirmado, mas de tabelas diferentes: −0,6 p.p. é aprovação em oráculo (calibração);
+      +6,7 p.p. é alucinação na busca real (34,0% → 40,7%).</li>
+    <li><strong>Latência do Nemotron:</strong> o brief cita ~1,2 s; a bancada ASR mede 2,03 s de
+      inferência pura (<code>asr/README.md</code>); no E2E do app mediu ~1,2 s
+      (<code>android/</code>). Ambos verdadeiros, medidos em contextos distintos.</li>
+    <li><strong>Recusa correta 47→100%:</strong> o valor exato de origem é 46,7% (v1) → 100%
+      (v2 r64), em <code>sft_v2</code>/<code>sft_v3</code>.</li>
+  </ul>
+
+  <p class="src" style="margin-top:24px">Documento gerado a partir dos relatórios versionados do
+    repositório <code>cemig-poc</code> (corpus, retrieval3/4, classifier, asr, bench/*, finetune2,
+    slm_oraculo, sft_v2/v3, sft_1_2b, tools_*, docai, android). Cada afirmação forte traz a
+    fonte no rodapé da seção. Todos os números foram conferidos na fonte; onde o brief divergiu,
+    prevaleceu a fonte. Paleta e tipografia seguem o design system CEIA.</p>
+</section>
+
+</div>
+</body>
+</html>
