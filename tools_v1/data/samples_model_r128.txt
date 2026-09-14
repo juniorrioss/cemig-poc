@@ -1,0 +1,32 @@
+# Casos do capitão + famílias — modelo tools_1_2b_r128 Q4 (determinístico, busca v4 real)
+
+===== Q: qual a distância segura pra trabalhar perto de rede de 13,8 kV? =====
+=== turno 1: 'qual a distância segura pra trabalhar perto de rede de 13,8 kV?'
+  chamou=True sintaxe_ok=True consulta='distância segura trabalho proximidade rede 13,8 kV 13.8 kV' nr=None
+  trechos=[{'id': 274, 'doc': 'nr-10', 'section': 'Anexo Ii'}, {'id': 902, 'doc': 'nr-16', 'section': 'Anexo Iv'}]
+  resposta: A distância segura para trabalhar perto de rede de 13,8 kV é de 0,20 a 0,70 metros. Essa faixa é definida na tabela de delimitação de zonas de risco e controle da NR-10, Anexo II. A norma estabelece que essa distância é aplicável para instalações elétricas energizadas em alta tensão. Não há distância específica para baixa tensão, pois o texto consultado trata apenas de instalações de potência.
+
+===== Q: o poste que eu preciso subir não parece firme, e agora? =====
+=== turno 1: 'o poste que eu preciso subir não parece firme, e agora?'
+  chamou=True sintaxe_ok=True consulta='instabilidade estrutural poste não firme imediato risco de queda de carga' nr=None
+  trechos=[{'id': 1153, 'doc': 'nr-22', 'section': '22.13'}, {'id': 1935, 'doc': 'nr-34', 'section': '34.10'}]
+  resposta: Paralise imediatamente a atividade e afaste os trabalhadores da área de risco. Execute as medidas corretivas necessárias, executadas por um trabalhador capacitado sob supervisão de profissional legalmente habilitado. A retomada das atividades só poderá ocorrer após a adoção dessas medidas corretivas e a liberação formal da área pela supervisão técnica responsável. Essa exigência está prevista no item 22.13.3.2 da NR-22.
+
+===== Q: posso trabalhar de camiseta rasgada nesse calor? =====
+=== turno 1: 'posso trabalhar de camiseta rasgada nesse calor?'
+  chamou=True sintaxe_ok=True consulta='proteção térmica vestuário de trabalho camiseta rasgada exposição ao calor' nr=None
+  trechos=[{'id': 2020, 'doc': 'nr-36', 'section': 'Anexo I'}, {'id': 59, 'doc': 'nr-04', 'section': 'Anexo I'}]
+  resposta: A norma consultada trata de confecção de vestuário e não responde à sua pergunta sobre calor. Para responder de fato, seria preciso verificar as diretrizes específicas de segurança térmica da NR-10.
+
+===== Q: bom dia, tudo certo? =====
+=== turno 1: 'bom dia, tudo certo?'
+  chamou=False sintaxe_ok=False consulta=None nr=None
+  trechos=[]
+  resposta: Olá, tudo bem por aqui. Estou pronto para ajudar. Como posso te auxiliar hoje?
+
+===== Q: obrigado, era só isso =====
+=== turno 1: 'obrigado, era só isso'
+  chamou=False sintaxe_ok=False consulta=None nr=None
+  trechos=[]
+  resposta: De nada, tudo bem por aqui. Estou pronto para ajudar com suas dúvidas sobre normas de segurança. Pode perguntar o que precisar.
+
