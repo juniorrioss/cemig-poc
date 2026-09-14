@@ -1,0 +1,913 @@
+{
+ "label": "base_qad",
+ "n": 90,
+ "approval_pct": 0.0,
+ "hallucination_pct": 85.6,
+ "got_gold_pct": 0.0,
+ "conv_goldcorrect_to_approved_pct": 0.0,
+ "topk": 2,
+ "deterministic": false,
+ "generated_at": "2026-09-14 04:47:29",
+ "per_item": [
+  {
+   "id": "pos_673",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Sim, conforme a NR-10, item 12.3, o órgão competente pode realizar a fiscalização sem intervenção externa em situações de risco iminente.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_597",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "De acordo com a NR-10, item 10.5.1, a velocidade máxima permitida de ascensão para descompressão é de 3,0 m/s.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1909",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3, a responsabilidade de vigilância deve ser exercida por pessoal designado dentro do local.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_677",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Oposte uma inspeção imediata e retire-se do local. Avalie sua condição e siga as normas de segurança para emergências aquáticas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_893",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.2, a distância mínima é estabelecida para evitar riscos de ignição e deve ser verificada conforme o tipo de veículo e condições ambientais.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_981",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, é necessário realizar uma verificação de estabilidade do solo antes de iniciar qualquer intervenção no canteiro.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1995",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, responsáveis por reparos em equipamentos elétricos são os técnicos autorizados; após o conserto, é necessário realizar uma verificação de segurança antes que qualquer operação seja realizada.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1886",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, o plano de resgate deve incluir a realização de treinamentos específicos para operação em espaços confinados.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_910",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O carregador de informações indica que o técnico responsável por emitir o laudo para avaliar a segurança da função é o responsável de manutenção do local.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1892",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3, o tempo de retenção é máximo 24 horas e a responsabilidade pela cópia recai sobre o autorizante.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_466",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.2, o equipamento deve ser inspecionado antes de cada operação para garantir a segurança dos trabalhadores.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1243",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a responsabilidade pela segurança do trabalhador recai sobre o empregador para garantir condições adequadas e prevenir riscos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1412",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Se a fiscalização identificar uma violação, deve-se seguir o art. 13 da NR-5, que exige correção imediata e documentação.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1585",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3, o sistema de proteção contra descarga eletrostática deve ser verificado após operações com líquidos inflamáveis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_490",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, o requisito mínimo de altura para o poste de segurança na escada fixa é de 1,50 metros.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1706",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A regra estabelece que mulheres em gravidez devem evitar o uso de qualquer substância tóxica, incluindo veneno de lavoura, para proteger a saúde da criança em desenvolvimento.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_909",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Sim, o trabalho de manutenção em veículos motorizados no serviço é classificado como atividade perigosa. Deve seguir as normas de segurança aplicáveis, como a NR-10, item 10.5.1.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1543",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a empresa deve ser penalizada com multa de até 50% do valor da multa mínima aplicável.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_880",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O limite de tempo não está definido na norma consultada.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_861",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, o intervalo mínimo entre atividades físicas é de 30 minutos para evitar fadiga excessiva.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1072",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 10.5.1, a mudança de tensão em 100 metros exige verificação do limite de tensão permitido para cabos de tensão.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1305",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, a penalidade por operar equipamento em estado de parada ou bloqueio é de até 50% do salário mínimo vigente.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_475",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a máquina rotográfica deve ser protegida contra riscos elétricos e manter distância de fontes de alta tensão. O pedal requer proteção contra choques elétricos e uso em áreas autorizadas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_904",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Isso não está nas normas consultadas. Verifique a NR-10, item 12.2, para detalhes sobre riscos elétricos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2179",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, a emissão fugitiva deve ser controlada com medidas técnicas específicas para evitar riscos à saúde.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_494",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, é necessário garantir que as plataformas estejam devidamente fixadas e protegidas contra movimentos verticais e horizontais para prevenir quedas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1154",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Deve-se verificar a norma de segurança elétrica aplicável ao material exposto. Consultar a NR-10, item 10.5.1, para orientações específicas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1296",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 4.2, a infração ocorre quando há falha no cumprimento do requisito de certificação para equipamentos elétricos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_788",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O limite de pressão permitido no túnel é conforme a NR-10, item 12.3.1, que estabelece o valor máximo de pressão estática para áreas de trabalho em ambientes subterrâneos. O tempo máximo de permanência deve ser limitado à segurança individual, geralmente não superior a 30 minutos, desde que haja as precauções adequadas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_687",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Sim, conforme a NR-10, item 12.3.1, exposição prolongada à luz negra pode comprometer a visão e exigir medidas de proteção.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1884",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, um espaço é considerado confinado quando apresenta condições de isolamento elétrico e não permite acesso direto à superfície externa.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1290",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a penalidade por omissão de registro está prevista.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_478",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, a proteção fixa deve ser aplicada em pontos de acesso seguros, enquanto a proteção móvel deve ser utilizada apenas quando necessário e com os dispositivos adequados.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_896",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "De acordo com a NR-10, item 12.3, o tamanho máximo permitido para recipientes que armazenam materiais inflamáveis é 2,0 metros cúbicos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_901",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Para obter o adicional de periculosidade, consulte a NR-10, item 10.5.1, que detalha as condições para esse benefício.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_436",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, o motor deve estar em condição de parada segura apenas quando a função de proteção de parada mecânica estiver ativada e acessível ao operador.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1530",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a empresa deve garantir a segurança dos trabalhadores e cumprir todas as normas técnicas aplicáveis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1900",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Antes de entrar, o equipamento deve estar em conformidade com a norma que exige verificação de estabilidade estrutural (NR-10, item 10.5.1).",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1682",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-5, item 12.3, a empresa deve estabelecer políticas claras de combate ao assédio e violência, garantir treinamento contínuo e criar canais seguros para denúncias.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1860",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3.1, a manipulação de amostras biológicas deve seguir procedimentos específicos para evitar contaminação e garantir resultados confiáveis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1207",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3, o plano de emergência deve ser elaborado e registrado conforme exigido pela legislação vigente.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_499",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 10.5.1, a altura máxima permitida para a cesta de trabalho é de 2,4 metros.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2085",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Antes de desligar, verifique se todos os sistemas estão desligados e certifique-se de que não há energia residual. Em seguida, envie o aviso para as equipes responsáveis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_691",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, a concentração de odores em ambientes de trabalho deve ser mantida abaixo de 0,1 mg/m³ para evitar riscos à saúde.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2101",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Não há informação sobre permissões para armazenamento de materiais no refeitório ou na área com produtos químicos. Você deve seguir as normas de segurança e isolamento estabelecidas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1472",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O código da norma aplicável é **NR-10**, item 10.5.1, que trata das condições gerais de segurança no trabalho com energia elétrica.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_362",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 10.5.1, a ação positiva envolve manter a estabilidade estrutural da máquina antes de qualquer operação.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_298",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3, a responsabilidade pela documentação da inspeção recai sobre o responsável pelo equipamento.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2098",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a empresa deve fornecer uma quantidade mínima de água potável para uso sanitário, com valores definidos por unidade de área e fluxo.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_916",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a gestão de resíduos radioativos deve seguir procedimentos específicos de segurança e autorização prévia; para desativação de instalações nucleares, aplique-se à NR-9, item 4.2.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1313",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, a falta de proteção em equipamentos elétricos pode configurar uma infração grave, podendo levar a riscos à segurança dos trabalhadores e ao não cumprimento das exigências legais.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_375",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, a interação entre equipamentos deve ser projetada para evitar movimentos forçados que possam causar danos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_86",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma que se aplica é a NR-15, item 12.1.2, que estabelece requisitos para equipes de segurança em empresas do setor de informática.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2099",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Deve verificar se há vazamentos ou corrosão na água e, caso necessário, realizar uma limpeza adequada conforme a NR-10, item 12.3.1.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_926",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O limite de iluminação recomendado é 500 lux para áreas de trabalho, e o nível de ruído deve estar abaixo de 70 dB para garantir conforto.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1907",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, o limite máximo de concentração de CO no ar é de 50 ppm para exposição de curto prazo e 25 ppm para exposição de longo prazo.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1952",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, o plano de emergência deve incluir rotas de evacuação claramente marcadas e treinamento periódico dos trabalhadores.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1071",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "conforme a NR-10, item 12.3.1, a distância mínima segue critérios específicos para evitar descargas elétricas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_34",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, a avaliação de risco deve considerar fatores como exposição a substâncias perigosas e condições ambientais para determinar a magnitude do perigo.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2045",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.2, o equipamento deve passar por uma limpeza pré-operacional para evitar contaminação durante o processo de desbaste.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2118",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A responsabilidade de verificar a alimentação e o pessoal do refeitório recai sobre o responsável pela área de saúde e segurança no local, conforme estabelecido na NR-12, item 3.2.1.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1652",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 10.5.1, o patrão deve realizar uma verificação de aptidão física e condições de saúde antes de permitir a subida ao barco.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_703",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, o limite máximo de exposição para trabalhadores expostos a solventes orgânicos voláteis como tolueno e xileno é de 10 mg/m³ durante 8 horas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_755",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O limite de concentração máxima permitida para formaldeído no ar do serviço é 0,1 mg/m³ conforme a NR-10, item 10.5.1.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1565",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 10.5.1, é necessário realizar uma verificação de estabilidade estrutural do poste antes de qualquer operação que possa gerar cargas significativas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_898",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3, a embalagem composta deve ser projetada para evitar liberação de substâncias tóxicas durante o manuseio e transporte.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2095",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, o número mínimo de banheiros para um edifício com mais de 50 pessoas é determinado pelo cálculo da área útil e critérios de acessibilidade.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_871",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Ao encontrar uma situação crítica como essa, siga imediatamente os procedimentos de emergência e informe os serviços de saúde.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_111",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, é obrigatório o SESMT para instalações de saúde e educação, incluindo clínicas e teatros.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1303",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.1.2, a empresa deve aplicar multa proporcional à gravidade da infração.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2172",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a documentação deve incluir o projeto técnico e os dados de identificação do cliente. A entrega deve ocorrer no prazo indicado no contrato, geralmente dentro de 5 dias úteis após a confirmação do pedido.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2143",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3, a alteração do limite do alarme deve ser feita apenas por pessoal autorizado e com registro no sistema.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_686",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, o serviço de segurança deve ser realizado por profissionais qualificados.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_996",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, é essencial realizar uma verificação de estabilidade estrutural antes de qualquer carga ser aplicada para evitar riscos à segurança no canteiro.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_357",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a largura mínima da escada fixa deve ser de 900 mm para acessar equipamentos em altura.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1280",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 7.5.8, subitem 1, a penalidade por atividade irregular é calculada em até 2% do valor da fatura, com sanção máxima de R$ 5.000,00.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1598",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Deve-se garantir que os cilindros de gás inerte estejam isolados e não em contato direto com os tanques de combustível inflamável, seguindo a NR-10, item 12.3.1, para evitar riscos de ignição.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1456",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "conforme a NR-10, item 12.3, a responsabilidade por sinais de perigo não deve ser ignorada.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_726",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "De acordo com a NR-10, item 12.1.2, a concentração de partículas particuladas deve ser mantida abaixo de 10 µg/m³ para áreas de risco ocupacional. Cumprir esse valor evita liberação de riscos à saúde.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1550",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Conforme a NR-10, item 10.5.1, a gravidade da multa depende do descumprimento específico; consulte a norma para detalhes exatos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1712",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, a distância mínima para a barraca de armazenamento de veneno deve ser de 15 metros do ponto mais próximo de residência humana.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1164",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 10.5.1, é necessário manter distância de segurança e garantir proteção individual durante operações subterrâneas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1969",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "conforme a NR-10, item 10.5.1, o equipamento deve estar em posição estável antes de ser amarrado.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1825",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3.1, o período de retenção do prontuário médico varia conforme a legislação local, mas geralmente recomenda-se manter o documento por pelo menos cinco anos após a última consulta ou evento relevante.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1181",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O sistema não possui a ferramenta para buscar normas específicas com base em um local como \"represa do minério\". Por favor, forneça o número da norma ou detalhes relevantes para que eu possa consultar a legislação aplicável.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1932",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Verifique a integridade dos conectores e a presença de proteção contra choque elétrico conforme a NR-10, item 3.2. Certifique-se de que o equipamento esteja em boas condições antes do início do turno.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_484",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 12.3.1, o engate deve respeitar os requisitos de segurança para evitar movimentos laterais excessivos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1885",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "conforme a NR-10, item 10.5.1, a empresa deve realizar verificações periódicas de integridade dos equipamentos em contato com o solo e aplicar medidas preventivas para evitar riscos à saúde dos trabalhadores.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_888",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Conforme a NR-10, item 12.3, a barreira deve ser projetada para impedir acesso não autorizado e garantir a segurança dos trabalhadores.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_725",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Deve-se seguir as normas de segurança elétrica, como a NR-10, para garantir que os trabalhadores não estejam expostos a riscos.",
+   "consulta": null,
+   "nr": null
+  }
+ ]
+}

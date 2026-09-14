@@ -1,0 +1,913 @@
+{
+ "label": "sft_1_2b_r64_notools",
+ "n": 90,
+ "approval_pct": 0.0,
+ "hallucination_pct": 84.4,
+ "got_gold_pct": 0.0,
+ "conv_goldcorrect_to_approved_pct": 0.0,
+ "topk": 2,
+ "deterministic": false,
+ "generated_at": "2026-09-14 04:51:54",
+ "per_item": [
+  {
+   "id": "pos_673",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 12.1.2, determina que a fiscalização é exclusiva do empregador, exceto para situações de risco iminente ou quando o empregado for autuado. O governo pode realizar inspeções apenas com base em denúncias ou investigações. Não há no texto consultado a possibilidade de fiscalização unilateral por parte do governo.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_597",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da NR-10 e não contém informações sobre limites de descompressão. Para responder corretamente, é preciso verificar as seções específicas da NR-10 que tratam da segurança em mergulho ou trabalho subaquático.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1909",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança em instalações elétricas e não define o conceito de vigia. Para responder à sua dúvida, é necessário consultar a NR-10, que trata da segurança no trabalho com eletricidade.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_677",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de segurança em instalações elétricas e não responde à sua pergunta sobre emergências. Para obter orientações sobre primeiros socorros ou evacuação, é necessário consultar a NR-15, que trata da segurança em instalações e serviços de saúde.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_893",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da segurança em instalações elétricas e não contém a norma sobre distâncias de segurança para caminhões-tanque. Para responder à sua dúvida, é necessário consultar a NR-20 ou a NR-15, que regulamentam a segurança em transporte e manuseio de combustíveis inflamáveis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_981",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Antes de iniciar qualquer trabalho, você deve verificar a NR-10, especificamente o item 13.5.1, que exige a inspeção do chão e dos arredores para garantir a estabilidade estrutural. A norma também determina que o poste não pode ser subido sem essa inspeção prévia. Além disso, o item 13.6.2, alínea B, exige a verificação do chão e do arredor antes de iniciar qualquer atividade. Essas exigências são",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1995",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança em instalações elétricas e não responde à sua pergunta sobre reparos e inspeção. Para responder corretamente, é preciso verificar as disposições específicas da NR-10 sobre manutenção e inspeção de equipamentos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1886",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da NR-10 e não responde à sua pergunta sobre resgate e treinamento. Para responder, é preciso verificar as seções específicas da NR-10 que tratam de primeiros socorros e treinamento em situações de emergência.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_910",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de inspeções de postes e não responde à sua dúvida sobre a responsabilidade do laudo. Para esclarecer quem realiza a análise, você precisa consultar a NR-10, que define as obrigações da empresa em relação à segurança no trabalho.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1892",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho da NR-10, item 3.1.2, determina que o autorização deve ser guardada por 30 dias úteis após a inspeção inicial. O documento é mantido na área de trabalho do responsável pela segurança ou no local de trabalho. A cópia não é guardada por mais de 30 dias, conforme o item 3.1.2 da NR-10.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_466",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de segurança em instalações elétricas e não contém informações sobre máquinas de pregação. Para responder à sua dúvida, é preciso verificar as normas específicas de segurança para máquinas industriais.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1243",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata da segurança em instalações elétricas e não define responsabilidades financeiras. Para saber quem paga a vestimenta e quais são as obrigações de substituição, é preciso consultar a NR-12, que trata dos equipamentos de proteção individual.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1412",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A fiscalização aplica multas e penalidades administrativas com base na NR-10, conforme o item 13, que determina a responsabilidade do empregador pela segurança do trabalho. O texto específico da infração varia conforme o descumprimento exato das normas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1585",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, determina que o equipamento de proteção individual deve ser insalubre para a exposição a gases inflamáveis e vapores tóxicos. O trecho consultado não especifica os requisitos técnicos de instalação ou manutenção para esse cenário.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_490",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho de segurança do trabalho NR-10, item 13.8.1, determina que o poste deve ser elevado a pelo menos 1,5 metros acima do solo para garantir a segurança. A altura mínima exata é de 1,5 m, conforme o trecho encontrado no contexto.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1706",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata da segurança em instalações elétricas e não contém regras sobre gestação. Para responder à sua dúvida, é preciso consultar a NR-12 ou a NR-15, que tratam da segurança em serviços com veneno de lavoura.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_909",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Sim, o trabalho é considerado perigoso. A NR-18, item 1, define que a atividade é de risco quando a probabilidade de acidente é maior que 0,5. O contexto consultado não especifica o grau de risco exato para o serviço de motorista de moto.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1543",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de inspeção de postes e não responde à sua pergunta sobre multas. Para responder de fato, seria preciso verificar as normas trabalhistas e de segurança do trabalho aplicáveis ao caso específico.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_880",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado não especifica os limites de tempo ou profundidade para mergulho. Para responder corretamente, é necessário consultar a NR-10, que detalha os requisitos de segurança para atividades subaquáticas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_861",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de segurança em obras e não define a repetição de mergulhos. Para responder de fato, é preciso verificar as NR-10 e o item específico sobre trabalho subaquático.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1072",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de instalações elétricas e não responde à sua pergunta sobre mudanças de distância com o comprimento do cabo. Para responder de fato, é preciso verificar a NR-10, que trata da segurança em instalações elétricas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1305",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança em instalações elétricas, não de infração administrativa. Para saber sobre multas, é preciso consultar a NR-10 ou a legislação trabalhista específica da sua empresa.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_475",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, exige que a máquina rotográfica esteja em instalação estável antes de iniciar qualquer operação. O pedal deve ser projetado para evitar o contato com superfícies duras e resistir a impactos. A NR-12, item 6.2.3, determina que o pedal deve ser fixo e não possuir partes móveis. A NR-15, item 1.5.4, exige que o pedal seja de material inerte e resistente à abrasão.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_904",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A NR-10, item 13.8.1, determina que o risco de acidente com energia elétrica é classificado como grave. A NR-10, item 12.1.2, exige que a empresa realize a inspeção do equipamento antes da operação. O trecho consultado trata de instalações elétricas e não aborda riscos de acidentes com energia elétrica. Portanto, não é possível afirmar quais medidas específicas são obrigatórias para mitigar esse r",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2179",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A emissão fugitiva é um fenômeno em que o gás inflamável escapa do recipiente devido à diferença de pressão entre o interior e o exterior. Para evitar esse risco, é obrigatório realizar a inspeção do recipiente antes de qualquer operação. A norma consultada trata da segurança em instalações elétricas e não aborda diretamente a emissão fugitiva.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_494",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 10.5.1, exige a presença de guarda-corpos e escadas com proteção contra quedas. O trecho consultado trata da inspeção de postes elétricos, não da proteção de plataformas. Portanto, não é possível afirmar quais equipamentos específicos são obrigatórios para plataformas com base apenas neste contexto.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1154",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A norma consultada trata de segurança em obras e não aborda diretamente o uso de materiais na escavação. Para responder à sua dúvida, é preciso verificar as disposições específicas sobre ações de estabilização e proteção contra quedas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1296",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata apenas da inspeção de postes e não contém o código da infração para o item 4.2 da NR-10. Para responder à sua dúvida, é necessário consultar a tabela de infrações da NR-10.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_788",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da NR-10, que trata de segurança em instalações elétricas, não da NR-20, que trata de segurança em mineração. Para responder à sua dúvida, é preciso consultar a NR-20, que define os limites de pressão e tempo máximo de permanência em túneis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_687",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A exposição a luz negra não é classificada como insalubridade, pois o trecho consultado trata de segurança em instalações elétricas e não de condições ambientais. Para determinar a insalubridade, você precisa consultar a NR-10, que define os limites de exposição a agentes biológicos e químicos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1884",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A definição de espaço confinado está no item 1 da NR-10, que determina a necessidade de medidas específicas de segurança. O trecho consultado não especifica os critérios técnicos exatos para essa classificação.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1290",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata apenas da inspeção de postes e não contém informações sobre a classificação de multas. Para responder à sua dúvida, é necessário consultar a NR-10, que define os limites de exposição e as consequências das infrações.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_478",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A proteção fixa é aquele equipamento de proteção individual que está preso ao corpo do trabalhador, como o capacete ou o casco. A proteção móvel é aquela que pode ser movida, como o sapato ou o óculos de proteção. O trecho consultado trata apenas da proteção fixa e não contém regras sobre ferramentas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_896",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da segurança em obras e não contém informações sobre armazenamento de produtos inflamáveis. Para responder à sua dúvida, é necessário consultar a NR-20, que trata dos equipamentos e instalações para o manuseio de materiais inflamáveis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_901",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, determina a exigência de seguro para profissionais de segurança do trabalho. O texto consultado não especifica o valor exato do adicional de periculosidade para vigas ou escoltas. Portanto, não é possível afirmar o montante específico com base apenas neste trecho.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_436",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da inspeção de postes e não define o significado técnico do estado de parada segura. Para responder corretamente, é preciso verificar a NR-10, que trata das condições de trabalho e segurança em instalações elétricas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1530",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, determina que a empresa é autuada com base na gravidade da infração. O texto da norma especifica que a penalidade é de multa, mas o grau exato depende do tipo de descumprimento. Não há menção de suspensão ou interdição automática no trecho consultado.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1900",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Antes de entrar no espaço fechado, você deve realizar a inspeção estrutural do poste para verificar se ele é seguro para subir. Isso é obrigatório conforme o item 13.8 da NR-10. A norma exige que a subida seja feita apenas com equipamento de proteção individual e sem qualquer carga adicional.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1682",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A consulta não responde diretamente à sua pergunta sobre CIPA, pois o trecho encontrado trata de inspeção de postes elétricos. Para responder corretamente, seria preciso verificar a NR-10, que trata da segurança em instalações elétricas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1860",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A norma consultada trata de segurança em obras e não contém regras sobre manipulação de agentes biológicos. Para responder à sua dúvida, é preciso consultar a NR-32, que trata da segurança e saúde no trabalho com agentes biológicos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1207",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, exige o registro do plano de emergência para barragens. A NR-12, item 6.2.1, determina a obrigatoriedade da inspeção técnica. A NR-20, item 4.1.1, exige a elaboração do plano de prevenção e controle de riscos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_499",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A consulta não especifica a altura máxima da cesta de trabalho, pois o trecho encontrado trata apenas da estabilidade estrutural do poste. Para responder à sua pergunta, é necessário consultar a NR-10, que define os requisitos de segurança para máquinas e equipamentos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2085",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Antes de desligar a plataforma, você deve realizar uma inspeção estrutural para verificar se o poste está seguro. Após isso, é obrigatório enviar um aviso de emergência à segurança do trabalho. Isso garante que a empresa cumpra as exigências legais e evite acidentes.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_691",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, determina que o limite de tolerância para o odor é de 0,5 ppm, não sendo permitida qualquer concentração acima desse valor. Portanto, a medição acima desse limite é considerada problemática e deve ser corrigida imediatamente.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2101",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 1.1.2, determina que o refeitório deve ser localizado longe de áreas com risco de incêndio e perigos químicos. O texto exige que a distância mínima seja de 1,5 metros do ponto de inflamabilidade do produto. Além disso, a NR-10, item 2.1.3, proíbe a alimentação de alimentos na área de trabalho. Portanto, você não pode comer no refeitório ou no local da área química.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1472",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata apenas da inspeção de postes e não contém informações sobre códigos de infração. Para saber o código específico, você precisa consultar a NR-10, que detalha as penalidades por descumprimento das normas de segurança do trabalho.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_362",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma chama de ação positiva o estado em que o equipamento está operando dentro dos limites de segurança. Por exemplo, a NR-10, item 10.5.1, define que a ação positiva é quando a máquina está funcionando normalmente e sem falhas. Essa definição consta no texto da norma.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_298",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.1.2, determina que a inspeção deve ser realizada antes de qualquer trabalho de manutenção ou reparo. O relatório de inspeção é obrigatório para todos os equipamentos elétricos e não pode ser ignorado. A responsabilidade pela assinatura do relatório recai sobre o responsável pelo local de trabalho, conforme o item 13.1.3.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2098",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da segurança em instalações elétricas e não contém informações sobre o uso de água limpa em banheiros ou chuveiros. Para responder à sua dúvida, é necessário consultar a NR-10, que trata dos requisitos de higiene e saneamento.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_916",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança do trabalho em construção e não aborda especificamente o manuseio de resíduos radioativos ou a desativação de instalações nucleares. Para responder à sua dúvida, seria necessário consultar a NR-20, que trata da segurança em instalações nucleares.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1313",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança em instalações elétricas e não define infrações de máquinas. Para saber a gravidade e o tipo de infração, é preciso consultar a NR-10, que trata da segurança no trabalho com máquinas e equipamentos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_375",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata da segurança em instalações elétricas e não define o conceito de empurrão mecânico. Para responder à sua dúvida, é necessário consultar a NR-10, que trata da segurança no trabalho com máquinas e equipamentos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_86",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata apenas da inspeção de postes elétricos e não contém informações sobre a composição ou requisitos de equipes de SESMT. Para responder à sua dúvida, é necessário consultar a NR-10, que define os critérios para a segurança em serviços de emergência.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2099",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, determina que o descarte de resíduos líquidos deve seguir rigorosamente as normas de classificação e tratamento específicas para cada tipo de substância. O trecho consultado não especifica a classificação exata do material, então não é possível afirmar qual procedimento aplicar.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_926",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de segurança em obras e não contém regras sobre iluminação ou ruído. Para responder à sua dúvida, é preciso verificar as normas específicas de ergonomia e conforto acústico.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1907",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da NR-10 e não contém informações sobre limites de oxigênio. Para responder à sua dúvida, é necessário consultar a NR-15, que trata dos gases inflamáveis e do oxigênio.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1952",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 10.1, exige a presença de um responsável por emergências e a identificação de rotas de evacuação. O trecho consultado não especifica os requisitos para o plano de emergência do canteiro.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1071",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da NR-10 e não contém os valores específicos de distância para evitar apanhamento. Para responder com base na norma, seria necessário consultar a NR-15, que trata da segurança em instalações elétricas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_34",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de inspeção de postes e não responde à sua pergunta sobre cálculo de risco. Para isso, você precisa consultar a NR-18, que trata dos riscos e agentes biológicos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2045",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Antes de ligar a máquina, inspecione a estrutura para verificar se ela está firme e segura. A norma consultada trata de segurança em instalações elétricas, não de manutenção de equipamentos mecânicos. Portanto, não posso afirmar quais são os passos específicos de desmontagem ou montagem com base apenas neste contexto.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2118",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata da segurança em instalações elétricas e não define responsabilidades de alimentação. Para saber quem é responsável pela fiscalização do refeitório, você precisa consultar a NR-5 ou a legislação trabalhista sobre serviços de alimentação.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1652",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata da segurança em instalações elétricas e não aborda a aptidão do patrão do barco. Para responder à sua dúvida, é necessário consultar a NR-10, que define os requisitos de capacitação e saúde mental para operadores de máquinas e equipamentos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_703",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da segurança em instalações elétricas e não contém informações sobre limites de exposição a produtos químicos. Para responder à sua dúvida, é necessário consultar a NR-20, que trata dos limites de exposição ocupacional a agentes químicos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_755",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da inspeção de postes elétricos e não contém a informação sobre o limite de concentração de formaldeído. Para responder à sua dúvida, é necessário consultar a NR-10, que trata dos limites de exposição ocupacional.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1565",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de instalações elétricas e não responde à sua pergunta sobre segurança em escadas. Para responder corretamente, é necessário consultar a NR-10, que trata da segurança em instalações e serviços com eletricidade.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_898",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança do trabalho e não define o conceito de embalagem composta. Para responder, é preciso verificar a NR-10, que trata da segurança em instalações e serviços de construção.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2095",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de inspeção de postes e não responde à sua pergunta sobre banheiros. Para saber o número mínimo de banheiros, você precisa consultar a NR-10, que trata da ergonomia e do trabalho em altura.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_871",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança em instalações elétricas e não aborda emergências médicas. Para responder sobre primeiros socorros, você precisa consultar a NR-15 ou a NR-35, que tratam da saúde ocupacional e da segurança no trabalho.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_111",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de segurança em obras e não responde à sua pergunta sobre SESMT. Para esclarecer, é preciso verificar as normas específicas de segurança para instalações e serviços de saúde.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1303",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da inspeção de postes elétricos e não contém informações sobre multas. Para saber o valor da penalidade, você precisa consultar a NR-10, que trata das condições de trabalho em instalações elétricas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2172",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança em instalações elétricas e não contém regras sobre papeladas de plataformas marítimas. Para responder à sua dúvida, é preciso verificar as especificações da NR-18 ou a legislação trabalhista aplicável ao trabalho offshore.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_2143",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, determina que você deve desligar o alarme imediatamente ao detectar fumaça ou gás inflamável. O texto exige a interrupção do sistema para garantir a segurança do ambiente. Não é possível afirmar os valores numéricos específicos de pressão ou fluxo, pois esses dados não constam no trecho consultado.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_686",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de segurança do trabalho e não responde à sua pergunta sobre investigações policiais. Para esclarecer o procedimento legal, é preciso verificar as normas específicas de investigação criminal ou os códigos processuais aplicáveis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_996",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de inspeção de postes elétricos e não responde à sua pergunta sobre segurança em canteiros. Para responder, é preciso verificar as NR-10, especificamente o item 13.8, que detalha os requisitos de proteção individual e coletiva.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_357",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de segurança em instalações elétricas e não define dimensões de escadas. Para responder à sua dúvida, é necessário consultar a NR-10, que trata da segurança no trabalho com eletricidade.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1280",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da inspeção de postes e não contém informações sobre multas para infrações do item 7.5.8 da NR-10. Para saber o valor da penalidade, é necessário consultar a tabela de infrações específica da NR-10.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1598",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata da separação de cilindros de gás inerte e não responde à sua pergunta sobre armazenamento de tanques de combustível. Para responder corretamente, seria preciso verificar as disposições específicas de segurança para o manuseio e armazenamento de combustíveis inflamáveis.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1456",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata da inspeção de postes e não contém informações sobre multas por descumprimento de sinalização. Para responder à sua dúvida, é necessário consultar a NR-10, que trata das condições de trabalho em instalações elétricas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_726",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A consulta não responde diretamente à sua pergunta sobre a meta de qualidade do ar para o veneno cancerígeno. O trecho encontrado trata da NR-10 e da segurança em instalações elétricas, não da exposição a agentes químicos. Para responder corretamente, seria preciso verificar as normas específicas de controle de agentes químicos ou biológicos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1550",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A consulta não responde diretamente à gravidade da multa, pois o trecho encontrado trata apenas da inspeção de postes e não do cálculo do valor da infração. Para determinar a gravidade, é necessário consultar a NR-10, que define os limites de exposição e as penalidades.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1712",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A distância mínima entre a barraca e a casa é de 30 metros. Essa exigência está prevista na NR-10, item 10.5.1, que determina a separação mínima para garantir a segurança dos trabalhadores.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1164",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de instalações elétricas e não contém regras sobre explosões subterrâneas. Para responder à sua dúvida, é preciso consultar a NR-18, que trata da prevenção de riscos e do trabalho em condições perigosas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1969",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata da segurança em instalações elétricas e não responde à sua dúvida sobre o bloco de trabalho. Para responder, é preciso verificar a NR-10, que trata da segurança em instalações e serviços de construção.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1825",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado não especifica o prazo de retenção do prontuário médico para profissionais de radiodiagnóstico. Para responder com precisão, é necessário consultar a NR-10, que trata da segurança em instalações e equipamentos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1181",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho encontrado é apenas um aviso sobre inspeção de postes e não contém a norma específica para a represa do minério. Para responder à sua dúvida, é necessário consultar a NR-10, que trata da segurança em instalações hidráulicas e elétricas.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1932",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Antes de iniciar o turno, você deve verificar a estabilidade estrutural do poste para garantir que ele não seja instável. A certificação desse equipamento é realizada por um técnico em segurança do trabalho, como o engenheiro de segurança ou o supervisor. O documento de certificação deve ser apresentado ao chegar ao local de trabalho.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_484",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de segurança em instalações elétricas e não contém as informações sobre acoplamento de reboques. Para responder corretamente, é preciso verificar a NR-10, que trata da segurança em máquinas e equipamentos.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_1885",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A empresa deve realizar inspeções periódicas da estrutura para garantir a segurança da galera. É obrigatório verificar a integridade do revestimento e a ausência de fissuras ou desgaste. Além disso, a empresa precisa manter o registro das inspeções e reportar quaisquer anomalias imediatamente. Isso está previsto na NR-10, item 6.1.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_888",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Sim, é obrigatório. A NR-10, item 12.1.2, exige que a empresa defina e instale uma barreira física para isolar o perímetro de segurança. O trecho consultado afirma que \"a barreira deve ser de altura mínima de 1,5 m e resistência ao impacto de 50 J\". Portanto, a norma exige que a estrutura seja de altura mínima de 1,5 metros e com resistência de impacto de 50 Joules.",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_725",
+   "called": false,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-10, item 13.8.1, exige que o trabalhador realize a inspeção do equipamento antes de iniciar qualquer atividade. O trecho consultado não especifica os procedimentos técnicos de descontaminação ou os limites de exposição para esse produto específico. Portanto, não é possível afirmar quais medidas imediatas devem ser tomadas com base apenas neste contexto.",
+   "consulta": null,
+   "nr": null
+  }
+ ]
+}
