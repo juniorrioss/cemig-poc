@@ -1,0 +1,17 @@
+{
+ "tools_r128_bf16": {
+  "TP": 38,
+  "FN": 7,
+  "FP": 1,
+  "TN": 29,
+  "n_should_refuse": 45,
+  "n_answerable": 30,
+  "recusa_correta_recall_pct": 84.4,
+  "recusa_indevida_fp_pct": 3.3,
+  "precision_pct": 97.4,
+  "f1_pct": 90.5,
+  "accuracy_pct": 89.3,
+  "parcial_n": 10,
+  "parcial_refused_pct": 10.0
+ }
+}

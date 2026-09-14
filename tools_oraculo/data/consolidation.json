@@ -1,0 +1,374 @@
+{
+ "task": "poc-tools-oraculo",
+ "checkpoint": "tools_1_2b_r128 (melhor do tools_v1; ranks quase indiferentes na barra de erro)",
+ "regua": "bench/regua (ruler + judge_regua 27B) + juiz de recusa, limiar 0.5",
+ "judge": "vLLM 27B 10.100.0.111:8005 (roteável deste host)",
+ "medicao1_oraculo": {
+  "tools_r128_q4": {
+   "approval": {
+    "mean": 31.4,
+    "std": 4.1
+   },
+   "hallucination": {
+    "mean": 28.2,
+    "std": 2.2
+   },
+   "coverage": {
+    "mean": 0.4,
+    "std": 0.0
+   },
+   "avg_tok": {
+    "mean": 154.0,
+    "std": 3.3
+   },
+   "n_runs": 3
+  },
+  "tools_r128_bf16": {
+   "approval": {
+    "mean": 34.9,
+    "std": 2.4
+   },
+   "hallucination": {
+    "mean": 24.3,
+    "std": 0.8
+   },
+   "coverage": {
+    "mean": 0.5,
+    "std": 0.0
+   },
+   "avg_tok": {
+    "mean": 149.5,
+    "std": 2.3
+   },
+   "n_runs": 3
+  },
+  "refs": {
+   "base_qad_q4": {
+    "approval": 2.7,
+    "hallucination": 2.0
+   },
+   "sft_1_2b_r64_q4": {
+    "approval": 22.3,
+    "hallucination": 23.0
+   },
+   "sft_1_2b_r64_bf16": {
+    "approval": 24.3,
+    "hallucination": 18.9
+   },
+   "lfm2.6b_v3_r64_q4": {
+    "approval": 46.4,
+    "hallucination": 21.2
+   },
+   "lfm2.6b_v3_r64_bf16": {
+    "approval": 47.0,
+    "hallucination": 21.9
+   },
+   "qwen27b": {
+    "approval": 84.3,
+    "hallucination": 2.6
+   }
+  }
+ },
+ "medicao2_recusa": {
+  "tools_r128_bf16": {
+   "TP": 38,
+   "FN": 7,
+   "FP": 1,
+   "TN": 29,
+   "n_should_refuse": 45,
+   "n_answerable": 30,
+   "recusa_correta_recall_pct": 84.4,
+   "recusa_indevida_fp_pct": 3.3,
+   "precision_pct": 97.4,
+   "f1_pct": 90.5,
+   "accuracy_pct": 89.3,
+   "parcial_n": 10,
+   "parcial_refused_pct": 10.0
+  },
+  "tools_r128_q4": {
+   "TP": 35,
+   "FN": 10,
+   "FP": 2,
+   "TN": 28,
+   "n_should_refuse": 45,
+   "n_answerable": 30,
+   "recusa_correta_recall_pct": 77.8,
+   "recusa_indevida_fp_pct": 6.7,
+   "precision_pct": 94.6,
+   "f1_pct": 85.4,
+   "accuracy_pct": 84.0,
+   "parcial_n": 10,
+   "parcial_refused_pct": 10.0
+  },
+  "refs": {
+   "sft_1_2b_r64_q4": {
+    "TP": 37,
+    "FN": 8,
+    "FP": 0,
+    "TN": 30,
+    "n_should_refuse": 45,
+    "n_answerable": 30,
+    "recusa_correta_recall_pct": 82.2,
+    "recusa_indevida_fp_pct": 0.0,
+    "precision_pct": 100.0,
+    "f1_pct": 90.2,
+    "accuracy_pct": 89.3,
+    "parcial_n": 10,
+    "parcial_refused_pct": 40.0
+   },
+   "lfm2.6b_v3_r64_q4": {
+    "TP": 45,
+    "FN": 0,
+    "FP": 4,
+    "TN": 26,
+    "n_should_refuse": 45,
+    "n_answerable": 30,
+    "recusa_correta_recall_pct": 100.0,
+    "recusa_indevida_fp_pct": 13.3,
+    "precision_pct": 91.8,
+    "f1_pct": 95.7,
+    "accuracy_pct": 94.7,
+    "parcial_n": 10,
+    "parcial_refused_pct": 20.0
+   },
+   "qwen27b": {
+    "TP": 43,
+    "FN": 2,
+    "FP": 1,
+    "TN": 29,
+    "n_should_refuse": 45,
+    "n_answerable": 30,
+    "recusa_correta_recall_pct": 95.6,
+    "recusa_indevida_fp_pct": 3.3,
+    "precision_pct": 97.7,
+    "f1_pct": 96.6,
+    "accuracy_pct": 96.0,
+    "parcial_n": 10,
+    "parcial_refused_pct": 20.0
+   }
+  }
+ },
+ "medicao3_hibrido": {
+  "A_hibrido": {
+   "q4": {
+    "approval": {
+     "mean": 19.2,
+     "std": 0.6
+    },
+    "hallucination": {
+     "mean": 34.2,
+     "std": 0.8
+    },
+    "coverage": {
+     "mean": 0.3,
+     "std": 0.0
+    },
+    "avg_tok": {
+     "mean": 156.0,
+     "std": 1.7
+    },
+    "n_runs": 3,
+    "called_pct": {
+     "mean": 99.1,
+     "std": 0.8
+    },
+    "got_gold_when_called_pct": {
+     "mean": 51.2,
+     "std": 0.2
+    }
+   },
+   "bf16": {
+    "approval": {
+     "mean": 19.2,
+     "std": 1.4
+    },
+    "hallucination": {
+     "mean": 31.8,
+     "std": 0.9
+    },
+    "coverage": {
+     "mean": 0.3,
+     "std": 0.0
+    },
+    "avg_tok": {
+     "mean": 155.1,
+     "std": 0.9
+    },
+    "n_runs": 3,
+    "called_pct": {
+     "mean": 100.0,
+     "std": 0.0
+    },
+    "got_gold_when_called_pct": {
+     "mean": 51.0,
+     "std": 0.0
+    }
+   }
+  },
+  "B_tools_puro": {
+   "q4": {
+    "approval": {
+     "mean": 7.1,
+     "std": 1.4
+    },
+    "hallucination": {
+     "mean": 39.7,
+     "std": 5.0
+    },
+    "coverage": {
+     "mean": 0.2,
+     "std": 0.0
+    },
+    "avg_tok": {
+     "mean": 146.8,
+     "std": 1.1
+    },
+    "n_runs": 3,
+    "called_pct": {
+     "mean": 98.5,
+     "std": 0.3
+    },
+    "got_gold_when_called_pct": {
+     "mean": 24.7,
+     "std": 1.7
+    }
+   },
+   "bf16": {
+    "approval": {
+     "mean": 8.2,
+     "std": 0.6
+    },
+    "hallucination": {
+     "mean": 42.6,
+     "std": 3.8
+    },
+    "coverage": {
+     "mean": 0.2,
+     "std": 0.0
+    },
+    "avg_tok": {
+     "mean": 144.3,
+     "std": 1.2
+    },
+    "n_runs": 3,
+    "called_pct": {
+     "mean": 100.0,
+     "std": 0.0
+    },
+    "got_gold_when_called_pct": {
+     "mean": 18.8,
+     "std": 1.7
+    }
+   }
+  },
+  "C_pipeline_fixo_sem_tool": {
+   "q4": {
+    "approval": 10.1,
+    "hallucination": 33.1
+   },
+   "bf16": {
+    "approval": 16.2,
+    "hallucination": 30.4
+   }
+  },
+  "note": "C = sft_1_2b_r64 + busca v4 SEMPRE (retrieved_pack_151, R@2 51%); reuso de sft_1_2b/consolidation.json."
+ },
+ "medicao4_alucinacao": {
+  "A_hibrido_q4": {
+   "total_items": 453,
+   "total_hall": 155,
+   "by_condition": {
+    "gold_ok": {
+     "n": 230,
+     "hall_count": 82,
+     "hall_rate_pct": 35.7,
+     "share_of_all_hall_pct": 52.9
+    },
+    "gold_wrong": {
+     "n": 219,
+     "hall_count": 72,
+     "hall_rate_pct": 32.9,
+     "share_of_all_hall_pct": 46.5
+    },
+    "no_call": {
+     "n": 4,
+     "hall_count": 1,
+     "hall_rate_pct": 25.0,
+     "share_of_all_hall_pct": 0.6
+    }
+   }
+  },
+  "A_hibrido_bf16": {
+   "total_items": 453,
+   "total_hall": 144,
+   "by_condition": {
+    "gold_ok": {
+     "n": 231,
+     "hall_count": 86,
+     "hall_rate_pct": 37.2,
+     "share_of_all_hall_pct": 59.7
+    },
+    "gold_wrong": {
+     "n": 222,
+     "hall_count": 58,
+     "hall_rate_pct": 26.1,
+     "share_of_all_hall_pct": 40.3
+    },
+    "no_call": {
+     "n": 0,
+     "hall_count": 0,
+     "hall_rate_pct": null,
+     "share_of_all_hall_pct": 0.0
+    }
+   }
+  },
+  "B_tools_puro_q4": {
+   "total_items": 453,
+   "total_hall": 180,
+   "by_condition": {
+    "gold_ok": {
+     "n": 110,
+     "hall_count": 54,
+     "hall_rate_pct": 49.1,
+     "share_of_all_hall_pct": 30.0
+    },
+    "gold_wrong": {
+     "n": 336,
+     "hall_count": 126,
+     "hall_rate_pct": 37.5,
+     "share_of_all_hall_pct": 70.0
+    },
+    "no_call": {
+     "n": 7,
+     "hall_count": 0,
+     "hall_rate_pct": 0.0,
+     "share_of_all_hall_pct": 0.0
+    }
+   }
+  },
+  "B_tools_puro_bf16": {
+   "total_items": 453,
+   "total_hall": 193,
+   "by_condition": {
+    "gold_ok": {
+     "n": 85,
+     "hall_count": 39,
+     "hall_rate_pct": 45.9,
+     "share_of_all_hall_pct": 20.2
+    },
+    "gold_wrong": {
+     "n": 368,
+     "hall_count": 154,
+     "hall_rate_pct": 41.8,
+     "share_of_all_hall_pct": 79.8
+    },
+    "no_call": {
+     "n": 0,
+     "hall_count": 0,
+     "hall_rate_pct": null,
+     "share_of_all_hall_pct": 0.0
+    }
+   }
+  }
+ }
+}

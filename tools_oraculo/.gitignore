@@ -1,0 +1,11 @@
+# dados e artefatos reprodutíveis pesados (não commitar): gerações + scores por-item.
+data/gen_*.json
+data/score_*.json
+logs/*.log
+__pycache__/
+*.pyc
+# manter artefatos LEVES de procedência/relatório:
+!data/consolidation.json
+!data/refusal_confusion_bf16.json
+!data/refusal_confusion_q4.json
+!data/samples_captain.txt
