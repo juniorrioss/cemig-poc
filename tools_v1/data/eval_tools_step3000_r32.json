@@ -1,0 +1,4491 @@
+{
+ "label": "tools_step3000_r32",
+ "url": "http://100.79.169.101:8500",
+ "topk": 2,
+ "deterministic": false,
+ "generated_at": "2026-09-14 04:37:40",
+ "decision": {
+  "confusion": {
+   "tp": 93,
+   "fp": 10,
+   "fn": 0,
+   "tn": 50,
+   "n": 153,
+   "precision": 90.3,
+   "recall": 100.0,
+   "f1": 94.9,
+   "accuracy": 93.5,
+   "call_when_should_not_pct": 16.7,
+   "miss_when_should_pct": 0.0
+  },
+  "syntactic": {
+   "n_called": 103,
+   "n_valid": 102,
+   "valid_pct": 99.0
+  },
+  "per_item": [
+   {
+    "id": "pos_673",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "fiscalização governamental capacidade técnica ausência de perito localização fiscalização sem autoridade competente",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_597",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "subida de mergulho profundidade limite de velocidade máxima descompressão atmosférica pressão parcial",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1909",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "vigiação espaço confinado pessoal de segurança",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_677",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "falta de ar dor no peito mergulho emergência primeiros socorros",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_893",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "distância mínima segurança caminhão-tanque enchimento líquido inflamável",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_981",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "condições de segurança antes de iniciar soldagem corte canteiro de obras inspeção área de trabalho",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1995",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "escada defeituosa reparo substituição responsável técnico qualificações manutenção",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1886",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "plano de resgate treinamento equipe de resgate procedimento de segurança",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_910",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "laudo de segurança risco ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia ergonomia",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1892",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "autorização de entrada em espaço confinado requisitos guarda tempo de armazenamento cópia",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_466",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "máquina de pregar rebite fábrica de sapato segurança ergonomia proteção contra lesões",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1243",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "responsabilidade do empregador vestuário de trabalho substituição danos",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1412",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "fiscalização infração penalidade multa sanção administrativa correção de procedimentos NR-12",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1585",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "cabina elétrica navio carga combustível gás gasolina requisitos segurança",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_490",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "escada fixa máquina altura mínima de proteção escotelamento",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1706",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "mulher grávida exposição a agentes químicos agentes tóxicos agentes biológicos agentes físicos agentes químicos agentes biológicos agentes físicos agentes químicos agentes biológicos agentes físicos agentes de risco ocupacional",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_909",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "trabalho perigoso motocicleta serviço",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1543",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "multa fiscalização infração segurança trabalho penalidade empresa",
+    "nr": "NR-10",
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_880",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "tempo máximo de imersão mergulho submersão profundidade limite de segurança",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_861",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "mergulho após longa pausa intervalo de descanso repetição carga física",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1072",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "cabo de energia distância suporte 100 metros mudança de 660 metros",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1305",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "multa infração máquina parada sem trava sem bloqueio",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_475",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "segurança máquina rotográfica pedal segurança",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_904",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "energia elétrica perigosa risco legal classificação risco classificação",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2179",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "emissão fugitiva emissão controlada emissão de gases gases inflamáveis gases inflamáveis e explosivos",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_494",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "proteção contra quedas plataforma elevatória equipamento de segurança NR-10",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1154",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "escavação material em altura prevenção de quedas de objetos bloqueio de acesso",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1296",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "código infração item 4.2 equipamentos segurança trabalho",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_788",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "limite de pressão trabalho em túnel duração máxima exposição",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_687",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "exposição a luzes escuras insalubridade condições de trabalho",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1884",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "espaço confinado definição critérios classificação",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1290",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "classificação multa fiscalização ausência plano de riscos NR-10",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_478",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "proteção fixa proteção móvel ferramentas",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_896",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "tambor de metal plástico armazenamento produtos inflamáveis quantidade máxima",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_901",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "adicional de periculosidade vigia escolta",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_436",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "motor elétrico parada segura estado de parada segura",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1530",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "consequências não conformidade normas de segurança trabalhistas infrações penalidades fiscalização sanções administrativas",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1900",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "documentação de segurança trabalho em espaço confinado requisitos de entrada",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1682",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "CIPA assédio violência trabalho medidas de prevenção",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1860",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "procedimentos de manipulação biológica agentes patogênicos Plasmodium falciparum biossegurança laboratório",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1207",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "plano de emergência barragem registro obrigatório",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_499",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "altura máxima cesta de trabalho distância de segurança altura de trabalho",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2085",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "desligamento de equipamento elétrico segurança do trabalho evacuação de área",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_691",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "limite de concentração odorante exposição ocupacional monitoramento frequência média avaliação de risco",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2101",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "refeitório área de trabalho produtos químicos armazenamento alimentação",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1472",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "multa infração segurança elétrica código penalidade NR-10",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_362",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "ação positiva máquina",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_298",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "inspeção de segurança manutenção equipamentos assinatura relatório responsabilidade",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2098",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "quantidade mínima de água potável por pessoa uso sanitário banheiro chuveiro diariamente",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_916",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "lixo radioativo gestão resíduos radioativos desativação instalações nucleares segurança nuclear",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1313",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "multa infração falta proteção máquina equipamento elétrico grau de gravidade infração",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_375",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "empurrão direto sem falha mecânica",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_86",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "tamanho equipe SESMT empresa vendedora atacado computadores peças informáticas",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2099",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "procedimentos de descontaminação água corrosão água contaminada",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_926",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "nível máximo de iluminação luminosa ruído ambiental conforto ocupacional",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1907",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "limite máximo de oxigênio concentração O2 ambiente confinado risco de atrapanto",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1952",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "plano de emergência canteiro de obras requisitos",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1071",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "distância mínima segurança elétrica linha de 13 mil volts fio distância de fuga",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_34",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "cálculo de risco avaliação risco perigo grau de risco classificação NR-10",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2045",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "máquina de descascar couro parada desligamento segurança manutenção",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2118",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "responsabilidade inspeção alimentação refeitório semanal pessoal de serviço",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1652",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "treinamento embarcação habilitação patenteiro aptidão condições de segurança",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_703",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "exposição ocupacional limites de exposição tolueno xileno",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_755",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "limite de concentração formaldeído ar ambiente trabalho",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1565",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_898",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "embalagem composta classificação risco classificação de risco",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2095",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "plataforma de trabalho banheiro espaço sanitário acesso a instalações sanitárias",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_871",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "parada respiratória descompressão emergência parada respiratória procedimentos de primeiros socorros",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_111",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "SESMT requisitos clínica de idosos teatro",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1303",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "multa infração segurança máquinas fiscalização penalidade empresa",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2172",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "documentação da plataforma marítima requisitos de entrega prazo de início serviço",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_2143",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "calibração alarme gás desligamento limite ajuste sem bronca",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_686",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "investigação judicial ausência perito localização investigador",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_996",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "proteção contra quedas de objetos cargas elevadas canteiro de obras medidas de segurança",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_357",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "escada fixa largura mínima distância de segurança máquina",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1280",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "multa infração alínea a subitem 1 item 7.5.8 NR-10",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1598",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "separação cilindros gás inerte tanques combustível inflamável armazenamento classificação risco classificação",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1456",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "multa infração sinalização perigo circuito desligado",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_726",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "limite de exposição ocupacional agentes carcinogênicos agentes químicos agentes biológicos limites de exposição ocupacional agentes biológicos concentração de substância agente carcinogênico agente biológico",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1550",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "multa grau severidade infração trabalho em altura grau de penalidade",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1712",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "distância mínima barraca armazenamento veneno área de segurança distância segurança",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1164",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "explosão subterrânea emergência múltipla distância de segurança evacuação pessoal",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1969",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "bloco de segurança fixação amarração fixação em estrutura",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1825",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "prontuário médico ocupacional saúde ocupacional exposição radiação ionizante guarda de segurança NR-10",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1181",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "checagem especial inspeção de segurança represa minério aviso imediato notificação",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1932",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "guincho inspeção prévia certificação qualificação técnico",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_484",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "acoplamento reboque máquina engate dispositivo de segurança proteção contra queda solo",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_1885",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "segurança em tanques silos proteção contra quedas de altura EPI EPI proteção contra quedas de altura EPI EPI EPI EPI",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_888",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "barreira física perímetro segurança explosão zona de perigo zona de risco",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "pos_725",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "proteção contra exposição radiação ionizante radiação X raios gama proteção radiológica NR-10",
+    "nr": null,
+    "captain_case": false,
+    "categoria": null
+   },
+   {
+    "id": "cap_13_8kv",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "distância segura trabalho rede 13.8 kV",
+    "nr": null,
+    "captain_case": true,
+    "categoria": null
+   },
+   {
+    "id": "cap_poste",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "poste instável estrutura segurança trabalho em altura inspeção imediata",
+    "nr": null,
+    "captain_case": true,
+    "categoria": null
+   },
+   {
+    "id": "cap_camiseta",
+    "should_call": true,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "trabalho em ambiente quente camiseta rasgada proteção térmica",
+    "nr": null,
+    "captain_case": true,
+    "categoria": null
+   },
+   {
+    "id": "neg_saudacao_86464",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_saudacao_44240",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_saudacao_48895",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_saudacao_63646",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_agradecimento_78858",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_saudacao_3914",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_agradecimento_45279",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_repeticao_97124",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_agradecimento_98751",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_repeticao_50474",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_agradecimento_40529",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_repeticao_26899",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_agradecimento_89578",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_repeticao_51700",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_repeticao_57945",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_fora_de_escopo_69671",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_bom_senso_78988",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "óculos de proteção óculos de grau comum uso temporário grau inferior",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_fora_de_escopo_61087",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_fora_de_escopo_37265",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_fora_de_escopo_73795",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_bom_senso_520",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "exposição a temperaturas elevadas condições de trabalho confortáveis proteção individual EPI",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_bom_senso_17919",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "proteção contra calor suor desidratação proteção térmica EPI",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_saudacao_31592",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_bom_senso_68429",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "tampa trancada fiação caixa de passagem substituição",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_bom_senso_63184",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "óculos de proteção visão óculos de grau capacete uso em campo",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_agradecimento_54758",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_saudacao_50567",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_agradecimento_84998",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_saudacao_81389",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_fora_de_escopo_67463",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_fora_de_escopo_49963",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_repeticao_33632",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_repeticao_38550",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_repeticao_83538",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_saudacao_48592",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_agradecimento_88272",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_fora_de_escopo_29989",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_saudacao_86464",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_bom_senso_91742",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "proteção contra choques elétricos fiação sem furos isolamento",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_agradecimento_54758",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_fora_de_escopo_34033",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_agradecimento_64180",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_repeticao_23736",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_repeticao_79858",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_bom_senso_78981",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "escada de alumínio proximidade rede elétrica segurança elétrica",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_bom_senso_72435",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "cabo de extensão solo molhado pisar sobre ele",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_saudacao_81389",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_saudacao_69192",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_fora_de_escopo_84854",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_agradecimento_71120",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_fora_de_escopo_57182",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_repeticao_2674",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_saudacao_19157",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "saudacao"
+   },
+   {
+    "id": "neg_agradecimento_96176",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_agradecimento_23587",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "agradecimento"
+   },
+   {
+    "id": "neg_fora_de_escopo_80696",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   },
+   {
+    "id": "neg_bom_senso_95053",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "fiação elétrica sobrecarga sobrecarga térmica sobreaquecimento calor excessivo",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_repeticao_72832",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "repeticao"
+   },
+   {
+    "id": "neg_bom_senso_11362",
+    "should_call": false,
+    "called_tool": true,
+    "syntactic_ok": true,
+    "consulta": "químicos inflamáveis inflamáveis gases inflamáveis risco de incêndio exposição química",
+    "nr": null,
+    "captain_case": false,
+    "categoria": "bom_senso"
+   },
+   {
+    "id": "neg_fora_de_escopo_42565",
+    "should_call": false,
+    "called_tool": false,
+    "syntactic_ok": false,
+    "consulta": null,
+    "nr": null,
+    "captain_case": false,
+    "categoria": "fora_de_escopo"
+   }
+  ]
+ },
+ "args": {
+  "raw": {
+   "n": 151,
+   "recall_at_1": 19.9,
+   "recall_at_2": 30.5,
+   "recall_at_5": 42.4,
+   "detail": [
+    {
+     "id": "qa-001",
+     "rank": null,
+     "query": "Ô, tô aqui na subestação e o encarregado falou que não dá pra desligar o circuito hoje. Posso trabalhar só com a luva de borracha mesmo ou tem outro jeito antes de partir pro EPI?"
+    },
+    {
+     "id": "qa-002",
+     "rank": 2,
+     "query": "Como não dá pra desenergizar o painel, o pessoal falou de usar uma tal de tensão de segurança. Que negócio é esse?"
+    },
+    {
+     "id": "qa-003",
+     "rank": null,
+     "query": "Tô no poste e minha camisa de trabalho rasgou. Posso terminar o serviço com uma camiseta comum de algodão que eu tenho no carro?"
+    },
+    {
+     "id": "qa-004",
+     "rank": null,
+     "query": "Rapaz, casei semana passada e não queria tirar a aliança pra trabalhar no barramento. Se eu usar luva por cima, libera?"
+    },
+    {
+     "id": "qa-005",
+     "rank": null,
+     "query": "O encarregado quer que eu segure a lanterna com uma mão e aperte o conector com a outra dentro do painel, porque a luz do local tá queimada. Tá certo isso?"
+    },
+    {
+     "id": "qa-006",
+     "rank": null,
+     "query": "Tem uma caixa de passagem aqui num canto apertado que eu só alcanço torcendo o corpo todo. Posso fazer o serviço assim mesmo pra adiantar?"
+    },
+    {
+     "id": "qa-007",
+     "rank": null,
+     "query": "Vou desligar a chave faca ali do circuito pra gente trabalhar. Como é mesmo a ordem certinha dos passos pra deixar o trecho morto de verdade?"
+    },
+    {
+     "id": "qa-008",
+     "rank": 1,
+     "query": "Já abri a chave e testei com o detector, não tem tensão nenhuma. Posso pular o aterramento temporário pra ganhar tempo, já que o circuito tá morto?"
+    },
+    {
+     "id": "qa-009",
+     "rank": 1,
+     "query": "Terminamos o serviço na rede. Pra ligar de novo, é só tirar o cadeado e fechar a chave, ou tem ordem certa pra devolver a tensão?"
+    },
+    {
+     "id": "qa-010",
+     "rank": 1,
+     "query": "O pessoal já tá afobado querendo religar o alimentador, mas ainda tem gente recolhendo ferramenta lá no vão. Posso mandar fechar a chave e o pessoal termina depois?"
+    },
+    {
+     "id": "qa-011",
+     "rank": null,
+     "query": "Ô, tô aqui no pé do transformador e o serviço é com a rede viva. Qualquer um da equipe pode meter a mão ou tem que ser alguém específico?"
+    },
+    {
+     "id": "qa-012",
+     "rank": null,
+     "query": "O encarregado falou que eu não posso nem chegar perto da parte viva, só o pessoal liberado. Isso procede? Onde tá escrito?"
+    },
+    {
+     "id": "qa-013",
+     "rank": 2,
+     "query": "Meu parceiro faltou hoje e tenho um serviço na rede de 13,8 kV. Posso subir e resolver sozinho pra não atrasar?"
+    },
+    {
+     "id": "qa-014",
+     "rank": 2,
+     "query": "Tô sozinho na viatura e apareceu um chamado no SEP aqui perto. Dou andamento ou espero apoio?"
+    },
+    {
+     "id": "qa-015",
+     "rank": null,
+     "query": "Como é a ordem pra desligar a chave faca lá no alimentador? O rádio só me passou o serviço por voz, posso executar assim mesmo?"
+    },
+    {
+     "id": "qa-016",
+     "rank": null,
+     "query": "A OS que tá comigo é de ontem, de outro poste. Serve pra esse serviço de hoje na subestação ou tenho que pedir outra?"
+    },
+    {
+     "id": "qa-017",
+     "rank": 3,
+     "query": "O bastão isolante tá com a capa meio riscada, mas parece firme. Posso usar ele direto no circuito vivo ou tenho que conferir antes?"
+    },
+    {
+     "id": "qa-018",
+     "rank": 1,
+     "query": "A luva de borracha passou no teste do laboratório mês passado. Preciso testar de novo aqui no campo antes de mexer na rede viva?"
+    },
+    {
+     "id": "qa-019",
+     "rank": 2,
+     "query": "Fiz o curso do SENAI de eletricista. Isso já me faz ser o tal do 'qualificado' que o pessoal fala, ou preciso de mais alguma coisa pra trabalhar na rede?"
+    },
+    {
+     "id": "qa-020",
+     "rank": 1,
+     "query": "Qual a diferença entre o qualificado, o habilitado, o capacitado e o autorizado? O fiscal vive perguntando isso e eu embananado."
+    },
+    {
+     "id": "qa-021",
+     "rank": null,
+     "query": "Tô chegando aqui na subestação pra trocar uma chave fusível. O encarregado falou que tem que preencher uma papelada antes de começar. É obrigado mesmo ou dá pra ir direto pro serviço?"
+    },
+    {
+     "id": "qa-022",
+     "rank": null,
+     "query": "O rapaz novo da equipe perguntou pra que serve aquela reunião rapidinha que a gente faz no pé do poste antes de subir. Como explico isso pra ele direitinho?"
+    },
+    {
+     "id": "qa-023",
+     "rank": 3,
+     "query": "Se um companheiro tomar um choque lá em cima do poste e apagar, eu posso fazer a massagem no peito dele ou tem que esperar o SAMU chegar?"
+    },
+    {
+     "id": "qa-024",
+     "rank": 1,
+     "query": "O pessoal da turma nunca fez curso de resgate de vítima em altura. A firma é obrigada a dar esse treinamento pra gente ou é por nossa conta?"
+    },
+    {
+     "id": "qa-025",
+     "rank": null,
+     "query": "Cheguei no serviço e a estrutura do poste tá toda podre, balançando. O encarregado tá mandando subir mesmo assim. Eu posso me negar a subir ou levo advertência?"
+    },
+    {
+     "id": "qa-026",
+     "rank": null,
+     "query": "Parei o serviço porque a rede tava com fio caído perto de água e avisei o supervisor pelo rádio. Fiz certo ou tinha que ter continuado até ele chegar?"
+    },
+    {
+     "id": "qa-027",
+     "rank": 1,
+     "query": "A gente vai mexer num circuito de 800 volts em corrente alternada aqui na indústria. Isso já conta como alta tensão ou ainda é baixa?"
+    },
+    {
+     "id": "qa-028",
+     "rank": 1,
+     "query": "Vou trabalhar num banco de baterias de 1300 volts em corrente contínua. O colega falou que isso já é alta tensão. Ele tá certo?"
+    },
+    {
+     "id": "qa-029",
+     "rank": 3,
+     "query": "Tô no poste e o cabo energizado tá bem pertinho do meu braço. Até que distância eu posso chegar dele sem tá com luva e ferramenta isolada?"
+    },
+    {
+     "id": "qa-030",
+     "rank": null,
+     "query": "O encarregado vive falando de zona controlada e zona livre na hora de isolar a área. Qual a diferença entre uma e outra na prática?"
+    },
+    {
+     "id": "qa-031",
+     "rank": 1,
+     "query": "Fala, chefia! Tô aqui na subestação da fábrica, o pessoal falou que a carga instalada lá passa de 75 kW. O fiscal pode pedir algum documento das instalações? Que papelada é essa que tem que ter?"
+    },
+    {
+     "id": "qa-032",
+     "rank": 2,
+     "query": "O encarregado pediu pra eu conferir se o prontuário elétrico da planta tá completo antes da auditoria. O que não pode faltar dentro dessa pasta do PIE?"
+    },
+    {
+     "id": "qa-033",
+     "rank": null,
+     "query": "Ô parceiro, fiz o curso da NR-10 faz uns dois anos e pouco. Ainda tô valendo ou tenho que fazer de novo? O supervisor falou que ia me escalar pra turma da manutenção."
+    },
+    {
+     "id": "qa-034",
+     "rank": 4,
+     "query": "Fiquei encostado pelo INSS uns cinco meses por causa do joelho. Voltando agora, posso pegar serviço direto na rede ou tem que reciclar o curso antes?"
+    },
+    {
+     "id": "qa-035",
+     "rank": null,
+     "query": "Vou fazer um serviço na área dos tanques de combustível, aquele setor que o pessoal fala que é área classificada por causa do vapor. Tem regra diferente pra mexer com elétrica ali?"
+    },
+    {
+     "id": "qa-036",
+     "rank": null,
+     "query": "Posso levar minha furadeira comum pra instalar um eletroduto lá dentro da cabine perto do setor de pintura? O cheiro de solvente lá é forte demais."
+    },
+    {
+     "id": "qa-037",
+     "rank": null,
+     "query": "Desliguei o disjuntor geral pra trocar o barramento do QGBT. Basta desligar e avisar o pessoal no rádio, ou tem que pendurar plaquinha e cadeado também?"
+    },
+    {
+     "id": "qa-038",
+     "rank": null,
+     "query": "Tô no pátio da subestação e tem um monte de circuito parecido. Como o pessoal identifica qual painel tá impedido e qual pode operar? Só na fita zebrada resolve?"
+    },
+    {
+     "id": "qa-039",
+     "rank": 4,
+     "query": "O engenheiro tá desenhando o projeto do painel novo da oficina. Falei pra ele que a chave tem que ter onde passar o cadeado, é isso mesmo? Isso é exigência de norma ou frescura minha?"
+    },
+    {
+     "id": "qa-040",
+     "rank": null,
+     "query": "Como é a ordem pra desligar a chave faca do circuito e garantir que ninguém liga ela de novo enquanto eu tô lá em cima mexendo? O projeto do painel antigo nem tem lugar de cadeado, pode isso?"
+    },
+    {
+     "id": "qa-041",
+     "rank": 1,
+     "query": "Ô chefia, cheguei aqui na subestação do cliente pra fazer a manutenção e o diagrama que tá na parede é véio, todo rabiscado, nem bate com o que tá montado no painel. A empresa é obrigada a ter esse desenho atualizado ou eu me viro com o que tem?"
+    },
+    {
+     "id": "qa-042",
+     "rank": 2,
+     "query": "O encarregado falou que o disjuntor geral do galpão nunca foi testado desde que instalaram, uns cinco anos atrás. Isso pode? Não tem que fazer uma inspeção de tempo em tempo nesses sistemas de proteção não?"
+    },
+    {
+     "id": "qa-043",
+     "rank": null,
+     "query": "Tô no poste numa linha que já foi desligada lá na chave, mas o pessoal avisou que tem outro circuito vivo passando do lado e pode dar indução no condutor. Como que eu trato esse serviço? Sigo como se tivesse desenergizado mesmo?"
+    },
+    {
+     "id": "qa-044",
+     "rank": 1,
+     "query": "Minha luva de borracha da alta tensão tá com o ensaio vencido faz uns dois meses, mas ela tá inteirinha, sem furo nenhum. Posso usar ela hoje no serviço da rede ou tem que mandar pro laboratório primeiro?"
+    },
+    {
+     "id": "qa-045",
+     "rank": null,
+     "query": "Vamos sair em três na turma hoje pra trocar uma cruzeta, mas ninguém falou quem é que manda no serviço lá no campo. Toda equipe tem que ter um responsável indicado ou a gente se resolve na hora?"
+    },
+    {
+     "id": "qa-046",
+     "rank": 5,
+     "query": "Fala aí, chefia! Entrei ontem na turma da linha viva e o almoxarifado falou que eu tinha que comprar minha luva e meu capacete do meu bolso. Isso tá certo? A firma não tem que dar esse material pra gente não?"
+    },
+    {
+     "id": "qa-047",
+     "rank": null,
+     "query": "Ô parceiro, minha luva isolante rasgou aqui no meio do serviço no poste. Posso dar um jeitinho com fita e terminar o dia, ou tenho que parar e falar com o encarregado agora?"
+    },
+    {
+     "id": "qa-048",
+     "rank": null,
+     "query": "O encarregado achou umas luva de borracha novinha no depósito, mas o número do CA que tá gravado nela já venceu faz tempo. Ele falou que como nunca foi usada dá pra levar pro campo. Pode isso?"
+    },
+    {
+     "id": "qa-049",
+     "rank": null,
+     "query": "Chegou um bastão de manobra novo pra equipe, modelo diferente do que a gente usava. O supervisor só entregou e mandou usar. Não era pra ter alguma explicação ou treinamento antes de sair usando o troço?"
+    },
+    {
+     "id": "qa-050",
+     "rank": 1,
+     "query": "Tô indo trocar um jumper na rede energizada e o colega falou que só a luva de borracha já segura o choque, que a sobreluva de couro é frescura. É isso mesmo ou tenho que usar as duas juntas?"
+    },
+    {
+     "id": "qa-051",
+     "rank": null,
+     "query": "Ô, tô num serviço aqui que tem barulho e poeira ao mesmo tempo. Em vez de ficar trocando de equipamento toda hora, não tem um trem que já vem tudo junto não? Como que fica isso pela norma?"
+    },
+    {
+     "id": "qa-052",
+     "rank": 1,
+     "query": "Tô no poste e o sol tá rachando, fora o clarão quando abre arco na chave. Esse óculos escuro comum que eu comprei na banca serve ou tem que ser óculos especial da firma?"
+    },
+    {
+     "id": "qa-053",
+     "rank": 4,
+     "query": "Chegou umas luvas novas aí pro pessoal, mas o papelzinho de instrução veio tudo em inglês, ninguém entende nada. Isso pode? O fabricante não é obrigado a mandar em português não?"
+    },
+    {
+     "id": "qa-054",
+     "rank": null,
+     "query": "O encarregado pediu pra eu subir numa plataforma de uns dois metros e pouco pra trocar uma conexão. Isso aí já conta como trabalho em altura ou só vale pra coisa bem alta, tipo torre?"
+    },
+    {
+     "id": "qa-055",
+     "rank": null,
+     "query": "Entrou um menino novo na turma e o encarregado já quer mandar ele subir na escada pra ajudar no vão. Ele ainda não fez aquele curso de altura nem passou no médico. Pode mandar ele subir desse jeito?"
+    },
+    {
+     "id": "qa-056",
+     "rank": 2,
+     "query": "Ô, chegou um peão novo aqui na turma e o encarregado quer subir ele no poste amanhã. Ele fez só umas 4 horinhas de curso lá na firma. Pode subir assim ou tem que completar o treinamento?"
+    },
+    {
+     "id": "qa-057",
+     "rank": 2,
+     "query": "O curso de altura que a firma dá pode ser só na sala de aula, só teoria mesmo, ou tem que ter aquela parte prática de subir e usar o cinto?"
+    },
+    {
+     "id": "qa-058",
+     "rank": 1,
+     "query": "Tô aqui na obra e o encarregado mandou subir logo na estrutura pra adiantar o serviço, sem preencher papel nenhum. Serviço em altura precisa daquela análise de risco e da permissão antes ou posso ir direto?"
+    },
+    {
+     "id": "qa-059",
+     "rank": 2,
+     "query": "Esse serviço aqui de trocar cruzeta é coisa que a gente faz todo dia. Mesmo sendo rotina, tem que tirar PT toda vez ou a análise de risco já resolve?"
+    },
+    {
+     "id": "qa-060",
+     "rank": 1,
+     "query": "Rapaz, me explica uma coisa: quando falam de sistema de proteção contra queda, é só o cinto mesmo ou tem mais coisa que eu tenho que conferir antes de subir?"
+    },
+    {
+     "id": "qa-061",
+     "rank": null,
+     "query": "Tô no poste e não achei ponto bom pra prender o talabarte. Posso me amarrar em qualquer ferragem que aguentar o tranco?"
+    },
+    {
+     "id": "qa-062",
+     "rank": null,
+     "query": "Meu cinto é daquele modelo antigo, tipo cinturão de eletricista só com a cintura. Pra subir na torre serve ele ou tem que ser o de paraquedista com as perneiras?"
+    },
+    {
+     "id": "qa-063",
+     "rank": null,
+     "query": "Na hora de passar da escada pra plataforma da torre eu fico um tempinho sem tá preso em nada. O pessoal falou de talabarte duplo, é obrigado usar ele nessa hora?"
+    },
+    {
+     "id": "qa-064",
+     "rank": 1,
+     "query": "Se o companheiro cair e ficar pendurado no cinto lá no alto da torre, o que a gente faz? Espera o bombeiro chegar ou a equipe tem que ter um esquema pronto pra tirar ele de lá?"
+    },
+    {
+     "id": "qa-065",
+     "rank": null,
+     "query": "O encarregado quer mandar só eu pra fazer um serviço em altura num alimentador afastado, sem ninguém junto. Se der ruim e eu ficar pendurado, quem me tira? Pode isso?"
+    },
+    {
+     "id": "qa-066",
+     "rank": null,
+     "query": "Tô aqui no pé da torre e o tempo fechou, tá ventando forte e começou a trovejar lá longe. O encarregado tá me apressando pra subir e terminar o serviço. Posso subir mesmo assim ou tenho que esperar?"
+    },
+    {
+     "id": "qa-067",
+     "rank": 1,
+     "query": "O pessoal quer amarrar a linha de vida num suporte velho que já tava lá na estrutura, meio enferrujado. Serve qualquer ponto pra prender o talabarte ou tem regra pra isso?"
+    },
+    {
+     "id": "qa-068",
+     "rank": 4,
+     "query": "Vou subir na escada de fibra pra trocar uma conexão baixa. Dá pra eu levar a ferramenta na mão enquanto subo, ou tenho que subir de mão vazia mesmo?"
+    },
+    {
+     "id": "qa-069",
+     "rank": null,
+     "query": "Fiz o curso de altura faz uns dois anos, quando entrei na firma. O cara do SESMT falou que meu certificado ia vencer. Isso vence mesmo? De quanto em quanto tempo tenho que refazer?"
+    },
+    {
+     "id": "qa-070",
+     "rank": 1,
+     "query": "No serviço de rapel na torre, o colega novato quer descer pendurado numa corda só, diz que aguenta o peso tranquilo. Pode isso ou tem que ter duas cordas obrigatório?"
+    },
+    {
+     "id": "qa-071",
+     "rank": 1,
+     "query": "Tô subindo na torre aqui e o meu talabarte tá sem aquele amortecedor, só o cabo com os mosquetão. O encarregado falou que dá pra ir assim mesmo porque é rapidinho. Pode ou não pode?"
+    },
+    {
+     "id": "qa-072",
+     "rank": 2,
+     "query": "A fiação do painel da máquina de bancada aqui da oficina tá com o cabo descascado, aparecendo o cobre perto do quadro. O pessoal enrolou uma fita isolante e tá usando. Isso tá certo?"
+    },
+    {
+     "id": "qa-073",
+     "rank": 4,
+     "query": "Fui ligar a esmerilhadeira de bancada e levei um formigamento na carcaça dela. O colega falou que é normal, que é só estática. Preciso me preocupar com fio terra nesse trem?"
+    },
+    {
+     "id": "qa-074",
+     "rank": 2,
+     "query": "Aqui na prensa o pessoal desliga a máquina no fim do turno apertando o botão vermelho de emergência, aquele cogumelo. Falei que achava errado e riram de mim. Quem tá certo?"
+    },
+    {
+     "id": "qa-075",
+     "rank": 4,
+     "query": "O encarregado pediu pra eu trocar o rolamento do motor da esteira agora no almoço, enquanto o pessoal come. Basta desligar na botoeira e mandar ver, ou tem que fazer aquele negócio do cadeado na chave?"
+    },
+    {
+     "id": "qa-076",
+     "rank": 5,
+     "query": "Ô, vou trocar o contator do painel da esteira aqui. O encarregado falou que não basta desligar a chave, tem que pôr cadeado. É isso mesmo? Só o meu cadeado resolve ou tem que ter plaquinha também?"
+    },
+    {
+     "id": "qa-077",
+     "rank": null,
+     "query": "Tô aqui na prensa e o botão de ligar fica coladinho na parte que esmaga, quase dentro da máquina. Pra apertar eu tenho que enfiar o braço perto da zona de prensagem. Isso tá certo ou a botoeira tinha que ficar mais afastada?"
+    },
+    {
+     "id": "qa-078",
+     "rank": 1,
+     "query": "A grade de proteção da polia do motor tá solta, dá pra abrir com a máquina rodando e enxergar a correia girando. O pessoal tirou pra limpar e nunca mais prendeu direito. Posso operar assim ou tem que travar essa grade antes?"
+    },
+    {
+     "id": "qa-079",
+     "rank": null,
+     "query": "Chegou um menino novo na equipe e o chefe já quer botar ele pra operar a guilhotina hoje. O rapaz nunca mexeu com isso, não fez curso nenhum. Pode isso ou ele tem que ser treinado antes de pegar na máquina?"
+    },
+    {
+     "id": "qa-080",
+     "rank": null,
+     "query": "Aqui no setor tem uns painéis energizados e um transportador que já quase pegou a manga da camisa de um colega, mas não tem placa nenhuma avisando do perigo. Era pra ter alguma sinalização nessas áreas ou só o aviso de boca do encarregado já serve?"
+    },
+    {
+     "id": "qa-081",
+     "rank": null,
+     "query": "Ô, tô aqui na prensa e a mangueira do sistema pneumático tá estufando quando a pressão sobe. O mecânico falou que não precisa de válvula nenhuma não. Isso tá certo ou tem que ter alívio nesse sistema?"
+    },
+    {
+     "id": "qa-082",
+     "rank": null,
+     "query": "A unidade hidráulica da plataforma aqui tá batendo pressão acima do que o manômetro marca de trabalho. Posso seguir operando ou tem alguma exigência de norma pra esse tipo de coisa?"
+    },
+    {
+     "id": "qa-083",
+     "rank": null,
+     "query": "Tô trabalhando do lado da esteira que leva brita e os roletes e o tambor tão tudo expostos, sem carenagem nenhuma. Posso ficar circulando ali do lado ou isso tá irregular?"
+    },
+    {
+     "id": "qa-084",
+     "rank": 3,
+     "query": "A esteira transportadora aqui da obra não tem aquele cordão de emergência do lado pra parar ela se alguém enroscar. O encarregado falou que o botão lá no painel resolve. Tá valendo isso?"
+    },
+    {
+     "id": "qa-085",
+     "rank": null,
+     "query": "O encarregado mandou eu puxar uma instalação provisória pra ligar as máquinas do canteiro e falou que por ser provisória não precisa seguir norma de elétrica não. É isso mesmo, chefe?"
+    },
+    {
+     "id": "qa-086",
+     "rank": 4,
+     "query": "Sou eletricista mas não fiz o curso da NR-10 ainda. Posso montar o quadro provisório da obra mesmo assim, já que é só pra tocar o serviço por uns dias?"
+    },
+    {
+     "id": "qa-087",
+     "rank": null,
+     "query": "Tem um cabo de força jogado no chão atravessando bem onde o pessoal passa com o carrinho de massa. Posso deixar ele ali no chão mesmo ou tenho que suspender esse cabo?"
+    },
+    {
+     "id": "qa-088",
+     "rank": null,
+     "query": "Preciso levar energia do gerador até a betoneira do outro lado do canteiro. Qual o jeito certo de passar esse cabo sem deixar ele largado no meio do caminho do pessoal?"
+    },
+    {
+     "id": "qa-089",
+     "rank": null,
+     "query": "O mestre falou que o contêiner do almoxarifado e os quadros de força da obra não precisam de aterramento porque é tudo provisório. Procede isso ou tenho que aterrar tudo?"
+    },
+    {
+     "id": "qa-090",
+     "rank": 1,
+     "query": "Encostei no quadro de distribuição aqui da obra e tomei um choquezinho de leve. O que deve tá faltando nesse quadro pra dar isso?"
+    },
+    {
+     "id": "qa-091",
+     "rank": null,
+     "query": "Ô, tô montando a parte elétrica do canteiro aqui e o mestre quer ligar a betoneira e a serra circular direto no quadro pra ganhar tempo. Precisa mesmo daquele disjuntor DR ou posso ligar direto sem ele?"
+    },
+    {
+     "id": "qa-092",
+     "rank": null,
+     "query": "O quadro de força aqui da obra vive escancarado e todo mundo mete a mão pra ligar e desligar as coisas. Tá certo isso ou tem que trancar esse trem?"
+    },
+    {
+     "id": "qa-093",
+     "rank": null,
+     "query": "Tô na laje do segundo andar, bem na beirada que dá de frente pra rede da rua, e não tem guarda-corpo nenhum montado. O encarregado falou pra tocar o serviço assim mesmo. Posso continuar?"
+    },
+    {
+     "id": "qa-094",
+     "rank": null,
+     "query": "Minha furadeira tá com o cabo descascado e o colega emendou com fita isolante comum pra quebrar o galho. Dá pra usar assim hoje ou tenho que parar?"
+    },
+    {
+     "id": "qa-095",
+     "rank": null,
+     "query": "O guindaste vai içar umas vigas hoje coladas na rede de média tensão da rua. Quanto que eu tenho que afastar a lança pra não dar ruim?"
+    },
+    {
+     "id": "qa-096",
+     "rank": null,
+     "query": "Ô, chegamo nessa obra nova aqui e o banheiro do canteiro tá um caos, sem água e a fossa vazando. A gente é obrigado a usar assim mesmo ou a empresa tem que arrumar?"
+    },
+    {
+     "id": "qa-097",
+     "rank": null,
+     "query": "Tamo almoçando sentado no chão do lado do material, no sol. O encarregado falou que não precisa de refeitório porque a obra é pequena. Isso tá certo?"
+    },
+    {
+     "id": "qa-098",
+     "rank": null,
+     "query": "Aqui no canteiro não tem vestiário não, o pessoal troca de roupa atrás do container e deixa a mochila jogada. Pode isso ou tem que ter um lugar certo?"
+    },
+    {
+     "id": "qa-099",
+     "rank": null,
+     "query": "Fui contratado ontem e o mestre já quer me botar hoje direto na frente de serviço, sem passar por integração nenhuma. Posso começar assim ou tenho que fazer treinamento antes?"
+    },
+    {
+     "id": "qa-100",
+     "rank": null,
+     "query": "O encarregado deu uma palestrinha de meia hora pro pessoal novo e mandou assinar a lista dizendo que era a integração. Meia hora vale como treinamento admissional?"
+    },
+    {
+     "id": "qa-101",
+     "rank": null,
+     "query": "Trabalhei 3 anos em obra em outra empreiteira e agora entrei nessa nova. Como já sou experiente, eles falaram que eu não preciso fazer a integração de novo. Procede?"
+    },
+    {
+     "id": "qa-102",
+     "rank": null,
+     "query": "Tô no poste aqui e o isolador tá rachado, soltando estalo perto do condutor. Se eu descer e parar o serviço agora, a firma pode me punir ou vou ter que continuar?"
+    },
+    {
+     "id": "qa-103",
+     "rank": null,
+     "query": "O encarregado me mandou direto pro serviço na rede sem passar nada, nem OS assinada nem falar dos riscos. A firma não era obrigada a me informar isso antes de eu subir?"
+    },
+    {
+     "id": "qa-104",
+     "rank": null,
+     "query": "Meu colega vive falando que essas regras de segurança são só frescura da empresa pra encher o saco. Eu sou obrigado mesmo a seguir tudo isso ou é opcional?"
+    },
+    {
+     "id": "qa-105",
+     "rank": null,
+     "query": "A firma que a gente presta serviço de rede precisa ter aquele negócio de gerenciamento de risco pros trabalho que a turma faz na rua, ou isso é só pra fábrica?"
+    },
+    {
+     "id": "qa-106",
+     "rank": null,
+     "query": "Antes de só me entregar luva e capacete, a firma não tinha que tentar tirar o perigo do serviço primeiro? Qual que é a ordem certa dessas proteção?"
+    },
+    {
+     "id": "qa-107",
+     "rank": null,
+     "query": "O técnico de segurança falou que achou um risco lá na subestação e anotou no papel. Mas e aí, fica só anotado? Não tem que ter um prazo pra empresa resolver isso não?"
+    },
+    {
+     "id": "qa-108",
+     "rank": null,
+     "query": "Tô no canteiro e o encarregado disse que a medida de proteção nova só sai ano que vem. Pode isso? Como que cobra a empresa do prazo?"
+    },
+    {
+     "id": "qa-109",
+     "rank": 1,
+     "query": "O fiscal chegou aqui na obra pedindo os papel do PGR. Que documento que a firma é obrigada a mostrar no mínimo?"
+    },
+    {
+     "id": "qa-110",
+     "rank": null,
+     "query": "Pedi pro pessoal do escritório a lista dos riscos do meu setor e falaram que é documento interno da empresa. Eles podem negar isso pra gente?"
+    },
+    {
+     "id": "qa-111",
+     "rank": null,
+     "query": "Se um companheiro tomar um choque lá em cima do poste, a firma tem que ter um esquema pronto de resgate ou a gente se vira na hora?"
+    },
+    {
+     "id": "qa-112",
+     "rank": null,
+     "query": "A gente vai trabalhar numa linha afastada, longe de tudo. Quem que tinha que definir como chama socorro e quem tira o cara da rede se der ruim?"
+    },
+    {
+     "id": "qa-113",
+     "rank": null,
+     "query": "Entrei na firma essa semana e já querem me mandar pro campo amanhã. Posso começar o serviço sem ter feito o treinamento ainda?"
+    },
+    {
+     "id": "qa-114",
+     "rank": null,
+     "query": "Fiz o curso quando entrei, faz uns três anos já. O encarregado falou que tá valendo pra sempre. É isso mesmo ou tem que reciclar?"
+    },
+    {
+     "id": "qa-115",
+     "rank": null,
+     "query": "Cheguei no serviço e vi que a estrutura tá podre, com risco de vir tudo abaixo. Vou recusar subir. Eu preciso avisar alguém ou posso só largar e ir embora?"
+    },
+    {
+     "id": "qa-116",
+     "rank": null,
+     "query": "Me recusei a entrar na vala sem escoramento e agora o chefe tá ameaçando descontar o dia e me mandar embora. Ele pode fazer isso comigo?"
+    },
+    {
+     "id": "qa-117",
+     "rank": 2,
+     "query": "Ô, chefia, me tira uma dúvida: essa caixa de passagem aqui embaixo da calçada e o poço de visita conta como espaço confinado ou eu posso descer direto pra emendar o cabo?"
+    },
+    {
+     "id": "qa-118",
+     "rank": 1,
+     "query": "Tô escalado de vigia na boca da galeria hoje. Eu posso entrar um pouquinho pra ajudar o pessoal a puxar o cabo lá dentro ou tenho que ficar plantado aqui fora o tempo todo?"
+    },
+    {
+     "id": "qa-119",
+     "rank": 1,
+     "query": "O encarregado pediu pra eu, enquanto tô de vigia na caixa subterrânea, ir adiantando a separação de material e atender o rádio de outra equipe. Posso quebrar esse galho?"
+    },
+    {
+     "id": "qa-120",
+     "rank": null,
+     "query": "A galera já tá com pressa pra descer na galeria e resolver o defeito. Precisa mesmo esperar sair aquele papel de permissão ou dá pra entrar logo e regularizar depois?"
+    },
+    {
+     "id": "qa-121",
+     "rank": null,
+     "query": "Já medi o gás aqui na boca do poço antes de descer e deu tudo limpo. Posso desligar o detector pra economizar bateria enquanto o serviço rola lá embaixo?"
+    },
+    {
+     "id": "qa-122",
+     "rank": null,
+     "query": "Tô aqui na frente da caixa subterrânea pra fazer a emenda, o pessoal trouxe o ventilador. Posso ligar ele só de vez em quando pra economizar bateria ou tem que ficar soprando ar lá pra dentro o tempo todo enquanto a gente trabalha?"
+    },
+    {
+     "id": "qa-123",
+     "rank": null,
+     "query": "Vou descer na câmara pra mexer na emenda, mas passa uns cabo energizado do lado. O encarregado falou que é só sinalizar e tomar cuidado. Não precisa bloquear e desligar esses cabo antes de eu entrar não?"
+    },
+    {
+     "id": "qa-124",
+     "rank": null,
+     "query": "A gente vai entrar num poço de inspeção bem fundo hoje. Precisa mesmo armar aquele tripé com guincho e vestir o cinto paraquedista, ou dá pra descer pela escada só com uma corda amarrada na cintura pro colega segurar?"
+    },
+    {
+     "id": "qa-125",
+     "rank": 5,
+     "query": "Fiz o curso de espaço confinado já faz um tempo e o encarregado falou que eu tenho que fazer a reciclagem pra continuar entrando como autorizado. Quantas horas tem que ter esse treinamento?"
+    },
+    {
+     "id": "qa-126",
+     "rank": null,
+     "query": "Tava lá embaixo na galeria trabalhando e o detector de gás começou a apitar do nada. O colega falou pra esperar um pouco pra ver se para de apitar. E aí, continuo o serviço ou saio fora?"
+    },
+    {
+     "id": "qa-127",
+     "rank": null,
+     "query": "Fala aí, chefia: esse adicional de perigo que a gente recebe por mexer com rede energizada é quanto mesmo? Cai em cima do salário todo ou só do básico? O pessoal aqui na turma tá na dúvida se conta hora extra e prêmio nessa conta."
+    },
+    {
+     "id": "qa-128",
+     "rank": 1,
+     "query": "Tô escalado pra trabalhar na subestação e depois na linha de transmissão, na parte de manutenção. O encarregado falou que mesmo com o trecho desligado eu recebo periculosidade. Isso procede? Trabalho no SEP dá direito mesmo se a instalação tiver desenergizada?"
+    },
+    {
+     "id": "qa-129",
+     "rank": 1,
+     "query": "Ô, me tira uma dúvida: hoje eu fiquei trabalhando do lado de um barramento vivo, em alta tensão, sem encostar, só na proximidade mesmo. E tem dia que pego serviço em baixa tensão energizada no padrão do cliente. Nesses dois casos eu tenho direito ao adicional ou só quando boto a mão no circuito?"
+    },
+    {
+     "id": "qa-130",
+     "rank": null,
+     "query": "Tô no poste agora fazendo inspeção na rede de distribuição da rua, aquela aérea de média tensão. Meu serviço é só olhar e apontar defeito, nem sempre mexo em nada. Mesmo assim entra na periculosidade ou só quem faz manutenção pesada recebe?"
+    },
+    {
+     "id": "qa-131",
+     "rank": null,
+     "query": "O encarregado me mandou fazer o desligamento do trecho e testar com o detector se a linha tá morta antes da turma entrar. Como eu tô lá justamente pra desligar e conferir se não tem tensão, esse serviço conta como perigoso ou como ainda não tem confirmação de que tá desenergizado eu fico por fora do adicional?"
+    },
+    {
+     "id": "qa-132",
+     "rank": null,
+     "query": "Ô, meu serviço é ficar manobrando chave seccionadora e disjuntor no pátio da subestação, às vezes mexo no transformador também. Esse serviço aí me dá direito à periculosidade ou não?"
+    },
+    {
+     "id": "qa-133",
+     "rank": 3,
+     "query": "O encarregado me escalou pra ficar de apoio dentro do pátio da subestação enquanto o pessoal opera os equipamentos. Mesmo sem encostar em nada energizado, eu pego adicional?"
+    },
+    {
+     "id": "qa-134",
+     "rank": 2,
+     "query": "Tô trabalhando num circuito de comando que é só 24 volts, coisa pequena. Nesse caso eu continuo recebendo a periculosidade igual ou esse dinheiro some?"
+    },
+    {
+     "id": "qa-135",
+     "rank": 2,
+     "query": "Meu serviço agora é só em painel de sinalização de 48 volts CA. O pessoal do escritório falou que eu perco o adicional por causa disso, é isso mesmo?"
+    },
+    {
+     "id": "qa-136",
+     "rank": null,
+     "query": "A gente desligou tudo, aterrou o circuito, travou o disjuntor com cadeado e sinalizou. Trabalhando assim, com a linha morta, eu ainda ganho a periculosidade ou já era?"
+    },
+    {
+     "id": "qa-137",
+     "rank": null,
+     "query": "O encarregado falou que quando o circuito tá completamente morto e aterrado a firma não paga mais o adicional. Isso tem base na norma ou é conversa dele?"
+    },
+    {
+     "id": "qa-138",
+     "rank": 1,
+     "query": "Vou trocar umas tomadas e mexer no quadro de luz de uma sala, tudo desligado no disjuntor geral, sem chance nenhuma de voltar energia. Rola periculosidade num serviço desse?"
+    },
+    {
+     "id": "qa-139",
+     "rank": 1,
+     "query": "Fui fazer manutenção num motor de bomba 220 volts, desligado, liberado pelo eletricista e sem risco de ligar sozinho. Tenho direito ao adicional nesse serviço ou não?"
+    },
+    {
+     "id": "qa-140",
+     "rank": 2,
+     "query": "Como é que a firma decide se eu tenho ou não direito à periculosidade? É o chefe que bate o martelo sozinho ou tem que ter documento?"
+    },
+    {
+     "id": "qa-141",
+     "rank": 1,
+     "query": "Falaram que vão cortar minha periculosidade sem mostrar papel nenhum, só no aviso do RH. Pode isso, ou tem que ter laudo assinado por engenheiro?"
+    },
+    {
+     "id": "qa-142",
+     "rank": 1,
+     "query": "Tô aqui na subestação e o pessoal pintou umas faixas amarela e vermelha no chão perto do transformador. Isso aí é só enfeite ou tem que respeitar mesmo? Pra que serve essas cores?"
+    },
+    {
+     "id": "qa-143",
+     "rank": 3,
+     "query": "O encarregado mandou pintar de laranja a proteção da chave lá do painel e disse que agora tá sinalizado. Só a pintura já resolve ou ainda tem que colocar a grade e travar o circuito do mesmo jeito?"
+    },
+    {
+     "id": "qa-144",
+     "rank": null,
+     "query": "Chegou uns tambor de óleo de transformador e umas lata de solvente no almoxarifado sem etiqueta nenhuma. Como é que eu sei se esse produto é perigoso? Tem alguma regra pra classificar isso aí?"
+    },
+    {
+     "id": "qa-145",
+     "rank": 2,
+     "query": "A gente passou um solvente pra um frasco menor pra levar pro campo. O que é que tem que ter escrito no rótulo desse frasco? Serve só o nome do produto escrito de caneta?"
+    },
+    {
+     "id": "qa-146",
+     "rank": null,
+     "query": "Um colega respingou produto no braço e ninguém achou aquela ficha que explica o que fazer. Essa tal de FISPQ tem que ficar guardada com o encarregado ou tem que estar ali na mão da equipe?"
+    },
+    {
+     "id": "qa-147",
+     "rank": 5,
+     "query": "Ô, chegou uns tambor de produto químico novo aqui no almoxarifado da subestação e o pessoal tá na dúvida do que significa aqueles desenho de caveira e chama no rótulo. A empresa tem que dar treinamento pra gente entender isso ou é só ir lendo por conta?"
+    },
+    {
+     "id": "qa-148",
+     "rank": null,
+     "query": "Tô aqui no painel da cabine primária e vou fazer o bloqueio pra manutenção. Além do cadeado na chave, precisa pendurar aquela plaquinha de aviso pra ninguém religar, ou o cadeado sozinho já resolve?"
+    },
+    {
+     "id": "qa-149",
+     "rank": null,
+     "query": "O encarregado mandou eu passar um pouco do solvente do tambor grande pra uns galão menor pra levar na viatura, junto com a graxa dielétrica. Posso usar aquelas embalagem de água mineral vazia que tem aqui na base ou tem regra pra isso?"
+    },
+    {
+     "id": "qa-150",
+     "rank": null,
+     "query": "Vazou óleo isolante do transformador aqui no pátio e melou tudo. Onde eu vejo o que fazer de primeiros socorros se alguém se lambuzar e como apagar se pegar fogo? Tem que ter algum papel do produto aqui na base?"
+    },
+    {
+     "id": "qa-151",
+     "rank": 3,
+     "query": "A gente terminou de montar a cerca nova da subestação e o fiscal perguntou das placa de perigo de morte no alambrado e no portão. Pode ser qualquer placa amarela que a gente imprimir ou tem padrão certinho de cor e escrita?"
+    }
+   ]
+  },
+  "llm27b": {
+   "n": 151,
+   "recall_at_1": 19.9,
+   "recall_at_2": 29.8,
+   "recall_at_5": 51.7,
+   "detail": [
+    {
+     "id": "qa-001",
+     "rank": null,
+     "query": "trabalho em subestação circuito energizado luva de borracha EPI isolamento elétrico"
+    },
+    {
+     "id": "qa-002",
+     "rank": 5,
+     "query": "tensão de segurança segurança de baixa tensão painel elétrico desenergização"
+    },
+    {
+     "id": "qa-003",
+     "rank": null,
+     "query": "EPI vestuário proteção arco elétrico camisa rasgada substituição proibição material sintético algodão"
+    },
+    {
+     "id": "qa-004",
+     "rank": null,
+     "query": "equipamento de proteção individual EPI luvas isolantes sobre aliança acessórios metálicos condutores trabalho em barramento contato com partes energizadas"
+    },
+    {
+     "id": "qa-005",
+     "rank": null,
+     "query": "manipulação de ferramentas em ambiente iluminado inadequado uso de lanterna com uma mão operação de conector com a outra mão painel elétrico segurança na iluminação do local de trabalho"
+    },
+    {
+     "id": "qa-006",
+     "rank": null,
+     "query": "restrição de espaço confinado manuseio de caixa de passagem postura inadequada alcance limitado trabalho em espaço confinado segurança do trabalhador"
+    },
+    {
+     "id": "qa-007",
+     "rank": 2,
+     "query": "procedimentos de segurança bloqueio e etiquetagem LOTO desenergização sequência de passos desligamento chave faca circuito verificação de ausência de tensão isolamento aterramento"
+    },
+    {
+     "id": "qa-008",
+     "rank": 1,
+     "query": "verificação de ausência de tensão detector de tensão teste de tensão aterramento temporário medidas de segurança procedimentos de trabalho em eletricidade"
+    },
+    {
+     "id": "qa-009",
+     "rank": 1,
+     "query": "reestabelecimento de energia sequência de reenergização procedimento de religamento chave de seccionamento remoção de cadeado bloqueio de segurança"
+    },
+    {
+     "id": "qa-010",
+     "rank": 4,
+     "query": "reconexão alimentação rede elétrica área de trabalho ocupada retirada de ferramentas segurança elétrica perigo arco elétrico choque elétrico liberação de área de trabalho"
+    },
+    {
+     "id": "qa-011",
+     "rank": null,
+     "query": "trabalho em rede energizada acesso restrito qualificação habilitação autorização equipe técnica"
+    },
+    {
+     "id": "qa-012",
+     "rank": null,
+     "query": "acesso a área energizada permissão de trabalho pessoal autorizado zona de risco proximidade partes vivas"
+    },
+    {
+     "id": "qa-013",
+     "rank": 1,
+     "query": "trabalho em equipe dupla dupla de trabalho isolamento de rede 13,8 kV 13.8 kV linha aérea alta tensão trabalho solo"
+    },
+    {
+     "id": "qa-014",
+     "rank": null,
+     "query": "trabalho solo viatura SEP sistema de energia potência isolamento PPE procedimento solo"
+    },
+    {
+     "id": "qa-015",
+     "rank": null,
+     "query": "procedimento de desligamento chave faca alimentador sequência de manobras bloqueio e travamento LOTO permissão de trabalho PT análise de risco trabalho em eletricidade"
+    },
+    {
+     "id": "qa-016",
+     "rank": null,
+     "query": "validade ordem de serviço troca subestação"
+    },
+    {
+     "id": "qa-017",
+     "rank": null,
+     "query": "bastão isolante EPI inspeção visual estado de conservação riscos integridade estrutural uso em circuito energizado verificação periódica"
+    },
+    {
+     "id": "qa-018",
+     "rank": 1,
+     "query": "luva de borracha EPI EPI dielétrico teste de campo rede viva rede energizada inspeção visual teste periódico validade laboratório"
+    },
+    {
+     "id": "qa-019",
+     "rank": 1,
+     "query": "qualificação profissional treinamento NR-10 requisitos mínimos competência técnica eletricista rede de distribuição"
+    },
+    {
+     "id": "qa-020",
+     "rank": 1,
+     "query": "diferença qualificado habilitado capacitado autorizado requisitos competências NR-10"
+    },
+    {
+     "id": "qa-021",
+     "rank": null,
+     "query": "permissão de trabalho PT análise de riscos permissão de trabalho subestação troca chave fusível"
+    },
+    {
+     "id": "qa-022",
+     "rank": null,
+     "query": "reunião pré-operacional briefing segurança trabalho em altura sistema elétrico"
+    },
+    {
+     "id": "qa-023",
+     "rank": 1,
+     "query": "reanimação cardiopulmonar RCP massagem cardíaca compressão torácica vítima inconsciente choque elétrico parada cardiorrespiratória primeiros socorros"
+    },
+    {
+     "id": "qa-024",
+     "rank": null,
+     "query": "treinamento resgate de vítima em altura obrigatoriedade empregador custo responsabilidade"
+    },
+    {
+     "id": "qa-025",
+     "rank": null,
+     "query": "negativa de ordem de trabalho insalubre risco iminente estrutura instável poste deteriorado direito de recusa segurança do trabalho"
+    },
+    {
+     "id": "qa-026",
+     "rank": null,
+     "query": "paralisação de trabalho fio caído proximidade de água comunicação risco interrupção de serviço segurança"
+    },
+    {
+     "id": "qa-027",
+     "rank": 1,
+     "query": "800 V 800 volts tensão limite baixa tensão alta tensão limite 1000 V corrente alternada CA"
+    },
+    {
+     "id": "qa-028",
+     "rank": 1,
+     "query": "banco de baterias 1300 V CC corrente contínua alta tensão limite tensão 1300V 1300 volts"
+    },
+    {
+     "id": "qa-029",
+     "rank": 1,
+     "query": "distância mínima de segurança zona controlada área energizada trabalho a quente proximidade condutor energizado"
+    },
+    {
+     "id": "qa-030",
+     "rank": null,
+     "query": "zona controlada zona livre isolamento área de trabalho condições de segurança permissão de trabalho"
+    },
+    {
+     "id": "qa-031",
+     "rank": null,
+     "query": "carga instalada 75 kW subestação documentação técnica projeto elétrico laudo de inspeção ART CREA"
+    },
+    {
+     "id": "qa-032",
+     "rank": 1,
+     "query": "prontuário elétrico PIE planta industrial documentos obrigatórios requisitos auditoria NR-10"
+    },
+    {
+     "id": "qa-033",
+     "rank": null,
+     "query": "validade da capacitação inicial periodicidade reciclagem renovação treinamento NR-10"
+    },
+    {
+     "id": "qa-034",
+     "rank": 1,
+     "query": "retorno ao trabalho afastamento INSS 5 meses reciclagem treinamento periódico aptidão trabalho em altura rede elétrica"
+    },
+    {
+     "id": "qa-035",
+     "rank": null,
+     "query": "área classificada zona 0 zona 1 zona 2 explosiva combustível vapor inflamável elétrica instalações elétricas equipamentos intrinsecamente seguros ATEX"
+    },
+    {
+     "id": "qa-036",
+     "rank": null,
+     "query": "furadeira eletroduto cabine área classificada solvente ambiente explosivo risco de explosão"
+    },
+    {
+     "id": "qa-037",
+     "rank": 2,
+     "query": "bloqueio e etiquetamento LOTO lockout tagout procedimento de segurança desligamento disjuntor geral manutenção QGBT barramento aviso equipe rádio"
+    },
+    {
+     "id": "qa-038",
+     "rank": 5,
+     "query": "identificação de circuitos impedidos painéis elétricos sinalização fita zebrada bloqueio subestação"
+    },
+    {
+     "id": "qa-039",
+     "rank": 4,
+     "query": "cadeado chave seccionadora painel elétrico dispositivo de intertravamento bloqueio segurança NR-10"
+    },
+    {
+     "id": "qa-040",
+     "rank": null,
+     "query": "bloqueio e etiquetamento lockout tagout desligamento chave faca circuito prevenção religamento acidental manutenção painel elétrico ausência ponto de cadeado"
+    },
+    {
+     "id": "qa-041",
+     "rank": 1,
+     "query": "diagrama unifilar atualizado documentação técnica instalações elétricas manutenção subestação painel elétrico exigência normativa"
+    },
+    {
+     "id": "qa-042",
+     "rank": 1,
+     "query": "disjuntor geral inspeção periódica manutenção sistemas de proteção teste funcional"
+    },
+    {
+     "id": "qa-043",
+     "rank": 2,
+     "query": "trabalho em linha desenergizada risco de indução elétrica circuitos adjacentes energizados medidas de proteção aterramento equipotencialidade verificação de ausência de tensão"
+    },
+    {
+     "id": "qa-044",
+     "rank": 1,
+     "query": "luva de borracha alta tensão EPI proteção dielétrica validade ensaio periódico inspeção visual integridade sem furo uso rede elétrica manutenção preventiva"
+    },
+    {
+     "id": "qa-045",
+     "rank": null,
+     "query": "responsável técnico equipe trabalho campo troca cruzeta liderança serviço"
+    },
+    {
+     "id": "qa-046",
+     "rank": 5,
+     "query": "EPI Equipamento de Proteção Individual fornecimento gratuito empresa obrigação luva isolante capacete segurança trabalho linha viva"
+    },
+    {
+     "id": "qa-047",
+     "rank": null,
+     "query": "luva isolante danificada rasgada defeito fita adesiva vedação PPE EPI inspeção manutenção substituição uso proibido"
+    },
+    {
+     "id": "qa-048",
+     "rank": null,
+     "query": "luvas de borracha isolantes validade CA certificado de aprovação vencido EPI inspeção visual condição de uso armazenamento"
+    },
+    {
+     "id": "qa-049",
+     "rank": null,
+     "query": "bastão de manobra novo modelo diferente treinamento instrução antes do uso procedimento operacional segurança"
+    },
+    {
+     "id": "qa-050",
+     "rank": 1,
+     "query": "EPI proteção contra choques elétricos luva de borracha dielétrica sobreluva de couro uso conjunto obrigatório rede energizada"
+    },
+    {
+     "id": "qa-051",
+     "rank": null,
+     "query": "EPIs combinados EPI conjunto barulho ruído poeira partículas suspensão simultâneo proteção auditiva respiratória"
+    },
+    {
+     "id": "qa-052",
+     "rank": 3,
+     "query": "proteção ocular EPI óculos de segurança arco elétrico radiação UV exposição solar trabalho em altura"
+    },
+    {
+     "id": "qa-053",
+     "rank": 3,
+     "query": "EPI equipamento de proteção individual etiqueta rotulagem instruções de uso idioma português obrigatório fabricante importação NR-6"
+    },
+    {
+     "id": "qa-054",
+     "rank": null,
+     "query": "trabalho em altura definição limite 2 metros plataforma troca de conexão"
+    },
+    {
+     "id": "qa-055",
+     "rank": 1,
+     "query": "trabalho em altura requisitos mínimos treinamento curso ASO aptidão médica segurança trabalho em altura NR-35"
+    },
+    {
+     "id": "qa-056",
+     "rank": 3,
+     "query": "treinamento inicial carga horária mínima habilitação trabalho em altura escada poste"
+    },
+    {
+     "id": "qa-057",
+     "rank": 2,
+     "query": "treinamento altura NR-35 requisitos teóricos práticos demonstração uso EPI cinto de segurança"
+    },
+    {
+     "id": "qa-058",
+     "rank": 2,
+     "query": "trabalho em altura análise de risco permissão de trabalho APR PT estrutura"
+    },
+    {
+     "id": "qa-059",
+     "rank": 1,
+     "query": "troca de cruzeta manutenção de rede análise de risco ordem de serviço PT permissão de trabalho trabalho em altura rotina"
+    },
+    {
+     "id": "qa-060",
+     "rank": null,
+     "query": "proteção contra queda altura EPIs cinto de segurança trava-quedas linha de vida ancoragem ponto de ancoragem inspeção equipamentos trabalho em altura"
+    },
+    {
+     "id": "qa-061",
+     "rank": null,
+     "query": "trabalho em altura ancoragem ponto de ancoragem talabarte ferragem resistência carga estática dinâmica ancoragem em estruturas metálicas"
+    },
+    {
+     "id": "qa-062",
+     "rank": null,
+     "query": "cinto de segurança tipo cinturão apenas cintura vs cinto tipo paraquedista com perneiras trabalho em altura torre"
+    },
+    {
+     "id": "qa-063",
+     "rank": null,
+     "query": "transição escada plataforma torre ausência de ancoragem talabarte duplo linha de vida obrigatório proteção contra quedas altura"
+    },
+    {
+     "id": "qa-064",
+     "rank": 2,
+     "query": "resgate de trabalhador suspenso queda em altura cinto de segurança procedimento de emergência plano de resgate tempo de resgate rápido"
+    },
+    {
+     "id": "qa-065",
+     "rank": null,
+     "query": "trabalho em altura trabalho a dois regra dois homens resgate de emergência isolamento de carga alimentador afastado trabalho solo"
+    },
+    {
+     "id": "qa-066",
+     "rank": null,
+     "query": "condições climáticas adversas vento forte trovoadas relâmpagos proibição trabalho em altura suspensão atividades segurança eletricista"
+    },
+    {
+     "id": "qa-067",
+     "rank": 3,
+     "query": "linha de vida suporte fixo ponto de ancoragem estrutura metálica corroída ferrugem talabarte ancoragem provisória requisitos resistência carga"
+    },
+    {
+     "id": "qa-068",
+     "rank": null,
+     "query": "escada de fibra de vidro ascensão mão livre ferramenta transporte segurança trabalho em altura"
+    },
+    {
+     "id": "qa-069",
+     "rank": 3,
+     "query": "validade certificado curso trabalho em altura reciclagem periodicidade 2 anos"
+    },
+    {
+     "id": "qa-070",
+     "rank": 1,
+     "query": "trabalho em altura rapel torre corda única sistema de ancoragem duplo EPI cinturão de segurança trava-quedas"
+    },
+    {
+     "id": "qa-071",
+     "rank": 1,
+     "query": "trabalho em altura proteção contra quedas talabarte absorvedor de impacto mosquetão linha de vida dispositivo de retenção EPI"
+    },
+    {
+     "id": "qa-072",
+     "rank": 5,
+     "query": "isolação cabo descascado exposição condutor cobre fita isolante proteção painel quadro de comando"
+    },
+    {
+     "id": "qa-073",
+     "rank": 2,
+     "query": "formigamento carcaça esmerilhadeira bancada descarga estática fio terra aterramento proteção contra choque elétrico"
+    },
+    {
+     "id": "qa-074",
+     "rank": 1,
+     "query": "parada de emergência botão cogumelo vermelho desligamento máquina fim de turno procedimento correto NR-12"
+    },
+    {
+     "id": "qa-075",
+     "rank": 2,
+     "query": "bloqueio e etiquetamento LOTO cadeado chave desligamento botoeira manutenção rolamento motor esteira alimentação elétrica"
+    },
+    {
+     "id": "qa-076",
+     "rank": 4,
+     "query": "bloqueio e etiquetamento cadeado tag placa identificação desligamento de energia contator painel esteira LOTO"
+    },
+    {
+     "id": "qa-077",
+     "rank": null,
+     "query": "prensa hidráulica zona de prensagem distância mínima botão comando botoeira posição de operação proteção contra acionamento acidental área de perigo"
+    },
+    {
+     "id": "qa-078",
+     "rank": 1,
+     "query": "proteção de partes móveis acionamento de máquinas guarda de segurança polia correia transmissão rotação desligamento travamento isolamento proteção coletiva"
+    },
+    {
+     "id": "qa-079",
+     "rank": null,
+     "query": "treinamento obrigatório operação máquina guilhotina segurança do trabalho"
+    },
+    {
+     "id": "qa-080",
+     "rank": null,
+     "query": "sinalização de segurança áreas energizadas painéis elétricos transportadores rotação risco de acidente proteção de máquinas avisos obrigatórios sinalização de perigo"
+    },
+    {
+     "id": "qa-081",
+     "rank": null,
+     "query": "sistema pneumático mangueira pressão alívio válvula segurança"
+    },
+    {
+     "id": "qa-082",
+     "rank": null,
+     "query": "unidade hidráulica plataforma pressão acima manômetro pressão de trabalho sobrepneumação válvula de segurança alívio inspeção manutenção sistema hidráulico"
+    },
+    {
+     "id": "qa-083",
+     "rank": 2,
+     "query": "partes móveis expostas roletes tambor esteira transportadora brita proteção guarda dispositivos de segurança acesso circulação trabalhadores risco de amputação colisão"
+    },
+    {
+     "id": "qa-084",
+     "rank": 2,
+     "query": "dispositivo de parada de emergência botão de emergência cordão de emergência máquina transportadora esteira transportadora segurança máquinas"
+    },
+    {
+     "id": "qa-085",
+     "rank": 3,
+     "query": "instalação elétrica provisória canteiro de obras exigências normativas segurança elétrica temporária"
+    },
+    {
+     "id": "qa-086",
+     "rank": 4,
+     "query": "NR-10 capacitação treinamento obrigatório montagem quadro elétrico provisório obra temporária permissão trabalho sem certificação"
+    },
+    {
+     "id": "qa-087",
+     "rank": null,
+     "query": "cabo de força no chão passagem de pessoas carrinho de massa suspensão obrigatória proteção mecânica passagem de veículos"
+    },
+    {
+     "id": "qa-088",
+     "rank": 1,
+     "query": "instalação elétrica temporária cabo de energia passagem de cabo piso canteiro de obras proteção mecânica cabo no chão"
+    },
+    {
+     "id": "qa-089",
+     "rank": 5,
+     "query": "aterramento contêiner almoxarifado quadros de força obra provisória sistema de aterramento instalação temporária"
+    },
+    {
+     "id": "qa-090",
+     "rank": 3,
+     "query": "choque elétrico contato acidental quadro de distribuição falta de proteção isolamento aterramento dispositivos de proteção contra choques elétricos"
+    },
+    {
+     "id": "qa-091",
+     "rank": 3,
+     "query": "proteção diferencial residual disjuntor DR instalação temporária canteiro de obras equipamentos elétricos betoneira serra circular"
+    },
+    {
+     "id": "qa-092",
+     "rank": 5,
+     "query": "proteção contra contato direto e indireto dispositivos de corte e abertura quadro de distribuição elétrico acesso restrito bloqueio e etiquetamento LOTO segurança em instalações elétricas"
+    },
+    {
+     "id": "qa-093",
+     "rank": null,
+     "query": "trabalho em altura beirada laje ausência de guarda-corpo proteção coletiva risco de queda"
+    },
+    {
+     "id": "qa-094",
+     "rank": null,
+     "query": "condicionamento de ferramentas elétricas cabo de alimentação isolamento danificado emenda provisória fita isolante comum segurança do trabalho manutenção de ferramentas"
+    },
+    {
+     "id": "qa-095",
+     "rank": null,
+     "query": "distância mínima de segurança linha de transmissão rede média tensão guindaste lança içamento vigas proximidade condutores energizados afastamento"
+    },
+    {
+     "id": "qa-096",
+     "rank": null,
+     "query": "condições sanitárias canteiro de obras instalações hidráulicas fossa séptica manutenção obrigatória infraestrutura básica"
+    },
+    {
+     "id": "qa-097",
+     "rank": null,
+     "query": "condições de trabalho ao ar livre exposição solar alimentação repouso refeitório área de descanso obra pequena"
+    },
+    {
+     "id": "qa-098",
+     "rank": 3,
+     "query": "vestiário instalações sanitárias troca de roupa armazenamento de mochilas EPIs condições de trabalho canteiro de obras"
+    },
+    {
+     "id": "qa-099",
+     "rank": null,
+     "query": "treinamento obrigatório antes de início de atividades integração segurança trabalho em eletricidade requisitos admissão profissional"
+    },
+    {
+     "id": "qa-100",
+     "rank": null,
+     "query": "treinamento admissional duração mínima 30 minutos integração NR-10 capacitação inicial registro assinatura"
+    },
+    {
+     "id": "qa-101",
+     "rank": null,
+     "query": "integração de segurança exigência obrigatoriedade experiência anterior transferência de empresa validade treinamento inicial"
+    },
+    {
+     "id": "qa-102",
+     "rank": 1,
+     "query": "isolador danificado rachado estalo descarga elétrica parada de emergência interrupção de trabalho perigo iminente penalidade sanção rescisão justa causa segurança do trabalho"
+    },
+    {
+     "id": "qa-103",
+     "rank": null,
+     "query": "orientação prévia serviço risco comunicação riscos análise de risco ATAS ordem de serviço escrita permissão de trabalho"
+    },
+    {
+     "id": "qa-104",
+     "rank": 1,
+     "query": "obrigatoriedade cumprimento normas segurança elétrica responsabilidade empregador empregado"
+    },
+    {
+     "id": "qa-105",
+     "rank": null,
+     "query": "gerenciamento de riscos trabalho em altura rede de distribuição concessionária"
+    },
+    {
+     "id": "qa-106",
+     "rank": null,
+     "query": "hierarquia medidas de controle riscos elétricos ordem prioridade proteção coletiva individual EPIs PGR eliminado risco na origem"
+    },
+    {
+     "id": "qa-107",
+     "rank": null,
+     "query": "risco grave e iminente subestação registro papel prazo correção ação corretiva notificação"
+    },
+    {
+     "id": "qa-108",
+     "rank": null,
+     "query": "prazo de implementação medidas de proteção segurança do trabalho obrigações empregador prazo de vigência"
+    },
+    {
+     "id": "qa-109",
+     "rank": null,
+     "query": "PGR Programa de Gerenciamento de Riscos documentos obrigatórios apresentação fiscalização"
+    },
+    {
+     "id": "qa-110",
+     "rank": null,
+     "query": "acesso a informação riscos ocupacionais documentação interna empresa direito do trabalhador CIPA comunicação de riscos"
+    },
+    {
+     "id": "qa-111",
+     "rank": null,
+     "query": "resgate elétrico plano de emergência atendimento a vítima de choque elétrico trabalho em altura poste linha de transmissão"
+    },
+    {
+     "id": "qa-112",
+     "rank": null,
+     "query": "linha afastada isolamento socorro emergência resgate primeiros socorros equipe de resgate"
+    },
+    {
+     "id": "qa-113",
+     "rank": null,
+     "query": "treinamento inicial obrigatório início de atividades campo habilitação profissionalização segurança"
+    },
+    {
+     "id": "qa-114",
+     "rank": 2,
+     "query": "validade curso formação inicial reciclagem periodicidade treinamento elétrico 3 anos"
+    },
+    {
+     "id": "qa-115",
+     "rank": 3,
+     "query": "condições inseguras trabalho risco iminente recusa execução tarefa parada emergencial comunicação superior hierárquico abandono local trabalho"
+    },
+    {
+     "id": "qa-116",
+     "rank": null,
+     "query": "direito de recusa trabalho risco iminente vida integridade física escoramento vala trincheira penalidade dispensa sem justa causa rescisão contratual ameaça assédio moral segurança do trabalho"
+    },
+    {
+     "id": "qa-117",
+     "rank": 1,
+     "query": "caixa de passagem subterrânea poço de visita espaço confinado classificação requisitos entrada trabalho embaixo da calçada"
+    },
+    {
+     "id": "qa-118",
+     "rank": 4,
+     "query": "acesso a espaço confinado galeria subterrânea zona de risco trabalho em espaço confinado permissão de entrada"
+    },
+    {
+     "id": "qa-119",
+     "rank": 3,
+     "query": "vigia caixa subterrânea separação de material atender rádio outra equipe dupla de segurança"
+    },
+    {
+     "id": "qa-120",
+     "rank": 5,
+     "query": "permissão de trabalho PT trabalho em espaço confinado galeria subsolo autorização entrada ordem de serviço"
+    },
+    {
+     "id": "qa-121",
+     "rank": 3,
+     "query": "detector de gases desligar desligamento uso em ambiente confinado poço de inspeção medição contínua monitoramento de atmosfera explosiva segurança"
+    },
+    {
+     "id": "qa-122",
+     "rank": 5,
+     "query": "caixa subterrânea emenda ventilador ventilação forçada intermitente contínua exigência segurança espaço confinado"
+    },
+    {
+     "id": "qa-123",
+     "rank": null,
+     "query": "trabalho em ambiente confinado câmara de inspeção emenda de cabo energizado proximidade condutores energizados sinalização segurança bloqueio desligamento isolação"
+    },
+    {
+     "id": "qa-124",
+     "rank": null,
+     "query": "poço de inspeção espaço confinado trabalho em profundidade tripé de resgate guincho cinto de segurança paraquedista escada corda amarrada na cintura salvamento"
+    },
+    {
+     "id": "qa-125",
+     "rank": null,
+     "query": "treinamento reciclagem espaço confinado carga horária duração horas"
+    },
+    {
+     "id": "qa-126",
+     "rank": null,
+     "query": "detector de gases alarme contínuo interrupção trabalho evacuação área confinada atmosfera explosiva"
+    },
+    {
+     "id": "qa-127",
+     "rank": 2,
+     "query": "adicional de insalubridade adicional de perigo trabalho em rede energizada cálculo base de cálculo salário base salário bruto horas extras prêmios gratificações"
+    },
+    {
+     "id": "qa-128",
+     "rank": 4,
+     "query": "periculosidade eletricidade SEP Sistema Elétrico de Potência desenergizado desligado manutenção subestação linha de transmissão"
+    },
+    {
+     "id": "qa-129",
+     "rank": 3,
+     "query": "risco de arco elétrico proximidade de partes energizadas alta tensão baixa tensão trabalho em ambiente energizado exposição a campos eletromagnéticos sem contato direto adicional de insalubridade"
+    },
+    {
+     "id": "qa-130",
+     "rank": 3,
+     "query": "inspeção visual rede aérea média tensão periculosidade atividade inspeção manutenção"
+    },
+    {
+     "id": "qa-131",
+     "rank": null,
+     "query": "desligamento de circuito teste de ausência de tensão detector de tensão verificação de desenergização trabalho em eletricidade risco elétrico adicional de insalubridade"
+    },
+    {
+     "id": "qa-132",
+     "rank": null,
+     "query": "manobras chave seccionadora disjuntor subestação transformador periculosidade insalubridade"
+    },
+    {
+     "id": "qa-133",
+     "rank": null,
+     "query": "adicionais de insalubridade periculosidade trabalho em subestação apoio próximo a equipamentos energizados área de risco"
+    },
+    {
+     "id": "qa-134",
+     "rank": 1,
+     "query": "periculosidade adicional remuneração circuito de comando 24 V tensão baixa 24 volts"
+    },
+    {
+     "id": "qa-135",
+     "rank": 1,
+     "query": "adicionais de insalubridade e periculosidade limite de tensão 48 volts CA 48 V CA painel de sinalização baixa tensão"
+    },
+    {
+     "id": "qa-136",
+     "rank": null,
+     "query": "periculosidade trabalho linha desligada aterramento cadeado bloqueio sinalização linha morta atividade elétrica"
+    },
+    {
+     "id": "qa-137",
+     "rank": null,
+     "query": "adicional de periculosidade circuito desenergizado aterrado desligamento seccionamento"
+    },
+    {
+     "id": "qa-138",
+     "rank": 1,
+     "query": "substituição de tomadas quadro de distribuição desenergização disjuntor geral ausência de energia periculosidade trabalho em instalações elétricas"
+    },
+    {
+     "id": "qa-139",
+     "rank": 2,
+     "query": "adicionais de insalubridade manutenção motor bomba 220V 220 volts desligado liberado ausência risco religamento automático trabalho em baixa tensão"
+    },
+    {
+     "id": "qa-140",
+     "rank": 5,
+     "query": "periculosidade adicional 30% critério de enquadramento atividade risco atividade elétrica periculosidade adicional 30% critério de enquadramento atividade risco"
+    },
+    {
+     "id": "qa-141",
+     "rank": 2,
+     "query": "periculosidade supressão exclusão requisito laudo técnico engenheiro segurança do trabalho documento comprobatório aviso RH"
+    },
+    {
+     "id": "qa-142",
+     "rank": 2,
+     "query": "faixas de sinalização amarela e vermelha piso sinalização de segurança área restrita transformador subestação sinalização de cores piso"
+    },
+    {
+     "id": "qa-143",
+     "rank": null,
+     "query": "pintura cor laranja proteção chave painel sinalização segurança bloqueio travamento LOTO grade proteção física circuito"
+    },
+    {
+     "id": "qa-144",
+     "rank": 4,
+     "query": "classificação de produtos perigosos armazenamento sem identificação etiquetas de segurança tanques de óleo isolante solventes inflamáveis identificação de risco"
+    },
+    {
+     "id": "qa-145",
+     "rank": 1,
+     "query": "rótulo frasco transporte campo substância perigosa identificação química composição ingredientes perigosos pictogramas GHS sinalização de risco proibido caneta manual"
+    },
+    {
+     "id": "qa-146",
+     "rank": 5,
+     "query": "FISPQ ficha de informação de segurança de produtos químicos disponibilidade acesso equipe armazenamento responsável encargo NR-26"
+    },
+    {
+     "id": "qa-147",
+     "rank": 5,
+     "query": "rótulos de segurança produtos químicos perigosos símbolo caveira chama treinamento obrigatório empregados armazenamento almoxarifado subestação"
+    },
+    {
+     "id": "qa-148",
+     "rank": null,
+     "query": "bloqueio e travamento lockout tagout LOTO etiqueta de aviso placa de sinalização intertravamento chave seccionadora cabine primária manutenção"
+    },
+    {
+     "id": "qa-149",
+     "rank": null,
+     "query": "transferência de produtos químicos solventes graxa dielétrica de tambor para recipiente menor transporte em veículo viatura embalagem não original garrafa PET água mineral vazia embalagem adequada armazenamento transporte de materiais perigosos"
+    },
+    {
+     "id": "qa-150",
+     "rank": null,
+     "query": "óleo isolante transformador vazamento contaminação pele primeiros socorros emergência incêndio extintor ficha de segurança de dados FISPQ SDS"
+    },
+    {
+     "id": "qa-151",
+     "rank": 3,
+     "query": "placas de sinalização de perigo morte elétrica subestação cerca alambrado portão padrão cor amarela texto simbologia sinalização de segurança"
+    }
+   ]
+  },
+  "model": {
+   "n": 151,
+   "recall_at_1": 13.2,
+   "recall_at_2": 22.5,
+   "recall_at_5": 39.1,
+   "detail": [
+    {
+     "id": "qa-001",
+     "rank": 4,
+     "query": "subestação circuito desligamento EPI proteção contra choques elétricos"
+    },
+    {
+     "id": "qa-002",
+     "rank": null,
+     "query": "tensão de segurança proteção contra choques elétricos isolamento de equipamentos"
+    },
+    {
+     "id": "qa-003",
+     "rank": null,
+     "query": "camisa de trabalho rasgada substituição vestuário de proteção camisa de trabalho camisa de algodão"
+    },
+    {
+     "id": "qa-004",
+     "rank": null,
+     "query": "proteção ocular EPI proteção facial luvas de segurança"
+    },
+    {
+     "id": "qa-005",
+     "rank": null,
+     "query": "lanterna mão segura conector painel eletricidade risco elétrico"
+    },
+    {
+     "id": "qa-006",
+     "rank": null,
+     "query": "caixa de passagem apertada trabalho em altura mão torção corpo inteiro serviço acelerado"
+    },
+    {
+     "id": "qa-007",
+     "rank": 2,
+     "query": "desligamento de energia circuito segurança elétrica ordem de trabalho procedimento de segurança"
+    },
+    {
+     "id": "qa-008",
+     "rank": 1,
+     "query": "aterramento temporário pausa de trabalho circuito eletricidade teste de segurança"
+    },
+    {
+     "id": "qa-009",
+     "rank": 3,
+     "query": "desligamento de rede bloqueio cadeado chave desligamento de equipamento tensão"
+    },
+    {
+     "id": "qa-010",
+     "rank": null,
+     "query": "afogamento afogamento afogado afogamento de risco de acidente afogamento alimentador alimentação elétrica interrupção de energia chave fechamento de dispositivo"
+    },
+    {
+     "id": "qa-011",
+     "rank": null,
+     "query": "serviço de manutenção mão operadora equipe autorização condições seguras transformador rede viva"
+    },
+    {
+     "id": "qa-012",
+     "rank": null,
+     "query": "limitação de acesso área viva pessoal liberado restrição segurança trabalho"
+    },
+    {
+     "id": "qa-013",
+     "rank": 2,
+     "query": "substituição de trabalhador ausência temporária serviço elétrico rede de alta tensão 13,8 kV autorização de trabalho"
+    },
+    {
+     "id": "qa-014",
+     "rank": null,
+     "query": "viatura solo apoio emergência assistência"
+    },
+    {
+     "id": "qa-015",
+     "rank": 3,
+     "query": "desligamento de equipamentos alimentadores chaves facas rádio telefone de comunicação"
+    },
+    {
+     "id": "qa-016",
+     "rank": null,
+     "query": "serviço elétrico terceiro posto subestação transferência de serviço"
+    },
+    {
+     "id": "qa-017",
+     "rank": 4,
+     "query": "bastão isolante capa meio riscada firme uso em circuito vivo"
+    },
+    {
+     "id": "qa-018",
+     "rank": 1,
+     "query": "luva de proteção contra aço elétrico teste de laboratório campo de trabalho rede viva"
+    },
+    {
+     "id": "qa-019",
+     "rank": 1,
+     "query": "qualificação profissional qualificação técnico técnico elétrico profissional qualificado NR-10"
+    },
+    {
+     "id": "qa-020",
+     "rank": 1,
+     "query": "qualificado habilitado capacitado autorizado fiscal classificação habilitação"
+    },
+    {
+     "id": "qa-021",
+     "rank": null,
+     "query": "subestação troca de chave fusível papelada obrigatoriedade procedimento prévia"
+    },
+    {
+     "id": "qa-022",
+     "rank": null,
+     "query": "inspeção de segurança prévia subida poste inspeção de risco"
+    },
+    {
+     "id": "qa-023",
+     "rank": 5,
+     "query": "primeiro socorro choque elétrico apagamento massa muscular compressão torácica"
+    },
+    {
+     "id": "qa-024",
+     "rank": 3,
+     "query": "treinamento de resgate de vítimas em altura obrigatoriedade empresa responsabilidade"
+    },
+    {
+     "id": "qa-025",
+     "rank": null,
+     "query": "subida de pessoa em estrutura instável poste balanço impedimento negativa objeção autorização de trabalho"
+    },
+    {
+     "id": "qa-026",
+     "rank": null,
+     "query": "interrupção de serviço emergência elétrica rede elétrica água risco elétrico telefone rádio aviso supervisor"
+    },
+    {
+     "id": "qa-027",
+     "rank": 1,
+     "query": "circuito de 800 V corrente alternada alta tensão classificação energética"
+    },
+    {
+     "id": "qa-028",
+     "rank": null,
+     "query": "banco de baterias 1300 V CC alta tensão"
+    },
+    {
+     "id": "qa-029",
+     "rank": 2,
+     "query": "trabalho em altura distância de trabalho cabo energizado proximidade segurança NR-10"
+    },
+    {
+     "id": "qa-030",
+     "rank": null,
+     "query": "zona controlada zona livre isolamento elétrico"
+    },
+    {
+     "id": "qa-031",
+     "rank": 4,
+     "query": "documentação técnica carga elétrica subestação fábrica requisitos documentação"
+    },
+    {
+     "id": "qa-032",
+     "rank": 4,
+     "query": "prontuário elétrico planta auditoria requisitos completude documentação"
+    },
+    {
+     "id": "qa-033",
+     "rank": 3,
+     "query": "requisitos reciclagem NR-10 curso técnico atualização profissional NR-10 NR-12"
+    },
+    {
+     "id": "qa-034",
+     "rank": 3,
+     "query": "reciclagem curso de capacitação NR-10 infraestrutura elétrica lesão no trabalho lesão musculoesquelética recuperação"
+    },
+    {
+     "id": "qa-035",
+     "rank": null,
+     "query": "tanque combustível área classificada vapor elétrico elétrico requisitos segurança NR-10"
+    },
+    {
+     "id": "qa-036",
+     "rank": null,
+     "query": "instalação de equipamentos em cabines perto de áreas de pintura uso de furadeira comum risco de inalação de solventes odorante"
+    },
+    {
+     "id": "qa-037",
+     "rank": null,
+     "query": "desligamento de disjuntor geral QGBT aviso de segurança rádio equipe de trabalho"
+    },
+    {
+     "id": "qa-038",
+     "rank": null,
+     "query": "identificação de painéis elétricos impedimento operação fita zebrada"
+    },
+    {
+     "id": "qa-039",
+     "rank": null,
+     "query": "chave com cadeado dispositivo de segurança bloqueio de acesso proteção contra acesso não autorizado"
+    },
+    {
+     "id": "qa-040",
+     "rank": 2,
+     "query": "desligamento chave faca circuito bloqueio segurança acesso restrição de acesso proteção contra acidentes"
+    },
+    {
+     "id": "qa-041",
+     "rank": 1,
+     "query": "manutenção subestação cliente diagrama atualizado atualização de desenhos técnicos"
+    },
+    {
+     "id": "qa-042",
+     "rank": 1,
+     "query": "disjuntor geral galpão inspeção periódica manutenção periódica verificação periodicidade inspeção periódica"
+    },
+    {
+     "id": "qa-043",
+     "rank": null,
+     "query": "desligamento de linha elétrica circuito desligado indução em condutor risco de choque elétrico"
+    },
+    {
+     "id": "qa-044",
+     "rank": 1,
+     "query": "luva de borracha alta tensão inspecção qualidade material não defeituosa não conformidade inspeção periódica substituição antiga expiração vencimento uso em serviço"
+    },
+    {
+     "id": "qa-045",
+     "rank": null,
+     "query": "responsabilidade do mestre de obra supervisão equipe de trabalho campo trecho de trabalho"
+    },
+    {
+     "id": "qa-046",
+     "rank": 3,
+     "query": "obrigatoriedade compra de EPI almoxarifado capacete luva proteção individual EPI"
+    },
+    {
+     "id": "qa-047",
+     "rank": null,
+     "query": "luva isolante rasgo fita de segurança condição de trabalho acidente elétrico parada imediata comunicação incidente"
+    },
+    {
+     "id": "qa-048",
+     "rank": null,
+     "query": "luvas de borracha novinha depósito gravação CA expiração data de validade substituição equipamento"
+    },
+    {
+     "id": "qa-049",
+     "rank": null,
+     "query": "troço de manobra substituição equipamento de segurança treinamento prévia uso"
+    },
+    {
+     "id": "qa-050",
+     "rank": 1,
+     "query": "proteção contra choque elétrico EPI proteção térmica EPI sobreluva de couro borracha luva de borracha isolamento elétrico"
+    },
+    {
+     "id": "qa-051",
+     "rank": null,
+     "query": "contaminação por poeira e ruído ambiente de trabalho proteção individual EPI equipamentos de proteção individual EPI"
+    },
+    {
+     "id": "qa-052",
+     "rank": 2,
+     "query": "óculos de proteção óculos escuros visão solar proteção contra luz intensa óculos de segurança NR-10"
+    },
+    {
+     "id": "qa-053",
+     "rank": 3,
+     "query": "instruções de segurança linguagem instrução manual de segurança idioma instruções de segurança"
+    },
+    {
+     "id": "qa-054",
+     "rank": null,
+     "query": "trabalho em altura plataforma de 2 metros altura limitada trabalho em altura plataforma de 2m 1/2 altura acesso plataforma de trabalho altura de trabalho"
+    },
+    {
+     "id": "qa-055",
+     "rank": 4,
+     "query": "escada de trabalho altura requisitos médicos aptidão física capacidade física médica"
+    },
+    {
+     "id": "qa-056",
+     "rank": null,
+     "query": "substituição de trabalhador novo treinamento obrigatório"
+    },
+    {
+     "id": "qa-057",
+     "rank": 2,
+     "query": "curso de altura treinamento prático subida cinto de segurança"
+    },
+    {
+     "id": "qa-058",
+     "rank": 1,
+     "query": "serviço em altura sem análise de risco permissão prévia trabalho em altura"
+    },
+    {
+     "id": "qa-059",
+     "rank": null,
+     "query": "troca de equipamento periódica manutenção periódica análise de risco periódica avaliação de risco"
+    },
+    {
+     "id": "qa-060",
+     "rank": null,
+     "query": "proteção contra quedas EPI EPI EPI de segurança trabalho altura de trabalho"
+    },
+    {
+     "id": "qa-061",
+     "rank": null,
+     "query": "ferramentas de fixação de equipamentos elétricos postes ferragens trancos amarração segurança"
+    },
+    {
+     "id": "qa-062",
+     "rank": null,
+     "query": "cinto de segurança cintura para cima torre de trabalho"
+    },
+    {
+     "id": "qa-063",
+     "rank": null,
+     "query": "escada plataforma torre travamento duplo segurança trabalho em altura"
+    },
+    {
+     "id": "qa-064",
+     "rank": 1,
+     "query": "trabalho em altura queda pendurado corda de segurança equipamento de proteção individual EPI"
+    },
+    {
+     "id": "qa-065",
+     "rank": null,
+     "query": "serviço em altura alimentação afastada sem supervisão supervisores de segurança trabalho em altura risco de queda pendulência"
+    },
+    {
+     "id": "qa-066",
+     "rank": null,
+     "query": "trabalho em altura vento forte ventos fortes condições climáticas trabalho em altura risco de queda acidente"
+    },
+    {
+     "id": "qa-067",
+     "rank": 2,
+     "query": "amarrar linha de vida suporte velho estrutura reparo talabarte fixação pontos de ancoragem"
+    },
+    {
+     "id": "qa-068",
+     "rank": 5,
+     "query": "escada de fibra trabalho em altura ferramentas manuais mãos liberadas escada de segurança"
+    },
+    {
+     "id": "qa-069",
+     "rank": null,
+     "query": "certificação de altura treinamento reciclagem validade validade vencimento intervalo de validade"
+    },
+    {
+     "id": "qa-070",
+     "rank": 1,
+     "query": "rapel torre corda pendurado solo peso pessoal capacidade de carga segurança"
+    },
+    {
+     "id": "qa-071",
+     "rank": null,
+     "query": "subida em torre sem amortecedor cabine sem proteção proteção contra quedas cabine sem guarda-corpo risco de queda"
+    },
+    {
+     "id": "qa-072",
+     "rank": 2,
+     "query": "fiação painel máquina de bancada cabo descascado fita isolante proteção contra choque elétrico"
+    },
+    {
+     "id": "qa-073",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-074",
+     "rank": 3,
+     "query": "pressa máquina desligamento botão vermelho de emergência prática correta segurança"
+    },
+    {
+     "id": "qa-075",
+     "rank": 5,
+     "query": "troca de rolamento motor esteira operação embarque embarque segurança bloqueio desligamento botoeira cadeado chave"
+    },
+    {
+     "id": "qa-076",
+     "rank": 3,
+     "query": "cadeado bloqueio de contato proteção contra acesso desligamento chave bloqueio placa de segurança"
+    },
+    {
+     "id": "qa-077",
+     "rank": null,
+     "query": "pressa botão de ligação coladinho pressão mecânica segurança elétrica distância de trabalho zona de prensagem"
+    },
+    {
+     "id": "qa-078",
+     "rank": 2,
+     "query": "grade de proteção polia motor solta máquina rodando correia giratória limpeza manutenção intertravamento desligamento"
+    },
+    {
+     "id": "qa-079",
+     "rank": null,
+     "query": "treinamento obrigatório capacitação operador guilhotina equipamento de trabalho segurança NR-10"
+    },
+    {
+     "id": "qa-080",
+     "rank": null,
+     "query": "sinalização de perigo sem placa placas de segurança área energizada transportador manga camisa ausência sinalização visual"
+    },
+    {
+     "id": "qa-081",
+     "rank": null,
+     "query": "mangueira pneumática estufagem pressão aumento válvula alívio pressão"
+    },
+    {
+     "id": "qa-082",
+     "rank": 1,
+     "query": "unidade hidráulica plataforma hidráulica manômetro pressão acima limite de segurança operação segurança"
+    },
+    {
+     "id": "qa-083",
+     "rank": null,
+     "query": "instalações de transporte de materiais brita roletes tambor estrutura exposição circunferencial ausência de carenagem"
+    },
+    {
+     "id": "qa-084",
+     "rank": null,
+     "query": "estacionamento de emergência cordão de parada botão de parada painel de controle"
+    },
+    {
+     "id": "qa-085",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-086",
+     "rank": 5,
+     "query": "quadro provisório instalação temporária construção elétrica sem curso NR-10"
+    },
+    {
+     "id": "qa-087",
+     "rank": null,
+     "query": "cabo de força suspensão cabo de trabalho transporte de materiais carrinho de massa segurança"
+    },
+    {
+     "id": "qa-088",
+     "rank": null,
+     "query": "cabo elétrico transporte energia gerador betoneira posicionamento segurança trabalho em altura"
+    },
+    {
+     "id": "qa-089",
+     "rank": 2,
+     "query": "aterramento contêiner almoxarifado quadro de força obra provisório"
+    },
+    {
+     "id": "qa-090",
+     "rank": 2,
+     "query": "quadro de distribuição aterramento choque elétrico proteção contra choques elétricos"
+    },
+    {
+     "id": "qa-091",
+     "rank": null,
+     "query": "disjuntor DR proteção contra sobrecarga isolamento elétrico máquina elétrica equipamento de construção canteiro obra elétrica"
+    },
+    {
+     "id": "qa-092",
+     "rank": 1,
+     "query": "quadro de força trancamento segurança elétrica bloqueio de circuito"
+    },
+    {
+     "id": "qa-093",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-094",
+     "rank": null,
+     "query": "furadeira cabo descascado fita isolante comum quebra galho uso condições de segurança"
+    },
+    {
+     "id": "qa-095",
+     "rank": 4,
+     "query": "guindaste içamento vigas colagem rede média tensão rua afastamento de equipamentos proteção contra choques elétricos"
+    },
+    {
+     "id": "qa-096",
+     "rank": 2,
+     "query": "banheiro canteiro de obras água falta água vazamento drenagem sanitário"
+    },
+    {
+     "id": "qa-097",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-098",
+     "rank": null,
+     "query": "vestiário instalação de armazenamento de roupas mochila de descarte"
+    },
+    {
+     "id": "qa-099",
+     "rank": null,
+     "query": "treinamento prévia integração mestre trabalho direto frente de serviço"
+    },
+    {
+     "id": "qa-100",
+     "rank": null,
+     "query": "treinamento admissório meio período 30 minutos integração documentação assinatura lista"
+    },
+    {
+     "id": "qa-101",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-102",
+     "rank": null,
+     "query": "instalação elétrica defeito isolamento rachado estalo estalho condutor risco de choque elétrico responsabilidade do empregador"
+    },
+    {
+     "id": "qa-103",
+     "rank": null,
+     "query": "serviço em rede sem aviso prévio assinatura risco informação previsão segurança"
+    },
+    {
+     "id": "qa-104",
+     "rank": null,
+     "query": "obrigatoriedade normas de segurança NR-10 NR-12 NR-18"
+    },
+    {
+     "id": "qa-105",
+     "rank": null,
+     "query": "gerenciamento de risco trabalho em campo atividades de serviço de rede infraestrutura elétrica e elétrica"
+    },
+    {
+     "id": "qa-106",
+     "rank": null,
+     "query": "proteção individual EPI EPI proteção contra perigos elétricos EPI EPI de segurança"
+    },
+    {
+     "id": "qa-107",
+     "rank": null,
+     "query": "risco identificado subestação elétrica registro documentação acompanhamento manutenção"
+    },
+    {
+     "id": "qa-108",
+     "rank": null,
+     "query": "medida de proteção elétrica instalação temporária prazo de validade custo empresa responsabilidade prazo de validade"
+    },
+    {
+     "id": "qa-109",
+     "rank": 1,
+     "query": "documento exigido PGR registro de segurança trabalho"
+    },
+    {
+     "id": "qa-110",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-111",
+     "rank": null,
+     "query": "esquema de resgate choque elétrico poste ferroviário emergência"
+    },
+    {
+     "id": "qa-112",
+     "rank": null,
+     "query": "sistema de comunicação elétrica afastamento linha de segurança definição de chamada socorro responsabilidade operador manutenção rede elétrica"
+    },
+    {
+     "id": "qa-113",
+     "rank": null,
+     "query": "entrada em empresa treinamento obrigatório trabalho em campo"
+    },
+    {
+     "id": "qa-114",
+     "rank": null,
+     "query": "requisitos de reciclagem profissional treinamento reciclagem continuidade educacional NR-10"
+    },
+    {
+     "id": "qa-115",
+     "rank": null,
+     "query": "substituição estrutural risco de queda de altura aviso de perigo evacuação imediata"
+    },
+    {
+     "id": "qa-116",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-117",
+     "rank": 1,
+     "query": "espaco confinado acesso direto descompressão poço visita calçada"
+    },
+    {
+     "id": "qa-118",
+     "rank": 2,
+     "query": "escalada de vigia boca galeria acesso ajudar puxar cabo trabalho em altura"
+    },
+    {
+     "id": "qa-119",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-120",
+     "rank": 3,
+     "query": "entrada em instalação sem permissão temporária procedimento de segurança"
+    },
+    {
+     "id": "qa-121",
+     "rank": null,
+     "query": "desligamento temporário detector gás hidrocarbonetos poço profundidade operação de emergência economia de energia"
+    },
+    {
+     "id": "qa-122",
+     "rank": 5,
+     "query": "ventilador ventilação localização área subterrânea trabalho em ambiente confinado"
+    },
+    {
+     "id": "qa-123",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-124",
+     "rank": null,
+     "query": "poço de inspeção fundo escada corda arma tripé guincho cinto paraquedista segurança"
+    },
+    {
+     "id": "qa-125",
+     "rank": 3,
+     "query": "treinamento reciclagem autorização trabalho em espaço confinado duração horário"
+    },
+    {
+     "id": "qa-126",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-127",
+     "rank": null,
+     "query": "adição de perigo rede energizada trabalho em risco atmosfera elétrica carga elétrica carga potencial adição de risco adicional tempo extra prêmio salarial"
+    },
+    {
+     "id": "qa-128",
+     "rank": 3,
+     "query": "trabalho em subestação linha de transmissão manutenção SEP desenergização desligamento periculosidade direito de trabalho"
+    },
+    {
+     "id": "qa-129",
+     "rank": 1,
+     "query": "trabalho próximo de barramento vivo alta tensão baixa tensão energizada serviço embaixo padrão cliente adicional condições de segurança"
+    },
+    {
+     "id": "qa-130",
+     "rank": null,
+     "query": "inspeção de rede de distribuição rua aérea média tensão inspeção periódica manutenção periódica segurança do trabalho"
+    },
+    {
+     "id": "qa-131",
+     "rank": 1,
+     "query": "desligamento de linha elétrica verificação de tensão desligamento imediato teste de segurança"
+    },
+    {
+     "id": "qa-132",
+     "rank": null,
+     "query": "manobra de chave seccionadora disjuntor pátio subestação transformador equipamentos elétricos risco de periculosidade"
+    },
+    {
+     "id": "qa-133",
+     "rank": 3,
+     "query": "escopo de trabalho apoio pátio subestação operadores equipamentos não energizados adição de pessoal"
+    },
+    {
+     "id": "qa-134",
+     "rank": null,
+     "query": "circuito de comando 24 volts perigoso pequeno circuito de baixa tensão"
+    },
+    {
+     "id": "qa-135",
+     "rank": null,
+     "query": "painel de sinalização 48 V CA adicional custo de manutenção"
+    },
+    {
+     "id": "qa-136",
+     "rank": null,
+     "query": "circuito desligado desligamento automático cadeado bloqueio sinalização periculosidade risco elétrico"
+    },
+    {
+     "id": "qa-137",
+     "rank": null,
+     "query": "circuito aterrado adicional pagamento negado empresa responsabilidade fiscal"
+    },
+    {
+     "id": "qa-138",
+     "rank": null,
+     "query": null
+    },
+    {
+     "id": "qa-139",
+     "rank": 3,
+     "query": "manutenção motor de bomba 220V desligado liberado por eletricista sem risco de ignição adicional compensação"
+    },
+    {
+     "id": "qa-140",
+     "rank": 1,
+     "query": "direito à periculosidade responsabilidade do empregador documentação de risco ocupacional"
+    },
+    {
+     "id": "qa-141",
+     "rank": null,
+     "query": "cortes de segurança sem documentação formal aviso do RH laudo assinado engenheiro"
+    },
+    {
+     "id": "qa-142",
+     "rank": 2,
+     "query": "cores de segurança faixas amarelo vermelho subestação transformador sinalização"
+    },
+    {
+     "id": "qa-143",
+     "rank": null,
+     "query": "pintura de proteção de chave sinalização grade circuito travamento"
+    },
+    {
+     "id": "qa-144",
+     "rank": null,
+     "query": "classificação de risco produtos químicos solventes óleo de transformador solvente sem etiqueta almoxarifado"
+    },
+    {
+     "id": "qa-145",
+     "rank": 1,
+     "query": "rotulagem rótulo químico produto químico solvente frasco pequeno transporte campo"
+    },
+    {
+     "id": "qa-146",
+     "rank": null,
+     "query": "FISPQ armazenamento de ficha procedimento de segurança equipamentos manutenção"
+    },
+    {
+     "id": "qa-147",
+     "rank": null,
+     "query": "trabalho em altura almoxarifado subestação equipamentos de proteção individual EPI rosto proteção contra impactos rótulo identificação"
+    },
+    {
+     "id": "qa-148",
+     "rank": null,
+     "query": "placa de aviso bloqueio manutenção cabine primária bloqueio cadeado"
+    },
+    {
+     "id": "qa-149",
+     "rank": null,
+     "query": "solvente de graxa dielétrica transporte em recipiente água mineral vazio graxa dielétrica embalagem transporte"
+    },
+    {
+     "id": "qa-150",
+     "rank": null,
+     "query": "primeiros socorros ferimento elétrico lesão labirintos incêndio extinção de incêndio equipamentos elétricos"
+    },
+    {
+     "id": "qa-151",
+     "rank": null,
+     "query": "placa de perigo de morte alarme de parada alarme de parada de emergência placa de perigo de morte"
+    }
+   ]
+  },
+  "table": {
+   "raw_question": {
+    "n": 151,
+    "recall_at_1": 19.9,
+    "recall_at_2": 30.5,
+    "recall_at_5": 42.4
+   },
+   "model_rewrite": {
+    "n": 151,
+    "recall_at_1": 13.2,
+    "recall_at_2": 22.5,
+    "recall_at_5": 39.1
+   },
+   "llm27b_rewrite": {
+    "n": 151,
+    "recall_at_1": 19.9,
+    "recall_at_2": 29.8,
+    "recall_at_5": 51.7
+   },
+   "delta_model_minus_raw": {
+    "recall_at_1": -6.7,
+    "recall_at_2": -8.0,
+    "recall_at_5": -3.3
+   },
+   "delta_model_minus_27b": {
+    "recall_at_1": -6.7,
+    "recall_at_2": -7.3,
+    "recall_at_5": -12.6
+   }
+  }
+ },
+ "reuse": {
+  "metrics": {
+   "reuse_cases": 70,
+   "reuse_correct_pct": 74.3,
+   "called_when_should_reuse_pct": 25.7,
+   "newtopic_cases": 50,
+   "newtopic_correct_pct": 84.0
+  },
+  "per_dialog": [
+   {
+    "id": "reuse_677",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_1892",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1243",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1909",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1706",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1585",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_475",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1305",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_673",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_910",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1886",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_597",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_981",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_893",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_490",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1995",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_861",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_909",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1072",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_1543",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_1412",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_466",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_904",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_494",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_2179",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1900",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_788",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_90",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_478",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_901",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_896",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_822",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_1884",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_436",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1860",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_687",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1296",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_1207",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1530",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_1290",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_104",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1682",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_499",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_916",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_1472",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_362",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_691",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_755",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_2085",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_375",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_34",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1313",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1907",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_2098",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1071",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_2101",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_86",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_2118",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_2045",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_111",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1952",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1652",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_2095",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_223",
+    "should_call_turn2": false,
+    "t2_called": true
+   },
+   {
+    "id": "reuse_1565",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_2099",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_2172",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_996",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_1635",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "reuse_898",
+    "should_call_turn2": false,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_1543_104",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_475_1550",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_677_1658",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_910_1777",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1892_744",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1909_909",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_673_2067",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1243_1621",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_880_2196",
+    "should_call_turn2": true,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_893_686",
+    "should_call_turn2": true,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_1585_957",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1706_2017",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_490_885",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1886_1997",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_909_1888",
+    "should_call_turn2": true,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_1995_1368",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_466_1677",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_981_1886",
+    "should_call_turn2": true,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_904_495",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1072_2179",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1305_160",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1412_1892",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_597_1895",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_861_1682",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_896_1652",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_2179_1925",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1296_981",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_90_330",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_494_271",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_788_894",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_901_1932",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1900_1154",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1682_2032",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_104_882",
+    "should_call_turn2": true,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_1884_221",
+    "should_call_turn2": true,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_1530_1759",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_436_271",
+    "should_call_turn2": true,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_822_886",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_478_764",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_687_2099",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1860_1895",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1154_1902",
+    "should_call_turn2": true,
+    "t2_called": false
+   },
+   {
+    "id": "newtopic_1290_797",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1207_1322",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_916_1653",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_691_1895",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_499_1630",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_2101_981",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_1472_227",
+    "should_call_turn2": true,
+    "t2_called": true
+   },
+   {
+    "id": "newtopic_926_1251",
+    "should_call_turn2": true,
+    "t2_called": true
+   }
+  ]
+ }
+}

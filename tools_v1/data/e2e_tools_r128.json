@@ -1,0 +1,913 @@
+{
+ "label": "tools_r128",
+ "n": 90,
+ "approval_pct": 24.4,
+ "hallucination_pct": 57.8,
+ "got_gold_pct": 62.2,
+ "conv_goldcorrect_to_approved_pct": 33.9,
+ "topk": 2,
+ "deterministic": false,
+ "generated_at": "2026-09-14 04:29:14",
+ "per_item": [
+  {
+   "id": "pos_673",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "Sim, o governo pode realizar a fiscalização ex-officio quando não houver perito na cidade. A NR-15, item 15.7, determina que isso não prejudica a ação do Ministério do Trabalho nem a realização da perícia. O perito deve indicar o adicional devido na perícia, conforme o item 15.5.1.",
+   "consulta": "fiscalização sem perito competente ausência de profissional técnico local",
+   "nr": null
+  },
+  {
+   "id": "pos_597",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A velocidade máxima permitida para a descompressão é de 0,4 kgf/cm² por minuto. Essa regra vale tanto para o primeiro estágio quanto para os estágios subsequentes. A norma NR-15, item 15.7, estabelece essa limitação para garantir a segurança do mergulhador.",
+   "consulta": "limite de velocidade de ascensão descompressão trabalho em profundidade",
+   "nr": null
+  },
+  {
+   "id": "pos_1909",
+   "called": true,
+   "got_gold": false,
+   "approved": true,
+   "hallucination": false,
+   "answer": "O vigia é o responsável por manter o controle do número de trabalhadores autorizados a entrar no espaço confinado e garantir que todos saiam ao término da atividade. Ele deve permanecer fora do espaço, junto à entrada, em contato ou comunicação permanente com os trabalhadores. O vigia é obrigado a acionar a equipe de emergência e salvamento quando necessário. Ele não pode realizar outras tarefas d",
+   "consulta": "vigiação espaço confinado monitoramento vigilante segurança trabalho",
+   "nr": null
+  },
+  {
+   "id": "pos_677",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "Inicie imediatamente o método de ressuscitação boca-a-boca no caso de parada respiratória. Não espere por um ressuscitador e não permita o uso de oxigênio em profundidades maiores que 18 metros. Mantenha a acurada cronometragem dos tempos e relatórios escritos, e mantenha à mão bem guardado o kit de socorros médicos. Instrua o paciente para reportar imediatamente os sintomas quando sentir dor ou f",
+   "consulta": "sintomas desconforto dor dor de cabeça falta de ar descompressão mergulho subaquático emergência primeiros socorros",
+   "nr": null
+  },
+  {
+   "id": "pos_893",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Mantenha uma distância mínima de 15 metros da beira do cais durante a operação. Essa exigência vale para todos os pontos externos e internos do recinto. A faixa de largura deve ser de 7,5 metros em torno dos pontos externos e 3 metros em torno dos pontos externos. A área interna também precisa ter um círculo com raio de 7,5 metros no ponto de abastecimento. Essas medidas estão definidas no item 7 ",
+   "consulta": "distância mínima caminhão-tanque enchimento líquido inflamável",
+   "nr": null
+  },
+  {
+   "id": "pos_981",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Antes de iniciar, verifique se o local está livre de pessoas e se há equipamentos de proteção individual (EPIs) disponíveis para soldagem ou corte. Confirme que a área não possui fontes de ignição próximas, como aquecimento ou centelha. Se for trabalho a quente, garanta que as medidas de proteção gerais e específicas estejam aplicadas. Isso está previsto nos itens 13.3.7.1 e 34.5.1.1 da NR-13.",
+   "consulta": "soldagem corte elétrica área de trabalho área de risco inspeção prévia condições do local",
+   "nr": null
+  },
+  {
+   "id": "pos_1995",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A NR-30, item 30.15.3.2, exige que a inspeção eventual seja realizada imediatamente após a manutenção, reparo ou avaria que possa afetar a operação segura do equipamento. Essa ação deve seguir as recomendações do fabricante ou do órgão certificador. O objetivo é garantir que o equipamento retorne à operação segura antes de qualquer movimentação. A inspeção deve ser feita pelo responsável técnico o",
+   "consulta": "escada quebra defeito reparo responsável técnico inspeção pós-reparo",
+   "nr": null
+  },
+  {
+   "id": "pos_1886",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "O Responsável Técnico é quem deve elaborar o plano de resgate e coordenar a capacitação inicial e periódica dos supervisores de entrada, vigias, trabalhadores autorizados e da equipe de emergência e salvamento. Essa exigência está prevista no item 33.3.2 da NR-33.",
+   "consulta": "plano de resgate treinamento equipe entrada espaço confinado",
+   "nr": null
+  },
+  {
+   "id": "pos_910",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O laudo técnico é emitido pelo registrador instantâneo e inalterável de velocidade, quando a capacidade for superior a 10 lugares. Esse documento deve estar em regular funcionamento para o veículo. A norma exige que o veículo possua certificado de inspeção veicular emitido por empresa credenciada junto ao órgão de trânsito ou por profissional legalmente habilitado com Anotação de Responsabilidade ",
+   "consulta": "laudo técnico avaliação risco trabalho motorista veículo laudo de segurança",
+   "nr": null
+  },
+  {
+   "id": "pos_1892",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A PET deve ser arquivada pelo período de 5 anos, sendo disponível aos trabalhadores quando solicitado. A validade da PET é limitada a uma jornada de trabalho. O período de guarda para a PET emitida em meio físico é de 2 vias, com a primeira via permanente e a segunda entregue ao vigia. A segunda via deve ser entregue ao vigia após a primeira. Isso está previsto nos itens 33.5.9.1 e 33.5.7.1 da NR-",
+   "consulta": "autorização de entrada espaço confinado tempo de guarda cópia de registro",
+   "nr": null
+  },
+  {
+   "id": "pos_466",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A máquina de pregar salto deve possuir proteções fixas ou móveis intertravadas das áreas do mecanismo da caixa de prego e do mecanismo de movimentação dos martelos, conforme o item 8.1 do Anexo X da NR-12. O acionamento da pressão de trabalho pelo dispositivo de acionamento bimanual só pode ocorrer após o cilindro de posicionamento estar no ponto morto inferior, segundo o item 8.1. O acionamento d",
+   "consulta": "máquina de pregar rebite fábrica de sapato segurança proteção contra acidentes",
+   "nr": null
+  },
+  {
+   "id": "pos_1243",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-38, item 38.10.5.1, exige que as vestimentas sejam substituídas obrigatoriamente a cada 6 meses de trabalho contados do fornecimento inicial ou da reposição. Além disso, o item 38.10.5.1.1 determina que a vestimenta não substitui o EPI e que seu uso pode ser conjugado. O item 38.10.6, alínea b, do item 38.10.5.1, exige higienização diária sob responsabilidade do empregador. Portanto, a empres",
+   "consulta": "custo vestimentas de segurança EPI responsabilidade empregador substituição danificada",
+   "nr": null
+  },
+  {
+   "id": "pos_1412",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de infrações administrativas da NR-30 e não responde à sua pergunta sobre a fiscalização do canteiro. Para saber o que acontece com a empresa, é preciso verificar as seções específicas da NR-28 que regulamentam a fiscalização e as penalidades aplicáveis.",
+   "consulta": "fiscalização infração penalidades multas sanções administrativas",
+   "nr": null
+  },
+  {
+   "id": "pos_1585",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "Proibida a circulação de empilhadeiras sobre cargas estivadas que formem saliências ou depressões ou sejam feitas de material não resistente, de forma a prejudicar sua movimentação. É proibido o uso de máquinas e equipamentos de combustão interna em porões e armazéns com cargas inflamáveis ou explosivas, salvo se as especificações das máquinas forem compatíveis com a classificação da área envolvid",
+   "consulta": "instalações elétricas cais navio carga combustível gás natural propano",
+   "nr": null
+  },
+  {
+   "id": "pos_490",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A escada fixa vertical deve ter altura máxima de 10 metros se for de um único lance e 6 metros entre duas plataformas de descanso se for de múltiplos lances. A altura máxima da plataforma de descanso é de 0,6 m x 0,6 m. O espaçamento uniforme dos degraus deve ser de 0,25 m a 0,3 m. A distância em relação à estrutura em que é fixada de, no mínimo, 0,15 m. O piso não pode ficar a menos de 0,4 m da p",
+   "consulta": "escada fixa máquina circuito de segurança distância mínima altura guarda-corpo proteção contra quedas",
+   "nr": null
+  },
+  {
+   "id": "pos_1706",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A regra exige que as mulheres gestantes e em período de lactação sejam afastadas imediatamente após serem informadas da gestação. Isso está previsto no item 31.7.1.4 da NR-31. O afastamento é obrigatório para evitar exposição direta ou indireta a agrotóxicos. A norma trata de agrotóxicos, não de produtos químicos industriais. Portanto, o contexto consultado não cobre essa situação específica.",
+   "consulta": "mulher grávida exposição agentes químicos venenos de lavoura",
+   "nr": null
+  },
+  {
+   "id": "pos_909",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Sim, o deslocamento em motocicleta no percurso entre a residência do trabalhador até o posto de trabalho e o retorno após a jornada é considerado perigoso. Essa caracterização está definida no item 3.1 do Anexo V da NR-16. Além disso, o deslocamento em locais privados ou vias não abertas à circulação pública também é perigoso, conforme o item 3.2. Portanto, a atividade é classificada como perigosa",
+   "consulta": "atividade de risco trabalho em altura motocicleta",
+   "nr": null
+  },
+  {
+   "id": "pos_1543",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A multa varia conforme o código da infração. Para as infrações da NR-30, a penalidade é de grau 3, conforme o Anexo II da NR-28. Já para as infrações da NR-18, o grau é 4, conforme o Anexo II da NR-28. Portanto, a empresa deve pagar multas de grau 3 ou 4, dependendo do código específico da norma violada.",
+   "consulta": "multa penalidade fiscalização infração segurança do trabalho",
+   "nr": null
+  },
+  {
+   "id": "pos_880",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O período de trabalho é de 1 hora e 30 minutos a 2 horas. A profundidade máxima permitida é de 70 metros. Essa regra está definida na Tabela 3.4 do Anexo IV da NR-07.",
+   "consulta": "tempo máximo de mergulho profundidade limite de imersão",
+   "nr": null
+  },
+  {
+   "id": "pos_861",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "Não, o mergulho não é repetitivo. A norma exige que os tempos reais de fundo nas tabelas padrão de descompressão sejam usados para computar o mergulho. Essa regra vale para mergulhos seguidos de intervalos maiores que 12 horas. Portanto, você deve seguir a tabela com base no tempo real de fundo.",
+   "consulta": "mergulho repetição intervalo de descanso 12 horas pausa obrigatória intervalo de trabalho",
+   "nr": null
+  },
+  {
+   "id": "pos_1072",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Sim, a distância entre os suportes muda para 660 metros quando o cabo passa de 100 metros. Essa mudança está prevista no Anexo I da NR-16, que lista as distâncias para atividades perigosas com explosivos. O trecho mostra que a distância mínima para 100 a 300 metros é de 265 a 280 metros, e para 300 a 360 metros, de 265 a 700 metros. A partir de 360 até 900 metros, a distância muda para 700 a 900 m",
+   "consulta": "distância entre suportes cabo 100 metros 660 milímetro",
+   "nr": null
+  },
+  {
+   "id": "pos_1305",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A multa para a infração ao item 12.7.4, alínea \"a\", 12.7.4, alínea \"b\", é de 4 pontos. A infração ao item 12.7.5, alíneas \"a\" e \"b\", é de 4 pontos. O código da infração para o item 12.7.4, alínea \"a\", 12.7.4, alínea \"b\", é 312406-1. A infração ao item 12.7.5, alíneas \"a\" e \"b\", é de 4 pontos. O código da infração para o item 12.7.5, alíneas \"a\" e \"b\", 12.7.5, alínea \"a\", 12.7.5, alínea \"b\", é 3124",
+   "consulta": "multa infração falta de segurança máquina parada sem trava bloqueio",
+   "nr": null
+  },
+  {
+   "id": "pos_475",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A máquina rotográfica deve possuir força exercida entre os rolos que não seja suficiente para provocar danos à integridade física dos trabalhadores, conforme o subitem 31.1 da NR-12. O pedal de acionamento deve ter acesso somente por uma única direção e por um pé, sendo protegido para evitar seu acionamento acidental, conforme o item 31.2. Após o acionamento do pedal até a terceira posição, o rein",
+   "consulta": "segurança máquina rotográfica pedal proteção contra contato elétrico dispositivos de segurança",
+   "nr": null
+  },
+  {
+   "id": "pos_904",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Você pode usar cesto suspenso se não houver possibilidade de contato ou proximidade com redes energizadas, ou se o risco de acidentes for maior em atividades com PTA, Cesta Aérea ou Cesto Acoplado. Essa utilização deve ser comprovada por laudo técnico e precedida por análise de risco realizada por Profissional Legalmente Habilitado. É proibido movimentar pessoas simultaneamente com carga, exceto f",
+   "consulta": "energia elétrica perigosa arrisco legal classificação risco",
+   "nr": null
+  },
+  {
+   "id": "pos_2179",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A emissão fugitiva é a liberação de gases ou líquidos inflamáveis que não se contêm em forma concentrada, mas que escapam ao ambiente por meio de vazamento, fuga ou explosão. O trecho consultado trata da segregação de cargas perigosas e classificações de instalações, não definindo os riscos específicos dessa liberação. Para entender o que é necessário cuidar, é preciso verificar as definições de g",
+   "consulta": "emissão fugitiva emissão de gases gases inflamáveis gases combustíveis gases inflamáveis perigosos gases inflamáveis",
+   "nr": null
+  },
+  {
+   "id": "pos_494",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A proteção contra quedas é obrigatória em plataformas elevatórias móveis com altura acima de 2,70 metros do piso. Você deve instalar passarelas em ambos os lados da extensão da plataforma. Essa exigência está prevista no item 31.12.60 da NR-31. Além disso, o equipamento precisa ter sistema de proteção contra quedas conforme o fabricante ou alça de apoio interno. A manutenção deve ser feita por pes",
+   "consulta": "proteção contra quedas plataforma elevatória plataforma móvel plataforma de trabalho altura proteção contra quedas dispositivos de segurança",
+   "nr": null
+  },
+  {
+   "id": "pos_1154",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Enquanto o contexto consultado trata de máquinas e equipamentos, não contém regras sobre escavações ou materiais em altura. Para responder à sua pergunta, é preciso verificar as normas específicas de segurança do trabalho aplicáveis a obras e escavações.",
+   "consulta": "escavação de terra materiais em altura proteção contra queda de objetos bloqueio retenção de materiais",
+   "nr": null
+  },
+  {
+   "id": "pos_1296",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O código da infração para o descumprimento do item 4.2 é 231141-0. Essa informação consta no Anexo II da NR-28, que lista as infrações da NR-30. O código específico para o descumprimento do item 4.2 é 31.3.8.1.",
+   "consulta": "código de infração item 4.2 equipamentos elétricos",
+   "nr": null
+  },
+  {
+   "id": "pos_788",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de espaços confinados e não define limites de pressão para túneis. Para responder à sua pergunta, é necessário consultar a NR-33, que estabelece os requisitos para a caracterização e gerenciamento de riscos em espaços confinados.",
+   "consulta": "limite de pressão atmosférica trabalho em espaço confinado túnel tempo máximo exposição",
+   "nr": null
+  },
+  {
+   "id": "pos_687",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Não, a exposição à luz negra não conta como insalubridade. A NR-15, item 3, determina que atividades expostas a radiação ultravioleta na faixa de 400 a 320 nanômetros não são insalubres. O texto consultado trata exclusivamente da insalubridade por vibrações e não aborda a exposição à luz. Portanto, o foco deve ser nas normas específicas sobre radiação ionizante.",
+   "consulta": "insalubridade exposição luz escura ambiente escuro condições insalubres",
+   "nr": null
+  },
+  {
+   "id": "pos_1884",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata da capacitação inicial de supervisores e vigias, não definindo os critérios de classificação de espaços confinados. Para responder à sua pergunta, é preciso verificar a seção específica da NR-33 que lista as definições de espaço confinado e os critérios de indicação de equipamentos para controle de riscos.",
+   "consulta": "definição espaço confinado critérios de classificação",
+   "nr": null
+  },
+  {
+   "id": "pos_1290",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A classificação da multa é 3, conforme o Anexo II da NR-28. O código da infração é 107143-2. Essa infração está listada na tabela de infrações da NR-30. O código da norma aplicável é 130943-9. A classificação da multa é S, conforme o Anexo II da NR-28.",
+   "consulta": "classificação multa fiscalização ausência plano de riscos segurança do trabalho",
+   "nr": null
+  },
+  {
+   "id": "pos_478",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A proteção fixa deve ser mantida em posição permanente ou por elementos de fixação que só permitam sua remoção ou abertura com o uso de ferramentas. A proteção móvel pode ser aberta sem o uso de ferramentas e geralmente ligada por elementos mecânicos à estrutura da máquina ou a um elemento fixo próximo. Ela deve se associar a dispositivos de intertravamento. Essa definição está no item 6.2 do Anex",
+   "consulta": "proteção fixa proteção móvel ferramentas",
+   "nr": null
+  },
+  {
+   "id": "pos_896",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O tamanho máximo permitido para tambores é de 150 kg, 250 kg ou 250 kg, dependendo do material. Para plástico, o limite é de 400 kg, 400 kg ou 400 kg. Essa classificação segue a NR-16, Anexo II, item 4.1, que define as capacidades máximas para recipientes de até cinco litros.",
+   "consulta": "tambores de metal plástico armazenamento produtos inflamáveis quantidade máxima",
+   "nr": null
+  },
+  {
+   "id": "pos_901",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Você precisa ser empregado das empresas prestadoras de serviço nas atividades de segurança privada ou que integrem o orgânico de segurança privada, conforme a lei 7102/1983 e suas alterações posteriores. Alternativamente, você pode ser empregado em instalações metroviárias, ferroviárias, portuárias, rodoviárias, aeroportuárias e de bens públicos, contratado diretamente pela administração pública d",
+   "consulta": "adicional de periculosidade vigia escolta condições de trabalho",
+   "nr": null
+  },
+  {
+   "id": "pos_436",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O estado de parada segura é aquele durante o qual medidas adicionais são tomadas para evitar interrupção perigosa de movimento. Essa definição está prevista no item 1.2.1.8.4 do Anexo Ix da NR-12.",
+   "consulta": "motor elétrico estado de parada segura condição de segurança",
+   "nr": null
+  },
+  {
+   "id": "pos_1530",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma consultada trata de infrações administrativas da NR-30, não das regras de segurança do trabalho da NR-20. Para responder à sua pergunta, é preciso verificar a NR-20, que estabelece as diretrizes e os limites de exposição a agentes nocivos.",
+   "consulta": "consequências não conformidade segurança trabalho penalidades multas fiscalização",
+   "nr": null
+  },
+  {
+   "id": "pos_1900",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A PET deve conter a identificação do espaço confinado, o objetivo da entrada e os perigos identificados, incluindo o controle de energias perigosas. É obrigatório registrar a avaliação quantitativa da atmosfera imediatamente antes da entrada. A norma exige a assinatura dos supervisores de entrada e vigias. Esses requisitos estão previstos nos itens 33.5.6, 33.5.7 e 33.1.1 da NR-33.",
+   "consulta": "documentação obrigatória entrada em espaço confinado requisitos de segurança",
+   "nr": null
+  },
+  {
+   "id": "pos_1682",
+   "called": true,
+   "got_gold": false,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A empresa deve incluir regras de conduta contra assédio e violência nas normas internas, com divulgação ampla aos empregados. Ela precisa fixar procedimentos para receber e acompanhar denúncias, garantindo anonimato para a pessoa denunciante. Além disso, é obrigatório realizar capacitações a cada 12 meses sobre violência, igualdade e diversidade. Isso está previsto nos itens 31.5.10 e 31.5.11 da N",
+   "consulta": "CIPA combate assédio violência trabalho medidas preventivas políticas internas",
+   "nr": null
+  },
+  {
+   "id": "pos_1860",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A NR-32, Anexo II, lista o Plasmodium falciparum com o código de biossegurança 2. Portanto, você deve usar EPI de nível 2 para manipular amostras desse parasita. Essa exigência está prevista no item 2 do Anexo Ii da norma.",
+   "consulta": "EPI proteção biológica biossegurança manipulação amostras patológicas malária Plasmodium falciparum",
+   "nr": null
+  },
+  {
+   "id": "pos_1207",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "O plano de emergência para barragens de mineração é o Plano de Ações Emergenciais para Barragens de Mineração (PAEBM). Ele integra o Plano de Segurança de Barragem e é um documento técnico registrado nas prefeituras. Esse requisito está previsto na Resolução ANM nº 95, de 07 de fevereiro de 2022, da Agência Nacional de Mineração. A norma estabelece que o PAEBM deve ser elaborado para situações de ",
+   "consulta": "plano de emergência barragem registro obrigatório",
+   "nr": null
+  },
+  {
+   "id": "pos_499",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A distância medida na elevação máxima desde o fundo da caçamba até o solo, acrescida de 1,5 m. Essa definição está no item 2.17 do Anexo Xii da NR-12. O cálculo considera a altura nominal de trabalho, que é a distância acima do solo.",
+   "consulta": "distância de segurança altura máxima cesta de trabalho plataforma elevatória",
+   "nr": null
+  },
+  {
+   "id": "pos_2085",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A empresa deve realizar exercícios simulados para avaliar a eficácia do PRE, conforme o item 34.17.4.1 da NR-34. Além disso, é obrigatório manter uma relação atualizada dos envolvidos nas ações de resposta à emergência, segundo o item 34.17.3.2. O PRE deve estar articulado com as demais Normas Regulamentadoras e com os PRE das embarcações onde estão sendo realizados os serviços, conforme o item 34",
+   "consulta": "plataforma elétrica desligamento segurança trabalho procedimentos de emergência evacuação",
+   "nr": null
+  },
+  {
+   "id": "pos_691",
+   "called": true,
+   "got_gold": false,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A média aritmética das medições é o fator de desvio usado para determinar se a situação é de risco grave e iminente. Se essa média ultrapassar os valores fixados no Quadro n.° 1, o limite de tolerância é considerado excedido. Essa regra vale para jornadas de trabalho de até 48 horas por semana. A norma é a NR-15, Anexo Ix, da Instrução Normativa IN Nº 02 de 2021.",
+   "consulta": "limite de concentração química agente químico exposição ocupacional monitoramento ambiental medição média valor limite acidente químico",
+   "nr": null
+  },
+  {
+   "id": "pos_2101",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Não, é vedado guardar material em refeitórios ou consumir alimentos nessas áreas. A distância mínima exigida é de 15 metros das habitações e locais onde são conservados ou consumidos alimentos, medicamentos ou outros materiais. Essa regra está prevista no item 31.7.14 da NR-31.",
+   "consulta": "armazenamento de materiais perigosos refeitório área de consumo produtos químicos proibição alimentação",
+   "nr": null
+  },
+  {
+   "id": "pos_1472",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O código da infração é o número da alínea da norma que foi violada. Por exemplo, a infração ao item 31.12.45, alínea \"e\", e 31.12.45.1, com o código 231412-6, corresponde ao item 31.12.45. Alíneas específicas, como 31.12.46.1, 31.12.47, 31.12.48, 31.12.49, 31.12.50, 31.12.51, 31.12.52, 31.12.53, 31.12.54, alíneas \"a\", \"b\" e \"c\", 31.12.55, 31.12.56, 31.12.57, 31.12.58, 31.12.60, 31.12.61, 31.12.62,",
+   "consulta": "código de infração penalidade multa segurança elétrica",
+   "nr": null
+  },
+  {
+   "id": "pos_362",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A norma chama essa ação positiva quando um componente mecânico móvel inevitavelmente move outro componente consigo, por contato direto ou através de elementos rígidos. O segundo componente é dito como atuado em modo positivo, ou positivamente, pelo primeiro. Essa definição consta no glossário da NR-12.",
+   "consulta": "ação positiva máquina equipamento",
+   "nr": null
+  },
+  {
+   "id": "pos_298",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A operadora da instalação deve definir e implantar os planos de inspeções e manutenções, priorizando a manutenção preventiva dos elementos críticos de segurança. O responsável legal pela plataforma deve tomar ciência do conteúdo do relatório de inspeção de segurança e saúde a bordo, mediante assinatura ao final desse documento. Essa assinatura aprova o cronograma com prazos e responsáveis pelo ate",
+   "consulta": "inspeção periódica equipamento elétrico responsabilidade documentação assinatura relatório",
+   "nr": null
+  },
+  {
+   "id": "pos_2098",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A operadora deve assegurar no mínimo 60 litros diários de água tratada por trabalhador para instalações sanitárias. Essa exigência está prevista no item 37.12.4.9 da NR-37. O uso de banheiro químico é vedado, exceto em casos específicos. Se o sistema de esgotamento ficar inoperante, a operadora deve iniciar a parada da produção e manter banheiros químicos até a normalização. A quantidade de água d",
+   "consulta": "água potável consumo diário quantidade por pessoa banheiro chuveiro instalações sanitárias",
+   "nr": null
+  },
+  {
+   "id": "pos_916",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-16, Anexo VI, define o descomissionamento de instalações nucleares e radioativas como a segregação, manuseio, tratamento, acondicionamento e estocagem de rejeitos radioativos. O texto consultado não especifica os procedimentos técnicos para a desativação dessas instalações, apenas o foco na gestão dos rejeitos. Portanto, não é possível afirmar com base no trecho fornecido quais são os passos ",
+   "consulta": "lixo radioativo desativação instalações nucleares segurança radiológica",
+   "nr": null
+  },
+  {
+   "id": "pos_1313",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A gravidade da falta é 3 e o tipo de infração é S. Essa classificação está definida nos itens 20.8.2, 20.9.1, 20.9.2, 20.10.1, 20.10.3, 20.10.4, 20.10.5, 20.10.6 e 20.10.7, que estão listados no Anexo II da NR-28.",
+   "consulta": "gravidade multa infração falta proteção máquina equipamento elétrico",
+   "nr": null
+  },
+  {
+   "id": "pos_375",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de máquinas e equipamentos pneumáticos e hidráulicos, não respondendo à sua pergunta sobre o acionamento direto de máquinas. Para responder corretamente, é preciso verificar as seções específicas da NR-12 que definem os dispositivos de parada de emergência e a distância máxima entre as chaves de parada.",
+   "consulta": "impacto direto acionamento acidental acionamento acidental de máquina",
+   "nr": null
+  },
+  {
+   "id": "pos_86",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A empresa deve ter uma equipe de SESMT com 3 profissionais. Essa exigência está prevista no Anexo I da NR-04, que classifica o Comércio atacadista de computadores e periféricos de informática como CNAE 46.51-6. Portanto, a norma exige esse número mínimo para essa atividade específica.",
+   "consulta": "tamanho equipe SESMT empresa venda atacado computadores peças informáticas",
+   "nr": null
+  },
+  {
+   "id": "pos_2099",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de agrotóxicos e não responde à sua pergunta sobre a descontaminação da água após atividades com materiais radioativos. Para responder corretamente, é preciso verificar as seções específicas da NR-37 que detalham os procedimentos de limpeza e descontaminação de água contaminada.",
+   "consulta": "água contaminada plataforma marítima limpeza descontaminação reutilização",
+   "nr": null
+  },
+  {
+   "id": "pos_926",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O nível de ruído de fundo aceitável para conforto acústico é de até 65 dB(A). Essa exigência está prevista no subitem 17.8.4.1.2 da NR-17. O objetivo é garantir que o ambiente interno respeite os valores de referência para ambientes internos de acordo com normas técnicas oficiais.",
+   "consulta": "nível de ruído ocupacional limite de exposição ruído ambiente trabalho conforto visual iluminação",
+   "nr": null
+  },
+  {
+   "id": "pos_1907",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata do trabalho em espaços confinados portuários e não responde à sua pergunta sobre oxigênio. Para responder corretamente, é preciso verificar as condições específicas de atmosfera perigosa definidas na NR-33, item 33.2.2.",
+   "consulta": "limite de oxigênio atmosférico ambiente confinado espaço confinado limite tolerância toxicidade",
+   "nr": null
+  },
+  {
+   "id": "pos_1952",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O plano de ação para acidentes com descompressão deve conter o nome, CNPJ e endereço da clínica responsável pelo tratamento com oxigenoterapia hiperbárica, bem como o nome e CRM do responsável da clínica. Além disso, o plano precisa definir o modo de tratamento, incluindo pressão, tempos de compressão e descompressão, e garantir que a operação seja realizada por profissional de saúde habilitado. O",
+   "consulta": "plano de emergência canteiro obra requisitos obrigatórios",
+   "nr": null
+  },
+  {
+   "id": "pos_1071",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A distância mínima de segurança é de 29,3 metros. Essa exigência está prevista no Anexo III da NR-09. Mantenha-se a pelo menos 29,3 metros do fio para evitar apanhamento.",
+   "consulta": "distância mínima segurança trabalho linha elétrica 13 mil volts 13 kV 13.0 kV 13.8 kV distância de segurança fiação",
+   "nr": null
+  },
+  {
+   "id": "pos_34",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de campânulas e não responde à sua pergunta sobre avaliação de risco. Para responder de fato, seria preciso verificar as seções da NR-18 que detalham os critérios de classificação de riscos e a metodologia do PGR.",
+   "consulta": "avaliação de risco canteiro de obras classificação risco grande pequeno vistoria inspeção",
+   "nr": null
+  },
+  {
+   "id": "pos_2045",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Antes de ligar, verifique se a altura da superfície da esteira é de 1000 mm ou ajuste entre 850 mm e 1120 mm, conforme o item 1.5.9.1 do Anexo II.I da NR-36. Certifique-se de que os componentes elétricos atendam ao grau de proteção IP exigido pela norma técnica vigente. Instale um ou mais dispositivos de parada de emergência que permitam a interrupção do funcionamento a partir de qualquer operador",
+   "consulta": "máquina de descascar couro parada operação segurança desligamento parada de emergência",
+   "nr": null
+  },
+  {
+   "id": "pos_2118",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O gerente da plataforma ou seu preposto é quem deve realizar as inspeções semanais. Essa responsabilidade está prevista no item 37.13.7 da NR-37. Os resultados devem ser consignados em relatório assinado pelo comissário e pelo gerente, conforme o item 37.13.7.1.",
+   "consulta": "responsável inspecção alimentação refeitório periodicidade semanal fiscalização",
+   "nr": null
+  },
+  {
+   "id": "pos_1652",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O treinamento inicial deve ser realizado antes do início da atividade e ter carga horária mínima de 8 horas. Ele contém normas sobre altura, condições impeditivas, riscos e EPIs, além de acidentes típicos e primeiros socorros. O treinamento periódico é obrigatório a cada dois anos com carga mínima de oito horas. A capacitação deve ser ministrada por instrutores com proficiência comprovada. Isso es",
+   "consulta": "treinamento pre-embarcação capacitação habilitação patenteiro aptidão condições de segurança embarcação",
+   "nr": null
+  },
+  {
+   "id": "pos_703",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O limite máximo de exposição para tolueno é de 78 ppm, enquanto para xileno é de 78 ppm. Esses valores estão definidos no Anexo I da NR-07. A exposição acima desses limites é considerada excessiva e pode indicar exposição acima do limite ocupacional.",
+   "consulta": "limite de exposição ocupacional tolueno xileno agentes químicos",
+   "nr": null
+  },
+  {
+   "id": "pos_755",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O limite de concentração máxima para formaldeído no ar é de 1,6 ppm. Essa avaliação está definida no Anexo Ix da NR-15, que trata da avaliação das concentrações de benzeno em ambientes de trabalho. O valor máximo permitido é de 2,3 ppm. Essa classificação é considerada insalubre conforme o Quadro 1 do mesmo anexo.",
+   "consulta": "limite de concentração máxima formaldeído ar ambiente ocupacional exposição ocupacional",
+   "nr": null
+  },
+  {
+   "id": "pos_1565",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "[",
+   "consulta": null,
+   "nr": null
+  },
+  {
+   "id": "pos_898",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A norma considera a embalagem composta como aquela que consiste em uma embalagem externa e um recipiente interno. O recipiente interno deve ser construído de tal forma que ele permaneça integrado à embalagem externa. Essa unidade deve ser capaz de manuseio, armazenamento, transporte e esvazamento. A norma é a NR-26, item 26.4.2.3.",
+   "consulta": "embalagem composta definição classificação",
+   "nr": null
+  },
+  {
+   "id": "pos_2095",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Para plataformas com mais de 200 metros de dimensão, é obrigatório ter um banheiro o mais próximo possível da meia-nau, em área não classificada. Essa exigência está prevista no subitem 37.12.4.2.1 da NR-37. Além disso, a plataforma deve possuir instalações sanitárias distribuídas pelos diferentes pisos ou decks, com no mínimo 1 vaso e 1 lavatório para cada 15 trabalhadores ou fração. Essa proporç",
+   "consulta": "instalações sanitárias número de banheiros plataforma de trabalho",
+   "nr": null
+  },
+  {
+   "id": "pos_871",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "Inicie imediatamente o método de ressuscitação boca-a-boca. Não espere por um ressuscitador e não permita que o paciente fique dormindo entre as paradas de descompressão ou por mais de 1 hora em qualquer parada. Mantenha a acurada cronometragem dos tempos e os relatórios escritos. Mantenha à mão e bem guardado o kit de socorros médicos. Não permita o uso de oxigênio em profundidades maiores que 18",
+   "consulta": "parada respiratória descompressão emergência imediata primeiros socorros",
+   "nr": null
+  },
+  {
+   "id": "pos_111",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A norma consultada trata de atividades artísticas e culturais, não de serviços de saúde ou instalações elétricas. Para responder à sua dúvida, é preciso verificar as normas específicas de segurança do trabalho aplicáveis a ambientes clínicos e teatrais.",
+   "consulta": "SESMT clínica de idosos teatro hospitalar instalação elétrica requisitos obrigatórios",
+   "nr": null
+  },
+  {
+   "id": "pos_1303",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A multa varia conforme a infração específica da NR-12. Por exemplo, para a alínea d do item 12.11.3.1, a multa é 312445-2, enquanto para a alínea f do mesmo item, é 312447-9. Outras infrações, como a alínea e do item 12.11.3.1, têm multa de 312446-0. A alínea d do item 12.12.4 e 12.12.4.1 possui multa de 312457-6. A alínea f do item 12.12.5 tem multa de 312451-7. A alínea a do item 12.12.3 possui ",
+   "consulta": "multa penalidade infração fiscalização segurança máquinas equipamentos",
+   "nr": null
+  },
+  {
+   "id": "pos_2172",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A DIM deve conter razão social, localização, descrição, tipo de operação e início e término previstos. O prazo mínimo para protocolizar a DIM é de 90 dias antes do início da primeira operação de perfuração ou do final da ancoragem em plataforma de produção flutuante. Para plataformas fixas, o prazo é de 30 dias após a efetivação das mudanças. Se houver mudança de locação por emergência, o prazo pa",
+   "consulta": "documentação documental plataforma marítima prazo entrega início serviço",
+   "nr": null
+  },
+  {
+   "id": "pos_2143",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "Você pode desativar, contornar ou utilizar qualquer meio que impeça o correto funcionamento dos detectores ou alarmes somente com a autorização de gestor designado pelo empregador, o procedimento ou planejamento específico e a implementação das recomendações das análises de riscos. Essa regra está prevista no item 37.23.9 da NR-37.",
+   "consulta": "calibração alarme gás desligamento limite ajuste sem bronca",
+   "nr": null
+  },
+  {
+   "id": "pos_686",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A NR-15, item 15.7, garante que a ação fiscalizadora do MTE não é prejudicada pela solicitação da Justiça em locais sem perito. Não há menção a um perito específico para esse caso, apenas à ausência dele. Portanto, o procedimento pode prosseguir conforme a norma original.",
+   "consulta": "investigação judicial ausência perito localização investigador",
+   "nr": null
+  },
+  {
+   "id": "pos_996",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": false,
+   "answer": "Você precisa garantir o uso do SPIQ para acessar a cabine de comando quando necessário, além de assento ergonômico e proteção contra raios solares. A cabine deve possuir tabela de cargas máximas em português e extintor adequado ao risco. O guindaste deve ter limitador de momento máximo para impedir a continuidade do movimento. É obrigatório o uso de anemômetro que indique a velocidade do vento na ",
+   "consulta": "içamento de cargas trabalho em altura proteção contra quedas equipamentos de proteção individual EPI",
+   "nr": null
+  },
+  {
+   "id": "pos_357",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A largura útil mínima da escada fixa é de 0,60 m. Essa exigência vale para escadas com degraus e lances uniformes, nivelados e sem saliências. O intervalo entre os degraus deve ser de 0,20 m a 0,25 m. A plataforma de descanso precisa ter largura útil mínima de 0,60 m. O comprimento da escada deve ser no máximo 3,00 m. Essas regras estão no item 12 do Anexo III da NR-12.",
+   "consulta": "escada fixa largura mínima distância de trabalho máquina",
+   "nr": null
+  },
+  {
+   "id": "pos_1280",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de medidas de controle e responsabilidades dos trabalhadores, não de multas para infrações da NR-10. Para responder à sua pergunta, é preciso verificar a tabela de multas específica da NR-10 que lista os valores monetários das infrações do item 7.5.8, inciso II, alínea a, subitem 1.",
+   "consulta": "multa infração item 7.5.8 inciso II alínea a subitem 1",
+   "nr": "NR-10"
+  },
+  {
+   "id": "pos_1598",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": false,
+   "answer": "O trecho consultado trata de segregação de cargas perigosas e não responde à sua pergunta sobre separação de cilindros de gás inerte de tanques de combustível inflamável. Para responder corretamente, é preciso verificar as seções específicas da NR-10 que detalham os requisitos de distância e segregação para esses equipamentos.",
+   "consulta": "separação cilindros gás inerte tanque combustível inflamável armazenamento separação distância mínima",
+   "nr": null
+  },
+  {
+   "id": "pos_1456",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A multa é de grau 3, conforme o Anexo II da NR-28. O código da infração varia entre 220235-2 e 220245-0. A classificação de risco é S. Essas infrações estão listadas no item 20.8.2 do Anexo Ii da NR-20.",
+   "consulta": "multa infração sinalização perigo circuito desligado",
+   "nr": null
+  },
+  {
+   "id": "pos_726",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A norma consultada trata de vibração e não responde à sua pergunta sobre limites de tolerância para agentes carcinogênicos. Para responder corretamente, é preciso verificar as diretrizes específicas da NR-15 sobre exposição a agentes químicos e biológicos.",
+   "consulta": "limite de tolerância agentes carcinogênicos exposição ocupacional valor limite de tolerância VLT permissão de trabalho exposição ocupacional",
+   "nr": null
+  },
+  {
+   "id": "pos_1550",
+   "called": true,
+   "got_gold": true,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O nível de gravidade da multa para infrações da NR-37, como as listadas no Anexo II da NR-28, é sempre 3. Isso se aplica a todas as alíneas citadas, como 37.29.3, 37.29.4, 37.29.6, 37.30.1, 37.31.1, 37.31.2 e 37.31.3. A penalidade é classificada como S. Portanto, a empresa deve ser multada com grau 3 para cada uma dessas infrações específicas.",
+   "consulta": "grau de multa penalidade infração trabalho em altura",
+   "nr": null
+  },
+  {
+   "id": "pos_1712",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "A distância mínima é de 15 metros. Essa exigência está prevista no item 31.7.14 da NR-31. A norma exige que as habitações fiquem a mais de 15 metros das áreas onde são consumidos alimentos ou medicamentos.",
+   "consulta": "distância mínima barraca armazenamento produtos químicos produtos perigosos proximidade habitação residência",
+   "nr": null
+  },
+  {
+   "id": "pos_1164",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Armazene o material conforme a Tabela 1 da NR-19, pois não há risco significativo e os efeitos ficam confinados. A distância mínima para edifícios habitados é de 450 kg, mas o trecho consultado não especifica a distância para rodovias ou ferrovias. Portanto, não é possível afirmar com base apenas no texto fornecido qual a distância exata para rodovias ou ferrovias.",
+   "consulta": "explosão subterrânea trabalho em espaço confinado distância de segurança medidas de proteção contra explosão",
+   "nr": null
+  },
+  {
+   "id": "pos_1969",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O trecho consultado trata de aberturas subterrâneas e não responde à sua pergunta sobre blocos fixados em canteiros de obras. Para responder corretamente, é preciso verificar as disposições específicas da NR-10 sobre proteção contra quedas e instalações elétricas.",
+   "consulta": "bloco de segurança fixação de proteção contra queda de objetos canteiro de obras",
+   "nr": null
+  },
+  {
+   "id": "pos_1825",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "O prontuário médico deve ser mantido por um período mínimo de 40 anos após o desligamento do empregado. Essa exigência está prevista no item 4.1.1 do Anexo V da NR-07. O documento deve conter a avaliação da aptidão para retorno ao trabalho ou mudança de risco, conforme o PGR e a classificação da CNEN.",
+   "consulta": "prontuário médico ocupacional saúde ocupacional periodicidade guarda prazo saída trabalho radiação ionizante",
+   "nr": null
+  },
+  {
+   "id": "pos_1181",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A empresa pode recorrer ou solicitar prorrogação de prazo para cada item notificado até no máximo 10 dias a contar da data de emissão da notificação. Isso está previsto na NR-28, item 28.1.4.4. A concessão de prazos superiores a 120 dias fica condicionada à prévia negociação entre o notificado e o sindicato representante da categoria dos empregados, com a presença da autoridade regional competente",
+   "consulta": "represa de minério de ferro checagem especial aviso imediato notificação",
+   "nr": null
+  },
+  {
+   "id": "pos_1932",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "Verifique a placa de identificação na parte inferior do equipamento, que deve conter marca, modelo, isolado ou não isolado, teste de qualificação com data, número de série, data de fabricação, capacidade nominal de carga, altura nominal de trabalho, pressão do sistema hidráulico, número de caçambas, categoria de isolamento e razão Social e CNPJ do fabricante. Confirme a existência de acessórios pa",
+   "consulta": "guincho elétrico inspeção prévia uso certificação qualificação técnico técnico",
+   "nr": null
+  },
+  {
+   "id": "pos_484",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "O engate deve ser projetado para reboque pelo sistema de tração, garantindo acoplamento e desacoplamento fácil e seguro. A indicação do uso dos sistemas deve ficar em local de fácil visualização próximo à conexão. Se o peso da barra exigir, a máquina precisa de dispositivo de apoio para reduzir o esforço. Essas exigências estão no item 12 do Anexo Xi da NR-12.",
+   "consulta": "acoplamento reboque máquina engate dispositivo de segurança bloqueio desengate acionamento automático",
+   "nr": null
+  },
+  {
+   "id": "pos_1885",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": true,
+   "answer": "A empresa deve adotar medidas de prevenção para minimizar a inalação de poeiras e o risco de incêndio e explosões gerado por poeiras durante os intervalos de operação. Além disso, é obrigatório manter os silos tipo “bag” e “trincheira” conforme as recomendações do fabricante e do responsável técnico. Essas exigências estão previstas nos itens 31.13.10 e 31.13.12 da NR-31.",
+   "consulta": "segurança do trabalho em instalações de armazenamento de materiais tanques silos requisitos obrigatórios",
+   "nr": null
+  },
+  {
+   "id": "pos_888",
+   "called": true,
+   "got_gold": true,
+   "approved": true,
+   "hallucination": false,
+   "answer": "Sim, é obrigatório ter uma delimitação física da área de risco para impedir o acesso não autorizado. Essa exigência vale para qualquer obstáculo que impeça o ingresso de pessoas não autorizadas. A norma permite reduzir as distâncias previstas no Quadro nº 4, mas a existência física do perímetro é obrigatória. Isso está previsto no item 1 da NR-16, Anexo I.",
+   "consulta": "barreira física perímetro segurança explosão zona perigosa",
+   "nr": null
+  },
+  {
+   "id": "pos_725",
+   "called": true,
+   "got_gold": false,
+   "approved": false,
+   "hallucination": false,
+   "answer": "A norma exige uma análise preliminar das atividades e dados disponíveis para determinar se é necessário adotar diretamente as medidas de prevenção ou realizar avaliações qualitativas ou quantitativas. Se forem necessárias avaliações quantitativas, elas devem comprovar o controle da exposição, dimensionar a exposição dos grupos expostos e subsidiar o equacionamento das medidas de prevenção. Essa ex",
+   "consulta": "controle de exposição ocupacional agentes químicos produtos perigosos medidas preventivas EPI proteção individual",
+   "nr": null
+  }
+ ]
+}

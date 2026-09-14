@@ -18,7 +18,9 @@ PY=../classifier/.venv/bin/python
 URL="http://$SPARK_IP:$PORT"
 
 echo "== sobe llama-server $LABEL na Spark (0.0.0.0:$PORT, ctx 16384/4) =="
-ssh "$SPARK" "pkill -f 'port $PORT'; sleep 2; cd ~/cemig-poc && setsid bash -c \"nohup ./llama.cpp/build-cuda/bin/llama-server -m '$GGUF' -ngl 99 -c 16384 --parallel 4 --host 0.0.0.0 --port $PORT > logs/server_${PORT}.log 2>&1 &\"; echo done"
+# start_srv_net.sh usa setsid (detacha da sessão ssh) + bind 0.0.0.0. O til ('~/...') é
+# expandido pelo shell REMOTO (sem aspas em torno do caminho). GGUF absoluto ou '~/...'.
+ssh "$SPARK" "bash ~/cemig-poc/scripts/start_srv_net.sh $GGUF $PORT 16384 4"
 
 cleanup() {
   echo "== derruba servidor =="
@@ -28,9 +30,9 @@ trap cleanup EXIT
 
 echo "== espera o servidor responder =="
 ok=0
-for i in $(seq 1 40); do
+for i in $(seq 1 60); do
   if curl -s -m 3 "$URL/health" 2>/dev/null | grep -q ok; then ok=1; break; fi
-  sleep 2
+  sleep 3
 done
 [ "$ok" = 1 ] || { echo "servidor não respondeu"; exit 1; }
 
