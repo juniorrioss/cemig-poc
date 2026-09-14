@@ -147,6 +147,41 @@ def parse_tool_calls(rendered_text: str) -> List[Dict[str, Any]]:
     return calls
 
 
+_RUNTIME_CALL_RE = re.compile(
+    r"(?:<\|tool_call_start\|>)?\s*\[(.*?)\]\s*(?:<\|tool_call_end\|>)?", re.DOTALL)
+
+
+def parse_tool_calls_runtime(text: str) -> List[Dict[str, Any]]:
+    """Parser TOLERANTE da saída do modelo em inferência.
+
+    O llama-server /completion frequentemente NÃO reemite os tokens especiais
+    <|tool_call_start|>/<|tool_call_end|> como texto — o modelo (treinado) emite a chamada
+    como '[buscar_norma(consulta=...)]'. Este parser aceita a forma com OU sem os wrappers e
+    exige que o corpo comece por 'buscar_norma(' (evita casar listas comuns na prosa).
+    Retorna [] se não houver chamada reconhecível.
+    """
+    calls: List[Dict[str, Any]] = []
+    for m in _RUNTIME_CALL_RE.finditer(text):
+        body = m.group(1).strip()
+        if not body or "buscar_norma(" not in body:
+            continue
+        try:
+            for call_str in _split_calls(body):
+                if not call_str.startswith("buscar_norma"):
+                    continue
+                name, inner = _split_name_args(call_str)
+                args: Dict[str, Any] = {}
+                for piece in _split_top_level_args(inner):
+                    if "=" not in piece:
+                        continue
+                    k, v = piece.split("=", 1)
+                    args[k.strip()] = _parse_arg_value(v)
+                calls.append({"name": name, "arguments": args})
+        except Exception:
+            continue
+    return calls
+
+
 def _split_calls(body: str) -> List[str]:
     """Separa múltiplas chamadas func(...) no topo da lista, respeitando parênteses/strings."""
     parts: List[str] = []

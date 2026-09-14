@@ -28,6 +28,9 @@ sys.path.insert(0, str(_ROOT / "retrieval3"))
 sys.path.insert(0, str(_ROOT / "classifier"))
 
 from bm25 import Bm25Retriever  # noqa: E402
+sys.path.insert(0, str(_ROOT))
+from corpus.eval_retrieval import check_hit  # noqa: E402
+from corpus.eval_fino import app_fts_query  # noqa: E402
 
 V4_INDEX = _ROOT / "retrieval4" / "indices" / "index_hf_36nr_expv4.db"
 APP_W5 = (1.5, 3.0, 2.0, 1.0, 1.0)
@@ -78,6 +81,19 @@ def gold_rank(query: str, gold_id: int, limit: int = 50,
     rel = set(relevant_ids or [])
     for i, cid in enumerate(ids, 1):
         if cid == gold_id or cid in rel:
+            return i
+    return None
+
+
+def gold_rank_checkhit(query: str, gold: dict, limit: int = 50,
+                       db_path: str = str(V4_INDEX)) -> Optional[int]:
+    """Posição (1-based) do primeiro chunk que casa `gold` pelo check_hit OFICIAL (doc+section
+    ou id/relevantes) — idêntico ao harness do app. `gold` = {doc, section, chunk_id,
+    relevant_chunk_ids}. Esta é a métrica correta (a por-id pura subconta vizinhos de seção)."""
+    r = _retriever(db_path)
+    res = r.search(app_fts_query(query), limit)
+    for i, row in enumerate(res, 1):
+        if check_hit(row, gold):
             return i
     return None
 

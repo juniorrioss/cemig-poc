@@ -60,7 +60,13 @@ def main() -> None:
     def work(it):
         r = run_turn(url, [], it["question"], sampling, max_tokens=384, topk=args.topk)
         answer = r["answer"]
-        got_gold = any(c["id"] == it["gold_chunk_id"] for c in r["retrieved"])
+        # got_gold pelo check_hit oficial (doc+section OU id) — não só id (subconta vizinhos)
+        from corpus.eval_retrieval import check_hit
+        gold = {"doc": it.get("doc", ""), "section": it.get("section", ""),
+                "chunk_id": it["gold_chunk_id"],
+                "relevant_chunk_ids": [it["gold_chunk_id"]]}
+        got_gold = any(check_hit({"id": c["id"], "doc": c["doc"], "section": c["section"],
+                                  "text": ""}, gold) for c in r["retrieved"])
         # régua honesta
         approved = C.approve_answer(it["question"], answer, it["facts"], it["gold_text"],
                                     args.threshold)

@@ -69,20 +69,23 @@ def recall_of_queries(items: List[Dict[str, Any]], query_key: str, topks=(1, 2, 
                       ) -> Dict[str, Any]:
     """Recall@k no índice v4 usando items[i][query_key] como consulta.
 
-    Cada item precisa de gold_chunk_id (+ relevant_ids). Itens sem consulta (None/vazio,
-    ex.: o modelo não chamou) contam como MISS (não recuperou nada) — honesto: se não buscou,
-    não achou.
+    Usa o check_hit OFICIAL do app (doc+section OU id/relevantes) — a mesma régua do harness
+    de retrieval (a contagem por-id pura subconta vizinhos de seção e não é comparável ao
+    ~29-30% documentado). Itens sem consulta (None/vazio, ex.: o modelo não chamou) contam
+    como MISS — honesto: se não buscou, não achou.
     """
     hits = {k: 0 for k in topks}
     n = len(items)
     detail = []
     for it in items:
         q = it.get(query_key)
-        gid = it.get("gold_chunk_id", -1)
-        rel = it.get("relevant_ids") or ([gid] if gid >= 0 else [])
+        gold = {"doc": it.get("doc", ""), "section": it.get("section", ""),
+                "chunk_id": it.get("gold_chunk_id", -1),
+                "relevant_chunk_ids": it.get("relevant_ids")
+                or ([it.get("gold_chunk_id")] if it.get("gold_chunk_id", -1) >= 0 else [])}
         rank = None
         if q:
-            rank = RC.gold_rank(q, gid, limit=max(topks), relevant_ids=rel)
+            rank = RC.gold_rank_checkhit(q, gold, limit=max(topks))
         for k in topks:
             if rank is not None and rank <= k:
                 hits[k] += 1

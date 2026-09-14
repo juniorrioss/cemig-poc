@@ -32,27 +32,38 @@ sys.path.insert(0, str(_HERE))
 
 import render_jinja as RJ
 import retrieval_check as RC
-from render import parse_tool_calls
+from render import parse_tool_calls_runtime
 from tool_schema import (TOOLS, format_tool_result, make_assistant_message,
                          make_system_message, make_tool_call_message,
                          make_tool_result_message, make_user_message)
 
 LFM_SAMPLING = {"temperature": 0.1, "top_k": 50, "repeat_penalty": 1.05}
 DET_SAMPLING = {"temperature": 0.0}
-STOP = ["<|im_end|>"]
+# para de gerar no fim do turno OU quando fecha a chamada (o modelo às vezes não emite
+# <|im_end|> logo após a chamada; <|tool_call_end|> encerra a decisão de chamar).
+STOP = ["<|im_end|>", "<|tool_call_end|>"]
+TOOL_MARKERS = ("<|tool_call_start|>", "buscar_norma(")
 
 
 def _complete(url: str, prompt: str, max_tokens: int, sampling: Dict[str, Any],
-              timeout: int = 240) -> Dict[str, Any]:
-    """Chama /completion (texto cru) do llama-server. Retorna content + usage."""
+              timeout: int = 240, retries: int = 5) -> Dict[str, Any]:
+    """Chama /completion (texto cru) do llama-server, com retry (túnel SSH oscila sob carga)."""
+    import time as _t
     payload = {"prompt": prompt, "n_predict": max_tokens, "stop": STOP,
                "cache_prompt": True, **sampling}
-    r = requests.post(f"{url}/completion", json=payload, timeout=timeout)
-    r.raise_for_status()
-    d = r.json()
-    return {"content": d.get("content", ""),
-            "tokens_predicted": d.get("tokens_predicted", 0),
-            "tokens_evaluated": d.get("tokens_evaluated", 0)}
+    last = None
+    for attempt in range(retries):
+        try:
+            r = requests.post(f"{url}/completion", json=payload, timeout=timeout)
+            r.raise_for_status()
+            d = r.json()
+            return {"content": d.get("content", ""),
+                    "tokens_predicted": d.get("tokens_predicted", 0),
+                    "tokens_evaluated": d.get("tokens_evaluated", 0)}
+        except Exception as e:  # noqa: BLE001
+            last = e
+            _t.sleep(1.5 * (attempt + 1))
+    raise RuntimeError(f"/completion falhou após {retries}: {last}")
 
 
 def _search_v4(consulta: str, nr: Optional[str], topk: int = 2) -> List[Dict[str, Any]]:
@@ -90,13 +101,11 @@ def run_turn(url: str, history: List[Dict[str, Any]], user_text: str,
     }
 
     calls: List[Dict[str, Any]] = []
-    if "<|tool_call_start|>" in raw:
-        try:
-            calls = parse_tool_calls(raw)
-            result["syntactic_ok"] = len(calls) >= 1 and calls[0]["name"] == "buscar_norma"
-        except Exception:
-            result["syntactic_ok"] = False
+    if any(mk in raw for mk in TOOL_MARKERS):
         result["called_tool"] = True
+        calls = parse_tool_calls_runtime(raw)
+        result["syntactic_ok"] = len(calls) >= 1 and calls[0]["name"] == "buscar_norma" \
+            and bool(str(calls[0]["arguments"].get("consulta", "")).strip())
 
     new_history = list(history) + [make_user_message(user_text)]
 
@@ -120,8 +129,11 @@ def run_turn(url: str, history: List[Dict[str, Any]], user_text: str,
         result["tokens"] += second["tokens_predicted"]
         new_history.append(make_assistant_message(answer))
     else:
-        # sem ferramenta (resposta direta) — remove qualquer resíduo de tool tokens
-        answer = raw.split("<|tool_call_start|>")[0].strip() if result["called_tool"] else raw.strip()
+        # sem ferramenta (resposta direta) — remove qualquer resíduo de tool tokens/texto
+        answer = raw
+        for mk in TOOL_MARKERS:
+            answer = answer.split(mk)[0]
+        answer = answer.strip()
         result["answer"] = answer
         new_history.append(make_assistant_message(answer))
 
