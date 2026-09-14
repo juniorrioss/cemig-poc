@@ -1,0 +1,9 @@
+# dados e artefatos reprodutíveis (não commitar pesados)
+data/*.jsonl
+data/*.bin
+data/responses_*.json
+logs/*.log
+__pycache__/
+*.pyc
+# manter: passo0_render.txt, premises, consolidations leves, amostras
+!data/passo0_render.txt
