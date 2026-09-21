@@ -255,10 +255,14 @@ $PY consolidate.py --final-label tools_r128_final
 ```
 
 ### Artefatos
+- **Conjunto de treino VERSIONADO**: `data/train_full.jsonl` (4236 diálogos, 21,1 MB) +
+  `data/train_full.manifest.json` (contagem por família + sha256 `be60946f…a94ae145` + procedência).
+  Exceção explícita no `.gitignore`. É o arquivo EXATO dos treinos (sha256 idêntico ao da Spark).
+  Reprodução: seção **REPRODUÇÃO** do README raiz. Os splits `data/train_step*.jsonl` e
+  `data/dialogs.jsonl` são subconjuntos/intermediários reprodutíveis (`prep_train.py`) e seguem gitignored.
 - **Dados/scripts locais** (gitignore para pesados; leves commitados): `data/passo0_render.txt`,
   `data/prep_manifest.json`, `data/truncation*.json`, `data/eval_*.json`, `data/e2e_*.json`,
-  `data/consolidation.json`, `data/samples_*.txt`. Dataset completo `data/dialogs.jsonl` (4236,
-  reprodutível) gitignored.
+  `data/consolidation.json`, `data/samples_*.txt`.
 - **Pesos na Spark** (`~/cemig-poc/models/`, gitignored): `lfm2.5-1.2b-tools_1_2b_r{16,32,64,128}
   -{bf16,Q4_0}.gguf` + `tools_1_2b_step{750,1500,3000}_r32-{bf16,Q4_0}.gguf`. Dataset:
   `~/cemig-poc/tools_v1/data/train_{full,step*}.jsonl`. Log: `~/cemig-poc/logs/train_tools.log`.

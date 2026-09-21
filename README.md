@@ -88,8 +88,99 @@ avaliação e a régua rodam local (`classifier/.venv`) com o juiz vLLM 27B.
 make -C corpus v2-all         # índice FTS5 das 36 NRs (fundação)
 make -C classifier all        # classificador NR + híbrido gated
 make -C retrieval4 all        # índice v4 (expansão ASR-robusta) + fusão RRF k=10 (2,1,2)
-# tool-calling (dados no sft_v3; treino na Spark):  ver tools_v1/README.md e tools_oraculo/README.md
+# tool-calling (dados VERSIONADOS; treino na Spark):  ver "REPRODUÇÃO" abaixo e tools_v1/README.md
 # régua de qualidade:                               make -C bench/regua all
+```
+
+## REPRODUÇÃO
+
+*"O que eu preciso para replicar cada peça?"* Tudo aqui é **versionado no repo**, exceto os PDFs
+das NRs, os pesos treinados e os modelos ONNX de ASR (todos externos, com caminho e comando de
+reconstrução indicados). Caminhos são relativos à raiz; a Spark é `walcyrios@spark-b431`.
+
+### 1. SLM (o modelo embarcado: LFM2.5-1.2B tool-trained)
+
+Insumos (todos versionados salvo o base HF e os pesos):
+
+| Insumo | Onde | Estado |
+|---|---|---|
+| Base | `LiquidAI/LFM2.5-1.2B-Instruct` (Hugging Face, bf16) | externo (público) |
+| **Conjunto de treino** | `tools_v1/data/train_full.jsonl` (4.236 diálogos, 5 famílias, 21,1 MB) | **VERSIONADO** |
+| Manifesto de procedência | `tools_v1/data/train_full.manifest.json` (contagem por família + **sha256 `be60946f04237e78c159a4caab8d4a9cf3ade2c6ed33ce880d126999a94ae145`**) | **VERSIONADO** |
+| Receita de treino | `tools_v1/run_train_tools.sh` (curva de saturação r32 + varredura r16/32/64/128, 1 época, seed 42) | **VERSIONADO** |
+| Índice de recuperação | `corpus/index_hf_36nr.db` (FTS5 das 36 NRs) + índice denso v4 (`retrieval4/`) | **VERSIONADO** |
+| Régua de avaliação | `bench/regua/` (`data/gabarito_151.jsonl` + `ruler.py`) | **VERSIONADO** |
+
+O `train_full.jsonl` **é o arquivo exato usado nos treinos** (sha256 idêntico ao da Spark em
+`~/cemig-poc/tools_v1/data/train_full.jsonl`; conferido nesta publicação). Os splits de degrau
+`train_step{750,1500,3000}.jsonl` são **subconjuntos aninhados** (mesma seed 42), reprodutíveis por
+`tools_v1/prep_train.py` — por isso **não** são versionados.
+
+```bash
+# conferir a integridade do dataset publicado (bate com o manifesto):
+sha256sum tools_v1/data/train_full.jsonl   # be60946f...a94ae145
+wc -l     tools_v1/data/train_full.jsonl   # 4236
+
+# TREINO (na Spark; ver cabeçalho do script para pré-requisitos de memória unificada):
+ssh walcyrios@spark-b431 "cd ~/cemig-poc && WANDB_MODE=online \
+  setsid bash tools_v1/run_train_tools.sh > logs/train_tools.log 2>&1 < /dev/null &"
+
+# AVALIAÇÃO (régua honesta, n=151 — mede a QUALIDADE da resposta, citação fora do gate):
+make -C bench/regua all         # gabarito → rejudge → analyze (juiz vLLM 27B)
+```
+
+> Se você **regerar** o dataset com `tools_v1/gen_dialogs.py` em vez de usar o `train_full.jsonl`
+> versionado, o conjunto será **diferente** (depende do 27B gerador) e os números publicados deixam
+> de ser comparáveis. Para reproduzir os resultados **exatos**, use o arquivo versionado.
+
+### 2. Classificador de NR — 100% versionado
+
+Nenhuma lacuna: dados rotulados, treinador, fontes dos rótulos e export Kotlin estão todos no repo.
+
+| Insumo | Onde |
+|---|---|
+| Dados rotulados (1.970 falas) | `classifier/data/labels.jsonl` |
+| Treinador | `classifier/train_classic.py` |
+| Fontes dos rótulos | `retrieval3/data/expansions.jsonl` + `retrieval4/data/expansions_v4.jsonl` + `corpus/qa_pairs_v2.jsonl` (as 151) |
+| Export para o app (Kotlin) | `classifier/data/kotlin_export.json` |
+
+```bash
+make -C classifier all          # classic + compare + hybrid + export (Kotlin puro, NrClassifier.kt)
+```
+
+### 3. Avaliação do tool-calling — suites derivadas (não armazenadas)
+
+As 17 suites de avaliação do tool **não são versionadas de propósito**: são **derivadas** e
+regeneráveis a partir de fontes versionadas, o que é seguro porque as fontes têm **filtro lexical
+anti-contaminação** (Jaccard<0.4 vs holdout) e as NRs 33/16/26 ficam reservadas.
+
+```bash
+python3 tools_v1/build_eval_sets.py   # regenera as suites (VAL + NRs reservadas + holdout 151)
+# medição de qualidade: bench/regua (item 1). Os RESULTADOS (data/*.json) já estão versionados.
+```
+
+### 4. Pesos treinados — FORA do repo (decisão pendente do capitão)
+
+Os adapters LoRA e os GGUFs quantizados (~137 GB) **não estão no repo**; publicá-los é decisão
+ainda pendente. Como reconstruí-los:
+
+- **Onde estão**: DGX Spark, `~/cemig-poc/models/lfm2.5-1.2b-tools_1_2b_r{16,32,64,128}-{bf16,Q4_0}.gguf`
+  (candidato embarcado: **r128 Q4_0**) + `tools_1_2b_step{750,1500,3000}_r32-*.gguf`.
+- **Como reconstruir**: `tools_v1/run_train_tools.sh` (item 1) treina LoRA + requantiza para GGUF na
+  própria Spark, a partir do base HF + `train_full.jsonl` versionado. Log em `~/cemig-poc/logs/train_tools.log`;
+  wandb `cemig-tools-1.2b` (run `lh94m0ve`).
+- **Como servir no app**: o GGUF vai como override externo (não embarcado no APK) — ver `## Como rodar o app`.
+
+### 5. ASR — Nemotron 3.5 INT8 (modelos ONNX externos)
+
+O ASR vigente é **Nemotron 3.5 Streaming 0.6B INT8** (sherpa-onnx). Os arquivos ONNX (encoder
+657 MB etc.) **não são versionados** (peso); origem, variantes e trade-offs de RAM/WER estão em
+[`asr/README.md`](asr/README.md) (INT8 oficial da NVIDIA via sherpa-onnx e o fine-tune PT-BR
+`andrewmulya98/sherpa-onnx-ottema-nemotron-3.5-asr-ptbr-560ms-int8`). Bancada:
+
+```bash
+make asr-data          # gera os conjuntos de áudio (edge-tts)
+make asr-bench         # roda o benchmark no aparelho conectado (ADB)
 ```
 
 ## Mapa das pastas — VIGENTE vs HISTÓRICO

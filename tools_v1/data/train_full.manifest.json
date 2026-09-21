@@ -1,0 +1,38 @@
+{
+  "file": "tools_v1/data/train_full.jsonl",
+  "n_dialogs": 4236,
+  "by_family": {
+    "chamada_simples": 1575,
+    "sem_ferramenta": 675,
+    "multiturno_reuso": 900,
+    "multiturno_nova_busca": 411,
+    "recusa_apos_busca": 675
+  },
+  "sha256": "be60946f04237e78c159a4caab8d4a9cf3ade2c6ed33ce880d126999a94ae145",
+  "size_bytes": 22121680,
+  "format": "JSONL; uma linha = um diálogo {messages:[...], meta:{family, src_doc, src_chunk_id}}",
+  "integrity_checks": {
+    "invalid_json_lines": 0,
+    "lines_missing_messages_key": 0,
+    "role_counts": { "system": 4236, "user": 5547, "assistant": 9519, "tool": 3972 },
+    "assistant_msgs_with_tool_call": 3972,
+    "dialogs_with_tool_call": 3561
+  },
+  "provenance": {
+    "generator": "tools_v1/gen_dialogs.py (PASSO 1+2, 5 famílias)",
+    "content_model": "vLLM Qwen3-27B (guided_json semântico) — o 27B gera CONTEÚDO, nunca FORMATO",
+    "rendering": "renderização nativa do LFM2.5 é NOSSA e determinística (render_jinja.py / apply_chat_template), paridade byte-a-byte (test_render_parity.py)",
+    "corpus": "corpus/index_hf_36nr.db (índice FTS5 das 36 NRs, corpus corrigido) + índice denso v4 (retrieval4)",
+    "mechanical_validation": "tools_v1/retrieval_check.py — a consulta gerada recupera o chunk-ouro (check_hit oficial); resposta final passa pela régua honesta (bench/regua) ou pelo critério de recusa",
+    "walls": "holdout intocável; NR-33/16/26 reservadas; filtro lexical Jaccard<0.4 vs holdout (herdado de sft_v3)",
+    "prep": "tools_v1/prep_train.py — tools BAKED no system (SHA d7635ae4fa71a988), seed 42; gera degraus aninhados 750/1500/3000 (subconjuntos, NÃO versionados)",
+    "source_of_truth": "gerado na DGX Spark (~/cemig-poc/tools_v1/data/train_full.jsonl); sha256 idêntico ao arquivo aqui versionado"
+  },
+  "training": {
+    "base_model": "LiquidAI/LFM2.5-1.2B-Instruct (HF, bf16)",
+    "recipe": "tools_v1/run_train_tools.sh (curva de saturação r32 nos degraus + varredura de rank r16/32/64/128, 1 época, max_len 3072, seed 42)",
+    "embarked_candidate": "r128 Q4_0 (lfm2.5-1.2b-tools_1_2b_r128-Q4_0.gguf); pesos NÃO versionados — ver README raiz seção REPRODUÇÃO",
+    "wandb": "cemig-tools-1.2b (run lh94m0ve)"
+  },
+  "note": "Os arquivos train_step750/1500/3000.jsonl são SUBCONJUNTOS aninhados deste full (mesma seed 42) e permanecem gitignored — reprodutíveis por prep_train.py a partir deste arquivo."
+}

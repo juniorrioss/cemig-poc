@@ -6,6 +6,10 @@ data/cache_27b_queries.json
 logs/*.log
 __pycache__/
 *.pyc
+# conjunto de treino do SLM tool-trained: VERSIONADO (procedência exata, sha256 no manifesto).
+# Os splits de degrau (train_step*.jsonl) e caches seguem ignorados pela regra geral acima.
+!data/train_full.jsonl
+!data/train_full.manifest.json
 # manter artefatos LEVES de procedência/relatório:
 !data/passo0_render.txt
 !data/prep_manifest.json

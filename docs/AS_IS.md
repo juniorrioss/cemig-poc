@@ -65,7 +65,10 @@ treinado em [`tools_v1/`](../tools_v1/README.md) com o desenho validado em
   nem o papel `tool`. **[MEDIÇÃO]** `android/README_TOOLS_HYBRID.md` (Parte 1).
 - **Treino**: 4.236 diálogos em **5 famílias**, dados régua-aprovados; famílias de recusa =
   **24,5%** do total (herdadas do rebalanceamento do `sft_v3`). **[MEDIÇÃO]** `tools_v1/README.md`
-  (Passo 1+2), `sft_v3/README.md` (Parte 1).
+  (Passo 1+2), `sft_v3/README.md` (Parte 1). O conjunto está **versionado** em
+  `tools_v1/data/train_full.jsonl` (sha256 `be60946f04237e78c159a4caab8d4a9cf3ade2c6ed33ce880d126999a94ae145`,
+  procedência em `tools_v1/data/train_full.manifest.json`); reprodução exata na seção **REPRODUÇÃO**
+  do README raiz.
 
 ### A.2 — Números do vigente (1.2B tool r128, régua honesta `bench/regua`, n=151)
 
