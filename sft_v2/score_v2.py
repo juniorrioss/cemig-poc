@@ -36,7 +36,7 @@ from typing import Any, Dict, List, Optional
 _HERE = Path(__file__).resolve().parent
 _ROOT = _HERE.parent
 import common_v2 as C  # noqa: E402
-sys.path.insert(0, str(_HERE.parent / "slm_oraculo"))
+sys.path.insert(0, str(_ROOT))  # raiz do repo p/ o pacote `corpus`
 
 GABARITO = _ROOT / "bench" / "regua" / "data" / "gabarito_151.jsonl"
 
@@ -48,7 +48,7 @@ def load_gabarito_151() -> Dict[str, Dict[str, Any]]:
 
 def load_gold_texts_151() -> Dict[str, str]:
     """Trecho-ouro do corpus CORRIGIDO por pergunta das 151 (checagem de alucinação)."""
-    from corpus_fix import CorrectedGoldResolver  # slm_oraculo
+    from corpus.corpus_fix import CorrectedGoldResolver  # movido p/ corpus/ na limpeza
     sys.path.insert(0, str(_ROOT / "bench" / "regua"))
     from common import load_holdout
     resolver = CorrectedGoldResolver()

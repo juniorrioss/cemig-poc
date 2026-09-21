@@ -203,12 +203,28 @@ Ver [`docs/HISTORICO.md`](docs/HISTORICO.md) para o veredito de cada uma.
 | `bench/ctx_topk/` | Janela × nº de trechos — confirma topK=2. | **Fundação** |
 | `docai/` | Reprocessamento de tabelas (Document AI) — reparo cirúrgico. | **Fundação** |
 | `retrieval3/` | Retrieval v3 (expansão + fusão RRF). | Superado por `retrieval4/` |
-| `slm_oraculo/` | Prova do teto em oráculo + SFT de destilação. | Superado por `sft_v2/`/`v3/` |
 | `sft_v2/` | 4 famílias + varredura de rank + métrica de recusa. | Superado por `sft_v3/` |
 | `sft_1_2b/` | SFT de síntese pura no 1.2B. | Superado por `tools_v1/` |
-| `finetune/` | LoRA do rewriter de query. | **Descartado** |
-| `finetune2/` | SFT+DPO do sintetizador 2.6B. | **Descartado** |
-| `bench/` (raiz) | Benchmark de SLMs, juízes, `judge151`, `sintese2`, device. | Histórico/fundação |
+| `bench/` (raiz) | Benchmark de SLMs, juízes, device (harness/perf). | Histórico/fundação |
+
+### Removido na limpeza (camada 1+2) — recuperável pela tag
+
+Estes diretórios foram removidos do `HEAD` para enxugar o repo; o **histórico de commits foi
+preservado** e o material vive na tag anotada **`poc-completa-pre-limpeza`** (commit `3bbd529`).
+Recupere com `git show poc-completa-pre-limpeza:<caminho>` ou
+`git checkout poc-completa-pre-limpeza -- <caminho>`. Inventário e verdicto de cada um em
+[`docs/HISTORICO.md`](docs/HISTORICO.md) (seção "Artefatos removidos na limpeza").
+
+| Pasta (na tag) | O quê | Status |
+|---|---|---|
+| `finetune/` | LoRA do rewriter de query (17 pesos versionados). | **Descartado** · removido |
+| `finetune2/` | SFT+DPO do sintetizador 2.6B. | **Descartado** · removido |
+| `slm_oraculo/` | Prova do teto em oráculo + SFT de destilação. | Superado por `sft_v2/`/`v3/` · removido¹ |
+| `bench/results/`, `bench/judge151/`, `bench/sintese2/` | Saídas de bench/juiz + shootout de sintetizadores. | Superado por `bench/regua/` · removido |
+| `retrieval3/results/vec0_*_rank.json` (2 arq.) | Rankings densos intermediários (~19 MB cada); os `bin_*` ficaram. | Intermediário · removido |
+
+¹ O módulo `slm_oraculo/corpus_fix.py` (usado por `sft_v2/` e `tools_oraculo/`, vigentes) foi
+**movido para `corpus/corpus_fix.py`** — segue vivo no `HEAD`.
 
 ## Hardware-alvo e requisitos
 

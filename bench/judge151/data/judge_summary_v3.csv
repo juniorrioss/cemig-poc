@@ -1,5 +1,0 @@
-model,description,mode,total_items,retrieval_recall_pct,acerto_factual,fidelidade_contexto,qualidade_pt,citacao_fonte,score_global,pass_gate_pct,latency_avg_s,latency_r1_s,latency_r2_s,speed_tok_s,tool_call_rate_pct,query_reformulation_rate_pct
-v3_lfm1.2b,v3 (RRF 3-sinais) x LFM2.5-1.2B QAD-Q4_0 (embarcado) x v1_rigido,classic_rag,151,52.3,1.54,1.5,3.62,1.28,1.79,2.6,0,N/A,N/A,0,N/A,N/A
-v3_lfm2.6b_noth,v3 (RRF 3-sinais) x LFM2.5-2.6B-Q4_0 thinking-OFF x v1_rigido,classic_rag,151,52.3,2.13,2.09,4.22,2.0,2.41,18.5,0,N/A,N/A,0,N/A,N/A
-old_lfm1.2b_v1,retrieval antigo x LFM2.5-1.2B QAD-Q4_0 x v1_rigido,classic_rag,151,29.1,1.44,1.37,3.65,1.11,1.68,0.0,0,N/A,N/A,0,N/A,N/A
-lfm2.6b_noth_v1,retrieval antigo x LFM2.5-2.6B-Q4_0 thinking-OFF x v1_rigido,classic_rag,151,29.1,1.88,1.7,3.99,1.62,2.09,9.3,0,N/A,N/A,0,N/A,N/A

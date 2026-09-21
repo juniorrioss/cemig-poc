@@ -49,7 +49,7 @@ _HERE = Path(__file__).resolve().parent
 _ROOT = _HERE.parent
 sys.path.insert(0, str(_HERE.parent / "tools_v1"))
 sys.path.insert(0, str(_ROOT / "bench" / "regua"))
-sys.path.insert(0, str(_ROOT / "slm_oraculo"))
+sys.path.insert(0, str(_ROOT))  # raiz do repo p/ o pacote `corpus`
 
 import render_jinja as RJ  # noqa: E402  (tools_v1/render_jinja)
 from render import parse_tool_calls_runtime  # noqa: E402
@@ -202,7 +202,7 @@ def _load_gabarito() -> Dict[str, Dict[str, Any]]:
 
 def _load_gold_texts_151() -> Dict[str, str]:
     """Trecho-ouro do corpus CORRIGIDO por pergunta (checagem de alucinação)."""
-    from corpus_fix import CorrectedGoldResolver
+    from corpus.corpus_fix import CorrectedGoldResolver  # movido p/ corpus/ na limpeza
     from common import load_holdout
     resolver = CorrectedGoldResolver()
     out = {}

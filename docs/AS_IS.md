@@ -142,7 +142,7 @@ quê, o que muda se você mexer, e quando revisitar.** Confira sempre na fonte a
 | **Escolha** | A busca externa usa **SEMPRE a fala bruta** + classificador + RRF v4. A `consulta` que o modelo gera na tool-call é **ignorada**. |
 | **Alternativas medidas** | (a) fala crua; (b) reescrita do 1.2B; (c) reescrita do 27B; medido no 1.2B e confirmado no 2.6B. |
 | **Evidência** | **1.2B**: reescrita R@2 **22,3%** vs **fala crua 30,5%** (delta **−8,2 p.p.**); got_gold quando chama **19–25% (reescrita) vs \~51% (fala crua+v4)**. **2.6B**: reescrita R@2 **23,2%** vs crua 30,5% (delta **−7,3 p.p.**); nem com mais capacidade supera a fala crua (melhor caso empata em −1,4). O 27B rewrite **empata** com a crua em R@2 (−0,7) e só ganha em R@5 (+9,3). **[MEDIÇÃO]** `tools_v1/README.md` (Passo 4c/e), `tools_2_6b/README.md` (Passo 2c). |
-| **Por quê** | O rewrite do modelo pequeno adiciona termos que dispersam o BM25. O poder de reescrita útil está só no 27B — e mesmo nele o ganho aparece só em R@5. Coerente com o achado antigo "reescrita PIORA — usar fala bruta" (`classifier/`, `finetune/README_M3.md`). |
+| **Por quê** | O rewrite do modelo pequeno adiciona termos que dispersam o BM25. O poder de reescrita útil está só no 27B — e mesmo nele o ganho aparece só em R@5. Coerente com o achado antigo "reescrita PIORA — usar fala bruta" (`classifier/`, `finetune/README_M3.md` — removido na limpeza da camada 1+2; recuperável em `poc-completa-pre-limpeza:finetune/README_M3.md`). |
 | **Impacto de mudar** | Passar a buscar com a consulta do modelo cai a aprovação E2E de **19,2% para 7–8%** (config B "tools puro") e sobe a alucinação (a maior parte da alucinação do "tools puro" — 70–80% — vem de **contexto errado**). **[MEDIÇÃO]** `tools_oraculo/README.md` (M3/M4). |
 | **Quando revisitar** | Se surgir um rewriter (on-device ou 27B na nuvem, em modo conectado) que **supere** a fala crua em R@2 — hoje nenhum supera. |
 
@@ -262,7 +262,7 @@ quê, o que muda se você mexer, e quando revisitar.** Confira sempre na fonte a
 | **Evidência** | DocAI **eliminou os glifos PUA na origem** e reconstruiu o Anexo II **18/18 faixas** (verificado célula-a-célula, 43.803 números, 0,5% não-reparável). Mas **aditivar tudo POLUI o BM25: R@2 (151) 13,9 → 11,9 (−2,0 p.p.)** — mesmo efeito dos manuais. O caso 13,8 kV precisa de **2 alavancas independentes**: dado (DocAI) + tokenizer numérico (o app hoje descarta "13,8" e "kV"). **[MEDIÇÃO]** `docai/README.md` (recall 151, casos do capitão). |
 | **Por quê** | Só a tabela **estruturada** (zona de risco) tem valor; despejos genéricos (portarias, CNAE) são ruído lexical que degrada o IDF da coleção. |
 | **Impacto de mudar** | Substituir o índice pelo aditivo-23 derruba o recall geral (−2,0 R@2). O reparo cirúrgico só ajuda o caso 13,8 kV **se** o tokenizer numérico também for corrigido. |
-| **Quando revisitar** | Achado honesto do `slm_oraculo`: **0/151 chunks-ouro do holdout tocam a tabela corrompida** (as perguntas de zona resolvem para seções definitórias 10.1/10.2/10.6), então o reparo quase não move o teto das 151. Revisitar se surgirem perguntas cujo chunk-ouro seja a tabela em si. |
+| **Quando revisitar** | Achado honesto do `slm_oraculo` (removido na limpeza; ver `poc-completa-pre-limpeza:slm_oraculo/README.md` e o módulo agora em `corpus/corpus_fix.py`): **0/151 chunks-ouro do holdout tocam a tabela corrompida** (as perguntas de zona resolvem para seções definitórias 10.1/10.2/10.6), então o reparo quase não move o teto das 151. Revisitar se surgirem perguntas cujo chunk-ouro seja a tabela em si. |
 
 ---
 
@@ -331,10 +331,10 @@ Honestidade obrigatória. Cada item marcado por status.
   métrica (o 27B faz 84%).
 - **Leitura fina de tabela (caso 13,8 kV)** **[MEDIÇÃO/LIMITE]**: **nenhum SLM (nem o 2.6B, nem o
   27B com o índice atual) lê a faixa exata** do Anexo II — o 27B só acerta com a tabela reconstruída
-  injetada no oráculo. Fontes: `slm_oraculo/`, `sft_v2/`, `prompt_teto/`.
+  injetada no oráculo. Fontes: `poc-completa-pre-limpeza:slm_oraculo/` (removido na limpeza), `sft_v2/`, `prompt_teto/`.
 - **Latência de GPU não vale para o aparelho** **[LIMITE METODOLÓGICO]**: toda geração de síntese na
   RTX 5070/Spark serve para **qualidade**, não latência; a latência de campo é projetada pela
-  tabela do device-bench. Declarado em `slm_oraculo/`, `bench/prompt_teto/`, `finetune2/`.
+  tabela do device-bench. Declarado em `poc-completa-pre-limpeza:slm_oraculo/` e `poc-completa-pre-limpeza:finetune2/` (ambos removidos na limpeza), `bench/prompt_teto/`.
 
 ---
 
@@ -350,7 +350,7 @@ vigente; são imprecisões de memória do brief.
    procurada. → **Marcado como MEDIÇÃO, não lacuna.**
 2. **Teto do 27B (Decisão 14): o brief diz 84,3%.** As fontes divergem levemente: `bench/prompt_teto`
    = **84,1%** (oráculo, `numeros`); `tools_oraculo`/`tools_2_6b` citam **84,3%**; `slm_oraculo`
-   (teto **refeito com corpus corrigido**) = **82,1%**. Todos > 60% (a conclusão "régua passável" se
+   (removido na limpeza; `poc-completa-pre-limpeza:slm_oraculo/README.md`, teto **refeito com corpus corrigido**) = **82,1%**. Todos > 60% (a conclusão "régua passável" se
    mantém). O valor mais recente/corrigido é **82,1%**.
 3. **Whisper Small (Decisão 9): o brief diz "RTF 2,37, \~14s".** A fonte `asr/README.md` mede **RTF
    2,81 (clean) / 2,99 (ruído), latência \~15,8 s**. A conclusão (descartado por lento) é a mesma; os

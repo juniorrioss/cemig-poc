@@ -1,7 +1,0 @@
-{
-  "filter": "word_ngram_jaccard",
-  "n": 3,
-  "threshold": 0.4,
-  "total_discarded": 0,
-  "items": []
-}
