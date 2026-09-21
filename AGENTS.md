@@ -2,6 +2,13 @@
 
 This file is the project's committed home for project-intrinsic agent knowledge: build, test, release, architecture, and sharp-edge notes that should travel with the code.
 
+## Handoff canônico (leia primeiro)
+- **`docs/AS_IS.md`** — documento de handoff de engenharia: **a última entrega** (pipeline híbrido de tool-calling, 1.2B r128 Q4 + Nemotron ASR) e o **registro de decisões** (por que 2 chunks, por que fala crua e não a consulta do modelo, por que 1.2B e não 2.6B), cada número com arquivo-fonte + impacto de mudar + quando revisitar. Inclui lacunas/limites e divergências brief×fontes.
+- **`docs/HISTORICO.md`** — mapa cronológico lean dos 18 experimentos (pergunta/veredito/quem superou quem; vigente vs histórico vs descartado).
+- **`docs/relatorio_poc.html`** — apresentação (storytelling); NÃO é o doc de engenharia.
+- `README.md` (raiz) — handoff: onde começar, rodar o app, reconstruir modelos, mapa das pastas.
+- Ao concluir uma frente nova ou mudar o vigente, **atualize `docs/AS_IS.md` e `docs/HISTORICO.md`** (não deixe o handoff envelhecer).
+
 ## Architecture & Corpus Pipeline (`corpus/`)
 - **Corpus directory**: `corpus/` contains the ingestion, chunking, indexing, and evaluation pipeline for regulatory standards (NRs) targeted at Android offline RAG.
 - **Data locations**: Source PDFs reside in `/home/rios/projetos/cemig-mobile-llm/firstmate/data/NRs/` (v1); clean 36-NR Parquet dataset with MTE manuals resides in `/home/rios/projetos/cemig-mobile-llm/firstmate/data/nrs_hf/nrs.parquet` (v2). Never commit external data to git.
