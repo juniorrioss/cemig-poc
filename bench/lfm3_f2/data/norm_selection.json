@@ -1,0 +1,238 @@
+{
+  "seed": 20251028,
+  "min_base_qa": 6,
+  "eligible": {
+    "1": {
+      "base_qa": 10,
+      "doc_chars": 52718,
+      "stratum": [
+        0,
+        0
+      ]
+    },
+    "4": {
+      "base_qa": 9,
+      "doc_chars": 88765,
+      "stratum": [
+        0,
+        1
+      ]
+    },
+    "5": {
+      "base_qa": 6,
+      "doc_chars": 30294,
+      "stratum": [
+        0,
+        0
+      ]
+    },
+    "6": {
+      "base_qa": 12,
+      "doc_chars": 26597,
+      "stratum": [
+        1,
+        0
+      ]
+    },
+    "9": {
+      "base_qa": 11,
+      "doc_chars": 63381,
+      "stratum": [
+        1,
+        1
+      ]
+    },
+    "10": {
+      "base_qa": 23,
+      "doc_chars": 37794,
+      "stratum": [
+        2,
+        0
+      ]
+    },
+    "11": {
+      "base_qa": 8,
+      "doc_chars": 54206,
+      "stratum": [
+        0,
+        0
+      ]
+    },
+    "12": {
+      "base_qa": 27,
+      "doc_chars": 360624,
+      "stratum": [
+        2,
+        2
+      ]
+    },
+    "13": {
+      "base_qa": 10,
+      "doc_chars": 86449,
+      "stratum": [
+        0,
+        1
+      ]
+    },
+    "15": {
+      "base_qa": 16,
+      "doc_chars": 398812,
+      "stratum": [
+        2,
+        2
+      ]
+    },
+    "17": {
+      "base_qa": 11,
+      "doc_chars": 91414,
+      "stratum": [
+        1,
+        1
+      ]
+    },
+    "18": {
+      "base_qa": 13,
+      "doc_chars": 133995,
+      "stratum": [
+        1,
+        2
+      ]
+    },
+    "19": {
+      "base_qa": 10,
+      "doc_chars": 67203,
+      "stratum": [
+        0,
+        1
+      ]
+    },
+    "20": {
+      "base_qa": 10,
+      "doc_chars": 73175,
+      "stratum": [
+        0,
+        1
+      ]
+    },
+    "22": {
+      "base_qa": 33,
+      "doc_chars": 179418,
+      "stratum": [
+        2,
+        2
+      ]
+    },
+    "24": {
+      "base_qa": 6,
+      "doc_chars": 30967,
+      "stratum": [
+        0,
+        0
+      ]
+    },
+    "29": {
+      "base_qa": 9,
+      "doc_chars": 104508,
+      "stratum": [
+        0,
+        1
+      ]
+    },
+    "30": {
+      "base_qa": 9,
+      "doc_chars": 117621,
+      "stratum": [
+        0,
+        2
+      ]
+    },
+    "31": {
+      "base_qa": 11,
+      "doc_chars": 205784,
+      "stratum": [
+        1,
+        2
+      ]
+    },
+    "32": {
+      "base_qa": 15,
+      "doc_chars": 110513,
+      "stratum": [
+        1,
+        2
+      ]
+    },
+    "33": {
+      "base_qa": 20,
+      "doc_chars": 41284,
+      "stratum": [
+        2,
+        0
+      ]
+    },
+    "34": {
+      "base_qa": 9,
+      "doc_chars": 108057,
+      "stratum": [
+        0,
+        1
+      ]
+    },
+    "35": {
+      "base_qa": 23,
+      "doc_chars": 50757,
+      "stratum": [
+        2,
+        0
+      ]
+    },
+    "36": {
+      "base_qa": 18,
+      "doc_chars": 98687,
+      "stratum": [
+        2,
+        1
+      ]
+    },
+    "37": {
+      "base_qa": 17,
+      "doc_chars": 210384,
+      "stratum": [
+        2,
+        2
+      ]
+    },
+    "38": {
+      "base_qa": 6,
+      "doc_chars": 33046,
+      "stratum": [
+        0,
+        0
+      ]
+    }
+  },
+  "chosen_strata": [
+    [
+      2,
+      0
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ]
+  ],
+  "treated": [
+    10,
+    18,
+    34
+  ],
+  "control": [
+    13,
+    31,
+    33
+  ]
+}

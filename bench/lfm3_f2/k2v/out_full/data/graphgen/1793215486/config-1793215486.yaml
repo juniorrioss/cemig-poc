@@ -1,0 +1,21 @@
+data_type: chunked
+input_file: /home/rios/.treehouse/cemig-poc-5bcc50/1/cemig-poc/bench/lfm3_f2/k2v/data/treated_corpus.json
+is_fill_blank: true
+quiz_samples: 2
+synthesizer_model_generate_kwargs:
+  max_tokens: 8192
+  repetition_penalty: 1.05
+  temperature: 0.7
+  top_k: 20
+  top_p: 0.8
+tokenizer: cl100k_base
+traverse_strategy:
+  bidirectional: true
+  edge_sampling: random
+  expand_method: max_width
+  isolated_node_strategy: ignore
+  max_depth: 1
+  max_extra_edges: 2
+  max_tokens: 256
+  qa_form: aggregated
+web_search: false
