@@ -66,14 +66,47 @@ ssh walcyrios@spark-b431   # depois:
 #      python gen_f0.py --cell $c --batch 24 --max-new 3072; done
 
 # 3) Score + análise (local; puxar gen_*.jsonl da Spark antes)
-make -C bench/lfm3_f0 score
-make -C bench/lfm3_f0 analyze
+make -C bench/lfm3_f0 pull score analyze
 ```
+
+Os `data/gen_*.jsonl` commitados estão **gzipados** (contêm o thinking integral,
+~86 MB plain); `gunzip -k` antes de rodar `score_f0.py` de novo.
 
 Tabela-resumo: `RESULTS.md`; métricas completas (incl. corte por question_type):
 `data/consolidation.json`; respostas cruas + vereditos: `data/gen_*.jsonl` /
 `data/scored_*.jsonl` (JSONL por célula, com id, base_qa_id, vocabulary_level,
 resposta crua e veredito, como pede o brief).
+
+## Resultados (bateria completa 1536 × 4 células, juiz 27B)
+
+Tabela completa em `RESULTS.md`; métricas por question_type em `data/consolidation.json`.
+
+| célula | métrica-chave | all | clean | technical | operational | lay |
+|---|---|---|---|---|---|---|
+| closed_book | aprovação | **5,9%** | 7,0% | 8,6% | 4,2% | 3,6% |
+| oraculo | aprovação | **83,7%** | 87,5% | 84,1% | 81,8% | 81,2% |
+| ranking | aprovação | **65,8%** | 70,6% | 73,2% | 62,0% | 57,6% |
+| distrator | recusa correta | **30,5%** | 39,6% | 43,2% | 18,5% | 20,8% |
+
+Achados do baseline (régua do "antes"):
+
+1. **Closed-book ≈ piso (5,9%)** — o LFM3-1.7B praticamente não carrega as NRs
+   no peso: recusa indevida 57,5% e, quando arrisca, alucina (45,5%). É a régua
+   honesta do "antes" da injeção de conhecimento (F2).
+2. **Oráculo alto (83,7%)** — com a passagem certa de bandeja o modelo sintetiza
+   bem (cobertura 0,965, citação 93,8%). O teto de síntese NÃO é o gargalo.
+3. **Ranking perde ~18 p.p. vs oráculo (65,8%)** — 4 distratores na janela
+   derrubam aprovação e dobram a alucinação (10→18%); trunca mais (10,4%)
+   porque o thinking rumina sobre os trechos errados.
+4. **Distrator é o calcanhar (30,5% recusa correta)** — com só contexto errado o
+   modelo prefere responder assim mesmo: 28,3% alucina contradizendo a norma,
+   20,2% acerta do conhecimento interno, 35,4% trunca ruminando.
+5. **Gradiente de vocabulário consistente**: clean/technical > operational/lay
+   em TODAS as células — fala de campo (lay) cai até 13 p.p. no ranking e
+   dispara alucinação no closed-book (68,8%). Mesmo abismo lexical já visto na
+   POC v2, agora medido também na síntese.
+6. Custo: geração ~14 h na GB10 (6144 queries, bf16, max_new 3072, batch 24);
+   julgamento local ~40 min (16 workers).
 
 ## Decisões registradas
 

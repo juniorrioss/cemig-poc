@@ -1,0 +1,423 @@
+{
+  "closed_book": {
+    "all": {
+      "n": 1536,
+      "aprovacao": 0.05859375,
+      "cobertura": 0.31817434895833335,
+      "alucinacao": 0.455078125,
+      "tautologia": 0.0,
+      "citacao": 0.8515625,
+      "tokens_medios": 1528.4485677083333,
+      "truncadas": 0.021484375,
+      "recusa_indevida": 0.5748697916666666
+    },
+    "clean": {
+      "n": 384,
+      "aprovacao": 0.0703125,
+      "cobertura": 0.24921770833333334,
+      "alucinacao": 0.25,
+      "tautologia": 0.0,
+      "citacao": 0.8776041666666666,
+      "tokens_medios": 1330.0026041666667,
+      "truncadas": 0.015625,
+      "recusa_indevida": 0.5572916666666666
+    },
+    "technical": {
+      "n": 384,
+      "aprovacao": 0.0859375,
+      "cobertura": 0.29839401041666663,
+      "alucinacao": 0.2265625,
+      "tautologia": 0.0,
+      "citacao": 0.875,
+      "tokens_medios": 1334.6223958333333,
+      "truncadas": 0.013020833333333334,
+      "recusa_indevida": 0.5911458333333334
+    },
+    "operational": {
+      "n": 384,
+      "aprovacao": 0.041666666666666664,
+      "cobertura": 0.41905338541666665,
+      "alucinacao": 0.65625,
+      "tautologia": 0.0,
+      "citacao": 0.7916666666666666,
+      "tokens_medios": 1799.859375,
+      "truncadas": 0.046875,
+      "recusa_indevida": 0.5755208333333334
+    },
+    "lay": {
+      "n": 384,
+      "aprovacao": 0.036458333333333336,
+      "cobertura": 0.3060322916666667,
+      "alucinacao": 0.6875,
+      "tautologia": 0.0,
+      "citacao": 0.8619791666666666,
+      "tokens_medios": 1649.3098958333333,
+      "truncadas": 0.010416666666666666,
+      "recusa_indevida": 0.5755208333333334
+    },
+    "by_question_type": {
+      "conditional": {
+        "n": 716,
+        "aprovacao": 0.04748603351955307,
+        "cobertura": 0.3223459497206704,
+        "alucinacao": 0.44972067039106145,
+        "tautologia": 0.0,
+        "citacao": 0.8337988826815642,
+        "tokens_medios": 1535.2234636871508,
+        "truncadas": 0.023743016759776536,
+        "recusa_indevida": 0.5921787709497207
+      },
+      "factual": {
+        "n": 380,
+        "aprovacao": 0.06315789473684211,
+        "cobertura": 0.31842105263157894,
+        "alucinacao": 0.45789473684210524,
+        "tautologia": 0.0,
+        "citacao": 0.868421052631579,
+        "tokens_medios": 1399.671052631579,
+        "truncadas": 0.007894736842105263,
+        "recusa_indevida": 0.5684210526315789
+      },
+      "multievidence": {
+        "n": 204,
+        "aprovacao": 0.058823529411764705,
+        "cobertura": 0.2816985294117647,
+        "alucinacao": 0.45098039215686275,
+        "tautologia": 0.0,
+        "citacao": 0.7990196078431373,
+        "tokens_medios": 1688.1078431372548,
+        "truncadas": 0.04411764705882353,
+        "recusa_indevida": 0.5441176470588235
+      },
+      "procedural": {
+        "n": 236,
+        "aprovacao": 0.0847457627118644,
+        "cobertura": 0.33665084745762713,
+        "alucinacao": 0.4703389830508475,
+        "tautologia": 0.0,
+        "citacao": 0.923728813559322,
+        "tokens_medios": 1577.2372881355932,
+        "truncadas": 0.01694915254237288,
+        "recusa_indevida": 0.559322033898305
+      }
+    }
+  },
+  "oraculo": {
+    "all": {
+      "n": 1536,
+      "aprovacao": 0.8365885416666666,
+      "cobertura": 0.9645615234374999,
+      "alucinacao": 0.099609375,
+      "tautologia": 0.0,
+      "citacao": 0.9381510416666666,
+      "tokens_medios": 1056.4895833333333,
+      "truncadas": 0.013671875,
+      "recusa_indevida": 0.05859375
+    },
+    "clean": {
+      "n": 384,
+      "aprovacao": 0.875,
+      "cobertura": 0.9670567708333334,
+      "alucinacao": 0.08333333333333333,
+      "tautologia": 0.0,
+      "citacao": 0.9453125,
+      "tokens_medios": 952.7109375,
+      "truncadas": 0.010416666666666666,
+      "recusa_indevida": 0.036458333333333336
+    },
+    "technical": {
+      "n": 384,
+      "aprovacao": 0.8411458333333334,
+      "cobertura": 0.9665799479166667,
+      "alucinacao": 0.10416666666666667,
+      "tautologia": 0.0,
+      "citacao": 0.9505208333333334,
+      "tokens_medios": 1012.625,
+      "truncadas": 0.010416666666666666,
+      "recusa_indevida": 0.046875
+    },
+    "operational": {
+      "n": 384,
+      "aprovacao": 0.8177083333333334,
+      "cobertura": 0.9694875000000001,
+      "alucinacao": 0.10677083333333333,
+      "tautologia": 0.0,
+      "citacao": 0.9375,
+      "tokens_medios": 1080.2005208333333,
+      "truncadas": 0.010416666666666666,
+      "recusa_indevida": 0.0703125
+    },
+    "lay": {
+      "n": 384,
+      "aprovacao": 0.8125,
+      "cobertura": 0.955121875,
+      "alucinacao": 0.10416666666666667,
+      "tautologia": 0.0,
+      "citacao": 0.9192708333333334,
+      "tokens_medios": 1180.421875,
+      "truncadas": 0.0234375,
+      "recusa_indevida": 0.08072916666666667
+    },
+    "by_question_type": {
+      "conditional": {
+        "n": 716,
+        "aprovacao": 0.8044692737430168,
+        "cobertura": 0.9639431564245811,
+        "alucinacao": 0.12849162011173185,
+        "tautologia": 0.0,
+        "citacao": 0.9259776536312849,
+        "tokens_medios": 1068.7402234636872,
+        "truncadas": 0.012569832402234637,
+        "recusa_indevida": 0.07262569832402235
+      },
+      "factual": {
+        "n": 380,
+        "aprovacao": 0.8763157894736842,
+        "cobertura": 0.9687278947368421,
+        "alucinacao": 0.07894736842105263,
+        "tautologia": 0.0,
+        "citacao": 0.9421052631578948,
+        "tokens_medios": 933.2026315789474,
+        "truncadas": 0.007894736842105263,
+        "recusa_indevida": 0.02894736842105263
+      },
+      "multievidence": {
+        "n": 204,
+        "aprovacao": 0.8382352941176471,
+        "cobertura": 0.9442808823529412,
+        "alucinacao": 0.06372549019607843,
+        "tautologia": 0.0,
+        "citacao": 0.9313725490196079,
+        "tokens_medios": 1327.799019607843,
+        "truncadas": 0.0392156862745098,
+        "recusa_indevida": 0.05392156862745098
+      },
+      "procedural": {
+        "n": 236,
+        "aprovacao": 0.8686440677966102,
+        "cobertura": 0.9772597457627118,
+        "alucinacao": 0.07627118644067797,
+        "tautologia": 0.0,
+        "citacao": 0.9745762711864406,
+        "tokens_medios": 983.3135593220339,
+        "truncadas": 0.00423728813559322,
+        "recusa_indevida": 0.06779661016949153
+      }
+    }
+  },
+  "ranking": {
+    "all": {
+      "n": 1536,
+      "aprovacao": 0.658203125,
+      "cobertura": 0.8522350260416666,
+      "alucinacao": 0.18229166666666666,
+      "tautologia": 0.0006510416666666666,
+      "citacao": 0.8704427083333334,
+      "tokens_medios": 1758.2786458333333,
+      "truncadas": 0.10416666666666667,
+      "recusa_indevida": 0.061848958333333336
+    },
+    "clean": {
+      "n": 384,
+      "aprovacao": 0.7057291666666666,
+      "cobertura": 0.8566838541666667,
+      "alucinacao": 0.1328125,
+      "tautologia": 0.0,
+      "citacao": 0.8776041666666666,
+      "tokens_medios": 1635.0442708333333,
+      "truncadas": 0.10416666666666667,
+      "recusa_indevida": 0.078125
+    },
+    "technical": {
+      "n": 384,
+      "aprovacao": 0.7317708333333334,
+      "cobertura": 0.8845049479166667,
+      "alucinacao": 0.13541666666666666,
+      "tautologia": 0.0,
+      "citacao": 0.90625,
+      "tokens_medios": 1629.4739583333333,
+      "truncadas": 0.078125,
+      "recusa_indevida": 0.052083333333333336
+    },
+    "operational": {
+      "n": 384,
+      "aprovacao": 0.6197916666666666,
+      "cobertura": 0.8363708333333334,
+      "alucinacao": 0.2109375,
+      "tautologia": 0.0026041666666666665,
+      "citacao": 0.8567708333333334,
+      "tokens_medios": 1837.546875,
+      "truncadas": 0.11979166666666667,
+      "recusa_indevida": 0.0546875
+    },
+    "lay": {
+      "n": 384,
+      "aprovacao": 0.5755208333333334,
+      "cobertura": 0.8313804687499999,
+      "alucinacao": 0.25,
+      "tautologia": 0.0,
+      "citacao": 0.8411458333333334,
+      "tokens_medios": 1931.0494791666667,
+      "truncadas": 0.11458333333333333,
+      "recusa_indevida": 0.0625
+    },
+    "by_question_type": {
+      "conditional": {
+        "n": 716,
+        "aprovacao": 0.6396648044692738,
+        "cobertura": 0.8594733240223463,
+        "alucinacao": 0.2122905027932961,
+        "tautologia": 0.0013966480446927375,
+        "citacao": 0.8770949720670391,
+        "tokens_medios": 1718.3337988826815,
+        "truncadas": 0.09636871508379888,
+        "recusa_indevida": 0.06564245810055866
+      },
+      "factual": {
+        "n": 380,
+        "aprovacao": 0.7263157894736842,
+        "cobertura": 0.8901757894736841,
+        "alucinacao": 0.15789473684210525,
+        "tautologia": 0.0,
+        "citacao": 0.9078947368421053,
+        "tokens_medios": 1620.842105263158,
+        "truncadas": 0.07105263157894737,
+        "recusa_indevida": 0.042105263157894736
+      },
+      "multievidence": {
+        "n": 204,
+        "aprovacao": 0.5686274509803921,
+        "cobertura": 0.737663725490196,
+        "alucinacao": 0.16666666666666666,
+        "tautologia": 0.0,
+        "citacao": 0.75,
+        "tokens_medios": 2105.4313725490197,
+        "truncadas": 0.20588235294117646,
+        "recusa_indevida": 0.06862745098039216
+      },
+      "procedural": {
+        "n": 236,
+        "aprovacao": 0.6822033898305084,
+        "cobertura": 0.8682199152542373,
+        "alucinacao": 0.1440677966101695,
+        "tautologia": 0.0,
+        "citacao": 0.8940677966101694,
+        "tokens_medios": 1800.6822033898304,
+        "truncadas": 0.09322033898305085,
+        "recusa_indevida": 0.07627118644067797
+      }
+    }
+  },
+  "distrator": {
+    "all": {
+      "n": 1536,
+      "aprovacao": 0.3053385416666667,
+      "cobertura": 0.28337623697916664,
+      "alucinacao": 0.283203125,
+      "tautologia": 0.0006510416666666666,
+      "citacao": 0.6028645833333334,
+      "tokens_medios": 2433.6204427083335,
+      "truncadas": 0.353515625,
+      "recusa_correta": 0.3053385416666667,
+      "respondeu_certo_mesmo_assim": 0.20247395833333334
+    },
+    "clean": {
+      "n": 384,
+      "aprovacao": 0.3958333333333333,
+      "cobertura": 0.21931380208333331,
+      "alucinacao": 0.16145833333333334,
+      "tautologia": 0.0,
+      "citacao": 0.6171875,
+      "tokens_medios": 2271.1614583333335,
+      "truncadas": 0.3359375,
+      "recusa_correta": 0.3958333333333333,
+      "respondeu_certo_mesmo_assim": 0.125
+    },
+    "technical": {
+      "n": 384,
+      "aprovacao": 0.4322916666666667,
+      "cobertura": 0.2786458333333333,
+      "alucinacao": 0.21875,
+      "tautologia": 0.0,
+      "citacao": 0.6666666666666666,
+      "tokens_medios": 2234.3359375,
+      "truncadas": 0.3020833333333333,
+      "recusa_correta": 0.4322916666666667,
+      "respondeu_certo_mesmo_assim": 0.1640625
+    },
+    "operational": {
+      "n": 384,
+      "aprovacao": 0.18489583333333334,
+      "cobertura": 0.31801145833333333,
+      "alucinacao": 0.3307291666666667,
+      "tautologia": 0.0026041666666666665,
+      "citacao": 0.5130208333333334,
+      "tokens_medios": 2642.5911458333335,
+      "truncadas": 0.4322916666666667,
+      "recusa_correta": 0.18489583333333334,
+      "respondeu_certo_mesmo_assim": 0.265625
+    },
+    "lay": {
+      "n": 384,
+      "aprovacao": 0.20833333333333334,
+      "cobertura": 0.31753385416666663,
+      "alucinacao": 0.421875,
+      "tautologia": 0.0,
+      "citacao": 0.6145833333333334,
+      "tokens_medios": 2586.3932291666665,
+      "truncadas": 0.34375,
+      "recusa_correta": 0.20833333333333334,
+      "respondeu_certo_mesmo_assim": 0.2552083333333333
+    },
+    "by_question_type": {
+      "conditional": {
+        "n": 716,
+        "aprovacao": 0.33798882681564246,
+        "cobertura": 0.3056328212290503,
+        "alucinacao": 0.30726256983240224,
+        "tautologia": 0.0,
+        "citacao": 0.6145251396648045,
+        "tokens_medios": 2411.7472067039107,
+        "truncadas": 0.3324022346368715,
+        "recusa_correta": 0.33798882681564246,
+        "respondeu_certo_mesmo_assim": 0.19134078212290503
+      },
+      "factual": {
+        "n": 380,
+        "aprovacao": 0.3236842105263158,
+        "cobertura": 0.3003507894736842,
+        "alucinacao": 0.25526315789473686,
+        "tautologia": 0.0,
+        "citacao": 0.6473684210526316,
+        "tokens_medios": 2339.2763157894738,
+        "truncadas": 0.3236842105263158,
+        "recusa_correta": 0.3236842105263158,
+        "respondeu_certo_mesmo_assim": 0.23684210526315788
+      },
+      "multievidence": {
+        "n": 204,
+        "aprovacao": 0.20098039215686275,
+        "cobertura": 0.20751617647058823,
+        "alucinacao": 0.24509803921568626,
+        "tautologia": 0.0,
+        "citacao": 0.49019607843137253,
+        "tokens_medios": 2553.8137254901962,
+        "truncadas": 0.45588235294117646,
+        "recusa_correta": 0.20098039215686275,
+        "respondeu_certo_mesmo_assim": 0.16666666666666666
+      },
+      "procedural": {
+        "n": 236,
+        "aprovacao": 0.2669491525423729,
+        "cobertura": 0.25409406779661015,
+        "alucinacao": 0.288135593220339,
+        "tautologia": 0.00423728813559322,
+        "citacao": 0.5932203389830508,
+        "tokens_medios": 2547.9957627118642,
+        "truncadas": 0.3771186440677966,
+        "recusa_correta": 0.2669491525423729,
+        "respondeu_certo_mesmo_assim": 0.211864406779661
+      }
+    }
+  }
+}
