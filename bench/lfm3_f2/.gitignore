@@ -6,3 +6,5 @@ data/synth/*.ckpt.json.tmp
 k2v/out_smoke/
 k2v/data/*.ckpt.json
 k2v/data/smoke_corpus.json
+data/synth/*.log
+k2v/*.log

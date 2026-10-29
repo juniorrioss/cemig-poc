@@ -1,0 +1,377 @@
+{
+  "thresholds": {
+    "bench_jaccard": 0.5,
+    "intra_jaccard": 0.8,
+    "prefix_sig_n": 8
+  },
+  "counts": {
+    "qa_critic_passed": 5526,
+    "qa_contaminated_removed": 0,
+    "qa_neardup_removed": 6,
+    "qa_final": 5520,
+    "paraphrases": 98,
+    "units_total": 842
+  },
+  "near_dup_rate_preff": 0.0011,
+  "prefix_entropy": {
+    "n3": {
+      "n": 3,
+      "entropy_bits": 11.006,
+      "distinct_prefixes": 3390,
+      "total": 5520,
+      "max_entropy_bits": 11.727,
+      "top10": [
+        [
+          "to certo que",
+          162
+        ],
+        [
+          "antes de liberar",
+          86
+        ],
+        [
+          "para o dds",
+          55
+        ],
+        [
+          "apos um quase",
+          33
+        ],
+        [
+          "sobre a nr",
+          32
+        ],
+        [
+          "para fins de",
+          28
+        ],
+        [
+          "durante a vistoria",
+          26
+        ],
+        [
+          "conforme a nr",
+          24
+        ],
+        [
+          "apos o quase",
+          23
+        ],
+        [
+          "ha divergencia entre",
+          23
+        ]
+      ]
+    },
+    "n4": {
+      "n": 4,
+      "entropy_bits": 11.715,
+      "distinct_prefixes": 4300,
+      "total": 5520,
+      "max_entropy_bits": 12.07,
+      "top10": [
+        [
+          "antes de liberar a",
+          46
+        ],
+        [
+          "antes de liberar o",
+          36
+        ],
+        [
+          "to certo que a",
+          36
+        ],
+        [
+          "apos um quase acidente",
+          31
+        ],
+        [
+          "to certo que o",
+          25
+        ],
+        [
+          "apos o quase acidente",
+          22
+        ],
+        [
+          "sobre a nr 18",
+          20
+        ],
+        [
+          "para o dds de",
+          19
+        ],
+        [
+          "to certo que se",
+          16
+        ],
+        [
+          "conforme a nr 18",
+          16
+        ]
+      ]
+    },
+    "n5": {
+      "n": 5,
+      "entropy_bits": 12.091,
+      "distinct_prefixes": 4877,
+      "total": 5520,
+      "max_entropy_bits": 12.252,
+      "top10": [
+        [
+          "antes de liberar o servico",
+          32
+        ],
+        [
+          "antes de liberar a equipe",
+          22
+        ],
+        [
+          "to certo que a nr",
+          20
+        ],
+        [
+          "sobre a nr 18 item",
+          18
+        ],
+        [
+          "apos um quase acidente com",
+          15
+        ],
+        [
+          "conforme a nr 18 item",
+          14
+        ],
+        [
+          "para o dds de hoje",
+          12
+        ],
+        [
+          "a nr 18 item 18",
+          12
+        ],
+        [
+          "to certo que antes de",
+          11
+        ],
+        [
+          "ha divergencia na equipe sobre",
+          10
+        ]
+      ]
+    }
+  },
+  "prefix_entropy_benchmark_ref": {
+    "n3": {
+      "n": 3,
+      "entropy_bits": 7.664,
+      "distinct_prefixes": 537,
+      "total": 1536,
+      "max_entropy_bits": 9.069,
+      "top10": [
+        [
+          "conforme a nr",
+          94
+        ],
+        [
+          "segundo a nr",
+          64
+        ],
+        [
+          "quais sao as",
+          63
+        ],
+        [
+          "quais sao os",
+          62
+        ],
+        [
+          "estou supervisionando a",
+          46
+        ],
+        [
+          "em quais situacoes",
+          35
+        ],
+        [
+          "de acordo com",
+          34
+        ],
+        [
+          "qual e o",
+          27
+        ],
+        [
+          "sobre a nr",
+          26
+        ],
+        [
+          "qual e a",
+          26
+        ]
+      ]
+    },
+    "n4": {
+      "n": 4,
+      "entropy_bits": 9.381,
+      "distinct_prefixes": 960,
+      "total": 1536,
+      "max_entropy_bits": 9.907,
+      "top10": [
+        [
+          "quais sao as condicoes",
+          36
+        ],
+        [
+          "de acordo com a",
+          32
+        ],
+        [
+          "quais sao os requisitos",
+          25
+        ],
+        [
+          "em quais situacoes especificas",
+          20
+        ],
+        [
+          "quais sao os criterios",
+          14
+        ],
+        [
+          "quando e que a",
+          12
+        ],
+        [
+          "na nr trinta e",
+          11
+        ],
+        [
+          "estou supervisionando a operacao",
+          10
+        ],
+        [
+          "conforme a nr 12",
+          10
+        ],
+        [
+          "olha eu preciso confirmar",
+          10
+        ]
+      ]
+    },
+    "n5": {
+      "n": 5,
+      "entropy_bits": 9.99,
+      "distinct_prefixes": 1215,
+      "total": 1536,
+      "max_entropy_bits": 10.247,
+      "top10": [
+        [
+          "de acordo com a nr",
+          32
+        ],
+        [
+          "quais sao as condicoes especificas",
+          14
+        ],
+        [
+          "quando e que a gente",
+          9
+        ],
+        [
+          "em quais situacoes especificas a",
+          9
+        ],
+        [
+          "o que tem que ter",
+          8
+        ],
+        [
+          "quais sao os requisitos tecnicos",
+          8
+        ],
+        [
+          "quem e que tem que",
+          7
+        ],
+        [
+          "quais sao os criterios tecnicos",
+          6
+        ],
+        [
+          "o que a gente precisa",
+          6
+        ],
+        [
+          "aqui no canteiro a gente",
+          6
+        ]
+      ]
+    }
+  },
+  "persona_dist": {
+    "engenheiro": 576,
+    "auditor": 608,
+    "socratic": 620,
+    "supervisor": 612,
+    "cipeiro": 582,
+    "trabalhador_leigo": 676,
+    "tecnico_seg": 652,
+    "eletricista": 655,
+    "comprador": 537,
+    "...": 2
+  },
+  "cenario_dist": {
+    "conformidade": 634,
+    "incidente": 790,
+    "aplicacao": 174,
+    "por_que": 135,
+    "e_se": 138,
+    "limite": 173,
+    "discussao": 1011,
+    "duvida_direta": 807,
+    "treinamento": 916,
+    "situacao_campo": 740,
+    "...": 2
+  },
+  "style_dist": {
+    "com_ref": 2737,
+    "sem_ref": 2783
+  },
+  "origin_dist": {
+    "expand": 4900,
+    "socratic:aplicacao": 174,
+    "socratic:por_que": 135,
+    "socratic:e_se": 138,
+    "socratic:limite": 173
+  },
+  "per_nr": {
+    "10": 1207,
+    "18": 3052,
+    "34": 1261
+  },
+  "unit_coverage": {
+    "NR-10": {
+      "units": 172,
+      "covered": 162,
+      "coverage": 0.942
+    },
+    "NR-18": {
+      "units": 472,
+      "covered": 446,
+      "coverage": 0.945
+    },
+    "NR-34": {
+      "units": 198,
+      "covered": 185,
+      "coverage": 0.934
+    }
+  },
+  "mix": {
+    "raw": 49,
+    "paraphrase": 98,
+    "qa": 5520
+  }
+}

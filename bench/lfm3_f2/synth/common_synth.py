@@ -20,7 +20,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
-import requests
+# requests é importado tardiamente em gen_call (validate_stage roda com python3
+# do sistema, sem requests).
 
 HERE = Path(__file__).resolve().parent          # bench/lfm3_f2/synth
 F2 = HERE.parent                                 # bench/lfm3_f2
@@ -44,6 +45,7 @@ def gen_call(prompt: str, system: str | None = None, max_tokens: int = 4096,
              temperature: float = 0.7, thinking: bool = True,
              retries: int = 4, timeout: int = 300) -> str:
     """Chamada ao 27B. thinking=True deixa o modelo raciocinar antes do JSON."""
+    import requests
     messages = []
     if system:
         messages.append({"role": "system", "content": system})
