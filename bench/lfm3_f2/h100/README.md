@@ -51,7 +51,14 @@ de avaliação; este worker produz checkpoints e devolve via scp.
 ## Corridas
 
 - Smoke: wandb run `lfm3-f2-C-k2v-smoke` (gcuhdbfd).
-- Completa: `lfm3-f2-C-k2v-grpo`, 400 steps, lr 1e-6, batch 8 × 8 gerações.
+- Completa: `lfm3-f2-C-k2v-grpo` (wandb ixu0jg3k), 400 steps, lr 1e-6,
+  batch 8 × 8 gerações, 82 min (12.3 s/step).
+  **Curva de reward por quartil de steps: 0.080 → 0.142 → 0.116 → 0.084** —
+  sobe até ~step 200 e DECAI depois (possível over-optimização/lr decay);
+  por isso foram enviados p/ a grade `final` (step 400) E `checkpoint-150`/
+  `checkpoint-200` (região do pico) — a grade da Spark decide qual vale.
+  Entregues em `~/cemig-poc/lfm3_f2/runs/lfm3-f2-C-k2v-grpo/` (+ premises e
+  reward_dump.jsonl com 1 amostra de completion por step).
 
 ## Task vector (item 3 da fila)
 
