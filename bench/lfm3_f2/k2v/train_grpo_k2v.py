@@ -149,7 +149,8 @@ def main() -> None:
         learning_rate=args.lr,
         per_device_train_batch_size=args.batch,
         num_generations=args.num_generations,
-        max_prompt_length=args.max_prompt,
+        # TRL >=1.17 removeu max_prompt_length (truncagem fica no dataset;
+        # nossos prompts fill-blank são curtos, <1024 tok)
         max_completion_length=args.max_completion,
         max_steps=50 if args.smoke else 400,
         logging_steps=1,
