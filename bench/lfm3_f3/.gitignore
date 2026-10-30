@@ -1,0 +1,10 @@
+data/synth/*.ckpt.json
+data/synth/*.ckpt.json.tmp
+data/synth/*.log
+data/train/*.ckpt.json
+data/train/*.ckpt.json.tmp
+data/train/*.log
+data/retrieval/*.log
+data/gen/
+data/scored/*.ckpt.json
+*.log
