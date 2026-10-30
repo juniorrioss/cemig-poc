@@ -8,3 +8,7 @@ k2v/data/*.ckpt.json
 k2v/data/smoke_corpus.json
 data/synth/*.log
 k2v/*.log
+data/gen/
+data/scored/*.ckpt.json
+probe/probe_*.jsonl
+probe/*.ckpt.json

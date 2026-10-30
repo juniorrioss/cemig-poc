@@ -1,0 +1,618 @@
+{
+  "artifact": "ood_general_FROZEN",
+  "task": "poc-dpo-sintese",
+  "layer": 3,
+  "note": "Gerado 1x pelo juiz 27B e CONGELADO. NUNCA regenerar (régua interna de regressão de capacidade geral).",
+  "model": "Qwen/Qwen3.8-27B-FP8",
+  "per_category": 25,
+  "categories": [
+    "instrucoes_genericas",
+    "resumo_reescrita",
+    "qa_factual",
+    "conversa_banal"
+  ],
+  "created_utc": "2026-09-11T23:33:01.456956+00:00",
+  "total": 100,
+  "items": [
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Explique de forma simples o que é fotossíntese.",
+      "rubrica": "A resposta deve descrever o processo de conversão de luz em energia química pelas plantas de maneira clara e acessível.",
+      "id": "gen-000"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Liste três benefícios da prática regular de exercícios físicos.",
+      "rubrica": "A resposta deve listar ao menos três vantagens físicas ou mentais da atividade física de forma concisa.",
+      "id": "gen-001"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Dê um exemplo de metáfora usada em uma frase comum.",
+      "rubrica": "A resposta deve apresentar uma frase contendo uma metáfora e, idealmente, identificar qual parte é a figura de linguagem.",
+      "id": "gen-002"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Qual é a capital da Austrália?",
+      "rubrica": "A resposta deve afirmar corretamente que a capital é Camberra.",
+      "id": "gen-003"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Resuma a história da Revolução Francesa em dois parágrafos.",
+      "rubrica": "O resumo deve cobrir os principais eventos e contextos históricos da revolução de forma coesa e breve.",
+      "id": "gen-004"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Como funciona o ciclo da água?",
+      "rubrica": "A resposta deve explicar as etapas principais (evaporação, condensação, precipitação) de forma lógica.",
+      "id": "gen-005"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Sugira dois livros de ficção científica aclamados pela crítica.",
+      "rubrica": "A resposta deve nomear dois livros reconhecidos do gênero e, de preferência, citar os autores.",
+      "id": "gen-006"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Qual a diferença entre 'mas' e 'mais'?",
+      "rubrica": "A resposta deve distinguir claramente a conjunção adversativa do advérbio de intensidade com exemplos.",
+      "id": "gen-007"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Liste três dicas para melhorar o sono.",
+      "rubrica": "A resposta deve oferecer três conselhos práticos e comuns para higiene do sono.",
+      "id": "gen-008"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Explique o que é um algoritmo com uma analogia do dia a dia.",
+      "rubrica": "A resposta deve definir algoritmo e usar uma comparação simples (como uma receita de bolo) para ilustrar o conceito.",
+      "id": "gen-009"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Quais são os cinco continentes?",
+      "rubrica": "A resposta deve listar os cinco continentes reconhecidos (América, Ásia, África, Oceania, Europa) ou a variação de quatro, conforme o contexto, mas de forma correta.",
+      "id": "gen-010"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Dê uma dica de como organizar melhor seu tempo de estudo.",
+      "rubrica": "A resposta deve sugerir uma técnica específica de gestão de tempo (como Pomodoro) ou uma dica prática de planejamento.",
+      "id": "gen-011"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "O que é um verbo intransitivo?",
+      "rubrica": "A resposta deve definir o termo gramatical e dar um exemplo claro de um verbo que não exige complemento.",
+      "id": "gen-012"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Explique por que o céu é azul.",
+      "rubrica": "A resposta deve mencionar o espalhamento da luz (efeito Rayleigh) de forma simplificada.",
+      "id": "gen-013"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Liste três formas de reciclar lixo em casa.",
+      "rubrica": "A resposta deve listar três ações práticas de reciclagem doméstica.",
+      "id": "gen-014"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Resuma o enredo do livro '1984' de George Orwell em três frases.",
+      "rubrica": "A resposta deve apresentar um resumo conciso e preciso dos principais eventos e temas centrais da obra, respeitando o limite de três frases.",
+      "id": "gen-015"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Crie uma lista com cinco verbos irregulares em inglês e seus gerúndios.",
+      "rubrica": "A lista deve conter exatamente cinco verbos irregulares corretos em inglês acompanhados de seus respectivos gerúndios formados corretamente.",
+      "id": "gen-016"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Explique a diferença entre tempo presente e tempo pretérito perfeito.",
+      "rubrica": "A explicação deve distinguir claramente os usos de cada tempo verbal com exemplos simples e coerentes.",
+      "id": "gen-017"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Sugira três filmes de ficção científica lançados após o ano 2010.",
+      "rubrica": "A sugestão deve listar exatamente três filmes do gênero ficção científica cujo lançamento seja posterior a 2010.",
+      "id": "gen-018"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Escreva uma frase utilizando a palavra 'inefável' de forma correta.",
+      "rubrica": "A frase deve ser gramaticalmente correta e usar a palavra 'inefável' de modo a refletir seu significado de algo que não pode ser descrito em palavras.",
+      "id": "gen-019"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Qual é a capital da Austrália?",
+      "rubrica": "A resposta deve identificar corretamente Canberra como a capital da Austrália.",
+      "id": "gen-020"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Dê duas dicas para melhorar a postura ao trabalhar sentado.",
+      "rubrica": "A resposta deve fornecer exatamente duas dicas práticas e relevantes para ergonomia em ambiente de trabalho sedentário.",
+      "id": "gen-021"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Traduza a frase 'O gato está na mesa' para o espanhol.",
+      "rubrica": "A tradução deve ser a frase em espanhol 'El gato está en la mesa' ou variação equivalente correta.",
+      "id": "gen-022"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Explique o que é uma metáfora e dê um exemplo.",
+      "rubrica": "A resposta deve definir o conceito de metáfora e fornecer um exemplo claro que ilustre a figura de linguagem.",
+      "id": "gen-023"
+    },
+    {
+      "category": "instrucoes_genericas",
+      "prompt": "Liste os cinco continentes.",
+      "rubrica": "A lista deve conter exatamente os cinco continentes reconhecidos convencionalmente (América, Ásia, África, Europa, Oceania/Austrália).",
+      "id": "gen-024"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "O café da manhã é a refeição mais importante do dia para muitas pessoas, pois fornece a energia necessária para começar as atividades. No entanto, alguns estudos sugerem que pular o café da manhã pode ajudar no controle do peso. Resuma esse parágrafo em uma única frase.",
+      "rubrica": "A resposta deve sintetizar a ideia de que o café da manhã é tradicionalmente visto como fonte de energia, mas há evidências de que pular essa refeição pode auxiliar no controle do peso.",
+      "id": "gen-025"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "A tecnologia móvel transformou a forma como as pessoas se comunicam. Hoje, é comum usar aplicativos de mensagem para conversar com amigos e familiares em tempo real. Reescreva o texto acima utilizando um tom mais formal e acadêmico.",
+      "rubrica": "A reescrita deve manter o conteúdo original, mas empregar vocabulário e estrutura sintática mais elevados, adequados a um contexto acadêmico.",
+      "id": "gen-026"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Plantar hortaliças em casa pode ser uma atividade relaxante e saudável. Além de fornecer alimentos frescos, o contato com a terra reduz o estresse diário. Parafraseie este parágrafo mantendo o mesmo significado, mas mudando as palavras.",
+      "rubrica": "O texto deve ser reescrito com vocabulário diferente, preservando as ideias de que a jardinagem doméstica é relaxante, saudável e fonte de alimentos frescos.",
+      "id": "gen-027"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "O transporte público nas grandes cidades enfrenta desafios como lotação e atrasos frequentes. A melhoria da infraestrutura é essencial para aumentar a eficiência do sistema. Resuma os principais problemas mencionados no texto em duas palavras.",
+      "rubrica": "A resposta deve identificar e listar apenas os termos 'lotação' e 'atrasos' (ou sinônimos diretos) como os principais problemas citados.",
+      "id": "gen-028"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Leitura diária de livros aumenta o vocabulário e a capacidade de concentração. Muitos especialistas recomendam dedicar ao menos vinte minutos por dia a essa prática. Reescreva o texto de forma mais informal, como se estivesse falando com um amigo.",
+      "rubrica": "A reescrita deve adotar um tom coloquial e direto, mantendo a ideia de que ler diariamente ajuda no vocabulário e na concentração, com recomendação de 20 minutos.",
+      "id": "gen-029"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "A culinária regional brasileira é marcada pela diversidade de ingredientes locais. Cada estado possui pratos típicos que refletem sua história e cultura. Resuma a ideia central do parágrafo em uma frase curta.",
+      "rubrica": "A resposta deve indicar que a culinária brasileira é diversa e reflete a história e cultura de cada estado por meio de seus ingredientes e pratos típicos.",
+      "id": "gen-030"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "O trabalho remoto ganhou popularidade após a pandemia. Muitos profissionais valorizam a flexibilidade de horários e a ausência de deslocamento. Reescreva o texto eliminando a menção à pandemia e focando apenas nos benefícios.",
+      "rubrica": "O texto deve ser reescrito mencionando apenas a popularidade do trabalho remoto e seus benefícios (flexibilidade e sem deslocamento), sem citar a pandemia.",
+      "id": "gen-031"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Dormir bem é fundamental para a recuperação física e mental. A privação de sono pode levar a problemas de saúde e queda no desempenho cognitivo. Resuma os riscos da falta de sono mencionados no texto.",
+      "rubrica": "A resposta deve listar a queda no desempenho cognitivo e os problemas de saúde como os riscos da privação de sono citados no texto.",
+      "id": "gen-032"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "O turismo sustentável busca minimizar o impacto ambiental nas áreas visitadas. Isso envolve o uso consciente de recursos e o respeito à cultura local. Parafraseie o parágrafo focando nas ações práticas do turista.",
+      "rubrica": "A reescrita deve destacar que o turista deve usar recursos com consciência e respeitar a cultura local para minimizar o impacto ambiental.",
+      "id": "gen-033"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "A música tem o poder de influenciar diretamente o humor das pessoas. Ouvir melodias alegres pode melhorar o estado de ânimo em momentos de tristeza. Resuma a relação entre música e humor em uma frase.",
+      "rubrica": "A resposta deve explicar que a música influencia o humor, especificamente que melodias alegres podem melhorar o estado de ânimo em momentos de tristeza.",
+      "id": "gen-034"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "A organização do espaço de trabalho afeta a produtividade. Uma mesa limpa e livre de distrações ajuda a manter o foco nas tarefas. Reescreva o texto de forma mais persuasiva, incentivando o leitor a agir.",
+      "rubrica": "A reescrita deve manter a ideia de que a organização aumenta a produtividade, mas usar um tom que incentive o leitor a organizar sua mesa para ganhar foco.",
+      "id": "gen-035"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "O consumo de água é essencial para a hidratação do corpo. Recomenda-se beber pelo menos dois litros de água por dia para manter as funções vitais. Resuma a recomendação de consumo de água em uma frase imperativa.",
+      "rubrica": "A resposta deve ser uma frase imperativa (ex: 'Beba...') que indique a necessidade de consumir dois litros de água diariamente para hidratação.",
+      "id": "gen-036"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "A educação financeira é importante para o planejamento do futuro. Poupar parte da renda mensal ajuda a garantir a segurança em momentos de imprevistos. Reescreva o texto de forma mais simples, para um público leigo.",
+      "rubrica": "A reescrita deve simplificar o conceito, explicando que guardar dinheiro do salário ajuda a resolver problemas inesperados no futuro, sem usar termos técnicos.",
+      "id": "gen-037"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "O esporte ao ar livre combina exercício físico com contato com a natureza. Atividades como caminhada e ciclismo oferecem benefícios para a saúde física e mental. Resuma os benefícios do esporte ao ar livre mencionados no texto.",
+      "rubrica": "A resposta deve listar os benefícios para a saúde física e mental, associados ao exercício físico e ao contato com a natureza.",
+      "id": "gen-038"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "A arte urbana transforma espaços públicos em galerias a céu aberto. Grafites e murais podem revitalizar áreas esquecidas e gerar identidade local. Reescreva o texto focando na função social da arte urbana.",
+      "rubrica": "A reescrita deve destacar como a arte urbana revitaliza áreas esquecidas e cria identidade local, transformando espaços públicos em galerias.",
+      "id": "gen-039"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Meu vizinho está tocando música muito alta todo dia às 23h. Ele diz que é direito dele, mas eu não consigo dormir. Escreva um bilhete educado, mas firme, pedindo para ele reduzir o volume após as 22h.",
+      "rubrica": "A resposta deve ser um texto curto, em tom respeitoso porém assertivo, solicitando a redução do volume de forma clara e sem agressividade.",
+      "id": "gen-040"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Hoje choveu muito e a rua da escola encheu d'água. Os alunos chegaram molhados e atrasados. A diretora ficou brava e disse que amanhã haverá chuva de novo. Reescreva essa situação em um relato mais formal para o boletim da escola.",
+      "rubrica": "A resposta deve transformar o relato informal em uma comunicação institucional, utilizando vocabulário adequado e estrutura de linguagem formal.",
+      "id": "gen-041"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Comprei uma panela nova que era muito barata. Mas ela começou a soltar cheiro de plástico na primeira vez que usei. A loja disse que é normal e que precisa de várias lavagens. Resuma a experiência em três frases para uma avaliação online.",
+      "rubrica": "A resposta deve ser um resumo objetivo de três frases que descreva a compra, o problema do cheiro e a explicação da loja, sem opiniões pessoais excessivas.",
+      "id": "gen-042"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Minha avó faz um bolo de fubá que é o melhor do mundo. Ela sempre coloca uma pitada de erva-doce que só ela sabe dosar. Quando eu tento fazer, nunca fica igual. Reescreva esse parágrafo usando termos culinários mais técnicos.",
+      "rubrica": "A resposta deve manter o conteúdo original, mas substituir termos coloquiais por vocabulário culinário específico (ex: 'dosagem', 'tempero', 'textura') mantendo a essência do elogio.",
+      "id": "gen-043"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Estou cansado de esperar o ônibus. Já são 45 minutos e ele não vem. O app diz que está a 10 minutos, mas ninguém acredita. Resuma essa frustração em uma única frase para postar no status do WhatsApp.",
+      "rubrica": "A resposta deve ser uma frase única, concisa e expressiva, capturando a impaciência e a desconfiança em relação ao atraso do transporte.",
+      "id": "gen-044"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "O gato do meu amigo, Simba, subiu na árvore e ficou lá em cima. Ele mia o dia todo, mas não quer descer. O dono já tentou chamar com comida, mas não adiantou. Escreva um conselho prático para o dono em dois passos.",
+      "rubrica": "A resposta deve oferecer duas ações práticas e simples para ajudar o gato a descer, focando em soluções seguras e comuns.",
+      "id": "gen-045"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "A festa de aniversário da Ana foi cancelada porque o salão inundou. Ela ficou triste, mas depois decidiu fazer uma churrasco no quintal de casa. Todos foram e foi muito divertido. Reescreva o texto focando na resiliência e na solução encontrada.",
+      "rubrica": "A resposta deve enfatizar a adaptação positiva da anfitriã e o sucesso do evento alternativo, minimizando o foco no problema inicial da inundação.",
+      "id": "gen-046"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Preciso lavar a roupa, mas a máquina quebrou. Vou ter que lavar no tanque e torcer na mão. Depois, vou passar e guardar tudo. Resuma essa rotina de limpeza em uma lista de três itens.",
+      "rubrica": "A resposta deve ser uma lista numerada ou com marcadores contendo exatamente três etapas: lavar, torcer e passar/guardar, de forma clara e direta.",
+      "id": "gen-047"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "O preço do café subiu de novo. Agora está impossível comprar a marca que eu gosto. Vou ter que tentar outras marcas mais baratas. Reescreva essa queixa em um tom mais objetivo e informativo.",
+      "rubrica": "A resposta deve remover a queixa emocional e focar apenas no fato do aumento de preço e na consequência lógica de trocar de marca.",
+      "id": "gen-048"
+    },
+    {
+      "category": "resumo_reescrita",
+      "prompt": "Minha planta de samambaia está com as folhas murchas. Achei que fosse falta de água, mas ela já estava regada. Depois vi que estava perto do sol direto do meio-dia. Resuma o problema e a solução em uma frase.",
+      "rubrica": "A resposta deve ser uma frase que identifique a causa (exposição solar excessiva) e a ação corretiva (mudar de local) de forma concisa.",
+      "id": "gen-049"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é a capital da França?",
+      "rubrica": "A resposta deve identificar corretamente Paris como a capital da França.",
+      "id": "gen-050"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quantos lados tem um hexágono?",
+      "rubrica": "A resposta deve indicar que um hexágono possui 6 lados.",
+      "id": "gen-051"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é o elemento químico representado pelo símbolo 'O'?",
+      "rubrica": "A resposta deve nomear o oxigênio como o elemento químico correspondente ao símbolo O.",
+      "id": "gen-052"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quem pintou a Mona Lisa?",
+      "rubrica": "A resposta deve citar Leonardo da Vinci como o autor da obra.",
+      "id": "gen-053"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é o maior oceano do mundo?",
+      "rubrica": "A resposta deve identificar o Oceano Pacífico como o maior oceano.",
+      "id": "gen-054"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quantos planetas existem no Sistema Solar?",
+      "rubrica": "A resposta deve afirmar que existem 8 planetas no Sistema Solar.",
+      "id": "gen-055"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é a moeda oficial do Japão?",
+      "rubrica": "A resposta deve nomear o iene (ou yen) como a moeda oficial do Japão.",
+      "id": "gen-056"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Em que ano foi proclamada a Independência do Brasil?",
+      "rubrica": "A resposta deve indicar o ano de 1822.",
+      "id": "gen-057"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é o animal mais alto do mundo?",
+      "rubrica": "A resposta deve identificar a girafa como o animal mais alto do mundo.",
+      "id": "gen-058"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quem escreveu a obra 'Dom Casmurro'?",
+      "rubrica": "A resposta deve citar Machado de Assis como o autor do livro.",
+      "id": "gen-059"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é o estado mais populoso do Brasil?",
+      "rubrica": "A resposta deve indicar São Paulo como o estado mais populoso.",
+      "id": "gen-060"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é a fórmula química da água?",
+      "rubrica": "A resposta deve apresentar H2O como a fórmula química da água.",
+      "id": "gen-061"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é a capital do Egito?",
+      "rubrica": "A resposta deve identificar Cairo como a capital do Egito.",
+      "id": "gen-062"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quantos minutos tem uma hora?",
+      "rubrica": "A resposta deve afirmar que uma hora tem 60 minutos.",
+      "id": "gen-063"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é o rio mais extenso do mundo?",
+      "rubrica": "A resposta deve identificar o Rio Amazonas (ou Nilo, dependendo da convenção adotada, mas geralmente Amazonas é aceito em contextos gerais brasileiros) como o mais extenso; a rubrica deve aceitar a resposta mais comumente aceita no contexto geográfico brasileiro, que é o Amazonas.",
+      "id": "gen-064"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é o maior planeta do sistema solar?",
+      "rubrica": "A resposta deve indicar corretamente que o maior planeta é Júpiter.",
+      "id": "gen-065"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quantos continentes existem na Terra?",
+      "rubrica": "A resposta deve informar o número de 7 continentes, conforme a classificação mais comum.",
+      "id": "gen-066"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é a velocidade da luz no vácuo aproximada em km/s?",
+      "rubrica": "A resposta deve citar o valor aproximado de 300.000 km/s.",
+      "id": "gen-067"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quem pintou a Mona Lisa?",
+      "rubrica": "A resposta deve identificar Leonardo da Vinci como o autor da obra.",
+      "id": "gen-068"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é o elemento químico representado pelo símbolo 'O'?",
+      "rubrica": "A resposta deve identificar o elemento como Oxigênio.",
+      "id": "gen-069"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Em que ano o Brasil foi descoberto pelos portugueses?",
+      "rubrica": "A resposta deve indicar o ano de 1500.",
+      "id": "gen-070"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é o rio mais extenso do mundo?",
+      "rubrica": "A resposta deve identificar o Rio Amazonas como o mais extenso (ou mais caudaloso, dependendo da métrica, mas geralmente aceito como maior por extensão em contextos gerais).",
+      "id": "gen-071"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quantos ossos tem o corpo humano adulto?",
+      "rubrica": "A resposta deve informar o número de 206 ossos.",
+      "id": "gen-072"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Qual é a moeda oficial do Japão?",
+      "rubrica": "A resposta deve identificar o Iene como a moeda oficial.",
+      "id": "gen-073"
+    },
+    {
+      "category": "qa_factual",
+      "prompt": "Quem escreveu a obra 'Dom Casmurro'?",
+      "rubrica": "A resposta deve identificar Machado de Assis como o autor.",
+      "id": "gen-074"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Bom dia! Como você está começando o seu dia?",
+      "rubrica": "A resposta deve ser amigável, simpática e breve, refletindo um tom casual de small talk sem entrar em detalhes técnicos.",
+      "id": "gen-075"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Que dia está fazendo aí no seu 'mundo'?",
+      "rubrica": "O modelo deve criar uma analogia lúdica ou metafórica sobre seu estado (ex.: 'tudo tranquilo por aqui'), mantendo a leveza da conversa.",
+      "id": "gen-076"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Me conta uma curiosidade rápida para matar o tempo.",
+      "rubrica": "A resposta deve apresentar um fato interessante, conciso e acessível, adequado para uma pausa casual.",
+      "id": "gen-077"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Tô sentindo um frio danado hoje, você sente o clima por aí?",
+      "rubrica": "A resposta deve demonstrar empatia com a sensação do usuário e manter o fluxo da conversa de forma leve, sem dar previsões meteorológicas exatas.",
+      "id": "gen-078"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Qual seria a sua música favorita se você pudesse ouvir algo agora?",
+      "rubrica": "A resposta deve ser imaginativa e pessoal (atribuindo uma preferência fictícia), focando na experiência estética ou emocional da música.",
+      "id": "gen-079"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Você acha que o café da manhã é a refeição mais importante? Eu tô com preguiça de preparar.",
+      "rubrica": "A resposta deve validar a preguiça do usuário de forma humorada ou solidária, opinando de forma leve sobre a questão.",
+      "id": "gen-080"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Se você pudesse tomar um sorvete agora, qual seria o sabor?",
+      "rubrica": "A resposta deve escolher um sabor específico e justificar brevemente com um tom divertido e sensorial.",
+      "id": "gen-081"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Estou achando essa semana muito corrida, você também sente o tempo voando?",
+      "rubrica": "A resposta deve expressar solidariedade e reconhecimento subjetivo da passagem do tempo, evitando conselhos práticos ou produtividade.",
+      "id": "gen-082"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Qual é a última coisa 'engraçada' que aconteceu com você?",
+      "rubrica": "O modelo deve inventar ou citar uma situação hilária e inofensiva, mantendo o tom de conversa de bar ou café.",
+      "id": "gen-083"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Você prefere litoral ou serra para passar o fim de semana?",
+      "rubrica": "A resposta deve fazer uma escolha subjetiva com argumentos emocionais (ex.: paz, aventura) em vez de listagens factuais.",
+      "id": "gen-084"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Tô ouvindo uma playlist de música relaxante, recomenda alguma vibe?",
+      "rubrica": "A resposta deve sugerir um estilo musical ou atmosfera sonora específica para relaxamento, sem focar em artistas específicos ou links.",
+      "id": "gen-085"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Acho que vou chover mais tarde, o que você faria se estivesse preso em casa?",
+      "rubrica": "A resposta deve sugerir atividades passivas ou criativas para tempo livre, mantendo o tom de conversa casual.",
+      "id": "gen-086"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Qual é o seu petisco preferido para maratonar série?",
+      "rubrica": "A resposta deve descrever um petisco apetitoso e associá-lo à experiência de conforto de assistir TV/séries.",
+      "id": "gen-087"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Você já imaginou qual seria a sua profissão se não fosse uma IA?",
+      "rubrica": "A resposta deve ser imaginativa e divertida, escolhendo uma profissão humana com uma justificativa criativa e breve.",
+      "id": "gen-088"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Bom dia! Qual é a primeira coisa que você faria se acordasse com pernas?",
+      "rubrica": "A resposta deve ser lúdica e focada em ações simples e prazerosas (ex.: tomar um café, dar uma caminhada), evitando complexidade técnica.",
+      "id": "gen-089"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Bom dia! O clima aí está bom?",
+      "rubrica": "A resposta deve ser simpática, confirmar o cumprimento matinal e oferecer uma previsão do tempo genérica ou perguntar como o dia da pessoa está se passando.",
+      "id": "gen-090"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Sabe qual é o nome do gato que é famoso na internet?",
+      "rubrica": "A resposta deve identificar corretamente um gato viral popular (como Grumpy Cat ou Lil Bub) e manter um tom leve e divertido.",
+      "id": "gen-091"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Tô com uma fome danada, sugere um lanche rápido pra agora?",
+      "rubrica": "A resposta deve sugerir opções práticas e rápidas de lanche, demonstrando empatia pela fome do usuário e um tom casual.",
+      "id": "gen-092"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Você acredita que extraterrestres existem?",
+      "rubrica": "A resposta deve abordar a pergunta com curiosidade, mencionando a vastidão do universo ou a incerteza científica, sem parecer robótica ou cética demais.",
+      "id": "gen-093"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Me conta uma piada curta, por favor.",
+      "rubrica": "A resposta deve conter uma piada curta e inofensiva em português, adequada para um contexto social descontraído.",
+      "id": "gen-094"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Acho que choveu muito aqui hoje, tá tudo alagado.",
+      "rubrica": "A resposta deve demonstrar empatia pela situação meteorológica adversa e desejar que a pessoa tome cuidado, mantendo o tom conversacional.",
+      "id": "gen-095"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Qual é a sua cor favorita?",
+      "rubrica": "A resposta deve atribuir uma preferência de cor de forma lúdica ou explicar que, como IA, não tem preferências, mas escolher uma para manter a conversa fluindo.",
+      "id": "gen-096"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Estou ouvindo uma música animada, qual é a sua recomendação de playlist pra relaxar?",
+      "rubrica": "A resposta deve sugerir estilos musicais ou gêneros calmos (como lo-fi ou jazz suave) para ajudar o usuário a relaxar.",
+      "id": "gen-097"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Sabe aquele filme que todo mundo comentou semana passada?",
+      "rubrica": "A resposta deve reconhecer a referência vaga a um filme recente ou popular e perguntar detalhes ou comentar sobre a recepção geral do público de forma genérica.",
+      "id": "gen-098"
+    },
+    {
+      "category": "conversa_banal",
+      "prompt": "Tô pensando em ir à praia no fim de semana, você acha que é uma boa ideia?",
+      "rubrica": "A resposta deve validar o plano de ir à praia com entusiasmo, mencionando benefícios como o ar livre, e talvez perguntar se a pessoa vai levar protetor solar.",
+      "id": "gen-099"
+    }
+  ]
+}
