@@ -67,3 +67,14 @@ para a Spark em `~/cemig-poc/lfm3_f2/runs/taskvec-{sum,prop}-{r8,r32}/`.
 Escalas da `prop` ficaram ≈0.999 (o LoRA quase não mudou a magnitude média
 dos w1/w2/w3) ⇒ espera-se prop ≈ sum na avaliação. Fórmulas:
 `TASK_VECTOR_README.md`.
+
+## Células closed_book rodadas na H100 (Spark saturada, cláusula do brief)
+
+Com a GPU 2 livre após a corrida C e a Spark a 94%, as gerações closed_book
+dos 6 artefatos novos rodaram aqui (`run_eval_h100.sh`, harness `gen_f2.py`
+da Spark INALTERADO, batch 48, max_new 3072, normas 10/18/34/13/31/33,
+344 queries/célula, ~7-8 min/célula):
+taskvec-{sum,prop}-{r8,r32} (modelo HF direto) + C-k2v `final` e
+`checkpoint-200` (adapter on-the-fly sobre o instruct). Saídas entregues em
+`~/cemig-poc/lfm3_f2/data/gen_f2-{taskvec-*,C-k2v-*}_closed_book.jsonl` na
+Spark — o julgamento (27B) é do worker da Spark.
