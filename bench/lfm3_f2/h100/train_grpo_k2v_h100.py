@@ -182,10 +182,21 @@ def main() -> None:
         "checklist": r["checklist"],
     } for r in rows])
 
+    dump_path = Path(args.out) / args.run / "reward_dump.jsonl"
+
     def reward_k2v(completions, gold, question, checklist, **kw):
         texts = [c[0]["content"] if isinstance(c, list) else c
                  for c in completions]
         oks = [answer_correct(t, g) for t, g in zip(texts, gold)]
+        # dump 1 amostra por chamada p/ diagnostico (barato)
+        try:
+            with dump_path.open("a", encoding="utf-8") as f:
+                f.write(json.dumps({"gold": gold[0], "ok": oks[0],
+                                    "n_ok": sum(oks), "n": len(oks),
+                                    "text": texts[0][-600:]},
+                                   ensure_ascii=False) + "\n")
+        except Exception:  # noqa: BLE001
+            pass
         rewards = [1.0 if ok else 0.0 for ok in oks]
         # answer-gated: julga APENAS as corretas, em paralelo (27B local)
         idx = [i for i, ok in enumerate(oks) if ok]
