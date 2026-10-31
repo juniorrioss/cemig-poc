@@ -8,3 +8,6 @@ data/retrieval/*.log
 data/gen/
 data/scored/*.ckpt.json
 *.log
+# renderizados reproduzíveis via build_dataset.py --render (assignments+targets+index.db)
+data/train/train.jsonl
+data/train/val.jsonl

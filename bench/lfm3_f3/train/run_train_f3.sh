@@ -9,6 +9,7 @@ CONT=cemig_mobile_walcy
 WORK=/workspace/cemig/f3
 
 docker exec -d "$CONT" bash -c "
+  export HF_HOME=/workspace/cemig/hf_cache CUDA_VISIBLE_DEVICES=0 &&
   cd $WORK &&
   nohup python train_f3.py \
     --rank 32 --epochs 4 \

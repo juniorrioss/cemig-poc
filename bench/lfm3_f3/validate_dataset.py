@@ -87,12 +87,14 @@ def main() -> None:
                 fail(f"{r['qa_id']}: partial inconsistente {labs}")
         elif a["case"] == "closed" and a["context_ids"]:
             fail(f"{r['qa_id']}: closed com contexto")
-        # contexto renderizado bate com k
+        # contexto renderizado bate com k (cabeçalhos [i] (doc - seção - título):)
         if a["case"] != "closed":
-            n_blocks = r["messages"][1]["content"].count("\n[")
-            n_blocks += r["messages"][1]["content"].startswith("Contexto normativo consultado:\n[")
-            if n_blocks != a["k"]:
-                fail(f"{r['qa_id']}: k={a['k']} mas contexto tem {n_blocks} blocos")
+            import re
+            body = r["messages"][1]["content"].rsplit("\n\nPergunta:\n", 1)[0]
+            # títulos podem ter parênteses internos -> casa só a abertura do cabeçalho
+            heads = re.findall(r"(?:consultado:\n|\n\n)\[(\d+)\] \(", body)
+            if len(heads) != a["k"] or heads != [str(i) for i in range(1, a["k"] + 1)]:
+                fail(f"{r['qa_id']}: k={a['k']} mas cabeçalhos {heads}")
     print("  [ok] 2. rótulo×caso consistente (gold pos registrada, absent sem ouro)")
 
     # 3. distribuição de k e posições

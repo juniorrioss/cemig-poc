@@ -53,10 +53,8 @@ Regras:
 - Se a pergunta pede algo que a passagem só cobre em parte, responda o que a
   passagem sustenta e diga explicitamente o que ela não cobre.
 
-Pense primeiro e emita APENAS o JSON final:
-```json
-{{"resposta": "..."}}
-```"""
+Pense primeiro e emita APENAS o JSON final no formato
+{{"resposta": "<texto completo da resposta>"}}"""
 
 PROMPT_PARTIAL = """PASSAGEM NORMATIVA ({src}) — cobre o tema SÓ EM PARTE:
 {text}
@@ -75,10 +73,8 @@ Regras:
 - Sinalize o limite SEM inventar: "os trechos recuperados não detalham X".
 - NÃO mencione "a passagem"/"o trecho acima" — refira-se aos trechos das normas recuperados.
 
-Pense primeiro e emita APENAS o JSON final:
-```json
-{{"resposta": "..."}}
-```"""
+Pense primeiro e emita APENAS o JSON final no formato
+{{"resposta": "<texto completo da resposta>"}}"""
 
 
 def main() -> None:
@@ -98,14 +94,20 @@ def main() -> None:
         anchor = r["anchor_passage"]
         src = f"{anchor['doc'].upper()} {anchor['section']} — {anchor['title']}"
         tpl = PROMPT_GOLD if r["case"] == "gold" else PROMPT_PARTIAL
-        v = cs.gen_json(tpl.format(src=src, text=anchor["text"],
-                                   question=r["question"]),
-                        system=SYSTEM, temperature=0.4, max_tokens=2048)
-        if isinstance(v, list):
-            v = v[0] if v else {}
-        resp = str(v.get("resposta", "")).strip()
-        assert len(resp) > 30, f"resposta curta demais: {resp!r}"
-        return {"target": resp}
+        # até 3 tentativas: o 27B às vezes ecoa o placeholder do formato no
+        # thinking e o parser pega o eco — rejeita e re-chama
+        last = ""
+        for _ in range(3):
+            v = cs.gen_json(tpl.format(src=src, text=anchor["text"],
+                                       question=r["question"]),
+                            system=SYSTEM, temperature=0.4, max_tokens=2048)
+            if isinstance(v, list):
+                v = v[0] if v else {}
+            resp = str(v.get("resposta", "")).strip() if isinstance(v, dict) else ""
+            if len(resp) > 30 and "<texto" not in resp:
+                return {"target": resp}
+            last = resp
+        raise ValueError(f"resposta inválida 3x: {last!r}")
 
     # ckpt chaveado por qa_id:case — o caso muda o prompt; rebuilds do assign
     # (quando o pool F3 entrar) reusam só o que continua válido.

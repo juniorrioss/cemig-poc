@@ -80,7 +80,9 @@ def main() -> None:
         num_train_epochs=args.epochs,
         learning_rate=args.lr,
         lr_scheduler_type="cosine",
-        warmup_ratio=0.03,
+        # transformers 5.x removeu warmup_ratio -> warmup_steps ~3% (padrão F2)
+        warmup_steps=max(10, int(0.03 * args.epochs * 5400
+                                 / (args.batch * args.grad_accum))),
         per_device_train_batch_size=args.batch,
         per_device_eval_batch_size=args.batch,
         gradient_accumulation_steps=args.grad_accum,

@@ -102,10 +102,13 @@ def pick_k(rng: random.Random) -> int:
 # --assign
 # ---------------------------------------------------------------------------
 def assign() -> None:
-    topk_rows = []
+    topk_rows, _seen = [], set()
     for p in sorted(RETR.glob("topk_*.jsonl")):
-        topk_rows.extend(read_jsonl(p))
-    print(f"[assign] {len(topk_rows)} QAs com retrieval")
+        for r in read_jsonl(p):
+            if r["qa_id"] not in _seen:      # dedup por qa_id (colisão rara no pool)
+                _seen.add(r["qa_id"])
+                topk_rows.append(r)
+    print(f"[assign] {len(topk_rows)} QAs com retrieval (dedup qa_id)")
 
     # dedup anticontaminação vs benchmark (mesmo critério do s6 da F2:
     # Jaccard de norm_tokens >= 0.5) — pré-tokenizado p/ não ser O(n*m) caro
@@ -285,8 +288,13 @@ def render() -> None:
     rng = random.Random(SEED + 1)
 
     rows, missing = [], 0
+    seen_q: set[str] = set()   # dedup por texto de pergunta (colisões raras entre unidades)
     for a in assignments:
         case = a["case"]
+        qnorm = " ".join(a["question"].lower().split())
+        if qnorm in seen_q:
+            continue
+        seen_q.add(qnorm)
         if case in ("gold", "partial"):
             tgt = targets.get(a["qa_id"])
             if not tgt:
