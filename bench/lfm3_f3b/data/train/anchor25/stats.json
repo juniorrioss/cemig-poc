@@ -1,0 +1,9 @@
+{
+  "variant": "anchor25",
+  "n_train": 8514,
+  "n_val": 159,
+  "n_general_train": 1542,
+  "n_closed": 586,
+  "anchor_frac": 0.2499,
+  "seed": 20260213
+}

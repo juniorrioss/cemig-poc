@@ -58,8 +58,9 @@ Regras:
 - Variedade real de tema, comprimento e registro; nada de repetir estrutura.
 - Prompts auto-contidos (se a tarefa precisa de um texto, inclua o texto).
 
-Pense primeiro e emita APENAS o JSON final no formato
-{{"prompts": ["...", "..."]}}"""
+Pense primeiro e emita APENAS o JSON final: um objeto com a chave "prompts"
+cujo valor é a lista com os {n} prompts completos (strings reais, nunca
+placeholders)."""
 
 ANSWER_SYSTEM = (
     "Você é um assistente prestativo em português do Brasil. Responda de "
@@ -101,12 +102,17 @@ def main() -> None:
             tasks.append({"cat": cat, "desc": desc, "batch": b})
 
     def gen_prompts(t: dict) -> dict:
-        v = gen_json(PROMPT_GEN.format(n=batch, desc=t["desc"]),
-                     temperature=1.0, max_tokens=4096)
-        # o 27B às vezes emite a lista crua em vez de {"prompts": [...]}
-        if isinstance(v, list):
-            v = {"prompts": v}
-        return {"prompts": [p for p in v.get("prompts", []) if isinstance(p, str)]}
+        for _ in range(3):
+            v = gen_json(PROMPT_GEN.format(n=batch, desc=t["desc"]),
+                         temperature=1.0, max_tokens=6144)
+            # o 27B às vezes emite a lista crua em vez de {"prompts": [...]}
+            if isinstance(v, list):
+                v = {"prompts": v}
+            ps = [p for p in v.get("prompts", [])
+                  if isinstance(p, str) and len(p) >= 10]
+            if len(ps) >= batch // 2:   # rejeita eco de placeholder/lote raso
+                return {"prompts": ps}
+        return {"prompts": ps}
 
     res = parallel_map(gen_prompts, tasks, max_workers=args.workers,
                        checkpoint_path=OUT / "prompts.ckpt.json",
