@@ -1,0 +1,85 @@
+{
+  "F0-baseline": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.6773255813953488,
+    "recusa_indevida": 0.0377906976744186,
+    "haluc": 0.2703488372093023,
+    "recusa_correta": 0.2238372093023256,
+    "trunc": 0.38953488372093026,
+    "probe_general": 3.92,
+    "probe_behavioral": 3.8
+  },
+  "f3-r32-ep1": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7558139534883721,
+    "recusa_indevida": 0.03197674418604651,
+    "haluc": 0.23837209302325582,
+    "recusa_correta": 0.5116279069767442,
+    "trunc": 0.0
+  },
+  "f3-r32-ep2": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7354651162790697,
+    "recusa_indevida": 0.040697674418604654,
+    "haluc": 0.2441860465116279,
+    "recusa_correta": 0.4476744186046512,
+    "trunc": 0.0
+  },
+  "f3-r32-ep3": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7877906976744186,
+    "recusa_indevida": 0.02616279069767442,
+    "haluc": 0.22965116279069767,
+    "recusa_correta": 0.5145348837209303,
+    "trunc": 0.0
+  },
+  "f3-r32-ep4": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7703488372093024,
+    "recusa_indevida": 0.0377906976744186,
+    "haluc": 0.22965116279069767,
+    "recusa_correta": 0.5377906976744186,
+    "trunc": 0.0
+  },
+  "f3-r32-ep5": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.8052325581395349,
+    "recusa_indevida": 0.02616279069767442,
+    "haluc": 0.26453488372093026,
+    "recusa_correta": 0.3866279069767442,
+    "trunc": 0.0
+  },
+  "f3-r32-ep6": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7790697674418605,
+    "recusa_indevida": 0.03197674418604651,
+    "haluc": 0.21220930232558138,
+    "recusa_correta": 0.5813953488372093,
+    "trunc": 0.0
+  },
+  "f3-r32-ep7": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.752906976744186,
+    "recusa_indevida": 0.03197674418604651,
+    "haluc": 0.25,
+    "recusa_correta": 0.4796511627906977,
+    "trunc": 0.0
+  },
+  "f3-r32-ep8": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7732558139534884,
+    "recusa_indevida": 0.029069767441860465,
+    "haluc": 0.25,
+    "recusa_correta": 0.5116279069767442,
+    "trunc": 0.0
+  }
+}

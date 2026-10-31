@@ -1,0 +1,15 @@
+{
+  "variant": "recusa35",
+  "n_total": 7119,
+  "by_case": {
+    "absent": 2491,
+    "partial": 691,
+    "gold": 3340,
+    "closed": 597
+  },
+  "converted_gold_to_absent": 1055,
+  "skipped": 4,
+  "hard_distractor_share": 0.4282,
+  "absent_frac": 0.3499,
+  "seed": 20260213
+}
