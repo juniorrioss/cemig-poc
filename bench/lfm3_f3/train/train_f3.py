@@ -43,6 +43,7 @@ def main() -> None:
     ap.add_argument("--grad-accum", type=int, default=4)
     ap.add_argument("--max-len", type=int, default=6144)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--resume", default="", help="checkpoint p/ retomar (estende épocas)")
     args = ap.parse_args()
 
     os.environ.setdefault("WANDB_PROJECT", "lfm3-1.7b-cemig")
@@ -122,7 +123,7 @@ def main() -> None:
     (out_dir / "premises.json").write_text(json.dumps(premises, indent=2))
     print(json.dumps(premises, indent=2), flush=True)
 
-    trainer.train()
+    trainer.train(resume_from_checkpoint=args.resume or None)
     trainer.save_model(str(out_dir / "final"))
     print(f"[ok] {out_dir}")
 
