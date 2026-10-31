@@ -81,5 +81,47 @@
     "haluc": 0.25,
     "recusa_correta": 0.5116279069767442,
     "trunc": 0.0
+  },
+  "f3b-recusa35-ep1": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7587209302325582,
+    "recusa_indevida": 0.05232558139534884,
+    "haluc": 0.24709302325581395,
+    "recusa_correta": 0.44476744186046513,
+    "trunc": 0.0
+  },
+  "f3b-recusa35-ep2": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7180232558139535,
+    "recusa_indevida": 0.09011627906976744,
+    "haluc": 0.18023255813953487,
+    "recusa_correta": 0.6308139534883721,
+    "trunc": 0.0
+  },
+  "f3b-recusa35-ep3": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7616279069767442,
+    "recusa_indevida": 0.06976744186046512,
+    "haluc": 0.13372093023255813,
+    "recusa_correta": 0.7325581395348837,
+    "trunc": 0.0,
+    "probe_general": 3.37,
+    "probe_behavioral": 2.566666666666667,
+    "probe_pt": 4.430769230769231
+  },
+  "f3b-recusa35-ep4": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.747093023255814,
+    "recusa_indevida": 0.061046511627906974,
+    "haluc": 0.11918604651162791,
+    "recusa_correta": 0.7122093023255814,
+    "trunc": 0.0,
+    "probe_general": 3.25,
+    "probe_behavioral": 2.966666666666667,
+    "probe_pt": 4.461538461538462
   }
 }
