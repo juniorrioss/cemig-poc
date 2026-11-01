@@ -1,0 +1,30 @@
+[score] tag=f3b-mlpattn-ep1 cell=ranking n=344
+[ok] scored_f3b-mlpattn-ep1_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-mlpattn-ep1 cell=distrator n=344
+[ok] scored_f3b-mlpattn-ep1_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-mlpattn-ep2 cell=ranking n=344
+[ok] scored_f3b-mlpattn-ep2_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-mlpattn-ep2 cell=distrator n=344
+[ok] scored_f3b-mlpattn-ep2_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-mlpattn-ep3 cell=ranking n=344
+[ok] scored_f3b-mlpattn-ep3_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-mlpattn-ep3 cell=distrator n=344
+[ok] scored_f3b-mlpattn-ep3_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-mlpattn-ep4 cell=ranking n=344
+[ok] scored_f3b-mlpattn-ep4_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-mlpattn-ep4 cell=distrator n=344
+[ok] scored_f3b-mlpattn-ep4_distrator.jsonl: 344 pontuados, 0 erros
+  ... 25/130
+  ... 50/130
+  ... 75/130
+  ... 100/130
+  ... 125/130
+f3b-mlpattn-ep3 general: qualidade 3.35, pt 4.47 (n=100)
+f3b-mlpattn-ep3 behavioral: qualidade 2.80, pt 4.27 (n=30)
+  ... 25/130
+  ... 50/130
+  ... 75/130
+  ... 100/130
+  ... 125/130
+f3b-mlpattn-ep4 general: qualidade 3.30, pt 4.56 (n=100)
+f3b-mlpattn-ep4 behavioral: qualidade 3.17, pt 4.37 (n=30)

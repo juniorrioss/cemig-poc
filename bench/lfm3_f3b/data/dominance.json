@@ -82,6 +82,48 @@
     "recusa_correta": 0.5116279069767442,
     "trunc": 0.0
   },
+  "f3b-mlpattn-ep1": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7383720930232558,
+    "recusa_indevida": 0.03197674418604651,
+    "haluc": 0.21220930232558138,
+    "recusa_correta": 0.5261627906976745,
+    "trunc": 0.0
+  },
+  "f3b-mlpattn-ep2": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.752906976744186,
+    "recusa_indevida": 0.023255813953488372,
+    "haluc": 0.24127906976744187,
+    "recusa_correta": 0.46511627906976744,
+    "trunc": 0.0
+  },
+  "f3b-mlpattn-ep3": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7558139534883721,
+    "recusa_indevida": 0.03488372093023256,
+    "haluc": 0.22674418604651161,
+    "recusa_correta": 0.4796511627906977,
+    "trunc": 0.0,
+    "probe_general": 3.35,
+    "probe_behavioral": 2.8,
+    "probe_pt": 4.423076923076923
+  },
+  "f3b-mlpattn-ep4": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7441860465116279,
+    "recusa_indevida": 0.0436046511627907,
+    "haluc": 0.18604651162790697,
+    "recusa_correta": 0.5668604651162791,
+    "trunc": 0.0,
+    "probe_general": 3.3,
+    "probe_behavioral": 3.1666666666666665,
+    "probe_pt": 4.515384615384615
+  },
   "f3b-r16-ep1": {
     "n_ranking": 344,
     "n_distrator": 344,
