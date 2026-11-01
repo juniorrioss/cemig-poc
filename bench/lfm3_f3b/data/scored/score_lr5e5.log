@@ -1,0 +1,23 @@
+[score] tag=f3b-lr5e5-ep1 cell=ranking n=344
+[ok] scored_f3b-lr5e5-ep1_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-lr5e5-ep1 cell=distrator n=344
+[ok] scored_f3b-lr5e5-ep1_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-lr5e5-ep2 cell=ranking n=344
+[ok] scored_f3b-lr5e5-ep2_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-lr5e5-ep2 cell=distrator n=344
+[ok] scored_f3b-lr5e5-ep2_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-lr5e5-ep3 cell=ranking n=344
+[ok] scored_f3b-lr5e5-ep3_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-lr5e5-ep3 cell=distrator n=344
+[ok] scored_f3b-lr5e5-ep3_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-lr5e5-ep4 cell=ranking n=344
+[ok] scored_f3b-lr5e5-ep4_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-lr5e5-ep4 cell=distrator n=344
+[ok] scored_f3b-lr5e5-ep4_distrator.jsonl: 344 pontuados, 0 erros
+  ... 25/130
+  ... 50/130
+  ... 75/130
+  ... 100/130
+  ... 125/130
+f3b-lr5e5-ep3 general: qualidade 3.39, pt 4.59 (n=100)
+f3b-lr5e5-ep3 behavioral: qualidade 2.97, pt 4.27 (n=30)

@@ -82,6 +82,33 @@
     "recusa_correta": 0.5116279069767442,
     "trunc": 0.0
   },
+  "f3b-lr5e5-ep1": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.75,
+    "recusa_indevida": 0.046511627906976744,
+    "haluc": 0.25,
+    "recusa_correta": 0.48255813953488375,
+    "trunc": 0.0
+  },
+  "f3b-lr5e5-ep2": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7383720930232558,
+    "recusa_indevida": 0.03488372093023256,
+    "haluc": 0.2877906976744186,
+    "recusa_correta": 0.4273255813953488,
+    "trunc": 0.0
+  },
+  "f3b-lr5e5-ep3": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7296511627906976,
+    "recusa_indevida": 0.03488372093023256,
+    "haluc": 0.21511627906976744,
+    "recusa_correta": 0.5465116279069767,
+    "trunc": 0.0
+  },
   "f3b-mlpattn-ep1": {
     "n_ranking": 344,
     "n_distrator": 344,
