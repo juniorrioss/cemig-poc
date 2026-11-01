@@ -109,6 +109,18 @@
     "recusa_correta": 0.5465116279069767,
     "trunc": 0.0
   },
+  "f3b-lr5e5-ep4": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7587209302325582,
+    "recusa_indevida": 0.040697674418604654,
+    "haluc": 0.24127906976744187,
+    "recusa_correta": 0.5406976744186046,
+    "trunc": 0.0,
+    "probe_general": 3.25,
+    "probe_behavioral": 2.7666666666666666,
+    "probe_pt": 4.461538461538462
+  },
   "f3b-mlpattn-ep1": {
     "n_ranking": 344,
     "n_distrator": 344,
