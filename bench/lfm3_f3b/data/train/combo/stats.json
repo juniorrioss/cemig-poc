@@ -1,0 +1,10 @@
+{
+  "variant": "combo (recusa35 + anchor25)",
+  "n_train": 8517,
+  "n_val": 159,
+  "n_general_train": 1543,
+  "n_closed": 586,
+  "anchor_frac": 0.25,
+  "absent_frac": 0.3499,
+  "seed": 20260213
+}

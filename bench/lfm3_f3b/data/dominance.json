@@ -82,6 +82,48 @@
     "recusa_correta": 0.5116279069767442,
     "trunc": 0.0
   },
+  "f3b-anchor25-ep1": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7819767441860465,
+    "recusa_indevida": 0.055232558139534885,
+    "haluc": 0.24709302325581395,
+    "recusa_correta": 0.3633720930232558,
+    "trunc": 0.0
+  },
+  "f3b-anchor25-ep2": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7761627906976745,
+    "recusa_indevida": 0.011627906976744186,
+    "haluc": 0.313953488372093,
+    "recusa_correta": 0.25,
+    "trunc": 0.0
+  },
+  "f3b-anchor25-ep3": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7703488372093024,
+    "recusa_indevida": 0.023255813953488372,
+    "haluc": 0.26744186046511625,
+    "recusa_correta": 0.4563953488372093,
+    "trunc": 0.0,
+    "probe_general": 3.49,
+    "probe_behavioral": 3.6,
+    "probe_pt": 4.592307692307692
+  },
+  "f3b-anchor25-ep4": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7616279069767442,
+    "recusa_indevida": 0.03197674418604651,
+    "haluc": 0.2180232558139535,
+    "recusa_correta": 0.5174418604651163,
+    "trunc": 0.0,
+    "probe_general": 3.65,
+    "probe_behavioral": 3.4,
+    "probe_pt": 4.553846153846154
+  },
   "f3b-lr5e5-ep1": {
     "n_ranking": 344,
     "n_distrator": 344,

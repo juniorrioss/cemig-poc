@@ -246,13 +246,59 @@ def render_data2x() -> None:
     _render_variant(OUT / "data2x")
 
 
+# ---------------------------------------------------------------------------
+# combo: recusa35 + anchor25 (os 2 eixos dominantes do sweep)
+# ---------------------------------------------------------------------------
+def build_combo() -> None:
+    """train do recusa35 + pares gerais até âncora (closed+geral) = 25%."""
+    out_dir = OUT / "combo"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    base_dir = OUT / "recusa35"
+    f3_train = read_jsonl(base_dir / "train.jsonl")
+    f3_val = read_jsonl(base_dir / "val.jsonl")
+    general = read_jsonl(HERE / "data" / "general" / "general_pairs.jsonl")
+
+    n_closed = sum(1 for r in f3_train if r["case"] == "closed")
+    n0 = len(f3_train)
+    need = int((ANCHOR_FRAC_TARGET * n0 - n_closed) / (1 - ANCHOR_FRAC_TARGET))
+    rng = random.Random(f"{SEED}:combo")
+    rng.shuffle(general)
+    assert len(general) >= need + 20, f"faltam pares gerais: {need}+20 > {len(general)}"
+    g_train = general[:need]
+    g_val = general[need:need + 20]
+
+    def as_row(g: dict) -> dict:
+        return {"messages": [{"role": "user", "content": g["prompt"]},
+                             {"role": "assistant", "content": g["answer"]}],
+                "qa_id": g["id"], "case": "general", "k": 0, "nr": 0}
+
+    train = f3_train + [as_row(g) for g in g_train]
+    val = f3_val + [as_row(g) for g in g_val]
+    rng.shuffle(train)
+    write_jsonl(out_dir / "train.jsonl", train)
+    write_jsonl(out_dir / "val.jsonl", val)
+    stats = {
+        "variant": "combo (recusa35 + anchor25)",
+        "n_train": len(train), "n_val": len(val),
+        "n_general_train": len(g_train), "n_closed": n_closed,
+        "anchor_frac": round((n_closed + len(g_train)) / len(train), 4),
+        "absent_frac": round(sum(1 for r in train if r["case"] == "absent")
+                             / max(1, sum(1 for r in train if r["case"] != "general")), 4),
+        "seed": SEED,
+    }
+    (out_dir / "stats.json").write_text(json.dumps(stats, indent=2))
+    print(json.dumps(stats, indent=2))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--variant", required=True,
-                    choices=["recusa35", "anchor25", "data2x", "data2x-render"])
+                    choices=["recusa35", "anchor25", "data2x", "data2x-render",
+                             "combo"])
     args = ap.parse_args()
     {"recusa35": build_recusa35, "anchor25": build_anchor25,
-     "data2x": build_data2x, "data2x-render": render_data2x}[args.variant]()
+     "data2x": build_data2x, "data2x-render": render_data2x,
+     "combo": build_combo}[args.variant]()
 
 
 if __name__ == "__main__":
