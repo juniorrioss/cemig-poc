@@ -1,0 +1,37 @@
+[score] tag=f3b-combo-ep1 cell=ranking n=344
+[ok] scored_f3b-combo-ep1_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-combo-ep1 cell=distrator n=344
+[ok] scored_f3b-combo-ep1_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-combo-ep2 cell=ranking n=344
+[ok] scored_f3b-combo-ep2_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-combo-ep2 cell=distrator n=344
+[ok] scored_f3b-combo-ep2_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-combo-ep3 cell=ranking n=344
+[ok] scored_f3b-combo-ep3_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-combo-ep3 cell=distrator n=344
+[ok] scored_f3b-combo-ep3_distrator.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-combo-ep4 cell=ranking n=344
+[ok] scored_f3b-combo-ep4_ranking.jsonl: 344 pontuados, 0 erros
+[score] tag=f3b-combo-ep4 cell=distrator n=344
+[ok] scored_f3b-combo-ep4_distrator.jsonl: 344 pontuados, 0 erros
+  ... 25/130
+  ... 50/130
+  ... 75/130
+  ... 100/130
+  ... 125/130
+f3b-combo-ep2 general: qualidade 3.64, pt 4.71 (n=100)
+f3b-combo-ep2 behavioral: qualidade 3.27, pt 4.57 (n=30)
+  ... 25/130
+  ... 50/130
+  ... 75/130
+  ... 100/130
+  ... 125/130
+f3b-combo-ep3 general: qualidade 3.47, pt 4.60 (n=100)
+f3b-combo-ep3 behavioral: qualidade 3.30, pt 4.47 (n=30)
+  ... 25/130
+  ... 50/130
+  ... 75/130
+  ... 100/130
+  ... 125/130
+f3b-combo-ep4 general: qualidade 3.52, pt 4.60 (n=100)
+f3b-combo-ep4 behavioral: qualidade 3.43, pt 4.43 (n=30)

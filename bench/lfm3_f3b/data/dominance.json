@@ -124,6 +124,51 @@
     "probe_behavioral": 3.4,
     "probe_pt": 4.553846153846154
   },
+  "f3b-combo-ep1": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.6976744186046512,
+    "recusa_indevida": 0.18313953488372092,
+    "haluc": 0.09883720930232558,
+    "recusa_correta": 0.8081395348837209,
+    "trunc": 0.0
+  },
+  "f3b-combo-ep2": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7325581395348837,
+    "recusa_indevida": 0.06395348837209303,
+    "haluc": 0.18313953488372092,
+    "recusa_correta": 0.686046511627907,
+    "trunc": 0.0,
+    "probe_general": 3.64,
+    "probe_behavioral": 3.2666666666666666,
+    "probe_pt": 4.676923076923077
+  },
+  "f3b-combo-ep3": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7383720930232558,
+    "recusa_indevida": 0.04941860465116279,
+    "haluc": 0.17151162790697674,
+    "recusa_correta": 0.6424418604651163,
+    "trunc": 0.0,
+    "probe_general": 3.47,
+    "probe_behavioral": 3.3,
+    "probe_pt": 4.569230769230769
+  },
+  "f3b-combo-ep4": {
+    "n_ranking": 344,
+    "n_distrator": 344,
+    "ranking_aprov": 0.7063953488372093,
+    "recusa_indevida": 0.05813953488372093,
+    "haluc": 0.16279069767441862,
+    "recusa_correta": 0.7063953488372093,
+    "trunc": 0.0,
+    "probe_general": 3.52,
+    "probe_behavioral": 3.433333333333333,
+    "probe_pt": 4.561538461538461
+  },
   "f3b-data2x-ep1": {
     "n_ranking": 328,
     "n_distrator": 344,

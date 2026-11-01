@@ -1,0 +1,12 @@
+{
+  "variant": "combo3 (data2x + recusa35 + anchor25)",
+  "n_train": 14132,
+  "n_val": 246,
+  "converted_gold_to_absent": 1631,
+  "skipped": 9,
+  "n_general_train": 2977,
+  "n_closed": 556,
+  "anchor_frac": 0.25,
+  "absent_frac": 0.3501,
+  "seed": 20260213
+}
