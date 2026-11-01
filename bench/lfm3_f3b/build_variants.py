@@ -290,15 +290,136 @@ def build_combo() -> None:
     print(json.dumps(stats, indent=2))
 
 
+# ---------------------------------------------------------------------------
+# combo3: data2x + recusa35 + anchor25 (as 3 dominâncias ortogonais)
+# ---------------------------------------------------------------------------
+def build_combo3() -> None:
+    """Converte gold->absent (35%) sobre o ASSIGN do data2x (distratores
+    duros, mesma lógica do recusa35), re-renderiza e soma pares gerais até
+    âncora 25%."""
+    out_dir = OUT / "combo3"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    src_dir = OUT / "data2x"
+    assignments = read_jsonl(src_dir / "assignments.jsonl")
+    # topk ampliado: F3 + f3b
+    topk = {}
+    for p in sorted((HERE / "data" / "retrieval").glob("topk_*.jsonl")):
+        for r in read_jsonl(p):
+            topk.setdefault(r["qa_id"], r)
+    for p in sorted(F3_RETR.glob("topk_*.jsonl")):
+        for r in read_jsonl(p):
+            topk.setdefault(r["qa_id"], r)
+    rng = random.Random(f"{SEED}:combo3")
+
+    sys.path.insert(0, str(F3 / "synth"))
+    from common_synth import norm_tokens  # noqa: PLC0415
+    units: dict[str, dict] = {}
+    for base in ((F3 / "data" / "synth"), (HERE / "data" / "synth"),
+                 (REPO / "bench" / "lfm3_f2" / "data" / "synth")):
+        for p in sorted(base.glob("units_nr*.jsonl")):
+            for u in read_jsonl(p):
+                units.setdefault(u["unit_id"], u)
+
+    bd = load_f3_build_dataset()
+    chunks = bd.load_chunk_texts()
+    by_doc: dict[str, list[int]] = collections.defaultdict(list)
+    for cid, c in chunks.items():
+        by_doc[c["doc"].lower()].append(cid)
+
+    n_total = len(assignments)
+    n_absent_now = sum(1 for a in assignments if a["case"] == "absent")
+    n_convert = int(n_total * ABSENT_FRAC_TARGET) - n_absent_now
+    gold_rows = [a for a in assignments if a["case"] == "gold"]
+    rng.shuffle(gold_rows)
+    new_by_id, converted, skipped = {}, 0, 0
+    for a in gold_rows:
+        if converted >= n_convert:
+            break
+        tk = topk.get(a["qa_id"])
+        if not tk:
+            skipped += 1
+            continue
+        same_docs = {f"nr-{a['nr']:02d}", f"nr-{a['nr']}"}
+        dis = [p for p in tk["topk"] if p["label"] == "distractor"]
+        hard = [p for p in dis if p["doc"].lower() in same_docs]
+        soft = [p for p in dis if p not in hard]
+        u = units.get(a["unit_id"])
+        ft = set(norm_tokens(u["fato"])) if u else set()
+        want_hard = max(1, a["k"] // 2)
+        if len(hard) < want_hard and ft:
+            used = {p["id"] for p in tk["topk"]}
+            cand = [cid for d in same_docs for cid in by_doc.get(d, [])
+                    if cid not in used]
+            rng.shuffle(cand)
+            for cid in cand:
+                if len(hard) >= want_hard:
+                    break
+                ct = set(norm_tokens(chunks[cid]["text"]))
+                if len(ft & ct) / len(ft) < 0.30:
+                    hard.append({"id": cid, "doc": chunks[cid]["doc"],
+                                 "label": "distractor",
+                                 "source": "index_hard_neg"})
+        pool = (hard + soft)[: a["k"]]
+        rng.shuffle(pool)
+        if not pool:
+            skipped += 1
+            continue
+        new_by_id[a["qa_id"]] = {
+            **a, "case": "absent", "k": len(pool), "gold_position": None,
+            "context_ids": [p["id"] for p in pool],
+            "anchor_passage": None, "labels": [p["label"] for p in pool],
+            "origin_absent": "gold_removed_hard",
+        }
+        converted += 1
+    out_rows = [new_by_id.get(a["qa_id"], a) if a["case"] == "gold" else a
+                for a in assignments]
+    write_jsonl(out_dir / "assignments.jsonl", out_rows)
+    shutil.copy(src_dir / "targets.jsonl", out_dir / "targets.jsonl")
+    _render_variant(out_dir)
+
+    # + âncora 25% com pares gerais
+    f3_train = read_jsonl(out_dir / "train.jsonl")
+    f3_val = read_jsonl(out_dir / "val.jsonl")
+    general = read_jsonl(HERE / "data" / "general" / "general_pairs.jsonl")
+    n_closed = sum(1 for r in f3_train if r["case"] == "closed")
+    need = int((ANCHOR_FRAC_TARGET * len(f3_train) - n_closed)
+               / (1 - ANCHOR_FRAC_TARGET))
+    rng.shuffle(general)
+    assert len(general) >= need + 20, f"faltam pares gerais: {need}+20 > {len(general)}"
+
+    def as_row(g: dict) -> dict:
+        return {"messages": [{"role": "user", "content": g["prompt"]},
+                             {"role": "assistant", "content": g["answer"]}],
+                "qa_id": g["id"], "case": "general", "k": 0, "nr": 0}
+
+    train = f3_train + [as_row(g) for g in general[:need]]
+    val = f3_val + [as_row(g) for g in general[need:need + 20]]
+    rng.shuffle(train)
+    write_jsonl(out_dir / "train.jsonl", train)
+    write_jsonl(out_dir / "val.jsonl", val)
+    stats = {
+        "variant": "combo3 (data2x + recusa35 + anchor25)",
+        "n_train": len(train), "n_val": len(val),
+        "converted_gold_to_absent": converted, "skipped": skipped,
+        "n_general_train": need, "n_closed": n_closed,
+        "anchor_frac": round((n_closed + need) / len(train), 4),
+        "absent_frac": round(sum(1 for r in train if r["case"] == "absent")
+                             / max(1, sum(1 for r in train if r["case"] != "general")), 4),
+        "seed": SEED,
+    }
+    (out_dir / "stats.json").write_text(json.dumps(stats, indent=2))
+    print(json.dumps(stats, indent=2))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--variant", required=True,
                     choices=["recusa35", "anchor25", "data2x", "data2x-render",
-                             "combo"])
+                             "combo", "combo3"])
     args = ap.parse_args()
     {"recusa35": build_recusa35, "anchor25": build_anchor25,
      "data2x": build_data2x, "data2x-render": render_data2x,
-     "combo": build_combo}[args.variant]()
+     "combo": build_combo, "combo3": build_combo3}[args.variant]()
 
 
 if __name__ == "__main__":
