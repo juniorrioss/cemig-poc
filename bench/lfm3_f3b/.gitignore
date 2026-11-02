@@ -1,0 +1,9 @@
+# grandes/reproduzíveis: render (build_variants) e gerações brutas (Spark/H100)
+data/train/*/train.jsonl
+data/train/*/val.jsonl
+data/gen/
+data/general/*.ckpt.json
+data/train/*/targets.ckpt.json
+data/synth/*.ckpt.json
+data/*.log
+data/train/*/targets.log

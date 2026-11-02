@@ -1,0 +1,4 @@
+[score] tag=f3b-data2x-ep4 cell=oraculo n=1536
+[ok] scored_f3b-data2x-ep4_oraculo.jsonl: 1536 pontuados, 0 erros
+[score] tag=f3b-data2x-ep4 cell=closed_book n=1536
+[ok] scored_f3b-data2x-ep4_closed_book.jsonl: 1536 pontuados, 0 erros
