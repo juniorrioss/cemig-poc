@@ -1,0 +1,9 @@
+{
+  "base": "LiquidAI/LFM3-1.7B",
+  "adapter": "/tmp/f4_base/checkpoint-1396",
+  "out": "/tmp/f4_base/lfm3-1.7b-data2x-ep4-merged",
+  "shard_md5": {
+    "model.safetensors": "2b2aa2fa147efabdcf17ca1f96142483"
+  },
+  "aggregate_md5": "ae5f304d91bb47402d9125d96e766a15"
+}
