@@ -1,0 +1,6 @@
+[ckpt] retomando com 344
+[score] tag=f3b-data2x-ep4 cell=ranking n=1536
+[ok] scored_f3b-data2x-ep4_ranking.jsonl: 1536 pontuados, 0 erros
+[ckpt] retomando com 344
+[score] tag=f3b-data2x-ep4 cell=distrator n=1536
+[ok] scored_f3b-data2x-ep4_distrator.jsonl: 1536 pontuados, 0 erros
