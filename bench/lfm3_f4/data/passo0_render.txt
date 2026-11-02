@@ -1,0 +1,241 @@
+=== conversa 1 tool (baked) ===
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+Qual a distância para 13,8 kV?<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+Qual a distância para 13,8 kV?
+</parameter>
+<parameter=nr>
+NR-10
+</parameter>
+</function>
+</tool_call><|im_end|>
+<|im_start|>tool
+<tool_response>
+[1] (nr-10 - Anexo II - Zona de risco):
+Tabela de raios de zona de risco...
+</tool_response><|im_end|>
+<|im_start|>assistant
+<think></think>Conforme a NR-10, Anexo II, o raio é 0,70 m.<|im_end|>
+
+
+=== conversa multihop (baked) ===
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+A CIPA de uma obra com 120 trabalhadores precisa de quantos membros e qual o treinamento deles?<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+quantos membros CIPA 120 trabalhadores
+</parameter>
+<parameter=nr>
+NR-5
+</parameter>
+</function>
+</tool_call><|im_end|>
+<|im_start|>tool
+<tool_response>
+[1] (nr-05 - 5.6):
+dimensionamento...
+</tool_response><|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+treinamento CIPA carga horária conteúdo
+</parameter>
+<parameter=nr>
+NR-5
+</parameter>
+</function>
+</tool_call><|im_end|>
+<|im_start|>tool
+<tool_response>
+[1] (nr-05 - 5.7):
+treinamento...
+</tool_response><|im_end|>
+<|im_start|>assistant
+<think></think>Conforme a NR-5, itens 5.6 e 5.7, ...<|im_end|>
+
+
+=== exemplos round-trip (com tools=) ===
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+Qual a distância mínima para rede de 13,8 kV energizada?<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+Qual a distância mínima para rede de 13,8 kV energizada?
+</parameter>
+<parameter=nr>
+NR-10
+</parameter>
+</function>
+</tool_call><|im_end|>
+
+
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+o poste tá meio bambo, posso subir assim mesmo?<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+o poste tá meio bambo, posso subir assim mesmo?
+</parameter>
+<parameter=nr>
+null
+</parameter>
+</function>
+</tool_call><|im_end|>
+
+
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+EPI pra trabalho em altura acima de 2 m — o que diz a norma?<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+EPI pra trabalho em altura acima de 2 m — o que diz a norma?
+</parameter>
+<parameter=nr>
+NR-35
+</parameter>
+</function>
+</tool_call><|im_end|>
+
+
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+preciso d'água no canteiro: quantos bebedouros por trabalhador?<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+preciso d'água no canteiro: quantos bebedouros por trabalhador?
+</parameter>
+<parameter=nr>
+null
+</parameter>
+</function>
+</tool_call><|im_end|>
+
+
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+sinalização de "perigo" em área classificada<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+sinalização de "perigo" em área classificada
+</parameter>
+<parameter=nr>
+NR-26
+</parameter>
+</function>
+</tool_call><|im_end|>
+
+
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+linha1
+linha2 com quebra<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+linha1
+linha2 com quebra
+</parameter>
+<parameter=nr>
+null
+</parameter>
+</function>
+</tool_call><|im_end|>
