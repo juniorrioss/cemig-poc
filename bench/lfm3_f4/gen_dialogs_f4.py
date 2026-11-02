@@ -85,14 +85,18 @@ O QUE A 1ª BUSCA RETORNOU (cobre só em parte / não cobre):
 {partial_src}: {partial_text}
 
 O QUE AINDA FALTA ENCONTRAR (referência da norma que responde): {ref}
+TEMA do trecho que falta: {fato_hint}
 
-Escreva os TERMOS DE BUSCA de uma SEGUNDA consulta ao índice de normas,
-focados no que FALTOU. Regras:
-- 3 a 8 palavras, termos técnicos da norma (não repita a pergunta inteira).
-- NÃO inclua o valor/resposta em si; apenas termos para ENCONTRAR o trecho.
-- Inclua o número do item/anexo da referência se ajudar (ex.: "anexo II").
+Escreva TRÊS variantes de TERMOS DE BUSCA para uma SEGUNDA consulta ao
+índice de normas, focadas no que FALTOU. Regras:
+- cada variante com 3 a 9 palavras, termos técnicos da norma (não repita a
+  pergunta inteira); varie o vocabulário entre as variantes.
+- NÃO inclua o valor numérico/resposta em si; apenas termos para ENCONTRAR o trecho.
+- Inclua o número da norma e do item/anexo da referência quando ajudar
+  (ex.: "NR-18 18.10 anexo II").
 
-Pense primeiro e emita APENAS o JSON final: {{"consulta2": "<termos>"}}"""
+Pense primeiro e emita APENAS o JSON final:
+{{"consultas": ["<variante 1>", "<variante 2>", "<variante 3>"]}}"""
 
 PROMPT_SYNTH2 = """TRECHO A ({src_a}) — encontrado na 1ª busca, cobre só em parte:
 {text_a}
@@ -217,7 +221,9 @@ def stage_assemble() -> None:
     plan["troca_b"] = small_k[QUOTA["troca"]:2 * QUOTA["troca"]]
     plan["reuso"] = small_k[2 * QUOTA["troca"]:2 * QUOTA["troca"] + QUOTA["reuso"]]
     plan["recusa"] = tr["absent"][:QUOTA["recusa"]]
-    plan["multihop"] = [a for a in tr["partial"] if a["k"] <= 5][:QUOTA["multihop"] + 250]  # folga p/ descartes
+    # multihop: POOL COMPLETO dos partial de treino (o gate do retriever real
+    # descarta muito; a quota é aplicada no build)
+    plan["multihop"] = [a for a in tr["partial"] if a["k"] <= 5]
     # pares de troca com NRs diferentes
     pairs = []
     for a, b in zip(plan["troca_a"], plan["troca_b"]):
@@ -254,23 +260,54 @@ def stage_gen27b(workers: int) -> None:
     rtv = LazyRetrieverV4()
 
     # ---- multihop: refine (27B) -> retrieval real -> gold? -> synth2 (27B)
+    # pré-filtro multihop: só vale tentar quando o chunk-ouro EXISTE no corpus
+    # (containment>=0.70 em algum chunk da mesma NR) — ~24% dos partial não têm.
+    from collections import defaultdict
+    _by_doc: Dict[str, list] = defaultdict(list)
+    for c in chunks_db.values():
+        _by_doc[str(c["doc"]).lower()].append((set(C.norm_tokens(c["text"])), c["id"]))
+
+    def gold_exists(nr: int, fato_tokens: set) -> bool:
+        if not fato_tokens:
+            return False
+        for ct, _cid in _by_doc.get(f"nr-{nr:02d}", []) + _by_doc.get(f"nr-{nr}", []):
+            if len(fato_tokens & ct) / len(fato_tokens) >= 0.70:
+                return True
+        return False
+
     def mh_worker(qa_id: str) -> Dict[str, Any]:
         a = assigns[qa_id]
         u = units[a["unit_id"]]
         fato_tokens = set(C.norm_tokens(u["fato"]))
+        if not gold_exists(a["nr"], fato_tokens):
+            return {"__discard__": True, "why": "no_gold_in_corpus"}
         anchor = a["anchor_passage"]
         src_a = f"{anchor['doc'].upper()} {anchor['section']} — {anchor['title']}"
         q1norm = " ".join(C.norm_tokens(a["question"]))
-        for attempt in range(3):
+        # dica temática do que falta (primeiros termos do fato, sem o valor):
+        fato_hint = " ".join(C.norm_tokens(u["fato"])[:10])
+        det_query = f"{a['ref']} {fato_hint}"
+        for attempt in range(2):
             v = C.gen_json(PROMPT_REFINE.format(
                 question=a["question"], partial_src=src_a,
-                partial_text=anchor["text"][:1200], ref=a["ref"]),
-                system=SYS27, temperature=0.5 + 0.2 * attempt, max_tokens=1500)
-            q2 = str(v.get("consulta2", "")).strip() if isinstance(v, dict) else ""
-            if not q2 or " ".join(C.norm_tokens(q2)) == q1norm:
-                continue
-            hits = rtv.search_text(q2, top_k=3)
-            gold_hit = next((h for h in hits if is_gold(h, a["nr"], fato_tokens)), None)
+                partial_text=anchor["text"][:1200], ref=a["ref"],
+                fato_hint=fato_hint),
+                system=SYS27, temperature=0.5 + 0.2 * attempt, max_tokens=1800)
+            cands = (v.get("consultas") if isinstance(v, dict) else
+                     v if isinstance(v, list) else None) or []
+            # candidata determinística por último (grátis; preferimos a do 27B
+            # que é mais natural como argumento de modelo)
+            cands = list(cands[:3]) + [det_query]
+            q2 = gold_hit = hits = None
+            for cand in cands:
+                cq = str(cand).strip()
+                if not cq or " ".join(C.norm_tokens(cq)) == q1norm:
+                    continue
+                chits = rtv.search_text(cq, top_k=5)
+                gh = next((h for h in chits if is_gold(h, a["nr"], fato_tokens)), None)
+                if gh:
+                    q2, gold_hit, hits = cq, gh, chits
+                    break
             if not gold_hit:
                 continue
             # síntese das duas evidências
