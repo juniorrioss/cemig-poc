@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatório vivo — Exploração LFM3-1.7B (F0 → F4)</title>
+<style>
+:root { --fg:#1a202c; --muted:#5a6572; --accent:#0b5d4f; --border:#d8dee5;
+        --bg:#ffffff; --code:#f2f4f7; --th:#eef2f1; }
+* { box-sizing: border-box; }
+body { margin:0; background:#f6f7f9; color:var(--fg);
+       font:16px/1.65 Georgia, 'Times New Roman', serif; }
+main { max-width: 980px; margin: 2rem auto; background:var(--bg);
+       padding: 3rem 3.5rem; border:1px solid var(--border); border-radius:8px; }
+h1 { font-size:1.9rem; line-height:1.25; border-bottom:3px solid var(--accent);
+     padding-bottom:.5rem; }
+h2 { font-size:1.45rem; margin-top:2.4rem; color:var(--accent);
+     border-bottom:1px solid var(--border); padding-bottom:.3rem; }
+h3 { font-size:1.15rem; margin-top:1.8rem; }
+code { font:.85em/1.4 ui-monospace, 'Cascadia Code', Consolas, monospace;
+       background:var(--code); padding:.1em .35em; border-radius:4px; }
+blockquote { margin:1.2rem 0; padding:.7rem 1.2rem; border-left:4px solid var(--accent);
+             background:#f4f8f7; color:var(--muted); font-size:.95em; }
+table { border-collapse:collapse; width:100%; margin:1.1rem 0; font-size:.86em;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+th, td { border:1px solid var(--border); padding:.42em .6em; text-align:left;
+         vertical-align:top; }
+th { background:var(--th); font-weight:600; }
+tr:nth-child(even) td { background:#fafbfc; }
+hr { border:none; border-top:1px solid var(--border); margin:2.2rem 0; }
+ul, ol { padding-left:1.6rem; }
+li { margin:.3rem 0; }
+strong { color:#083f36; }
+@media (max-width: 720px) { main { padding:1.2rem; } table { font-size:.75em; } }
+</style>
+</head>
+<body>
+<main>
+<h1>Relatório vivo — Exploração LFM3-1.7B (F0 → F4)</h1>
+<blockquote>
+<p><strong>Documento INCREMENTAL.</strong> Fonte canônica: este <code>bench/REPORT.md</code>; o</p>
+<p><code>bench/REPORT.html</code> é gerado dele (<code>python3 bench/report_html.py</code>). A cada</p>
+<p>fase nova: (1) reescrever o Resumo executivo, (2) atualizar a Tabela-mestra,</p>
+<p>(3) acrescentar a seção da fase com data, (4) estender o Apêndice de</p>
+<p>artefatos. Números SEMPRE copiados dos <code>RESULTS.md</code>/parquets reais de cada</p>
+<p>fase — nunca de memória.</p>
+<p><strong>Última atualização</strong>: 2026-11-04 (consolidação F0–F4).</p>
+<p>Branches-fonte (exploração, NÃO mesclados no main por decisão do capitão):</p>
+<p><code>main</code> (F0, F2) · <code>fm/lfm3-f3-robustez</code> (F3) · <code>fm/lfm3-f3b-sweep</code> (F3b) ·</p>
+<p><code>fm/lfm3-f4-tools</code> (F4).</p>
+</blockquote>
+<hr>
+<h2>1. Resumo executivo</h2>
+<p><strong>O que foi explorado.</strong> Uma linha completa de adaptação do <code>LiquidAI/LFM3-1.7B</code> para o assistente de NRs da POC, medida sempre pela mesma régua honesta (benchmark <code>UFGCEMIGONA/benchmark_mobile</code>, 1536 queries = 384 perguntas × 4 vocabulários, 4 células closed-book/oráculo/ranking/ distrator, juiz 27B, cobertura de fatos com citação fora do gate):</p>
+<ul>
+<li><strong>F0</strong> — baseline as-is do modelo (a régua do "antes").</li>
+<li><strong>F2</strong> — injeção de conhecimento nos pesos (LoRA no instruct, task vector via base, K2V/GRPO).</li>
+<li><strong>F3</strong> — robustez de uso de contexto com distratores do retriever REAL.</li>
+<li><strong>F3b</strong> — sweep one-factor-at-a-time sobre a receita F3 (o que domina?).</li>
+<li><strong>F4</strong> — tool-calling multiturno (o modelo decide buscar) sobre o campeão F3b.</li>
+</ul>
+<p><strong>Candidato final: <code>f4-r32-ep2</code></strong> (LoRA r32 MLP sobre o merged <code>data2x-ep4</code>). Números-chave na bateria completa 1536 vs F0 baseline:</p>
+<table><thead><tr><th>métrica</th><th>F0</th><th>f4-r32-ep2</th><th>Δ</th></tr></thead><tbody><tr><td>ranking-1-de-5 (aprovação)</td><td style="text-align:right">65,8%</td><td style="text-align:right"><strong>79,6%</strong></td><td style="text-align:right">+13,8 p.p.</td></tr><tr><td>oráculo (aprovação)</td><td style="text-align:right">83,7%</td><td style="text-align:right"><strong>87,8%</strong></td><td style="text-align:right">+4,1 p.p.</td></tr><tr><td>distrator: recusa correta</td><td style="text-align:right">30,5%</td><td style="text-align:right"><strong>66,6%</strong></td><td style="text-align:right">+36,1 p.p. (2,2×)</td></tr><tr><td>distrator: alucinação</td><td style="text-align:right">28,3%</td><td style="text-align:right">24,2%</td><td style="text-align:right">−4,1 p.p.</td></tr><tr><td>recusa indevida (ranking)</td><td style="text-align:right">6,2%</td><td style="text-align:right">6,6%</td><td style="text-align:right">≈ estável</td></tr><tr><td>truncamento (distrator)</td><td style="text-align:right">35,4%</td><td style="text-align:right">0% (desde F3)</td><td style="text-align:right">ruminação eliminada</td></tr><tr><td>probe de capacidade geral (1–5)</td><td style="text-align:right">3,92</td><td style="text-align:right">3,38</td><td style="text-align:right">−0,54 (custo real)</td></tr><tr><td>decisão de tool (F1)</td><td style="text-align:right">0 (nunca chama)</td><td style="text-align:right"><strong>97,2</strong></td><td style="text-align:right">habilitada</td></tr><tr><td>sintaxe XML de tool</td><td style="text-align:right">—</td><td style="text-align:right"><strong>100%</strong> (0 falhas/285 chamadas)</td><td style="text-align:right">perfeita</td></tr></tbody></table>
+<p><strong>As lições centrais da exploração:</strong></p>
+<ol>
+<li><strong>Dado &gt; hiperparâmetro.</strong> No sweep F3b, os três eixos que dominam são todos de DADO (tamanho 2× → ranking; dose de recusa → alucinação; âncora geral → probe) e são ortogonais; rank, alvos LoRA e LR são neutros.</li>
+<li><strong>Conhecimento nos pesos tem teto baixo.</strong> A injeção da F2 funciona mas é modesta (closed-book tratadas 8,3→17,2% no melhor caso) e época extra vira alucinação, não conhecimento; task vector restaura comportamento mas não preserva o injetado; RLVR (K2V/GRPO) não move a agulha neste tamanho.</li>
+<li><strong>Robustez + tools pagam.</strong> F3/F3b compram +11 p.p. de ranking e 2× de recusa correta; o treino de tool da F4 CRUZA todas as metas de comportamento (decisão/sintaxe/reuso/troca ≥90%) <strong>com regressão estática ZERO</strong> — na verdade melhora o modo sem ferramenta (+2,6 p.p. ranking, +2,5 p.p. oráculo, probe +0,2). O ponto fraco que resta é o multihop (7,1% fim-a-fim, teto de argumento do modelo pequeno).</li>
+<li><strong>Dominâncias não somam.</strong> Combinar eixos vencedores sem dado novo tem interação NEGATIVA: <code>combo</code> derruba ranking; <code>combo3</code> recupera ranking e alucinação mas colapsa a probe (2,88) — empilhar exige escalar a âncora em valor absoluto, não em fração.</li>
+</ol>
+<hr>
+<h2>2. Tabela-mestra de evolução (bateria completa 1536, juiz 27B)</h2>
+<p>Todas as colunas na bateria oficial de 1536 queries; a F2 foi avaliada apenas no <strong>recorte 344</strong> (6 normas) e por isso entra como nota, não como coluna.</p>
+<table><thead><tr><th>métrica</th><th>F0 baseline</th><th>f3-r32-ep4 (F3)</th><th>f3b-data2x-ep4 (campeão F3b)</th><th><strong>f4-r32-ep2 (candidato)</strong></th></tr></thead><tbody><tr><td>ranking aprovação</td><td style="text-align:right">65,8%</td><td style="text-align:right">75,2%</td><td style="text-align:right">77,0%</td><td style="text-align:right"><strong>79,6%</strong></td></tr><tr><td>oráculo aprovação</td><td style="text-align:right">83,7%</td><td style="text-align:right">83,5%</td><td style="text-align:right">85,4%</td><td style="text-align:right"><strong>87,8%</strong></td></tr><tr><td>closed-book aprovação</td><td style="text-align:right">5,9%</td><td style="text-align:right">6,2%</td><td style="text-align:right">7,4%</td><td style="text-align:right">6,7%</td></tr><tr><td>distrator: alucinação</td><td style="text-align:right">28,3%</td><td style="text-align:right">22,4%</td><td style="text-align:right">24,9%</td><td style="text-align:right">24,2%</td></tr><tr><td>distrator: recusa correta</td><td style="text-align:right">30,5%</td><td style="text-align:right">59,1%</td><td style="text-align:right">55,6%</td><td style="text-align:right"><strong>66,6%</strong></td></tr><tr><td>recusa indevida (ranking)</td><td style="text-align:right">6,2%</td><td style="text-align:right">5,9%</td><td style="text-align:right">8,3%</td><td style="text-align:right">6,6%</td></tr><tr><td>recusa indevida (oráculo)</td><td style="text-align:right">5,9%</td><td style="text-align:right">3,1%</td><td style="text-align:right">— (não reportada)</td><td style="text-align:right">— (não reportada)</td></tr><tr><td>truncamento (distrator)</td><td style="text-align:right">35,4%</td><td style="text-align:right">0,0%</td><td style="text-align:right">0,0%</td><td style="text-align:right">— (não reportado; 0% desde F3)</td></tr><tr><td>probe geral (1–5)</td><td style="text-align:right">3,92</td><td style="text-align:right">3,18</td><td style="text-align:right">3,17</td><td style="text-align:right">3,38</td></tr><tr><td>tokens médios/resposta</td><td style="text-align:right">~700–1500 (thinking)</td><td style="text-align:right">~110</td><td style="text-align:right">—</td><td style="text-align:right">—</td></tr></tbody></table>
+<p><strong>Nota F2 (recorte 344, closed-book)</strong>: F0 tratadas 8,3% / controle 5,5% → melhor braço A-r32-ep2 <strong>17,2% tratadas</strong> (+8,9 p.p., 2,1×) com controle estável 7,9%. Linha abandonada (teto baixo; ver §3.2).</p>
+<p><strong>Divergência registrada (recorte vs 1536)</strong>: no F3b, o ganho do <code>data2x</code> medido no recorte 344 (+2,6 p.p. de ranking) <strong>encolhe para +1,8 p.p. na bateria 1536</strong> — o recorte, por conter só as 6 NRs do F2, favorece o funil novo. Pelo mesmo motivo, as referências F0 diferem entre fontes (ranking 65,8% na 1536 vs 67,7% no recorte; distrator recusa-correta 30,5% vs 22,4%). Sempre comparar números do MESMO recorte.</p>
+<hr>
+<h2>3. Seções por fase</h2>
+<h3>3.1 F0 — Baseline as-is (2026-10-28) · <code>main:bench/lfm3_f0</code></h3>
+<ul>
+<li><strong>Objetivo</strong>: régua do "antes": o LFM3-1.7B bf16 sem qualquer adaptação, nas 4 células × 1536, thinking-ON (default do template), max_new 3072.</li>
+<li><strong>Desenho</strong>: régua honesta portada de <code>bench/regua</code> (gabarito de fatos por <code>base_qa_id</code> extraído de answer+evidence pelo juiz 27B; aprovado = cobertura ≥0,5 ∧ ¬tautologia ∧ ¬alucinação ∧ ¬recusa ∧ ¬truncada; truncamento NUNCA conta como recusa). Embaralhamento determinístico por id.</li>
+<li><strong>Resultado (all, 1536)</strong>: closed-book <strong>5,9%</strong>, oráculo <strong>83,7%</strong>, ranking <strong>65,8%</strong>, distrator recusa-correta <strong>30,5%</strong> (alucinação 28,3%, truncou ruminando 35,4%). Gradiente de vocabulário consistente: clean/technical &gt; operational/lay em todas as células (lay: closed-book 3,6%, ranking 57,6%, alucinação distrator 42,2%).</li>
+<li><strong>Veredito honesto</strong>: o modelo quase não carrega as NRs no peso (closed-book ≈ piso), sintetiza bem com a passagem certa (oráculo alto), perde 18 p.p. com 4 distratores na janela e tem o distrator-puro como calcanhar (prefere responder a recusar). O abismo lexical da POC reaparece na síntese.</li>
+<li><strong>Custo</strong>: geração ~14 h na GB10 (6144 gerações, bf16, batch 24); julgamento local ~40 min (16 workers).</li>
+</ul>
+<h3>3.2 F2 — Injeção de conhecimento (2026-10-30) · <code>main:bench/lfm3_f2</code></h3>
+<ul>
+<li><strong>Objetivo</strong>: "simular pré-treino" em 3 normas (tratadas NR-10/18/34; controle NR-13/31/33 nunca vistas) e subir o closed-book sem quebrar o resto. Avaliação no recorte 344 (6 normas × 4 vocab).</li>
+<li><strong>Desenho — 3 braços</strong> sobre o mesmo dataset sintético (funil front-loaded no 27B: 842 unidades → 6.536 QAs → crítico 27B → 5.526 aprovados; entropia 11,0 bits, 0 contaminação):</li>
+<li><strong>A</strong> — LoRA no INSTRUCT (w1/w2/w3, 72 módulos MLP), r8 × r32, 12 épocas, LR 5e-5;</li>
+<li><strong>B</strong> — task vector (hipótese do capitão): LoRA no BASE, merge, re-aplica delta instruct−base (variantes <code>sum</code>/<code>prop</code>);</li>
+<li><strong>C</strong> — K2V via TRL-GRPO (1.222 QAs fill-blank verificáveis + checklist 27B; vllm/sglang não suportam LFM3 — rollout só via transformers).</li>
+<li><strong>Resultado (closed-book, recorte; F0 = trat 8,3% / ctrl 5,5%)</strong>:</li>
+<li>melhor célula <strong>A-r32-ep2: 17,2% tratadas</strong> (ctrl 7,9%, haluc 36,1%); A-r8-ep6 15,0%. r32 colapsa cedo (haluc 36→72% até ep12); r8 satura ~ep6.</li>
+<li><strong>B task vector</strong>: restaura comportamento (haluc 83–90% do LoRA-no-base puro → 22–36%) mas NÃO preserva o conhecimento (trat ≤7,8% &lt; F0); <code>prop</code> pior que <code>sum</code>.</li>
+<li><strong>C K2V/GRPO</strong>: 7,2% tratadas = +0 p.p. sobre o F0, com muito mais custo.</li>
+<li>Guardas: oráculo/ranking caem 4–7 p.p. no braço A; probe geral 3,92 → 3,48 (r8-ep6) / 3,78 (r32-ep2).</li>
+<li><strong>Veredito honesto</strong>: a injeção FUNCIONA mas é modesta e específica (controle nunca acompanha); <strong>o que cresce com época é ALUCINAÇÃO, não acerto</strong>; nenhum braço passa limpo pelas guardas. Linha abandonada em favor da robustez de contexto (F3).</li>
+<li><strong>Custo</strong>: treinos A/B na Spark (GB10) + braço C e task vector na H100; horas de GPU não consolidadas nos RESULTS (curvas nos runs wandb <code>cemig-lfm3-f2</code>, offline). Corrida C: 400 steps GRPO (pico de reward ~step 200).</li>
+</ul>
+<h3>3.3 F3 — Robustez de uso de contexto (2026-10-31) · <code>fm/lfm3-f3-robustez:bench/lfm3_f3</code></h3>
+<ul>
+<li><strong>Objetivo</strong>: fechar o gap recuperável F0 (oráculo 83,7 vs ranking 65,8) com distratores do retriever REAL v4 da POC. Alvos: ranking ≥78%, alucinação distrator &lt;10%, guardas estáveis.</li>
+<li><strong>Desenho</strong>: dataset 6.972 exemplos ancorado no retriever real (casos gold ~60% / absent ~20% / partial ~10% / closed ~10%; k variável 3/5/8; alvos gerados pelo 27B vendo APENAS a âncora), LoRA r32 MLP w1/w2/w3 sobre o instruct LIMPO, <code>assistant_only_loss</code>, 8 épocas, grade completa 8 × 4 células × 1536.</li>
+<li><strong>Resultado (melhor equilíbrio ep4; 1536)</strong>: ranking <strong>75,2%</strong> (+9,4 p.p.), alucinação distrator <strong>22,4%</strong>, recusa correta <strong>59,1%</strong> (2× o F0), truncamento 35,4→<strong>0%</strong>, oráculo 83,5% e closed-book 6,2% (guardas intactas), recusa-indevida MENOR que o F0. Probe: <strong>3,92 → 3,18</strong> (ep4) / 3,31 (ep6) — há forgetting real.</li>
+<li><strong>Veredito honesto</strong>: ganho grande e barato em comportamento, mas os 2 alvos numéricos NÃO cruzados (platô 74–76% / 21–26%; eval_loss mínima em ep3). O resíduo concentra-se em operational/lay (mesmo abismo lexical). O trade-off de recusa-indevida da sft_v3 NÃO ocorreu. Alavanca seguinte é DADO, não época/rank → F3b.</li>
+<li><strong>Custo</strong>: 1 treino de 8 épocas na H100 + geração das células ~20–40 min/célula (Spark/H100, batch 48; vs ~14 h do F0 na GB10). wandb <code>lfm3-1.7b-cemig/lfm3-f3-robustez-r32</code> (kde9xyam ep1-4, rcavhk37 ep5-8).</li>
+</ul>
+<h3>3.4 F3b — Sweep de dominância (2026-11-02) · <code>fm/lfm3-f3b-sweep:bench/lfm3_f3b</code></h3>
+<ul>
+<li><strong>Objetivo</strong>: um fator por vez sobre a receita F3 congelada — qual eixo domina? Avaliação rápida no recorte 344 + probe; campeão na bateria 1536.</li>
+<li><strong>Desenho — 6 eixos</strong>: dose de recusa 20→35% (<code>recusa35</code>), tamanho do dataset 2× (<code>data2x</code>, 12 NRs novas), rank r16/r64, alvos MLP+atenção, LR 5e-5, âncora geral 10→25% (<code>anchor25</code>); + combinações <code>combo</code> e <code>combo3</code>.</li>
+<li><strong>Tabela de dominância (recorte 344; melhor época por eixo)</strong>:<table><thead><tr><th>eixo</th><th>célula</th><th>ranking</th><th>haluc distrator</th><th>recusa-correta</th><th>rec-indevida</th><th>probe-g</th><th>veredito</th></tr></thead><tbody><tr><td>—</td><td>F0-baseline</td><td style="text-align:right">67,7%</td><td style="text-align:right">27,0%</td><td style="text-align:right">22,4%</td><td style="text-align:right">3,8%</td><td style="text-align:right">3,92</td><td>ref</td></tr><tr><td>—</td><td>F3 (f3-r32-ep4)</td><td style="text-align:right">77,0%</td><td style="text-align:right">23,0%</td><td style="text-align:right">53,8%</td><td style="text-align:right">3,8%</td><td style="text-align:right">3,18</td><td>ref</td></tr><tr><td>tamanho 2×</td><td>data2x-ep4</td><td style="text-align:right"><strong>79,7%</strong> (ep3 80,2)</td><td style="text-align:right">22,4%</td><td style="text-align:right">51,2%</td><td style="text-align:right">3,8%</td><td style="text-align:right">3,17</td><td><strong>DOMINA ranking</strong></td></tr><tr><td>recusa 35%</td><td>recusa35-ep3</td><td style="text-align:right">76,2%</td><td style="text-align:right"><strong>13,4%</strong> (ep4 11,9)</td><td style="text-align:right">73,3%</td><td style="text-align:right">7,0%</td><td style="text-align:right">3,37</td><td><strong>DOMINA alucinação</strong></td></tr><tr><td>âncora 25%</td><td>anchor25-ep4</td><td style="text-align:right">76,2%</td><td style="text-align:right">21,8%</td><td style="text-align:right">51,7%</td><td style="text-align:right">3,2%</td><td style="text-align:right"><strong>3,65</strong></td><td><strong>DOMINA probe</strong></td></tr><tr><td>rank r16</td><td>r16-ep4</td><td style="text-align:right">77,0%</td><td style="text-align:right">21,2%</td><td style="text-align:right">55,8%</td><td style="text-align:right">3,2%</td><td style="text-align:right">3,35</td><td>neutro</td></tr><tr><td>rank r64</td><td>r64-ep4</td><td style="text-align:right">75,0%</td><td style="text-align:right">18,3%</td><td style="text-align:right">58,4%</td><td style="text-align:right">4,4%</td><td style="text-align:right">3,39</td><td>neutro/leve</td></tr><tr><td>MLP+atenção</td><td>mlpattn-ep4</td><td style="text-align:right">74,4%</td><td style="text-align:right">18,6%</td><td style="text-align:right">56,7%</td><td style="text-align:right">4,4%</td><td style="text-align:right">3,30</td><td>neutro</td></tr><tr><td>LR metade</td><td>lr5e5-ep4</td><td style="text-align:right">75,9%</td><td style="text-align:right">24,1%</td><td style="text-align:right">54,1%</td><td style="text-align:right">4,1%</td><td style="text-align:right">3,25</td><td>neutro/pior</td></tr></tbody></table></li>
+</ul>
+<ul>
+<li><strong>Pareto honesto</strong>: <code>data2x-ep4</code> (campeão formal; única célula que melhora ranking sem violar guardas), <code>recusa35-ep3</code> (se a prioridade virar alucinação), <code>combo3-ep3</code> (ranking 78,8 + haluc 15,4, mas probe 2,88 — só para assistente-NR puro).</li>
+<li><strong>Campeão na 1536</strong>: ranking <strong>77,0%</strong> (+1,8 p.p.; alvo 78 a 1 p.p.), oráculo <strong>85,4%</strong>↑, closed 7,4%, probe 3,17, recusa-indevida 8,3%↑ (custo real leve). Alucinação &lt;10% NÃO atingível por época/rank/LR.</li>
+<li><strong>Veredito honesto</strong>: <strong>o que domina é DADO, não hiperparâmetro</strong>; as 3 dominâncias são ortogonais e NÃO somam de graça (combos com interação negativa; empilhar exige âncora em valor absoluto ≥3× — hipótese F3c, não testada).</li>
+<li><strong>Custo</strong>: 9 treinos de 4 épocas (fila na H100, <code>queue_runner.sh</code>) + avaliação rápida 344/célula; horas de GPU não consolidadas nos RESULTS (runs wandb <code>lfm3-1.7b-cemig/lfm3-f3b-*</code>).</li>
+</ul>
+<h3>3.5 F4 — Tool-calling multiturno (2026-11-03) · <code>fm/lfm3-f4-tools:bench/lfm3_f4</code></h3>
+<ul>
+<li><strong>Objetivo</strong>: o próprio modelo decide chamar a busca, sintetiza do retorno, recusa com contexto errado e re-busca (multihop) — sem regredir o modo estático do campeão F3b. Metas: decisão/sintaxe ≥90%, multihop ≥60%, regressão estática ≤2 p.p.</li>
+<li><strong>Desenho</strong>: base = merged <code>data2x-ep4</code> (md5 <code>ae5f304d…</code>); formato de tool NATIVO do LFM3 (XML <code>&lt;tool_call&gt;</code> do próprio <code>apply_chat_template</code>; parser inverso determinístico com round-trip provado; <code>enable_thinking=False</code> sempre); dataset 4.624 diálogos em 6 famílias (chamada_simples, recusa, troca, reuso, multihop, sem_ferramenta; argumento da 1ª chamada = FALA CRUA); avaliação com o retriever v4 REAL respondendo ao vivo; variante <code>mhx3</code> (dose multihop 9→24% ×3 réplicas) para a curva dado×métrica.</li>
+<li><strong>Resultado — estáticas (1536)</strong>: ZERO regressão; o treino de tool MELHOROU o modo sem ferramenta: ranking 77,0→<strong>80,5/79,6/78,3</strong> (ep1/2/3), oráculo 85,4→<strong>87,8–88,4</strong>, recusa-indevida 8,3→6,2–7,4, probe 3,17→<strong>3,38–3,45</strong>.</li>
+<li><strong>Resultado — métricas de tool (suites disjuntas; base sem treino nunca chama a tool, F1 = 0)</strong>:<table><thead><tr><th>métrica</th><th>f4-ep2</th><th>f4-ep3</th><th>mhx3-ep1</th><th>mhx3-ep2</th><th>alvo</th></tr></thead><tbody><tr><td>decisão F1</td><td style="text-align:right">97,2</td><td style="text-align:right"><strong>97,6</strong></td><td style="text-align:right">98,4</td><td style="text-align:right">98,0</td><td>≥90 ✓</td></tr><tr><td>sintaxe XML válida</td><td style="text-align:right"><strong>100</strong> (0/285)</td><td style="text-align:right">100 (0/285)</td><td style="text-align:right">100 (0/232)</td><td style="text-align:right">100 (0/311)</td><td>≥90 ✓</td></tr><tr><td>reuso correto (não chamar)</td><td style="text-align:right"><strong>100</strong></td><td style="text-align:right">100</td><td style="text-align:right">—</td><td style="text-align:right">100</td><td>✓</td></tr><tr><td>troca: nova chamada / acha NR nova</td><td style="text-align:right">100 / 96,4</td><td style="text-align:right">100 / 96,4</td><td style="text-align:right">—</td><td style="text-align:right">98,2 / 96,4</td><td>✓</td></tr><tr><td>recusa pós-busca correta</td><td style="text-align:right">50,0</td><td style="text-align:right">51,7</td><td style="text-align:right">45,0</td><td style="text-align:right">38,3</td><td>trade-off ↓</td></tr><tr><td>multihop: 2ª chamada</td><td style="text-align:right">2,4</td><td style="text-align:right">2,4</td><td style="text-align:right">7,1</td><td style="text-align:right"><strong>33,3</strong></td><td></td></tr><tr><td>multihop: cadeia completa</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="text-align:right">0</td><td style="text-align:right"><strong>7,1</strong></td><td>≥60 ✗</td></tr></tbody></table></li>
+</ul>
+<ul>
+<li><strong>Curva multihop (dado×métrica, ordem do brief)</strong>: dose 411 (9%) → 1233 (24%, ×3 réplicas): 2ª chamada 2,4 → 7,1 (ep1) → <strong>33,3%</strong> (ep2); ouro no hop2 2,4 → 11,9%; cadeia completa 0 → <strong>7,1%</strong>; recusa pós-busca paga o ganho (50 → 38,3). Gargalos em série: (a) a 2ª consulta escrita pelo 1.7B recupera o ouro bem menos que a consulta-2 validada do 27B (11,9% vs 100% no dataset) — mesmo teto de argumento do tools_v1; (b) quem re-busca passa a responder com o que veio, certo ou não.</li>
+<li><strong>Veredito honesto</strong>: decisão/sintaxe/reuso/troca CRUZARAM as metas já na 1ª época (saturação instantânea, consistente com tools_v1); <strong>multihop ≥60% NÃO atingido</strong> (7,1% no melhor ponto) e dobrar o dataset multihop NÃO é a alavanca — o gargalo é a qualidade da 2ª consulta, não a vontade de chamar. <strong>Candidato: <code>f4-r32-ep2</code></strong> (equilíbrio F1 97,2 / recusa 50 / estáticas no topo / probe 3,38); mhx3-ep2 é referência da curva, mas paga 12 p.p. de recusa por 7% de cadeia.</li>
+<li><strong>Custo</strong>: 2 treinos (3 épocas r32 + 2 épocas mhx3) na H100 + bateria estática 3 épocas × 4 células × 1536 + 5 suites de tool ao vivo; horas de GPU não consolidadas nos RESULTS (wandb <code>lfm3-f4-tools-r32</code> r22hqe1h e <code>lfm3-f4-tools-mhx3-r32</code>). Pipeline autônomo no container para intermitência de rede (juiz via gateway docker <code>172.17.0.1:8005</code>).</li>
+</ul>
+<hr>
+<h2>4. Decisões de produto em aberto</h2>
+<ol>
+<li><strong>Multihop híbrido via app</strong> (caminho (i) do RESULTS da F4): a 2ª consulta vem do app/27B em vez do 1.7B — réplica do desenho <code>tools_oraculo</code> da POC, que já provou que fala-crua+retriever supera a reescrita do modelo pequeno. Alternativas listadas e não executadas: consultas-2 múltiplas por item de treino (variância de argumento) e relaxar o gate do hop2 para top-8.</li>
+<li><strong>Escolha final de checkpoint</strong>: candidato técnico é <code>f4-r32-ep2</code>; <code>f4-r32-ep3</code> tem F1 0,4 maior e probe 3,45, <code>mhx3-ep2</code> maximiza multihop mas sacrifica recusa. Decisão do capitão pendente.</li>
+<li><strong>Condição de embarque (esquecimento)</strong>: a probe geral segue abaixo do F0 (3,38–3,45 vs 3,92). Aceitável para assistente-NR puro; para uso geral, exigiria mitigação (a âncora <code>anchor25</code> da F3b provou mover a probe +0,47, mas não foi combinada ao candidato — a interação negativa dos combos exige âncora em valor absoluto).</li>
+<li><strong>Quantização pendente</strong>: toda a exploração foi em bf16 em GPU (ordem do capitão na F0). Q4/GGUF, latência on-device e RAM do 1.7B não foram medidos — bloqueia qualquer decisão de embarque.</li>
+</ol>
+<hr>
+<h2>5. Apêndice</h2>
+<h3>5.1 Mapa de artefatos (branch → diretório → artefatos)</h3>
+<table><thead><tr><th>fase</th><th>branch</th><th>diretório</th><th>parquets canônicos</th><th>checkpoints</th><th>wandb (<code>lfm3-1.7b-cemig</code>, salvo indicação)</th></tr></thead><tbody><tr><td>F0</td><td><code>main</code></td><td><code>bench/lfm3_f0</code></td><td>via retrofit no schema F2 (baseline 1536 × 4 células em <code>bench/lfm3_f2/data/eval/</code>)</td><td>— (modelo as-is)</td><td>—</td></tr><tr><td>F2</td><td><code>main</code></td><td><code>bench/lfm3_f2</code></td><td><code>data/eval/</code> — 46 parquets (checkpoint×célula, inclui baseline retroativo)</td><td>Spark <code>~/cemig-poc/lfm3_f2/runs/</code> (A/B por época, task vectors, C-k2v)</td><td>projeto <code>cemig-lfm3-f2</code> (offline); braço C <code>ixu0jg3k</code></td></tr><tr><td>F3</td><td><code>fm/lfm3-f3-robustez</code></td><td><code>bench/lfm3_f3</code></td><td><code>data/eval/</code> — 32 parquets (8 épocas × 4 células)</td><td>H100 <code>checkpoints/lfm3-f3-robustez-r32/checkpoint-{218…1744}</code>; Spark ep1-6</td><td><code>lfm3-f3-robustez-r32</code> (kde9xyam), <code>-ext8</code> (rcavhk37)</td></tr><tr><td>F3b</td><td><code>fm/lfm3-f3b-sweep</code></td><td><code>bench/lfm3_f3b</code></td><td><code>data/eval/</code> — 4 parquets do campeão; dominância completa em <code>data/dominance.json</code></td><td>H100 <code>checkpoints/lfm3-f3b-data-2x/checkpoint-1396</code> (campeão) + demais células <code>lfm3-f3b-*</code></td><td>runs <code>lfm3-f3b-*</code></td></tr><tr><td>F4</td><td><code>fm/lfm3-f4-tools</code></td><td><code>bench/lfm3_f4</code></td><td><code>data/eval/</code> — <strong>35 parquets</strong> (estáticas 3 épocas+mhx3 + 5 suites de tool × 5 tags) + suites/traces jsonl</td><td>H100 <code>checkpoints/lfm3-f4-tools-r32/checkpoint-{142,284,426}</code> e <code>lfm3-f4-tools-mhx3-r32/checkpoint-{157,314}</code>; merged base <code>/workspace/cemig/f4/merged-rebuilt</code> (md5 <code>ae5f304d91bb47402d9125d96e766a15</code>)</td><td><code>lfm3-f4-tools-r32</code> (r22hqe1h), <code>lfm3-f4-tools-mhx3-r32</code></td></tr></tbody></table>
+<p>RESULTS por fase: <code>bench/lfm3_f{0,2,3,3b,4}/RESULTS.md</code>; consolidações numéricas: <code>lfm3_f3/data/consolidation.json</code>, <code>lfm3_f3b/data/dominance.json</code>, <code>lfm3_f4/data/consolidation.json</code>.</p>
+<h3>5.2 Infra usada</h3>
+<ul>
+<li><strong>Spark GB10</strong> (<code>walcyrios@spark-b431</code> / tailscale <code>100.79.169.101</code>, <code>~/cemig-poc/</code>): geração batched (bs48 ≈ 26× bs1) e treinos leves; memória unificada — NUNCA 2 treinos simultâneos (OOM derruba o host; r32 exige bs4/ga8).</li>
+<li><strong>H100 GPU 2</strong> (<code>aluno_walcy@10.100.0.111</code>, container <code>cemig_mobile_walcy</code>; artefatos em <code>/raid/aluno_walcy/cemig_mobile</code> = <code>/workspace/cemig</code> no container): treinos F3/F3b/F4 (fila <code>queue_runner.sh</code>), braço C e task vector da F2, pipeline autônomo de avaliação da F4 (juiz via gateway docker <code>172.17.0.1:8005</code>). H100→Spark NÃO roteia: adapters via host local.</li>
+<li><strong>Juiz</strong>: vLLM <code>Qwen/Qwen3.8-27B-FP8</code> em <code>http://10.100.0.111:8005/v1</code>; julgamento local (WSL, <code>classifier/.venv</code>).</li>
+<li><strong>Restrições de stack</strong>: vllm/sglang não suportam o LFM3 (camada conv); tokenizer novo exige transformers 5.x; LoRA sempre MLP <code>w1/w2/w3</code> (72 módulos; <code>gate_proj</code> é gate da ATENÇÃO — nunca incluir).</li>
+</ul>
+<h3>5.3 Schema dos parquets canônicos</h3>
+<p>Um parquet por <strong>checkpoint × célula</strong> (<code>lfm3-&lt;checkpoint&gt;-&lt;célula&gt;.parquet</code>); definição autoritativa em <code>bench/lfm3_f2/data/eval/README.md</code>:</p>
+<table><thead><tr><th>grupo</th><th>colunas</th></tr></thead><tbody><tr><td>benchmark</td><td>id, base_qa_id, question, answer_gold, question_type, source_id, vocabulary_level, query_features, source_file, evidence_text</td></tr><tr><td>saída do modelo</td><td>answer_model, raw_output (integral: thinking+resposta), thinking, n_gen_tokens, stopped_eos</td></tr><tr><td>veredito (régua honesta)</td><td>coverage, n_facts, tautology, hallucination, refused, truncated, refusal_correct, refusal_undue, citation_present, approved, answered_correct_anyway, judge_note</td></tr><tr><td>protocolo</td><td>context_given, context_type (none/oracle/ranking_1de5/distractor_only; F4 adiciona tool_loop/multihop), system_prompt_sha + system_prompt_ref, checkpoint, cell, gen_params</td></tr></tbody></table>
+<p><code>context_given</code> é reconstruído deterministicamente (seed <code>sha256(f"42:{id}")</code>, idêntico ao da geração — <code>bench/lfm3_f0/common_f0.py:build_cell_context</code>).</p>
+<h3>5.4 Divergências conhecidas entre fontes</h3>
+<ul>
+<li><strong>Recorte 344 vs bateria 1536</strong>: números do recorte favorecem as NRs do funil (F3b: +2,6 p.p. no recorte → +1,8 p.p. na 1536). As referências F0 mudam junto (ranking 67,7 vs 65,8; recusa-correta distrator 22,4 vs 30,5).</li>
+<li><strong>Probe da F3 vs F3b</strong>: a linha F3 da tabela de dominância usa a probe medida NA FASE F3 (3,18/3,31), marcada com asterisco no RESULTS da F3b.</li>
+<li><strong>"Reuso 100%" do base sem treino na F4 é vacuoso</strong> (nunca chama nada) e a "recusa 60%" do base vem do estilo herdado do F3b — comparações de tool só valem entre checkpoints treinados.</li>
+</ul>
+</main>
+</body>
+</html>
