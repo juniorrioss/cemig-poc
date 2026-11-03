@@ -1,0 +1,40 @@
+{
+  "tag": "f4-mhx3-ep2",
+  "decision": {
+    "tp": 120,
+    "fp": 5,
+    "fn": 0,
+    "tn": 55,
+    "precision": 96.0,
+    "recall": 100.0,
+    "f1": 98.0
+  },
+  "reuse": {
+    "n": 60,
+    "reuse_correct_pct": 100.0,
+    "answer_covers_gold_pct": 88.3
+  },
+  "switch": {
+    "n": 55,
+    "new_call_pct": 98.2,
+    "new_call_nr_hit_pct": 96.4
+  },
+  "refusal": {
+    "n": 60,
+    "called_pct": 100.0,
+    "refusal_correct_pct": 38.3,
+    "answered_anyway_pct": 61.7
+  },
+  "multihop": {
+    "n": 42,
+    "second_call_pct": 33.3,
+    "arg_diff_pct": 33.3,
+    "gold_hop2_pct": 11.9,
+    "full_chain_pct": 7.1
+  },
+  "syntax": {
+    "calls": 311,
+    "syntax_fails": 0,
+    "syntax_valid_pct": 100.0
+  }
+}
