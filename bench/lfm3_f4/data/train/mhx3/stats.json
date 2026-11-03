@@ -1,0 +1,13 @@
+{
+  "n_train": 5011,
+  "by_family": {
+    "chamada_simples": 1568,
+    "troca": 603,
+    "multihop": 1209,
+    "recusa": 700,
+    "reuso": 686,
+    "sem_ferramenta": 245
+  },
+  "mh_factor": 3,
+  "recusa_keep": 700
+}
