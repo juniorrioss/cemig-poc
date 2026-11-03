@@ -13,7 +13,7 @@ Checks sobre data/train/{train,val}.jsonl:
   4. distribuição de famílias dentro de ±20% das quotas; recusa entre 18 e 28%;
   5. dedup train×val por pergunta do 1º turno; entropia de aberturas >= 6 bits;
   6. recusa: alvo dispara looks_like_refusal; famílias que respondem, não;
-  7. orçamento de tokens: p99 <= max_len do treino (4096).
+  7. orçamento de tokens: truncamento <=1% no max_len do treino (6912).
 
 Uso: classifier/.venv/bin/python bench/lfm3_f4/validate_dataset_f4.py
 """
@@ -35,7 +35,7 @@ from common_f0 import looks_like_refusal  # noqa: E402
 from tool_schema_f4 import baked_system_content  # noqa: E402
 
 TRAIN = HERE / "data" / "train"
-MAX_LEN = 4096
+MAX_LEN = 6912  # medido: 0% acima (6144 truncaria 2.5% — troca/multihop)
 
 
 def fail(msg: str) -> None:
@@ -140,14 +140,23 @@ def main() -> None:
         fail(f"entropia de aberturas {ent:.2f} < 6 bits")
     print(f"[validate] dedup ok; entropia {ent:.2f} bits")
 
-    # 6. recusa coerente com a régua
+    # 6. recusa coerente com a régua. No sentido inverso (famílias que
+    # respondem) o regex pega DELIMITAÇÃO legítima dos alvos 27B ("a norma
+    # não detalha X" — instrução do PROMPT_GOLD da F3, honestidade, não
+    # recusa) -> métrica informativa com teto frouxo, não binária.
+    n_ans = n_ansref = 0
     for r in rows:
         ans = final_answer(r)
         if r["family"] == "recusa" and not looks_like_refusal(ans):
             fail(f"alvo de recusa não dispara régua ({r['qa_id']})")
-        if r["family"] in ("chamada_simples", "multihop") and looks_like_refusal(ans):
-            fail(f"alvo de {r['family']} dispara recusa ({r['qa_id']})")
-    print("[validate] recusa coerente com looks_like_refusal")
+        if r["family"] in ("chamada_simples", "multihop"):
+            n_ans += 1
+            n_ansref += looks_like_refusal(ans)
+    rate = n_ansref / n_ans if n_ans else 0
+    print(f"[validate] recusa: 100% dos alvos de recusa disparam a régua; "
+          f"{rate:.1%} dos alvos que respondem contem frase delimitadora")
+    if rate > 0.25:
+        fail(f"taxa de delimitação nos alvos que respondem alta demais: {rate:.1%}")
 
     # 7. orçamento de tokens
     lens = sorted(C.count_tokens(r["messages"]) for r in rows)

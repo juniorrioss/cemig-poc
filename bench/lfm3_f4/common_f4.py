@@ -162,8 +162,11 @@ def roundtrip_ok(messages: List[Dict[str, Any]]) -> bool:
 
 def count_tokens(messages: List[Dict[str, Any]]) -> int:
     tok = get_tokenizer()
-    return len(tok.apply_chat_template(messages, tokenize=True,
-                                       enable_thinking=False))
+    out = tok.apply_chat_template(messages, tokenize=True,
+                                  enable_thinking=False)
+    # transformers 5.x retorna BatchEncoding; len() direto contaria as CHAVES
+    ids = out["input_ids"] if not isinstance(out, list) else out
+    return len(ids)
 
 
 # ---------------------------------------------------------------------------

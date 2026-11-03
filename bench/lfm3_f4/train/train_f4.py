@@ -5,8 +5,8 @@ cemig_mobile_walcy, GPU 2 = cuda:0 interno).
 Diferenças vs train_f3b.py (resto IDÊNTICO à receita F3/F3b):
   - base = o MERGED data2x-ep4 (passado em --model; md5 publicado em
     data/merged_base_md5.json — o LoRA novo treina SOBRE o campeão do sweep);
-  - max_len 4096 (diálogos multiturno com 2 ciclos de tool; medido no build:
-    p99 < 3600 tokens);
+  - max_len 6912 (diálogos multiturno com 2 ciclos de tool; MEDIDO no
+    validate: máx 6829 tokens, 0% truncado a 6912; 6144 truncaria 2,5%);
   - o apply_chat_template do LFM3 marca {% generation %} só nos turnos
     assistant -> assistant_only_loss cobre DECISÃO+ARGUMENTOS+SÍNTESE e
     exclui os turnos tool (provado em verify_format.py).
@@ -43,7 +43,7 @@ def main() -> None:
     ap.add_argument("--lr", type=float, default=1e-4)
     ap.add_argument("--batch", type=int, default=8)
     ap.add_argument("--grad-accum", type=int, default=4)
-    ap.add_argument("--max-len", type=int, default=4096)
+    ap.add_argument("--max-len", type=int, default=6912)
     ap.add_argument("--out", required=True)
     ap.add_argument("--resume", default="")
     args = ap.parse_args()

@@ -1,0 +1,14 @@
+{
+  "train": 4533,
+  "val": 91,
+  "by_family": {
+    "reuso": 700,
+    "chamada_simples": 1600,
+    "multihop": 411,
+    "recusa": 1048,
+    "sem_ferramenta": 250,
+    "troca": 615
+  },
+  "drops": {},
+  "seed": 20260211
+}

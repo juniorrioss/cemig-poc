@@ -141,10 +141,31 @@ voz de segurança do trabalho em que o assistente NÃO precisa consultar nenhuma
 norma. Categorias (misture): saudação, agradecimento, pedido de repetição,
 conversa geral/bom senso (sem dado normativo), fora de escopo (futebol, tempo,
 pedido pessoal).
+Contexto deste lote (varie fortemente o vocabulário e as situações em torno
+disto; perguntas DIFERENTES entre si): {theme}.
 Regras das respostas: 1-2 frases, educadas, sem citar norma; nas fora de
 escopo, diga que só ajuda com segurança do trabalho.
 Pense primeiro e emita APENAS o JSON final:
 [{{"categoria": "...", "pergunta": "...", "resposta": "..."}}, ...]"""
+
+NOTOOL_THEMES = [
+    "início de turno na usina, equipe chegando",
+    "fim de expediente, despedidas e agradecimentos",
+    "almoço no canteiro de obras, conversa informal",
+    "deslocamento na caminhonete entre torres de transmissão",
+    "dia de chuva, espera no alojamento",
+    "manutenção em subestação, pausa para café",
+    "novato no primeiro dia pedindo orientações gerais",
+    "veterano contando história, conversa fiada",
+    "ligação cortada, pedidos de repetir/falar mais alto",
+    "celular com pouca bateria, mensagens curtas",
+    "sábado de jogo do Cruzeiro e do Atlético, papo de futebol",
+    "calor de 35 graus no campo, reclamações do tempo",
+    "pedidos pessoais (receita, música, loteria, horóscopo)",
+    "dúvidas de bom senso sem norma (hidratação, descanso)",
+    "elogios e feedback sobre o próprio assistente",
+    "teste de microfone e frases sem sentido",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -364,8 +385,11 @@ def stage_gen27b(workers: int) -> None:
     # ---- sem_ferramenta: lotes de 25
     need = QUOTA["sem_ferramenta"] + N_EVAL["notool"]
     def nt_worker(batch_id: int) -> List[Dict[str, Any]]:
-        v = C.gen_json(PROMPT_NOTOOL.format(n=25), system=SYS27,
-                       temperature=0.9, max_tokens=3000)
+        # lotes de 10: com 25 o thinking + itens estouram o max_tokens e o
+        # JSON final trunca (lotes voltavam vazios)
+        theme = NOTOOL_THEMES[batch_id % len(NOTOOL_THEMES)]
+        v = C.gen_json(PROMPT_NOTOOL.format(n=10, theme=theme), system=SYS27,
+                       temperature=0.9, max_tokens=5000)
         rows = []
         if isinstance(v, list):
             for it in v:
@@ -376,7 +400,7 @@ def stage_gen27b(workers: int) -> None:
                                      "resposta": str(it["resposta"]).strip()})
         return rows
 
-    n_batches = (need + 24) // 25 + 3
+    n_batches = (need + 9) // 10 + 8
     res = C.parallel_map(nt_worker, list(range(n_batches)), max_workers=min(workers, 8),
                          checkpoint_path=C.SYNTH / "notool.ckpt.json",
                          key_fn=lambda x: str(x))
