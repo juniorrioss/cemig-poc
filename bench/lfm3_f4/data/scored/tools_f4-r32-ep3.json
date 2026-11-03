@@ -1,0 +1,40 @@
+{
+  "tag": "f4-r32-ep3",
+  "decision": {
+    "tp": 120,
+    "fp": 6,
+    "fn": 0,
+    "tn": 54,
+    "precision": 95.2,
+    "recall": 100.0,
+    "f1": 97.6
+  },
+  "reuse": {
+    "n": 60,
+    "reuse_correct_pct": 100.0,
+    "answer_covers_gold_pct": 86.7
+  },
+  "switch": {
+    "n": 55,
+    "new_call_pct": 100.0,
+    "new_call_nr_hit_pct": 96.4
+  },
+  "refusal": {
+    "n": 60,
+    "called_pct": 100.0,
+    "refusal_correct_pct": 51.7,
+    "answered_anyway_pct": 48.3
+  },
+  "multihop": {
+    "n": 42,
+    "second_call_pct": 2.4,
+    "arg_diff_pct": 2.4,
+    "gold_hop2_pct": 2.4,
+    "full_chain_pct": 0.0
+  },
+  "syntax": {
+    "calls": 285,
+    "syntax_fails": 0,
+    "syntax_valid_pct": 100.0
+  }
+}
