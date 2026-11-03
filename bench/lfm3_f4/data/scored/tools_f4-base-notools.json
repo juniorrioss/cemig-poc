@@ -1,0 +1,40 @@
+{
+  "tag": "f4-base-notools",
+  "decision": {
+    "tp": 0,
+    "fp": 0,
+    "fn": 120,
+    "tn": 60,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1": 0.0
+  },
+  "reuse": {
+    "n": 60,
+    "reuse_correct_pct": 100.0,
+    "answer_covers_gold_pct": 90.0
+  },
+  "switch": {
+    "n": 55,
+    "new_call_pct": 0.0,
+    "new_call_nr_hit_pct": 0.0
+  },
+  "refusal": {
+    "n": 60,
+    "called_pct": 0.0,
+    "refusal_correct_pct": 60.0,
+    "answered_anyway_pct": 0.0
+  },
+  "multihop": {
+    "n": 42,
+    "second_call_pct": 0.0,
+    "arg_diff_pct": 0.0,
+    "gold_hop2_pct": 0.0,
+    "full_chain_pct": 0.0
+  },
+  "syntax": {
+    "calls": 0,
+    "syntax_fails": 0,
+    "syntax_valid_pct": 0
+  }
+}
