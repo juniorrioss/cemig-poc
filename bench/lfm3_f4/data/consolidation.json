@@ -1,0 +1,306 @@
+{
+  "references": {
+    "f3b-data2x-ep4 (campeão, SEM tools; bateria 1536 F3b)": {
+      "ranking_approved_pct": 77.0,
+      "distrator_hallucination_pct": 24.9,
+      "oraculo_approved_pct": 85.4,
+      "closed_book_approved_pct": 7.4,
+      "ranking_refusal_undue_pct": 8.3,
+      "probe_general": 3.17
+    }
+  },
+  "static": {
+    "f4-r32-ep1": {
+      "ranking": {
+        "n": 1536,
+        "approved_pct": 80.5,
+        "refusal_undue_pct": 6.2
+      },
+      "distrator": {
+        "n": 1536,
+        "approved_pct": 63.3,
+        "refusal_correct_pct": 63.3,
+        "hallucination_pct": 25.4
+      },
+      "oraculo": {
+        "n": 1536,
+        "approved_pct": 87.9
+      },
+      "closed_book": {
+        "n": 1536,
+        "approved_pct": 7.3
+      }
+    },
+    "f4-r32-ep2": {
+      "ranking": {
+        "n": 1536,
+        "approved_pct": 79.6,
+        "refusal_undue_pct": 6.6
+      },
+      "distrator": {
+        "n": 1536,
+        "approved_pct": 66.6,
+        "refusal_correct_pct": 66.6,
+        "hallucination_pct": 24.2
+      },
+      "oraculo": {
+        "n": 1536,
+        "approved_pct": 87.8
+      },
+      "closed_book": {
+        "n": 1536,
+        "approved_pct": 6.7
+      }
+    },
+    "f4-r32-ep3": {
+      "ranking": {
+        "n": 1536,
+        "approved_pct": 78.3,
+        "refusal_undue_pct": 7.4
+      },
+      "distrator": {
+        "n": 1536,
+        "approved_pct": 64.9,
+        "refusal_correct_pct": 64.9,
+        "hallucination_pct": 24.0
+      },
+      "oraculo": {
+        "n": 1536,
+        "approved_pct": 88.4
+      },
+      "closed_book": {
+        "n": 1536,
+        "approved_pct": 6.8
+      }
+    },
+    "f4-mhx3-ep2": {
+      "ranking": {
+        "n": 1536,
+        "approved_pct": 80.1,
+        "refusal_undue_pct": 6.8
+      },
+      "distrator": {
+        "n": 1536,
+        "approved_pct": 64.0,
+        "refusal_correct_pct": 64.0,
+        "hallucination_pct": 25.5
+      }
+    }
+  },
+  "tools": {
+    "f4-base-notools": {
+      "tag": "f4-base-notools",
+      "decision": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 120,
+        "tn": 60,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "reuse": {
+        "n": 60,
+        "reuse_correct_pct": 100.0,
+        "answer_covers_gold_pct": 90.0
+      },
+      "switch": {
+        "n": 55,
+        "new_call_pct": 0.0,
+        "new_call_nr_hit_pct": 0.0
+      },
+      "refusal": {
+        "n": 60,
+        "called_pct": 0.0,
+        "refusal_correct_pct": 60.0,
+        "answered_anyway_pct": 0.0
+      },
+      "multihop": {
+        "n": 42,
+        "second_call_pct": 0.0,
+        "arg_diff_pct": 0.0,
+        "gold_hop2_pct": 0.0,
+        "full_chain_pct": 0.0
+      },
+      "syntax": {
+        "calls": 0,
+        "syntax_fails": 0,
+        "syntax_valid_pct": 0
+      }
+    },
+    "f4-r32-ep2": {
+      "tag": "f4-r32-ep2",
+      "decision": {
+        "tp": 120,
+        "fp": 7,
+        "fn": 0,
+        "tn": 53,
+        "precision": 94.5,
+        "recall": 100.0,
+        "f1": 97.2
+      },
+      "reuse": {
+        "n": 60,
+        "reuse_correct_pct": 100.0,
+        "answer_covers_gold_pct": 90.0
+      },
+      "switch": {
+        "n": 55,
+        "new_call_pct": 100.0,
+        "new_call_nr_hit_pct": 96.4
+      },
+      "refusal": {
+        "n": 60,
+        "called_pct": 100.0,
+        "refusal_correct_pct": 50.0,
+        "answered_anyway_pct": 50.0
+      },
+      "multihop": {
+        "n": 42,
+        "second_call_pct": 2.4,
+        "arg_diff_pct": 2.4,
+        "gold_hop2_pct": 2.4,
+        "full_chain_pct": 0.0
+      },
+      "syntax": {
+        "calls": 285,
+        "syntax_fails": 0,
+        "syntax_valid_pct": 100.0
+      }
+    },
+    "f4-r32-ep3": {
+      "tag": "f4-r32-ep3",
+      "decision": {
+        "tp": 120,
+        "fp": 6,
+        "fn": 0,
+        "tn": 54,
+        "precision": 95.2,
+        "recall": 100.0,
+        "f1": 97.6
+      },
+      "reuse": {
+        "n": 60,
+        "reuse_correct_pct": 100.0,
+        "answer_covers_gold_pct": 86.7
+      },
+      "switch": {
+        "n": 55,
+        "new_call_pct": 100.0,
+        "new_call_nr_hit_pct": 96.4
+      },
+      "refusal": {
+        "n": 60,
+        "called_pct": 100.0,
+        "refusal_correct_pct": 51.7,
+        "answered_anyway_pct": 48.3
+      },
+      "multihop": {
+        "n": 42,
+        "second_call_pct": 2.4,
+        "arg_diff_pct": 2.4,
+        "gold_hop2_pct": 2.4,
+        "full_chain_pct": 0.0
+      },
+      "syntax": {
+        "calls": 285,
+        "syntax_fails": 0,
+        "syntax_valid_pct": 100.0
+      }
+    },
+    "f4-mhx3-ep1": {
+      "tag": "f4-mhx3-ep1",
+      "decision": {
+        "tp": 120,
+        "fp": 4,
+        "fn": 0,
+        "tn": 56,
+        "precision": 96.8,
+        "recall": 100.0,
+        "f1": 98.4
+      },
+      "reuse": {
+        "n": 0,
+        "reuse_correct_pct": 0,
+        "answer_covers_gold_pct": 0
+      },
+      "switch": {
+        "n": 0,
+        "new_call_pct": 0,
+        "new_call_nr_hit_pct": 0
+      },
+      "refusal": {
+        "n": 60,
+        "called_pct": 100.0,
+        "refusal_correct_pct": 45.0,
+        "answered_anyway_pct": 55.0
+      },
+      "multihop": {
+        "n": 42,
+        "second_call_pct": 7.1,
+        "arg_diff_pct": 7.1,
+        "gold_hop2_pct": 2.4,
+        "full_chain_pct": 0.0
+      },
+      "syntax": {
+        "calls": 232,
+        "syntax_fails": 0,
+        "syntax_valid_pct": 100.0
+      }
+    },
+    "f4-mhx3-ep2": {
+      "tag": "f4-mhx3-ep2",
+      "decision": {
+        "tp": 120,
+        "fp": 5,
+        "fn": 0,
+        "tn": 55,
+        "precision": 96.0,
+        "recall": 100.0,
+        "f1": 98.0
+      },
+      "reuse": {
+        "n": 60,
+        "reuse_correct_pct": 100.0,
+        "answer_covers_gold_pct": 88.3
+      },
+      "switch": {
+        "n": 55,
+        "new_call_pct": 98.2,
+        "new_call_nr_hit_pct": 96.4
+      },
+      "refusal": {
+        "n": 60,
+        "called_pct": 100.0,
+        "refusal_correct_pct": 38.3,
+        "answered_anyway_pct": 61.7
+      },
+      "multihop": {
+        "n": 42,
+        "second_call_pct": 33.3,
+        "arg_diff_pct": 33.3,
+        "gold_hop2_pct": 11.9,
+        "full_chain_pct": 7.1
+      },
+      "syntax": {
+        "calls": 311,
+        "syntax_fails": 0,
+        "syntax_valid_pct": 100.0
+      }
+    }
+  },
+  "probe": {
+    "f4-r32-ep2": {
+      "general": 3.38,
+      "behavioral": 3.0
+    },
+    "f4-r32-ep3": {
+      "general": 3.45,
+      "behavioral": 3.0
+    },
+    "f4-mhx3-ep2": {
+      "general": 3.38,
+      "behavioral": 3.45
+    }
+  }
+}
