@@ -52,7 +52,8 @@ class Fts5Retriever(
             }
         }
 
-        private val PORTUGUESE_STOPWORDS = setOf(
+        // == corpus/eval_fino.py::APP_STOPWORDS (usado também pelo compressor de contexto).
+        val APP_STOPWORDS: Set<String> = setOf(
             "a", "ao", "aos", "aquela", "aquelas", "aquele", "aqueles", "aquilo", "as", "ate", "até",
             "com", "como", "da", "das", "de", "dela", "delas", "dele", "deles", "do", "dos",
             "e", "ela", "elas", "ele", "eles", "em", "entre", "era", "eram", "essa", "essas",
@@ -240,7 +241,7 @@ class Fts5Retriever(
             .lowercase()
 
         val rawTokens = Regex("[\\w.-]+").findAll(normalized).map { it.value }.toList()
-        var filtered = rawTokens.filter { it !in PORTUGUESE_STOPWORDS && it.length > 2 }
+        var filtered = rawTokens.filter { it !in APP_STOPWORDS && it.length > 2 }
         if (filtered.isEmpty()) {
             filtered = rawTokens.filter { it.length > 2 }
         }

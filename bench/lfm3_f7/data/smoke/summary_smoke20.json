@@ -1,0 +1,28 @@
+{
+ "bf16": {
+  "n": 20,
+  "approved": 15,
+  "coverage": 0.78,
+  "hallucination": 3,
+  "refused": 1,
+  "tool_echo": 1,
+  "tok_parity": 20
+ },
+ "q4_0": {
+  "n": 20,
+  "approved": 15,
+  "coverage": 0.772,
+  "hallucination": 2,
+  "refused": 2,
+  "tool_echo": 1,
+  "tok_parity": 20
+ },
+ "hf_f6_mean_of_3": {
+  "n": 20,
+  "approved_expected": 15.67
+ },
+ "paired_q4_vs_bf16": {
+  "q4_win": 1,
+  "q4_loss": 1
+ }
+}

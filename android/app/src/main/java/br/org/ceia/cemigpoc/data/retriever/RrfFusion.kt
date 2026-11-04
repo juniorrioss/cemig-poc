@@ -28,8 +28,10 @@ object RrfFusion {
      * Os `ranks` de cada id preservam a ordem dos sinais passados (útil p/ telemetria).
      */
     fun fuse(signals: List<Signal>, k: Double = DEFAULT_K, limit: Int = 5): List<Fused> {
-        val scores = HashMap<Long, Double>()
-        val ranks = HashMap<Long, IntArray>()
+        // LinkedHashMap: empates de score desempatam pela ORDEM DE 1ª APARIÇÃO (sinal, posição),
+        // como o dict + sorted estável de retrieval3/rrf.py::rrf_fuse (paridade, task lfm3-f7).
+        val scores = LinkedHashMap<Long, Double>()
+        val ranks = LinkedHashMap<Long, IntArray>()
         signals.forEachIndexed { si, signal ->
             signal.ids.forEachIndexed { pos, id ->
                 val rank1 = pos + 1

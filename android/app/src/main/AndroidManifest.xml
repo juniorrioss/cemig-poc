@@ -29,6 +29,7 @@
             <intent-filter>
                 <action android:name="br.org.ceia.cemigpoc.RUN_ACCEPTANCE" />
                 <action android:name="br.org.ceia.cemigpoc.RUN_TOOL_E2E" />
+                <action android:name="br.org.ceia.cemigpoc.RUN_F7_E2E" />
             </intent-filter>
         </receiver>
     </application>

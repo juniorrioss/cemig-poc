@@ -59,6 +59,11 @@ class RealLlamaEngine(
         }
     }
 
+    override fun countTokens(text: String): Int {
+        val n = engine.countTokens(text)
+        return if (n >= 0) n else super.countTokens(text)
+    }
+
     suspend fun generateComplete(prompt: String, maxTokens: Int = 50): String {
         return engine.generateComplete(prompt, maxTokens)
     }

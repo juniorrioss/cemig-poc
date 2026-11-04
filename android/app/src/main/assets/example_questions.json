@@ -1,0 +1,58 @@
+[
+ {
+  "id": "1e3475dfe6a76636ba647dd9",
+  "kind": "norma",
+  "source": "NR-10",
+  "question": "O que o superior imediato e a equipe precisam fazer de planejamento e avaliação antes de começar a trabalhar em circuitos energizados com alta tensão?",
+  "vocabulary_level": "operational"
+ },
+ {
+  "id": "2290f280c9c5a57eec282808",
+  "kind": "norma",
+  "source": "NR-33",
+  "question": "Olha, quando a gente troca de turno ou muda a equipe lá no serviço, tem que trocar os bloqueios e as etiquetas? É isso mesmo?",
+  "vocabulary_level": "operational"
+ },
+ {
+  "id": "02bb27402a6570f939bcf41e",
+  "kind": "norma",
+  "source": "NR-10",
+  "question": "Estou fazendo a vistoria e preciso decidir se o local precisa ter o Prontuário de Instalações Elétricas. Qual é o limite de carga que obriga a constituição desse documento?",
+  "vocabulary_level": "operational"
+ },
+ {
+  "id": "8b8bd5e927d9aeca3914d66b",
+  "kind": "norma",
+  "source": "NR-18",
+  "question": "Estou supervisionando a manutenção em uma escada fixa vertical e preciso decidir se é obrigatório o uso de sistema de proteção contra quedas. Em que situação específica essa exigência entra em vigor?",
+  "vocabulary_level": "operational"
+ },
+ {
+  "id": "53c9bb0ef7211e1cce7f1b1d",
+  "kind": "norma",
+  "source": "NR-34",
+  "question": "Se a gente parar o serviço a quente, qual é o procedimento correto para lidar com as válvulas dos cilindros, maçaricos e distribuidores?",
+  "vocabulary_level": "operational"
+ },
+ {
+  "id": "26d6644d6498482ba63a1847",
+  "kind": "manual",
+  "source": "NR-10 · Manual",
+  "question": "Preciso alinhar a execução da avaliação prévia, aquela que chamamos de conversa ao pé do poste. Onde exatamente ela precisa ser feita e quem são as pessoas obrigatórias para esse diálogo?",
+  "vocabulary_level": "operational"
+ },
+ {
+  "id": "74405ccd67b4defd396751c1",
+  "kind": "manual",
+  "source": "NR-10 · Manual",
+  "question": "Preciso definir o que o médico deve olhar na hora de avaliar a aptidão da equipe que trabalha com riscos elétricos não palpáveis. Quais fatores do ambiente e da natureza das tarefas são essenciais pra essa análise?",
+  "vocabulary_level": "operational"
+ },
+ {
+  "id": "e414c1178f597c545ede34bb",
+  "kind": "manual",
+  "source": "NR-33 · Guia técnico",
+  "question": "Estou fazendo a avaliação do ar num espaço confinado que tem uma abertura lateral e o chão tá todo molhado. Que tipo de acessório eu preciso colocar na sonda pra conseguir medir direito nesses dois casos?",
+  "vocabulary_level": "operational"
+ }
+]

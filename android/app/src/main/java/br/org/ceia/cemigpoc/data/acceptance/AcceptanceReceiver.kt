@@ -17,6 +17,11 @@ class AcceptanceReceiver : BroadcastReceiver() {
     companion object {
         const val ACTION_RUN_ACCEPTANCE = "br.org.ceia.cemigpoc.RUN_ACCEPTANCE"
         const val ACTION_RUN_TOOL_E2E = "br.org.ceia.cemigpoc.RUN_TOOL_E2E"
+        const val ACTION_RUN_F7_E2E = "br.org.ceia.cemigpoc.RUN_F7_E2E"
+
+        /** Gancho registrado pelo MainViewModel (motores já carregados) p/ o E2E da F7. */
+        @Volatile
+        var f7Hook: ((Set<String>?, Boolean?) -> Unit)? = null
         private const val TAG = "AcceptanceReceiver"
     }
 
@@ -34,6 +39,15 @@ class AcceptanceReceiver : BroadcastReceiver() {
                         pendingResult.finish()
                     }
                 }
+            }
+            ACTION_RUN_F7_E2E -> {
+                // Usa o pipeline JÁ carregado do app (abra o app antes: am start). Opcional:
+                // --es ids "id1,id2" para rodar só alguns casos.
+                val ids = intent.getStringExtra("ids")?.split(",")?.map { it.trim() }?.filter { it.isNotEmpty() }?.toSet()
+                val hook = f7Hook
+                if (hook == null) Log.e(TAG, "RUN_F7_E2E: app não inicializado (abra o app antes)")
+                // --ez keep_prefix false: desliga o reuso de prefixo decisão->síntese (A/B de TTFT).
+                else hook(ids, if (intent.hasExtra("keep_prefix")) intent.getBooleanExtra("keep_prefix", true) else null)
             }
             ACTION_RUN_TOOL_E2E -> {
                 Log.i(TAG, "Recebido comando para executar E2E do pipeline híbrido de tool-calling")

@@ -66,6 +66,23 @@ static llama_token find_special_token(const llama_vocab * vocab, const char * ta
     return -1;
 }
 
+// Converte byte[] (UTF-8 padrão) em std::string sem passar por modified-UTF-8.
+static std::string jbytes_to_string(JNIEnv * env, jbyteArray arr) {
+    if (arr == nullptr) return std::string();
+    const jsize n = env->GetArrayLength(arr);
+    std::string out((size_t) n, '\0');
+    if (n > 0) env->GetByteArrayRegion(arr, 0, n, reinterpret_cast<jbyte *>(&out[0]));
+    return out;
+}
+
+// Envia um pedaço de token ao Java como byte[] (UTF-8 padrão; pode ser parcial — o Kotlin
+// junta os bytes antes de decodificar). NewStringUTF abortaria com UTF-8 inválido/parcial.
+static jbyteArray string_to_jbytes(JNIEnv * env, const std::string & s) {
+    jbyteArray arr = env->NewByteArray((jsize) s.size());
+    if (!s.empty()) env->SetByteArrayRegion(arr, 0, (jsize) s.size(), reinterpret_cast<const jbyte *>(s.data()));
+    return arr;
+}
+
 extern "C" {
 
 JNIEXPORT jlong JNICALL
@@ -236,13 +253,15 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
         JNIEnv * env,
         jobject /* thiz */,
         jlong handle,
-        jstring j_prompt,
+        jbyteArray j_prompt,
         jint j_max_tokens,
         jfloat j_temperature,
         jint j_top_k,
         jfloat j_top_p,
         jfloat j_rep_penalty,
+        jfloat j_min_p,
         jboolean suppress_reasoning,
+        jboolean keep_prefix,
         jobject callback
 ) {
     auto * engineCtx = reinterpret_cast<LlamaEngineContext *>(handle);
@@ -253,9 +272,10 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
 
     std::lock_guard<std::mutex> lock(engineCtx->mtx);
 
-    const char * prompt_chars = env->GetStringUTFChars(j_prompt, nullptr);
-    std::string prompt(prompt_chars ? prompt_chars : "");
-    env->ReleaseStringUTFChars(j_prompt, prompt_chars);
+    // Prompt chega como bytes UTF-8 PADRÃO (String.toByteArray(UTF_8) no Kotlin).
+    // GetStringUTFChars devolveria "modified UTF-8" (surrogates CESU-8 p/ chars fora do BMP,
+    // ex.: 𝐌 no índice) e a tokenização divergiria do tokenizer HF (paridade quebrada).
+    std::string prompt = jbytes_to_string(env, j_prompt);
 
     if (prompt.empty()) {
         return 0;
@@ -265,23 +285,9 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
 
     // Configuração dos parâmetros de amostragem Liquid LFM2.5
     // Defaults certificados M1: temp 0.1, top_k 50, repeat_penalty 1.05
+    // Cadeia na ORDEM do common_sampler do llama-server (onde o smoke bf16 x Q4 da F7 foi
+    // validado): logit-bias -> penalties -> top_k -> top_p -> min_p -> temp -> dist.
     llama_sampler * smpl = llama_sampler_chain_init(llama_sampler_chain_default_params());
-    if (j_top_k > 0) {
-        llama_sampler_chain_add(smpl, llama_sampler_init_top_k(j_top_k));
-    }
-    if (j_rep_penalty > 1.0f) {
-        int32_t n_vocab = llama_vocab_n_tokens(vocab);
-        llama_sampler_chain_add(smpl, llama_sampler_init_penalties(n_vocab, 64, j_rep_penalty, 0.0f, 0.0f));
-    }
-    llama_sampler_chain_add(smpl, llama_sampler_init_min_p(0.05f, 1));
-    if (j_temperature > 0.0f) {
-        llama_sampler_chain_add(smpl, llama_sampler_init_temp(j_temperature));
-    } else {
-        llama_sampler_chain_add(smpl, llama_sampler_init_temp(0.0f));
-    }
-    if (j_top_p > 0.0f && j_top_p < 1.0f) {
-        llama_sampler_chain_add(smpl, llama_sampler_init_top_p(j_top_p, 1));
-    }
     // Thinking-OFF: bane a REABERTURA do token `<think>` (-INF). O bloco vazio já foi
     // primado no prompt (ver nativeApplyChatTemplate); o ban impede o modelo de reabrir o
     // raciocínio depois. No-op se o vocab não tiver o token (modelos sem reasoning).
@@ -294,6 +300,22 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
             LOGI("nativeGenerate: thinking-OFF ativo (token <think>=%d banido)", think_open);
         }
     }
+    if (j_rep_penalty > 1.0f) {
+        int32_t n_vocab = llama_vocab_n_tokens(vocab);
+        llama_sampler_chain_add(smpl, llama_sampler_init_penalties(n_vocab, 64, j_rep_penalty, 0.0f, 0.0f));
+    }
+    if (j_top_k > 0) {
+        llama_sampler_chain_add(smpl, llama_sampler_init_top_k(j_top_k));
+    }
+    if (j_top_p > 0.0f && j_top_p < 1.0f) {
+        llama_sampler_chain_add(smpl, llama_sampler_init_top_p(j_top_p, 1));
+    }
+    // min_p configurável (LFM2.5: 0.05; série LFM3 da F4-F7: 0 = desligado, igual ao
+    // sampling HF temp 0.1 / top_k 50 / rep 1.1 validado no smoke da F7).
+    if (j_min_p > 0.0f) {
+        llama_sampler_chain_add(smpl, llama_sampler_init_min_p(j_min_p, 1));
+    }
+    llama_sampler_chain_add(smpl, llama_sampler_init_temp(j_temperature > 0.0f ? j_temperature : 0.0f));
     llama_sampler_chain_add(smpl, llama_sampler_init_dist(LLAMA_DEFAULT_SEED));
 
     // Tokenização do prompt com BOS
@@ -310,18 +332,31 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
     }
     prompt_tokens.resize(tok_res);
 
-    // Para modelos híbridos/recorrentes com shortconv (LFM2.5), limpa o estado de memória
-    // garantindo integridade absoluta dos tensores de convolução entre turnos
-    llama_memory_clear(llama_get_memory(engineCtx->ctx), false);
-    engineCtx->cached_tokens.clear();
+    // Reuso de PREFIXO (task lfm3-f7): se o estado atual corresponde EXATAMENTE a um prefixo
+    // próprio do novo prompt (ex.: o prompt de síntese estende byte a byte o de decisão, cuja
+    // geração foi interrompida ANTES de decodificar o 1º token), só o sufixo é decodificado.
+    // Estado recorrente (shortconv) não volta atrás: sem prefixo exato, limpa tudo (default).
+    size_t n_past = 0;
+    const auto & cached = engineCtx->cached_tokens;
+    if (keep_prefix && !cached.empty() && cached.size() < prompt_tokens.size() &&
+        std::equal(cached.begin(), cached.end(), prompt_tokens.begin())) {
+        n_past = cached.size();
+        LOGI("nativeGenerate: reuso de prefixo (%zu tokens já no estado)", n_past);
+    } else {
+        // Para modelos híbridos/recorrentes com shortconv (LFM2.5/LFM3), limpa o estado de
+        // memória garantindo integridade dos tensores de convolução entre turnos
+        llama_memory_clear(llama_get_memory(engineCtx->ctx), false);
+        engineCtx->cached_tokens.clear();
+    }
 
-    LOGI("nativeGenerate: Prompt tokens total=%zu, iniciando decode", prompt_tokens.size());
+    LOGI("nativeGenerate: Prompt tokens total=%zu (a decodificar=%zu)",
+         prompt_tokens.size(), prompt_tokens.size() - n_past);
 
     // Decodifica os tokens do prompt em fatias de n_batch com posições explícitas
     size_t to_decode = prompt_tokens.size();
-    if (to_decode > 0) {
+    if (to_decode > n_past) {
         const llama_token * new_tokens = prompt_tokens.data();
-        for (size_t i = 0; i < to_decode; i += engineCtx->n_batch) {
+        for (size_t i = n_past; i < to_decode; i += engineCtx->n_batch) {
             int32_t chunk_size = std::min((size_t) engineCtx->n_batch, to_decode - i);
             llama_batch batch = llama_batch_init(chunk_size, 0, 1);
             for (int32_t j = 0; j < chunk_size; j++) {
@@ -345,9 +380,15 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
 
     engineCtx->cached_tokens = prompt_tokens;
 
+    // Histórico das penalidades inclui o PROMPT (= llama-server init_sampler / HF
+    // repetition_penalty sobre input_ids); só a janela de 64 conta.
+    for (llama_token t : prompt_tokens) {
+        llama_sampler_accept(smpl, t);
+    }
+
     // Localização do método de callback Java
     jclass callback_class = env->GetObjectClass(callback);
-    jmethodID mid_on_token = env->GetMethodID(callback_class, "onToken", "(Ljava/lang/String;)Z");
+    jmethodID mid_on_token = env->GetMethodID(callback_class, "onToken", "([B)Z");
 
     int generated_count = 0;
     const int max_tokens = j_max_tokens > 0 ? j_max_tokens : 700;
@@ -370,7 +411,7 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeGenerate(
         int piece_len = llama_token_to_piece(vocab, new_token, piece_buf, sizeof(piece_buf), 0, true);
         if (piece_len > 0) {
             std::string piece_str(piece_buf, piece_len);
-            jstring j_piece = env->NewStringUTF(piece_str.c_str());
+            jbyteArray j_piece = string_to_jbytes(env, piece_str);
             jboolean keep_going = env->CallBooleanMethod(callback, mid_on_token, j_piece);
             env->DeleteLocalRef(j_piece);
 
@@ -545,6 +586,26 @@ Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeFreeEmbedder(
     if (ec->ctx) llama_free(ec->ctx);
     if (ec->model) llama_model_free(ec->model);
     delete ec;
+}
+
+// Conta tokens de um texto com o tokenizador do PRÓPRIO GGUF carregado (sem BOS, tokens
+// especiais reconhecidos). Usado pelo compressor de contexto (orçamento em tokens do LFM3,
+// = tokenizers.encode(add_special_tokens=False) do espelho Python; paridade HF x llama.cpp
+// provada no smoke da F7).
+JNIEXPORT jint JNICALL
+Java_br_org_ceia_cemigpoc_llama_LlamaBridge_nativeCountTokens(
+        JNIEnv * env,
+        jobject /* thiz */,
+        jlong handle,
+        jbyteArray j_text
+) {
+    auto * engineCtx = reinterpret_cast<LlamaEngineContext *>(handle);
+    if (!engineCtx || !engineCtx->model || j_text == nullptr) return -1;
+    std::string text = jbytes_to_string(env, j_text);
+    if (text.empty()) return 0;
+    const llama_vocab * vocab = llama_model_get_vocab(engineCtx->model);
+    int n = llama_tokenize(vocab, text.c_str(), (int32_t) text.length(), nullptr, 0, false, true);
+    return n < 0 ? -n : n;
 }
 
 JNIEXPORT void JNICALL

@@ -103,12 +103,9 @@ fun MainScreen(
         }
     }
 
-    val quickQueries = listOf(
-        "Quais as etapas obrigatórias para desenergização na NR-10?",
-        "Qual o EPI para trabalho em altura acima de 2 metros na NR-35?",
-        "Posso trabalhar com aliança no barramento energizado?",
-        "Qual a distância segura para média tensão 13,8 kV?"
-    )
+    // F7: perguntas-exemplo REAIS do benchmark (vocabulary_level=operational) que o pipeline
+    // do ponto de operação aprovou nas 3 rodadas da F6 (asset example_questions.json).
+    val examples = uiState.exampleQuestions
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -400,14 +397,14 @@ fun MainScreen(
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "LFM2.5 1.2B tool-calling · Nemotron 3.5 INT8 · 36 NRs",
+                            text = "LFM3 1.7B tool-calling · Nemotron 3.5 · 36 NRs + 9 manuais",
                             color = CeiaGray500,
                             fontFamily = InterFontFamily,
                             fontSize = 12.sp
                         )
                         Spacer(modifier = Modifier.height(12.dp))
                         Text(
-                            text = "Segure o botão Push-to-Talk para perguntar por voz, ou toque em um dos exemplos rápidos abaixo:",
+                            text = "Segure o botão para perguntar por voz, ou toque numa pergunta de exemplo (do benchmark operacional):",
                             color = CeiaGray700,
                             fontFamily = InterFontFamily,
                             fontSize = 13.sp,
@@ -416,18 +413,28 @@ fun MainScreen(
                         Spacer(modifier = Modifier.height(12.dp))
 
                         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                            quickQueries.forEach { query ->
-                                Box(
+                            examples.forEach { ex ->
+                                val isManual = ex.kind == "manual"
+                                Column(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clip(RoundedCornerShape(CeiaRadiusSm))
                                         .background(CeiaGray100)
                                         .border(1.dp, CeiaBlue500.copy(alpha = 0.3f), RoundedCornerShape(CeiaRadiusSm))
-                                        .clickable { viewModel.processQuestion(query) }
+                                        .clickable(enabled = uiState.isModelReady) { viewModel.processQuestion(ex.question) }
                                         .padding(horizontal = 12.dp, vertical = 8.dp)
                                 ) {
+                                    // Selo da fonte esperada: norma (azul) ou manual (teal, a novidade da F6).
                                     Text(
-                                        text = query,
+                                        text = (if (isManual) "MANUAL · " else "NORMA · ") + ex.source,
+                                        color = if (isManual) CeiaTeal600 else CeiaBlue500,
+                                        fontFamily = InterFontFamily,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 10.sp
+                                    )
+                                    Spacer(modifier = Modifier.height(2.dp))
+                                    Text(
+                                        text = ex.question,
                                         color = CeiaNavy950,
                                         fontFamily = InterFontFamily,
                                         fontSize = 12.sp,

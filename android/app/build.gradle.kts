@@ -36,12 +36,17 @@ android {
         //   -Pcemig.toolModel=2.6b         -> 2.6B tool r64 Q4 (qualidade maior, mas ~18-23s/4.3GB)
         // O 2.6B é reasoning: SUPPRESS_REASONING=true (thinking-OFF via llama_jni). O GGUF do 2.6B
         // tool entra por override externo sob o nome LFM2.5-2.6B-tools-Q4_0.gguf.
-        val toolModel = (project.findProperty("cemig.toolModel") as String?)?.lowercase() ?: "1.2b"
+        // task lfm3-f7: DEFAULT = LFM3-1.7B f4-r32-ep2 Q4_0 (ponto de operação da F6: XML
+        // <tool_call>, manuais + compressão). -Pcemig.toolModel=1.2b volta ao LFM2.5 1.2B tool.
+        val toolModel = (project.findProperty("cemig.toolModel") as String?)?.lowercase() ?: "lfm3"
+        val useLfm3 = toolModel == "lfm3"
         val useTool26b = toolModel == "2.6b"
+        buildConfigField("boolean", "USE_LFM3", useLfm3.toString())
         // synthModel (legado, task poc-engine-upgrade): sintetizador NÃO-tool (pipeline fixo antigo).
         val synthModel = (project.findProperty("cemig.synthModel") as String?)?.lowercase() ?: "1.2b"
         val use26b = synthModel == "2.6b" || useTool26b
         val llmModelName = when {
+            useLfm3 -> "lfm3-1.7b-f4-r32-ep2-Q4_0.gguf"
             useTool26b -> "LFM2.5-2.6B-tools-Q4_0.gguf"
             synthModel == "2.6b" -> "LFM2.5-2.6B-Q4_0.gguf"
             else -> "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"
@@ -57,7 +62,9 @@ android {
         // ("disjuntor" não sai); o Nemotron acerta 91,9% dos termos (asr/README.md).
         //   ./gradlew assembleRelease -Pcemig.asrEngine=nemotron  -> Nemotron 3.5 INT8 (sherpa)
         //   (default / omitido)                                   -> Whisper Base Q5_1
-        val asrEngine = (project.findProperty("cemig.asrEngine") as String?)?.lowercase() ?: "whisper"
+        // task lfm3-f7: default Nemotron (a melhor versão embarcada; Whisper segue como fallback
+        // automático se os ONNX externos não existirem).
+        val asrEngine = (project.findProperty("cemig.asrEngine") as String?)?.lowercase() ?: "nemotron"
         val useNemotron = asrEngine == "nemotron"
         buildConfigField("String", "ASR_ENGINE", "\"$asrEngine\"")
         buildConfigField("boolean", "USE_NEMOTRON_ASR", useNemotron.toString())
@@ -89,7 +96,7 @@ android {
     }
 
     aaptOptions {
-        noCompress.addAll(listOf("gguf", "bin", "db"))
+        noCompress.addAll(listOf("gguf", "bin", "db", "f16"))
     }
 
     testOptions {
@@ -153,5 +160,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     testImplementation("junit:junit:4.13.2")
+    // org.json real p/ ler fixtures de paridade na JVM (o android.jar só traz stubs).
+    testImplementation("org.json:json:20231013")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
 }

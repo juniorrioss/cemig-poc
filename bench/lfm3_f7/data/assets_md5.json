@@ -1,0 +1,36 @@
+{
+ "manuals.db": {
+  "md5": "737c76cdbc8d00c656f56d7314d7138d",
+  "bytes": 4980736
+ },
+ "manuals_dense.bin": {
+  "md5": "c6da02eaae1817ac94488c59581ae27f",
+  "bytes": 3359005
+ },
+ "units.bin": {
+  "md5": "4cff21517c278a12fc3f5f27de40e548",
+  "bytes": 8851465
+ },
+ "units_win3.f16": {
+  "md5": "5f9a2b7050476e47f62ed9bfdc5f3d03",
+  "bytes": 56621581
+ },
+ "lfm3_tools_system_prompt.txt": {
+  "md5": "cee5d45f6110823d87a8aaecad732b39",
+  "bytes": 2002
+ },
+ "index.db": {
+  "md5": "e90e94bde10a3399183f61d8a7d3d3cb",
+  "bytes": 19099648
+ },
+ "nr_classifier.bin": {
+  "md5": "e2c98584843add31caa9828767ec1c68",
+  "bytes": 4030439
+ },
+ "_units": {
+  "rows": 36863,
+  "dim": 768,
+  "chunks": 3294
+ },
+ "system_sha256": "921e6a1f2c77bcf1afb0b3e44b976261adb9de4760f631ad7a8f30549cc8eb15"
+}

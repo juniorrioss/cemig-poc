@@ -52,9 +52,18 @@ class ModelFileManager(private val context: Context) {
         // v4: índice FTS5 com expansão v4 (verbalizações + variantes de ASR + sinônimos) e
         // dense_exponly.bin reencodado com essa expansão (robustez a erro de transcrição em
         // campo). dense_text.bin permanece o da v3 (a expansão v4 no texto piora o denso).
-        private const val ASSET_VERSION = 4  // v4: índice FTS5 expansão-rica + dense_exp v4
+        // F7 (lfm3-f7): manuais (FTS5 + denso próprios) e o índice do compressor de contexto
+        // (unidades + janelas fp16) do ponto de operação da F6.
+        const val MANUALS_DB = "manuals.db"
+        const val MANUALS_DENSE_BIN = "manuals_dense.bin"
+        const val UNITS_BIN = "units.bin"
+        const val UNITS_VEC = "units_win3.f16"
+
+        private const val ASSET_VERSION = 5  // v5 (F7): + manuais e índice do compressor
         // Arquivos versionados: recopiar do APK se a versão do asset mudou.
-        private val VERSIONED_ASSETS = setOf(FTS5_DB_NAME, DENSE_TEXT_BIN, DENSE_EXPONLY_BIN)
+        private val VERSIONED_ASSETS = setOf(
+            FTS5_DB_NAME, DENSE_TEXT_BIN, DENSE_EXPONLY_BIN, MANUALS_DB, MANUALS_DENSE_BIN, UNITS_BIN, UNITS_VEC
+        )
     }
 
     suspend fun getLlmModelFile(onProgress: ((Float) -> Unit)? = null): File = withContext(Dispatchers.IO) {
@@ -67,6 +76,11 @@ class ModelFileManager(private val context: Context) {
 
     suspend fun getFts5DatabaseFile(): File = withContext(Dispatchers.IO) {
         resolveOrCopy(FTS5_DB_NAME, null)
+    }
+
+    /** Asset versionado genérico (manuais/compressor/densos) com a mesma precedência. */
+    suspend fun getAssetFile(name: String): File = withContext(Dispatchers.IO) {
+        resolveOrCopy(name, null)
     }
 
     suspend fun getEmbedModelFile(onProgress: ((Float) -> Unit)? = null): File = withContext(Dispatchers.IO) {
