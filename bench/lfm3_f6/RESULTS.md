@@ -211,7 +211,7 @@ Prompts das 151 (`corpus/qa_pairs_v2.jsonl`) no mesmo formato do app, com o gaba
 
 ```bash
 make -C bench/lfm3_f5 align manuals units          # caches da F5 (se ausentes)
-make -C bench/lfm3_f6 retrieval units prompts       # grade (49 var. via eval_retrieval_f6.py) + janelas manuais + prompts
+make -C bench/lfm3_f6 retrieval units prompts       # fronteira da grade (as 49 var. = eval_retrieval_f6.py --variants <nomes em data/retrieval>) + janelas manuais + prompts
 # Spark (setsid nohup; BATCH 8, max-new 768 — lição de OOM da F5), venv ~/cemig-poc/lfm3_f2/.venv:
 #   python gen_e2e.py --model ~/cemig-poc/lfm3_f4/lfm3-1.7b-data2x-ep4-merged \
 #     --adapter ~/cemig-poc/lfm3_f5/checkpoint-284 --tag f6-recorte --prompts data/e2e/prompts_recorte.jsonl --batch 8 --max-new 768
