@@ -1,4 +1,4 @@
-# Relatório vivo — Exploração LFM3-1.7B (F0 → F4)
+# Relatório vivo — Exploração LFM3-1.7B (F0 → F5)
 
 > **Documento INCREMENTAL.** Fonte canônica: este `bench/REPORT.md`; o
 > `bench/REPORT.html` é gerado dele (`python3 bench/report_html.py`). A cada
@@ -7,10 +7,10 @@
 > artefatos. Números SEMPRE copiados dos `RESULTS.md`/parquets reais de cada
 > fase — nunca de memória.
 >
-> **Última atualização**: 2026-11-04 (consolidação F0–F4).
+> **Última atualização**: 2026-11-04 (F5: alavancas de retrieval + compressão de contexto).
 > Branches-fonte (exploração, NÃO mesclados no main por decisão do capitão):
 > `main` (F0, F2) · `fm/lfm3-f3-robustez` (F3) · `fm/lfm3-f3b-sweep` (F3b) ·
-> `fm/lfm3-f4-tools` (F4).
+> `fm/lfm3-f4-tools` (F4) · `fm/lfm3-f5-retrieval` (F5).
 
 ---
 
@@ -29,6 +29,9 @@ distrator, juiz 27B, cobertura de fatos com citação fora do gate):
 - **F3b** — sweep one-factor-at-a-time sobre a receita F3 (o que domina?).
 - **F4** — tool-calling multiturno (o modelo decide buscar) sobre o campeão
   F3b.
+- **F5** — alavancas de retrieval no v4 (gate, vizinhos, manuais) medidas
+  numa régua DUPLA (151 da POC + benchmark) e **compressão de contexto**
+  por relevância (hipótese do capitão) medida fim-a-fim com o `f4-r32-ep2`.
 
 **Candidato final: `f4-r32-ep2`** (LoRA r32 MLP sobre o merged
 `data2x-ep4`). Números-chave na bateria completa 1536 vs F0 baseline:
@@ -64,6 +67,14 @@ distrator, juiz 27B, cobertura de fatos com citação fora do gate):
    interação NEGATIVA: `combo` derruba ranking; `combo3` recupera ranking e
    alucinação mas colapsa a probe (2,88) — empilhar exige escalar a âncora em
    valor absoluto, não em fração.
+5. **Menos contexto, mais denso, não piora — se o orçamento for reinvestido
+   em recall (F5).** Buscar top-5 e comprimir a 50% dos tokens do controle
+   (seleção de unidades normativas pelo próprio EmbeddingGemma, id do item
+   preservado) dá aprovação ≥ top-2 cru (57,5 vs 55,6%, 2 rodadas, recorte
+   344, dentro do ruído), cita o item certo +8 p.p. e corta 33% do prompt;
+   comprimir só o top-2 PIORA. No retrieval, o único ajuste de gate que passa
+   nas duas réguas é limiar 0,7 + boost 2× (ganho modesto); tirar o
+   classificador é mascaramento (benchmark +3, POC −11 p.p. R@2).
 
 ---
 
@@ -263,6 +274,52 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
   `lfm3-f4-tools-mhx3-r32`). Pipeline autônomo no container para
   intermitência de rede (juiz via gateway docker `172.17.0.1:8005`).
 
+### 3.6 F5 — Alavancas de retrieval + compressão de contexto (2026-11-04) · `fm/lfm3-f5-retrieval:bench/lfm3_f5`
+
+- **Objetivo**: as 3 alavancas do smoke de retrieval (gate do classificador,
+  vizinhos ±1, manuais como aba separada) + a hipótese do capitão: comprimir
+  o contexto entregue ao LFM com um modelo pequeno de relevância (estilo SCR
+  do MobileRAG+) melhora ou mantém a resposta com menos tokens. Trava
+  anti-mascaramento: só conta o que sobe numa régua sem derrubar a outra
+  (151 da POC × benchmark_mobile 1536).
+- **Harness**: reimplementado do apêndice do smoke e agora COMMITADO
+  (`align.py`/`metrics.py`); paridade 151 = 51,7/65,6. Override de NR
+  explícita portado para `bench/ctx_topk/retrieval_v4.py` (espelho = app);
+  2ª divergência espelho×app achada (top-1 `nenhuma`).
+- **Retrieval (controle `v4app`: 151 R@2 52,3 / R@5 66,2; benchmark norma
+  hit@2 0,762 / hit@5 0,879)**:
+
+  | alavanca | 151 R@2 / R@5 | norma hit@2 / hit@5 | manual hit@5 | trava |
+  |---|--:|--:|--:|:-:|
+  | gate limiar 0,7 + boost 2× | 52,3 / 66,9 | 0,775 / 0,886 | 0 | ✓ |
+  | sem classificador (só NR explícita) | 41,1 / 60,3 | 0,791 / 0,898 | 0 | ✗ (mascarada) |
+  | top-2 + vizinhos ±1 (conjunto) | 56,3 | 0,807 | — | ✓ (só c/ compressão) |
+  | manuais no RRF w=1,25 | 52,3 / 66,2 | 0,762 / 0,877 | 0,220 | ≈ (−0,2 norma) |
+  | manuais no RRF w=2 | 50,3 / 62,9 | 0,730 / 0,847 | 0,782 | ✗ |
+
+- **Compressão fim-a-fim** (`f4-r32-ep2`, recorte 344, formato do app com a
+  busca injetada no turno tool; régua honesta, juiz 27B; aprovação = média de
+  2 rodadas onde houve réplica; TTFT estimado = prompt ÷ 116 t/s, não medido
+  em aparelho):
+
+  | célula | aprov. | alucin. | cita item-ouro | tok prompt | TTFT~ |
+  |---|--:|--:|--:|--:|--:|
+  | (a) top-2 cru (app) | 55,6 | 13,8 | 65,2 | 1635 | 14,1 s |
+  | (b) top-2 → 50% | 52,3 | 12,2 | 67,0 | 1096 | 9,5 s |
+  | (c) top-2 + ±1 → orçamento de (a) | 57,4 | 12,9 | 71,7 | 1547 | 13,4 s |
+  | **(d) top-5 → 50%** | **57,5** | **12,5** | **73,2** | **1100** | **9,5 s** |
+
+- **Veredito**: hipótese confirmada na forma (d): mesma ou melhor aprovação
+  (ganho dentro do ruído, sinal pareado p≈0,46), citação de item +8 p.p. e
+  −33% de prompt. Comprimir só o top-2 piora (−2 a −3 p.p., recusa sobe).
+  A lição do `trim.py` foi resolvida: o `(item X)` ancorado em cada unidade faz
+  todas as células comprimidas citarem o item MELHOR que o cru. **Pendente
+  antes de embarcar**: medir (d) nas 151 da POC (o proxy sem LLM das falas
+  coloquiais perde fatos: 0,70→0,49 no contexto).
+- **Custo**: retrieval ~1 min/variante (5070 local + CPU); geração E2E 2408 +
+  1032 (réplica) respostas na Spark (batch 8; batch 48 causou OOM da memória
+  unificada); julgamento local ~7 min por rodada.
+
 ---
 
 ## 4. Decisões de produto em aberto
@@ -284,6 +341,11 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
 4. **Quantização pendente**: toda a exploração foi em bf16 em GPU (ordem do
    capitão na F0). Q4/GGUF, latência on-device e RAM do 1.7B não foram
    medidos — bloqueia qualquer decisão de embarque.
+5. **Retrieval/compressão no app (F5)**: (i) gate limiar 0,7 + boost 2× no
+   `HybridRetriever` (2 constantes); (ii) compressão top-5→50% após validar
+   nas 151 (custa ~20 MB int8 de índice de janelas); (iii) peso dos manuais
+   no RRF é escolha de produto (w=1,25 sem custo para as normas; gate por
+   margem densa a w=2 como equilíbrio).
 
 ---
 
@@ -298,10 +360,11 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
 | F3 | `fm/lfm3-f3-robustez` | `bench/lfm3_f3` | `data/eval/` — 32 parquets (8 épocas × 4 células) | H100 `checkpoints/lfm3-f3-robustez-r32/checkpoint-{218…1744}`; Spark ep1-6 | `lfm3-f3-robustez-r32` (kde9xyam), `-ext8` (rcavhk37) |
 | F3b | `fm/lfm3-f3b-sweep` | `bench/lfm3_f3b` | `data/eval/` — 4 parquets do campeão; dominância completa em `data/dominance.json` | H100 `checkpoints/lfm3-f3b-data-2x/checkpoint-1396` (campeão) + demais células `lfm3-f3b-*` | runs `lfm3-f3b-*` |
 | F4 | `fm/lfm3-f4-tools` | `bench/lfm3_f4` | `data/eval/` — **35 parquets** (estáticas 3 épocas+mhx3 + 5 suites de tool × 5 tags) + suites/traces jsonl | H100 `checkpoints/lfm3-f4-tools-r32/checkpoint-{142,284,426}` e `lfm3-f4-tools-mhx3-r32/checkpoint-{157,314}`; merged base `/workspace/cemig/f4/merged-rebuilt` (md5 `ae5f304d91bb47402d9125d96e766a15`) | `lfm3-f4-tools-r32` (r22hqe1h), `lfm3-f4-tools-mhx3-r32` |
+| F5 | `fm/lfm3-f5-retrieval` | `bench/lfm3_f5` | — (retrieval: `data/retrieval/*.json`; E2E: `data/e2e/{gen,scored,summary}_f4-r32-ep2*`) | usa `f4-r32-ep2` (checkpoint-284, md5 adapter `18a40d6c…`) | — |
 
-RESULTS por fase: `bench/lfm3_f{0,2,3,3b,4}/RESULTS.md`; consolidações
+RESULTS por fase: `bench/lfm3_f{0,2,3,3b,4,5}/RESULTS.md`; consolidações
 numéricas: `lfm3_f3/data/consolidation.json`, `lfm3_f3b/data/dominance.json`,
-`lfm3_f4/data/consolidation.json`.
+`lfm3_f4/data/consolidation.json`, `lfm3_f5/data/consolidation.json`.
 
 ### 5.2 Infra usada
 
