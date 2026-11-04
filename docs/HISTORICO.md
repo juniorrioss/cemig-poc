@@ -40,6 +40,7 @@ Legenda de status:
 | 23 | `tools_oraculo/` | O tool-calling atrapalha a síntese? O híbrido bate o pipeline fixo? | Tool **ajuda** a síntese (oráculo 31,4 vs 22,3); **híbrido bate tools puro** (19,2 vs 7–8%) e não perde p/ o fixo. **Adotar o híbrido.** | **VIGENTE** (desenho embarcado) | `tools_oraculo/README.md` |
 | 24 | Android tools-hybrid | O híbrido roda no aparelho? | SIM — 5/5 casos E2E corretos; PSS 3,86 GB; reuso \~7 s, busca 10–12 s. Renderização nativa provada byte-a-byte. | **VIGENTE** (a última entrega) | `android/README_TOOLS_HYBRID.md` |
 | 25 | `tools_2_6b/` | E o 2.6B com tool-calling? (2ª opção de embarque) | Qualidade maior (oráculo 46–54%) mas **custo proibitivo p/ voz** (18–29 s, 4,3–4,75 GB) + forgetting. Fica por flag. | **VIGENTE** (opção 2, `-Pcemig.toolModel=2.6b`) | `tools_2_6b/README.md` |
+| 26 | `bench/lfm3_f5/` | Alavancas no v4 (gate, vizinhos, manuais) e COMPRIMIR o contexto do LFM ajuda? (régua dupla 151 + benchmark_mobile) | Gate limiar 0,7 + boost 2× sobe as 2 réguas (modesto); sem classificador = mascarada. **Compressão top-5→50% dos tokens ≥ controle top-2 cru** (aprov 57,5 vs 55,6, citação item +8 p.p., −33% prompt); comprimir só o top-2 piora. Manuais: trade-off (w=1,25 grátis). | PROPOSTA (app inalterado; validar compressão nas 151) | `bench/lfm3_f5/RESULTS.md` |
 
 ---
 
