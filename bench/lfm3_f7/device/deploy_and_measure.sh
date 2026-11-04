@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# deploy_and_measure.sh <adb-serial> — F7: instala o APK release no S24+, empurra os pesos
+# externos (LFM3 Q4_0, EmbeddingGemma, Nemotron), roda o E2E das perguntas-exemplo
+# (broadcast RUN_F7_E2E) e puxa o log bruto + RAM (dumpsys meminfo).
+#
+# Pesos (fora do git): ~/models-poc/lfm3_f7/f4-r32-ep2-Q4_0.gguf (md5 d26176d3…),
+# ~/models-poc/embed/embeddinggemma-300M-qat-Q4_0.gguf, ~/models-asr/nemotron-3.5-official-560ms-int8/
+set -euo pipefail
+S="$1"
+REPO="$(cd "$(dirname "$0")/../../.." && pwd)"
+OUT="$REPO/bench/lfm3_f7/data/device"
+PKG=br.org.ceia.cemigpoc
+EXT=/sdcard/Android/data/$PKG/files
+A="adb -s $S"
+mkdir -p "$OUT"
+
+$A install -r -d "$REPO/android/app/build/outputs/apk/release/app-release.apk"
+$A shell pm grant $PKG android.permission.RECORD_AUDIO || true
+# cria o diretório externo do app (primeira abertura) e corrige permissão (lição poc-sft-v3)
+$A shell am start -n $PKG/.MainActivity >/dev/null; sleep 3; $A shell am force-stop $PKG
+$A shell mkdir -p $EXT
+push_if_needed() {  # <local> <remote-name>
+  local l="$1" r="$EXT/$2"
+  local lsz; lsz=$(stat -c %s "$l")
+  local rsz; rsz=$($A shell "stat -c %s '$r' 2>/dev/null" | tr -d '\r' || true)
+  if [ "$lsz" != "$rsz" ]; then $A push "$l" "$r"; else echo "ok (já presente) $2"; fi
+}
+push_if_needed ~/models-poc/lfm3_f7/f4-r32-ep2-Q4_0.gguf lfm3-1.7b-f4-r32-ep2-Q4_0.gguf
+push_if_needed ~/models-poc/embed/embeddinggemma-300M-qat-Q4_0.gguf embeddinggemma-300M-qat-Q4_0.gguf
+if ! $A shell "test -f $EXT/nemotron-3.5-official-560ms-int8/encoder.int8.onnx"; then
+  $A push ~/models-asr/nemotron-3.5-official-560ms-int8 $EXT/
+fi
+$A shell chmod -R 775 $EXT || true
+
+$A logcat -c
+$A shell am start -n $PKG/.MainActivity >/dev/null
+echo "[wait] carregando motores..."
+for i in $(seq 1 120); do
+  if $A logcat -d -s MainViewModel:I | grep -q "Inicialização dos motores concluída"; then break; fi; sleep 2
+done
+$A logcat -d -s MainViewModel:I | tail -5
+$A shell am broadcast -a $PKG.RUN_F7_E2E ${2:-}
+echo "[wait] E2E..."
+for i in $(seq 1 360); do
+  if $A logcat -d -s CEMIG_F7_E2E:I | grep -q "E2E F7 CONCLUÍDO"; then break; fi; sleep 5
+done
+$A shell dumpsys meminfo $PKG > "$OUT/meminfo_after.txt"
+$A pull $EXT/f7_e2e_results.json "$OUT/f7_e2e_results${3:-}.json"
+$A logcat -d > "$OUT/logcat_f7${3:-}.txt"
+grep -E "TOTAL PSS|TOTAL RSS|TOTAL:" "$OUT/meminfo_after.txt" | head -3
+echo "[ok] $OUT"
