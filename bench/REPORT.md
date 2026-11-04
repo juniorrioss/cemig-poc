@@ -1,4 +1,4 @@
-# Relatório vivo — Exploração LFM3-1.7B (F0 → F5)
+# Relatório vivo — Exploração LFM3-1.7B (F0 → F6)
 
 > **Documento INCREMENTAL.** Fonte canônica: este `bench/REPORT.md`; o
 > `bench/REPORT.html` é gerado dele (`python3 bench/report_html.py`). A cada
@@ -7,10 +7,10 @@
 > artefatos. Números SEMPRE copiados dos `RESULTS.md`/parquets reais de cada
 > fase — nunca de memória.
 >
-> **Última atualização**: 2026-11-04 (F5: alavancas de retrieval + compressão de contexto).
+> **Última atualização**: 2026-11-04 (F6: manuais nos índices, ponto de operação + fim-a-fim).
 > Branches-fonte (exploração, NÃO mesclados no main por decisão do capitão):
 > `main` (F0, F2) · `fm/lfm3-f3-robustez` (F3) · `fm/lfm3-f3b-sweep` (F3b) ·
-> `fm/lfm3-f4-tools` (F4) · `fm/lfm3-f5-retrieval` (F5).
+> `fm/lfm3-f4-tools` (F4) · `fm/lfm3-f5-retrieval` (F5) · `fm/lfm3-f6-manuais` (F6).
 
 ---
 
@@ -32,6 +32,9 @@ distrator, juiz 27B, cobertura de fatos com citação fora do gate):
 - **F5** — alavancas de retrieval no v4 (gate, vizinhos, manuais) medidas
   numa régua DUPLA (151 da POC + benchmark) e **compressão de contexto**
   por relevância (hipótese do capitão) medida fim-a-fim com o `f4-r32-ep2`.
+- **F6** — manuais nos índices (aba separada no RRF): ponto de operação
+  escolhido sob a trava das 2 réguas + fim-a-fim no recorte 344 + a d50 nas
+  151 (ressalva da F5).
 
 **Candidato final: `f4-r32-ep2`** (LoRA r32 MLP sobre o merged
 `data2x-ep4`). Números-chave na bateria completa 1536 vs F0 baseline:
@@ -75,6 +78,13 @@ distrator, juiz 27B, cobertura de fatos com citação fora do gate):
    comprimir só o top-2 PIORA. No retrieval, o único ajuste de gate que passa
    nas duas réguas é limiar 0,7 + boost 2× (ganho modesto); tirar o
    classificador é mascaramento (benchmark +3, POC −11 p.p. R@2).
+6. **O maior ganho do sistema é escopo de busca, não modelo (F6).** Ligar os
+   9 manuais como aba separada no RRF (gate F5 + peso 1,75 + gate por margem
+   densa) leva o fim-a-fim do recorte 344 de **57,5 para 68,0%** (manual
+   18→53%, norma −0,3 p.p. causal) **sem um token a mais de prompt**; no
+   operational 54,7→65,1%. O leitor converte ~82% quando o ouro está no
+   contexto, seja norma ou manual. Ressalva: a compressão d50 **não fecha**
+   nas 151 coloquiais (13,2 vs 16,9% do top-2 cru, p=0,17).
 
 ---
 
@@ -320,6 +330,49 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
   1032 (réplica) respostas na Spark (batch 8; batch 48 causou OOM da memória
   unificada); julgamento local ~7 min por rodada.
 
+### 3.7 F6 — Manuais nos índices: ponto de operação + fim-a-fim (2026-11-04) · `fm/lfm3-f6-manuais:bench/lfm3_f6`
+
+- **Objetivo** (ordem do capitão: "junte os manuais nos índices"): 26% das
+  1536 (35% do recorte) têm o gabarito em MANUAL, que não estava indexado.
+  Acerto 0% por construção. Reaproveita a base da F5 (`manuals.db`, denso
+  próprio, 2 sinais no RRF, compressor, `f4-r32-ep2`).
+- **Ponto de operação** (grade de 49 variantes; trava: norma hit@5 ≥ −0,5 p.p.
+  e 151 R@2 intacto). Os candidatos do brief ficaram nos extremos: w=1,25
+  passa com manual 22%; w=1,5 e margem w=2 quebram a trava (norma −1,1). O
+  vencedor combina o gate da F5 (limiar 0,7 + boost 2×) com peso 1,75 e gate
+  por margem densa:
+
+  | variante | 151 R@2 / R@5 | norma hit@5 (Δ) | manual hit@5 | todas hit@5 | trava |
+  |---|--:|--:|--:|--:|:-:|
+  | `thr0.7_f2` (sem manuais, controle) | 52,3 / 66,9 | 0,886 | 0 | 0,656 | — |
+  | **`thr0.7_f2+man1.75+margin`** | 52,3 / 66,9 | 0,882 (−0,44) | **0,468** | 0,774 | ✓ |
+  | `thr0.7_f2+man2` (pareto alto) | 50,3 / 63,6 | 0,861 (−2,55) | 0,780 | 0,840 | ✗ |
+
+- **Fim-a-fim** (recorte 344, top-5 → compressão 50% com as janelas dos 1092
+  chunks de manual adicionadas ao compressor, `f4-r32-ep2`, juiz 27B, 2–3
+  rodadas; paridade d50 F5 byte a byte em 344/344):
+
+  | célula | aprov. | norma | manual | operational | alucin. | recusa | tok prompt |
+  |---|--:|--:|--:|--:|--:|--:|--:|
+  | F5 a (app, top-2 cru) | 55,6 | 75,7 | 18,3 | 50,6 | 13,8 | 24,7 | 1635 |
+  | ctrl d50 (sem manuais) | 57,5 | 78,4 | 18,3 | 55,4 | 11,5 | 27,5 | 1100 |
+  | **op d50 (escolhido)** | **68,0** | 75,9 | **53,3** | **65,1** | 13,2 | 15,4 | 1100 |
+  | hi d50 (w=2) | 73,0 | 75,2 | 68,8 | 73,9 | 13,2 | 12,3 | 1099 |
+
+- **A norma não cai no op**: em 208 das 224 perguntas de norma o contexto é
+  idêntico ao do controle e a diferença é amostragem. Medido só onde o
+  contexto mudou, o efeito é −0,3 p.p. No hi a queda é real (−3,4 p.p.).
+- **d50 nas 151 (ressalva da F5)**: top-2 cru 16,9% / d50 13,2% / op 15,2%
+  (régua honesta, 2 rodadas). A compressão converte menos quando o ouro está
+  no contexto (27→17,5%). **Não fecha a trava dupla**; os manuais não pioram
+  as 151.
+- **Veredito**: recomendação técnica = op (cumpre as 2 travas, +10,5 p.p.
+  global, custo de norma −0,3, zero token a mais). O hi maximiza o global
+  (+5 p.p. sobre o op) pagando norma: decisão de produto.
+- **Custo**: retrieval ~1 min/variante (CPU + encoder local); geração E2E
+  1376×2 + 688 + 453×2 prompts na Spark (batch 8, ~1,35 it/s, ~11 GB);
+  julgamento local ~7 min por rodada.
+
 ---
 
 ## 4. Decisões de produto em aberto
@@ -346,6 +399,10 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
    nas 151 (custa ~20 MB int8 de índice de janelas); (iii) peso dos manuais
    no RRF é escolha de produto (w=1,25 sem custo para as normas; gate por
    margem densa a w=2 como equilíbrio).
+6. **Manuais no app (F6)**: op `thr0.7_f2+man1.75+margin` (+10,5 p.p. global,
+   norma intacta) **vs** hi `w=2` (+15,5 p.p. global, −3,4 p.p. de norma,
+   quebra a trava das 151). E a compressão d50, que **não fechou nas 151**:
+   medir orçamento 70% ou top-2 cru + manuais antes de embarcar.
 
 ---
 
@@ -361,10 +418,12 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
 | F3b | `fm/lfm3-f3b-sweep` | `bench/lfm3_f3b` | `data/eval/` — 4 parquets do campeão; dominância completa em `data/dominance.json` | H100 `checkpoints/lfm3-f3b-data-2x/checkpoint-1396` (campeão) + demais células `lfm3-f3b-*` | runs `lfm3-f3b-*` |
 | F4 | `fm/lfm3-f4-tools` | `bench/lfm3_f4` | `data/eval/` — **35 parquets** (estáticas 3 épocas+mhx3 + 5 suites de tool × 5 tags) + suites/traces jsonl | H100 `checkpoints/lfm3-f4-tools-r32/checkpoint-{142,284,426}` e `lfm3-f4-tools-mhx3-r32/checkpoint-{157,314}`; merged base `/workspace/cemig/f4/merged-rebuilt` (md5 `ae5f304d91bb47402d9125d96e766a15`) | `lfm3-f4-tools-r32` (r22hqe1h), `lfm3-f4-tools-mhx3-r32` |
 | F5 | `fm/lfm3-f5-retrieval` | `bench/lfm3_f5` | — (retrieval: `data/retrieval/*.json`; E2E: `data/e2e/{gen,scored,summary}_f4-r32-ep2*`) | usa `f4-r32-ep2` (checkpoint-284, md5 adapter `18a40d6c…`) | — |
+| F6 | `fm/lfm3-f6-manuais` | `bench/lfm3_f6` | `data/eval/` — 7 parquets (recorte344 × {ctrl,op,mid,hi}_d50 + poc151 × {a_raw2, d_c5_r0.5, op_d50}); `context_type` `retrieved_top5_compressed_manuals` | usa `f4-r32-ep2` | — |
 
-RESULTS por fase: `bench/lfm3_f{0,2,3,3b,4,5}/RESULTS.md`; consolidações
+RESULTS por fase: `bench/lfm3_f{0,2,3,3b,4,5,6}/RESULTS.md`; consolidações
 numéricas: `lfm3_f3/data/consolidation.json`, `lfm3_f3b/data/dominance.json`,
-`lfm3_f4/data/consolidation.json`, `lfm3_f5/data/consolidation.json`.
+`lfm3_f4/data/consolidation.json`, `lfm3_f5/data/consolidation.json`,
+`lfm3_f6/data/consolidation.json`.
 
 ### 5.2 Infra usada
 
@@ -394,7 +453,7 @@ Um parquet por **checkpoint × célula**
 | benchmark | id, base_qa_id, question, answer_gold, question_type, source_id, vocabulary_level, query_features, source_file, evidence_text |
 | saída do modelo | answer_model, raw_output (integral: thinking+resposta), thinking, n_gen_tokens, stopped_eos |
 | veredito (régua honesta) | coverage, n_facts, tautology, hallucination, refused, truncated, refusal_correct, refusal_undue, citation_present, approved, answered_correct_anyway, judge_note |
-| protocolo | context_given, context_type (none/oracle/ranking_1de5/distractor_only; F4 adiciona tool_loop/multihop), system_prompt_sha + system_prompt_ref, checkpoint, cell, gen_params |
+| protocolo | context_given, context_type (none/oracle/ranking_1de5/distractor_only; F4 adiciona tool_loop/multihop; F6 adiciona retrieved_top2_raw/retrieved_top5_compressed/retrieved_top5_compressed_manuals + ctx_ids, n_manual_ctx, retrieval_variant, gold_kind), system_prompt_sha + system_prompt_ref, checkpoint, cell, gen_params |
 
 `context_given` é reconstruído deterministicamente (seed
 `sha256(f"42:{id}")`, idêntico ao da geração —

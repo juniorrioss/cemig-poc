@@ -1,0 +1,228 @@
+{
+ "prefill_tps_assumed": 115.8,
+ "control_cell": "a_raw2",
+ "cells": {
+  "a_raw2": {
+   "variant": "v4app",
+   "all": {
+    "n": 151,
+    "approved": 17.2,
+    "coverage": 0.238,
+    "hallucination": 21.9,
+    "refused": 53.0,
+    "truncated": 0.0,
+    "cite_nr": 100.0,
+    "cite_any_item": 92.7,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 1000.5,
+    "prompt_ntok": 1653.8,
+    "gen_ntok": 87.5,
+    "ttft_est_s": 14.29,
+    "ctx_has_gold": 52.3,
+    "ctx_with_manual": 0.0
+   },
+   "ctx_has_gold": {
+    "n": 79,
+    "approved": 27.8,
+    "coverage": 0.372,
+    "hallucination": 22.8,
+    "refused": 44.3,
+    "truncated": 0.0,
+    "cite_nr": 100.0,
+    "cite_any_item": 89.9,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 1002.2,
+    "prompt_ntok": 1655.4,
+    "gen_ntok": 98.6,
+    "ttft_est_s": 14.3,
+    "ctx_has_gold": 100.0,
+    "ctx_with_manual": 0.0
+   },
+   "ctx_no_gold": {
+    "n": 72,
+    "approved": 5.6,
+    "coverage": 0.091,
+    "hallucination": 20.8,
+    "refused": 62.5,
+    "truncated": 0.0,
+    "cite_nr": 100.0,
+    "cite_any_item": 95.8,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 998.7,
+    "prompt_ntok": 1652.1,
+    "gen_ntok": 75.3,
+    "ttft_est_s": 14.27,
+    "ctx_has_gold": 0.0,
+    "ctx_with_manual": 0.0
+   },
+   "paired_vs_ctrl": {
+    "all": {
+     "win": 0,
+     "loss": 0,
+     "sign_p": 1.0
+    },
+    "norma": {
+     "win": 0,
+     "loss": 0,
+     "sign_p": 1.0
+    },
+    "manual": {
+     "win": 0,
+     "loss": 0,
+     "sign_p": 1.0
+    }
+   }
+  },
+  "d_c5_r0.5": {
+   "variant": "v4app",
+   "all": {
+    "n": 151,
+    "approved": 11.9,
+    "coverage": 0.216,
+    "hallucination": 24.5,
+    "refused": 54.3,
+    "truncated": 0.0,
+    "cite_nr": 99.3,
+    "cite_any_item": 90.7,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 459.2,
+    "prompt_ntok": 1112.5,
+    "gen_ntok": 83.6,
+    "ttft_est_s": 9.61,
+    "ctx_has_gold": 66.2,
+    "ctx_with_manual": 0.0
+   },
+   "ctx_has_gold": {
+    "n": 100,
+    "approved": 15.0,
+    "coverage": 0.278,
+    "hallucination": 26.0,
+    "refused": 46.0,
+    "truncated": 0.0,
+    "cite_nr": 100.0,
+    "cite_any_item": 90.0,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 458.1,
+    "prompt_ntok": 1111.3,
+    "gen_ntok": 91.6,
+    "ttft_est_s": 9.6,
+    "ctx_has_gold": 100.0,
+    "ctx_with_manual": 0.0
+   },
+   "ctx_no_gold": {
+    "n": 51,
+    "approved": 5.9,
+    "coverage": 0.094,
+    "hallucination": 21.6,
+    "refused": 70.6,
+    "truncated": 0.0,
+    "cite_nr": 98.0,
+    "cite_any_item": 92.2,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 461.4,
+    "prompt_ntok": 1114.8,
+    "gen_ntok": 67.8,
+    "ttft_est_s": 9.63,
+    "ctx_has_gold": 0.0,
+    "ctx_with_manual": 0.0
+   },
+   "paired_vs_ctrl": {
+    "all": {
+     "win": 9,
+     "loss": 17,
+     "sign_p": 0.1686
+    },
+    "norma": {
+     "win": 9,
+     "loss": 17,
+     "sign_p": 0.1686
+    },
+    "manual": {
+     "win": 0,
+     "loss": 0,
+     "sign_p": 1.0
+    }
+   }
+  },
+  "op_d50": {
+   "variant": "thr0.7_f2+man1.75+margin",
+   "all": {
+    "n": 151,
+    "approved": 14.6,
+    "coverage": 0.233,
+    "hallucination": 24.5,
+    "refused": 53.0,
+    "truncated": 0.0,
+    "cite_nr": 99.3,
+    "cite_any_item": 90.7,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 458.2,
+    "prompt_ntok": 1111.4,
+    "gen_ntok": 85.3,
+    "ttft_est_s": 9.6,
+    "ctx_has_gold": 66.9,
+    "ctx_with_manual": 2.6
+   },
+   "ctx_has_gold": {
+    "n": 101,
+    "approved": 20.8,
+    "coverage": 0.309,
+    "hallucination": 23.8,
+    "refused": 45.5,
+    "truncated": 0.0,
+    "cite_nr": 100.0,
+    "cite_any_item": 89.1,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 455.4,
+    "prompt_ntok": 1108.4,
+    "gen_ntok": 96.2,
+    "ttft_est_s": 9.57,
+    "ctx_has_gold": 100.0,
+    "ctx_with_manual": 4.0
+   },
+   "ctx_no_gold": {
+    "n": 50,
+    "approved": 2.0,
+    "coverage": 0.077,
+    "hallucination": 26.0,
+    "refused": 68.0,
+    "truncated": 0.0,
+    "cite_nr": 98.0,
+    "cite_any_item": 94.0,
+    "cite_gold_item": 0.0,
+    "n_gold_items": 0,
+    "ctx_ntok": 463.8,
+    "prompt_ntok": 1117.3,
+    "gen_ntok": 63.1,
+    "ttft_est_s": 9.65,
+    "ctx_has_gold": 0.0,
+    "ctx_with_manual": 0.0
+   },
+   "paired_vs_ctrl": {
+    "all": {
+     "win": 14,
+     "loss": 18,
+     "sign_p": 0.5966
+    },
+    "norma": {
+     "win": 14,
+     "loss": 18,
+     "sign_p": 0.5966
+    },
+    "manual": {
+     "win": 0,
+     "loss": 0,
+     "sign_p": 1.0
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,141 @@
+{
+ "variant": "thr0.7_f2+man1.7",
+ "cfg": {
+  "gate": "app",
+  "explicit": true,
+  "conf_thr": 0.7,
+  "factor": 2.0,
+  "neighbors": 0,
+  "manual_w": 1.7,
+  "manual_gate": "always",
+  "manual_margin": 0.0,
+  "rrf_k": 10.0,
+  "rrf_w": [
+   2.0,
+   1.0,
+   2.0
+  ]
+ },
+ "secs": 21.5,
+ "poc151": {
+  "r1": 0.3775,
+  "r2": 0.5099,
+  "r5": 0.6689,
+  "mrr": 0.488,
+  "modes": {
+   "soft": 112,
+   "none": 4,
+   "hard": 33,
+   "explicit": 2
+  }
+ },
+ "bench_norma": {
+  "hit1": 0.6391,
+  "hit2": 0.7685,
+  "hit5": 0.875,
+  "evrec2": 0.7519,
+  "evrec5": 0.8642,
+  "ndcg5": 0.7629,
+  "mrr5": 0.7351,
+  "chit2": 0.8812,
+  "chit5": 0.9516,
+  "n_ctx_nb": 2.0,
+  "n": 1136,
+  "by_vocab": {
+   "clean": {
+    "hit1": 0.7077,
+    "hit2": 0.8134,
+    "hit5": 0.9049,
+    "evrec2": 0.7936,
+    "evrec5": 0.8962,
+    "ndcg5": 0.8098,
+    "mrr5": 0.7879,
+    "chit2": 0.9014,
+    "chit5": 0.9683,
+    "n_ctx_nb": 2.0
+   },
+   "technical": {
+    "hit1": 0.6972,
+    "hit2": 0.8134,
+    "hit5": 0.9014,
+    "evrec2": 0.7937,
+    "evrec5": 0.8919,
+    "ndcg5": 0.8047,
+    "mrr5": 0.7815,
+    "chit2": 0.9049,
+    "chit5": 0.9648,
+    "n_ctx_nb": 2.0
+   },
+   "operational": {
+    "hit1": 0.5951,
+    "hit2": 0.7218,
+    "hit5": 0.8556,
+    "evrec2": 0.7082,
+    "evrec5": 0.8427,
+    "ndcg5": 0.7278,
+    "mrr5": 0.6956,
+    "chit2": 0.8592,
+    "chit5": 0.9401,
+    "n_ctx_nb": 2.0
+   },
+   "lay": {
+    "hit1": 0.5563,
+    "hit2": 0.7254,
+    "hit5": 0.838,
+    "evrec2": 0.7122,
+    "evrec5": 0.826,
+    "ndcg5": 0.7093,
+    "mrr5": 0.6755,
+    "chit2": 0.8592,
+    "chit5": 0.9331,
+    "n_ctx_nb": 2.0
+   }
+  },
+  "modes": {
+   "explicit": 319,
+   "soft": 638,
+   "none": 171,
+   "hard": 8
+  }
+ },
+ "bench_all": {
+  "hit1": 0.4928,
+  "hit2": 0.6309,
+  "hit5": 0.804,
+  "evrec2": 0.617,
+  "evrec5": 0.7919,
+  "ndcg5": 0.6526,
+  "mrr5": 0.6109,
+  "chit2": 0.7891,
+  "chit5": 0.9115,
+  "n_ctx_nb": 2.0,
+  "n": 1536,
+  "by_vocab": {},
+  "modes": {
+   "explicit": 423,
+   "soft": 869,
+   "none": 233,
+   "hard": 11
+  }
+ },
+ "bench_manual": {
+  "hit1": 0.0775,
+  "hit2": 0.24,
+  "hit5": 0.6025,
+  "evrec2": 0.2339,
+  "evrec5": 0.5866,
+  "ndcg5": 0.3393,
+  "mrr5": 0.2582,
+  "chit2": 0.5275,
+  "chit5": 0.7975,
+  "n_ctx_nb": 2.0,
+  "n": 400,
+  "by_vocab": {},
+  "modes": {
+   "explicit": 104,
+   "soft": 231,
+   "none": 62,
+   "hard": 3
+  }
+ }
+}
