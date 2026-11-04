@@ -24,6 +24,7 @@ Comentários PT-BR, código em inglês. Procedência: task poc-ctx-topk.
 from __future__ import annotations
 
 import json
+import re
 import struct
 import sys
 from pathlib import Path
@@ -44,6 +45,7 @@ from bm25 import HybridBm25  # noqa: E402
 from rrf import rrf_fuse  # noqa: E402
 
 from corpus.eval_retrieval import check_hit  # noqa: E402
+from eval_common import app_fts_query  # noqa: E402  (retrieval3; = Fts5Retriever.kt)
 
 # Config v4 embarcada (retrieval4/README.md + verify_bins.py):
 EXP_W = (1.5, 3.0, 2.0, 1.0, 1.0)   # pesos dos 5 campos FTS5 (com expansion)
@@ -57,6 +59,19 @@ _CLF = _ROOT / "classifier" / "models" / "classic_winner.pkl"
 _BIN_TEXT = _HERE / "data" / "dense_text.bin"      # DVEC1 v4 (texto+exp) — puxado do S24+
 _BIN_EXP = _HERE / "data" / "dense_exponly.bin"    # DVEC1 v4 (exp-only)  — puxado do S24+
 _EMB_URL = "http://127.0.0.1:8399"
+
+# Override de NR explícita — porte de HybridRetriever.kt (detectExplicitNr, linhas 99-104):
+# se a fala cita a norma ("segundo a NR-10", "pela nr 35"), o app aplica FILTRO DURO nela
+# (com preenchimento amplo se faltar) ANTES de consultar o classificador. Task lfm3-f5.
+_EXPLICIT_NR = re.compile(r"\bnr[\s._-]*(\d{1,2})\b", re.IGNORECASE)
+
+
+def detect_explicit_nr(text: str) -> Optional[str]:
+    """Extrai a norma explícita citada na fala, normalizada em nr-XX; None se ausente."""
+    m = _EXPLICIT_NR.search(text or "")
+    if not m:
+        return None
+    return "nr-%02d" % int(m.group(1))
 
 
 def embed_queries(url: str, texts: List[str], timeout: int = 300) -> np.ndarray:
@@ -93,7 +108,11 @@ def load_dvec(path: Path) -> tuple[np.ndarray, np.ndarray]:
 class RetrieverV4:
     """Fusão RRF 3-sinais v4 (embarcada). Encoda todas as queries de uma vez (cache)."""
 
-    def __init__(self, questions_by_id: Dict[str, str], emb_url: str = _EMB_URL):
+    def __init__(self, questions_by_id: Dict[str, str], emb_url: str = _EMB_URL,
+                 explicit_override: bool = True):
+        # explicit_override=True espelha o app (HybridRetriever.searchV3). False reproduz a
+        # âncora histórica dos treinos F3/F4 (espelho antigo sem override; R@2 51.7/R@5 65.6).
+        self.explicit_override = explicit_override
         self.hy = HybridBm25(str(_V4_DB), str(_CLF), weights=EXP_W)
         self.clf_name = self.hy.clf.name
         self.ids_t, self.mat_t = load_dvec(_BIN_TEXT)
@@ -124,7 +143,17 @@ class RetrieverV4:
 
     def search(self, item_id: str, raw_question: str, top_k: int = 2) -> Dict[str, Any]:
         """Estágio 1+2 v4 -> RRF k=10 w=(2,1,2) -> top-K. Igual ao searchV3 embarcado."""
-        s1 = self.hy.rank(raw_question, POOL)
+        explicit = detect_explicit_nr(raw_question) if self.explicit_override else None
+        if explicit is not None:
+            # filtro duro na NR citada + preenchimento amplo (= searchBoosted hardFilter).
+            q = app_fts_query(raw_question)
+            s1 = self.hy.bm.search(q, POOL, doc_filter=[explicit])
+            if len(s1) < POOL:
+                seen = {r["id"] for r in s1}
+                s1 += [r for r in self.hy.bm.search(q, POOL) if r["id"] not in seen]
+            s1 = s1[:POOL]
+        else:
+            s1 = self.hy.rank(raw_question, POOL)
         qv = self.qemb[item_id]
         sT = self._hydrate(self._knn(qv, self.ids_t, self.mat_t))
         sE = self._hydrate(self._knn(qv, self.ids_e, self.mat_e))
@@ -135,7 +164,9 @@ class RetrieverV4:
         from nr_taxonomy import NONE_LABEL
         preds = list(topk[0])
         p1 = float(scores[0].max())
-        if p1 >= self.hy.conf_thr and preds and preds[0] != NONE_LABEL:
+        if explicit is not None:
+            mode = "explicit"
+        elif p1 >= self.hy.conf_thr and preds and preds[0] != NONE_LABEL:
             mode = "hard"
         elif preds and preds[0] == NONE_LABEL:
             mode = "none"

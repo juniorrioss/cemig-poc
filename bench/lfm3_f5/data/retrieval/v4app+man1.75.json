@@ -1,0 +1,140 @@
+{
+ "variant": "v4app+man1.75",
+ "cfg": {
+  "gate": "app",
+  "explicit": true,
+  "conf_thr": 0.5,
+  "factor": 5.0,
+  "neighbors": 0,
+  "manual_w": 1.75,
+  "manual_gate": "always",
+  "rrf_k": 10.0,
+  "rrf_w": [
+   2.0,
+   1.0,
+   2.0
+  ]
+ },
+ "secs": 19.8,
+ "poc151": {
+  "r1": 0.3974,
+  "r2": 0.5099,
+  "r5": 0.6623,
+  "mrr": 0.498,
+  "modes": {
+   "hard": 61,
+   "soft": 84,
+   "none": 4,
+   "explicit": 2
+  }
+ },
+ "bench_norma": {
+  "hit1": 0.6206,
+  "hit2": 0.7526,
+  "hit5": 0.8627,
+  "evrec2": 0.7361,
+  "evrec5": 0.8512,
+  "ndcg5": 0.7466,
+  "mrr5": 0.7183,
+  "chit2": 0.8732,
+  "chit5": 0.9463,
+  "n_ctx_nb": 2.0,
+  "n": 1136,
+  "by_vocab": {
+   "clean": {
+    "hit1": 0.6972,
+    "hit2": 0.7993,
+    "hit5": 0.8908,
+    "evrec2": 0.7796,
+    "evrec5": 0.8816,
+    "ndcg5": 0.7967,
+    "mrr5": 0.7756,
+    "chit2": 0.8908,
+    "chit5": 0.9613,
+    "n_ctx_nb": 2.0
+   },
+   "technical": {
+    "hit1": 0.6796,
+    "hit2": 0.8134,
+    "hit5": 0.8979,
+    "evrec2": 0.7937,
+    "evrec5": 0.8884,
+    "ndcg5": 0.7961,
+    "mrr5": 0.771,
+    "chit2": 0.9049,
+    "chit5": 0.9613,
+    "n_ctx_nb": 2.0
+   },
+   "operational": {
+    "hit1": 0.5599,
+    "hit2": 0.7007,
+    "hit5": 0.831,
+    "evrec2": 0.6871,
+    "evrec5": 0.816,
+    "ndcg5": 0.6982,
+    "mrr5": 0.666,
+    "chit2": 0.8451,
+    "chit5": 0.9296,
+    "n_ctx_nb": 2.0
+   },
+   "lay": {
+    "hit1": 0.5458,
+    "hit2": 0.6972,
+    "hit5": 0.831,
+    "evrec2": 0.6841,
+    "evrec5": 0.8189,
+    "ndcg5": 0.6955,
+    "mrr5": 0.6604,
+    "chit2": 0.8521,
+    "chit5": 0.9331,
+    "n_ctx_nb": 2.0
+   }
+  },
+  "modes": {
+   "explicit": 319,
+   "soft": 616,
+   "none": 171,
+   "hard": 30
+  }
+ },
+ "bench_all": {
+  "hit1": 0.487,
+  "hit2": 0.6289,
+  "hit5": 0.8066,
+  "evrec2": 0.6148,
+  "evrec5": 0.7932,
+  "ndcg5": 0.6505,
+  "mrr5": 0.608,
+  "chit2": 0.7871,
+  "chit5": 0.9147,
+  "n_ctx_nb": 2.0,
+  "n": 1536,
+  "by_vocab": {},
+  "modes": {
+   "explicit": 423,
+   "soft": 832,
+   "none": 233,
+   "hard": 48
+  }
+ },
+ "bench_manual": {
+  "hit1": 0.1075,
+  "hit2": 0.2775,
+  "hit5": 0.6475,
+  "evrec2": 0.2702,
+  "evrec5": 0.6283,
+  "ndcg5": 0.3774,
+  "mrr5": 0.295,
+  "chit2": 0.5425,
+  "chit5": 0.825,
+  "n_ctx_nb": 2.0,
+  "n": 400,
+  "by_vocab": {},
+  "modes": {
+   "explicit": 104,
+   "soft": 216,
+   "none": 62,
+   "hard": 18
+  }
+ }
+}
