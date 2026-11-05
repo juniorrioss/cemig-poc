@@ -1,0 +1,7 @@
+pipeline,set,n,qwen_regua_aprovado,gptoss_correct,vela_gate>=limiar(0.1729),pplx_gate>=limiar(0.1091)
+naive,B,300,0.7,0.6067,0.6433,0.68
+bm25,B,300,0.6367,0.5867,0.64,0.6433
+mobilerag,B,300,0.67,0.57,0.6233,0.68
+mobilerag_plus,B,300,0.7167,0.6267,0.7,0.7267
+op,R,344,0.6802,,0.6977,0.7093
+ctrl,R,344,0.5756,,0.5843,0.5959

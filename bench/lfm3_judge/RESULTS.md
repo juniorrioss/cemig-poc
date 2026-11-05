@@ -289,6 +289,10 @@ vazias para `ours`.
 - O `ours` no B é avaliado só no contexto (sem resposta). O orçamento de 5.000 chars é uma
   aproximação do corte de 1.664 tokens do Energy-Mobile.
 
+## Relatório de rubricas (histogramas)
+
+`report_rubricas/RUBRICAS.md`: grade pipelines × eixos com a distribuição das notas (vela e pplx), mais os dados agregados em parquet e CSV.
+
 ## Reprodução
 
 ```bash
