@@ -108,3 +108,11 @@ bench/lfm3_f7/device/deploy_and_measure.sh <serial>                 # instala + 
 python3 bench/lfm3_f8/ui_e2e.py <serial>                            # 8 chips pela UI (adb+uiautomator)
 adb -s <serial> shell am broadcast -a br.org.ceia.cemigpoc.RUN_F7_E2E -p br.org.ceia.cemigpoc --ez voice true
 ```
+
+## APK publicado no HF (pedido final do capitão)
+- `https://huggingface.co/juniorrios/automobil-ultra-semnexo/blob/main/apk/cemig-assistente-v1.0.0-f8.apk`
+  (commit HF `d35d8a9`; card com seção "APK Android" no commit `aff14d9`, espelhado em `release/README.md`).
+- Identidade conferida: SHA-256 `91aaf20a…3a77c7` = build local = `base.apk` puxado do S24+ (`adb shell pm path`)
+  = arquivo baixado de volta do HF; 235.986.717 bytes.
+- O APK **não embute os pesos** (LFM3 GGUF 1,05 GB, EmbeddingGemma 265 MB, Nemotron 651 MB): o card traz o
+  sideload com as 3 fontes públicas, cada uma verificada por SHA-256 contra os arquivos do aparelho validado.

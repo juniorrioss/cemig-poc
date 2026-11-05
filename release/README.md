@@ -74,6 +74,7 @@ compressão são determinísticas e iguais nas duas vias de LM.
 | `cemig-lfm3-1.7b-nr-Q4_0.gguf` | GGUF Q4_0 (1,05 GB; md5 `d26176d36ed225a9933ad39ad91ece59`), llama.cpp ≥ `19cce69` — padrão do `inference.py` |
 | `cemig-lfm3-1.7b-nr-Q4_K_M.gguf` | GGUF Q4_K_M (1,10 GB; md5 `da25fdf5066d70f594fd6d752aee5f86`) — **opcional**: retém mais qualidade que o Q4_0 (−2,3 vs −4,9 p.p. vs bf16), mas o prefill no celular é 25% mais lento. O app Android usa o **Q4_0** por decisão de latência |
 | `inference.py`, `requirements.txt`, `requirements-hf.txt`, `pipeline_config.json` | código de inferência autocontido e configuração |
+| `apk/cemig-assistente-v1.0.0-f8.apk` | app Android (UI F8 + motor do ponto op) — ver "APK Android" |
 | `LICENSE` | LFM Open License v1.0 (Liquid AI) |
 
 ## Treino (resumo)
@@ -122,6 +123,62 @@ Contexto entregue: ~450 tokens; prompt ~1.100 tokens. No Galaxy S24+ o TTFT esti
 - **Corpus congelado** (NRs e manuais de 2026). Atualizações posteriores das normas não estão no índice.
 - Amostragem com temperatura 0,1: a mesma pergunta pode variar um pouco entre execuções e entre
   CPU e GPU. A seed fixa a sequência em uma mesma máquina/build.
+
+## APK Android (app de campo, sideload)
+
+`apk/cemig-assistente-v1.0.0-f8.apk` — **exatamente o APK release instalado e validado no Galaxy S24+**
+em 05/11/2026 (SHA-256 do arquivo = SHA-256 do `base.apk` puxado do aparelho via `adb shell pm path`).
+
+| | |
+|---|---|
+| versão | `versionName 1.0.0` (`versionCode 1`), build F8 — commit `31ecde7` da POC |
+| tamanho | 236 MB (235.986.717 bytes) |
+| SHA-256 | `91aaf20a6a7e4a9eb531233040c8f06d447ef69a15b3d79bc240dda3473a77c7` |
+| pacote | `br.org.ceia.cemigpoc` (assinado com a chave de testes da POC, não é release de loja) |
+| requisitos | Android 12+ (minSdk 31), **arm64-v8a**, ≥ 8 GB de RAM (pico medido ~3,8 GB PSS), ~2,2 GB livres p/ os pesos |
+| validado em | Samsung Galaxy S24+ (SM-S926B): 8/8 perguntas-exemplo respondidas com a fonte esperada, 1º token ~3–4 s, total ~9–13 s |
+
+**O que vem dentro do APK**: o app completo, com a **UI F8** ("Assistente CEMIG": chat, voz
+segurar-para-falar com revisão da transcrição, perguntas-exemplo, fontes NR/item expansíveis,
+indicação de busca do tool-calling, Modo Engenharia); runtimes nativos (llama.cpp v0.9.0 com
+KleidiAI, sherpa-onnx/ONNX Runtime p/ o ASR, SQLite com FTS5); e todos os **assets de busca do
+ponto de operação F6**: índice FTS5 das 36 NRs, manuais (FTS5 + denso), janelas fp16 do
+**compressor de contexto**, classificador de NR e o system prompt de tool-calling.
+
+**O que NÃO vem dentro** (grandes demais p/ o APK; o app os lê de
+`/sdcard/Android/data/br.org.ceia.cemigpoc/files/`). São 3 downloads públicos, verificados byte a
+byte contra os arquivos do aparelho validado:
+
+| arquivo esperado no aparelho | origem | SHA-256 |
+|---|---|---|
+| `lfm3-1.7b-f4-r32-ep2-Q4_0.gguf` | `cemig-lfm3-1.7b-nr-Q4_0.gguf` **deste repo** (renomear) | `94847d5b…3e85050` |
+| `embeddinggemma-300M-qat-Q4_0.gguf` | [`ggml-org/embeddinggemma-300M-qat-q4_0-GGUF`](https://huggingface.co/ggml-org/embeddinggemma-300M-qat-q4_0-GGUF) | `50d28e22…dbccf26` |
+| `nemotron-3.5-official-560ms-int8/` (`encoder/decoder/joiner.int8.onnx` + `tokens.txt`) | [`csukuangfj2/sherpa-onnx-nemotron-3.5-asr-streaming-0.6b-560ms-int8-2026-06-11`](https://huggingface.co/csukuangfj2/sherpa-onnx-nemotron-3.5-asr-streaming-0.6b-560ms-int8-2026-06-11) | encoder `012e9321…e896e68` |
+
+**Sideload** (PC com `adb` e depuração USB/Wi-Fi ativa no celular):
+
+```bash
+pip install -U huggingface_hub
+hf download juniorrios/automobil-ultra-semnexo apk/cemig-assistente-v1.0.0-f8.apk cemig-lfm3-1.7b-nr-Q4_0.gguf --local-dir cemig
+hf download ggml-org/embeddinggemma-300M-qat-q4_0-GGUF embeddinggemma-300M-qat-Q4_0.gguf --local-dir cemig
+hf download csukuangfj2/sherpa-onnx-nemotron-3.5-asr-streaming-0.6b-560ms-int8-2026-06-11 \
+  encoder.int8.onnx decoder.int8.onnx joiner.int8.onnx tokens.txt --local-dir cemig/nemotron-3.5-official-560ms-int8
+
+P=br.org.ceia.cemigpoc; EXT=/sdcard/Android/data/$P/files
+adb install -r cemig/apk/cemig-assistente-v1.0.0-f8.apk
+adb shell pm grant $P android.permission.RECORD_AUDIO
+adb shell am start -n $P/.MainActivity; sleep 3; adb shell am force-stop $P   # cria o diretório do app
+adb shell mkdir -p $EXT
+adb push cemig/cemig-lfm3-1.7b-nr-Q4_0.gguf $EXT/lfm3-1.7b-f4-r32-ep2-Q4_0.gguf
+adb push cemig/embeddinggemma-300M-qat-Q4_0.gguf $EXT/
+adb push cemig/nemotron-3.5-official-560ms-int8 $EXT/
+adb shell chmod -R 775 $EXT        # sem isto o app não lê o diretório criado pelo shell
+adb shell am start -n $P/.MainActivity
+```
+
+Na 1ª abertura o app copia os assets para o armazenamento interno e carrega os modelos (~20–30 s;
+a faixa sob o cabeçalho mostra "Carregando modelos no aparelho…" e depois "Pronto · 100% offline").
+Depois disso funciona em **modo avião**. Sem o GGUF/encoder/Nemotron o app não fica pronto.
 
 ## Reprodutibilidade
 
