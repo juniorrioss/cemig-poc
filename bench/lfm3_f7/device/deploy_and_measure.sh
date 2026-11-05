@@ -3,7 +3,7 @@
 # externos (LFM3 Q4_0, EmbeddingGemma, Nemotron), roda o E2E das perguntas-exemplo
 # (broadcast RUN_F7_E2E) e puxa o log bruto + RAM (dumpsys meminfo).
 #
-# Pesos (fora do git): ~/models-poc/lfm3_f7/f4-r32-ep2-{Q4_K_M (md5 da25fdf5…, default),Q4_0 (md5 d26176d3…)}.gguf,
+# Pesos (fora do git): ~/models-poc/lfm3_f7/f4-r32-ep2-{Q4_0 (md5 d26176d3…, default),Q4_K_M (md5 da25fdf5…, opcional)}.gguf,
 # ~/models-poc/embed/embeddinggemma-300M-qat-Q4_0.gguf, ~/models-asr/nemotron-3.5-official-560ms-int8/
 set -euo pipefail
 S="$1"
@@ -25,9 +25,9 @@ push_if_needed() {  # <local> <remote-name>
   local rsz; rsz=$($A shell "stat -c %s '$r' 2>/dev/null" | tr -d '\r' || true)
   if [ "$lsz" != "$rsz" ]; then $A push "$l" "$r"; else echo "ok (já presente) $2"; fi
 }
-# quant do LFM3 = o do build (-Pcemig.lfm3Quant, default Q4_K_M desde lfm3-q4km-test);
+# quant do LFM3 = o do build (-Pcemig.lfm3Quant, default Q4_0; q4_k_m é a opção qualidade);
 # LFM3_GGUF aponta o arquivo local (default ~/models-poc/lfm3_f7/f4-r32-ep2-$LFM3_QUANT.gguf)
-LFM3_QUANT="${LFM3_QUANT:-Q4_K_M}"
+LFM3_QUANT="${LFM3_QUANT:-Q4_0}"
 push_if_needed "${LFM3_GGUF:-$HOME/models-poc/lfm3_f7/f4-r32-ep2-$LFM3_QUANT.gguf}" "lfm3-1.7b-f4-r32-ep2-$LFM3_QUANT.gguf"
 push_if_needed ~/models-poc/embed/embeddinggemma-300M-qat-Q4_0.gguf embeddinggemma-300M-qat-Q4_0.gguf
 if ! $A shell "test -f $EXT/nemotron-3.5-official-560ms-int8/encoder.int8.onnx"; then

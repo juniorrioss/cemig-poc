@@ -57,6 +57,18 @@
    "decode_ms": 3911,
    "total_ms": 12775,
    "tok_per_s": 25.5
+  },
+  "Q4_0_producao_revertido": {
+   "model": "lfm3-1.7b-f4-r32-ep2-Q4_0.gguf",
+   "peak_pss_mb": 3694,
+   "n": 8,
+   "decision_ms": 3371,
+   "search_ms": 117,
+   "ttft_synth_ms": 3498,
+   "first_visible_token_ms": 6986,
+   "decode_ms": 3365,
+   "total_ms": 10350,
+   "tok_per_s": 28.0
   }
  },
  "smoke20": {
@@ -70,12 +82,14 @@
  },
  "device8": {
   "Q4_0": 8,
-  "Q4_K_M": 8
+  "Q4_K_M": 8,
+  "Q4_0_producao_revertido": 8
  },
  "gate": {
   "decode_delta_pct": -6.0,
   "prefill_delta_pct": -25.3,
   "limite_pct": -10.0,
   "passou": true
- }
+ },
+ "decisao": "Q4_0 em producao (decisao de latencia do capitao); Q4_K_M = opcao qualidade (-Pcemig.lfm3Quant=q4_k_m)"
 }

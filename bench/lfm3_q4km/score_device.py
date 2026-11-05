@@ -15,7 +15,7 @@ from score_f6 import load_refs  # noqa
 Q, FACTS, REF = load_refs("recorte")
 E2E = HERE / "data/device/e2e"
 summary = {}
-for tag in ("q4km", "q40"):
+for tag in ("q4km", "q40", "prod_q40"):
     d = json.load(open(E2E / f"f7_e2e_results_{tag}.json"))
     rows = []
     for c in d["cases"]:

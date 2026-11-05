@@ -19,7 +19,7 @@ dec = b["Q4_K_M"]["decode_mean"] / b["Q4_0"]["decode_mean"] - 1
 out["gate"] = {"decode_delta_pct": round(100 * dec, 1),
                "prefill_delta_pct": round(100 * (b["Q4_K_M"]["prefill_mean"] / b["Q4_0"]["prefill_mean"] - 1), 1),
                "limite_pct": -10.0, "passou": dec >= -0.10}
-for tag, q in (("q40", "Q4_0"), ("q4km", "Q4_K_M")):
+for tag, q in (("q40", "Q4_0"), ("q4km", "Q4_K_M"), ("prod_q40", "Q4_0_producao_revertido")):
     d = json.loads((D / f"device/e2e/f7_e2e_results_{tag}.json").read_text())
     tool = [c for c in d["cases"] if c.get("called_tool")]
     m = lambda k: round(st.mean(c[k] for c in tool))
@@ -31,6 +31,8 @@ sm = json.loads((D / "smoke/summary_smoke20.json").read_text())
 out["smoke20"] = {"Q4_0": sm["q4_0"]["approved"], "Q4_K_M": sm["q4_k_m"]["approved"], "bf16": sm["bf16"]["approved"],
                   "paired_q4km_vs_q40": sm["paired_q4_k_m_vs_q4_0"]}
 dv = json.loads((D / "device/e2e/scored_device.json").read_text())
-out["device8"] = {"Q4_0": dv["q40"]["approved"], "Q4_K_M": dv["q4km"]["approved"]}
+out["device8"] = {"Q4_0": dv["q40"]["approved"], "Q4_K_M": dv["q4km"]["approved"],
+                  "Q4_0_producao_revertido": dv["prod_q40"]["approved"]}
+out["decisao"] = "Q4_0 em producao (decisao de latencia do capitao); Q4_K_M = opcao qualidade (-Pcemig.lfm3Quant=q4_k_m)"
 (D / "consolidation.json").write_text(json.dumps(out, indent=1, ensure_ascii=False))
 print(json.dumps(out, indent=1, ensure_ascii=False))

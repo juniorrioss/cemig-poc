@@ -5,7 +5,23 @@ Autorização do capitão: testar a troca do GGUF Q4_0 do APK pelo Q4_K_M. O qua
 A condição era o decode não piorar no aparelho, porque K-quants podem ser mais lentos em ARM.
 **Gate: se o decode do Q4_K_M cair mais de 10% contra o Q4_0, a troca para.**
 
-## Decisão: APROVADO e APLICADO (com um custo de prefill que precisa ser visto)
+## Decisão final: **Q4_0 é o formato de produção** (decisão de latência do capitão)
+
+O Q4_K_M **passou no gate técnico**: o decode caiu só 6%, contra o limite de 10%. Por isso foi
+aplicado e validado. Depois disso, **o capitão decidiu reverter para o Q4_0**. O motivo foi o
+custo de **+1,1 a 1,2 s no 1º token** (7,7 → 8,9 s) em **toda** pergunta, que ele julgou alto
+demais para ~2,6 p.p. de qualidade ("7 s já é bastante coisa").
+
+- **APK de produção = Q4_0** (padrão do build). O `-Pcemig.lfm3Quant=q4_k_m` fica como **opção
+  de qualidade**, para quem preferir qualidade a latência. O GGUF Q4_K_M continua publicado no
+  HF (§5).
+- **Revertido e revalidado no S24+**: APK padrão (`lfm3-1.7b-f4-r32-ep2-Q4_0.gguf`), testes JVM
+  37/37, **8/8 aprovadas** (7/8 citam NR) e **1º token visível 6,99 s** (≤ 7,7 s). Total 10,35 s,
+  decode 28,0 t/s, pico PSS 3.694 MB. Arquivos: `data/device/e2e/*_prod_q40*`.
+  Essa rodada saiu mais rápida que o controle Q4_0 anterior (7,75 s), o que fica dentro da
+  variação entre sessões (térmica e carga do aparelho; não medi a causa).
+
+### Trade-off disponível (medido)
 
 | | Q4_0 (F7) | **Q4_K_M** | Δ |
 |---|--:|--:|--:|
@@ -27,11 +43,9 @@ A condição era o decode não piorar no aparelho, porque K-quants podem ser mai
   (~8,4 s de 1º token, ~12 s total), mas é uma piora real de latência que o voz sente.
 - Qualidade: o ganho de −4,9 → −2,3 p.p. vem do quant-eval (344 perguntas, 2 rodadas). O smoke 20
   (16 vs 15) e as 8/8 só confirmam que não há regressão. Com n=20 o smoke não prova ganho.
-- **Aplicado**: o APK agora carrega `lfm3-1.7b-f4-r32-ep2-Q4_K_M.gguf` por padrão. Está instalado
-  no S24+ e foi revalidado. Para voltar atrás basta 1 flag de build:
-  `./gradlew assembleRelease -Pcemig.lfm3Quant=q4_0`.
-  Se o capitão achar que +1,1 s no 1º token pesa mais que +2,6 p.p. de qualidade, é só esse
-  rebuild. Os pesos Q4_0 continuam no aparelho e no HF.
+- Para usar o Q4_K_M: `./gradlew assembleRelease -Pcemig.lfm3Quant=q4_k_m` e empurrar
+  `lfm3-1.7b-f4-r32-ep2-Q4_K_M.gguf` para o diretório externo do app
+  (`LFM3_QUANT=Q4_K_M LFM3_GGUF=… bench/lfm3_f7/device/deploy_and_measure.sh`).
 
 ## 1. GGUF Q4_K_M
 
@@ -92,7 +106,7 @@ Pareado Q4_K_M × Q4_0: 1 ganho, 0 perda. Pareado Q4_K_M × bf16: 2 ganhos, 1 pe
 
 ## 4. APK revalidado no S24+
 
-- Código (`android/`): quant do LFM3 por build com `-Pcemig.lfm3Quant={q4_k_m (padrão), q4_0}`,
+- Código (`android/`): quant do LFM3 por build com `-Pcemig.lfm3Quant={q4_0 (padrão, produção), q4_k_m}`,
   que gera `BuildConfig.LFM3_QUANT` e `LLM_MODEL_NAME = lfm3-1.7b-f4-r32-ep2-<quant>.gguf`. Os
   rótulos da UI (carregamento e Modo Debug) vêm do BuildConfig. Como na F7, o GGUF entra por
   override externo (`getExternalFilesDir`), não dentro do APK. `testReleaseUnitTest`: 37/37.
@@ -100,8 +114,8 @@ Pareado Q4_K_M × Q4_0: 1 ganho, 0 perda. Pareado Q4_K_M × bf16: 2 ganhos, 1 pe
   `./gradlew --stop` no fim. O APK release tem 235 MB.
 - E2E (`device/run_e2e.sh` → `bench/lfm3_f7/device/deploy_and_measure.sh`, broadcast
   `RUN_F7_E2E`): as 8 perguntas-exemplo (5 norma + 3 manual) + followup + saudação. Rodei o
-  **APK Q4_K_M e o controle Q4_0 na mesma sessão** (mesmo código, só a flag muda) e depois
-  reinstalei o Q4_K_M. Resultados: **8/8 aprovadas nos dois**, e 7/8 citam NR nos dois.
+  **APK Q4_K_M e o controle Q4_0 na mesma sessão** (mesmo código, só a flag muda). Com a
+  decisão do capitão, reinstalei o APK de produção Q4_0 e o revalidei (ver Decisão final). Resultados: **8/8 aprovadas nos dois**, e 7/8 citam NR nos dois.
   Followup reusou o contexto sem nova busca, e a saudação não buscou, nos dois.
 - Fix no script da F7: o broadcast implícito `am broadcast -a …RUN_F7_E2E` **não chega** ao
   receiver de manifesto (Android 8+). Passei a usar `-p br.org.ceia.cemigpoc`. O script também
@@ -114,9 +128,9 @@ conferido no HF) e um card atualizado (tabela de arquivos e métricas). **O repo
 `juniorrios/cemig-lfm3-1.7b-nr` hoje redireciona (307) para
 `juniorrios/automobil-ultra-semnexo`. É o mesmo repo, com o mesmo conteúdo e o `Q4_0.gguf` do
 release. Commits: https://huggingface.co/juniorrios/automobil-ultra-semnexo/commit/8d39a1babfad8087c049c3cc37239bc48a7fcd10
-e https://huggingface.co/juniorrios/automobil-ultra-semnexo/commit/12da9e42284351f6bc8a9393101c7e978dab5f75.
-O padrão do `inference.py` do HF **continua Q4_0**: não mexi, para preservar a replicação já
-validada do release. O Q4_K_M fica disponível ao lado.
+e https://huggingface.co/juniorrios/automobil-ultra-semnexo/commit/12da9e42284351f6bc8a9393101c7e978dab5f75; card ajustado após a decisão (Q4_K_M = opcional): https://huggingface.co/juniorrios/automobil-ultra-semnexo/commit/81a745cfe95f67a6626b8fcc8e7d886ab5b077d9.
+O padrão do `inference.py` do HF **continua Q4_0**, igual à produção. O Q4_K_M fica ao lado
+como opção de qualidade (o card registra o trade-off).
 
 ## Reprodução
 
@@ -125,9 +139,9 @@ validada do release. O Q4_K_M fica disponível ao lado.
 bench/lfm3_q4km/device/run_bench.sh <serial> 3 90        # pré-condição de energia + keepalive embutidos
 # Spark: smoke (copiar spark/* p/ ~/cemig-poc/lfm3_q4km/)
 ~/cemig-poc/lfm3_q4km/run_smoke.sh ; classifier/.venv/bin/python bench/lfm3_q4km/score_smoke.py
-# APK + E2E (Q4_K_M é o default; controle com -Pcemig.lfm3Quant=q4_0)
+# APK + E2E (Q4_0 é o default de produção; opção qualidade com -Pcemig.lfm3Quant=q4_k_m)
 cd android && ./gradlew assembleRelease && ./gradlew --stop
-bench/lfm3_q4km/device/run_e2e.sh <serial> Q4_K_M <apk> <gguf> q4km
+bench/lfm3_q4km/device/run_e2e.sh <serial> Q4_0 <apk> <gguf> prod_q40
 classifier/.venv/bin/python bench/lfm3_q4km/score_device.py
 python3 bench/lfm3_q4km/consolidate.py                    # -> data/consolidation.json
 ```

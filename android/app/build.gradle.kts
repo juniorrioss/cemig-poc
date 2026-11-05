@@ -45,10 +45,11 @@ android {
         // synthModel (legado, task poc-engine-upgrade): sintetizador NÃO-tool (pipeline fixo antigo).
         val synthModel = (project.findProperty("cemig.synthModel") as String?)?.lowercase() ?: "1.2b"
         val use26b = synthModel == "2.6b" || useTool26b
-        // task lfm3-q4km-test: quant do LFM3 por build. DEFAULT = Q4_K_M (quant-eval: −2,3 p.p. vs
-        // bf16 contra −4,9 do Q4_0; decode no S24+ −6%, dentro do gate de 10% — bench/lfm3_q4km/).
-        //   -Pcemig.lfm3Quant=q4_0  -> volta ao Q4_0 da F7
-        val lfm3Quant = when ((project.findProperty("cemig.lfm3Quant") as String?)?.lowercase() ?: "q4_k_m") {
+        // task lfm3-q4km-test: quant do LFM3 por build. DEFAULT = Q4_0 (produção, decisão de latência
+        // do capitão): o Q4_K_M retém mais qualidade (−2,3 vs −4,9 p.p. vs bf16) mas o prefill no S24+
+        // cai 25% → +1,1 s no 1º token em toda pergunta (bench/lfm3_q4km/RESULTS.md).
+        //   -Pcemig.lfm3Quant=q4_k_m  -> opção qualidade (GGUF Q4_K_M por override externo)
+        val lfm3Quant = when ((project.findProperty("cemig.lfm3Quant") as String?)?.lowercase() ?: "q4_0") {
             "q4_0" -> "Q4_0"
             "q4_k_m" -> "Q4_K_M"
             else -> error("cemig.lfm3Quant deve ser q4_0 ou q4_k_m")

@@ -97,11 +97,12 @@ distrator, juiz 27B, cobertura de fatos com citação fora do gate):
    quantiza as ativações dinamicamente (DRQ/XNNPACK). LiteRT int4 CPU ≈ GGUF
    Q4_0 (p=0,46): **fica o GGUF**; o candidato de qualidade é Q4_0→Q4_K_M,
    depois de medir o decode no S24+.
-8. **Q4_K_M aplicado no APK (`bench/lfm3_q4km`).** No S24+ o decode cai só
-   6% (27,7 vs 29,5 t/s; gate era −10%), mas o prefill cai 25% (142 vs 190
-   t/s): 1º token visível 7,7 → 8,9 s, total 11,3 → 12,8 s, RAM +143 MB.
-   Smoke 20: 16 vs 15; 8/8 nos dois no aparelho. Revertível por flag
-   (`-Pcemig.lfm3Quant=q4_0`).
+8. **Q4_K_M medido no S24+ e recusado por latência (`bench/lfm3_q4km`).**
+   O decode cai só 6% (27,7 vs 29,5 t/s; gate era −10%), mas o prefill cai
+   25% (142 vs 190 t/s): 1º token visível 7,7 → 8,9 s, total 11,3 → 12,8 s.
+   Smoke 20: 16 vs 15; 8/8 nos dois. **O capitão manteve o Q4_0 em
+   produção** (+1,1 s em toda pergunta não paga ~2,6 p.p.); o Q4_K_M fica
+   como opção (`-Pcemig.lfm3Quant=q4_k_m`, GGUF no HF).
 
 ---
 
@@ -457,9 +458,8 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
    combos exige âncora em valor absoluto).
 4. **Quantização (medida, `bench/lfm3_quant` + `bench/lfm3_q4km`)**: o GGUF
    Q4_0 custa −4,9 p.p. contra o bf16 no recorte 344; o Q4_K_M (+50 MB)
-   recupera ~metade (−2,3). **Trocado no APK**: decode −6% (passa o gate),
-   mas prefill −25% → +1,1 s no 1º token. Em aberto só se o capitão preferir
-   latência: `-Pcemig.lfm3Quant=q4_0` reverte. LiteRT descartado (empata com
+   recupera ~metade (−2,3), mas o prefill no S24+ cai 25% (+1,1 s no 1º
+   token). **Decidido: Q4_0 em produção**; Q4_K_M opcional por flag. LiteRT descartado (empata com
    o Q4_0 na CPU; NO-GO de runtime do scout).
 5. **Retrieval/compressão no app (F5)**: (i) gate limiar 0,7 + boost 2× no
    `HybridRetriever` (2 constantes); (ii) compressão top-5→50% após validar
