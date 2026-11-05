@@ -1,0 +1,409 @@
+{
+ "n": 344,
+ "context_identical": 327,
+ "ids_identical": 311,
+ "prompt_identical": 327,
+ "embedder": "llama-cpp-python",
+ "diffs": [
+  {
+   "key": "118bd92cf7472155fa4d297b::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    533,
+    544,
+    529,
+    540,
+    2129
+   ],
+   "ref_ids": [
+    533,
+    544,
+    2129,
+    529,
+    540
+   ]
+  },
+  {
+   "key": "526956f87acf41b9e4eaf629::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    533,
+    544,
+    2129,
+    529,
+    540
+   ],
+   "ref_ids": [
+    533,
+    544,
+    2129,
+    529,
+    536
+   ]
+  },
+  {
+   "key": "7364ec1f8a3be91111357b73::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    1765,
+    1744,
+    1743,
+    1678,
+    1745
+   ],
+   "ref_ids": [
+    1765,
+    1678,
+    1743,
+    1744,
+    1745
+   ]
+  },
+  {
+   "key": "ef7f4f3e7ec240aabb83820a::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    1678,
+    1738,
+    1801,
+    1685,
+    1739
+   ],
+   "ref_ids": [
+    1678,
+    1738,
+    1801,
+    1685,
+    1679
+   ]
+  },
+  {
+   "key": "7b642165376469151a6aea3f::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    1000114,
+    1096,
+    278,
+    1000654,
+    267
+   ],
+   "ref_ids": [
+    1000114,
+    1096,
+    278,
+    1000654,
+    512
+   ]
+  },
+  {
+   "key": "bb705dec300ec8f28de5a723::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    1035,
+    1214,
+    1213,
+    997,
+    306
+   ],
+   "ref_ids": [
+    1035,
+    1214,
+    1213,
+    997,
+    1139
+   ]
+  },
+  {
+   "key": "4b4e4792c6ee3d319f43f9a3::op_d50",
+   "ctx": false,
+   "ids": true,
+   "prompt": false,
+   "mine_ids": [
+    1898,
+    1888,
+    1886,
+    1885,
+    1000638
+   ],
+   "ref_ids": [
+    1898,
+    1888,
+    1886,
+    1885,
+    1000638
+   ]
+  },
+  {
+   "key": "244a7d64ff306bda3b1d775c::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    979,
+    2132,
+    1215,
+    995,
+    306
+   ],
+   "ref_ids": [
+    979,
+    2132,
+    1215,
+    995,
+    1571
+   ]
+  },
+  {
+   "key": "094d41913d933b4dc9f862ca::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    998,
+    1001,
+    994,
+    996,
+    1000
+   ],
+   "ref_ids": [
+    998,
+    1001,
+    994,
+    996,
+    999
+   ]
+  },
+  {
+   "key": "f4cc826c289895e5b712e29f::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    1965,
+    1964,
+    1904,
+    1870,
+    304
+   ],
+   "ref_ids": [
+    1965,
+    1964,
+    1904,
+    304,
+    1870
+   ]
+  },
+  {
+   "key": "0997bc9861c3ebdcc7bf0ca3::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    979,
+    1371,
+    966,
+    1015,
+    1360
+   ],
+   "ref_ids": [
+    979,
+    1371,
+    966,
+    1015,
+    991
+   ]
+  },
+  {
+   "key": "2ce00336c6219ae65e96590a::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    1937,
+    979,
+    1923,
+    1565,
+    2007
+   ],
+   "ref_ids": [
+    1937,
+    979,
+    1923,
+    2007,
+    1565
+   ]
+  },
+  {
+   "key": "e1f1b9b9d6b65d0a5922ec66::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    1965,
+    1913,
+    1964,
+    1916,
+    1966
+   ],
+   "ref_ids": [
+    1965,
+    1964,
+    1913,
+    1916,
+    1966
+   ]
+  },
+  {
+   "key": "751066f0b85e6310dbc5f272::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    1965,
+    1964,
+    1913,
+    2080,
+    557
+   ],
+   "ref_ids": [
+    1965,
+    1964,
+    1913,
+    2080,
+    1899
+   ]
+  },
+  {
+   "key": "2773b067692e5ac77f5564ed::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    533,
+    539,
+    540,
+    557,
+    1339
+   ],
+   "ref_ids": [
+    533,
+    539,
+    540,
+    557,
+    534
+   ]
+  },
+  {
+   "key": "26deab25808131d89022efa1::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    533,
+    536,
+    534,
+    539,
+    532
+   ],
+   "ref_ids": [
+    533,
+    536,
+    534,
+    539,
+    540
+   ]
+  },
+  {
+   "key": "66ce397a8ede3066aec867c6::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    966,
+    83,
+    82,
+    116,
+    81
+   ],
+   "ref_ids": [
+    966,
+    83,
+    82,
+    81,
+    116
+   ]
+  },
+  {
+   "key": "47cf1a4cce6c1d6afd8319cc::op_d50",
+   "ctx": false,
+   "ids": true,
+   "prompt": false,
+   "mine_ids": [
+    1752,
+    969,
+    1242,
+    1240,
+    1239
+   ],
+   "ref_ids": [
+    1752,
+    969,
+    1242,
+    1240,
+    1239
+   ]
+  },
+  {
+   "key": "41def125af1cf99fa4d7abf7::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    986,
+    985,
+    1996,
+    1994,
+    1000
+   ],
+   "ref_ids": [
+    986,
+    1996,
+    985,
+    1994,
+    1998
+   ]
+  },
+  {
+   "key": "3efe020902c9b5b07ddab489::op_d50",
+   "ctx": true,
+   "ids": false,
+   "prompt": true,
+   "mine_ids": [
+    1172,
+    1107,
+    1884,
+    1889,
+    2013
+   ],
+   "ref_ids": [
+    1172,
+    1107,
+    1884,
+    2013,
+    1889
+   ]
+  }
+ ]
+}

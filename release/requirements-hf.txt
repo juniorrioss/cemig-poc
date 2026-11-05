@@ -1,0 +1,5 @@
+# Via transformers bf16 (opcional, além do requirements.txt). Instale o torch adequado à sua
+# GPU/CPU antes (ex.: pip install torch --index-url https://download.pytorch.org/whl/cu130).
+-r requirements.txt
+transformers==5.22.1
+torch>=2.9

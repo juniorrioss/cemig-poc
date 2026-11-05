@@ -1,0 +1,8 @@
+# Via padrão (GGUF Q4_0, CPU). O llama-cpp-python do PyPI (0.3.36) vendoriza um llama.cpp
+# anterior ao suporte a LFM3 (llama.cpp 19cce69); este commit (PR abetlen/llama-cpp-python#2398,
+# llama.cpp b12032) carrega o modelo. Compila do fonte (~1-3 min; precisa de cmake + compilador C++).
+llama-cpp-python @ git+https://github.com/abetlen/llama-cpp-python@906afdd98c2b7f79cb0fd2cc9d67caebb873a66c
+huggingface-hub==1.31.0
+numpy==2.5.4
+tokenizers==0.23.3
+jinja2==3.1.6

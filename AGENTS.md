@@ -305,6 +305,11 @@ This file is the project's committed home for project-intrinsic agent knowledge:
 - Q4_K_M passou no gate (decode −6% < 10%), mas **prefill −25% → 1º token +1,1 s** em toda pergunta; o capitão escolheu latência → **APK de produção = Q4_0** (default). `-Pcemig.lfm3Quant=q4_k_m` = opção qualidade (−2,3 vs −4,9 p.p. vs bf16; GGUF `da25fdf5…` no HF). Não reabrir sem ganho de prefill (ex.: kernels K-quant mais rápidos no ARM).
 - **Sharp edges de medição no S24+**: checar `settings get global low_power` (economia de energia trava clock → decode oscila 14–31 t/s) e manter a tela acordada (`input keyevent KEYCODE_WAKEUP` periódico; Doze no meio da série mesmo com timeout 30 min) — `device/run_bench.sh` faz ambos; rodadas intercaladas com ordem alternada. Broadcast do E2E precisa de `-p br.org.ceia.cemigpoc` (implícito não chega). Disco local cheio → build/pesos em `/mnt/d/cemig-scratch/`.
 
+## Release pública do melhor modelo (`release/`) — inferência autocontida no HF
+- **Onde**: modelo `juniorrios/cemig-lfm3-1.7b-nr` (f4-r32-ep2 bf16 + GGUF Q4_0 + `inference.py` + card, LFM Open License v1.0 com atribuição) e assets `juniorrios/cemig-nr-retrieval-assets` (index.db, manuals.db, densos, janelas fp16 do compressor, classificador NRC2, `config.json` do ponto op F6). `release/inference.py` é o espelho canônico do arquivo no HF: ao mudar um, suba o outro. Porte fiel de `bench/lfm3_f5`/`lfm3_f6`, sem importar `bench/`.
+- **Sharp edges**: llama-cpp-python do PyPI (0.3.36) NÃO carrega LFM3 → requirements fixa `abetlen/llama-cpp-python@906afdd` (llama.cpp b12032). Sampler montado à mão na ordem do llama-server (o `create_completion` usa min_p 0,05). Upload da Spark exige `HF_XET_CACHE` próprio (o xet cache é do root). Via hf sem `device_map` (dispensa accelerate).
+- **Paridade**: 344/344 prompts F6 byte a byte com o mesmo vetor de query; o encoder CPU×GPU (cos ≥ 0,9998) troca o top-5 em ~5%. Geração determinística por backend (10/10), mas não entre CPU e CUDA. Replicação do zero: `release/validation/run_from_scratch.sh` + `score_validation.py`; relatório em `release/RESULTS.md`.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.

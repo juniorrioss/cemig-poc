@@ -1,0 +1,176 @@
+{
+ "identity": {
+  "llama_r1_vs_f7_smoke_q4": {
+   "identical": 3,
+   "n": 7
+  },
+  "llama_r1_vs_llama_seed42_r2": {
+   "identical": 10,
+   "n": 10
+  },
+  "hf_r1_vs_hf_r2": {
+   "identical": 10,
+   "n": 10
+  }
+ },
+ "regua": {
+  "llama_seed42_r1": {
+   "n": 10,
+   "approved": 10,
+   "hallucination": 0,
+   "refusal": 0,
+   "coverage_mean": 0.95
+  },
+  "llama_seed42_r2": {
+   "n": 10,
+   "approved": 10,
+   "hallucination": 0,
+   "refusal": 0,
+   "coverage_mean": 0.95
+  },
+  "hf_seed42_r1": {
+   "n": 10,
+   "approved": 9,
+   "hallucination": 1,
+   "refusal": 0,
+   "coverage_mean": 0.967
+  },
+  "hf_seed42_r2": {
+   "n": 10,
+   "approved": 9,
+   "hallucination": 1,
+   "refusal": 0,
+   "coverage_mean": 0.967
+  },
+  "repo_f6-recorte": {
+   "n": 10,
+   "approved": 10,
+   "hallucination": 0,
+   "refusal": 0,
+   "coverage_mean": 0.917
+  },
+  "repo_f6-recorte-rep2": {
+   "n": 10,
+   "approved": 10,
+   "hallucination": 0,
+   "refusal": 0,
+   "coverage_mean": 0.967
+  },
+  "repo_f6-recorte-rep3": {
+   "n": 10,
+   "approved": 10,
+   "hallucination": 0,
+   "refusal": 0,
+   "coverage_mean": 0.967
+  },
+  "repo_f7_smoke_q4": {
+   "n": 7,
+   "approved": 7,
+   "hallucination": 0,
+   "refusal": 0,
+   "coverage_mean": 0.929
+  }
+ },
+ "per_question": {
+  "1e3475dfe6a76636ba647dd9": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": true
+  },
+  "2290f280c9c5a57eec282808": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": true
+  },
+  "02bb27402a6570f939bcf41e": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": null
+  },
+  "8b8bd5e927d9aeca3914d66b": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": false,
+   "hf_seed42_r2": false,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": true
+  },
+  "53c9bb0ef7211e1cce7f1b1d": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": null
+  },
+  "26d6644d6498482ba63a1847": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": true
+  },
+  "74405ccd67b4defd396751c1": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": true
+  },
+  "e414c1178f597c545ede34bb": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": null
+  },
+  "59e4396468eb9a34069eb934": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": true
+  },
+  "27b86815ad7e217cce9d145f": {
+   "llama_seed42_r1": true,
+   "llama_seed42_r2": true,
+   "hf_seed42_r1": true,
+   "hf_seed42_r2": true,
+   "repo_f6-recorte": true,
+   "repo_f6-recorte-rep2": true,
+   "repo_f6-recorte-rep3": true,
+   "repo_f7_smoke_q4": true
+  }
+ }
+}

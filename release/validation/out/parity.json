@@ -1,0 +1,29 @@
+{
+ "n": 10,
+ "context_identical": 9,
+ "ids_identical": 9,
+ "prompt_identical": 9,
+ "embedder": "llama-cpp-python",
+ "diffs": [
+  {
+   "key": "2290f280c9c5a57eec282808::op_d50",
+   "ctx": false,
+   "ids": false,
+   "prompt": false,
+   "mine_ids": [
+    1895,
+    1894,
+    2028,
+    2073,
+    334
+   ],
+   "ref_ids": [
+    1895,
+    2028,
+    1894,
+    2073,
+    334
+   ]
+  }
+ ]
+}

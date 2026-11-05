@@ -1,0 +1,17 @@
+
+### Pergunta
+Quando a gente troca de turno, tem que trocar os bloqueios e as etiquetas?
+
+### Resposta (llama, seed 42)
+Sim, pela NR-33 item 33.5.14.2, alínea d, os dispositivos de bloqueio e as etiquetas devem ser substituídos em caso de trocas de turnos ou alteração na equipe de trabalho. A norma exige substituição desses itens, mas não detalha se a troca de turno deve envolver a troca física dos bloqueios e das etiquetas.
+
+### Fontes usadas
+- [norma] nr-33 - 33.5.14 - Controle de Energias Perigosas
+- [norma] nr-33 - 33.5.13 - Sinalização de Segurança
+
+### Trechos entregues ao modelo (431 tokens, orçamento 498)
+[1] (nr-33 - 33.5.14 - Controle de Energias Perigosas):
+NR-33 · 33.5.14 Controle de Energias Perigosas — (item 33.5.14.2) a) cada trabalhador que execute intervenções nos equipamentos ou sistemas possua dispositivo de bloqueio individual independente; b) os dispositivos de bloqueio possibilitem o uso de etiquetas individuais, afixadas nos pontos de bloqueio e preenchidas pelos trabalhadores que o executaram, contendo o serviço executado, nome do trabalhador, data e hora de realização do bloqueio; c) as etiquetas não possam ser removidas involuntariamente ou danificadas sob a ação de intempéries; e d) os dispositivos de bloqueio e etiquetas sejam substituídos em caso de trocas de turnos ou alteração na equipe de trabalho. 33.5.14.3 É proibida a retirada ou substituição de dispositivo de bloqueio ou etiquetas por pessoas não autorizadas. 33.5.14.4 É proibido efetuar a neutralização da energia interrompendo somente o circuito de controle do equipamento ou sistema por meio de sistemas de comando ou de emergência. 33.5.15 Avaliações atmosféricas
+
+[2] (nr-33 - 33.5.13 - Sinalização de Segurança):
+NR-33 · 33.5.13 Sinalização de Segurança — (item 33.5.14.1) j) comunicação, após o encerramento da atividade, sobre a retirada dos dispositivos de bloqueio e etiquetagem, a reenergização e o religamento do equipamento ou sistema; k) retirada dos bloqueios e das etiquetas após a execução das atividades; l) reenergização ou retirada dos dispositivos de isolamento do equipamento ou sistema; e m) liberação para a retomada da operação.
