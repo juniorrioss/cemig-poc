@@ -1,0 +1,6 @@
+[r1 Q4_0] 08:35:16 low_power=0 mWakefulness=Awake AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":176.899505,"n_prompt":0,"n_gen":300,"avg_ts":24.146144,
+[r1 Q4_K_M] 08:36:36 low_power=0 mWakefulness=Dozing AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":64.569429,"n_prompt":0,"n_gen":300,"avg_ts":15.495520,
+[r2 Q4_0] 08:38:34 low_power=0 mWakefulness=Dozing AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":196.017396,"n_prompt":0,"n_gen":300,"avg_ts":32.557264,

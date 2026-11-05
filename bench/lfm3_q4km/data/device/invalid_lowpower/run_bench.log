@@ -1,0 +1,13 @@
+[r1 Q4_0] 08:25:37 temp AP: Temperature{mValue=58.5, mType=0, mName=AP, mStatus=0}
+"n_prompt":450,"n_gen":0,"avg_ts":192.048822,"n_prompt":0,"n_gen":300,"avg_ts":31.425149,
+[r1 Q4_K_M] 08:26:58 temp AP: Temperature{mValue=58.5, mType=0, mName=AP, mStatus=0}
+"n_prompt":450,"n_gen":0,"avg_ts":76.523531,"n_prompt":0,"n_gen":300,"avg_ts":25.079693,
+[r2 Q4_0] 08:28:40 temp AP: Temperature{mValue=58.5, mType=0, mName=AP, mStatus=0}
+"n_prompt":450,"n_gen":0,"avg_ts":74.132612,"n_prompt":0,"n_gen":300,"avg_ts":14.238921,
+[r2 Q4_K_M] 08:30:43 temp AP: Temperature{mValue=58.5, mType=0, mName=AP, mStatus=0}
+"n_prompt":450,"n_gen":0,"avg_ts":61.420534,"n_prompt":0,"n_gen":300,"avg_ts":13.582719,
+[r3 Q4_0] 08:32:37 temp AP: Temperature{mValue=58.5, mType=0, mName=AP, mStatus=0}
+"n_prompt":450,"n_gen":0,"avg_ts":101.921976,"n_prompt":0,"n_gen":300,"avg_ts":18.804867,
+[r3 Q4_K_M] 08:34:17 temp AP: Temperature{mValue=58.5, mType=0, mName=AP, mStatus=0}
+"n_prompt":450,"n_gen":0,"avg_ts":147.841785,"n_prompt":0,"n_gen":300,"avg_ts":22.162359,
+bench/lfm3_q4km/device/run_bench.sh: line 27: unexpected EOF while looking for matching `''

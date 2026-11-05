@@ -97,6 +97,11 @@ distrator, juiz 27B, cobertura de fatos com citação fora do gate):
    quantiza as ativações dinamicamente (DRQ/XNNPACK). LiteRT int4 CPU ≈ GGUF
    Q4_0 (p=0,46): **fica o GGUF**; o candidato de qualidade é Q4_0→Q4_K_M,
    depois de medir o decode no S24+.
+8. **Q4_K_M aplicado no APK (`bench/lfm3_q4km`).** No S24+ o decode cai só
+   6% (27,7 vs 29,5 t/s; gate era −10%), mas o prefill cai 25% (142 vs 190
+   t/s): 1º token visível 7,7 → 8,9 s, total 11,3 → 12,8 s, RAM +143 MB.
+   Smoke 20: 16 vs 15; 8/8 nos dois no aparelho. Revertível por flag
+   (`-Pcemig.lfm3Quant=q4_0`).
 
 ---
 
@@ -450,11 +455,12 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
    exigiria mitigação (a âncora `anchor25` da F3b provou mover a probe
    +0,47, mas não foi combinada ao candidato — a interação negativa dos
    combos exige âncora em valor absoluto).
-4. **Quantização (medida, `bench/lfm3_quant`)**: o GGUF Q4_0 embarcado custa
-   −4,9 p.p. contra o bf16 no recorte 344. O Q4_K_M (+50 MB) recupera ~metade
-   dessa perda (−2,3, dentro do ruído). Trocar Q4_0→Q4_K_M depende de medir o
-   decode no S24+, porque o Q4_0 tem kernels ARM dedicados. LiteRT descartado
-   (empata com o Q4_0 na CPU; NO-GO de runtime do scout).
+4. **Quantização (medida, `bench/lfm3_quant` + `bench/lfm3_q4km`)**: o GGUF
+   Q4_0 custa −4,9 p.p. contra o bf16 no recorte 344; o Q4_K_M (+50 MB)
+   recupera ~metade (−2,3). **Trocado no APK**: decode −6% (passa o gate),
+   mas prefill −25% → +1,1 s no 1º token. Em aberto só se o capitão preferir
+   latência: `-Pcemig.lfm3Quant=q4_0` reverte. LiteRT descartado (empata com
+   o Q4_0 na CPU; NO-GO de runtime do scout).
 5. **Retrieval/compressão no app (F5)**: (i) gate limiar 0,7 + boost 2× no
    `HybridRetriever` (2 constantes); (ii) compressão top-5→50% após validar
    nas 151 (custa ~20 MB int8 de índice de janelas); (iii) peso dos manuais
@@ -480,6 +486,7 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
 | F4 | `fm/lfm3-f4-tools` | `bench/lfm3_f4` | `data/eval/` — **35 parquets** (estáticas 3 épocas+mhx3 + 5 suites de tool × 5 tags) + suites/traces jsonl | H100 `checkpoints/lfm3-f4-tools-r32/checkpoint-{142,284,426}` e `lfm3-f4-tools-mhx3-r32/checkpoint-{157,314}`; merged base `/workspace/cemig/f4/merged-rebuilt` (md5 `ae5f304d91bb47402d9125d96e766a15`) | `lfm3-f4-tools-r32` (r22hqe1h), `lfm3-f4-tools-mhx3-r32` |
 | F5 | `fm/lfm3-f5-retrieval` | `bench/lfm3_f5` | — (retrieval: `data/retrieval/*.json`; E2E: `data/e2e/{gen,scored,summary}_f4-r32-ep2*`) | usa `f4-r32-ep2` (checkpoint-284, md5 adapter `18a40d6c…`) | — |
 | F6 | `fm/lfm3-f6-manuais` | `bench/lfm3_f6` | `data/eval/` — 7 parquets (recorte344 × {ctrl,op,mid,hi}_d50 + poc151 × {a_raw2, d_c5_r0.5, op_d50}); `context_type` `retrieved_top5_compressed_manuals` | usa `f4-r32-ep2` | — |
+| Q4_K_M S24+ | `fm/lfm3-q4km-test` | `bench/lfm3_q4km` | — (llama-bench `data/device/bench_*`, E2E `data/device/e2e/`, smoke `data/smoke/`) | Spark `~/cemig-poc/lfm3_quant/f4-r32-ep2-Q4_K_M.gguf`; HF `juniorrios/automobil-ultra-semnexo` (ex-`cemig-lfm3-1.7b-nr`) `cemig-lfm3-1.7b-nr-Q4_K_M.gguf` | — |
 | Quant | `fm/lfm3-quant-eval` | `bench/lfm3_quant` | `data/eval/` — 17 parquets (formato × rodada, recorte344 op_d50; coluna nova `engine_format`, + round/seed/tok_parity/decode_tps) | Spark `~/cemig-poc/lfm3_quant/` (Q8_0, Q4_K_M, `.litertlm` int4/int8) | — |
 
 RESULTS por fase: `bench/lfm3_f{0,2,3,3b,4,5,6}/RESULTS.md` + `bench/lfm3_quant/RESULTS.md`; consolidações

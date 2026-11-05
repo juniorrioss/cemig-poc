@@ -1,0 +1,50 @@
+{
+ "q4_k_m": {
+  "n": 20,
+  "approved": 16,
+  "approved_norma": 12,
+  "approved_manual": 4,
+  "coverage": 0.772,
+  "hallucination": 0,
+  "refused": 2,
+  "tool_echo": 1,
+  "tok_parity": 20,
+  "mean_n_gen": 108.3
+ },
+ "q4_0": {
+  "n": 20,
+  "approved": 15,
+  "approved_norma": 12,
+  "approved_manual": 3,
+  "coverage": 0.772,
+  "hallucination": 2,
+  "refused": 2,
+  "tool_echo": 1,
+  "tok_parity": 20,
+  "mean_n_gen": 105.8,
+  "approved_f7_historico": 15,
+  "juiz_concorda_f7": 20
+ },
+ "bf16": {
+  "n": 20,
+  "approved": 15,
+  "approved_norma": 12,
+  "approved_manual": 3,
+  "coverage": 0.78,
+  "hallucination": 3,
+  "refused": 1,
+  "tool_echo": 1,
+  "tok_parity": 20,
+  "mean_n_gen": 106.8,
+  "approved_f7_historico": 15,
+  "juiz_concorda_f7": 20
+ },
+ "paired_q4_k_m_vs_q4_0": {
+  "q4km_win": 1,
+  "q4km_loss": 0
+ },
+ "paired_q4_k_m_vs_bf16": {
+  "q4km_win": 2,
+  "q4km_loss": 1
+ }
+}

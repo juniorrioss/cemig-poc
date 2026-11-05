@@ -48,7 +48,7 @@ private val TimelineDecodeColor = Color(0xFF10B981)   // Verde
  * (2) DECISÃO do modelo: houve tool_call? argumento (consulta/nr) reescrito? OU reuso de contexto
  * (3) Se buscou: classificador NR + gate + fusão RRF v4 (a busca IGNORA a consulta do modelo e
  *     usa a FALA BRUTA) + chunks recuperados; se reusou: sem busca
- * (4) Síntese (LFM3 1.7B f4-r32-ep2 Q4_0): tokens, TTFT, tok/s decode + tempo total
+ * (4) Síntese (LFM3 1.7B f4-r32-ep2, quant por build): tokens, TTFT, tok/s decode + tempo total
  * (5) Barra visual proporcional do tempo total da pergunta
  */
 @Composable
@@ -178,9 +178,9 @@ fun DebugTurnCard(
                 )
             }
 
-            // (4) Síntese: LFM3 1.7B f4-r32-ep2 Q4_0 (F7).
+            // (4) Síntese: LFM3 1.7B f4-r32-ep2 (F7; quant por build, BuildConfig.LFM3_QUANT).
             DebugRow(
-                label = "4. Síntese (LFM3 1.7B f4-r32-ep2 Q4_0)",
+                label = "4. Síntese (LFM3 1.7B f4-r32-ep2 ${br.org.ceia.cemigpoc.BuildConfig.LFM3_QUANT})",
                 time = "${metrics.ttftMs + metrics.decodeMs} ms",
                 detail = "Prompt: ${if (metrics.promptTokens > 0) "${metrics.promptTokens} tok" else "~${metrics.contextTokens} tok"}" +
                     (if (metrics.compressBudget > 0) " (orçamento ctx ${metrics.compressBudget})" else "") +

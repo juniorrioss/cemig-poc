@@ -18,7 +18,7 @@ import java.io.File
 /**
  * E2E da F7 NO APARELHO: roda as perguntas-exemplo (benchmark operacional) pelo MESMO
  * AskPipeline/retriever/engine que a UI usa (ponto de operação da F6: gate 0,7/2x + manuais
- * margem + top-5 -> compressão 50% + LFM3 f4-r32-ep2 Q4_0), mais um followup (reuso) e uma
+ * margem + top-5 -> compressão 50% + LFM3 f4-r32-ep2, quant = BuildConfig.LFM3_QUANT), mais um followup (reuso) e uma
  * saudação. Grava o LOG BRUTO por caso (decisão, chamada, chunks, contexto comprimido,
  * resposta, tempos, RAM) em getExternalFilesDir(null)/f7_e2e_results.json + logcat CEMIG_F7_E2E.
  *

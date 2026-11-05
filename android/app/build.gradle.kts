@@ -45,8 +45,17 @@ android {
         // synthModel (legado, task poc-engine-upgrade): sintetizador NÃO-tool (pipeline fixo antigo).
         val synthModel = (project.findProperty("cemig.synthModel") as String?)?.lowercase() ?: "1.2b"
         val use26b = synthModel == "2.6b" || useTool26b
+        // task lfm3-q4km-test: quant do LFM3 por build. DEFAULT = Q4_K_M (quant-eval: −2,3 p.p. vs
+        // bf16 contra −4,9 do Q4_0; decode no S24+ −6%, dentro do gate de 10% — bench/lfm3_q4km/).
+        //   -Pcemig.lfm3Quant=q4_0  -> volta ao Q4_0 da F7
+        val lfm3Quant = when ((project.findProperty("cemig.lfm3Quant") as String?)?.lowercase() ?: "q4_k_m") {
+            "q4_0" -> "Q4_0"
+            "q4_k_m" -> "Q4_K_M"
+            else -> error("cemig.lfm3Quant deve ser q4_0 ou q4_k_m")
+        }
+        buildConfigField("String", "LFM3_QUANT", "\"$lfm3Quant\"")
         val llmModelName = when {
-            useLfm3 -> "lfm3-1.7b-f4-r32-ep2-Q4_0.gguf"
+            useLfm3 -> "lfm3-1.7b-f4-r32-ep2-$lfm3Quant.gguf"
             useTool26b -> "LFM2.5-2.6B-tools-Q4_0.gguf"
             synthModel == "2.6b" -> "LFM2.5-2.6B-Q4_0.gguf"
             else -> "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"

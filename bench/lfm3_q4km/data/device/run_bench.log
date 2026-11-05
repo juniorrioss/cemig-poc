@@ -1,0 +1,12 @@
+[r1 Q4_0] 08:40:05 low_power=0 mWakefulness=Awake AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":183.682220,"n_prompt":0,"n_gen":300,"avg_ts":30.908876,
+[r1 Q4_K_M] 08:41:51 low_power=0 mWakefulness=Awake AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":142.534648,"n_prompt":0,"n_gen":300,"avg_ts":28.797486,
+[r2 Q4_K_M] 08:43:41 low_power=0 mWakefulness=Awake AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":146.375659,"n_prompt":0,"n_gen":300,"avg_ts":26.317779,
+[r2 Q4_0] 08:45:32 low_power=0 mWakefulness=Dozing AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":193.324323,"n_prompt":0,"n_gen":300,"avg_ts":28.670061,
+[r3 Q4_0] 08:47:19 low_power=0 mWakefulness=Dozing AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":193.138076,"n_prompt":0,"n_gen":300,"avg_ts":29.011441,
+[r3 Q4_K_M] 08:49:06 low_power=0 mWakefulness=Dozing AP=mValue=58.5
+"n_prompt":450,"n_gen":0,"avg_ts":137.239207,"n_prompt":0,"n_gen":300,"avg_ts":28.133887,

@@ -1,0 +1,13 @@
+lfm3-1.7b-f4-r32-ep2-Q4_K_M.gguf pico PSS 3843 MB
+id         tipo     tool gate   man  decis busca  ttft decode  tok   t/s  total prompt
+1e3475dfe6 norma    True soft   -     3536   226  4099   3817  106  27.8  11680   1142
+2290f280c9 norma    True soft   -     3944    71  3721   2667   70  26.2  10403   1065
+02bb27402a norma    True soft   -     4124    87  4250   4996  135  27.0  13458   1129
+8b8bd5e927 norma    True soft   -     4210    78  5064   3244   81  25.0  12596   1190
+53c9bb0ef7 norma    True soft   -     4231    82  4993   3387   83  24.5  12693   1113
+26d6644d64 manual   True none   S     4418   126  4622   2359   55  23.3  11525   1121
+74405ccd67 manual   True soft   S     5057    99  4459   7035  180  25.6  16650   1157
+e414c1178f manual   True soft   S     5012    97  4301   3784   93  24.6  13194   1095
+followup_r followup Fals reuso  -    13031     0 13031      0   54   0.0  13032      0
+saudacao   smalltal Fals reuso  -     5574     0  5574      0    7   0.0   5574      0
+médias (casos com busca, n=8): decisão 4316 · busca 108 · TTFT síntese 4439 · decisão+busca+TTFT 8863 · decode 3911 · total 12775 ms · 25.5 t/s · prompt 1126 tok

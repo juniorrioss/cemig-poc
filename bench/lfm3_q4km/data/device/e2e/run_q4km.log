@@ -1,0 +1,21 @@
+Performing Streamed Install
+Success
+/mnt/d/cemig-scratch/q4km/f4-r32-ep2-Q4_K_M.gguf: 1 file pushed, 0 skipped. 12.7 MB/s (1099627040 bytes in 82.532s)
+ok (já presente) embeddinggemma-300M-qat-Q4_0.gguf
+chmod: chmod '/sdcard/Android/data/br.org.ceia.cemigpoc/files' to 0775: Operation not permitted
+chmod: chmod 'acceptance_results.json' to 0775: Operation not permitted
+chmod: chmod 'tool_e2e_results.json' to 0775: Operation not permitted
+chmod: chmod 'f7_e2e_results.json' to 0775: Operation not permitted
+chmod: chmod 'f7_e2e_voice_results.json' to 0775: Operation not permitted
+[wait] carregando motores...
+11-05 09:05:23.604 16302 16341 I MainViewModel: Índice FTS5 pronto em: /storage/emulated/0/Android/data/br.org.ceia.cemigpoc/files/index.db
+11-05 09:05:25.532 16302 16341 I MainViewModel: ASR ativo: Nemotron 3.5 INT8 (sherpa-onnx)
+11-05 09:05:28.585 16302 16341 I MainViewModel: Sintetizador: lfm3-1.7b-f4-r32-ep2-Q4_K_M.gguf (thinking-OFF=false)
+11-05 09:05:29.966 16302 16341 I MainViewModel: Ponto de operação F6 pronto: manuais=1092 janelas=768d
+11-05 09:05:29.966 16302 16341 I MainViewModel: Inicialização dos motores concluída com sucesso
+Broadcasting: Intent { act=br.org.ceia.cemigpoc.RUN_F7_E2E flg=0x400000 }
+Broadcast completed: result=0
+[wait] E2E...
+/sdcard/Android/data/br.org.ceia.cemigpoc/files/f7_e2e_results.json: 1 file pulled, 0 skipped. 2.4 MB/s (28082 bytes in 0.011s)
+           TOTAL PSS:  3895521            TOTAL RSS:  4012293       TOTAL SWAP PSS:       46
+[ok] /home/rios/.treehouse/cemig-poc-5bcc50/6/cemig-poc/bench/lfm3_q4km/data/device/e2e
