@@ -13,6 +13,7 @@ import br.org.ceia.cemigpoc.domain.model.TurnEvent
 import br.org.ceia.cemigpoc.domain.model.TurnMetrics
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.takeWhile
 
 /**
  * Pipeline conversacional HÍBRIDO de tool-calling (task poc-app-tools).
@@ -121,9 +122,15 @@ class AskPipeline(
 
         val decisionBuffer = StringBuilder()
         try {
-            llmEngine.generateFromPrompt(decisionPrompt, maxTokens = decisionMaxTokens).collect { chunk ->
-                if (chunk is LlmResponseChunk.Text) decisionBuffer.append(chunk.delta)
-            }
+            // LFM3: PARADA ANTECIPADA no `<tool_call>` (task lfm3-f7). O app ignora os argumentos
+            // (busca = fala crua; a chamada no prompt de síntese é a canônica), então gerar a
+            // consulta (~50 tok = a fala repetida) só custava ~2 s de decode no aparelho. O
+            // estado parado continua prefixo exato do prompt de síntese (reuso de prefixo).
+            llmEngine.generateFromPrompt(decisionPrompt, maxTokens = decisionMaxTokens)
+                .takeWhile { format != ToolFormat.LFM3 || !decisionBuffer.contains("<tool_call>") }
+                .collect { chunk ->
+                    if (chunk is LlmResponseChunk.Text) decisionBuffer.append(chunk.delta)
+                }
         } catch (e: Throwable) {
             Log.e(TAG, "Erro no turno de decisão (tool-calling)", e)
             emit(TurnEvent.Error("Falha na decisão do modelo: ${e.message}", e))

@@ -46,7 +46,6 @@ class ContextCompressor private constructor(
         const val RATIO = 0.5
 
         // == compress._lex_tokens (stopwords do app; \w+ Unicode; deaccent; len>2)
-        private val WORD_U = java.util.regex.Pattern.compile("\\w+", java.util.regex.Pattern.UNICODE_CHARACTER_CLASS)
         private val MARKS = Regex("\\p{Mn}+")
 
         fun deaccentLower(s: String): String =
@@ -54,11 +53,32 @@ class ContextCompressor private constructor(
 
         fun lexStems(text: String): Set<String> {
             val out = LinkedHashSet<String>()
-            val m = WORD_U.matcher(text)
-            while (m.find()) {
-                val t = deaccentLower(m.group())
+            for (w in words(text)) {
+                val t = deaccentLower(w)
                 if (t.length > 2 && t !in Fts5Retriever.APP_STOPWORDS) out.add(if (t.length > 6) t.substring(0, 6) else t)
             }
+            return out
+        }
+
+        /** `\w` do Python 3 (str): isalnum() ou '_' — portável (o regex ICU do Android não
+         *  aceita UNICODE_CHARACTER_CLASS). Itera por code point (fora do BMP também). */
+        private fun isWordCp(cp: Int): Boolean {
+            if (cp == '_'.code) return true
+            if (Character.isLetterOrDigit(cp)) return true
+            val t = Character.getType(cp)
+            return t == Character.LETTER_NUMBER.toInt() || t == Character.OTHER_NUMBER.toInt()
+        }
+
+        fun words(text: String): List<String> {
+            val out = ArrayList<String>()
+            var i = 0
+            var start = -1
+            while (i < text.length) {
+                val cp = text.codePointAt(i)
+                if (isWordCp(cp)) { if (start < 0) start = i } else if (start >= 0) { out.add(text.substring(start, i)); start = -1 }
+                i += Character.charCount(cp)
+            }
+            if (start >= 0) out.add(text.substring(start))
             return out
         }
 

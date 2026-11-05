@@ -27,7 +27,16 @@ import java.io.File
 object F7E2ERunner {
     private const val TAG = "CEMIG_F7_E2E"
 
-    suspend fun run(context: Context, pipeline: AskPipeline, onlyIds: Set<String>? = null) = withContext(Dispatchers.IO) {
+    /**
+     * @param transcribe se não-nulo, modo VOZ: lê getExternalFilesDir/f7_voice/<id>.wav (16 kHz
+     *   mono PCM16, TTS edge pt-BR), transcreve com o ASR ativo e envia a TRANSCRIÇÃO ao pipeline.
+     */
+    suspend fun run(
+        context: Context,
+        pipeline: AskPipeline,
+        onlyIds: Set<String>? = null,
+        transcribe: (suspend (FloatArray) -> String)? = null
+    ) = withContext(Dispatchers.IO) {
         val pm = context.getSystemService(Context.POWER_SERVICE) as? PowerManager
         val wake = pm?.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "cemigpoc:F7E2E")?.apply { acquire(30 * 60 * 1000L) }
         try {
@@ -41,7 +50,9 @@ object F7E2ERunner {
             // multiturno: followup do 1º exemplo (o modelo deve REUSAR) + saudação (zero busca)
             cases.add(Case("followup_reuso", "followup", "E se a equipe não tiver feito essa avaliação, o serviço pode começar?", followOf = cases[0].id))
             cases.add(Case("saudacao", "smalltalk", "Valeu, obrigado pela ajuda!"))
-            val todo = if (onlyIds != null) cases.filter { it.id in onlyIds } else cases
+            val voiceDir = context.getExternalFilesDir(null)?.resolve("f7_voice")
+            var todo = if (onlyIds != null) cases.filter { it.id in onlyIds } else cases
+            if (transcribe != null) todo = todo.filter { voiceDir?.resolve("${it.id}.wav")?.exists() == true }
 
             Log.i(TAG, "==================== E2E F7 (${todo.size} casos) modelo=${ModelFileManager.LLM_MODEL_NAME} asr=${BuildConfig.ASR_ENGINE}")
             val history = HashMap<String, ConversationTurn>()
@@ -51,11 +62,22 @@ object F7E2ERunner {
                 val hist = c.followOf?.let { history[it] }?.let { listOf(it) } ?: emptyList()
                 val rec = JSONObject().put("id", c.id).put("kind", c.kind).put("question", c.q)
                     .put("history_turns", hist.size)
+                var asrMs = 0L
+                val asked = if (transcribe != null) {
+                    val wav = readWav(voiceDir!!.resolve("${c.id}.wav"))
+                    val ta = System.currentTimeMillis()
+                    val tr = transcribe(wav).trim()
+                    asrMs = System.currentTimeMillis() - ta
+                    rec.put("mode", "voz").put("audio_s", wav.size / 16000.0).put("asr_ms", asrMs).put("transcription", tr)
+                    tr
+                } else {
+                    rec.put("mode", "texto"); c.q
+                }
                 val answer = StringBuilder()
                 var done: TurnEvent.Done? = null
                 val t0 = System.currentTimeMillis()
                 var firstDeltaMs = -1L
-                pipeline.execute(c.q, hist).collect { ev ->
+                pipeline.execute(asked, hist, asrMs = asrMs).collect { ev ->
                     when (ev) {
                         is TurnEvent.ToolDecided -> rec.put("called_tool", ev.called).put("tool_consulta", ev.consulta)
                             .put("tool_nr", ev.nr).put("decision_ms", ev.reasonMs)
@@ -82,6 +104,7 @@ object F7E2ERunner {
                         .put("ttft_ms", m.ttftMs).put("decode_ms", m.decodeMs).put("completion_tokens", m.completionTokens)
                         .put("tok_per_s", m.tokPerSec).put("total_ms", m.totalMs)
                         .put("first_visible_token_ms", firstDeltaMs)
+                        .put("total_with_asr_ms", m.totalMs + asrMs)
                     history[c.id] = ConversationTurn(
                         question = c.q, answer = d.finalAnswer, chunks = d.chunksUsed, metrics = m,
                         calledTool = m.calledTool, toolConsulta = m.toolConsulta.ifBlank { null },
@@ -97,11 +120,28 @@ object F7E2ERunner {
             }
             val res = JSONObject().put("model", ModelFileManager.LLM_MODEL_NAME).put("asr", BuildConfig.ASR_ENGINE)
                 .put("peak_pss_mb", peakPss).put("cases", out)
-            val f = context.getExternalFilesDir(null)?.resolve("f7_e2e_results.json") ?: File(context.filesDir, "f7_e2e_results.json")
+            val name = if (transcribe != null) "f7_e2e_voice_results.json" else "f7_e2e_results.json"
+            val f = context.getExternalFilesDir(null)?.resolve(name) ?: File(context.filesDir, name)
             f.writeText(res.toString(1))
             Log.i(TAG, "==================== E2E F7 CONCLUÍDO -> ${f.absolutePath} (pico PSS ${"%.0f".format(peakPss)} MB)")
         } finally {
             try { if (wake?.isHeld == true) wake.release() } catch (_: Exception) {}
         }
+    }
+
+    /** WAV PCM16 mono -> float [-1,1] (procura o chunk 'data'). */
+    private fun readWav(file: File): FloatArray {
+        val b = file.readBytes()
+        var i = 12
+        var data = 44
+        var len = b.size - 44
+        while (i + 8 <= b.size) {
+            val id = String(b, i, 4, Charsets.US_ASCII)
+            val sz = java.nio.ByteBuffer.wrap(b, i + 4, 4).order(java.nio.ByteOrder.LITTLE_ENDIAN).int
+            if (id == "data") { data = i + 8; len = minOf(sz, b.size - data); break }
+            i += 8 + sz
+        }
+        val sb = java.nio.ByteBuffer.wrap(b, data, len).order(java.nio.ByteOrder.LITTLE_ENDIAN).asShortBuffer()
+        return FloatArray(sb.remaining()) { sb.get() / 32768f }
     }
 }

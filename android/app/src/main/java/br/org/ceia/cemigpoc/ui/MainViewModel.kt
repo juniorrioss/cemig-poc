@@ -163,13 +163,17 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }.onFailure { Log.w(TAG, "example_questions.json ausente", it) }
 
         // F7: gancho do E2E no aparelho (broadcast RUN_F7_E2E) — usa ESTE pipeline carregado.
-        br.org.ceia.cemigpoc.data.acceptance.AcceptanceReceiver.f7Hook = { ids, keepPrefix ->
+        br.org.ceia.cemigpoc.data.acceptance.AcceptanceReceiver.f7Hook = { ids, keepPrefix, voice ->
             viewModelScope.launch(Dispatchers.IO) {
                 while (!_uiState.value.isModelReady) kotlinx.coroutines.delay(500)
                 keepPrefix?.let { realLlamaEngine.engine.keepPrefix = it }
                 Log.i(TAG, "F7 E2E: keepPrefix=${realLlamaEngine.engine.keepPrefix}")
                 try {
-                    br.org.ceia.cemigpoc.data.acceptance.F7E2ERunner.run(getApplication(), askPipeline, ids)
+                    val nemo = nemotronAsrEngine
+                    val tr: (suspend (FloatArray) -> String)? = if (!voice) null
+                    else if (nemo != null && activeAsrEngine === nemo) { a -> nemo.transcribeAudioSamples(a) }
+                    else { a -> realAsrEngine.transcribeAudioSamples(a) }
+                    br.org.ceia.cemigpoc.data.acceptance.F7E2ERunner.run(getApplication(), askPipeline, ids, tr)
                 } catch (e: Throwable) {
                     Log.e(TAG, "F7 E2E falhou", e)
                 }

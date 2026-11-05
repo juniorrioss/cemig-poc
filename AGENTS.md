@@ -285,6 +285,11 @@ This file is the project's committed home for project-intrinsic agent knowledge:
   - **Production Recommendation**: Ship **merged model** (~700 MB Q4_K_M) for initial release (zero runtime orchestration), or base GGUF + standalone LoRA (3.7 MB) for agile OTA continuous updates during the BM25 window.
 - **Pipeline commands**: `python3 finetune/gen_dataset.py`, `python3 finetune/validate_dataset.py`, `python3 finetune/train_lora.py`, `python3 finetune/eval_rewriter.py`.
 
+## LFM3 F7 — embarque no S24+ do ponto op F6 (`bench/lfm3_f7/`, `android/`) — VIGENTE NO APP
+- **Default do app agora é LFM3** (`-Pcemig.toolModel` default `lfm3`; `1.2b` volta ao LFM2.5): `f4-r32-ep2` GGUF Q4_0 (md5 `d26176d3…`, override externo `lfm3-1.7b-f4-r32-ep2-Q4_0.gguf`) + Nemotron default + ponto op F6 (`HybridRetriever.searchOp`: gate 0,7/2x, manuais w1,75 margem, top-5 → `ContextCompressor` 50%). Smoke Q4 = bf16 (15/20). No S24+: 8/8 aprovadas (texto e voz), 1º token ~8,4 s, total ~12 s (voz ~15 s), PSS ~3,7–3,8 GB.
+- **LFM3 exige llama.cpp ≥ `19cce69`**; submódulo `android/llama.cpp` = v0.9.0 (`cd959ba`). Template XML renderizado em Kotlin (`Lfm3ToolFormat`, paridade byte a byte vs `apply_chat_template`); assets do ponto op gerados por `bench/lfm3_f7/export_assets.py` (janelas em **fp16**: int8 quebra 12/344 contextos).
+- **Sharp edges**: (1) JNI passa prompts/tokens como `byte[]` UTF-8 — `GetStringUTFChars` (modified UTF-8) quebra chars fora do BMP do índice; (2) regex Android/ICU NÃO aceita `Pattern.UNICODE_CHARACTER_CLASS` (crash no aparelho, passa na JVM) → tokenização manual por code point; (3) `RrfFusion` usa `LinkedHashMap` (empate = ordem de 1ª aparição, como o Python); (4) paridade app×espelho = `F7ParityTest` (JVM, 40 casos) + `device_parity.py` (aparelho). E2E no aparelho: `adb shell am broadcast -a br.org.ceia.cemigpoc.RUN_F7_E2E -n br.org.ceia.cemigpoc/.data.acceptance.AcceptanceReceiver [--ez voice true]` (app aberto; arquivos empurrados via adb precisam de `chmod 775/664`). Relatório: `bench/lfm3_f7/RESULTS.md`.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.

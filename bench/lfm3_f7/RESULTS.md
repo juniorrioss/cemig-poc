@@ -15,7 +15,9 @@ híbrido, Nemotron ASR, index.db v4), não reescrita.
 | retriever do ponto op | ✅ portado | gate 0,7 + boost 2×, manuais w=1,75 com margem densa m=0, RRF k=10 → top-5 |
 | compressão de contexto | ✅ portada | janelas fp16 + lexical 0,3 + prior 0,05, gulosa até 50%: **40/40 contextos idênticos byte a byte ao espelho** (21 com manuais) |
 | perguntas-exemplo | ✅ | 8 reais do benchmark (`operational`): 5 norma + 3 manual, todas aprovadas nas 3 rodadas da F6 |
-| APK no aparelho / medições | ⏸️ aguardando o celular | ver §5 |
+| APK no S24+ (SM-S926B) | ✅ funcionando | texto, voz (Nemotron) e toque na UI; paridade **top-5 e contexto 8/8 idênticos ao espelho** no próprio aparelho |
+| qualidade no aparelho | ✅ | régua honesta (juiz 27B): **8/8 aprovadas em texto e 8/8 em voz** (perguntas-exemplo) |
+| latência / RAM S24+ | ✅ medido | texto: **TTFT visível ~8,4 s** (decisão 4,1 + busca 0,1 + prefill síntese 4,2), total ~11,9 s; voz: +2,3 s de ASR → ~15,0 s; **pico PSS ~3,7–3,8 GB** |
 
 ## 1. Modelo: f4-r32-ep2 → GGUF Q4_0
 
@@ -129,14 +131,48 @@ de produção desde a v3, com paridade já provada (R@2 51,7% nos `.bin` embarca
   (decode em lote 512 vs. lote único muda o arredondamento do estado recorrente/conv do
   LFM3 — a mesma família de efeito já vista no LFM2.5). Do-zero×do-zero é determinístico
   6/6. Com temp 0,1 a resposta já é amostrada; o efeito é da mesma ordem. Medido no
-  aparelho com A/B (`--ez keep_prefix false`), ver §6.
+  aparelho (§6: respostas 8/8 aprovadas com o reuso ligado).
 
-## 6. Aparelho (S24+) — PENDENTE
+## 6. Aparelho (S24+, SM-S926B) — medido
 
-APK release (`app-release.apk`, 236 MB; pesos via override externo) pronto; script
-`device/deploy_and_measure.sh <serial>` instala, empurra pesos, roda o E2E
-(`RUN_F7_E2E`: 8 perguntas-exemplo + followup de reuso + saudação) e puxa log bruto + RAM.
-Aguardando o celular aparecer no `adb`.
+APK release (236 MB; LFM3 Q4_0, EmbeddingGemma e Nemotron via override externo) instalado por
+`device/deploy_and_measure.sh`. E2E por broadcast `RUN_F7_E2E` usando o MESMO `AskPipeline`
+carregado pela UI: 8 perguntas-exemplo + followup (reuso) + saudação; modo voz (`--ez voice
+true`) = WAV TTS edge pt-BR (`data/voice/`, mesmo gerador do benchmark de ASR) → Nemotron 3.5
+no aparelho → pipeline. Log bruto por caso (decisão, chamada, top-5, contexto comprimido,
+resposta, tempos, PSS) em `data/device/f7_e2e_*.json` + `logcat_f7_filtered.txt`;
+tabelas em `data/device/summary_*.txt`; telas em `screen_home.png`/`screen_answer.png`.
+
+**Paridade no aparelho** (`device_parity.py`): no modo texto, top-5 e contexto comprimido
+**8/8 idênticos** ao `op_d50` do espelho (inclui 3 casos com manual no top-5). No modo voz a
+entrada é a transcrição (pontuação/caixa diferentes), então o top-5 difere em 6/8 — esperado,
+não é divergência de código.
+
+**Qualidade** (`score_device.py`, régua honesta da F6, juiz 27B, gabarito 384): texto 8/8 e
+voz 8/8 aprovadas; citam NR em 6–7/8. Ressalva: 2 respostas aprovadas citam a NR "errada" no
+texto (NR-22 numa pergunta de NR-18; NR-18 numa de NR-34) porque o trecho veio de outra norma
+com a mesma regra — a régua não pune isso (citação fora do gate, decisão da régua honesta).
+
+**Latência (ms, médias dos 8 casos com busca)**:
+
+| run | decisão | busca (+encode+compressão) | TTFT síntese | 1º token visível | decode | total | t/s | prompt |
+|---|--:|--:|--:|--:|--:|--:|--:|--:|
+| texto, decisão completa | 5.762 | 97 | 3.224 | 9.083 | 3.628 | 12.711 | 27,0 | 1.126 |
+| **texto, parada antecipada** ⇐ embarcado | **4.072** | 130 | 4.231 | **8.433** | 3.436 | **11.869** | 27,2 | 1.126 |
+| voz (+ ASR 2.338 ms) | 4.172 | 109 | 4.462 | 8.743 | 3.911 | 12.654 (**14.992** c/ ASR) | 26,4 | 1.122 |
+
+- 1º token visível ≈ **8,4 s** (estimativa da F6 era TTFT ~9,5 s): cabe na ordem do alvo
+  histórico de ~10 s; total da resposta ~12 s (texto) / ~15 s (voz, áudios de 8–13 s).
+- A decisão é o maior custo (prefill do system LFM3 ~570 tok + fala). **Parada antecipada**
+  (`AskPipeline`): no LFM3 a geração da decisão é interrompida assim que `<tool_call>` aparece
+  — o app ignora os argumentos (busca = fala crua; chamada canônica no prompt de síntese), e
+  gerar a consulta (a própria fala repetida, ~50 tok) custava ~1,7 s. Com o reuso de prefixo
+  o prefill da síntese cobre só o sufixo (~520 de ~1.100 tok).
+- Busca do ponto op (classificador + 2 BM25 + 2 KNN + KNN manuais + RRF + compressão):
+  70–230 ms; compressão 6–10 ms. Followup sem busca (reuso) 12,0 s (resposta direta em 1 turno
+  com histórico longo); saudação 4,9 s, sem busca.
+- **RAM**: pico PSS 3,70–3,81 GB (dumpsys, Nemotron + LFM3 + EmbeddingGemma residentes; o
+  1.2B LFM2.5 da POC dava 3,86 GB). Cabe no S24+ (12 GB); para <8 GB valem os fallbacks da POC.
 
 ## 7. UI (mínimo, como pedido)
 

@@ -1,0 +1,159 @@
+{
+ "n": 8,
+ "top5_equal": 8,
+ "context_equal": 8,
+ "cases": [
+  {
+   "id": "1e3475dfe6a76636ba647dd9",
+   "device_top5": [
+    265,
+    264,
+    278,
+    269,
+    263
+   ],
+   "mirror_top5": [
+    265,
+    264,
+    278,
+    269,
+    263
+   ],
+   "ids_equal": true,
+   "context_equal": true
+  },
+  {
+   "id": "2290f280c9c5a57eec282808",
+   "device_top5": [
+    1895,
+    2028,
+    1894,
+    2073,
+    334
+   ],
+   "mirror_top5": [
+    1895,
+    2028,
+    1894,
+    2073,
+    334
+   ],
+   "ids_equal": true,
+   "context_equal": true
+  },
+  {
+   "id": "02bb27402a6570f939bcf41e",
+   "device_top5": [
+    258,
+    262,
+    266,
+    971,
+    278
+   ],
+   "mirror_top5": [
+    258,
+    262,
+    266,
+    971,
+    278
+   ],
+   "ids_equal": true,
+   "context_equal": true
+  },
+  {
+   "id": "8b8bd5e927d9aeca3914d66b",
+   "device_top5": [
+    1996,
+    1998,
+    1994,
+    1145,
+    986
+   ],
+   "mirror_top5": [
+    1996,
+    1998,
+    1994,
+    1145,
+    986
+   ],
+   "ids_equal": true,
+   "context_equal": true
+  },
+  {
+   "id": "53c9bb0ef7211e1cce7f1b1d",
+   "device_top5": [
+    982,
+    1915,
+    441,
+    2138,
+    433
+   ],
+   "mirror_top5": [
+    982,
+    1915,
+    441,
+    2138,
+    433
+   ],
+   "ids_equal": true,
+   "context_equal": true
+  },
+  {
+   "id": "26d6644d6498482ba63a1847",
+   "device_top5": [
+    1000099,
+    242,
+    269,
+    520,
+    2045
+   ],
+   "mirror_top5": [
+    1000099,
+    242,
+    269,
+    520,
+    2045
+   ],
+   "ids_equal": true,
+   "context_equal": true
+  },
+  {
+   "id": "74405ccd67b4defd396751c1",
+   "device_top5": [
+    1000107,
+    269,
+    2021,
+    12,
+    1981
+   ],
+   "mirror_top5": [
+    1000107,
+    269,
+    2021,
+    12,
+    1981
+   ],
+   "ids_equal": true,
+   "context_equal": true
+  },
+  {
+   "id": "e414c1178f597c545ede34bb",
+   "device_top5": [
+    1900,
+    1896,
+    1739,
+    1000610,
+    1889
+   ],
+   "mirror_top5": [
+    1900,
+    1896,
+    1739,
+    1000610,
+    1889
+   ],
+   "ids_equal": true,
+   "context_equal": true
+  }
+ ]
+}
