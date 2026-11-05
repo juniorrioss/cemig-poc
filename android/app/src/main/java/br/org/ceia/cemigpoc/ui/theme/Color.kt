@@ -45,3 +45,38 @@ val CeiaDanger = Color(0xFFD92626)
 val CeiaDangerBg = Color(0xFFFDE3E3)
 val CeiaPurple = Color(0xFF7C3AED)
 val CeiaPurpleBg = Color(0xFFEDE9FE)
+
+// ==========================================================================
+// F8 — Paleta "Assistente CEMIG" (recriada a partir do tema do app de referência
+// github.com/vinyteles/cemig-mobile, src/global.css; só os valores de cor, sem copiar arquivos).
+// O capitão pediu UI "mais próxima" do outro app: na dúvida, segue a paleta DELES (verde CEMIG).
+// ==========================================================================
+val CemigBackground = Color(0xFFF4F7F5)
+val CemigForeground = Color(0xFF15221B)
+val CemigCard = Color(0xFFFFFFFF)
+val CemigPrimary = Color(0xFF00843D)
+val CemigPrimaryPressed = Color(0xFF006B31)
+val CemigPrimaryDisabled = Color(0xFF8CC7A5)
+val CemigSecondary = Color(0xFFE8F4ED)
+val CemigSecondaryFg = Color(0xFF075D32)
+val CemigMuted = Color(0xFFF0F3F1)
+val CemigMutedFg = Color(0xFF66736C)
+val CemigPlaceholder = Color(0xFF8B9690)
+val CemigAccent = Color(0xFFDFF3E7)
+val CemigBorder = Color(0xFFDFE6E1)
+val CemigRing = Color(0xFF00A64F)
+val CemigDisabled = Color(0xFFA3ACA6)
+val CemigDestructive = Color(0xFFC93636)
+val CemigWarning = Color(0xFFD97706)
+// Bolha de status "Pensando" (violeta, como no app de referência)
+val CemigThinking = Color(0xFF7C3AED)
+val CemigThinkingText = Color(0xFF6D28D9)
+val CemigThinkingBg = Color(0xFFF5F3FF)
+val CemigThinkingBorder = Color(0xFFEDE9FE)
+// Banner de erro
+val CemigErrorBg = Color(0xFFFEF2F2)
+val CemigErrorBorder = Color(0xFFFECACA)
+val CemigErrorText = Color(0xFFB91C1C)
+// Selo de manual (âmbar) para diferenciar de norma (verde) nas fontes e exemplos
+val CemigManual = Color(0xFFB45309)
+val CemigManualBg = Color(0xFFFDF0D9)

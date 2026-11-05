@@ -15,31 +15,32 @@ import androidx.core.view.WindowCompat
 // Cream (#f2f1ee), superfícies brancas e neutros derivados do marinho.
 // ==========================================================================
 
+// F8: esquema de cores aproximado do app de referência (verde CEMIG sobre fundo claro).
 private val CeiaLightColorScheme = lightColorScheme(
-    primary = CeiaBlue500,
+    primary = CemigPrimary,
     onPrimary = CeiaWhite,
-    primaryContainer = CeiaBlue50,
-    onPrimaryContainer = CeiaNavy950,
-    secondary = CeiaNavy950,
+    primaryContainer = CemigSecondary,
+    onPrimaryContainer = CemigSecondaryFg,
+    secondary = CemigSecondaryFg,
     onSecondary = CeiaWhite,
-    secondaryContainer = CeiaBlue100,
-    onSecondaryContainer = CeiaNavy800,
-    tertiary = CeiaTeal600,
+    secondaryContainer = CemigSecondary,
+    onSecondaryContainer = CemigSecondaryFg,
+    tertiary = CemigRing,
     onTertiary = CeiaWhite,
-    tertiaryContainer = CeiaTeal100,
-    onTertiaryContainer = CeiaTeal700,
-    background = CeiaCream,
-    onBackground = CeiaGray900,
-    surface = CeiaWhite,
-    onSurface = CeiaGray900,
-    surfaceVariant = CeiaGray100,
-    onSurfaceVariant = CeiaGray700,
-    outline = CeiaGray300,
-    outlineVariant = CeiaGray200,
-    error = CeiaDanger,
+    tertiaryContainer = CemigAccent,
+    onTertiaryContainer = CemigSecondaryFg,
+    background = CemigBackground,
+    onBackground = CemigForeground,
+    surface = CemigCard,
+    onSurface = CemigForeground,
+    surfaceVariant = CemigMuted,
+    onSurfaceVariant = CemigMutedFg,
+    outline = CemigBorder,
+    outlineVariant = CemigBorder,
+    error = CemigDestructive,
     onError = CeiaWhite,
-    errorContainer = CeiaDangerBg,
-    onErrorContainer = CeiaDanger
+    errorContainer = CemigErrorBg,
+    onErrorContainer = CemigErrorText
 )
 
 @Composable
@@ -53,10 +54,11 @@ fun CeiaTheme(
         SideEffect {
             val window = (view.context as? Activity)?.window
             if (window != null) {
-                window.statusBarColor = CeiaNavy950.toArgb()
-                window.navigationBarColor = CeiaCream.toArgb()
+                // F8: barra de status clara com ícones escuros (StatusBar style="dark" no app de referência)
+                window.statusBarColor = CemigCard.toArgb()
+                window.navigationBarColor = CemigCard.toArgb()
                 val controller = WindowCompat.getInsetsController(window, view)
-                controller.isAppearanceLightStatusBars = false
+                controller.isAppearanceLightStatusBars = true
                 controller.isAppearanceLightNavigationBars = true
             }
         }

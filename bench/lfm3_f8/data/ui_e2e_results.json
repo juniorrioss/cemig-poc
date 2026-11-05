@@ -1,0 +1,149 @@
+[
+ {
+  "n": 1,
+  "id": "1e3475dfe6a76636ba647dd9",
+  "kind": "norma",
+  "expected": "NR-10",
+  "question": "O que o superior imediato e a equipe precisam fazer de planejamento e avaliação antes de começar a trabalhar em circuitos energizados com alta tensão?",
+  "tool_called": true,
+  "sources_card": true,
+  "sources_visible": [
+   "NR-10 item 10.7"
+  ],
+  "expected_source_shown": true,
+  "answer": "Antes de começar, o superior imediato e a equipe devem realizar avaliação prévia, estudar e planejar as atividades e ações para atender aos princípios técnicos básicos e às melhores técnicas de segurança em eletricidade aplicáveis ao serviço. Essa exigência está prevista na NR-10 item 10.7.5. A norma não detalha, nesse item, o conteúdo específico do planejamento nem os critérios da avaliação.",
+  "timing_line": "10,6 s · 1º token 3,6 s · 24,0 tok/s",
+  "ui_wall_s": 13.5
+ },
+ {
+  "n": 2,
+  "id": "2290f280c9c5a57eec282808",
+  "kind": "norma",
+  "expected": "NR-33",
+  "question": "Olha, quando a gente troca de turno ou muda a equipe lá no serviço, tem que trocar os bloqueios e as etiquetas? É isso mesmo?",
+  "tool_called": true,
+  "sources_card": true,
+  "sources_visible": [
+   "NR-33 item 33.5.14",
+   "NR-36 Anexo I",
+   "NR-37 item 37.7.3",
+   "NR-12 item 12.11"
+  ],
+  "expected_source_shown": true,
+  "answer": "Sim, pela NR-33, item 33.5.14.2, alínea d, os dispositivos de bloqueio e etiquetas devem ser substituídos em caso de trocas de turnos ou alteração na equipe de trabalho. A norma não detalha o procedimento de troca, apenas exige a substituição desses dispositivos.",
+  "timing_line": "9,4 s · 1º token 3,1 s · 24,4 tok/s",
+  "ui_wall_s": 13.3
+ },
+ {
+  "n": 3,
+  "id": "02bb27402a6570f939bcf41e",
+  "kind": "norma",
+  "expected": "NR-10",
+  "question": "Estou fazendo a vistoria e preciso decidir se o local precisa ter o Prontuário de Instalações Elétricas. Qual é o limite de carga que obriga a constituição desse documento?",
+  "tool_called": true,
+  "sources_card": true,
+  "sources_visible": [
+   "NR-10 item 10.2",
+   "NR-18 item 18.6.5"
+  ],
+  "expected_source_shown": true,
+  "answer": "Pela NR-10, item 10.2.4, o Prontuário de Instalações Elétricas é obrigatório para estabelecimentos com carga instalada superior a 75 kW. Esse limite de carga é o que obriga a constituição do documento. O item não detalha outros critérios além dessa carga.",
+  "timing_line": "9,4 s · 1º token 3,3 s · 24,9 tok/s",
+  "ui_wall_s": 13.2
+ },
+ {
+  "n": 4,
+  "id": "8b8bd5e927d9aeca3914d66b",
+  "kind": "norma",
+  "expected": "NR-18",
+  "question": "Estou supervisionando a manutenção em uma escada fixa vertical e preciso decidir se é obrigatório o uso de sistema de proteção contra quedas. Em que situação específica essa exigência entra em vigor?",
+  "tool_called": true,
+  "sources_card": true,
+  "sources_visible": [
+   "NR-35 Anexo Iii",
+   "NR-22 item 22.10",
+   "NR-18 item 18.8.6"
+  ],
+  "expected_source_shown": true,
+  "answer": "Sim, é obrigatório o uso de sistema de proteção individual contra quedas em escada fixa vertical quando a altura for superior a 2 m, conforme NR-22 item 22.10.2. A dispensa ocorre apenas para escadas fixas verticais utilizadas como meio de saída em caso de emergência, prevista no item 22.10.2.1.",
+  "timing_line": "10,7 s · 1º token 3,9 s · 24,9 tok/s",
+  "ui_wall_s": 13.2
+ },
+ {
+  "n": 5,
+  "id": "53c9bb0ef7211e1cce7f1b1d",
+  "kind": "norma",
+  "expected": "NR-34",
+  "question": "Se a gente parar o serviço a quente, qual é o procedimento correto para lidar com as válvulas dos cilindros, maçaricos e distribuidores?",
+  "tool_called": true,
+  "sources_card": true,
+  "sources_visible": [
+   "NR-18 item 18.7.6",
+   "NR-34 item 34.5.5",
+   "NR-12 Anexo Ix",
+   "NR-37 item 37.21"
+  ],
+  "expected_source_shown": true,
+  "answer": "Segundo a NR-18, item 18.7.6.14, quando o serviço for interrompido, deve-se fechar as válvulas dos cilindros, dos maçaricos e dos distribuidores de gases. A norma não detalha, nesse item, como executar essa fechamento nem se devem ser fechados manualmente ou por comando.",
+  "timing_line": "10,0 s · 1º token 3,5 s · 24,8 tok/s",
+  "ui_wall_s": 13.4
+ },
+ {
+  "n": 6,
+  "id": "26d6644d6498482ba63a1847",
+  "kind": "manual",
+  "expected": "NR-10 · Manual",
+  "question": "Preciso alinhar a execução da avaliação prévia, aquela que chamamos de conversa ao pé do poste. Onde exatamente ela precisa ser feita e quem são as pessoas obrigatórias para esse diálogo?",
+  "tool_called": true,
+  "sources_card": true,
+  "sources_visible": [
+   "MANUAL NR-10 Manual de Auxílio na Interpretação e Aplicação da NR-10 (ano 2010)",
+   "NR-09 Anexo Iii",
+   "NR-10 item 10.11",
+   "NR-12 Anexo Xii",
+   "NR-36 Anexo Ii.I"
+  ],
+  "expected_source_shown": true,
+  "answer": "A avaliação prévia, chamada conversa ao pé do poste ou diálogo preliminar de segurança, deve ser realizada no local do serviço. É obrigatória a participação do superior e do trabalhador ou da equipe. A norma não especifica outros interlocutores além desses.",
+  "timing_line": "8,9 s · 1º token 3,2 s · 24,5 tok/s",
+  "ui_wall_s": 13.2
+ },
+ {
+  "n": 7,
+  "id": "74405ccd67b4defd396751c1",
+  "kind": "manual",
+  "expected": "NR-10 · Manual",
+  "question": "Preciso definir o que o médico deve olhar na hora de avaliar a aptidão da equipe que trabalha com riscos elétricos não palpáveis. Quais fatores do ambiente e da natureza das tarefas são essenciais pra essa análise?",
+  "tool_called": true,
+  "sources_card": true,
+  "sources_visible": [
+   "MANUAL NR-10 Manual de Auxílio na Interpretação e Aplicação da NR-10 (ano 2010)",
+   "NR-10 item 10.11",
+   "NR-36 Anexo I",
+   "NR-01 item 1.5.5",
+   "NR-35 item 35.7"
+  ],
+  "expected_source_shown": true,
+  "answer": "Na NR-10, item 10.8.7, o médico do trabalho deve avaliar a aptidão física e mental dos trabalhadores autorizados a intervir em instalações elétricas, considerando as condições efetivas de desempenho das tarefas no meio ambiente e a natureza do trabalho. Para riscos não palpáveis, como campos elétricos e magnéticos, tensão e corrente elétrica, e posturas mais diversas, além de riscos ambientais agravantes, o item exige uma consideração especial do profissional médico. A avaliação deve obedecer a protocolo específico e ser registrada no prontuário médico.",
+  "timing_line": "12,6 s · 1º token 3,6 s · 24,5 tok/s",
+  "ui_wall_s": 17.2
+ },
+ {
+  "n": 8,
+  "id": "e414c1178f597c545ede34bb",
+  "kind": "manual",
+  "expected": "NR-33 · Guia técnico",
+  "question": "Estou fazendo a avaliação do ar num espaço confinado que tem uma abertura lateral e o chão tá todo molhado. Que tipo de acessório eu preciso colocar na sonda pra conseguir medir direito nesses dois casos?",
+  "tool_called": true,
+  "sources_card": true,
+  "sources_visible": [
+   "NR-33 item 33.7",
+   "NR-31 item 31.13",
+   "MANUAL NR-33 Guia Técnico da NR-33 (ano 2013)"
+  ],
+  "expected_source_shown": true,
+  "answer": "Para o espaço com abertura lateral, use uma vara de extensão na sonda ou mangueira para alcançar áreas distantes. Para o chão molhado, em locais encharcados é recomendável colocar uma boia na sonda ou mangueira para evitar a sucção de água para o interior do equipamento. A NR-33, item 33.3.2.3, não especifica um modelo ou marca de acessório, apenas exige essas duas medidas.",
+  "timing_line": "10,8 s · 1º token 3,2 s · 24,9 tok/s",
+  "ui_wall_s": 13.2
+ }
+]

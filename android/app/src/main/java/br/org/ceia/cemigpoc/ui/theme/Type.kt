@@ -1,10 +1,12 @@
 package br.org.ceia.cemigpoc.ui.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontVariation
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import br.org.ceia.cemigpoc.R
@@ -20,11 +22,19 @@ val ActayWideFontFamily = FontFamily(
     Font(R.font.actay_regular, FontWeight.Normal)
 )
 
+// F8: a Inter é fonte VARIÁVEL — sem variationSettings todos os pesos saíam Regular.
+// Cada peso agora fixa o eixo 'wght' explicitamente.
+@OptIn(ExperimentalTextApi::class)
+private fun interWeight(w: FontWeight) = Font(
+    R.font.inter_variable, w,
+    variationSettings = FontVariation.Settings(FontVariation.weight(w.weight))
+)
+
 val InterFontFamily = FontFamily(
-    Font(R.font.inter_variable, FontWeight.Normal),
-    Font(R.font.inter_variable, FontWeight.Medium),
-    Font(R.font.inter_variable, FontWeight.SemiBold),
-    Font(R.font.inter_variable, FontWeight.Bold),
+    interWeight(FontWeight.Normal),
+    interWeight(FontWeight.Medium),
+    interWeight(FontWeight.SemiBold),
+    interWeight(FontWeight.Bold),
     Font(R.font.inter_italic_variable, FontWeight.Normal, FontStyle.Italic)
 )
 

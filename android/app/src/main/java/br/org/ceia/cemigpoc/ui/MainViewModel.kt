@@ -52,7 +52,12 @@ data class MainUiState(
     val modelStatusMessage: String = "Inicializando motores nativos ARM64...",
     val errorMessage: String? = null,
     // F7: perguntas-exemplo do benchmark operacional (asset example_questions.json).
-    val exampleQuestions: List<ExampleQuestion> = emptyList()
+    val exampleQuestions: List<ExampleQuestion> = emptyList(),
+    // F8 (UI): decisão de tool-calling do turno corrente, para a bolha "Pensando".
+    // null = modelo ainda decidindo; true = chamou buscar_norma; false = reuso/resposta direta.
+    val toolCalled: Boolean? = null,
+    // F8 (UI): true entre a decisão de buscar e a chegada dos trechos (busca em andamento).
+    val searchInProgress: Boolean = false
 )
 
 /** Pergunta-exemplo clicável (kind = norma | manual; source = norma/manual esperado). */
@@ -387,7 +392,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      * Atualiza o texto editável da caixa de entrada do operário.
      */
     fun onQuestionInputChanged(newText: String) {
-        _uiState.update { it.copy(currentQuestionInput = newText) }
+        // F8: limpar o campo encerra a revisão da transcrição (botão volta a microfone e a
+        // próxima pergunta digitada não herda o tempo de ASR da gravação descartada).
+        _uiState.update {
+            it.copy(
+                currentQuestionInput = newText,
+                awaitingConfirmation = if (newText.isEmpty()) false else it.awaitingConfirmation
+            )
+        }
     }
 
     /**
@@ -454,7 +466,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     awaitingConfirmation = false,
                     currentStreamingAnswer = "",
                     currentChunks = emptyList(),
-                    errorMessage = null
+                    errorMessage = null,
+                    toolCalled = null,
+                    searchInProgress = false
                 )
             }
 
@@ -472,9 +486,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     is TurnEvent.ToolDecided -> {
                         // Decisão de tool-calling do modelo (visível no Modo Engenharia).
                         Log.i(TAG, "ToolDecided: buscar=${turnEvent.called} consulta='${turnEvent.consulta}' nr='${turnEvent.nr}'")
+                        _uiState.update { it.copy(toolCalled = turnEvent.called, searchInProgress = turnEvent.called) }
                     }
                     is TurnEvent.ChunksRetrieved -> {
-                        _uiState.update { it.copy(currentChunks = turnEvent.chunks) }
+                        _uiState.update { it.copy(currentChunks = turnEvent.chunks, searchInProgress = false) }
                     }
                     is TurnEvent.TextDelta -> {
                         streamingAccumulator.append(turnEvent.text)
@@ -503,7 +518,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                                 stage = PipelineStage.IDLE,
                                 history = it.history + newTurn,
                                 currentStreamingAnswer = "",
-                                currentChunks = emptyList()
+                                currentChunks = emptyList(),
+                                toolCalled = null,
+                                searchInProgress = false
                             )
                         }
                     }
@@ -511,7 +528,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                         _uiState.update {
                             it.copy(
                                 stage = PipelineStage.ERROR,
-                                errorMessage = turnEvent.message
+                                errorMessage = turnEvent.message,
+                                searchInProgress = false
                             )
                         }
                     }
