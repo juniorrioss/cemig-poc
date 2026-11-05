@@ -1,4 +1,4 @@
-# Relatório vivo — Exploração LFM3-1.7B (F0 → F6)
+# Relatório vivo — Exploração LFM3-1.7B (F0 → F6 + quantização)
 
 > **Documento INCREMENTAL.** Fonte canônica: este `bench/REPORT.md`; o
 > `bench/REPORT.html` é gerado dele (`python3 bench/report_html.py`). A cada
@@ -7,10 +7,11 @@
 > artefatos. Números SEMPRE copiados dos `RESULTS.md`/parquets reais de cada
 > fase — nunca de memória.
 >
-> **Última atualização**: 2026-11-04 (F6: manuais nos índices, ponto de operação + fim-a-fim).
+> **Última atualização**: 2026-11-05 (quantização: retenção de qualidade GGUF × LiteRT vs bf16).
 > Branches-fonte (exploração, NÃO mesclados no main por decisão do capitão):
 > `main` (F0, F2) · `fm/lfm3-f3-robustez` (F3) · `fm/lfm3-f3b-sweep` (F3b) ·
-> `fm/lfm3-f4-tools` (F4) · `fm/lfm3-f5-retrieval` (F5) · `fm/lfm3-f6-manuais` (F6).
+> `fm/lfm3-f4-tools` (F4) · `fm/lfm3-f5-retrieval` (F5) · `fm/lfm3-f6-manuais` (F6) ·
+> `fm/lfm3-quant-eval` (quantização).
 
 ---
 
@@ -35,6 +36,9 @@ distrator, juiz 27B, cobertura de fatos com citação fora do gate):
 - **F6** — manuais nos índices (aba separada no RRF): ponto de operação
   escolhido sob a trava das 2 réguas + fim-a-fim no recorte 344 + a d50 nas
   151 (ressalva da F5).
+- **Quantização** — retenção de qualidade do `f4-r32-ep2` por formato (GGUF
+  bf16/Q8_0/Q4_K_M/Q4_0 × LiteRT int8/mixed-int4 em CPU e GPU) contra o bf16,
+  no recorte 344 com o ponto op da F6 congelado.
 
 **Candidato final: `f4-r32-ep2`** (LoRA r32 MLP sobre o merged
 `data2x-ep4`). Números-chave na bateria completa 1536 vs F0 baseline:
@@ -85,6 +89,14 @@ distrator, juiz 27B, cobertura de fatos com citação fora do gate):
    operational 54,7→65,1%. O leitor converte ~82% quando o ouro está no
    contexto, seja norma ou manual. Ressalva: a compressão d50 **não fecha**
    nas 151 coloquiais (13,2 vs 16,9% do top-2 cru, p=0,17).
+7. **Quantização custa pouco e é dominada pelo caminho de conta, não pelo
+   formato.** No recorte 344 (op_d50), o GGUF Q4_0 do APK perde **−4,9 p.p.**
+   contra o bf16 (68,0 → 63,1, p=0,007), sobretudo por recusa em norma; Q8_0
+   (−1,7) e Q4_K_M (−2,3, +50 MB) ficam no ruído. No LiteRT o mesmo arquivo
+   retém o bf16 na GPU (int4 68,0) e perde ~4 p.p. na CPU (64,4), porque a CPU
+   quantiza as ativações dinamicamente (DRQ/XNNPACK). LiteRT int4 CPU ≈ GGUF
+   Q4_0 (p=0,46): **fica o GGUF**; o candidato de qualidade é Q4_0→Q4_K_M,
+   depois de medir o decode no S24+.
 
 ---
 
@@ -373,6 +385,53 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
   1376×2 + 688 + 453×2 prompts na Spark (batch 8, ~1,35 it/s, ~11 GB);
   julgamento local ~7 min por rodada.
 
+### 3.8 Quantização — retenção de qualidade por formato (2026-11-05) · `fm/lfm3-quant-eval:bench/lfm3_quant`
+
+- **Pergunta do capitão**: qual formato retém mais qualidade em relação ao bf16
+  (GGUF Q4 ou LiteRT)? E o arquivo LiteRT é o mesmo para CPU e GPU?
+- **Protocolo**: o MESMO `f4-r32-ep2` mesclado; os 344 prompts `op_d50` da F6
+  renderizados uma única vez e congelados (paridade de tokens com o HF de
+  344/344 em todos os motores); sampling 0,1/50/rep 1,1; 2 rodadas por formato;
+  juiz 27B (`score_f6`). Referência = as 3 rodadas bf16 HF da F6. Tudo na Spark;
+  o LiteRT int4 reusa a conversão do scout `lfm3-litert`, e o int8 foi
+  convertido na H100.
+
+  | formato | GB | aprov. | operacional | alucin. | recusa | Δ vs bf16 [IC95] (p) | decode GPU / CPU-6t (Spark) |
+  |---|--:|--:|--:|--:|--:|--:|--:|
+  | bf16 transformers | 3,46 | **68,0** | 65,1 | 13,2 | 15,4 | — | 42 / — |
+  | GGUF bf16 | 3,47 | 66,9 | 66,3 | 15,0 | 13,2 | −1,2 [−4,2, +1,8] | 67 / 6 |
+  | GGUF Q8_0 | 1,85 | 66,3 | 64,0 | 15,0 | 13,9 | −1,7 [−4,8, +1,3] | 117 / 54 |
+  | GGUF Q4_K_M | 1,10 | 65,7 | 62,8 | 14,5 | 15,0 | −2,3 [−5,9, +1,2] | 158 / 61 |
+  | **GGUF Q4_0 (APK)** | 1,05 | **63,1** | 62,2 | 14,7 | 17,9 | **−4,9 [−8,9, −1,2] (0,007)** | 184 / 65 |
+  | LiteRT int8 GPU | 1,80 | 66,7 | 67,4 | 13,2 | 15,1 | −1,3 [−4,4, +1,6] | 80 / — |
+  | LiteRT int8 CPU | 1,80 | 62,8 | 58,7 | 17,6 | 15,8 | **−5,2 [−8,6, −2,0] (0,001)** | — / 49 |
+  | LiteRT mixed int4 GPU | 1,44 | **68,0** | 62,8 | 13,9 | 13,2 | ±0,0 [−2,9, +2,8] | 90 / — |
+  | LiteRT mixed int4 CPU | 1,44 | 64,4 | 64,0 | 16,1 | 15,4 | **−3,6 [−6,7, −0,4] (0,025)** | — / 57 |
+
+- **Leitura**:
+  - O ruído entre rodadas é ≤1,7 p.p.
+  - O operacional (n=86) não separa os formatos: IC de ~±7 p.p.
+  - O Q4_0 perde por **recusa** em norma (8,9 → 15,0%); o LiteRT CPU perde por
+    **alucinação**.
+  - No LiteRT, GPU contra CPU com o mesmo arquivo dá **+3,6 (int4) e +3,9 (int8)
+    p.p.** (p≤0,008).
+  - **LiteRT int4 CPU contra GGUF Q4_0: +1,3 (p=0,46), empate.**
+- **LiteRT, CPU e GPU**: é **um único `.litertlm`**, com um único `TFLiteModel`
+  prefill+decode, e o backend é escolhido em runtime. Cada backend gera o
+  próprio cache no primeiro uso: `.xnnpack_cache` na CPU, `mldrift_*` na GPU.
+  A quantização é **DRQ** (`compute_precision=INTEGER`, sem config de
+  ativação):
+  - CPU: o XNNPACK quantiza as ativações para int8 a cada chamada;
+  - GPU: a conta roda em fp16.
+
+  As fontes estão citadas no RESULTS.
+- **Veredito de qualidade**: o LiteRT não retém mais que o GGUF no caminho
+  embarcável (CPU); a GPU do S24+ decodifica a 11 tok/s (scout). **Fica o
+  GGUF.** O candidato é Q4_0→Q4_K_M (+2,6 p.p. vs Q4_0, p=0,095), depois de
+  medir o decode no S24+.
+- **Custo**: ~2,5 h de geração na Spark (17 conjuntos × 344), 1 conversão int8
+  na H100 (19 min, CPU), ~4 min de juiz por conjunto.
+
 ---
 
 ## 4. Decisões de produto em aberto
@@ -391,9 +450,11 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
    exigiria mitigação (a âncora `anchor25` da F3b provou mover a probe
    +0,47, mas não foi combinada ao candidato — a interação negativa dos
    combos exige âncora em valor absoluto).
-4. **Quantização pendente**: toda a exploração foi em bf16 em GPU (ordem do
-   capitão na F0). Q4/GGUF, latência on-device e RAM do 1.7B não foram
-   medidos — bloqueia qualquer decisão de embarque.
+4. **Quantização (medida, `bench/lfm3_quant`)**: o GGUF Q4_0 embarcado custa
+   −4,9 p.p. contra o bf16 no recorte 344. O Q4_K_M (+50 MB) recupera ~metade
+   dessa perda (−2,3, dentro do ruído). Trocar Q4_0→Q4_K_M depende de medir o
+   decode no S24+, porque o Q4_0 tem kernels ARM dedicados. LiteRT descartado
+   (empata com o Q4_0 na CPU; NO-GO de runtime do scout).
 5. **Retrieval/compressão no app (F5)**: (i) gate limiar 0,7 + boost 2× no
    `HybridRetriever` (2 constantes); (ii) compressão top-5→50% após validar
    nas 151 (custa ~20 MB int8 de índice de janelas); (iii) peso dos manuais
@@ -419,11 +480,12 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
 | F4 | `fm/lfm3-f4-tools` | `bench/lfm3_f4` | `data/eval/` — **35 parquets** (estáticas 3 épocas+mhx3 + 5 suites de tool × 5 tags) + suites/traces jsonl | H100 `checkpoints/lfm3-f4-tools-r32/checkpoint-{142,284,426}` e `lfm3-f4-tools-mhx3-r32/checkpoint-{157,314}`; merged base `/workspace/cemig/f4/merged-rebuilt` (md5 `ae5f304d91bb47402d9125d96e766a15`) | `lfm3-f4-tools-r32` (r22hqe1h), `lfm3-f4-tools-mhx3-r32` |
 | F5 | `fm/lfm3-f5-retrieval` | `bench/lfm3_f5` | — (retrieval: `data/retrieval/*.json`; E2E: `data/e2e/{gen,scored,summary}_f4-r32-ep2*`) | usa `f4-r32-ep2` (checkpoint-284, md5 adapter `18a40d6c…`) | — |
 | F6 | `fm/lfm3-f6-manuais` | `bench/lfm3_f6` | `data/eval/` — 7 parquets (recorte344 × {ctrl,op,mid,hi}_d50 + poc151 × {a_raw2, d_c5_r0.5, op_d50}); `context_type` `retrieved_top5_compressed_manuals` | usa `f4-r32-ep2` | — |
+| Quant | `fm/lfm3-quant-eval` | `bench/lfm3_quant` | `data/eval/` — 17 parquets (formato × rodada, recorte344 op_d50; coluna nova `engine_format`, + round/seed/tok_parity/decode_tps) | Spark `~/cemig-poc/lfm3_quant/` (Q8_0, Q4_K_M, `.litertlm` int4/int8) | — |
 
-RESULTS por fase: `bench/lfm3_f{0,2,3,3b,4,5,6}/RESULTS.md`; consolidações
+RESULTS por fase: `bench/lfm3_f{0,2,3,3b,4,5,6}/RESULTS.md` + `bench/lfm3_quant/RESULTS.md`; consolidações
 numéricas: `lfm3_f3/data/consolidation.json`, `lfm3_f3b/data/dominance.json`,
 `lfm3_f4/data/consolidation.json`, `lfm3_f5/data/consolidation.json`,
-`lfm3_f6/data/consolidation.json`.
+`lfm3_f6/data/consolidation.json`, `lfm3_quant/data/consolidation.json`.
 
 ### 5.2 Infra usada
 

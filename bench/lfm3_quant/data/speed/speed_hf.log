@@ -1,0 +1,22 @@
+Loading weights:   0%|          | 0/286 [00:00<?, ?it/s]Loading weights:   0%|          | 1/286 [00:03<18:55,  3.98s/it]Loading weights:   2%|▏         | 7/286 [00:05<03:09,  1.47it/s]Loading weights:  12%|█▏        | 35/286 [00:05<00:25,  9.88it/s]Loading weights:  16%|█▌        | 46/286 [00:07<00:28,  8.41it/s]Loading weights:  21%|██        | 59/286 [00:07<00:18, 12.37it/s]Loading weights:  23%|██▎       | 67/286 [00:08<00:20, 10.93it/s]Loading weights:  26%|██▌       | 73/286 [00:09<00:20, 10.30it/s]Loading weights:  27%|██▋       | 78/286 [00:11<00:31,  6.63it/s]Loading weights:  37%|███▋      | 105/286 [00:12<00:15, 11.56it/s]Loading weights:  43%|████▎     | 124/286 [00:13<00:12, 12.96it/s]Loading weights:  53%|█████▎    | 152/286 [00:17<00:13,  9.74it/s]Loading weights:  70%|██████▉   | 200/286 [00:18<00:05, 16.27it/s]Loading weights:  75%|███████▌  | 215/286 [00:19<00:04, 17.16it/s]Loading weights:  78%|███████▊  | 223/286 [00:21<00:05, 12.56it/s]Loading weights:  87%|████████▋ | 248/286 [00:22<00:02, 12.70it/s]Loading weights:  95%|█████████▌| 272/286 [00:24<00:00, 14.32it/s]Loading weights: 100%|██████████| 286/286 [00:24<00:00, 11.80it/s]
+{'key': '34763c0ad7a87d26f37a6870::op_d50', 'n_gen': 85, 'prefill_s': 0.731, 'decode_tps': 58.31}
+{'key': '8c4dae6d2ceb7890f66902bf::op_d50', 'n_gen': 98, 'prefill_s': 0.084, 'decode_tps': 41.33}
+{'key': '4d3c8c42f9a6e9c872c0f323::op_d50', 'n_gen': 96, 'prefill_s': 0.085, 'decode_tps': 41.3}
+{'key': 'a962656b4bdfe050c5b56e0d::op_d50', 'n_gen': 82, 'prefill_s': 0.086, 'decode_tps': 41.28}
+{'key': '44dd1613ac1fd3027dd0a7a9::op_d50', 'n_gen': 92, 'prefill_s': 0.086, 'decode_tps': 41.24}
+{'key': '118bd92cf7472155fa4d297b::op_d50', 'n_gen': 90, 'prefill_s': 0.089, 'decode_tps': 41.16}
+{'key': '526956f87acf41b9e4eaf629::op_d50', 'n_gen': 90, 'prefill_s': 0.089, 'decode_tps': 41.09}
+{'key': '1c3762999b67d7a931d41097::op_d50', 'n_gen': 90, 'prefill_s': 0.087, 'decode_tps': 41.21}
+{'key': 'f908360983143164de03bdd1::op_d50', 'n_gen': 96, 'prefill_s': 0.088, 'decode_tps': 41.13}
+{'key': '7364ec1f8a3be91111357b73::op_d50', 'n_gen': 113, 'prefill_s': 0.088, 'decode_tps': 41.11}
+{'key': 'a48bb4514daac3ad55074336::op_d50', 'n_gen': 113, 'prefill_s': 0.093, 'decode_tps': 41.08}
+{'key': 'c189f34394cacc4e4d443e36::op_d50', 'n_gen': 47, 'prefill_s': 0.089, 'decode_tps': 40.99}
+{'key': '1f3a952097c7e2f83a2e91b0::op_d50', 'n_gen': 96, 'prefill_s': 0.087, 'decode_tps': 41.01}
+{'key': 'ef7f4f3e7ec240aabb83820a::op_d50', 'n_gen': 93, 'prefill_s': 0.088, 'decode_tps': 40.99}
+{'key': '066b03d0ccec122eff1ca6b9::op_d50', 'n_gen': 104, 'prefill_s': 0.09, 'decode_tps': 40.98}
+{'key': 'a43abc63fc6b3092fca4ba14::op_d50', 'n_gen': 97, 'prefill_s': 0.088, 'decode_tps': 41.04}
+{'key': '11d0073edd326c82e026649e::op_d50', 'n_gen': 79, 'prefill_s': 0.082, 'decode_tps': 41.04}
+{'key': '869c08b2535774a38cecd19e::op_d50', 'n_gen': 80, 'prefill_s': 0.081, 'decode_tps': 41.02}
+{'key': '7c1a310cac4c7f4d5589e888::op_d50', 'n_gen': 86, 'prefill_s': 0.084, 'decode_tps': 40.97}
+{'key': '58bf6c250dbdcb9b6e7797ba::op_d50', 'n_gen': 95, 'prefill_s': 0.081, 'decode_tps': 41.02}
+[ok]

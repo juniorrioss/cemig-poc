@@ -1,0 +1,19 @@
+Benchmarking model: f4-r32-ep2_mixed_int4_ekv2048.litertlm (/home/walcyrios/cemig-poc/lfm3_quant/lrt/f4-r32-ep2_mixed_int4_ekv2048.litertlm)
+Backend                    : gpu
+Number of tokens in prefill: 1100
+Number of tokens in decode : 128
+Max number of tokens       : 2048
+Cache                      : no
+Speculative decoding       : auto
+Running warmup..
+TU: error: ../src/freedreno/vulkan/tu_knl.cc:387: failed to open device /dev/dri/renderD128 (VK_ERROR_INCOMPATIBLE_DRIVER)
+Warning: maxDynamicUniformBuffersPerPipelineLayout artificially reduced from 500000 to 16 to fit dynamic offset allocation limit.
+Warning: maxDynamicStorageBuffersPerPipelineLayout artificially reduced from 500000 to 16 to fit dynamic offset allocation limit.
+Running iteration 1 of 3..
+Running iteration 2 of 3..
+Running iteration 3 of 3..
+----- Results -----
+Prefill speed:        6212.67 tokens/s
+Decode speed:         90.08 tokens/s
+Init time:            4.5041 s
+Time to first token:  0.1882 s

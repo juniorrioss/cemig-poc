@@ -1,0 +1,6 @@
+{
+ "litert_int4_gpu": {"gpu_prefill_tps": 6212.67, "gpu_decode_tps": 90.08},
+ "litert_int4_cpu": {"cpu6_prefill_tps": 696.35, "cpu6_decode_tps": 56.57},
+ "litert_int8_gpu": {"gpu_prefill_tps": 6079.77, "gpu_decode_tps": 80.42},
+ "litert_int8_cpu": {"cpu6_prefill_tps": 891.18, "cpu6_decode_tps": 48.71}
+}

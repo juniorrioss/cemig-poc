@@ -1,0 +1,5625 @@
+{
+ "protocol": {
+  "suite": "recorte344",
+  "cell": "op_d50 (F6: thr0.7_f2+man1.75+margin -> top-5 -> compressão 50%)",
+  "model": "f4-r32-ep2 mesclado (merged md5 a661ef377131b7fb222884d9f80afbe0)",
+  "contexts": "prompts congelados (render HF enable_thinking=False) idênticos entre formatos",
+  "sampling": "temp 0.1, top_k 50, top_p 1, rep 1.1 (janela 64 nos motores on-device)",
+  "judge": "Qwen3.8-27B-FP8 (régua honesta F6, score_f6.worker)",
+  "hf_bf16_note": "3 rodadas op_d50 da F6 (transformers batch 8, sampling HF); não regerado"
+ },
+ "formats": {
+  "hf_bf16": {
+   "n_rounds": 3,
+   "size_bytes": 3457635448,
+   "size_gb": 3.46,
+   "all": {
+    "approved": {
+     "mean": 68.02,
+     "min": 67.44,
+     "max": 68.9,
+     "rounds": [
+      67.73,
+      67.44,
+      68.9
+     ]
+    },
+    "coverage": {
+     "mean": 0.74,
+     "min": 0.74,
+     "max": 0.75,
+     "rounds": [
+      0.75,
+      0.74,
+      0.75
+     ]
+    },
+    "hallucination": {
+     "mean": 13.18,
+     "min": 12.5,
+     "max": 14.24,
+     "rounds": [
+      14.24,
+      12.5,
+      12.79
+     ]
+    },
+    "refused": {
+     "mean": 15.41,
+     "min": 15.12,
+     "max": 15.99,
+     "rounds": [
+      15.12,
+      15.99,
+      15.12
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 68.11,
+     "min": 67.67,
+     "max": 68.67,
+     "rounds": [
+      68.67,
+      67.67,
+      68.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 104.3,
+     "min": 103.83,
+     "max": 104.73,
+     "rounds": [
+      104.33,
+      104.73,
+      103.83
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 65.12,
+     "min": 65.12,
+     "max": 65.12,
+     "rounds": [
+      65.12,
+      65.12,
+      65.12
+     ]
+    },
+    "coverage": {
+     "mean": 0.72,
+     "min": 0.72,
+     "max": 0.73,
+     "rounds": [
+      0.72,
+      0.73,
+      0.72
+     ]
+    },
+    "hallucination": {
+     "mean": 13.18,
+     "min": 11.63,
+     "max": 13.95,
+     "rounds": [
+      13.95,
+      13.95,
+      11.63
+     ]
+    },
+    "refused": {
+     "mean": 18.99,
+     "min": 18.6,
+     "max": 19.77,
+     "rounds": [
+      18.6,
+      18.6,
+      19.77
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 60.89,
+     "min": 60.0,
+     "max": 62.67,
+     "rounds": [
+      62.67,
+      60.0,
+      60.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 104.82,
+     "min": 102.64,
+     "max": 106.08,
+     "rounds": [
+      105.73,
+      106.08,
+      102.64
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 75.89,
+     "min": 75.45,
+     "max": 76.34,
+     "rounds": [
+      75.89,
+      75.45,
+      76.34
+     ]
+    },
+    "coverage": {
+     "mean": 0.84,
+     "min": 0.84,
+     "max": 0.84,
+     "rounds": [
+      0.84,
+      0.84,
+      0.84
+     ]
+    },
+    "hallucination": {
+     "mean": 12.5,
+     "min": 11.61,
+     "max": 13.84,
+     "rounds": [
+      13.84,
+      12.05,
+      11.61
+     ]
+    },
+    "refused": {
+     "mean": 8.93,
+     "min": 8.48,
+     "max": 9.38,
+     "rounds": [
+      8.48,
+      8.93,
+      9.38
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 73.07,
+     "min": 72.77,
+     "max": 73.21,
+     "rounds": [
+      73.21,
+      73.21,
+      72.77
+     ]
+    },
+    "gen_ntok": {
+     "mean": 104.68,
+     "min": 103.46,
+     "max": 106.05,
+     "rounds": [
+      104.53,
+      106.05,
+      103.46
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 53.33,
+     "min": 52.5,
+     "max": 55.0,
+     "rounds": [
+      52.5,
+      52.5,
+      55.0
+     ]
+    },
+    "coverage": {
+     "mean": 0.57,
+     "min": 0.56,
+     "max": 0.58,
+     "rounds": [
+      0.57,
+      0.56,
+      0.58
+     ]
+    },
+    "hallucination": {
+     "mean": 14.44,
+     "min": 13.33,
+     "max": 15.0,
+     "rounds": [
+      15.0,
+      13.33,
+      15.0
+     ]
+    },
+    "refused": {
+     "mean": 27.5,
+     "min": 25.83,
+     "max": 29.17,
+     "rounds": [
+      27.5,
+      29.17,
+      25.83
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 53.51,
+     "min": 51.32,
+     "max": 55.26,
+     "rounds": [
+      55.26,
+      51.32,
+      53.95
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.58,
+     "min": 102.27,
+     "max": 104.52,
+     "rounds": [
+      103.96,
+      102.27,
+      104.52
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 72.87,
+     "min": 72.09,
+     "max": 73.26,
+     "rounds": [
+      73.26,
+      72.09,
+      73.26
+     ]
+    },
+    "coverage": {
+     "mean": 0.78,
+     "min": 0.77,
+     "max": 0.78,
+     "rounds": [
+      0.78,
+      0.77,
+      0.78
+     ]
+    },
+    "hallucination": {
+     "mean": 12.02,
+     "min": 11.63,
+     "max": 12.79,
+     "rounds": [
+      11.63,
+      11.63,
+      12.79
+     ]
+    },
+    "refused": {
+     "mean": 10.47,
+     "min": 9.3,
+     "max": 11.63,
+     "rounds": [
+      10.47,
+      11.63,
+      9.3
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 77.78,
+     "min": 77.33,
+     "max": 78.67,
+     "rounds": [
+      77.33,
+      78.67,
+      77.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 105.8,
+     "min": 104.81,
+     "max": 106.3,
+     "rounds": [
+      104.81,
+      106.3,
+      106.29
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 75.19,
+     "min": 73.26,
+     "max": 79.07,
+     "rounds": [
+      73.26,
+      73.26,
+      79.07
+     ]
+    },
+    "coverage": {
+     "mean": 0.79,
+     "min": 0.79,
+     "max": 0.8,
+     "rounds": [
+      0.8,
+      0.79,
+      0.79
+     ]
+    },
+    "hallucination": {
+     "mean": 7.36,
+     "min": 5.81,
+     "max": 8.14,
+     "rounds": [
+      8.14,
+      8.14,
+      5.81
+     ]
+    },
+    "refused": {
+     "mean": 13.95,
+     "min": 12.79,
+     "max": 15.12,
+     "rounds": [
+      15.12,
+      13.95,
+      12.79
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 70.22,
+     "min": 69.33,
+     "max": 70.67,
+     "rounds": [
+      70.67,
+      69.33,
+      70.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 105.09,
+     "min": 103.97,
+     "max": 106.21,
+     "rounds": [
+      106.21,
+      103.97,
+      105.08
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 58.91,
+     "min": 58.14,
+     "max": 59.3,
+     "rounds": [
+      59.3,
+      59.3,
+      58.14
+     ]
+    },
+    "coverage": {
+     "mean": 0.69,
+     "min": 0.68,
+     "max": 0.7,
+     "rounds": [
+      0.69,
+      0.68,
+      0.7
+     ]
+    },
+    "hallucination": {
+     "mean": 20.16,
+     "min": 16.28,
+     "max": 23.26,
+     "rounds": [
+      23.26,
+      16.28,
+      20.93
+     ]
+    },
+    "refused": {
+     "mean": 18.22,
+     "min": 16.28,
+     "max": 19.77,
+     "rounds": [
+      16.28,
+      19.77,
+      18.6
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 63.56,
+     "min": 62.67,
+     "max": 64.0,
+     "rounds": [
+      64.0,
+      62.67,
+      64.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.48,
+     "min": 100.57,
+     "max": 102.58,
+     "rounds": [
+      100.57,
+      102.58,
+      101.3
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 73.81,
+     "min": 73.21,
+     "max": 75.0,
+     "rounds": [
+      73.21,
+      75.0,
+      73.21
+     ]
+    },
+    "coverage": {
+     "mean": 0.83,
+     "min": 0.81,
+     "max": 0.84,
+     "rounds": [
+      0.83,
+      0.84,
+      0.81
+     ]
+    },
+    "hallucination": {
+     "mean": 12.5,
+     "min": 10.71,
+     "max": 14.29,
+     "rounds": [
+      14.29,
+      12.5,
+      10.71
+     ]
+    },
+    "refused": {
+     "mean": 12.5,
+     "min": 10.71,
+     "max": 14.29,
+     "rounds": [
+      12.5,
+      10.71,
+      14.29
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 65.48,
+     "min": 64.29,
+     "max": 66.07,
+     "rounds": [
+      66.07,
+      66.07,
+      64.29
+     ]
+    },
+    "gen_ntok": {
+     "mean": 106.09,
+     "min": 103.04,
+     "max": 108.55,
+     "rounds": [
+      106.68,
+      108.55,
+      103.04
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 48.89,
+     "min": 46.67,
+     "max": 50.0,
+     "rounds": [
+      50.0,
+      46.67,
+      50.0
+     ]
+    },
+    "coverage": {
+     "mean": 0.52,
+     "min": 0.51,
+     "max": 0.54,
+     "rounds": [
+      0.51,
+      0.52,
+      0.54
+     ]
+    },
+    "hallucination": {
+     "mean": 14.44,
+     "min": 13.33,
+     "max": 16.67,
+     "rounds": [
+      13.33,
+      16.67,
+      13.33
+     ]
+    },
+    "refused": {
+     "mean": 31.11,
+     "min": 30.0,
+     "max": 33.33,
+     "rounds": [
+      30.0,
+      33.33,
+      30.0
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 47.37,
+     "min": 42.11,
+     "max": 52.63,
+     "rounds": [
+      52.63,
+      42.11,
+      47.37
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.44,
+     "min": 101.47,
+     "max": 103.97,
+     "rounds": [
+      103.97,
+      101.47,
+      101.9
+     ]
+    }
+   },
+   "vs_hf_bf16": null,
+   "vs_hf_bf16_operational": null,
+   "vs_gguf_bf16": {
+    "delta_pp": 1.16,
+    "ci95": [
+     -1.79,
+     4.17
+    ],
+    "win": 47,
+    "loss": 42,
+    "sign_p": 0.6718
+   },
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": 0.29,
+     "win": 13,
+     "loss": 12
+    },
+    {
+     "pair": [
+      1,
+      3
+     ],
+     "delta_pp": -1.16,
+     "win": 10,
+     "loss": 14
+    },
+    {
+     "pair": [
+      2,
+      3
+     ],
+     "delta_pp": -1.45,
+     "win": 11,
+     "loss": 16
+    }
+   ]
+  },
+  "gguf_bf16": {
+   "n_rounds": 2,
+   "size_bytes": 3466625568,
+   "size_gb": 3.47,
+   "all": {
+    "approved": {
+     "mean": 66.86,
+     "min": 65.99,
+     "max": 67.73,
+     "rounds": [
+      65.99,
+      67.73
+     ]
+    },
+    "coverage": {
+     "mean": 0.74,
+     "min": 0.74,
+     "max": 0.74,
+     "rounds": [
+      0.74,
+      0.74
+     ]
+    },
+    "hallucination": {
+     "mean": 14.97,
+     "min": 14.24,
+     "max": 15.7,
+     "rounds": [
+      15.7,
+      14.24
+     ]
+    },
+    "refused": {
+     "mean": 13.23,
+     "min": 13.08,
+     "max": 13.37,
+     "rounds": [
+      13.37,
+      13.08
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 65.0,
+     "min": 64.67,
+     "max": 65.33,
+     "rounds": [
+      64.67,
+      65.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.2,
+     "min": 100.88,
+     "max": 101.52,
+     "rounds": [
+      101.52,
+      100.88
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 66.28,
+     "min": 63.95,
+     "max": 68.6,
+     "rounds": [
+      63.95,
+      68.6
+     ]
+    },
+    "coverage": {
+     "mean": 0.73,
+     "min": 0.73,
+     "max": 0.74,
+     "rounds": [
+      0.73,
+      0.74
+     ]
+    },
+    "hallucination": {
+     "mean": 16.28,
+     "min": 13.95,
+     "max": 18.6,
+     "rounds": [
+      18.6,
+      13.95
+     ]
+    },
+    "refused": {
+     "mean": 13.95,
+     "min": 13.95,
+     "max": 13.95,
+     "rounds": [
+      13.95,
+      13.95
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 60.67,
+     "min": 60.0,
+     "max": 61.33,
+     "rounds": [
+      61.33,
+      60.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.53,
+     "min": 102.29,
+     "max": 104.78,
+     "rounds": [
+      104.78,
+      102.29
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 75.67,
+     "min": 75.0,
+     "max": 76.34,
+     "rounds": [
+      75.0,
+      76.34
+     ]
+    },
+    "coverage": {
+     "mean": 0.85,
+     "min": 0.85,
+     "max": 0.85,
+     "rounds": [
+      0.85,
+      0.85
+     ]
+    },
+    "hallucination": {
+     "mean": 12.72,
+     "min": 12.5,
+     "max": 12.95,
+     "rounds": [
+      12.95,
+      12.5
+     ]
+    },
+    "refused": {
+     "mean": 8.26,
+     "min": 8.04,
+     "max": 8.48,
+     "rounds": [
+      8.04,
+      8.48
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 70.09,
+     "min": 69.2,
+     "max": 70.98,
+     "rounds": [
+      69.2,
+      70.98
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.58,
+     "min": 101.95,
+     "max": 103.22,
+     "rounds": [
+      103.22,
+      101.95
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 50.42,
+     "min": 49.17,
+     "max": 51.67,
+     "rounds": [
+      49.17,
+      51.67
+     ]
+    },
+    "coverage": {
+     "mean": 0.54,
+     "min": 0.54,
+     "max": 0.54,
+     "rounds": [
+      0.54,
+      0.54
+     ]
+    },
+    "hallucination": {
+     "mean": 19.17,
+     "min": 17.5,
+     "max": 20.83,
+     "rounds": [
+      20.83,
+      17.5
+     ]
+    },
+    "refused": {
+     "mean": 22.5,
+     "min": 21.67,
+     "max": 23.33,
+     "rounds": [
+      23.33,
+      21.67
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 50.0,
+     "min": 48.68,
+     "max": 51.32,
+     "rounds": [
+      51.32,
+      48.68
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.62,
+     "min": 98.34,
+     "max": 98.89,
+     "rounds": [
+      98.34,
+      98.89
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 73.26,
+     "min": 72.09,
+     "max": 74.42,
+     "rounds": [
+      74.42,
+      72.09
+     ]
+    },
+    "coverage": {
+     "mean": 0.76,
+     "min": 0.75,
+     "max": 0.77,
+     "rounds": [
+      0.77,
+      0.75
+     ]
+    },
+    "hallucination": {
+     "mean": 12.79,
+     "min": 12.79,
+     "max": 12.79,
+     "rounds": [
+      12.79,
+      12.79
+     ]
+    },
+    "refused": {
+     "mean": 9.3,
+     "min": 9.3,
+     "max": 9.3,
+     "rounds": [
+      9.3,
+      9.3
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 72.0,
+     "min": 72.0,
+     "max": 72.0,
+     "rounds": [
+      72.0,
+      72.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.53,
+     "min": 98.14,
+     "max": 100.93,
+     "rounds": [
+      100.93,
+      98.14
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 70.93,
+     "min": 68.6,
+     "max": 73.26,
+     "rounds": [
+      68.6,
+      73.26
+     ]
+    },
+    "coverage": {
+     "mean": 0.78,
+     "min": 0.78,
+     "max": 0.78,
+     "rounds": [
+      0.78,
+      0.78
+     ]
+    },
+    "hallucination": {
+     "mean": 12.21,
+     "min": 10.47,
+     "max": 13.95,
+     "rounds": [
+      13.95,
+      10.47
+     ]
+    },
+    "refused": {
+     "mean": 11.05,
+     "min": 10.47,
+     "max": 11.63,
+     "rounds": [
+      11.63,
+      10.47
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 69.33,
+     "min": 69.33,
+     "max": 69.33,
+     "rounds": [
+      69.33,
+      69.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.2,
+     "min": 98.83,
+     "max": 99.57,
+     "rounds": [
+      99.57,
+      98.83
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 56.98,
+     "min": 56.98,
+     "max": 56.98,
+     "rounds": [
+      56.98,
+      56.98
+     ]
+    },
+    "coverage": {
+     "mean": 0.69,
+     "min": 0.68,
+     "max": 0.7,
+     "rounds": [
+      0.68,
+      0.7
+     ]
+    },
+    "hallucination": {
+     "mean": 18.6,
+     "min": 17.44,
+     "max": 19.77,
+     "rounds": [
+      17.44,
+      19.77
+     ]
+    },
+    "refused": {
+     "mean": 18.6,
+     "min": 18.6,
+     "max": 18.6,
+     "rounds": [
+      18.6,
+      18.6
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 58.0,
+     "min": 56.0,
+     "max": 60.0,
+     "rounds": [
+      56.0,
+      60.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.53,
+     "min": 100.79,
+     "max": 104.28,
+     "rounds": [
+      100.79,
+      104.28
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 74.11,
+     "min": 71.43,
+     "max": 76.79,
+     "rounds": [
+      71.43,
+      76.79
+     ]
+    },
+    "coverage": {
+     "mean": 0.85,
+     "min": 0.84,
+     "max": 0.85,
+     "rounds": [
+      0.84,
+      0.85
+     ]
+    },
+    "hallucination": {
+     "mean": 15.18,
+     "min": 12.5,
+     "max": 17.86,
+     "rounds": [
+      17.86,
+      12.5
+     ]
+    },
+    "refused": {
+     "mean": 8.93,
+     "min": 8.93,
+     "max": 8.93,
+     "rounds": [
+      8.93,
+      8.93
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 66.07,
+     "min": 66.07,
+     "max": 66.07,
+     "rounds": [
+      66.07,
+      66.07
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.85,
+     "min": 101.46,
+     "max": 106.23,
+     "rounds": [
+      106.23,
+      101.46
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 51.67,
+     "min": 50.0,
+     "max": 53.33,
+     "rounds": [
+      50.0,
+      53.33
+     ]
+    },
+    "coverage": {
+     "mean": 0.52,
+     "min": 0.52,
+     "max": 0.53,
+     "rounds": [
+      0.53,
+      0.52
+     ]
+    },
+    "hallucination": {
+     "mean": 18.33,
+     "min": 16.67,
+     "max": 20.0,
+     "rounds": [
+      20.0,
+      16.67
+     ]
+    },
+    "refused": {
+     "mean": 23.33,
+     "min": 23.33,
+     "max": 23.33,
+     "rounds": [
+      23.33,
+      23.33
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 44.74,
+     "min": 42.11,
+     "max": 47.37,
+     "rounds": [
+      47.37,
+      42.11
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.95,
+     "min": 102.07,
+     "max": 103.83,
+     "rounds": [
+      102.07,
+      103.83
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": -1.16,
+    "ci95": [
+     -4.17,
+     1.79
+    ],
+    "win": 42,
+    "loss": 47,
+    "sign_p": 0.6718
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": 1.16,
+    "ci95": [
+     -3.88,
+     6.4
+    ],
+    "win": 12,
+    "loss": 10,
+    "sign_p": 0.8318
+   },
+   "vs_gguf_bf16": null,
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": -1.74,
+     "win": 12,
+     "loss": 18
+    }
+   ]
+  },
+  "gguf_q8_0": {
+   "n_rounds": 2,
+   "size_bytes": 1846237728,
+   "size_gb": 1.85,
+   "all": {
+    "approved": {
+     "mean": 66.28,
+     "min": 65.99,
+     "max": 66.57,
+     "rounds": [
+      65.99,
+      66.57
+     ]
+    },
+    "coverage": {
+     "mean": 0.75,
+     "min": 0.75,
+     "max": 0.75,
+     "rounds": [
+      0.75,
+      0.75
+     ]
+    },
+    "hallucination": {
+     "mean": 14.97,
+     "min": 14.53,
+     "max": 15.41,
+     "rounds": [
+      15.41,
+      14.53
+     ]
+    },
+    "refused": {
+     "mean": 13.95,
+     "min": 13.08,
+     "max": 14.83,
+     "rounds": [
+      14.83,
+      13.08
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 65.67,
+     "min": 65.0,
+     "max": 66.33,
+     "rounds": [
+      65.0,
+      66.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.02,
+     "min": 101.47,
+     "max": 102.57,
+     "rounds": [
+      102.57,
+      101.47
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 63.95,
+     "min": 63.95,
+     "max": 63.95,
+     "rounds": [
+      63.95,
+      63.95
+     ]
+    },
+    "coverage": {
+     "mean": 0.74,
+     "min": 0.74,
+     "max": 0.74,
+     "rounds": [
+      0.74,
+      0.74
+     ]
+    },
+    "hallucination": {
+     "mean": 18.02,
+     "min": 17.44,
+     "max": 18.6,
+     "rounds": [
+      18.6,
+      17.44
+     ]
+    },
+    "refused": {
+     "mean": 16.28,
+     "min": 15.12,
+     "max": 17.44,
+     "rounds": [
+      17.44,
+      15.12
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 60.0,
+     "min": 58.67,
+     "max": 61.33,
+     "rounds": [
+      58.67,
+      61.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.44,
+     "min": 101.81,
+     "max": 105.07,
+     "rounds": [
+      105.07,
+      101.81
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 73.66,
+     "min": 73.21,
+     "max": 74.11,
+     "rounds": [
+      73.21,
+      74.11
+     ]
+    },
+    "coverage": {
+     "mean": 0.85,
+     "min": 0.85,
+     "max": 0.85,
+     "rounds": [
+      0.85,
+      0.85
+     ]
+    },
+    "hallucination": {
+     "mean": 13.84,
+     "min": 13.39,
+     "max": 14.29,
+     "rounds": [
+      14.29,
+      13.39
+     ]
+    },
+    "refused": {
+     "mean": 9.15,
+     "min": 8.48,
+     "max": 9.82,
+     "rounds": [
+      9.82,
+      8.48
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 70.98,
+     "min": 69.64,
+     "max": 72.32,
+     "rounds": [
+      69.64,
+      72.32
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.35,
+     "min": 102.51,
+     "max": 104.18,
+     "rounds": [
+      104.18,
+      102.51
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 52.5,
+     "min": 52.5,
+     "max": 52.5,
+     "rounds": [
+      52.5,
+      52.5
+     ]
+    },
+    "coverage": {
+     "mean": 0.55,
+     "min": 0.55,
+     "max": 0.55,
+     "rounds": [
+      0.55,
+      0.55
+     ]
+    },
+    "hallucination": {
+     "mean": 17.08,
+     "min": 16.67,
+     "max": 17.5,
+     "rounds": [
+      17.5,
+      16.67
+     ]
+    },
+    "refused": {
+     "mean": 22.92,
+     "min": 21.67,
+     "max": 24.17,
+     "rounds": [
+      24.17,
+      21.67
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 50.0,
+     "min": 48.68,
+     "max": 51.32,
+     "rounds": [
+      51.32,
+      48.68
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.55,
+     "min": 99.54,
+     "max": 99.56,
+     "rounds": [
+      99.56,
+      99.54
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 71.51,
+     "min": 70.93,
+     "max": 72.09,
+     "rounds": [
+      70.93,
+      72.09
+     ]
+    },
+    "coverage": {
+     "mean": 0.75,
+     "min": 0.73,
+     "max": 0.77,
+     "rounds": [
+      0.77,
+      0.73
+     ]
+    },
+    "hallucination": {
+     "mean": 12.79,
+     "min": 11.63,
+     "max": 13.95,
+     "rounds": [
+      13.95,
+      11.63
+     ]
+    },
+    "refused": {
+     "mean": 11.05,
+     "min": 9.3,
+     "max": 12.79,
+     "rounds": [
+      12.79,
+      9.3
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 74.0,
+     "min": 73.33,
+     "max": 74.67,
+     "rounds": [
+      74.67,
+      73.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.89,
+     "min": 98.78,
+     "max": 101.0,
+     "rounds": [
+      101.0,
+      98.78
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 74.42,
+     "min": 74.42,
+     "max": 74.42,
+     "rounds": [
+      74.42,
+      74.42
+     ]
+    },
+    "coverage": {
+     "mean": 0.81,
+     "min": 0.8,
+     "max": 0.81,
+     "rounds": [
+      0.8,
+      0.81
+     ]
+    },
+    "hallucination": {
+     "mean": 8.14,
+     "min": 8.14,
+     "max": 8.14,
+     "rounds": [
+      8.14,
+      8.14
+     ]
+    },
+    "refused": {
+     "mean": 10.47,
+     "min": 10.47,
+     "max": 10.47,
+     "rounds": [
+      10.47,
+      10.47
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 68.67,
+     "min": 68.0,
+     "max": 69.33,
+     "rounds": [
+      68.0,
+      69.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.84,
+     "min": 101.33,
+     "max": 102.35,
+     "rounds": [
+      101.33,
+      102.35
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 55.23,
+     "min": 54.65,
+     "max": 55.81,
+     "rounds": [
+      54.65,
+      55.81
+     ]
+    },
+    "coverage": {
+     "mean": 0.69,
+     "min": 0.69,
+     "max": 0.7,
+     "rounds": [
+      0.69,
+      0.7
+     ]
+    },
+    "hallucination": {
+     "mean": 20.93,
+     "min": 20.93,
+     "max": 20.93,
+     "rounds": [
+      20.93,
+      20.93
+     ]
+    },
+    "refused": {
+     "mean": 18.02,
+     "min": 17.44,
+     "max": 18.6,
+     "rounds": [
+      18.6,
+      17.44
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 60.0,
+     "min": 58.67,
+     "max": 61.33,
+     "rounds": [
+      58.67,
+      61.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.92,
+     "min": 102.88,
+     "max": 102.95,
+     "rounds": [
+      102.88,
+      102.95
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 71.43,
+     "min": 71.43,
+     "max": 71.43,
+     "rounds": [
+      71.43,
+      71.43
+     ]
+    },
+    "coverage": {
+     "mean": 0.85,
+     "min": 0.85,
+     "max": 0.85,
+     "rounds": [
+      0.85,
+      0.85
+     ]
+    },
+    "hallucination": {
+     "mean": 16.96,
+     "min": 16.07,
+     "max": 17.86,
+     "rounds": [
+      17.86,
+      16.07
+     ]
+    },
+    "refused": {
+     "mean": 11.61,
+     "min": 10.71,
+     "max": 12.5,
+     "rounds": [
+      12.5,
+      10.71
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 66.96,
+     "min": 66.07,
+     "max": 67.86,
+     "rounds": [
+      66.07,
+      67.86
+     ]
+    },
+    "gen_ntok": {
+     "mean": 105.21,
+     "min": 103.2,
+     "max": 107.23,
+     "rounds": [
+      107.23,
+      103.2
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 50.0,
+     "min": 50.0,
+     "max": 50.0,
+     "rounds": [
+      50.0,
+      50.0
+     ]
+    },
+    "coverage": {
+     "mean": 0.53,
+     "min": 0.53,
+     "max": 0.53,
+     "rounds": [
+      0.53,
+      0.53
+     ]
+    },
+    "hallucination": {
+     "mean": 20.0,
+     "min": 20.0,
+     "max": 20.0,
+     "rounds": [
+      20.0,
+      20.0
+     ]
+    },
+    "refused": {
+     "mean": 25.0,
+     "min": 23.33,
+     "max": 26.67,
+     "rounds": [
+      26.67,
+      23.33
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 39.47,
+     "min": 36.84,
+     "max": 42.11,
+     "rounds": [
+      36.84,
+      42.11
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.13,
+     "min": 99.23,
+     "max": 101.03,
+     "rounds": [
+      101.03,
+      99.23
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": -1.74,
+    "ci95": [
+     -4.8,
+     1.31
+    ],
+    "win": 41,
+    "loss": 50,
+    "sign_p": 0.4018
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": -1.16,
+    "ci95": [
+     -6.4,
+     4.26
+    ],
+    "win": 8,
+    "loss": 10,
+    "sign_p": 0.8145
+   },
+   "vs_gguf_bf16": {
+    "delta_pp": -0.58,
+    "ci95": [
+     -2.76,
+     1.6
+    ],
+    "win": 24,
+    "loss": 28,
+    "sign_p": 0.6778
+   },
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": -0.58,
+     "win": 15,
+     "loss": 17
+    }
+   ]
+  },
+  "gguf_q4_k_m": {
+   "n_rounds": 2,
+   "size_bytes": 1099627040,
+   "size_gb": 1.1,
+   "all": {
+    "approved": {
+     "mean": 65.7,
+     "min": 65.7,
+     "max": 65.7,
+     "rounds": [
+      65.7,
+      65.7
+     ]
+    },
+    "coverage": {
+     "mean": 0.74,
+     "min": 0.74,
+     "max": 0.74,
+     "rounds": [
+      0.74,
+      0.74
+     ]
+    },
+    "hallucination": {
+     "mean": 14.53,
+     "min": 13.95,
+     "max": 15.12,
+     "rounds": [
+      15.12,
+      13.95
+     ]
+    },
+    "refused": {
+     "mean": 14.97,
+     "min": 14.53,
+     "max": 15.41,
+     "rounds": [
+      14.53,
+      15.41
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 64.83,
+     "min": 64.67,
+     "max": 65.0,
+     "rounds": [
+      65.0,
+      64.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.73,
+     "min": 101.56,
+     "max": 101.89,
+     "rounds": [
+      101.56,
+      101.89
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 62.79,
+     "min": 62.79,
+     "max": 62.79,
+     "rounds": [
+      62.79,
+      62.79
+     ]
+    },
+    "coverage": {
+     "mean": 0.73,
+     "min": 0.71,
+     "max": 0.74,
+     "rounds": [
+      0.71,
+      0.74
+     ]
+    },
+    "hallucination": {
+     "mean": 15.7,
+     "min": 13.95,
+     "max": 17.44,
+     "rounds": [
+      13.95,
+      17.44
+     ]
+    },
+    "refused": {
+     "mean": 14.53,
+     "min": 12.79,
+     "max": 16.28,
+     "rounds": [
+      16.28,
+      12.79
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 62.67,
+     "min": 62.67,
+     "max": 62.67,
+     "rounds": [
+      62.67,
+      62.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.76,
+     "min": 103.37,
+     "max": 104.14,
+     "rounds": [
+      103.37,
+      104.14
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 72.77,
+     "min": 71.88,
+     "max": 73.66,
+     "rounds": [
+      71.88,
+      73.66
+     ]
+    },
+    "coverage": {
+     "mean": 0.84,
+     "min": 0.84,
+     "max": 0.84,
+     "rounds": [
+      0.84,
+      0.84
+     ]
+    },
+    "hallucination": {
+     "mean": 11.83,
+     "min": 11.16,
+     "max": 12.5,
+     "rounds": [
+      12.5,
+      11.16
+     ]
+    },
+    "refused": {
+     "mean": 12.72,
+     "min": 12.5,
+     "max": 12.95,
+     "rounds": [
+      12.95,
+      12.5
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 69.64,
+     "min": 69.64,
+     "max": 69.64,
+     "rounds": [
+      69.64,
+      69.64
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.94,
+     "min": 99.92,
+     "max": 101.96,
+     "rounds": [
+      99.92,
+      101.96
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 52.5,
+     "min": 50.83,
+     "max": 54.17,
+     "rounds": [
+      54.17,
+      50.83
+     ]
+    },
+    "coverage": {
+     "mean": 0.56,
+     "min": 0.56,
+     "max": 0.56,
+     "rounds": [
+      0.56,
+      0.56
+     ]
+    },
+    "hallucination": {
+     "mean": 19.58,
+     "min": 19.17,
+     "max": 20.0,
+     "rounds": [
+      20.0,
+      19.17
+     ]
+    },
+    "refused": {
+     "mean": 19.17,
+     "min": 17.5,
+     "max": 20.83,
+     "rounds": [
+      17.5,
+      20.83
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 50.66,
+     "min": 50.0,
+     "max": 51.32,
+     "rounds": [
+      51.32,
+      50.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.19,
+     "min": 101.75,
+     "max": 104.63,
+     "rounds": [
+      104.63,
+      101.75
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 68.02,
+     "min": 66.28,
+     "max": 69.77,
+     "rounds": [
+      69.77,
+      66.28
+     ]
+    },
+    "coverage": {
+     "mean": 0.75,
+     "min": 0.75,
+     "max": 0.76,
+     "rounds": [
+      0.76,
+      0.75
+     ]
+    },
+    "hallucination": {
+     "mean": 16.28,
+     "min": 15.12,
+     "max": 17.44,
+     "rounds": [
+      15.12,
+      17.44
+     ]
+    },
+    "refused": {
+     "mean": 11.63,
+     "min": 11.63,
+     "max": 11.63,
+     "rounds": [
+      11.63,
+      11.63
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 69.33,
+     "min": 68.0,
+     "max": 70.67,
+     "rounds": [
+      70.67,
+      68.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 104.18,
+     "min": 102.26,
+     "max": 106.1,
+     "rounds": [
+      102.26,
+      106.1
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 72.67,
+     "min": 70.93,
+     "max": 74.42,
+     "rounds": [
+      74.42,
+      70.93
+     ]
+    },
+    "coverage": {
+     "mean": 0.79,
+     "min": 0.78,
+     "max": 0.8,
+     "rounds": [
+      0.8,
+      0.78
+     ]
+    },
+    "hallucination": {
+     "mean": 10.47,
+     "min": 10.47,
+     "max": 10.47,
+     "rounds": [
+      10.47,
+      10.47
+     ]
+    },
+    "refused": {
+     "mean": 13.95,
+     "min": 11.63,
+     "max": 16.28,
+     "rounds": [
+      11.63,
+      16.28
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 70.67,
+     "min": 70.67,
+     "max": 70.67,
+     "rounds": [
+      70.67,
+      70.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.68,
+     "min": 100.17,
+     "max": 103.19,
+     "rounds": [
+      103.19,
+      100.17
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 59.3,
+     "min": 55.81,
+     "max": 62.79,
+     "rounds": [
+      55.81,
+      62.79
+     ]
+    },
+    "coverage": {
+     "mean": 0.7,
+     "min": 0.69,
+     "max": 0.7,
+     "rounds": [
+      0.7,
+      0.69
+     ]
+    },
+    "hallucination": {
+     "mean": 15.7,
+     "min": 10.47,
+     "max": 20.93,
+     "rounds": [
+      20.93,
+      10.47
+     ]
+    },
+    "refused": {
+     "mean": 19.77,
+     "min": 18.6,
+     "max": 20.93,
+     "rounds": [
+      18.6,
+      20.93
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 56.67,
+     "min": 56.0,
+     "max": 57.33,
+     "rounds": [
+      56.0,
+      57.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 97.29,
+     "min": 97.14,
+     "max": 97.44,
+     "rounds": [
+      97.44,
+      97.14
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 72.32,
+     "min": 71.43,
+     "max": 73.21,
+     "rounds": [
+      71.43,
+      73.21
+     ]
+    },
+    "coverage": {
+     "mean": 0.84,
+     "min": 0.83,
+     "max": 0.85,
+     "rounds": [
+      0.83,
+      0.85
+     ]
+    },
+    "hallucination": {
+     "mean": 8.93,
+     "min": 7.14,
+     "max": 10.71,
+     "rounds": [
+      7.14,
+      10.71
+     ]
+    },
+    "refused": {
+     "mean": 14.29,
+     "min": 12.5,
+     "max": 16.07,
+     "rounds": [
+      16.07,
+      12.5
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 67.86,
+     "min": 67.86,
+     "max": 67.86,
+     "rounds": [
+      67.86,
+      67.86
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.57,
+     "min": 100.55,
+     "max": 102.59,
+     "rounds": [
+      100.55,
+      102.59
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 45.0,
+     "min": 43.33,
+     "max": 46.67,
+     "rounds": [
+      46.67,
+      43.33
+     ]
+    },
+    "coverage": {
+     "mean": 0.51,
+     "min": 0.5,
+     "max": 0.53,
+     "rounds": [
+      0.5,
+      0.53
+     ]
+    },
+    "hallucination": {
+     "mean": 28.33,
+     "min": 26.67,
+     "max": 30.0,
+     "rounds": [
+      26.67,
+      30.0
+     ]
+    },
+    "refused": {
+     "mean": 15.0,
+     "min": 13.33,
+     "max": 16.67,
+     "rounds": [
+      16.67,
+      13.33
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 47.37,
+     "min": 47.37,
+     "max": 47.37,
+     "rounds": [
+      47.37,
+      47.37
+     ]
+    },
+    "gen_ntok": {
+     "mean": 107.83,
+     "min": 107.03,
+     "max": 108.63,
+     "rounds": [
+      108.63,
+      107.03
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": -2.33,
+    "ci95": [
+     -5.91,
+     1.16
+    ],
+    "win": 44,
+    "loss": 57,
+    "sign_p": 0.2323
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": -2.33,
+    "ci95": [
+     -8.91,
+     4.26
+    ],
+    "win": 10,
+    "loss": 14,
+    "sign_p": 0.5413
+   },
+   "vs_gguf_bf16": {
+    "delta_pp": -1.16,
+    "ci95": [
+     -4.51,
+     2.18
+    ],
+    "win": 43,
+    "loss": 51,
+    "sign_p": 0.4705
+   },
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": 0.0,
+     "win": 13,
+     "loss": 13
+    }
+   ]
+  },
+  "gguf_q4_0": {
+   "n_rounds": 2,
+   "size_bytes": 1049614880,
+   "size_gb": 1.05,
+   "all": {
+    "approved": {
+     "mean": 63.08,
+     "min": 63.08,
+     "max": 63.08,
+     "rounds": [
+      63.08,
+      63.08
+     ]
+    },
+    "coverage": {
+     "mean": 0.72,
+     "min": 0.72,
+     "max": 0.73,
+     "rounds": [
+      0.72,
+      0.73
+     ]
+    },
+    "hallucination": {
+     "mean": 14.68,
+     "min": 14.24,
+     "max": 15.12,
+     "rounds": [
+      14.24,
+      15.12
+     ]
+    },
+    "refused": {
+     "mean": 17.88,
+     "min": 16.86,
+     "max": 18.9,
+     "rounds": [
+      18.9,
+      16.86
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 64.33,
+     "min": 64.0,
+     "max": 64.67,
+     "rounds": [
+      64.0,
+      64.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 97.61,
+     "min": 97.36,
+     "max": 97.85,
+     "rounds": [
+      97.36,
+      97.85
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 62.21,
+     "min": 60.47,
+     "max": 63.95,
+     "rounds": [
+      63.95,
+      60.47
+     ]
+    },
+    "coverage": {
+     "mean": 0.7,
+     "min": 0.7,
+     "max": 0.7,
+     "rounds": [
+      0.7,
+      0.7
+     ]
+    },
+    "hallucination": {
+     "mean": 12.79,
+     "min": 11.63,
+     "max": 13.95,
+     "rounds": [
+      11.63,
+      13.95
+     ]
+    },
+    "refused": {
+     "mean": 19.77,
+     "min": 18.6,
+     "max": 20.93,
+     "rounds": [
+      18.6,
+      20.93
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 60.67,
+     "min": 60.0,
+     "max": 61.33,
+     "rounds": [
+      61.33,
+      60.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 97.68,
+     "min": 96.43,
+     "max": 98.93,
+     "rounds": [
+      98.93,
+      96.43
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 69.64,
+     "min": 68.75,
+     "max": 70.54,
+     "rounds": [
+      68.75,
+      70.54
+     ]
+    },
+    "coverage": {
+     "mean": 0.83,
+     "min": 0.82,
+     "max": 0.84,
+     "rounds": [
+      0.82,
+      0.84
+     ]
+    },
+    "hallucination": {
+     "mean": 14.29,
+     "min": 13.84,
+     "max": 14.73,
+     "rounds": [
+      13.84,
+      14.73
+     ]
+    },
+    "refused": {
+     "mean": 14.96,
+     "min": 13.84,
+     "max": 16.07,
+     "rounds": [
+      16.07,
+      13.84
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 69.64,
+     "min": 69.2,
+     "max": 70.09,
+     "rounds": [
+      69.2,
+      70.09
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.78,
+     "min": 98.47,
+     "max": 99.09,
+     "rounds": [
+      98.47,
+      99.09
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 50.83,
+     "min": 49.17,
+     "max": 52.5,
+     "rounds": [
+      52.5,
+      49.17
+     ]
+    },
+    "coverage": {
+     "mean": 0.53,
+     "min": 0.52,
+     "max": 0.53,
+     "rounds": [
+      0.53,
+      0.52
+     ]
+    },
+    "hallucination": {
+     "mean": 15.42,
+     "min": 15.0,
+     "max": 15.83,
+     "rounds": [
+      15.0,
+      15.83
+     ]
+    },
+    "refused": {
+     "mean": 23.33,
+     "min": 22.5,
+     "max": 24.17,
+     "rounds": [
+      24.17,
+      22.5
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 48.68,
+     "min": 48.68,
+     "max": 48.68,
+     "rounds": [
+      48.68,
+      48.68
+     ]
+    },
+    "gen_ntok": {
+     "mean": 95.42,
+     "min": 95.29,
+     "max": 95.54,
+     "rounds": [
+      95.29,
+      95.54
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 63.37,
+     "min": 62.79,
+     "max": 63.95,
+     "rounds": [
+      62.79,
+      63.95
+     ]
+    },
+    "coverage": {
+     "mean": 0.73,
+     "min": 0.72,
+     "max": 0.73,
+     "rounds": [
+      0.72,
+      0.73
+     ]
+    },
+    "hallucination": {
+     "mean": 13.95,
+     "min": 11.63,
+     "max": 16.28,
+     "rounds": [
+      16.28,
+      11.63
+     ]
+    },
+    "refused": {
+     "mean": 17.44,
+     "min": 16.28,
+     "max": 18.6,
+     "rounds": [
+      18.6,
+      16.28
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 71.33,
+     "min": 70.67,
+     "max": 72.0,
+     "rounds": [
+      72.0,
+      70.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 95.12,
+     "min": 95.01,
+     "max": 95.22,
+     "rounds": [
+      95.22,
+      95.01
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 67.44,
+     "min": 67.44,
+     "max": 67.44,
+     "rounds": [
+      67.44,
+      67.44
+     ]
+    },
+    "coverage": {
+     "mean": 0.78,
+     "min": 0.76,
+     "max": 0.8,
+     "rounds": [
+      0.76,
+      0.8
+     ]
+    },
+    "hallucination": {
+     "mean": 12.79,
+     "min": 10.47,
+     "max": 15.12,
+     "rounds": [
+      10.47,
+      15.12
+     ]
+    },
+    "refused": {
+     "mean": 14.53,
+     "min": 13.95,
+     "max": 15.12,
+     "rounds": [
+      15.12,
+      13.95
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 67.33,
+     "min": 66.67,
+     "max": 68.0,
+     "rounds": [
+      66.67,
+      68.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.01,
+     "min": 95.64,
+     "max": 102.37,
+     "rounds": [
+      95.64,
+      102.37
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 59.3,
+     "min": 58.14,
+     "max": 60.47,
+     "rounds": [
+      58.14,
+      60.47
+     ]
+    },
+    "coverage": {
+     "mean": 0.69,
+     "min": 0.68,
+     "max": 0.7,
+     "rounds": [
+      0.7,
+      0.68
+     ]
+    },
+    "hallucination": {
+     "mean": 19.19,
+     "min": 18.6,
+     "max": 19.77,
+     "rounds": [
+      18.6,
+      19.77
+     ]
+    },
+    "refused": {
+     "mean": 19.77,
+     "min": 16.28,
+     "max": 23.26,
+     "rounds": [
+      23.26,
+      16.28
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 58.0,
+     "min": 56.0,
+     "max": 60.0,
+     "rounds": [
+      56.0,
+      60.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.63,
+     "min": 97.6,
+     "max": 99.65,
+     "rounds": [
+      99.65,
+      97.6
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 71.43,
+     "min": 71.43,
+     "max": 71.43,
+     "rounds": [
+      71.43,
+      71.43
+     ]
+    },
+    "coverage": {
+     "mean": 0.83,
+     "min": 0.83,
+     "max": 0.83,
+     "rounds": [
+      0.83,
+      0.83
+     ]
+    },
+    "hallucination": {
+     "mean": 10.71,
+     "min": 10.71,
+     "max": 10.71,
+     "rounds": [
+      10.71,
+      10.71
+     ]
+    },
+    "refused": {
+     "mean": 16.96,
+     "min": 16.07,
+     "max": 17.86,
+     "rounds": [
+      16.07,
+      17.86
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 66.07,
+     "min": 66.07,
+     "max": 66.07,
+     "rounds": [
+      66.07,
+      66.07
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.54,
+     "min": 97.59,
+     "max": 99.5,
+     "rounds": [
+      99.5,
+      97.59
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 45.0,
+     "min": 40.0,
+     "max": 50.0,
+     "rounds": [
+      50.0,
+      40.0
+     ]
+    },
+    "coverage": {
+     "mean": 0.45,
+     "min": 0.45,
+     "max": 0.46,
+     "rounds": [
+      0.46,
+      0.45
+     ]
+    },
+    "hallucination": {
+     "mean": 16.67,
+     "min": 13.33,
+     "max": 20.0,
+     "rounds": [
+      13.33,
+      20.0
+     ]
+    },
+    "refused": {
+     "mean": 25.0,
+     "min": 23.33,
+     "max": 26.67,
+     "rounds": [
+      23.33,
+      26.67
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 44.74,
+     "min": 42.11,
+     "max": 47.37,
+     "rounds": [
+      47.37,
+      42.11
+     ]
+    },
+    "gen_ntok": {
+     "mean": 96.07,
+     "min": 94.27,
+     "max": 97.87,
+     "rounds": [
+      97.87,
+      94.27
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": -4.94,
+    "ci95": [
+     -8.87,
+     -1.16
+    ],
+    "win": 47,
+    "loss": 78,
+    "sign_p": 0.007
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": -2.91,
+    "ci95": [
+     -10.85,
+     4.65
+    ],
+    "win": 12,
+    "loss": 17,
+    "sign_p": 0.4583
+   },
+   "vs_gguf_bf16": {
+    "delta_pp": -3.78,
+    "ci95": [
+     -7.27,
+     -0.29
+    ],
+    "win": 44,
+    "loss": 70,
+    "sign_p": 0.0188
+   },
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": 0.0,
+     "win": 20,
+     "loss": 20
+    }
+   ]
+  },
+  "gguf_q4_0_rep1.0": {
+   "n_rounds": 1,
+   "size_bytes": 1049614880,
+   "size_gb": 1.05,
+   "all": {
+    "approved": {
+     "mean": 65.41,
+     "min": 65.41,
+     "max": 65.41,
+     "rounds": [
+      65.41
+     ]
+    },
+    "coverage": {
+     "mean": 0.74,
+     "min": 0.74,
+     "max": 0.74,
+     "rounds": [
+      0.74
+     ]
+    },
+    "hallucination": {
+     "mean": 13.37,
+     "min": 13.37,
+     "max": 13.37,
+     "rounds": [
+      13.37
+     ]
+    },
+    "refused": {
+     "mean": 18.02,
+     "min": 18.02,
+     "max": 18.02,
+     "rounds": [
+      18.02
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 67.0,
+     "min": 67.0,
+     "max": 67.0,
+     "rounds": [
+      67.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.67,
+     "min": 98.67,
+     "max": 98.67,
+     "rounds": [
+      98.67
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 62.79,
+     "min": 62.79,
+     "max": 62.79,
+     "rounds": [
+      62.79
+     ]
+    },
+    "coverage": {
+     "mean": 0.73,
+     "min": 0.73,
+     "max": 0.73,
+     "rounds": [
+      0.73
+     ]
+    },
+    "hallucination": {
+     "mean": 12.79,
+     "min": 12.79,
+     "max": 12.79,
+     "rounds": [
+      12.79
+     ]
+    },
+    "refused": {
+     "mean": 24.42,
+     "min": 24.42,
+     "max": 24.42,
+     "rounds": [
+      24.42
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 62.67,
+     "min": 62.67,
+     "max": 62.67,
+     "rounds": [
+      62.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.95,
+     "min": 101.95,
+     "max": 101.95,
+     "rounds": [
+      101.95
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 71.43,
+     "min": 71.43,
+     "max": 71.43,
+     "rounds": [
+      71.43
+     ]
+    },
+    "coverage": {
+     "mean": 0.83,
+     "min": 0.83,
+     "max": 0.83,
+     "rounds": [
+      0.83
+     ]
+    },
+    "hallucination": {
+     "mean": 12.05,
+     "min": 12.05,
+     "max": 12.05,
+     "rounds": [
+      12.05
+     ]
+    },
+    "refused": {
+     "mean": 13.39,
+     "min": 13.39,
+     "max": 13.39,
+     "rounds": [
+      13.39
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 72.32,
+     "min": 72.32,
+     "max": 72.32,
+     "rounds": [
+      72.32
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.07,
+     "min": 99.07,
+     "max": 99.07,
+     "rounds": [
+      99.07
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 54.17,
+     "min": 54.17,
+     "max": 54.17,
+     "rounds": [
+      54.17
+     ]
+    },
+    "coverage": {
+     "mean": 0.56,
+     "min": 0.56,
+     "max": 0.56,
+     "rounds": [
+      0.56
+     ]
+    },
+    "hallucination": {
+     "mean": 15.83,
+     "min": 15.83,
+     "max": 15.83,
+     "rounds": [
+      15.83
+     ]
+    },
+    "refused": {
+     "mean": 26.67,
+     "min": 26.67,
+     "max": 26.67,
+     "rounds": [
+      26.67
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 51.32,
+     "min": 51.32,
+     "max": 51.32,
+     "rounds": [
+      51.32
+     ]
+    },
+    "gen_ntok": {
+     "mean": 97.93,
+     "min": 97.93,
+     "max": 97.93,
+     "rounds": [
+      97.93
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 72.09,
+     "min": 72.09,
+     "max": 72.09,
+     "rounds": [
+      72.09
+     ]
+    },
+    "coverage": {
+     "mean": 0.77,
+     "min": 0.77,
+     "max": 0.77,
+     "rounds": [
+      0.77
+     ]
+    },
+    "hallucination": {
+     "mean": 9.3,
+     "min": 9.3,
+     "max": 9.3,
+     "rounds": [
+      9.3
+     ]
+    },
+    "refused": {
+     "mean": 12.79,
+     "min": 12.79,
+     "max": 12.79,
+     "rounds": [
+      12.79
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 77.33,
+     "min": 77.33,
+     "max": 77.33,
+     "rounds": [
+      77.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 95.23,
+     "min": 95.23,
+     "max": 95.23,
+     "rounds": [
+      95.23
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 68.6,
+     "min": 68.6,
+     "max": 68.6,
+     "rounds": [
+      68.6
+     ]
+    },
+    "coverage": {
+     "mean": 0.78,
+     "min": 0.78,
+     "max": 0.78,
+     "rounds": [
+      0.78
+     ]
+    },
+    "hallucination": {
+     "mean": 11.63,
+     "min": 11.63,
+     "max": 11.63,
+     "rounds": [
+      11.63
+     ]
+    },
+    "refused": {
+     "mean": 15.12,
+     "min": 15.12,
+     "max": 15.12,
+     "rounds": [
+      15.12
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 69.33,
+     "min": 69.33,
+     "max": 69.33,
+     "rounds": [
+      69.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.26,
+     "min": 98.26,
+     "max": 98.26,
+     "rounds": [
+      98.26
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 58.14,
+     "min": 58.14,
+     "max": 58.14,
+     "rounds": [
+      58.14
+     ]
+    },
+    "coverage": {
+     "mean": 0.67,
+     "min": 0.67,
+     "max": 0.67,
+     "rounds": [
+      0.67
+     ]
+    },
+    "hallucination": {
+     "mean": 19.77,
+     "min": 19.77,
+     "max": 19.77,
+     "rounds": [
+      19.77
+     ]
+    },
+    "refused": {
+     "mean": 19.77,
+     "min": 19.77,
+     "max": 19.77,
+     "rounds": [
+      19.77
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 58.67,
+     "min": 58.67,
+     "max": 58.67,
+     "rounds": [
+      58.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.26,
+     "min": 99.26,
+     "max": 99.26,
+     "rounds": [
+      99.26
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 69.64,
+     "min": 69.64,
+     "max": 69.64,
+     "rounds": [
+      69.64
+     ]
+    },
+    "coverage": {
+     "mean": 0.83,
+     "min": 0.83,
+     "max": 0.83,
+     "rounds": [
+      0.83
+     ]
+    },
+    "hallucination": {
+     "mean": 10.71,
+     "min": 10.71,
+     "max": 10.71,
+     "rounds": [
+      10.71
+     ]
+    },
+    "refused": {
+     "mean": 17.86,
+     "min": 17.86,
+     "max": 17.86,
+     "rounds": [
+      17.86
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 67.86,
+     "min": 67.86,
+     "max": 67.86,
+     "rounds": [
+      67.86
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.02,
+     "min": 103.02,
+     "max": 103.02,
+     "rounds": [
+      103.02
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 50.0,
+     "min": 50.0,
+     "max": 50.0,
+     "rounds": [
+      50.0
+     ]
+    },
+    "coverage": {
+     "mean": 0.54,
+     "min": 0.54,
+     "max": 0.54,
+     "rounds": [
+      0.54
+     ]
+    },
+    "hallucination": {
+     "mean": 16.67,
+     "min": 16.67,
+     "max": 16.67,
+     "rounds": [
+      16.67
+     ]
+    },
+    "refused": {
+     "mean": 36.67,
+     "min": 36.67,
+     "max": 36.67,
+     "rounds": [
+      36.67
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 47.37,
+     "min": 47.37,
+     "max": 47.37,
+     "rounds": [
+      47.37
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.97,
+     "min": 99.97,
+     "max": 99.97,
+     "rounds": [
+      99.97
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": -2.62,
+    "ci95": [
+     -6.2,
+     1.26
+    ],
+    "win": 23,
+    "loss": 31,
+    "sign_p": 0.3409
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": -2.33,
+    "ci95": [
+     -10.08,
+     5.04
+    ],
+    "win": 6,
+    "loss": 8,
+    "sign_p": 0.7905
+   },
+   "vs_gguf_bf16": {
+    "delta_pp": -1.45,
+    "ci95": [
+     -5.38,
+     2.47
+    ],
+    "win": 25,
+    "loss": 27,
+    "sign_p": 0.8899
+   },
+   "noise_intra": []
+  },
+  "litert_int8_gpu": {
+   "n_rounds": 2,
+   "size_bytes": 1802113088,
+   "size_gb": 1.8,
+   "all": {
+    "approved": {
+     "mean": 66.72,
+     "min": 65.99,
+     "max": 67.44,
+     "rounds": [
+      67.44,
+      65.99
+     ]
+    },
+    "coverage": {
+     "mean": 0.75,
+     "min": 0.75,
+     "max": 0.75,
+     "rounds": [
+      0.75,
+      0.75
+     ]
+    },
+    "hallucination": {
+     "mean": 13.23,
+     "min": 12.5,
+     "max": 13.95,
+     "rounds": [
+      12.5,
+      13.95
+     ]
+    },
+    "refused": {
+     "mean": 15.12,
+     "min": 14.83,
+     "max": 15.41,
+     "rounds": [
+      15.41,
+      14.83
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 67.5,
+     "min": 67.33,
+     "max": 67.67,
+     "rounds": [
+      67.67,
+      67.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.06,
+     "min": 100.52,
+     "max": 101.59,
+     "rounds": [
+      101.59,
+      100.52
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 67.44,
+     "min": 66.28,
+     "max": 68.6,
+     "rounds": [
+      68.6,
+      66.28
+     ]
+    },
+    "coverage": {
+     "mean": 0.74,
+     "min": 0.74,
+     "max": 0.74,
+     "rounds": [
+      0.74,
+      0.74
+     ]
+    },
+    "hallucination": {
+     "mean": 13.37,
+     "min": 12.79,
+     "max": 13.95,
+     "rounds": [
+      12.79,
+      13.95
+     ]
+    },
+    "refused": {
+     "mean": 16.28,
+     "min": 16.28,
+     "max": 16.28,
+     "rounds": [
+      16.28,
+      16.28
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 61.33,
+     "min": 61.33,
+     "max": 61.33,
+     "rounds": [
+      61.33,
+      61.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 103.11,
+     "min": 102.83,
+     "max": 103.4,
+     "rounds": [
+      102.83,
+      103.4
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 75.89,
+     "min": 75.89,
+     "max": 75.89,
+     "rounds": [
+      75.89,
+      75.89
+     ]
+    },
+    "coverage": {
+     "mean": 0.86,
+     "min": 0.86,
+     "max": 0.86,
+     "rounds": [
+      0.86,
+      0.86
+     ]
+    },
+    "hallucination": {
+     "mean": 11.38,
+     "min": 11.16,
+     "max": 11.61,
+     "rounds": [
+      11.61,
+      11.16
+     ]
+    },
+    "refused": {
+     "mean": 10.49,
+     "min": 9.82,
+     "max": 11.16,
+     "rounds": [
+      11.16,
+      9.82
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 72.77,
+     "min": 72.77,
+     "max": 72.77,
+     "rounds": [
+      72.77,
+      72.77
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.75,
+     "min": 102.64,
+     "max": 102.87,
+     "rounds": [
+      102.87,
+      102.64
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 49.58,
+     "min": 47.5,
+     "max": 51.67,
+     "rounds": [
+      51.67,
+      47.5
+     ]
+    },
+    "coverage": {
+     "mean": 0.55,
+     "min": 0.54,
+     "max": 0.56,
+     "rounds": [
+      0.56,
+      0.54
+     ]
+    },
+    "hallucination": {
+     "mean": 16.67,
+     "min": 14.17,
+     "max": 19.17,
+     "rounds": [
+      14.17,
+      19.17
+     ]
+    },
+    "refused": {
+     "mean": 23.75,
+     "min": 23.33,
+     "max": 24.17,
+     "rounds": [
+      23.33,
+      24.17
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 51.97,
+     "min": 51.32,
+     "max": 52.63,
+     "rounds": [
+      52.63,
+      51.32
+     ]
+    },
+    "gen_ntok": {
+     "mean": 97.89,
+     "min": 96.58,
+     "max": 99.21,
+     "rounds": [
+      99.21,
+      96.58
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 70.35,
+     "min": 69.77,
+     "max": 70.93,
+     "rounds": [
+      70.93,
+      69.77
+     ]
+    },
+    "coverage": {
+     "mean": 0.76,
+     "min": 0.76,
+     "max": 0.76,
+     "rounds": [
+      0.76,
+      0.76
+     ]
+    },
+    "hallucination": {
+     "mean": 9.88,
+     "min": 9.3,
+     "max": 10.47,
+     "rounds": [
+      9.3,
+      10.47
+     ]
+    },
+    "refused": {
+     "mean": 11.63,
+     "min": 10.47,
+     "max": 12.79,
+     "rounds": [
+      12.79,
+      10.47
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 76.0,
+     "min": 76.0,
+     "max": 76.0,
+     "rounds": [
+      76.0,
+      76.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.27,
+     "min": 99.58,
+     "max": 102.97,
+     "rounds": [
+      102.97,
+      99.58
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 70.93,
+     "min": 69.77,
+     "max": 72.09,
+     "rounds": [
+      72.09,
+      69.77
+     ]
+    },
+    "coverage": {
+     "mean": 0.8,
+     "min": 0.8,
+     "max": 0.81,
+     "rounds": [
+      0.81,
+      0.8
+     ]
+    },
+    "hallucination": {
+     "mean": 9.3,
+     "min": 8.14,
+     "max": 10.47,
+     "rounds": [
+      8.14,
+      10.47
+     ]
+    },
+    "refused": {
+     "mean": 13.95,
+     "min": 13.95,
+     "max": 13.95,
+     "rounds": [
+      13.95,
+      13.95
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 72.0,
+     "min": 72.0,
+     "max": 72.0,
+     "rounds": [
+      72.0,
+      72.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.08,
+     "min": 100.36,
+     "max": 101.8,
+     "rounds": [
+      101.8,
+      100.36
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 58.14,
+     "min": 58.14,
+     "max": 58.14,
+     "rounds": [
+      58.14,
+      58.14
+     ]
+    },
+    "coverage": {
+     "mean": 0.7,
+     "min": 0.7,
+     "max": 0.71,
+     "rounds": [
+      0.71,
+      0.7
+     ]
+    },
+    "hallucination": {
+     "mean": 20.35,
+     "min": 19.77,
+     "max": 20.93,
+     "rounds": [
+      19.77,
+      20.93
+     ]
+    },
+    "refused": {
+     "mean": 18.6,
+     "min": 18.6,
+     "max": 18.6,
+     "rounds": [
+      18.6,
+      18.6
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 60.67,
+     "min": 60.0,
+     "max": 61.33,
+     "rounds": [
+      61.33,
+      60.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.77,
+     "min": 98.76,
+     "max": 98.78,
+     "rounds": [
+      98.78,
+      98.76
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 77.68,
+     "min": 76.79,
+     "max": 78.57,
+     "rounds": [
+      78.57,
+      76.79
+     ]
+    },
+    "coverage": {
+     "mean": 0.85,
+     "min": 0.85,
+     "max": 0.85,
+     "rounds": [
+      0.85,
+      0.85
+     ]
+    },
+    "hallucination": {
+     "mean": 11.61,
+     "min": 10.71,
+     "max": 12.5,
+     "rounds": [
+      10.71,
+      12.5
+     ]
+    },
+    "refused": {
+     "mean": 9.82,
+     "min": 8.93,
+     "max": 10.71,
+     "rounds": [
+      10.71,
+      8.93
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 66.96,
+     "min": 66.07,
+     "max": 67.86,
+     "rounds": [
+      66.07,
+      67.86
+     ]
+    },
+    "gen_ntok": {
+     "mean": 104.46,
+     "min": 104.2,
+     "max": 104.73,
+     "rounds": [
+      104.73,
+      104.2
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 48.33,
+     "min": 46.67,
+     "max": 50.0,
+     "rounds": [
+      50.0,
+      46.67
+     ]
+    },
+    "coverage": {
+     "mean": 0.52,
+     "min": 0.52,
+     "max": 0.53,
+     "rounds": [
+      0.53,
+      0.52
+     ]
+    },
+    "hallucination": {
+     "mean": 16.67,
+     "min": 16.67,
+     "max": 16.67,
+     "rounds": [
+      16.67,
+      16.67
+     ]
+    },
+    "refused": {
+     "mean": 28.33,
+     "min": 26.67,
+     "max": 30.0,
+     "rounds": [
+      26.67,
+      30.0
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 44.74,
+     "min": 42.11,
+     "max": 47.37,
+     "rounds": [
+      47.37,
+      42.11
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.58,
+     "min": 99.27,
+     "max": 101.9,
+     "rounds": [
+      99.27,
+      101.9
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": -1.31,
+    "ci95": [
+     -4.36,
+     1.65
+    ],
+    "win": 38,
+    "loss": 44,
+    "sign_p": 0.5811
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": 2.33,
+    "ci95": [
+     -2.91,
+     7.17
+    ],
+    "win": 11,
+    "loss": 7,
+    "sign_p": 0.4807
+   },
+   "vs_gguf_bf16": {
+    "delta_pp": -0.15,
+    "ci95": [
+     -3.2,
+     2.91
+    ],
+    "win": 39,
+    "loss": 40,
+    "sign_p": 1.0
+   },
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": 1.45,
+     "win": 15,
+     "loss": 10
+    }
+   ]
+  },
+  "litert_int8_cpu": {
+   "n_rounds": 2,
+   "size_bytes": 1802113088,
+   "size_gb": 1.8,
+   "all": {
+    "approved": {
+     "mean": 62.79,
+     "min": 62.21,
+     "max": 63.37,
+     "rounds": [
+      62.21,
+      63.37
+     ]
+    },
+    "coverage": {
+     "mean": 0.74,
+     "min": 0.74,
+     "max": 0.75,
+     "rounds": [
+      0.74,
+      0.75
+     ]
+    },
+    "hallucination": {
+     "mean": 17.59,
+     "min": 16.86,
+     "max": 18.31,
+     "rounds": [
+      18.31,
+      16.86
+     ]
+    },
+    "refused": {
+     "mean": 15.84,
+     "min": 15.7,
+     "max": 15.99,
+     "rounds": [
+      15.7,
+      15.99
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 65.83,
+     "min": 65.33,
+     "max": 66.33,
+     "rounds": [
+      65.33,
+      66.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.62,
+     "min": 99.39,
+     "max": 99.85,
+     "rounds": [
+      99.85,
+      99.39
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 58.72,
+     "min": 58.14,
+     "max": 59.3,
+     "rounds": [
+      59.3,
+      58.14
+     ]
+    },
+    "coverage": {
+     "mean": 0.72,
+     "min": 0.72,
+     "max": 0.72,
+     "rounds": [
+      0.72,
+      0.72
+     ]
+    },
+    "hallucination": {
+     "mean": 20.93,
+     "min": 19.77,
+     "max": 22.09,
+     "rounds": [
+      22.09,
+      19.77
+     ]
+    },
+    "refused": {
+     "mean": 19.19,
+     "min": 17.44,
+     "max": 20.93,
+     "rounds": [
+      17.44,
+      20.93
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 58.67,
+     "min": 58.67,
+     "max": 58.67,
+     "rounds": [
+      58.67,
+      58.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.05,
+     "min": 98.88,
+     "max": 101.21,
+     "rounds": [
+      101.21,
+      98.88
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 70.76,
+     "min": 70.09,
+     "max": 71.43,
+     "rounds": [
+      70.09,
+      71.43
+     ]
+    },
+    "coverage": {
+     "mean": 0.84,
+     "min": 0.84,
+     "max": 0.84,
+     "rounds": [
+      0.84,
+      0.84
+     ]
+    },
+    "hallucination": {
+     "mean": 16.52,
+     "min": 15.18,
+     "max": 17.86,
+     "rounds": [
+      17.86,
+      15.18
+     ]
+    },
+    "refused": {
+     "mean": 10.49,
+     "min": 10.27,
+     "max": 10.71,
+     "rounds": [
+      10.71,
+      10.27
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 70.09,
+     "min": 69.64,
+     "max": 70.54,
+     "rounds": [
+      69.64,
+      70.54
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.44,
+     "min": 101.4,
+     "max": 101.48,
+     "rounds": [
+      101.4,
+      101.48
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 47.92,
+     "min": 47.5,
+     "max": 48.33,
+     "rounds": [
+      47.5,
+      48.33
+     ]
+    },
+    "coverage": {
+     "mean": 0.56,
+     "min": 0.56,
+     "max": 0.57,
+     "rounds": [
+      0.56,
+      0.57
+     ]
+    },
+    "hallucination": {
+     "mean": 19.58,
+     "min": 19.17,
+     "max": 20.0,
+     "rounds": [
+      19.17,
+      20.0
+     ]
+    },
+    "refused": {
+     "mean": 25.83,
+     "min": 25.0,
+     "max": 26.67,
+     "rounds": [
+      25.0,
+      26.67
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 53.29,
+     "min": 52.63,
+     "max": 53.95,
+     "rounds": [
+      52.63,
+      53.95
+     ]
+    },
+    "gen_ntok": {
+     "mean": 96.22,
+     "min": 95.47,
+     "max": 96.96,
+     "rounds": [
+      96.96,
+      95.47
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 71.51,
+     "min": 69.77,
+     "max": 73.26,
+     "rounds": [
+      69.77,
+      73.26
+     ]
+    },
+    "coverage": {
+     "mean": 0.78,
+     "min": 0.78,
+     "max": 0.78,
+     "rounds": [
+      0.78,
+      0.78
+     ]
+    },
+    "hallucination": {
+     "mean": 14.53,
+     "min": 12.79,
+     "max": 16.28,
+     "rounds": [
+      16.28,
+      12.79
+     ]
+    },
+    "refused": {
+     "mean": 9.3,
+     "min": 9.3,
+     "max": 9.3,
+     "rounds": [
+      9.3,
+      9.3
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 76.67,
+     "min": 76.0,
+     "max": 77.33,
+     "rounds": [
+      76.0,
+      77.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.28,
+     "min": 97.43,
+     "max": 99.13,
+     "rounds": [
+      99.13,
+      97.43
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 68.02,
+     "min": 67.44,
+     "max": 68.6,
+     "rounds": [
+      67.44,
+      68.6
+     ]
+    },
+    "coverage": {
+     "mean": 0.8,
+     "min": 0.8,
+     "max": 0.8,
+     "rounds": [
+      0.8,
+      0.8
+     ]
+    },
+    "hallucination": {
+     "mean": 13.37,
+     "min": 12.79,
+     "max": 13.95,
+     "rounds": [
+      12.79,
+      13.95
+     ]
+    },
+    "refused": {
+     "mean": 13.95,
+     "min": 12.79,
+     "max": 15.12,
+     "rounds": [
+      15.12,
+      12.79
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 71.33,
+     "min": 70.67,
+     "max": 72.0,
+     "rounds": [
+      70.67,
+      72.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.06,
+     "min": 101.99,
+     "max": 102.13,
+     "rounds": [
+      101.99,
+      102.13
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 52.91,
+     "min": 52.33,
+     "max": 53.49,
+     "rounds": [
+      52.33,
+      53.49
+     ]
+    },
+    "coverage": {
+     "mean": 0.68,
+     "min": 0.68,
+     "max": 0.68,
+     "rounds": [
+      0.68,
+      0.68
+     ]
+    },
+    "hallucination": {
+     "mean": 21.51,
+     "min": 20.93,
+     "max": 22.09,
+     "rounds": [
+      22.09,
+      20.93
+     ]
+    },
+    "refused": {
+     "mean": 20.93,
+     "min": 20.93,
+     "max": 20.93,
+     "rounds": [
+      20.93,
+      20.93
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 56.67,
+     "min": 56.0,
+     "max": 57.33,
+     "rounds": [
+      56.0,
+      57.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.09,
+     "min": 97.07,
+     "max": 99.1,
+     "rounds": [
+      97.07,
+      99.1
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 66.96,
+     "min": 66.07,
+     "max": 67.86,
+     "rounds": [
+      66.07,
+      67.86
+     ]
+    },
+    "coverage": {
+     "mean": 0.82,
+     "min": 0.81,
+     "max": 0.83,
+     "rounds": [
+      0.83,
+      0.81
+     ]
+    },
+    "hallucination": {
+     "mean": 19.64,
+     "min": 17.86,
+     "max": 21.43,
+     "rounds": [
+      21.43,
+      17.86
+     ]
+    },
+    "refused": {
+     "mean": 11.61,
+     "min": 10.71,
+     "max": 12.5,
+     "rounds": [
+      12.5,
+      10.71
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 60.71,
+     "min": 60.71,
+     "max": 60.71,
+     "rounds": [
+      60.71,
+      60.71
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.98,
+     "min": 99.41,
+     "max": 102.55,
+     "rounds": [
+      102.55,
+      99.41
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 43.33,
+     "min": 40.0,
+     "max": 46.67,
+     "rounds": [
+      46.67,
+      40.0
+     ]
+    },
+    "coverage": {
+     "mean": 0.53,
+     "min": 0.52,
+     "max": 0.55,
+     "rounds": [
+      0.52,
+      0.55
+     ]
+    },
+    "hallucination": {
+     "mean": 23.33,
+     "min": 23.33,
+     "max": 23.33,
+     "rounds": [
+      23.33,
+      23.33
+     ]
+    },
+    "refused": {
+     "mean": 33.33,
+     "min": 26.67,
+     "max": 40.0,
+     "rounds": [
+      26.67,
+      40.0
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 52.63,
+     "min": 52.63,
+     "max": 52.63,
+     "rounds": [
+      52.63,
+      52.63
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.3,
+     "min": 97.9,
+     "max": 98.7,
+     "rounds": [
+      98.7,
+      97.9
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": -5.23,
+    "ci95": [
+     -8.58,
+     -1.99
+    ],
+    "win": 32,
+    "loss": 65,
+    "sign_p": 0.001
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": -6.4,
+    "ci95": [
+     -13.18,
+     0.39
+    ],
+    "win": 8,
+    "loss": 19,
+    "sign_p": 0.0522
+   },
+   "vs_gguf_bf16": {
+    "delta_pp": -4.07,
+    "ci95": [
+     -7.27,
+     -1.02
+    ],
+    "win": 32,
+    "loss": 60,
+    "sign_p": 0.0046
+   },
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": -1.16,
+     "win": 11,
+     "loss": 15
+    }
+   ]
+  },
+  "litert_int4_gpu": {
+   "n_rounds": 2,
+   "size_bytes": 1442191536,
+   "size_gb": 1.44,
+   "all": {
+    "approved": {
+     "mean": 68.02,
+     "min": 67.44,
+     "max": 68.6,
+     "rounds": [
+      67.44,
+      68.6
+     ]
+    },
+    "coverage": {
+     "mean": 0.75,
+     "min": 0.74,
+     "max": 0.76,
+     "rounds": [
+      0.74,
+      0.76
+     ]
+    },
+    "hallucination": {
+     "mean": 13.95,
+     "min": 12.21,
+     "max": 15.7,
+     "rounds": [
+      15.7,
+      12.21
+     ]
+    },
+    "refused": {
+     "mean": 13.23,
+     "min": 12.5,
+     "max": 13.95,
+     "rounds": [
+      12.5,
+      13.95
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 66.83,
+     "min": 66.33,
+     "max": 67.33,
+     "rounds": [
+      66.33,
+      67.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.76,
+     "min": 99.73,
+     "max": 101.79,
+     "rounds": [
+      99.73,
+      101.79
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 62.79,
+     "min": 62.79,
+     "max": 62.79,
+     "rounds": [
+      62.79,
+      62.79
+     ]
+    },
+    "coverage": {
+     "mean": 0.73,
+     "min": 0.72,
+     "max": 0.73,
+     "rounds": [
+      0.73,
+      0.72
+     ]
+    },
+    "hallucination": {
+     "mean": 15.7,
+     "min": 13.95,
+     "max": 17.44,
+     "rounds": [
+      17.44,
+      13.95
+     ]
+    },
+    "refused": {
+     "mean": 17.44,
+     "min": 16.28,
+     "max": 18.6,
+     "rounds": [
+      16.28,
+      18.6
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 60.67,
+     "min": 60.0,
+     "max": 61.33,
+     "rounds": [
+      60.0,
+      61.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.49,
+     "min": 99.57,
+     "max": 103.41,
+     "rounds": [
+      99.57,
+      103.41
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 76.12,
+     "min": 75.0,
+     "max": 77.23,
+     "rounds": [
+      75.0,
+      77.23
+     ]
+    },
+    "coverage": {
+     "mean": 0.85,
+     "min": 0.85,
+     "max": 0.86,
+     "rounds": [
+      0.85,
+      0.86
+     ]
+    },
+    "hallucination": {
+     "mean": 11.83,
+     "min": 9.82,
+     "max": 13.84,
+     "rounds": [
+      13.84,
+      9.82
+     ]
+    },
+    "refused": {
+     "mean": 9.15,
+     "min": 8.93,
+     "max": 9.38,
+     "rounds": [
+      8.93,
+      9.38
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 70.98,
+     "min": 70.98,
+     "max": 70.98,
+     "rounds": [
+      70.98,
+      70.98
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.16,
+     "min": 101.03,
+     "max": 101.29,
+     "rounds": [
+      101.29,
+      101.03
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 52.92,
+     "min": 52.5,
+     "max": 53.33,
+     "rounds": [
+      53.33,
+      52.5
+     ]
+    },
+    "coverage": {
+     "mean": 0.56,
+     "min": 0.54,
+     "max": 0.58,
+     "rounds": [
+      0.54,
+      0.58
+     ]
+    },
+    "hallucination": {
+     "mean": 17.92,
+     "min": 16.67,
+     "max": 19.17,
+     "rounds": [
+      19.17,
+      16.67
+     ]
+    },
+    "refused": {
+     "mean": 20.83,
+     "min": 19.17,
+     "max": 22.5,
+     "rounds": [
+      19.17,
+      22.5
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 54.61,
+     "min": 52.63,
+     "max": 56.58,
+     "rounds": [
+      52.63,
+      56.58
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.02,
+     "min": 96.83,
+     "max": 103.21,
+     "rounds": [
+      96.83,
+      103.21
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 74.42,
+     "min": 73.26,
+     "max": 75.58,
+     "rounds": [
+      73.26,
+      75.58
+     ]
+    },
+    "coverage": {
+     "mean": 0.77,
+     "min": 0.74,
+     "max": 0.79,
+     "rounds": [
+      0.74,
+      0.79
+     ]
+    },
+    "hallucination": {
+     "mean": 11.05,
+     "min": 10.47,
+     "max": 11.63,
+     "rounds": [
+      11.63,
+      10.47
+     ]
+    },
+    "refused": {
+     "mean": 5.81,
+     "min": 4.65,
+     "max": 6.98,
+     "rounds": [
+      4.65,
+      6.98
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 74.0,
+     "min": 73.33,
+     "max": 74.67,
+     "rounds": [
+      73.33,
+      74.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.85,
+     "min": 97.16,
+     "max": 102.55,
+     "rounds": [
+      97.16,
+      102.55
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 75.58,
+     "min": 75.58,
+     "max": 75.58,
+     "rounds": [
+      75.58,
+      75.58
+     ]
+    },
+    "coverage": {
+     "mean": 0.81,
+     "min": 0.8,
+     "max": 0.82,
+     "rounds": [
+      0.8,
+      0.82
+     ]
+    },
+    "hallucination": {
+     "mean": 8.14,
+     "min": 5.81,
+     "max": 10.47,
+     "rounds": [
+      10.47,
+      5.81
+     ]
+    },
+    "refused": {
+     "mean": 11.63,
+     "min": 11.63,
+     "max": 11.63,
+     "rounds": [
+      11.63,
+      11.63
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 73.33,
+     "min": 73.33,
+     "max": 73.33,
+     "rounds": [
+      73.33,
+      73.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.91,
+     "min": 100.41,
+     "max": 101.41,
+     "rounds": [
+      101.41,
+      100.41
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 59.3,
+     "min": 58.14,
+     "max": 60.47,
+     "rounds": [
+      58.14,
+      60.47
+     ]
+    },
+    "coverage": {
+     "mean": 0.69,
+     "min": 0.68,
+     "max": 0.71,
+     "rounds": [
+      0.68,
+      0.71
+     ]
+    },
+    "hallucination": {
+     "mean": 20.93,
+     "min": 18.6,
+     "max": 23.26,
+     "rounds": [
+      23.26,
+      18.6
+     ]
+    },
+    "refused": {
+     "mean": 18.02,
+     "min": 17.44,
+     "max": 18.6,
+     "rounds": [
+      17.44,
+      18.6
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 59.33,
+     "min": 58.67,
+     "max": 60.0,
+     "rounds": [
+      58.67,
+      60.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.79,
+     "min": 100.78,
+     "max": 100.8,
+     "rounds": [
+      100.78,
+      100.8
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 72.32,
+     "min": 71.43,
+     "max": 73.21,
+     "rounds": [
+      71.43,
+      73.21
+     ]
+    },
+    "coverage": {
+     "mean": 0.85,
+     "min": 0.85,
+     "max": 0.85,
+     "rounds": [
+      0.85,
+      0.85
+     ]
+    },
+    "hallucination": {
+     "mean": 15.18,
+     "min": 12.5,
+     "max": 17.86,
+     "rounds": [
+      17.86,
+      12.5
+     ]
+    },
+    "refused": {
+     "mean": 10.71,
+     "min": 8.93,
+     "max": 12.5,
+     "rounds": [
+      8.93,
+      12.5
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 65.18,
+     "min": 64.29,
+     "max": 66.07,
+     "rounds": [
+      66.07,
+      64.29
+     ]
+    },
+    "gen_ntok": {
+     "mean": 102.84,
+     "min": 102.36,
+     "max": 103.32,
+     "rounds": [
+      102.36,
+      103.32
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 45.0,
+     "min": 43.33,
+     "max": 46.67,
+     "rounds": [
+      46.67,
+      43.33
+     ]
+    },
+    "coverage": {
+     "mean": 0.5,
+     "min": 0.49,
+     "max": 0.51,
+     "rounds": [
+      0.51,
+      0.49
+     ]
+    },
+    "hallucination": {
+     "mean": 16.67,
+     "min": 16.67,
+     "max": 16.67,
+     "rounds": [
+      16.67,
+      16.67
+     ]
+    },
+    "refused": {
+     "mean": 30.0,
+     "min": 30.0,
+     "max": 30.0,
+     "rounds": [
+      30.0,
+      30.0
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 47.37,
+     "min": 42.11,
+     "max": 52.63,
+     "rounds": [
+      42.11,
+      52.63
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.97,
+     "min": 94.37,
+     "max": 103.57,
+     "rounds": [
+      94.37,
+      103.57
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": 0.0,
+    "ci95": [
+     -2.86,
+     2.81
+    ],
+    "win": 45,
+    "loss": 42,
+    "sign_p": 0.8304
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": -2.33,
+    "ci95": [
+     -7.56,
+     2.71
+    ],
+    "win": 9,
+    "loss": 13,
+    "sign_p": 0.5235
+   },
+   "vs_gguf_bf16": {
+    "delta_pp": 1.16,
+    "ci95": [
+     -2.03,
+     4.36
+    ],
+    "win": 52,
+    "loss": 44,
+    "sign_p": 0.4752
+   },
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": -1.16,
+     "win": 15,
+     "loss": 19
+    }
+   ]
+  },
+  "litert_int4_cpu": {
+   "n_rounds": 2,
+   "size_bytes": 1442191536,
+   "size_gb": 1.44,
+   "all": {
+    "approved": {
+     "mean": 64.39,
+     "min": 63.95,
+     "max": 64.83,
+     "rounds": [
+      63.95,
+      64.83
+     ]
+    },
+    "coverage": {
+     "mean": 0.74,
+     "min": 0.74,
+     "max": 0.74,
+     "rounds": [
+      0.74,
+      0.74
+     ]
+    },
+    "hallucination": {
+     "mean": 16.13,
+     "min": 15.41,
+     "max": 16.86,
+     "rounds": [
+      16.86,
+      15.41
+     ]
+    },
+    "refused": {
+     "mean": 15.41,
+     "min": 14.83,
+     "max": 15.99,
+     "rounds": [
+      14.83,
+      15.99
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 65.5,
+     "min": 65.33,
+     "max": 65.67,
+     "rounds": [
+      65.67,
+      65.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.35,
+     "min": 98.26,
+     "max": 98.44,
+     "rounds": [
+      98.44,
+      98.26
+     ]
+    }
+   },
+   "operational": {
+    "approved": {
+     "mean": 63.95,
+     "min": 61.63,
+     "max": 66.28,
+     "rounds": [
+      66.28,
+      61.63
+     ]
+    },
+    "coverage": {
+     "mean": 0.72,
+     "min": 0.72,
+     "max": 0.73,
+     "rounds": [
+      0.73,
+      0.72
+     ]
+    },
+    "hallucination": {
+     "mean": 14.53,
+     "min": 13.95,
+     "max": 15.12,
+     "rounds": [
+      13.95,
+      15.12
+     ]
+    },
+    "refused": {
+     "mean": 16.86,
+     "min": 15.12,
+     "max": 18.6,
+     "rounds": [
+      15.12,
+      18.6
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 58.67,
+     "min": 57.33,
+     "max": 60.0,
+     "rounds": [
+      60.0,
+      57.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.97,
+     "min": 99.41,
+     "max": 100.53,
+     "rounds": [
+      100.53,
+      99.41
+     ]
+    }
+   },
+   "norma": {
+    "approved": {
+     "mean": 70.98,
+     "min": 70.09,
+     "max": 71.88,
+     "rounds": [
+      70.09,
+      71.88
+     ]
+    },
+    "coverage": {
+     "mean": 0.84,
+     "min": 0.84,
+     "max": 0.84,
+     "rounds": [
+      0.84,
+      0.84
+     ]
+    },
+    "hallucination": {
+     "mean": 13.62,
+     "min": 12.5,
+     "max": 14.73,
+     "rounds": [
+      14.73,
+      12.5
+     ]
+    },
+    "refused": {
+     "mean": 12.72,
+     "min": 12.05,
+     "max": 13.39,
+     "rounds": [
+      12.05,
+      13.39
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 69.87,
+     "min": 69.64,
+     "max": 70.09,
+     "rounds": [
+      70.09,
+      69.64
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.66,
+     "min": 98.58,
+     "max": 98.74,
+     "rounds": [
+      98.74,
+      98.58
+     ]
+    }
+   },
+   "manual": {
+    "approved": {
+     "mean": 52.08,
+     "min": 51.67,
+     "max": 52.5,
+     "rounds": [
+      52.5,
+      51.67
+     ]
+    },
+    "coverage": {
+     "mean": 0.55,
+     "min": 0.55,
+     "max": 0.56,
+     "rounds": [
+      0.56,
+      0.55
+     ]
+    },
+    "hallucination": {
+     "mean": 20.83,
+     "min": 20.83,
+     "max": 20.83,
+     "rounds": [
+      20.83,
+      20.83
+     ]
+    },
+    "refused": {
+     "mean": 20.42,
+     "min": 20.0,
+     "max": 20.83,
+     "rounds": [
+      20.0,
+      20.83
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 52.63,
+     "min": 52.63,
+     "max": 52.63,
+     "rounds": [
+      52.63,
+      52.63
+     ]
+    },
+    "gen_ntok": {
+     "mean": 97.78,
+     "min": 97.65,
+     "max": 97.9,
+     "rounds": [
+      97.9,
+      97.65
+     ]
+    }
+   },
+   "clean": {
+    "approved": {
+     "mean": 72.09,
+     "min": 68.6,
+     "max": 75.58,
+     "rounds": [
+      68.6,
+      75.58
+     ]
+    },
+    "coverage": {
+     "mean": 0.76,
+     "min": 0.76,
+     "max": 0.77,
+     "rounds": [
+      0.76,
+      0.77
+     ]
+    },
+    "hallucination": {
+     "mean": 15.12,
+     "min": 12.79,
+     "max": 17.44,
+     "rounds": [
+      17.44,
+      12.79
+     ]
+    },
+    "refused": {
+     "mean": 7.56,
+     "min": 6.98,
+     "max": 8.14,
+     "rounds": [
+      8.14,
+      6.98
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 72.67,
+     "min": 72.0,
+     "max": 73.33,
+     "rounds": [
+      72.0,
+      73.33
+     ]
+    },
+    "gen_ntok": {
+     "mean": 93.95,
+     "min": 93.58,
+     "max": 94.33,
+     "rounds": [
+      93.58,
+      94.33
+     ]
+    }
+   },
+   "technical": {
+    "approved": {
+     "mean": 64.53,
+     "min": 63.95,
+     "max": 65.12,
+     "rounds": [
+      63.95,
+      65.12
+     ]
+    },
+    "coverage": {
+     "mean": 0.8,
+     "min": 0.8,
+     "max": 0.8,
+     "rounds": [
+      0.8,
+      0.8
+     ]
+    },
+    "hallucination": {
+     "mean": 11.63,
+     "min": 11.63,
+     "max": 11.63,
+     "rounds": [
+      11.63,
+      11.63
+     ]
+    },
+    "refused": {
+     "mean": 19.19,
+     "min": 18.6,
+     "max": 19.77,
+     "rounds": [
+      19.77,
+      18.6
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 71.33,
+     "min": 70.67,
+     "max": 72.0,
+     "rounds": [
+      72.0,
+      70.67
+     ]
+    },
+    "gen_ntok": {
+     "mean": 101.01,
+     "min": 100.87,
+     "max": 101.14,
+     "rounds": [
+      100.87,
+      101.14
+     ]
+    }
+   },
+   "lay": {
+    "approved": {
+     "mean": 56.98,
+     "min": 56.98,
+     "max": 56.98,
+     "rounds": [
+      56.98,
+      56.98
+     ]
+    },
+    "coverage": {
+     "mean": 0.67,
+     "min": 0.67,
+     "max": 0.68,
+     "rounds": [
+      0.67,
+      0.68
+     ]
+    },
+    "hallucination": {
+     "mean": 23.26,
+     "min": 22.09,
+     "max": 24.42,
+     "rounds": [
+      24.42,
+      22.09
+     ]
+    },
+    "refused": {
+     "mean": 18.02,
+     "min": 16.28,
+     "max": 19.77,
+     "rounds": [
+      16.28,
+      19.77
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 59.33,
+     "min": 58.67,
+     "max": 60.0,
+     "rounds": [
+      58.67,
+      60.0
+     ]
+    },
+    "gen_ntok": {
+     "mean": 98.47,
+     "min": 98.15,
+     "max": 98.79,
+     "rounds": [
+      98.79,
+      98.15
+     ]
+    }
+   },
+   "operational_norma": {
+    "approved": {
+     "mean": 72.32,
+     "min": 67.86,
+     "max": 76.79,
+     "rounds": [
+      76.79,
+      67.86
+     ]
+    },
+    "coverage": {
+     "mean": 0.84,
+     "min": 0.84,
+     "max": 0.85,
+     "rounds": [
+      0.85,
+      0.84
+     ]
+    },
+    "hallucination": {
+     "mean": 11.61,
+     "min": 8.93,
+     "max": 14.29,
+     "rounds": [
+      8.93,
+      14.29
+     ]
+    },
+    "refused": {
+     "mean": 13.39,
+     "min": 10.71,
+     "max": 16.07,
+     "rounds": [
+      10.71,
+      16.07
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 64.29,
+     "min": 62.5,
+     "max": 66.07,
+     "rounds": [
+      66.07,
+      62.5
+     ]
+    },
+    "gen_ntok": {
+     "mean": 100.23,
+     "min": 99.46,
+     "max": 101.0,
+     "rounds": [
+      101.0,
+      99.46
+     ]
+    }
+   },
+   "operational_manual": {
+    "approved": {
+     "mean": 48.33,
+     "min": 46.67,
+     "max": 50.0,
+     "rounds": [
+      46.67,
+      50.0
+     ]
+    },
+    "coverage": {
+     "mean": 0.5,
+     "min": 0.49,
+     "max": 0.52,
+     "rounds": [
+      0.52,
+      0.49
+     ]
+    },
+    "hallucination": {
+     "mean": 20.0,
+     "min": 16.67,
+     "max": 23.33,
+     "rounds": [
+      23.33,
+      16.67
+     ]
+    },
+    "refused": {
+     "mean": 23.33,
+     "min": 23.33,
+     "max": 23.33,
+     "rounds": [
+      23.33,
+      23.33
+     ]
+    },
+    "cite_gold_item": {
+     "mean": 42.11,
+     "min": 42.11,
+     "max": 42.11,
+     "rounds": [
+      42.11,
+      42.11
+     ]
+    },
+    "gen_ntok": {
+     "mean": 99.48,
+     "min": 99.3,
+     "max": 99.67,
+     "rounds": [
+      99.67,
+      99.3
+     ]
+    }
+   },
+   "vs_hf_bf16": {
+    "delta_pp": -3.63,
+    "ci95": [
+     -6.69,
+     -0.44
+    ],
+    "win": 33,
+    "loss": 55,
+    "sign_p": 0.0246
+   },
+   "vs_hf_bf16_operational": {
+    "delta_pp": -1.16,
+    "ci95": [
+     -7.75,
+     5.23
+    ],
+    "win": 10,
+    "loss": 12,
+    "sign_p": 0.8318
+   },
+   "vs_gguf_bf16": {
+    "delta_pp": -2.47,
+    "ci95": [
+     -5.81,
+     0.87
+    ],
+    "win": 40,
+    "loss": 57,
+    "sign_p": 0.1038
+   },
+   "noise_intra": [
+    {
+     "pair": [
+      1,
+      2
+     ],
+     "delta_pp": -0.87,
+     "win": 13,
+     "loss": 16
+    }
+   ]
+  }
+ },
+ "speed_single_stream": {
+  "gguf_bf16": {
+   "gpu_prefill_tps": 11921.54,
+   "gpu_decode_tps": 67.41,
+   "cpu6_decode_tps": 5.79
+  },
+  "gguf_q8_0": {
+   "gpu_prefill_tps": 12961.94,
+   "gpu_decode_tps": 116.59,
+   "cpu6_decode_tps": 54.35
+  },
+  "gguf_q4_k_m": {
+   "gpu_prefill_tps": 13555.48,
+   "gpu_decode_tps": 158.21,
+   "cpu6_decode_tps": 61.37
+  },
+  "gguf_q4_0": {
+   "gpu_prefill_tps": 12989.11,
+   "gpu_decode_tps": 184.05,
+   "cpu6_decode_tps": 64.58
+  },
+  "hf_bf16": {
+   "gpu_decode_tps": 41.96
+  },
+  "litert_int4_gpu": {
+   "gpu_prefill_tps": 6212.67,
+   "gpu_decode_tps": 90.08
+  },
+  "litert_int4_cpu": {
+   "cpu6_prefill_tps": 696.35,
+   "cpu6_decode_tps": 56.57
+  },
+  "litert_int8_gpu": {
+   "gpu_prefill_tps": 6079.77,
+   "gpu_decode_tps": 80.42
+  },
+  "litert_int8_cpu": {
+   "cpu6_prefill_tps": 891.18,
+   "cpu6_decode_tps": 48.71
+  }
+ },
+ "speed_during_gen": {
+  "gguf_bf16": {
+   "decode_tps_during_gen": [
+    29.68,
+    15.49
+   ],
+   "tok_parity": [
+    "344/344",
+    "344/344"
+   ]
+  },
+  "gguf_q4_0": {
+   "decode_tps_during_gen": [
+    53.64,
+    55.25
+   ],
+   "tok_parity": [
+    "344/344",
+    "344/344"
+   ]
+  },
+  "gguf_q4_0_rep1.0": {
+   "decode_tps_during_gen": [
+    56.82
+   ],
+   "tok_parity": [
+    "344/344"
+   ]
+  },
+  "gguf_q4_k_m": {
+   "decode_tps_during_gen": [
+    81.28,
+    82.01
+   ],
+   "tok_parity": [
+    "344/344",
+    "344/344"
+   ]
+  },
+  "gguf_q8_0": {
+   "decode_tps_during_gen": [
+    29.54,
+    40.36
+   ],
+   "tok_parity": [
+    "344/344",
+    "344/344"
+   ]
+  },
+  "litert_int4_cpu": {
+   "decode_tps_during_gen": [
+    33.11,
+    38.27
+   ],
+   "tok_parity": [
+    "344/344",
+    "344/344"
+   ]
+  },
+  "litert_int4_gpu": {
+   "decode_tps_during_gen": [
+    64.8,
+    70.86
+   ],
+   "tok_parity": [
+    "344/344",
+    "344/344"
+   ]
+  },
+  "litert_int8_cpu": {
+   "decode_tps_during_gen": [
+    28.04,
+    27.62
+   ],
+   "tok_parity": [
+    "344/344",
+    "344/344"
+   ]
+  },
+  "litert_int8_gpu": {
+   "decode_tps_during_gen": [
+    59.82,
+    65.67
+   ],
+   "tok_parity": [
+    "344/344",
+    "344/344"
+   ]
+  }
+ }
+}

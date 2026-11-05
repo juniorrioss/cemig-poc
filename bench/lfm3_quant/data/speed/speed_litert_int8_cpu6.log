@@ -1,0 +1,15 @@
+Benchmarking model: f4-r32-ep2_int8_ekv2048.litertlm (/home/walcyrios/cemig-poc/lfm3_quant/lrt/f4-r32-ep2_int8_ekv2048.litertlm)
+Backend                    : cpu
+Number of tokens in prefill: 1100
+Number of tokens in decode : 128
+Max number of tokens       : 2048
+Cache                      : no
+Speculative decoding       : auto
+Running warmup..
+Running iteration 1 of 2..
+Running iteration 2 of 2..
+----- Results -----
+Prefill speed:        891.18 tokens/s
+Decode speed:         48.71 tokens/s
+Init time:            15.5822 s
+Time to first token:  1.2558 s
