@@ -35,7 +35,13 @@ data class TurnMetrics(
     val calledTool: Boolean = false,
     val toolConsulta: String = "",
     val toolNr: String = "",
-    val reasonMs: Long = 0L
+    val reasonMs: Long = 0L,
+    // F7: ponto de operação (manuais ligados pelo gate de margem? orçamento da compressão,
+    // tokens reais do prompt de síntese, tempo da compressão).
+    val manualOn: Boolean = false,
+    val compressBudget: Int = 0,
+    val promptTokens: Int = 0,
+    val compressMs: Long = 0L
 )
 
 /**
@@ -46,7 +52,7 @@ enum class PipelineStage(val label: String) {
     LISTENING("OUVINDO VOZ..."),
     TRANSCRIBING("TRANSCREVENDO (NEMOTRON 3.5 INT8)..."),
     CLASSIFYING("MODELO DECIDINDO: BUSCAR OU REUSAR..."),
-    RESPONDING("SINTETIZANDO RESPOSTA (LFM2.5 1.2B)..."),
+    RESPONDING("SINTETIZANDO RESPOSTA (LFM3 1.7B)..."),
     DONE("RESPOSTA CONCLUÍDA"),
     ERROR("FALHA OPERACIONAL")
 }
@@ -67,7 +73,10 @@ data class ConversationTurn(
     // é o argumento REESCRITO pelo modelo (só reconstrução; a busca real usa a fala bruta).
     val calledTool: Boolean = false,
     val toolConsulta: String? = null,
-    val toolNr: String? = null
+    val toolNr: String? = null,
+    // Conteúdo EXATO do turno tool deste turno (contexto comprimido do ponto de operação, F7);
+    // replicado no histórico do turno seguinte. Null = formatar os chunks crus (legado).
+    val toolContext: String? = null
 )
 
 /**
@@ -102,7 +111,9 @@ sealed interface TurnEvent {
     data class Done(
         val finalAnswer: String,
         val chunksUsed: List<Chunk>,
-        val metrics: TurnMetrics
+        val metrics: TurnMetrics,
+        // Turno tool EXATO entregue ao modelo (contexto comprimido); null se não buscou.
+        val toolContext: String? = null
     ) : TurnEvent
     data class Error(val message: String, val cause: Throwable? = null) : TurnEvent
 }

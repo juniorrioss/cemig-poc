@@ -13,6 +13,7 @@ import br.org.ceia.cemigpoc.domain.model.TurnEvent
 import br.org.ceia.cemigpoc.domain.model.TurnMetrics
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.takeWhile
 
 /**
  * Pipeline conversacional HÍBRIDO de tool-calling (task poc-app-tools).
@@ -61,8 +62,13 @@ class AskPipeline(
     // (saudação/reuso curto) cabe folgada. Se o modelo não chamar, isto limita a resposta.
     val decisionMaxTokens: Int = 220,
     // Teto de tokens da SÍNTESE final (resposta de voz, <=4 frases).
-    val synthesisMaxTokens: Int = 384
+    val synthesisMaxTokens: Int = 384,
+    // Formato do chat/tool-call: LFM3 (f4-r32-ep2, XML <tool_call>, default da F7) ou LFM2.5
+    // (legado, `<|tool_call_start|>[...]`, mantido para os testes JVM antigos).
+    val format: ToolFormat = ToolFormat.LFM25
 ) {
+    enum class ToolFormat { LFM25, LFM3 }
+
     companion object {
         private const val TAG = "AskPipeline"
 
@@ -104,17 +110,27 @@ class AskPipeline(
         emit(TurnEvent.StageChanged(PipelineStage.CLASSIFYING))
         val decisionStart = System.currentTimeMillis()
 
-        val decisionPrompt = LfmToolRenderer.renderDecisionPrompt(
-            systemPrompt = toolSystemPrompt,
-            history = renderedHistory,
-            userQuestion = userQuestion
-        )
+        val decisionPrompt = if (format == ToolFormat.LFM3) {
+            Lfm3ToolFormat.renderDecisionPrompt(toolSystemPrompt, renderedHistory.map { it.toLfm3() }, userQuestion)
+        } else {
+            LfmToolRenderer.renderDecisionPrompt(
+                systemPrompt = toolSystemPrompt,
+                history = renderedHistory,
+                userQuestion = userQuestion
+            )
+        }
 
         val decisionBuffer = StringBuilder()
         try {
-            llmEngine.generateFromPrompt(decisionPrompt, maxTokens = decisionMaxTokens).collect { chunk ->
-                if (chunk is LlmResponseChunk.Text) decisionBuffer.append(chunk.delta)
-            }
+            // LFM3: PARADA ANTECIPADA no `<tool_call>` (task lfm3-f7). O app ignora os argumentos
+            // (busca = fala crua; a chamada no prompt de síntese é a canônica), então gerar a
+            // consulta (~50 tok = a fala repetida) só custava ~2 s de decode no aparelho. O
+            // estado parado continua prefixo exato do prompt de síntese (reuso de prefixo).
+            llmEngine.generateFromPrompt(decisionPrompt, maxTokens = decisionMaxTokens)
+                .takeWhile { format != ToolFormat.LFM3 || !decisionBuffer.contains("<tool_call>") }
+                .collect { chunk ->
+                    if (chunk is LlmResponseChunk.Text) decisionBuffer.append(chunk.delta)
+                }
         } catch (e: Throwable) {
             Log.e(TAG, "Erro no turno de decisão (tool-calling)", e)
             emit(TurnEvent.Error("Falha na decisão do modelo: ${e.message}", e))
@@ -123,9 +139,17 @@ class AskPipeline(
         val decisionRaw = decisionBuffer.toString()
         val reasonMs = System.currentTimeMillis() - decisionStart
 
-        val looksLikeCall = LfmToolCallParser.looksLikeToolCall(decisionRaw)
-        val calls = if (looksLikeCall) LfmToolCallParser.parse(decisionRaw) else emptyList()
-        val validCall = calls.firstOrNull { it.name == LfmToolCallParser.TOOL_NAME }
+        val looksLikeCall: Boolean
+        val validCall: LfmToolCallParser.ParsedCall?
+        if (format == ToolFormat.LFM3) {
+            looksLikeCall = Lfm3ToolFormat.looksLikeToolCall(decisionRaw)
+            validCall = Lfm3ToolFormat.parse(decisionRaw).firstOrNull { it.name == Lfm3ToolFormat.TOOL_NAME }
+                ?.let { LfmToolCallParser.ParsedCall(it.name, it.arguments) }
+        } else {
+            looksLikeCall = LfmToolCallParser.looksLikeToolCall(decisionRaw)
+            val calls = if (looksLikeCall) LfmToolCallParser.parse(decisionRaw) else emptyList()
+            validCall = calls.firstOrNull { it.name == LfmToolCallParser.TOOL_NAME }
+        }
         // A intenção de buscar existe se: parseamos buscar_norma OU vimos o marcador (malformado
         // ou tool desconhecida). Em ambos, o default SEGURO é buscar com a fala bruta.
         val wantsSearch = validCall != null || looksLikeCall
@@ -143,7 +167,8 @@ class AskPipeline(
             emit(TurnEvent.StageChanged(PipelineStage.RESPONDING))
             // Emite a resposta direta acumulada (nenhuma busca; contexto já em tela é reusado).
             emit(TurnEvent.ChunksRetrieved(emptyList(), reused = true, durationMs = 0L))
-            val directAnswer = stripToolResidue(decisionRaw).trim()
+            val directAnswer = if (format == ToolFormat.LFM3) Lfm3ToolFormat.cleanAnswer(decisionRaw)
+            else stripToolResidue(decisionRaw).trim()
             emit(TurnEvent.TextDelta(directAnswer))
 
             val totalMs = System.currentTimeMillis() - totalStart
@@ -170,10 +195,17 @@ class AskPipeline(
         // ---------------------------------------------------------------------
         val searchStart = System.currentTimeMillis()
         var decision: HybridRetriever.Decision? = null
+        var opResult: HybridRetriever.OpResult? = null
         val chunks: List<Chunk> = try {
             // CRÍTICO: busca com a FALA BRUTA (userQuestion), não com modelConsulta. O
             // classificador de NR + RRF v4 já vivem no HybridRetriever. Limite: 1 busca/turno.
-            if (retriever is HybridRetriever) {
+            if (retriever is HybridRetriever && format == ToolFormat.LFM3 && retriever.hasOp) {
+                // F7 — ponto de operação da F6: gate 0,7/2x + manuais (margem) -> top-5 ->
+                // compressão a 50% (contexto comprimido vai no turno tool).
+                opResult = retriever.searchOp(userQuestion) { llmEngine.countTokens(it) }
+                decision = retriever.lastDecision
+                opResult?.chunks ?: retriever.searchV3(rawQuestion = userQuestion, topK = topK)
+            } else if (retriever is HybridRetriever) {
                 val r = if (retriever.hasDense) {
                     retriever.searchV3(rawQuestion = userQuestion, topK = topK)
                 } else {
@@ -209,16 +241,31 @@ class AskPipeline(
         emit(TurnEvent.StageChanged(PipelineStage.RESPONDING))
         val consultaForPrompt = modelConsulta.ifBlank { userQuestion }
         val nrForPrompt = modelNr.ifBlank { null }
-        val toolContext = LfmToolRenderer.formatToolResult(chunks)
-
-        val synthesisPrompt = LfmToolRenderer.renderSynthesisPrompt(
-            systemPrompt = toolSystemPrompt,
-            history = renderedHistory,
-            userQuestion = userQuestion,
-            consulta = consultaForPrompt,
-            nr = nrForPrompt,
-            toolContext = toolContext
-        )
+        val synthesisPrompt: String
+        val toolContext: String
+        if (format == ToolFormat.LFM3) {
+            // Chamada no prompt de síntese = forma CANÔNICA do treino F4 e da régua F6
+            // (e2e_build_f6.messages): consulta = fala crua, nr = NR explícita na fala ou null.
+            // Quando o modelo emitiu exatamente isso (o caso comum), o prompt de síntese estende
+            // byte a byte o estado da decisão e o engine reusa o prefixo (keepPrefix).
+            val canonNr = HybridRetriever.detectExplicitNr(userQuestion)?.let { "NR-" + it.removePrefix("nr-").toInt() }
+            // Contexto: comprimido (ponto op) ou, no fallback, os trechos crus.
+            toolContext = opResult?.toolContext?.takeIf { it.isNotBlank() } ?: Lfm3ToolFormat.formatRawChunks(chunks)
+            synthesisPrompt = Lfm3ToolFormat.renderSynthesisPrompt(
+                toolSystemPrompt, renderedHistory.map { it.toLfm3() }, userQuestion,
+                userQuestion, canonNr, toolContext
+            )
+        } else {
+            toolContext = LfmToolRenderer.formatToolResult(chunks)
+            synthesisPrompt = LfmToolRenderer.renderSynthesisPrompt(
+                systemPrompt = toolSystemPrompt,
+                history = renderedHistory,
+                userQuestion = userQuestion,
+                consulta = consultaForPrompt,
+                nr = nrForPrompt,
+                toolContext = toolContext
+            )
+        }
 
         val t2Start = System.currentTimeMillis()
         val answerBuilder = StringBuilder()
@@ -249,7 +296,8 @@ class AskPipeline(
         val decodeMs = maxOf(0L, (t2End - t2Start) - ttftMs)
         val tokPerSec = if (decodeMs > 0) (completionTokens.toDouble() / (decodeMs / 1000.0)) else 0.0
         // A síntese pode, por engano, emitir uma nova tool_call: descartamos (1 busca/turno).
-        val finalAnswer = stripToolResidue(answerBuilder.toString()).trim()
+        val finalAnswer = if (format == ToolFormat.LFM3) Lfm3ToolFormat.cleanAnswer(answerBuilder.toString())
+        else stripToolResidue(answerBuilder.toString()).trim()
 
         val metrics = TurnMetrics(
             asrMs = asrMs,
@@ -272,10 +320,14 @@ class AskPipeline(
             calledTool = true,
             toolConsulta = modelConsulta,
             toolNr = modelNr,
-            reasonMs = reasonMs
+            reasonMs = reasonMs,
+            manualOn = opResult?.manualOn ?: false,
+            compressBudget = opResult?.budget ?: 0,
+            promptTokens = if (format == ToolFormat.LFM3) llmEngine.countTokens(synthesisPrompt) else 0,
+            compressMs = opResult?.compressMs ?: 0L
         )
 
-        emit(TurnEvent.Done(finalAnswer = finalAnswer, chunksUsed = chunks, metrics = metrics))
+        emit(TurnEvent.Done(finalAnswer = finalAnswer, chunksUsed = chunks, metrics = metrics, toolContext = toolContext))
         logTurnSafely(history.size + 1, userQuestion, finalAnswer, chunks, metrics)
     }
 
@@ -302,21 +354,32 @@ class AskPipeline(
                 calledTool = turn.calledTool,
                 consulta = turn.toolConsulta,
                 nr = turn.toolNr,
-                toolContext = if (turn.calledTool) LfmToolRenderer.formatToolResult(turn.chunks) else "",
+                toolContext = if (!turn.calledTool) "" else turn.toolContext
+                    ?: if (format == ToolFormat.LFM3) Lfm3ToolFormat.formatRawChunks(turn.chunks)
+                    else LfmToolRenderer.formatToolResult(turn.chunks),
                 answer = turn.answer
             )
         }
     }
 
-    /** Estima os tokens de um turno reconstruído (fala + [tool_call + chunks] + resposta). */
+    /** Estima os tokens de um turno reconstruído (fala + [tool_call + contexto] + resposta). */
     private fun renderedTurnTokens(turn: ConversationTurn): Int {
         var t = estimateTokens(turn.question) + estimateTokens(turn.answer)
         if (turn.calledTool) {
-            t += estimateTokens(turn.toolConsulta ?: "") + 8
-            t += turn.chunks.sumOf { estimateTokens(it.content) + 12 }
+            t += estimateTokens(turn.toolConsulta ?: turn.question) + 24
+            t += turn.toolContext?.let { estimateTokens(it) + 8 }
+                ?: turn.chunks.sumOf { estimateTokens(it.content) + 12 }
         }
         return t
     }
+
+    // Histórico LFM3 replica a chamada CANÔNICA (fala crua + NR explícita), a mesma injetada
+    // no prompt de síntese do turno em que ela ocorreu (coerência turno a turno).
+    private fun LfmToolRenderer.RenderedTurn.toLfm3() = Lfm3ToolFormat.Turn(
+        userQuestion = userQuestion, calledTool = calledTool, consulta = userQuestion,
+        nr = HybridRetriever.detectExplicitNr(userQuestion)?.let { "NR-" + it.removePrefix("nr-").toInt() },
+        toolContext = toolContext, answer = answer
+    )
 
     /** Remove resíduo de tokens/sintaxe de tool-call de um texto de resposta. */
     fun stripToolResidue(text: String): String {

@@ -50,4 +50,10 @@ interface LlmEngine {
         prompt: String,
         maxTokens: Int = 384
     ): Flow<LlmResponseChunk>
+
+    /**
+     * Nº de tokens do texto no tokenizador do modelo (orçamento da compressão de contexto,
+     * task lfm3-f7). Default = estimativa ~3,8 chars/token (motores fake/testes).
+     */
+    fun countTokens(text: String): Int = if (text.isBlank()) 0 else maxOf(1, (text.length / 3.8).toInt())
 }

@@ -1,0 +1,239 @@
+{
+ "f7_e2e_text_keep.json": {
+  "n": 8,
+  "approved": 8,
+  "cites_nr": 7,
+  "rows": [
+   {
+    "id": "1e3475dfe6a76636ba647dd9",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "2290f280c9c5a57eec282808",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "02bb27402a6570f939bcf41e",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "8b8bd5e927d9aeca3914d66b",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "53c9bb0ef7211e1cce7f1b1d",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "26d6644d6498482ba63a1847",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": false
+   },
+   {
+    "id": "74405ccd67b4defd396751c1",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 0.5,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "e414c1178f597c545ede34bb",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   }
+  ]
+ },
+ "f7_e2e_text_earlystop.json": {
+  "n": 8,
+  "approved": 8,
+  "cites_nr": 6,
+  "rows": [
+   {
+    "id": "1e3475dfe6a76636ba647dd9",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "2290f280c9c5a57eec282808",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "02bb27402a6570f939bcf41e",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "8b8bd5e927d9aeca3914d66b",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "53c9bb0ef7211e1cce7f1b1d",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "26d6644d6498482ba63a1847",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": false
+   },
+   {
+    "id": "74405ccd67b4defd396751c1",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 0.5,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "e414c1178f597c545ede34bb",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": false
+   }
+  ]
+ },
+ "f7_e2e_voice.json": {
+  "n": 8,
+  "approved": 8,
+  "cites_nr": 7,
+  "rows": [
+   {
+    "id": "1e3475dfe6a76636ba647dd9",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "2290f280c9c5a57eec282808",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "02bb27402a6570f939bcf41e",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "8b8bd5e927d9aeca3914d66b",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "53c9bb0ef7211e1cce7f1b1d",
+    "kind": "norma",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "26d6644d6498482ba63a1847",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "74405ccd67b4defd396751c1",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 0.833,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": true
+   },
+   {
+    "id": "e414c1178f597c545ede34bb",
+    "kind": "manual",
+    "approved": true,
+    "coverage": 1.0,
+    "hallucination": false,
+    "refused": false,
+    "cites_nr": false
+   }
+  ]
+ }
+}

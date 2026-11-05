@@ -48,7 +48,7 @@ private val TimelineDecodeColor = Color(0xFF10B981)   // Verde
  * (2) DECISÃO do modelo: houve tool_call? argumento (consulta/nr) reescrito? OU reuso de contexto
  * (3) Se buscou: classificador NR + gate + fusão RRF v4 (a busca IGNORA a consulta do modelo e
  *     usa a FALA BRUTA) + chunks recuperados; se reusou: sem busca
- * (4) Síntese (1.2B treinado tool Q4): tokens, TTFT, tok/s decode + tempo total
+ * (4) Síntese (LFM3 1.7B f4-r32-ep2 Q4_0): tokens, TTFT, tok/s decode + tempo total
  * (5) Barra visual proporcional do tempo total da pergunta
  */
 @Composable
@@ -147,8 +147,10 @@ fun DebugTurnCard(
                     detail = classDetail
                 )
 
-                val isRrf3 = metrics.retrievalMode == "rrf3"
+                val isRrf3 = metrics.retrievalMode == "rrf3" || metrics.retrievalMode.startsWith("op")
                 val retrievalTitle = when (metrics.retrievalMode) {
+                    "op+manuais" -> "3b. Ponto op F6: RRF 5 sinais (normas+MANUAIS) top-5 → compressão 50%"
+                    "op" -> "3b. Ponto op F6: RRF normas top-5 (manuais off pela margem) → compressão 50%"
                     "rrf3" -> "3b. Fusão RRF v4 3-sinais (BM25+Denso×2)"
                     "rrf3-fallback-bm25" -> "3b. BM25-gated (denso indisponível)"
                     else -> "3b. Busca BM25 Top-2 (fala bruta)"
@@ -168,7 +170,7 @@ fun DebugTurnCard(
                     "Nenhum chunk recuperado"
                 }
                 val retrievalTime = if (isRrf3 && metrics.denseEncodeMs > 0)
-                    "${metrics.searchMs} ms (inclui encode denso)" else "${metrics.searchMs} ms"
+                    "${metrics.searchMs} ms (encode ${metrics.denseEncodeMs} · compr. ${metrics.compressMs} ms)" else "${metrics.searchMs} ms"
                 DebugRow(
                     label = retrievalTitle,
                     time = retrievalTime,
@@ -176,11 +178,13 @@ fun DebugTurnCard(
                 )
             }
 
-            // (4) Síntese: 1.2B treinado em tool-calling (r128 Q4).
+            // (4) Síntese: LFM3 1.7B f4-r32-ep2 Q4_0 (F7).
             DebugRow(
-                label = "4. Síntese (LFM2.5 1.2B tool Q4)",
+                label = "4. Síntese (LFM3 1.7B f4-r32-ep2 Q4_0)",
                 time = "${metrics.ttftMs + metrics.decodeMs} ms",
-                detail = "Contexto: ~${metrics.contextTokens} tok · TTFT: ${metrics.ttftMs} ms · Decode: ${metrics.decodeMs} ms (${metrics.completionTokens} tok @ ${metrics.tokPerSec} t/s)"
+                detail = "Prompt: ${if (metrics.promptTokens > 0) "${metrics.promptTokens} tok" else "~${metrics.contextTokens} tok"}" +
+                    (if (metrics.compressBudget > 0) " (orçamento ctx ${metrics.compressBudget})" else "") +
+                    " · TTFT: ${metrics.ttftMs} ms · Decode: ${metrics.decodeMs} ms (${metrics.completionTokens} tok @ ${metrics.tokPerSec} t/s)"
             )
         }
     }

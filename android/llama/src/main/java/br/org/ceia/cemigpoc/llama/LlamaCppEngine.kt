@@ -30,6 +30,7 @@ class LlamaCppEngine(
         const val DEFAULT_TOP_K = 50
         const val DEFAULT_TOP_P = 1.0f
         const val DEFAULT_REP_PENALTY = 1.05f
+        const val DEFAULT_MIN_P = 0.05f
         const val DEFAULT_CONTEXT_SIZE = 2048
         const val DEFAULT_THREADS = 6
     }
@@ -44,6 +45,21 @@ class LlamaCppEngine(
      * (BuildConfig.SUPPRESS_REASONING) sem trocar o modelo default do app.
      */
     var suppressReasoning: Boolean = false
+
+    /**
+     * Perfil de amostragem. LFM2.5 (legado): temp 0.1 / top_k 50 / rep 1.05 / min_p 0.05.
+     * LFM3 f4-r32-ep2 (task lfm3-f7): temp 0.1 / top_k 50 / rep 1.1 / min_p 0 — o MESMO do
+     * treino/avaliação (gen_e2e.py da F5/F6) e do smoke bf16 x Q4_0 da F7.
+     */
+    var repPenalty: Float = DEFAULT_REP_PENALTY
+    var minP: Float = DEFAULT_MIN_P
+
+    /** Reusa o estado do prompt anterior quando ele é prefixo exato do novo (decisão -> síntese). */
+    var keepPrefix: Boolean = false
+
+    /** Nº de tokens do texto no tokenizador do GGUF carregado (-1 se não carregado). */
+    fun countTokens(text: String): Int =
+        if (isLoaded) bridge.nativeCountTokens(nativeHandle, text.toByteArray(Charsets.UTF_8)) else -1
 
     val isLoaded: Boolean
         get() = nativeHandle != 0L
@@ -98,24 +114,29 @@ class LlamaCppEngine(
         temperature: Float = DEFAULT_TEMPERATURE,
         topK: Int = DEFAULT_TOP_K,
         topP: Float = DEFAULT_TOP_P,
-        repPenalty: Float = DEFAULT_REP_PENALTY
+        repPenalty: Float = this.repPenalty
     ): Flow<String> = callbackFlow {
         check(isLoaded) { "Motor Llama não está carregado" }
 
         withContext(Dispatchers.IO) {
+            val acc = Utf8Accumulator()
             bridge.nativeGenerate(
                 handle = nativeHandle,
-                prompt = prompt,
+                prompt = prompt.toByteArray(Charsets.UTF_8),
                 maxTokens = maxTokens,
                 temperature = temperature,
                 topK = topK,
                 topP = topP,
                 repPenalty = repPenalty,
-                suppressReasoning = suppressReasoning
-            ) { token ->
-                val canContinue = trySend(token).isSuccess
-                canContinue
+                minP = minP,
+                suppressReasoning = suppressReasoning,
+                keepPrefix = keepPrefix
+            ) { bytes ->
+                val text = acc.push(bytes)
+                if (text.isEmpty()) true else trySend(text).isSuccess
             }
+            val tail = acc.flush()
+            if (tail.isNotEmpty()) trySend(tail)
             channel.close()
         }
 
@@ -131,24 +152,28 @@ class LlamaCppEngine(
         temperature: Float = DEFAULT_TEMPERATURE,
         topK: Int = DEFAULT_TOP_K,
         topP: Float = DEFAULT_TOP_P,
-        repPenalty: Float = DEFAULT_REP_PENALTY
+        repPenalty: Float = this.repPenalty
     ): String = withContext(Dispatchers.IO) {
         check(isLoaded) { "Motor Llama não está carregado" }
 
+        val acc = Utf8Accumulator()
         val sb = StringBuilder()
         bridge.nativeGenerate(
             handle = nativeHandle,
-            prompt = prompt,
+            prompt = prompt.toByteArray(Charsets.UTF_8),
             maxTokens = maxTokens,
             temperature = temperature,
             topK = topK,
             topP = topP,
             repPenalty = repPenalty,
-            suppressReasoning = suppressReasoning
-        ) { token ->
-            sb.append(token)
+            minP = minP,
+            suppressReasoning = suppressReasoning,
+            keepPrefix = false
+        ) { bytes ->
+            sb.append(acc.push(bytes))
             true
         }
+        sb.append(acc.flush())
         sb.toString().trim()
     }
 

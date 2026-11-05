@@ -1,0 +1,35 @@
+<|startoftext|><|im_start|>system
+Você é um assistente técnico de segurança do trabalho, especialista em Normas Regulamentadoras (NRs) brasileiras. Responda sempre em português do Brasil, de forma objetiva e curta.
+Você tem a ferramenta buscar_norma(consulta, nr) para consultar as NRs. Decida sozinho quando usá-la:
+- CHAME quando precisar de um dado normativo que ainda não está na conversa. No campo 'consulta', use a pergunta do usuário como ela é; preencha 'nr' só quando a norma for citada ou inequívoca, senão null.
+- Se os trechos retornados responderem só PARTE da pergunta, CHAME DE NOVO com uma consulta diferente, focada no que faltou, antes de responder.
+- NÃO CHAME para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta (reuse o contexto).
+Na resposta final: baseie-se exclusivamente nos trechos consultados e cite a fonte (norma e item). Se os trechos não contiverem a informação, diga isso claramente em vez de inventar. Quando não houver contexto, responda com seu conhecimento das normas, citando a norma quando souber.
+
+<tools>
+{"name": "buscar_norma", "description": "Busca trechos das Normas Regulamentadoras (NRs) brasileiras de segurança do trabalho para fundamentar a resposta. Chame quando precisar de um dado normativo que ainda não está na conversa; chame DE NOVO com outros termos se os trechos retornados não bastarem para responder. NÃO chame para saudações, agradecimentos, conversa geral, nem quando os trechos já consultados nesta conversa respondem à nova pergunta.", "parameters": {"type": "object", "properties": {"consulta": {"type": "string", "description": "Os termos de busca. Use a própria pergunta do usuário como ela é (fala crua); numa SEGUNDA busca da mesma pergunta, use termos diferentes, focados no que faltou."}, "nr": {"type": ["string", "null"], "description": "A norma no formato 'NR-10' quando citada ou inequívoca; senão null."}}, "required": ["consulta", "nr"]}}
+</tools><|im_end|>
+<|im_start|>user
+Qual a distância segura pra trabalhar perto de rede de 13,8 kV? Segundo a NR-10.<|im_end|>
+<|im_start|>assistant
+<think></think><tool_call>
+<function=buscar_norma>
+<parameter=consulta>
+Qual a distância segura pra trabalhar perto de rede de 13,8 kV? Segundo a NR-10.
+</parameter>
+<parameter=nr>
+NR-10
+</parameter>
+</function>
+</tool_call><|im_end|>
+<|im_start|>tool
+<tool_response>
+[1] (nr-10 - Anexo II - Zona de risco e zona controlada):
+NR-10 · Anexo II — (item 10.2) Tabela de raios: ≥10 e 15 → 0,38/1,38 […] 𝐌 teste 'aspas' \ barra
+</tool_response><|im_end|>
+<|im_start|>assistant
+<think></think>Pela NR-10, Anexo II, para 13,8 kV o raio da zona de risco é 0,38 m.<|im_end|>
+<|im_start|>user
+e se não der pra desligar?<|im_end|>
+<|im_start|>assistant
+<think></think>

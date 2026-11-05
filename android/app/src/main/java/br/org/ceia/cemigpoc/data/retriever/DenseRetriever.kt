@@ -134,14 +134,16 @@ class DenseRetriever(
         val er = ei.search(qv, k)
         val searchMs = System.currentTimeMillis() - tSearch
         Log.i(TAG, "denso: encode=${encodeMs}ms ann=${searchMs}ms")
-        DenseResult(textRanking = tr, expRanking = er, encodeMs = encodeMs, searchMs = searchMs)
+        DenseResult(textRanking = tr, expRanking = er, encodeMs = encodeMs, searchMs = searchMs, queryVec = qv)
     }
 
     data class DenseResult(
         val textRanking: List<Pair<Int, Float>>,
         val expRanking: List<Pair<Int, Float>>,
         val encodeMs: Long = 0L,
-        val searchMs: Long = 0L
+        val searchMs: Long = 0L,
+        // Vetor da query (F7): reusado pelo gate de manuais e pelo compressor de contexto.
+        val queryVec: FloatArray? = null
     )
 
     private fun loadBin(file: File): DenseIndex {

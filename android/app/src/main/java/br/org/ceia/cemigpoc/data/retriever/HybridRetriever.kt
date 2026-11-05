@@ -36,7 +36,10 @@ class HybridRetriever(
     private val weightBm25: Double = 2.0,
     private val weightDenseText: Double = 1.0,
     private val weightDenseExp: Double = 2.0,
-    private val fusionPool: Int = 60
+    private val fusionPool: Int = 60,
+    // F7 (ponto de operação da F6): manuais como sinais extras + compressão de contexto.
+    private val manualIndex: ManualIndex? = null,
+    private val compressor: ContextCompressor? = null
 ) : Retriever {
 
     companion object {
@@ -140,6 +143,108 @@ class HybridRetriever(
         )
         return chunks
     }
+
+    /** Resultado do retrieve do ponto de operação (F7). */
+    data class OpResult(
+        val chunks: List<Chunk>,          // top-5 fundido (normas e/ou manuais), hidratado
+        val toolContext: String,          // contexto COMPRIMIDO (turno tool)
+        val budget: Int,                  // orçamento = 50% dos tokens do top-2 cru do controle
+        val manualOn: Boolean,            // gate por margem ligou os manuais?
+        val compressMs: Long
+    )
+
+    /** true se o caminho do ponto de operação (manuais + compressão) está disponível. */
+    val hasOp: Boolean
+        get() = denseRetriever?.isReady == true && manualIndex != null && compressor != null
+
+    /** Pool BM25 gated (estágio 1+2) com limiar/boost dados; devolve (pool, decisão). */
+    private suspend fun gatedPool(rawQuestion: String, thr: Float, boost: Double): Pair<List<Chunk>, Decision> {
+        val clf = classifier
+        val explicit = detectExplicitNr(rawQuestion)
+        return when {
+            explicit != null -> delegate.searchBoosted(rawQuestion, fusionPool, listOf(explicit), boost, hardFilter = true) to
+                Decision(rawQuestion, explicit, 1.0f, explicit, listOf(explicit), "explicit", "op")
+            clf == null -> delegate.searchBoosted(rawQuestion, fusionPool, emptyList(), 1.0, hardFilter = false) to
+                Decision(rawQuestion, NONE_LABEL, 0f, NONE_LABEL, emptyList(), "none", "op")
+            else -> {
+                val preds = clf.classify(rawQuestion)
+                val top1 = preds.getOrNull(0)?.nr ?: NONE_LABEL
+                val p1 = preds.getOrNull(0)?.prob ?: 0f
+                val top2 = preds.getOrNull(1)?.nr ?: NONE_LABEL
+                when {
+                    top1 == NONE_LABEL -> delegate.searchBoosted(rawQuestion, fusionPool, emptyList(), 1.0, hardFilter = false) to
+                        Decision(rawQuestion, top1, p1, top2, emptyList(), "none", "op")
+                    p1 >= thr -> delegate.searchBoosted(rawQuestion, fusionPool, listOf(top1), boost, hardFilter = true) to
+                        Decision(rawQuestion, top1, p1, top2, listOf(top1), "hard", "op")
+                    else -> {
+                        val b = listOf(top1, top2).filter { it != NONE_LABEL }
+                        delegate.searchBoosted(rawQuestion, fusionPool, b, boost, hardFilter = false) to
+                            Decision(rawQuestion, top1, p1, top2, b, "soft", "op")
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * PONTO DE OPERAÇÃO da F6 (task lfm3-f7): gate thr 0,7 + boost 2x, manuais w=1,75 com gate
+     * por margem densa m=0, RRF k=10 -> top-5 -> compressão a 50% do top-2 cru do controle
+     * v4app (gate 0,5 / boost 5x, sem manuais). Espelho: bench/lfm3_f6/e2e_build_f6.py::cell.
+     * Retorna null se o denso/manuais/compressor não estiverem prontos (o chamador cai no v4).
+     */
+    suspend fun searchOp(rawQuestion: String, countTokens: (String) -> Int): OpResult? {
+        val dense = denseRetriever ?: return null
+        val man = manualIndex ?: return null
+        val comp = compressor ?: return null
+        if (!dense.isReady) return null
+        val denseRes = dense.search(rawQuestion, fusionPool) ?: return null
+        val qv = denseRes.queryVec ?: return null
+        lastDenseEncodeMs = denseRes.encodeMs
+        val sT = denseRes.textRanking.map { it.first.toLong() }
+        val sE = denseRes.expRanking.map { it.first.toLong() }
+
+        // Controle v4app -> só para o ORÇAMENTO (top-2 cru).
+        val (ctrlPool, _) = gatedPool(rawQuestion, CONF_CTRL, BOOST_CTRL_F)
+        val ctrlTop2 = F6Fusion.fuse(ctrlPool.map { it.id }, sT, sE, limit = 2).take(2).map { it.id }
+
+        // Ponto de operação.
+        val (opPool, decision) = gatedPool(rawQuestion, F6Fusion.CONF_THR_OP, F6Fusion.BOOST_OP)
+        val textTop1 = denseRes.textRanking.firstOrNull()?.second ?: Float.NEGATIVE_INFINITY
+        val manualOn = F6Fusion.manualWanted(man.maxSim(qv), textTop1)
+        val fused = if (manualOn) {
+            F6Fusion.fuse(opPool.map { it.id }, sT, sE, man.bm25(rawQuestion), man.denseRanking(qv))
+        } else {
+            F6Fusion.fuse(opPool.map { it.id }, sT, sE)
+        }.take(F6Fusion.TOP_K)
+
+        // Hidrata (normas do pool/índice; manuais do manuals.db).
+        val poolById = (opPool + ctrlPool).associateBy { it.id }
+        val needNorm = (fused.map { it.id } + ctrlTop2).filter { it < ManualIndex.ID_OFFSET && it !in poolById }
+        val fetched = if (needNorm.isNotEmpty()) delegate.fetchByIds(needNorm.distinct()) else emptyMap()
+        fun hydrate(id: Long): Chunk? =
+            if (id >= ManualIndex.ID_OFFSET) man.chunk(id) else (poolById[id] ?: fetched[id])
+        val chunks = fused.mapNotNull { f ->
+            hydrate(f.id)?.copy(
+                score = f.rrfScore, rrfScore = f.rrfScore,
+                rankBm25 = f.ranks.getOrElse(0) { -1 },
+                rankDenseText = f.ranks.getOrElse(1) { -1 },
+                rankDenseExp = f.ranks.getOrElse(2) { -1 }
+            )
+        }
+        val ctrlChunks = ctrlTop2.mapNotNull { hydrate(it) }
+
+        val t0 = System.currentTimeMillis()
+        val budget = (countTokens(comp.renderRaw(ctrlChunks)) * ContextCompressor.RATIO).toInt()
+        val res = comp.compress(qv, rawQuestion, chunks.map { it.id }, budget, countTokens)
+        val compressMs = System.currentTimeMillis() - t0
+        lastDecision = decision.copy(retrieval = if (manualOn) "op+manuais" else "op")
+        Log.i(TAG, "searchOp: gate=${decision.mode} manual=$manualOn top5=${chunks.map { it.id }} " +
+            "budget=$budget ctx=${res.usedEstimate}tok compress=${compressMs}ms")
+        return OpResult(chunks, res.text, budget, manualOn, compressMs)
+    }
+
+    private val CONF_CTRL = F6Fusion.CONF_THR_CTRL
+    private val BOOST_CTRL_F = F6Fusion.BOOST_CTRL
 
     /**
      * Retrieval v3 (fusão RRF 3-sinais). Estende o caminho gated com dois sinais densos

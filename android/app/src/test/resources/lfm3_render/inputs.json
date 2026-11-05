@@ -1,0 +1,8 @@
+{
+ "q1": "Qual a distância segura pra trabalhar perto de rede de 13,8 kV? Segundo a NR-10.",
+ "ctx1": "[1] (nr-10 - Anexo II - Zona de risco e zona controlada):\nNR-10 · Anexo II — (item 10.2) Tabela de raios: ≥10 e 15 → 0,38/1,38 […] 𝐌 teste 'aspas' \\ barra",
+ "a1": "Pela NR-10, Anexo II, para 13,8 kV o raio da zona de risco é 0,38 m.",
+ "q2": "e se não der pra desligar?",
+ "q3": "obrigado!",
+ "a3": "De nada! Qualquer dúvida sobre as normas, é só perguntar."
+}

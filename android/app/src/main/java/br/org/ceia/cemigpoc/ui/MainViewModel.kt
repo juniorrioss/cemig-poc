@@ -11,7 +11,10 @@ import br.org.ceia.cemigpoc.data.engine.RealNemotronAsrEngine
 import br.org.ceia.cemigpoc.data.engine.RealLlamaEngine
 import br.org.ceia.cemigpoc.data.model.ModelFileManager
 import br.org.ceia.cemigpoc.data.classifier.NrClassifier
+import br.org.ceia.cemigpoc.data.retriever.ContextCompressor
+import br.org.ceia.cemigpoc.data.retriever.DenseMatrix
 import br.org.ceia.cemigpoc.data.retriever.DenseRetriever
+import br.org.ceia.cemigpoc.data.retriever.ManualIndex
 import br.org.ceia.cemigpoc.data.retriever.Fts5Retriever
 import br.org.ceia.cemigpoc.data.retriever.HybridRetriever
 import br.org.ceia.cemigpoc.llama.LlamaEmbedder
@@ -47,8 +50,13 @@ data class MainUiState(
     val isModelReady: Boolean = false,
     val isDebugMode: Boolean = false,
     val modelStatusMessage: String = "Inicializando motores nativos ARM64...",
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
+    // F7: perguntas-exemplo do benchmark operacional (asset example_questions.json).
+    val exampleQuestions: List<ExampleQuestion> = emptyList()
 )
+
+/** Pergunta-exemplo clicável (kind = norma | manual; source = norma/manual esperado). */
+data class ExampleQuestion(val id: String, val kind: String, val source: String, val question: String)
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -81,8 +89,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         lazyEncoder = useLazyEncoder,
         embedModelPath = null  // preenchido após resolver o arquivo (init)
     )
-    private val retriever = HybridRetriever(
-        delegate = Fts5Retriever(application.applicationContext),
+    private val fts5 = Fts5Retriever(application.applicationContext)
+    // F7: manuais + compressor do ponto de operação; criados no init (assets copiados) e
+    // injetados no retriever. Se faltarem, o pipeline cai no RRF v4 top-2 (fallback honesto).
+    @Volatile
+    private var retriever = HybridRetriever(
+        delegate = fts5,
         classifier = nrClassifier,
         denseRetriever = denseRetriever
     )
@@ -101,22 +113,32 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     // System prompt de tool-calling IDÊNTICO ao do treino (asset tools_system_prompt.txt,
     // SHA256 363185b7…). Lido dos assets no construtor; se faltar, usa o fallback conciso
     // (nunca deve faltar — está force-adicionado aos assets).
+    private val useLfm3 = BuildConfig.USE_LFM3
     private val toolSystemPrompt: String = runCatching {
-        application.applicationContext.assets.open("tools_system_prompt.txt")
+        // LFM3 (F7): system BAKED do f4-r32-ep2 (tool_schema_f4.baked_system_content, SHA256 921e6a1f…).
+        application.applicationContext.assets.open(if (useLfm3) "lfm3_tools_system_prompt.txt" else "tools_system_prompt.txt")
             .bufferedReader(Charsets.UTF_8).use { it.readText() }
     }.getOrElse {
         Log.e(TAG, "Falha ao ler tools_system_prompt.txt dos assets; usando fallback", it)
         AskPipeline.SYNTHESIS_SYSTEM_PROMPT
     }
 
-    private val askPipeline = AskPipeline(
+    // LFM3: n_ctx 4096 (prompt de síntese do ponto op ~1100 tok + histórico + até 384 gerados;
+    // o system LFM3 sozinho tem ~550 tok). LFM2.5 legado: 2048.
+    private val ctxSize = if (useLfm3) 4096 else 2048
+
+    @Volatile
+    private var askPipeline = buildPipeline()
+
+    private fun buildPipeline() = AskPipeline(
         retriever = retriever,
         llmEngine = realLlamaEngine,
         telemetryLogger = telemetryLogger,
         toolSystemPrompt = toolSystemPrompt,
         maxTurnsT2 = 3,
-        maxPromptTokens = 1700,
-        topK = 2
+        maxPromptTokens = if (useLfm3) 3200 else 1700,
+        topK = 2,
+        format = if (useLfm3) AskPipeline.ToolFormat.LFM3 else AskPipeline.ToolFormat.LFM25
     )
 
     private var asrStartTimeMs = 0L
@@ -127,6 +149,37 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var activeRecordingId = 0L
 
     init {
+        // F7: perguntas-exemplo (benchmark operacional, aprovadas nas 3 rodadas da F6).
+        runCatching {
+            val arr = org.json.JSONArray(
+                application.applicationContext.assets.open("example_questions.json")
+                    .bufferedReader(Charsets.UTF_8).use { it.readText() }
+            )
+            val list = (0 until arr.length()).map {
+                val o = arr.getJSONObject(it)
+                ExampleQuestion(o.getString("id"), o.getString("kind"), o.getString("source"), o.getString("question"))
+            }
+            _uiState.update { it.copy(exampleQuestions = list) }
+        }.onFailure { Log.w(TAG, "example_questions.json ausente", it) }
+
+        // F7: gancho do E2E no aparelho (broadcast RUN_F7_E2E) — usa ESTE pipeline carregado.
+        br.org.ceia.cemigpoc.data.acceptance.AcceptanceReceiver.f7Hook = { ids, keepPrefix, voice ->
+            viewModelScope.launch(Dispatchers.IO) {
+                while (!_uiState.value.isModelReady) kotlinx.coroutines.delay(500)
+                keepPrefix?.let { realLlamaEngine.engine.keepPrefix = it }
+                Log.i(TAG, "F7 E2E: keepPrefix=${realLlamaEngine.engine.keepPrefix}")
+                try {
+                    val nemo = nemotronAsrEngine
+                    val tr: (suspend (FloatArray) -> String)? = if (!voice) null
+                    else if (nemo != null && activeAsrEngine === nemo) { a -> nemo.transcribeAudioSamples(a) }
+                    else { a -> realAsrEngine.transcribeAudioSamples(a) }
+                    br.org.ceia.cemigpoc.data.acceptance.F7E2ERunner.run(getApplication(), askPipeline, ids, tr)
+                } catch (e: Throwable) {
+                    Log.e(TAG, "F7 E2E falhou", e)
+                }
+            }
+        }
+
         // Inicialização assíncrona dos motores nativos (Whisper Base Q5_1 + Liquid LFM2.5)
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -167,19 +220,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 val anyAsrOk = asrOk || whisperOk
 
-                _uiState.update { it.copy(modelStatusMessage = "Carregando modelo LFM2.5 1.2B Instruct...") }
+                _uiState.update { it.copy(modelStatusMessage = if (useLfm3) "Carregando LFM3 1.7B (f4-r32-ep2 Q4_0)..." else "Carregando modelo LFM2.5 1.2B Instruct...") }
                 val llmFile = fileManager.getLlmModelFile { progress ->
                     _uiState.update {
-                        it.copy(modelStatusMessage = "Copiando LFM2.5 Q4: ${(progress * 100).toInt()}%")
+                        it.copy(modelStatusMessage = "Copiando modelo Q4: ${(progress * 100).toInt()}%")
                     }
                 }
                 // Thinking-OFF (task poc-engine-upgrade): configurado por build. O 2.6B força
                 // <think> no template; a supressão (template + logit-bias no JNI) o torna
                 // viável para voz. No 1.2B default o flag é false (no-op). Setar ANTES de gerar.
                 realLlamaEngine.engine.suppressReasoning = BuildConfig.SUPPRESS_REASONING
+                if (useLfm3) {
+                    // Sampling da série LFM3 (treino/avaliação F4-F6 e smoke da F7):
+                    // temp 0.1 / top_k 50 / rep 1.1 / min_p 0. O `<think></think>` já vem no
+                    // prompt (Lfm3ToolFormat), então não há supressão extra.
+                    realLlamaEngine.engine.repPenalty = 1.1f
+                    realLlamaEngine.engine.minP = 0f
+                    realLlamaEngine.engine.keepPrefix = true
+                }
                 val llmOk = realLlamaEngine.engine.load(
                     modelPath = llmFile.absolutePath,
-                    ctxSize = 2048,
+                    ctxSize = ctxSize,
                     nThreads = 6
                 )
                 if (!llmOk) {
@@ -208,11 +269,33 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     Log.w(TAG, "Busca densa indisponível; pipeline usará BM25-gated (fallback)")
                 }
 
+                // F7: manuais (FTS5 + denso próprios) + compressor de contexto (ponto op F6).
+                if (useLfm3) {
+                    _uiState.update { it.copy(modelStatusMessage = "Preparando manuais e compressor de contexto...") }
+                    try {
+                        val manDb = fileManager.getAssetFile(ModelFileManager.MANUALS_DB)
+                        val manDense = DenseMatrix.load(fileManager.getAssetFile(ModelFileManager.MANUALS_DENSE_BIN))
+                        val manual = ManualIndex(manDb, manDense) { fts5.sanitizeFts5Query(it) }
+                        val comp = ContextCompressor.load(
+                            fileManager.getAssetFile(ModelFileManager.UNITS_BIN),
+                            fileManager.getAssetFile(ModelFileManager.UNITS_VEC)
+                        )
+                        retriever = HybridRetriever(
+                            delegate = fts5, classifier = nrClassifier, denseRetriever = denseRetriever,
+                            manualIndex = manual, compressor = comp
+                        )
+                        askPipeline = buildPipeline()
+                        Log.i(TAG, "Ponto de operação F6 pronto: manuais=${manDense.count} janelas=${comp.dim}d")
+                    } catch (e: Exception) {
+                        Log.e(TAG, "Falha ao preparar manuais/compressor; usando RRF v4 top-2", e)
+                    }
+                }
+
                 val asrLabel = if (activeAsrEngine === nemotronAsrEngine) "Nemotron 3.5" else "Whisper"
                 _uiState.update {
                     it.copy(
                         isModelReady = anyAsrOk && llmOk,
-                        modelStatusMessage = if (anyAsrOk && llmOk) "Pronto ($asrLabel + LFM2.5)" else "Falha no carregamento dos modelos",
+                        modelStatusMessage = if (anyAsrOk && llmOk) "Pronto ($asrLabel + ${if (useLfm3) "LFM3 1.7B" else "LFM2.5"})" else "Falha no carregamento dos modelos",
                         stage = PipelineStage.IDLE
                     )
                 }
@@ -412,7 +495,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                             isStreaming = false,
                             calledTool = m.calledTool,
                             toolConsulta = m.toolConsulta.ifBlank { null },
-                            toolNr = m.toolNr.ifBlank { null }
+                            toolNr = m.toolNr.ifBlank { null },
+                            toolContext = turnEvent.toolContext
                         )
                         _uiState.update {
                             it.copy(
