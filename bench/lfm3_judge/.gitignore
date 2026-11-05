@@ -1,0 +1,3 @@
+cache/
+data/sets/*.jsonl
+data/raw/*.jsonl

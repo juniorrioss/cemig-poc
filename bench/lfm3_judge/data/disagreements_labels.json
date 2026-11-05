@@ -1,0 +1,278 @@
+{
+ "R:ctrl:32c486ba3994a16041a5c5a7|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "decider",
+  "why": "resposta correta e completa; Qwen marcou RECUSA por falso-positivo do regex looks_like_refusal ('A norma não especifica, nesse trecho...')"
+ },
+ "R:op:693c7b8bc84464fbad1405b3|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "ambiguous",
+  "why": "conteúdo correto mas cita NR-30/PGRTA no lugar de NR-31/PGRTR; Qwen chama de alucinação aqui e APROVA a mesma resposta em [15]/[17] (inconsistente)"
+ },
+ "R:ctrl:02cdb034403e9cbdbfa12eca|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "afirma que a norma 'não detalha o programa' — falso (o trecho detalha); cobre 3/6 fatos"
+ },
+ "R:op:7b642165376469151a6aea3f|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "acrescenta medidas (umidade <50%, ionizadores) fora do trecho-ouro — pela régua, procedimento não amparado; decider também viu (p_aluc 0,76), só o limiar baixo aprovou"
+ },
+ "R:op:f40277abdea604addeab633d|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "autocontraditória ('pode ficar perto' / 'não pode ter ligação direta' / 'não se aplicam')"
+ },
+ "R:op:47cf1a4cce6c1d6afd8319cc|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "ambiguous",
+  "why": "acerta a dispensa c/d e depois diz que a dispensa não cobre 'ligação direta' (errado); Qwen reprovou por recusa falso-positiva + parse_fail — certo por acaso"
+ },
+ "R:ctrl:892def0cb96c0a5dd7aa8719|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "diz que 'não podem ter ligação direta' — contradiz a dispensa da alínea d"
+ },
+ "R:op:892def0cb96c0a5dd7aa8719|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "idem [6]"
+ },
+ "R:ctrl:f0e9546f05813698729ee211|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "idem [6]"
+ },
+ "R:op:2773b067692e5ac77f5564ed|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "troca alínea d por 'registro de segurança' e não identifica a 'e'; cobre 1/3"
+ },
+ "R:op:811029bf585ffcbcb72493b6|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "pergunta pede a base normativa; omite NR-7 e prontuário (cobertura 0,4 < 0,5)"
+ },
+ "R:op:f0938e0528d6367e19460f80|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "decider",
+  "why": "traz a condição certa (18.11.12.1); Qwen marcou RECUSA por regex ('a norma não estabelece essa condição')"
+ },
+ "R:op:bc19f88c8e7963cb38646757|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "decider",
+  "why": "correta + acréscimo verdadeiro da NR-18; Qwen marcou RECUSA por regex"
+ },
+ "R:op:068bfc2b1d2ef1de7dcebb02|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "diz que só 2 tópicos são listados — falso; cobre 2/6"
+ },
+ "R:op:91d7577ce57c30c617ae1276|decider_aprova_qwen_reprova": {
+  "set": "R",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "inventa 'certificados de inspeção' no 13.4.1.7"
+ },
+ "R:ctrl:9d2c85e4750f238128024351|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "ambiguous",
+  "why": "mesmo caso de [1] (NR errada, conteúdo certo); citação está fora do gate da régua -> aprovar é defensável; decider pune como alucinação"
+ },
+ "R:op:e54b259eaf63a36b304d7e0b|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "ambiguous",
+  "why": "acrescenta 'válida com 1/3' não presente no trecho; pode existir na norma completa"
+ },
+ "R:op:9d2c85e4750f238128024351|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "ambiguous",
+  "why": "idem [15]"
+ },
+ "R:op:90f4288b48314179951ea5d8|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "resposta correta; decider (p_aluc 0,9) puniu acréscimos verdadeiros do próprio item"
+ },
+ "R:op:9881094a7d8e16c7701190a4|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "ambiguous",
+  "why": "sem ouro no contexto; lista gatilhos parciais de outro item (33.5.3); régua aprova (cov 0,67) mas faltam 'mudança de atividade/configuração'"
+ },
+ "R:ctrl:0c4f87e577ae59d5e9e99ddb|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "conteúdo correto, cita NR-18 no lugar de NR-31; citação fora do gate -> aprovar (decider pune NR errada como alucinação)"
+ },
+ "R:op:bc6ba0d5a88ba0d05f0bf168|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "decider",
+  "why": "afirma que a norma 'não identifica o coordenador' — falso, o trecho nomeia o Eng. Joaquim Gomes Pereira"
+ },
+ "R:ctrl:ace9081a314a8a70837554ec|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "decider",
+  "why": "não diz a ação pedida (TH na inspeção inicial); conclui 'não atende' — régua aprovou por casamento lexical frouxo"
+ },
+ "R:op:0c4f87e577ae59d5e9e99ddb|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "idem [20] (NR-18 citada, conteúdo correto)"
+ },
+ "R:op:b4e3f281c294dd3b33d1d89a|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "cobre 5/6 fatos corretamente; decider puniu por citar item da NR-35 trocado"
+ },
+ "R:ctrl:249d13b1d4ec2d2eca0143a2|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "correta; cita NR-18 no lugar de NR-34"
+ },
+ "R:op:527169ba3b9f0b1f71d393fe|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "ambiguous",
+  "why": "idem [19]"
+ },
+ "R:op:ace9081a314a8a70837554ec|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "decider",
+  "why": "idem [22]"
+ },
+ "R:op:4f05cf7d7c6f649d54f042fa|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "correta (NR-18 citada) + acréscimo verdadeiro (DR)"
+ },
+ "R:ctrl:e54b259eaf63a36b304d7e0b|qwen_aprova_decider_reprova": {
+  "set": "R",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "ambiguous",
+  "why": "idem [16]"
+ },
+ "B:mobilerag:4f05cf7d7c6f649d54f042fa|decider_aprova_qwen_reprova": {
+  "set": "B",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "só repete a premissa; gpt-oss: incorrect"
+ },
+ "B:mobilerag_plus:5463bc42d11369298efee7a4|decider_aprova_qwen_reprova": {
+  "set": "B",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "omite 'quantidade máxima de pessoas'; gpt-oss: partially"
+ },
+ "B:mobilerag:29059ea8ff228ef416c803c6|decider_aprova_qwen_reprova": {
+  "set": "B",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "decider",
+  "why": "gpt-oss: correct — responde empregador + equipamento de terceiros; régua reprovou por casamento lexical"
+ },
+ "B:mobilerag:1f2fd6aae8f800127b29a41c|decider_aprova_qwen_reprova": {
+  "set": "B",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "omite quem coordena (SESMT); gpt-oss: partially"
+ },
+ "B:mobilerag_plus:7d4a80ddf3506ded8fa05373|decider_aprova_qwen_reprova": {
+  "set": "B",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "só degraus; gpt-oss: partially"
+ },
+ "B:mobilerag:9ccd0b5ecdabe8cd45123c1e|decider_aprova_qwen_reprova": {
+  "set": "B",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "omite SESMT; gpt-oss: partially"
+ },
+ "B:naive:6845c4c66499a617cd8c9d0e|decider_aprova_qwen_reprova": {
+  "set": "B",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "omite SESMT; gpt-oss: partially"
+ },
+ "B:mobilerag_plus:952ebd4049bdc8e46ddcf631|decider_aprova_qwen_reprova": {
+  "set": "B",
+  "direction": "decider_aprova_qwen_reprova",
+  "winner": "qwen",
+  "why": "não lista as situações; gpt-oss: partially"
+ },
+ "B:naive:af04047658a1598e859037eb|qwen_aprova_decider_reprova": {
+  "set": "B",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "gpt-oss: correct (registro + aprovação por RT + anuência)"
+ },
+ "B:mobilerag:af04047658a1598e859037eb|qwen_aprova_decider_reprova": {
+  "set": "B",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "idem [8]"
+ },
+ "B:bm25:4c7bf6e2cddb0c48a05b6feb|qwen_aprova_decider_reprova": {
+  "set": "B",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "decider",
+  "why": "diz que os trechos não informam (falso); gpt-oss: incorrect"
+ },
+ "B:naive:5493393712ef3818f511583a|qwen_aprova_decider_reprova": {
+  "set": "B",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "decider",
+  "why": "gatilhos de outro contexto; gpt-oss: partially (não 'correct')"
+ },
+ "B:mobilerag_plus:2de93d415601f76761331915|qwen_aprova_decider_reprova": {
+  "set": "B",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "qwen",
+  "why": "gpt-oss: correct"
+ },
+ "B:bm25:cd7fd29e88ef2a3e04e66c5b|qwen_aprova_decider_reprova": {
+  "set": "B",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "decider",
+  "why": "responde sobre máquinas, não benzeno; gpt-oss: incorrect — régua aprovou por fatos genéricos"
+ },
+ "B:mobilerag:478d70c60d34c75321a59935|qwen_aprova_decider_reprova": {
+  "set": "B",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "decider",
+  "why": "gpt-oss: partially — omite vários pontos"
+ },
+ "B:naive:598c06eb17ff39c764f1d6c1|qwen_aprova_decider_reprova": {
+  "set": "B",
+  "direction": "qwen_aprova_decider_reprova",
+  "winner": "decider",
+  "why": "gpt-oss: incorrect"
+ }
+}
