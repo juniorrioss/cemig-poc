@@ -49,7 +49,7 @@ def main() -> None:
     ap.add_argument("--rank", type=int, default=32)
     ap.add_argument("--num-generations", type=int, default=8)
     ap.add_argument("--prompts-per-step", type=int, default=8)
-    ap.add_argument("--micro-batch", type=int, default=16)
+    ap.add_argument("--micro-batch", type=int, default=8)
     ap.add_argument("--max-completion", type=int, default=384)
     ap.add_argument("--max-steps", type=int, default=400)
     ap.add_argument("--save-steps", type=int, default=50)
@@ -58,6 +58,7 @@ def main() -> None:
     ap.add_argument("--concision", type=float, default=0.0, help="λ da penalidade de comprimento (0=off)")
     ap.add_argument("--concision-target", type=int, default=90)
     ap.add_argument("--seed", type=int, default=42)
+    ap.add_argument("--refuse-oversample", type=int, default=2)
     ap.add_argument("--preflight", action="store_true")
     args = ap.parse_args()
 
@@ -74,6 +75,9 @@ def main() -> None:
 
     tok = AutoTokenizer.from_pretrained(args.model, trust_remote_code=True)
     rows = [json.loads(l) for l in Path(args.prompts).read_text(encoding="utf-8").splitlines() if l.strip()]
+    # recusa é minoria no pool filtrado (~11%): sobreamostra p/ ~20% (brief: recusa
+    # correta com ouro ausente deve ser recompensada com frequência suficiente)
+    rows = rows + [r for r in rows if r["expect"] == "refuse"] * (args.refuse_oversample - 1)
     random.Random(args.seed).shuffle(rows)
     recs = []
     for r in rows:

@@ -69,7 +69,14 @@ def read_jsonl(p: Path) -> List[Dict[str, Any]]:
     p = Path(p)
     if not p.exists():
         return []
-    return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
+    out = []
+    for l in p.read_text(encoding="utf-8").splitlines():
+        if l.strip():
+            try:
+                out.append(json.loads(l))
+            except json.JSONDecodeError:   # última linha truncada (processo morto)
+                continue
+    return out
 
 
 def write_jsonl(p: Path, rows: List[Dict[str, Any]]) -> None:

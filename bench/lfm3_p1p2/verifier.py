@@ -19,6 +19,13 @@ paper Rufus-Air):
                  citado no contexto);
              (d) não é recusa (a régua de avaliação conta recusa como reprovação);
   r = 1  se  expect == "refuse" (ouro ausente) E recusa explícita;
+             v1: "recusa" = regex amplo `looks_like_refusal` em QUALQUER ponto;
+             v2 (CONTRACT_VERSION=2, default): recusa EXPLÍCITA nas primeiras
+             ~200 chars (`STRICT_REFUSAL_RE`: "não encontrei", "os trechos
+             recuperados não cobrem", "não está nas normas"...). Motivo (run P2#1): com v1 a política aprendeu a
+             RESPONDER e fechar com uma ressalva ("a norma não traz outra..."),
+             que o regex amplo contava como recusa — recusa explícita no
+             distrator caiu 185→40/344 e a alucinação subiu.
   r = 1  se  expect == "no_tool" E não emitiu <tool_call> E resposta não-vazia
              (só no P1, família sem_ferramenta do F4);
   r = 0  caso contrário. Truncada (sem EOS) => 0 sempre.
@@ -38,7 +45,9 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Set
 
 _REPO = Path(__file__).resolve().parents[2]
-for _p in (_REPO / "bench" / "regua", _REPO / "bench" / "lfm3_f0"):
+# no container os módulos viajam junto em ./deps (ruler.py, common_f0.py)
+for _p in (_REPO / "bench" / "regua", _REPO / "bench" / "lfm3_f0",
+           Path(__file__).resolve().parent / "deps"):
     if str(_p) not in sys.path:
         sys.path.insert(0, str(_p))
 
@@ -54,6 +63,29 @@ ITEM_RE = re.compile(r"(?<![\w.])(\d{1,2}(?:\.\d{1,3}){1,5})(?![\w]|\.\d)")
 NUM_RE = re.compile(r"(?<![\w])\d+(?:[.,]\d+)*")
 
 TOOL_CALL_RE = re.compile(r"<tool_call>|<\|tool_call_start\|>")
+
+CONTRACT_VERSION = 2
+REFUSAL_HEAD_CHARS = 200
+# recusa EXPLÍCITA: declara que a informação não está no material recuperado
+STRICT_REFUSAL_RE = re.compile(
+    r"n[aã]o (encontrei|localizei|achei|foi (poss[ií]vel )?(encontr|localiz))"
+    r"|n[aã]o (est[aá]|consta|aparece|h[aá] (essa|esta|tal) informa\w*)\s+(n[oa]s?|em) "
+    r"(normas?|trechos?|contexto|material|documentos?|passage\w*)"
+    # sujeito = MATERIAL RECUPERADO (trechos/contexto/normas recuperadas), nunca "a
+    # norma" genérica: "a norma não traz outra exigência" é ressalva, não recusa
+    r"|(trechos?|contexto|passage\w*|documentos?|material|"
+    r"normas? (recuperad|consultad|fornecid|dispon)\w*)( de norma)?"
+    r"( \w+){0,3} n[aã]o (cobre|cobrem|traz|trazem|cont[eé]m|cont[eê]m|abordam?|respondem?|"
+    r"tratam?|mencionam?|informam?|especificam?|apresentam?|incluem?|definem?)"
+    r"|n[aã]o (tenho|disponho de) (essa|esta|a) informa"
+    r"|n[aã]o (é|e) poss[ií]vel (afirmar|responder|confirmar|determinar|informar)"
+    r"|sem (essa|esta) informa\w* n[oa]s? (normas?|trechos?|contexto)",
+    re.IGNORECASE)
+
+
+def is_explicit_refusal(answer: str) -> bool:
+    """Recusa explícita nas primeiras REFUSAL_HEAD_CHARS (contrato v2)."""
+    return bool(STRICT_REFUSAL_RE.search((answer or "")[:REFUSAL_HEAD_CHARS]))
 
 
 # ---------------------------------------------------------------------------
@@ -215,8 +247,12 @@ def verify(answer: str, item: Dict, stopped: bool = True,
     refused = looks_like_refusal(a)
 
     if expect == "refuse":
-        ok = refused and not has_tool
-        return Verdict(int(ok), "refused" if ok else "answered_without_gold")
+        if CONTRACT_VERSION < 2:
+            ok = refused and not has_tool
+            return Verdict(int(ok), "refused" if ok else "answered_without_gold")
+        if has_tool or not is_explicit_refusal(a):
+            return Verdict(0, "hedged_refusal" if refused else "answered_without_gold")
+        return Verdict(1, "refused")
     if expect == "no_tool":
         ok = not has_tool
         return Verdict(int(ok), "no_tool" if ok else "spurious_tool_call")

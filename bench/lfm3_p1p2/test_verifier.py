@@ -108,6 +108,29 @@ class TestReward(unittest.TestCase):
         a = "Pela NR-18, item 18.8.6.1, a largura mínima é 0,8 m."
         self.assertEqual(V.verify(a, it).reward, 0)
 
+    def test_v2_hedged_answer_is_not_refusal(self):
+        # contrato v2: responder e fechar com ressalva NÃO é recusa (reward 0)
+        it = dict(ITEM, expect="refuse")
+        a = ("Sim, a largura mínima é 0,8 m. A norma não traz outra exigência além dessa.")
+        self.assertEqual(V.verify(a, it).reason, "hedged_refusal")
+
+    def test_v2_refusal_must_be_upfront(self):
+        it = dict(ITEM, expect="refuse")
+        a = ("Pela NR-18 a escada deve ser dimensionada pelo fluxo de trabalhadores e ter "
+             "proteção contra quedas, além de patamares e degraus uniformes conforme o "
+             "projeto e as cargas previstas para a obra inteira. Os trechos recuperados não "
+             "cobrem o resto.")
+        self.assertGreater(len(a), V.REFUSAL_HEAD_CHARS)
+        self.assertEqual(V.verify(a, it).reward, 0)
+
+    def test_v2_refusal_templates(self):
+        it = dict(ITEM, expect="refuse")
+        for a in ("Os trechos de norma recuperados não cobrem esse ponto. Verifique a NR-32.",
+                  "Isso não está nos trechos das normas que recuperei. Consulte o SESMT.",
+                  "Não encontrei essa informação nas normas recuperadas.",
+                  "O contexto fornecido não traz essa informação."):
+            self.assertEqual(V.verify(a, it).reward, 1, a)
+
     def test_spurious_tool_call(self):
         a = '<tool_call>\n<function=buscar_norma>\n</function>\n</tool_call>'
         self.assertEqual(V.verify(a, ITEM).reason, "spurious_tool_call")
