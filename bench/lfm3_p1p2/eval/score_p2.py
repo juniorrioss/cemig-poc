@@ -33,6 +33,9 @@ def main() -> None:
     ap.add_argument("--work", default="/mnt/d/cemig-scratch/p1p2/eval")
     ap.add_argument("--skip", default="", help="ex.: probe,e2e")
     ap.add_argument("--workers", type=int, default=48)
+    ap.add_argument("--e2e-suite", choices=["recorte", "151"], default="recorte",
+                    help="suite do score_f6 p/ o e2e (recorte = gabarito 384; 151 = coloquiais)")
+    ap.add_argument("--e2e-tag", default="", help="tag do arquivo e2e (default = --tag)")
     args = ap.parse_args()
     work = Path(args.work)
     skip = set(args.skip.split(",")) if args.skip else set()
@@ -54,16 +57,17 @@ def main() -> None:
                             "--workers", str(args.workers)], check=True)
 
     # --- e2e op_d50 (score_f6, suite recorte)
-    if "e2e" not in skip and (work / f"e2e_gen_{args.tag}.jsonl").exists():
+    etag = args.e2e_tag or args.tag
+    if "e2e" not in skip and (work / f"e2e_gen_{etag}.jsonl").exists():
         e2e_dir = work / "f6root" / "data" / "e2e"
         e2e_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy(work / f"e2e_gen_{args.tag}.jsonl", e2e_dir / f"gen_{args.tag}.jsonl")
+        shutil.copy(work / f"e2e_gen_{etag}.jsonl", e2e_dir / f"gen_{etag}.jsonl")
         code6 = ("import sys; sys.path.insert(0, %r); import common_f6 as F6; from pathlib import Path; "
                  "F6.DATA = Path(%r); F6.CACHE = Path(%r); import score_f6 as S; S.F6 = F6; "
                  "sys.argv = ['x'] + sys.argv[1:]; S.main()"
                  % (str(REPO / "bench" / "lfm3_f6"), str(work / "f6root" / "data"),
                     str(work / "f6root" / "cache")))
-        subprocess.run([PY, "-c", code6, "--suite", "recorte", "--tag", args.tag,
+        subprocess.run([PY, "-c", code6, "--suite", args.e2e_suite, "--tag", etag,
                         "--workers", str(args.workers)], check=True)
 
     # --- probe (run_probe judge lê/escreve ao lado do script -> shim de HERE)
