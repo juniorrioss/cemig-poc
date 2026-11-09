@@ -150,5 +150,67 @@ class TestReward(unittest.TestCase):
         self.assertEqual(V.verify(a, ITEM, x=1.0).reward, 0)
 
 
+class TestV4(unittest.TestCase):
+    GOOD = ("Pela NR-18, item 18.8.6.1, as escadas de uso coletivo devem ter largura "
+            "mínima de 0,8 m.")
+
+    def test_full_credit(self):
+        v = V.verify_v4(self.GOOD, ITEM, n_tok=30)
+        self.assertAlmostEqual(v.reward, 1.0)
+
+    def test_number_gate_is_hard(self):
+        a = self.GOOD + " O corrimão fica a 1,1 m."
+        v = V.verify_v4(a, ITEM, n_tok=40)
+        self.assertEqual((v.reward, v.reason), (0, "number_outside_context"))
+
+    def test_anchored_without_citation(self):
+        a = "As escadas de uso coletivo devem ter largura mínima de 0,8 m."
+        self.assertAlmostEqual(V.verify_v4(a, ITEM, n_tok=20).reward, 0.75)
+
+    def test_continuous_coverage(self):
+        a = "Pela NR-18, item 18.8.6.1, a largura mínima é de 0,8 m."   # 1 de 2 fatos
+        self.assertAlmostEqual(V.verify_v4(a, ITEM, n_tok=20).reward, 0.25 + 0.25 + 0.25)
+
+    def test_floor_when_nothing_covered(self):
+        a = "Siga o item 18.8.6.1 da NR-18."
+        self.assertAlmostEqual(V.verify_v4(a, ITEM, n_tok=10).reward, 0.5)
+
+    def test_undue_refusal_zero(self):
+        a = "Não encontrei essa informação nas normas recuperadas."
+        self.assertEqual(V.verify_v4(a, ITEM, n_tok=10).reward, 0)
+
+    def test_refusal_binary(self):
+        it = dict(ITEM, expect="refuse")
+        self.assertEqual(V.verify_v4("Os trechos recuperados não cobrem esse ponto.", it).reward, 1)
+        self.assertEqual(V.verify_v4(self.GOOD, it).reward, 0)
+        self.assertEqual(V.verify_v4("Sim, 0,8 m. A norma não traz outra exigência.", it).reward, 0)
+
+    def test_multi_evidence_needs_both(self):
+        it = dict(ITEM, gold_items=["18.8.6.1", "18.9.4.1"],
+                  context=CTX + " 18.9.4.1 proteção contra quedas.")
+        one = V.verify_v4(self.GOOD, it, n_tok=30)
+        both = V.verify_v4(self.GOOD + " Ver também o item 18.9.4.1.", it, n_tok=35)
+        self.assertAlmostEqual(one.reward, 0.25 + 0.5 + 0.125)
+        self.assertAlmostEqual(both.reward, 1.0)
+        self.assertTrue(one.detail["multi"])
+
+    def test_child_code_is_same_root(self):
+        self.assertEqual(V.item_roots(["18.8", "18.8.6.1", "10.2"]), ["10.2", "18.8"])
+
+    def test_concision(self):
+        self.assertEqual(V.concision_factor(V.CONCISION_T), 1.0)
+        self.assertAlmostEqual(V.concision_factor(2 * V.CONCISION_T), 0.7)
+        self.assertAlmostEqual(V.concision_factor(10 * V.CONCISION_T), 0.7)
+        v = V.verify_v4(self.GOOD, ITEM, n_tok=2 * V.CONCISION_T)
+        self.assertAlmostEqual(v.reward, 0.7)
+
+    def test_no_code_cites_nr(self):
+        it = dict(ITEM, gold_items=[])
+        a = "Pela NR-18 as escadas de uso coletivo devem ter largura mínima de 0,8 m."
+        self.assertAlmostEqual(V.verify_v4(a, it, n_tok=20).reward, 1.0)
+        b = "As escadas de uso coletivo devem ter largura mínima de 0,8 m."
+        self.assertAlmostEqual(V.verify_v4(b, it, n_tok=20).reward, 0.75)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

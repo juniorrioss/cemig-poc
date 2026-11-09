@@ -60,6 +60,8 @@ def main() -> None:
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--refuse-oversample", type=int, default=2)
     ap.add_argument("--max-prompt-tokens", type=int, default=100000)
+    ap.add_argument("--contract", choices=["v2", "v4"], default="v2",
+                    help="v2 = binário conjuntivo; v4 = escalonado (gate de números + cobertura contínua + concisão)")
     ap.add_argument("--preflight", action="store_true")
     args = ap.parse_args()
 
@@ -114,7 +116,10 @@ def main() -> None:
             item = {"expect": expect[i], "facts": json.loads(facts[i]),
                     "gold_items": json.loads(gold_items[i]), "context": context[i],
                     "question": question[i]}
-            v = V.verify(c, item, stopped=stopped, x=args.x)
+            if args.contract == "v4":
+                v = V.verify_v4(c, item, stopped=stopped, n_tok=len(ids))
+            else:
+                v = V.verify(c, item, stopped=stopped, x=args.x)
             r = float(v.reward)
             if args.concision and r > 0:
                 over = max(0, len(ids) - args.concision_target) / args.concision_target
@@ -167,7 +172,7 @@ def main() -> None:
     premises.update({"n_lora_A": len(lora_a), "n_feed_forward": len(ff), "n_self_attn": 0,
                      "trainable": sum(p.numel() for p in trainer.model.parameters() if p.requires_grad),
                      "n_prompts": len(recs), "n_answer": n_ans, "coverage_x": args.x or V.COVERAGE_X,
-                     "loss_type": "dapo", "scale_rewards": "group", "epsilon_high": 0.28,
+                     "contract": args.contract, "loss_type": "dapo", "scale_rewards": "group", "epsilon_high": 0.28,
                      "generation_batch_size": gen_bs, "enable_thinking": False})
     (out_dir / "premises.json").write_text(json.dumps(premises, indent=2))
     print("[premises]", json.dumps(premises, indent=2), flush=True)

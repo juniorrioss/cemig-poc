@@ -219,7 +219,7 @@ def fact_coverage(answer: str, facts: List[str]) -> float:
 # ---------------------------------------------------------------------------
 @dataclass
 class Verdict:
-    reward: int
+    reward: float
     reason: str
     detail: Dict = field(default_factory=dict)
 
@@ -277,3 +277,102 @@ def verify(answer: str, item: Dict, stopped: bool = True,
         if bad:
             return Verdict(0, "number_outside_context", det)
     return Verdict(1, "ok", det)
+
+
+# ===========================================================================
+# CONTRATO v4 — reward ESCALONADO (ordem do capitão após o v2/v3)
+# ===========================================================================
+# Motivo: no binário conjuntivo, frac_reward_zero_std subiu 0,15 -> 0,50 (metade
+# dos grupos sem gradiente). O v4 dá crédito parcial, TUDO verificável por regra:
+#
+#   GATES DUROS (r = 0, sem crédito parcial):
+#     truncada | vazia | <tool_call> espúrio
+#     QUALQUER número fora do contexto/pergunta (inegociável: lição do hacking)
+#     ouro presente e a resposta RECUSA (regex amplo: recusa indevida)
+#   SOBRE QUEM PASSA (expect=answer):
+#     r_base = 0,25                (ancorado: sem número inventado, não recusou)
+#            + 0,50 · cov          (cobertura CONTÍNUA = fração de fatos presentes)
+#            + 0,25 · cite         (cite ∈ [0,1], abaixo)
+#     cite (item único)  = 1 se cita o item-ouro (igual ou filho), senão 0
+#     cite (MULTI-EVIDÊNCIA: ≥2 raízes de item-ouro DISTINTAS citáveis no contexto)
+#                        = fração das raízes citadas  -> exige as DUAS evidências
+#                          para o bônus cheio (escolha documentada: o gabarito de
+#                          fatos não é separável por span, mas o código de item é
+#                          a identidade verificável de cada span)
+#     cite (sem código verificável) = 1 se cita a NR da pergunta/contexto (nr-XX)
+#   CONCISÃO (multiplicativa, só sobre quem passou):
+#     T = ceil(1,5 · mediana dos tokens das referências answer) = 144 (mediana 96,
+#     medida em 11.235 alvos do 27B com o tokenizer do LFM3; p90 = 143)
+#     fator = 1 − min(0,30; 0,30 · max(0, n_tok − T) / T)   (−30% em 2T, piso)
+#   expect=partial : gate de números + r = 0,25 + 0,75 · cov
+#   expect=refuse  : BINÁRIO — 1,0 se recusa explícita no início (v2), senão 0
+#   expect=no_tool : binário (não chama a ferramenta)
+CONCISION_MEDIAN_REF = 96
+CONCISION_T = 144          # ceil(1,5 · 96)
+CONCISION_MAX = 0.30
+NR_CITE_RE = re.compile(r"nr[-\s]?0?(\d{1,2})", re.IGNORECASE)
+
+
+def item_roots(items: Iterable[str]) -> List[str]:
+    """Raízes distintas: remove códigos que são filhos de outro da lista."""
+    out: List[str] = []
+    for x in sorted(set(i for i in items if i), key=lambda s: (s.count("."), s)):
+        if not any(x == y or x.startswith(y + ".") for y in out):
+            out.append(x)
+    return out
+
+
+def cite_score(answer: str, gold_items: Iterable[str], context: str = "",
+               question: str = "") -> float:
+    roots = item_roots(gold_items)
+    if not roots:
+        nrs = set(NR_CITE_RE.findall(context or "")) | set(NR_CITE_RE.findall(question or ""))
+        got = set(NR_CITE_RE.findall(answer or ""))
+        return 1.0 if (got & {n.lstrip("0") or "0" for n in nrs} or (got and not nrs)) else 0.0
+    got = item_codes(answer)
+    hit = sum(1 for g in roots if any(a == g or a.startswith(g + ".") for a in got))
+    return hit / len(roots)
+
+
+def concision_factor(n_tok: Optional[int]) -> float:
+    if n_tok is None or n_tok <= CONCISION_T:
+        return 1.0
+    return 1.0 - min(CONCISION_MAX, CONCISION_MAX * (n_tok - CONCISION_T) / CONCISION_T)
+
+
+def verify_v4(answer: str, item: Dict, stopped: bool = True,
+              n_tok: Optional[int] = None) -> Verdict:
+    """Contrato v4 (escalonado). Retorna reward contínuo em [0, 1]."""
+    expect = item["expect"]
+    a = strip_answer(answer)
+    if not stopped:
+        return Verdict(0, "truncated")
+    if not a:
+        return Verdict(0, "empty")
+    has_tool = bool(TOOL_CALL_RE.search(a))
+    if expect == "refuse":
+        ok = (not has_tool) and is_explicit_refusal(a)
+        return Verdict(int(ok), "refused" if ok else
+                       ("hedged_refusal" if looks_like_refusal(a) else "answered_without_gold"))
+    if expect == "no_tool":
+        return Verdict(int(not has_tool), "no_tool" if not has_tool else "spurious_tool_call")
+    if has_tool:
+        return Verdict(0, "spurious_tool_call")
+    bad = unsupported_numbers(a, item.get("context") or "", item.get("question") or "")
+    if bad:
+        return Verdict(0, "number_outside_context", {"bad_numbers": bad[:8]})
+    if looks_like_refusal(a) and expect == "answer":
+        return Verdict(0, "undue_refusal")
+    cov = fact_coverage(a, item.get("facts") or [])
+    if expect == "partial":
+        r = 0.25 + 0.75 * cov
+        det = {"coverage": round(cov, 3)}
+    else:
+        cite = cite_score(a, item.get("gold_items") or [], item.get("context") or "",
+                          item.get("question") or "")
+        r = 0.25 + 0.5 * cov + 0.25 * cite
+        det = {"coverage": round(cov, 3), "cite": round(cite, 3),
+               "multi": len(item_roots(item.get("gold_items") or [])) >= 2}
+    f = concision_factor(n_tok)
+    det["concision"] = round(f, 3)
+    return Verdict(round(r * f, 4), "graded", det)
