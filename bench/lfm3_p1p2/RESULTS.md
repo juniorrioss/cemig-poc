@@ -6,7 +6,7 @@ verificável por regra, sem juiz no loop, sobre o `f4-r32-ep2`. Avaliação no r
 (normas 10/18/34/13/31/33), 4 células padrão + e2e do app (op_d50) + probe geral, juiz 27B
 (régua honesta). Tabela-mestra: `data/consolidation.json`. Relatório de bandas: `data/p1_report.json`.
 
-## Resumo (relatório congelado para o prazo do capitão; ver §Pendências)
+## Resumo (relatório congelado para o prazo do capitão, 09/11 ~17h UTC)
 
 - **P1 entregue como ferramenta** (`p1_pipeline.py`, 7 subcomandos reentrantes). Num universo de
   11.313 itens medidos (pool RLVR completo + 5.776 do SFT data2x/F4), **49,2% são descartados**:
@@ -15,8 +15,8 @@ verificável por regra, sem juiz no loop, sobre o `f4-r32-ep2`. Avaliação no r
   **alucinação no distrator 22,4 → 15,4** (meta < 24,9 ✓; pareado 16 pior/40 melhor, p = 0,002),
   recusa correta 61,0 → 70,3, **e2e do app 68,3 → 75,0** (31/8, p = 0,0003), **cita item-ouro
   69,0 → 73,3%** (meta > 73 ✓), ranking 77,6 → 84,6 (37/13, p = 0,001), oráculo 89,0 → 91,9,
-  closed 7,8 → 9,0, probe 3,38 → 3,35 (dentro de 1 p.p.). Custo: recusa indevida no ranking
-  3,2 → 2,9 (igual) e +9% de tokens (86 → 94).
+  closed 7,8 → 9,0, probe 3,38 → 3,35 (dentro de 1 p.p.). Custo: +9% de tokens no recorte (86 → 94;
+  +14% no app ×1536). Recusa indevida no ranking 3,2 → 2,9 (igual).
 - **v4 (reward escalonado) tem a melhor eficiência e a menor alucinação, mas paga em guarda**:
   `frac_reward_zero_std` médio **0,54 (v2) → 0,33 (v4), −40%**; distrator 14,5% (melhor), e2e
   73,8, probe 3,47. Porém oráculo 89,0 → 87,2 (−1,8, fora da tolerância de 1 p.p.), recusa
@@ -24,9 +24,15 @@ verificável por regra, sem juiz no loop, sobre o `f4-r32-ep2`. Avaliação no r
 - **v1/v2 sem formato estático pioram o distrator** (22,4 → 26–28,5): o RL só no formato app
   desaprende a recusar no formato sem ferramenta. A **lição** do v3 é cobrir os dois formatos no
   pool de prompts. Junto com o reward hacking da recusa do v1 (§3), esses são os dois achados.
-- **Trava anti-overfit (bateria completa)**: base, v3s400 e v4s400 em distrator ×1536 + e2e do app
-  ×1536 + 151 coloquiais (corte do prazo: oráculo/closed/ranking ×1536 ficam para depois). Ver §2.2;
-  **sem ela não há declaração de substituto do f4-r32-ep2.**
+- **Trava anti-overfit (bateria completa, corte do prazo)**: distrator ×1536 **23,8 → 15,7**
+  (fora do recorte 24,2 → 15,9), e2e do app ×1536 **64,1 → 71,8**, POC 151 coloquiais
+  **12,6 → 21,2** (p = 0,01). O ganho se sustenta fora das normas do recorte (§2.2).
+- **Veredito para o capitão**: o **v3s400 é candidato a substituto do f4-r32-ep2** em tudo que foi
+  medido. Ressalvas: (i) oráculo, closed e ranking ×1536 ainda não rodados (corte do prazo); no
+  recorte estão iguais ou melhores; (ii) +14% de tokens; (iii) nas 151 recusa menos e alucina um
+  pouco mais (31,1 vs 28,5). Se a prioridade for segurança (nunca inventar) e concisão, o
+  **v4s400** é a alternativa: menos alucinação em todas as células, 106 tok, mas o oráculo do
+  recorte caiu 1,8 p.p. A escolha v3 × v4 é decisão do capitão.
 
 ## 1. P1 — filtro de aprendibilidade
 
@@ -92,7 +98,9 @@ Leituras:
 - **Mal especificados** (`data/p1_ill_specified.jsonl`, 1.097 itens) são sobretudo alvos com
   ref de item que não bate com o contexto (o 27B cita outro item, `no_gold_item`) e perguntas
   que o contexto real cobre só em parte. Vale auditar antes de reaproveitar.
-- **Cobertura parcial (honesta)**: o rollout do SFT foi cortado pelas janelas de treino P2.
+- **Cobertura parcial (honesta)**: o rollout do SFT foi cortado pelas janelas de treino P2
+  (pendência; não afeta o P2, cujo pool RLVR está 100% medido e cujos itens data2x do v3/v4 vêm da
+  parte medida).
   Estão medidos 4.524/11.151 data2x e 1.252/4.533 F4, amostra aleatória por ordem de comprimento
   de prompt (`rollout` ordena por tamanho, então **os prompts mais longos, k = 8, estão
   sub-representados**). O pool RLVR está 100% medido. Para completar: `rollout --sources data2x
@@ -128,7 +136,7 @@ offline pelo P1 e online pela vantagem zero dos grupos degenerados
 | `lfm3-p2-rlvr-bal` | + todas as recusas fáceis (36%) | v1 | — |
 | `lfm3-p2-rlvr-v2` | âncoras de recusa até 30% | **v2** binário (recusa explícita no início) | `5h5m9jt4` |
 | **`lfm3-p2-rlvr-v3`** | v2 + data2x no **formato estático** (system F0, contexto cru, distratores da mesma NR), recusa 35%; prompts ≤ 2.200 tok (5.369) | v2 | `o4kcs0vz` |
-| `lfm3-p2-rlvr-v4` | pool v3 refiltrado pelo reward v4 (grupos com variância, 6.044 → ≤2.200 tok) | **v4 escalonado** (§2.3) | `bchs9c0h` |
+| `lfm3-p2-rlvr-v4` (v4s200/300/400) | pool v3 refiltrado pelo reward v4 (grupos com variância, 6.044 → ≤2.200 tok) | **v4 escalonado** (§2.3) | `bchs9c0h` |
 
 ### 2.1 Avaliação no recorte 344 (juiz 27B) — v2 × v3 × v4
 
@@ -163,7 +171,41 @@ nenhum substituto é declarado sem a bateria completa. Corte do prazo: **distrat
 app ×1536 + e2e ×151 coloquiais** (régua honesta, gabarito 151). Oráculo, closed e ranking ×1536
 ficam para depois do prazo.
 
-BATERIA_COMPLETA_PLACEHOLDER
+Base, v3s400 e v4s400 (gerados no mesmo harness e GPU; juiz 27B). "Fora do recorte" = as
+1.192 queries das normas que NÃO estão no recorte 344, ou seja, o teste sem normas
+compartilhadas com a avaliação rápida. `data/consolidation_full.json`.
+
+| tag | escopo | distrator aluc. | distr. recusa correta | e2e app aprov. | cita item-ouro | aluc. app | tok resposta app |
+|---|---|--:|--:|--:|--:|--:|--:|
+| base | 1536 | 23,8 | 66,0 | 64,1 | 64,3 | 14,1 | 103,8 |
+| base | fora do recorte (1192) | 24,2 | 67,4 | 62,7 | 63,0 | 15,0 | 104,2 |
+| **v3s400** | 1536 | **15,7** | 73,1 | **71,8** | **69,2** | 15,0 | 118,0 |
+| **v3s400** | fora do recorte | **15,9** | 73,9 | **70,8** | 67,9 | 15,7 | 118,0 |
+| v4s400 | 1536 | **13,7** | **75,9** | 70,4 | 67,4 | **14,0** | **106,0** |
+| v4s400 | fora do recorte | 14,0 | 76,8 | 69,7 | 66,4 | 14,1 | 105,9 |
+
+| tag | POC 151 coloquiais (régua honesta) | alucinação | recusa | pareado vs base |
+|---|--:|--:|--:|---|
+| base | 12,6 | 28,5 | 53,0 | — |
+| **v3s400** | **21,2** | 31,1 | 35,1 | 18/5 (p = 0,011) |
+| v4s400 | 17,9 | **25,8** | 45,7 | 15/7 (p = 0,13) |
+
+Pareados (1536): e2e v3s400 177/59, v4s400 152/56 (ambos p < 1e-6); alucinação no distrator
+pior/melhor v3s400 52/177, v4s400 48/204 (ambos p < 1e-6). Alucinação no app (e2e) v3s400
+pior/melhor 102/88 (p = 0,35, n.s.).
+
+**Leitura da trava**: o ganho **não é overfit às normas do recorte**. Fora do recorte o v3s400
+repete o padrão (distrator 24,2 → 15,9; app 62,7 → 70,8), e nas 151 coloquiais da POC (outro
+gabarito, perguntas reais de campo) a aprovação vai de 12,6 para 21,2. **Residual honesto**:
+nas 151 o v3s400 recusa menos (53 → 35%) e a alucinação sobe 28,5 → 31,1 (das 28 perguntas
+em que deixou de recusar, 8 viraram aprovadas e 16 alucinaram); no app ×1536 a alucinação
+fica igual (14,1 → 15,0, n.s.). O v3s400 também gasta **+14% de tokens** no app (104 → 118).
+O v4s400 é o par mais conservador: menos alucinação em todo lugar (distrator 13,7; 151 com
+25,8) e conciso (106 tok), com aprovação um pouco menor (app 70,4; 151 com 17,9) e a regressão
+de oráculo do recorte (−1,8, ainda não medida ×1536).
+
+**Não medido no prazo** (corte do capitão): oráculo, closed-book e ranking ×1536; probe já
+medido no recorte (130 itens, idêntico).
 
 ### 2.3 Contrato v4 (reward escalonado) e curva de eficiência
 

@@ -43,86 +43,156 @@
   },
   "v3s400": {
     "all": {
-      "distrator_n": 0,
-      "distrator_hallucination": null,
-      "distrator_refusal_correct": null,
-      "e2e_n": 0,
-      "e2e_approved": null,
-      "e2e_hallucination": null,
-      "e2e_refused": null,
-      "e2e_cite_gold_item": null,
-      "e2e_gen_tok": null
+      "distrator_n": 1536,
+      "distrator_hallucination": 15.7,
+      "distrator_refusal_correct": 73.1,
+      "e2e_n": 1536,
+      "e2e_approved": 71.8,
+      "e2e_hallucination": 15.0,
+      "e2e_refused": 7.2,
+      "e2e_cite_gold_item": 69.2,
+      "e2e_gen_tok": 118.0,
+      "distrator_halluc_paired_worse_better": {
+        "win": 52,
+        "loss": 177,
+        "sign_p": 0.0
+      },
+      "e2e_paired_vs_base": {
+        "win": 177,
+        "loss": 59,
+        "sign_p": 0.0
+      }
     },
     "recorte": {
-      "distrator_n": 0,
-      "distrator_hallucination": null,
-      "distrator_refusal_correct": null,
-      "e2e_n": 0,
-      "e2e_approved": null,
-      "e2e_hallucination": null,
-      "e2e_refused": null,
-      "e2e_cite_gold_item": null,
-      "e2e_gen_tok": null
+      "distrator_n": 344,
+      "distrator_hallucination": 14.8,
+      "distrator_refusal_correct": 70.3,
+      "e2e_n": 344,
+      "e2e_approved": 75.3,
+      "e2e_hallucination": 12.8,
+      "e2e_refused": 6.4,
+      "e2e_cite_gold_item": 73.3,
+      "e2e_gen_tok": 118.0,
+      "distrator_halluc_paired_worse_better": {
+        "win": 14,
+        "loss": 40,
+        "sign_p": 0.0005
+      },
+      "e2e_paired_vs_base": {
+        "win": 31,
+        "loss": 10,
+        "sign_p": 0.0015
+      }
     },
     "fora_recorte": {
-      "distrator_n": 0,
-      "distrator_hallucination": null,
-      "distrator_refusal_correct": null,
-      "e2e_n": 0,
-      "e2e_approved": null,
-      "e2e_hallucination": null,
-      "e2e_refused": null,
-      "e2e_cite_gold_item": null,
-      "e2e_gen_tok": null
+      "distrator_n": 1192,
+      "distrator_hallucination": 15.9,
+      "distrator_refusal_correct": 73.9,
+      "e2e_n": 1192,
+      "e2e_approved": 70.8,
+      "e2e_hallucination": 15.7,
+      "e2e_refused": 7.4,
+      "e2e_cite_gold_item": 67.9,
+      "e2e_gen_tok": 118.0,
+      "distrator_halluc_paired_worse_better": {
+        "win": 38,
+        "loss": 137,
+        "sign_p": 0.0
+      },
+      "e2e_paired_vs_base": {
+        "win": 146,
+        "loss": 49,
+        "sign_p": 0.0
+      }
     },
     "poc151": {
-      "n": 0,
-      "approved": null,
-      "hallucination": null,
-      "refused": null,
-      "gen_tok": null
+      "n": 151,
+      "approved": 21.2,
+      "hallucination": 31.1,
+      "refused": 35.1,
+      "gen_tok": 104.0,
+      "paired_vs_base": {
+        "win": 18,
+        "loss": 5,
+        "sign_p": 0.0106
+      }
     }
   },
   "v4s400": {
     "all": {
-      "distrator_n": 0,
-      "distrator_hallucination": null,
-      "distrator_refusal_correct": null,
-      "e2e_n": 0,
-      "e2e_approved": null,
-      "e2e_hallucination": null,
-      "e2e_refused": null,
-      "e2e_cite_gold_item": null,
-      "e2e_gen_tok": null
+      "distrator_n": 1536,
+      "distrator_hallucination": 13.7,
+      "distrator_refusal_correct": 75.9,
+      "e2e_n": 1536,
+      "e2e_approved": 70.4,
+      "e2e_hallucination": 14.0,
+      "e2e_refused": 9.6,
+      "e2e_cite_gold_item": 67.4,
+      "e2e_gen_tok": 106.0,
+      "distrator_halluc_paired_worse_better": {
+        "win": 48,
+        "loss": 204,
+        "sign_p": 0.0
+      },
+      "e2e_paired_vs_base": {
+        "win": 152,
+        "loss": 56,
+        "sign_p": 0.0
+      }
     },
     "recorte": {
-      "distrator_n": 0,
-      "distrator_hallucination": null,
-      "distrator_refusal_correct": null,
-      "e2e_n": 0,
-      "e2e_approved": null,
-      "e2e_hallucination": null,
-      "e2e_refused": null,
-      "e2e_cite_gold_item": null,
-      "e2e_gen_tok": null
+      "distrator_n": 344,
+      "distrator_hallucination": 12.5,
+      "distrator_refusal_correct": 72.7,
+      "e2e_n": 344,
+      "e2e_approved": 72.7,
+      "e2e_hallucination": 13.7,
+      "e2e_refused": 9.6,
+      "e2e_cite_gold_item": 71.0,
+      "e2e_gen_tok": 106.5,
+      "distrator_halluc_paired_worse_better": {
+        "win": 11,
+        "loss": 45,
+        "sign_p": 0.0
+      },
+      "e2e_paired_vs_base": {
+        "win": 25,
+        "loss": 13,
+        "sign_p": 0.073
+      }
     },
     "fora_recorte": {
-      "distrator_n": 0,
-      "distrator_hallucination": null,
-      "distrator_refusal_correct": null,
-      "e2e_n": 0,
-      "e2e_approved": null,
-      "e2e_hallucination": null,
-      "e2e_refused": null,
-      "e2e_cite_gold_item": null,
-      "e2e_gen_tok": null
+      "distrator_n": 1192,
+      "distrator_hallucination": 14.0,
+      "distrator_refusal_correct": 76.8,
+      "e2e_n": 1192,
+      "e2e_approved": 69.7,
+      "e2e_hallucination": 14.1,
+      "e2e_refused": 9.6,
+      "e2e_cite_gold_item": 66.4,
+      "e2e_gen_tok": 105.9,
+      "distrator_halluc_paired_worse_better": {
+        "win": 37,
+        "loss": 159,
+        "sign_p": 0.0
+      },
+      "e2e_paired_vs_base": {
+        "win": 127,
+        "loss": 43,
+        "sign_p": 0.0
+      }
     },
     "poc151": {
-      "n": 0,
-      "approved": null,
-      "hallucination": null,
-      "refused": null,
-      "gen_tok": null
+      "n": 151,
+      "approved": 17.9,
+      "hallucination": 25.8,
+      "refused": 45.7,
+      "gen_tok": 85.9,
+      "paired_vs_base": {
+        "win": 15,
+        "loss": 7,
+        "sign_p": 0.1338
+      }
     }
   }
 }
