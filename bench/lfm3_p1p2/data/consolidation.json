@@ -1,0 +1,505 @@
+{
+  "p2-base": {
+    "ranking": {
+      "n": 344,
+      "approved": 77.6,
+      "gen_tok": 100.3,
+      "refusal_undue": 3.2,
+      "cite_nr": 96.2
+    },
+    "distrator": {
+      "n": 344,
+      "approved": 61.0,
+      "gen_tok": 74.3,
+      "hallucination": 22.4,
+      "refusal_correct": 61.0,
+      "answered_anyway": 39.0
+    },
+    "oraculo": {
+      "n": 344,
+      "approved": 89.0,
+      "gen_tok": 94.6
+    },
+    "closed_book": {
+      "n": 344,
+      "approved": 7.8,
+      "gen_tok": 57.9
+    },
+    "e2e_op_d50": {
+      "n": 344,
+      "approved": 68.3,
+      "hallucination": 14.5,
+      "refused": 15.7,
+      "cite_gold_item": 69.0,
+      "cite_nr": 99.4,
+      "gen_tok": 104.0
+    },
+    "probe": {
+      "general": 3.38,
+      "behavioral": 2.83
+    },
+    "gen_tok_mean_all": 86.2
+  },
+  "p2-s200": {
+    "ranking": {
+      "n": 344,
+      "approved": 84.6,
+      "gen_tok": 101.2,
+      "refusal_undue": 0.9,
+      "cite_nr": 97.1,
+      "paired_vs_base": {
+        "win": 33,
+        "loss": 9,
+        "sign_p": 0.0003
+      }
+    },
+    "distrator": {
+      "n": 344,
+      "approved": 50.6,
+      "gen_tok": 81.8,
+      "hallucination": 28.8,
+      "refusal_correct": 50.6,
+      "answered_anyway": 49.4,
+      "paired_vs_base": {
+        "win": 3,
+        "loss": 39,
+        "sign_p": 0.0
+      }
+    },
+    "oraculo": {
+      "n": 344,
+      "approved": 91.9,
+      "gen_tok": 94.9,
+      "paired_vs_base": {
+        "win": 15,
+        "loss": 5,
+        "sign_p": 0.0414
+      }
+    },
+    "closed_book": {
+      "n": 344,
+      "approved": 8.4,
+      "gen_tok": 58.7,
+      "paired_vs_base": {
+        "win": 14,
+        "loss": 12,
+        "sign_p": 0.845
+      }
+    },
+    "e2e_op_d50": {
+      "n": 344,
+      "approved": 72.7,
+      "hallucination": 14.5,
+      "refused": 8.7,
+      "cite_gold_item": 70.7,
+      "cite_nr": 98.8,
+      "gen_tok": 108.7,
+      "paired_vs_base": {
+        "win": 24,
+        "loss": 9,
+        "sign_p": 0.0135
+      }
+    },
+    "probe": {
+      "general": 3.34,
+      "behavioral": 2.93
+    },
+    "gen_tok_mean_all": 89.1
+  },
+  "p2-s400": {
+    "ranking": {
+      "n": 344,
+      "approved": 83.7,
+      "gen_tok": 101.8,
+      "refusal_undue": 1.5,
+      "cite_nr": 98.8,
+      "paired_vs_base": {
+        "win": 36,
+        "loss": 15,
+        "sign_p": 0.0046
+      }
+    },
+    "distrator": {
+      "n": 344,
+      "approved": 48.0,
+      "gen_tok": 83.5,
+      "hallucination": 26.2,
+      "refusal_correct": 48.0,
+      "answered_anyway": 52.0,
+      "paired_vs_base": {
+        "win": 1,
+        "loss": 46,
+        "sign_p": 0.0
+      }
+    },
+    "oraculo": {
+      "n": 344,
+      "approved": 91.6,
+      "gen_tok": 95.7,
+      "paired_vs_base": {
+        "win": 21,
+        "loss": 12,
+        "sign_p": 0.1628
+      }
+    },
+    "closed_book": {
+      "n": 344,
+      "approved": 8.1,
+      "gen_tok": 66.7,
+      "paired_vs_base": {
+        "win": 15,
+        "loss": 14,
+        "sign_p": 1.0
+      }
+    },
+    "e2e_op_d50": {
+      "n": 344,
+      "approved": 73.3,
+      "hallucination": 11.6,
+      "refused": 8.7,
+      "cite_gold_item": 73.0,
+      "cite_nr": 100.0,
+      "gen_tok": 108.4,
+      "paired_vs_base": {
+        "win": 29,
+        "loss": 12,
+        "sign_p": 0.0115
+      }
+    },
+    "probe": {
+      "general": 3.32,
+      "behavioral": 3.17
+    },
+    "gen_tok_mean_all": 91.2
+  },
+  "p2-bal200": {
+    "ranking": {
+      "n": 344,
+      "approved": 84.3,
+      "gen_tok": 98.4,
+      "refusal_undue": 1.5,
+      "cite_nr": 96.2,
+      "paired_vs_base": {
+        "win": 34,
+        "loss": 11,
+        "sign_p": 0.0008
+      }
+    },
+    "distrator": {
+      "n": 344,
+      "approved": 50.3,
+      "gen_tok": 82.1,
+      "hallucination": 25.9,
+      "refusal_correct": 50.3,
+      "answered_anyway": 49.7,
+      "paired_vs_base": {
+        "win": 3,
+        "loss": 40,
+        "sign_p": 0.0
+      }
+    },
+    "oraculo": {
+      "n": 344,
+      "approved": 91.3,
+      "gen_tok": 92.2,
+      "paired_vs_base": {
+        "win": 16,
+        "loss": 8,
+        "sign_p": 0.1516
+      }
+    },
+    "closed_book": {
+      "n": 344,
+      "approved": 8.7,
+      "gen_tok": 57.1,
+      "paired_vs_base": {
+        "win": 11,
+        "loss": 8,
+        "sign_p": 0.6476
+      }
+    },
+    "e2e_op_d50": {
+      "n": 344,
+      "approved": 70.9,
+      "hallucination": 14.8,
+      "refused": 7.8,
+      "cite_gold_item": 70.7,
+      "cite_nr": 99.1,
+      "gen_tok": 106.1,
+      "paired_vs_base": {
+        "win": 22,
+        "loss": 13,
+        "sign_p": 0.1755
+      }
+    },
+    "probe": {
+      "general": 3.34,
+      "behavioral": 3.13
+    },
+    "gen_tok_mean_all": 87.2
+  },
+  "p2-bal400": {
+    "ranking": {
+      "n": 344,
+      "approved": 83.4,
+      "gen_tok": 101.2,
+      "refusal_undue": 1.2,
+      "cite_nr": 98.3,
+      "paired_vs_base": {
+        "win": 37,
+        "loss": 17,
+        "sign_p": 0.0091
+      }
+    },
+    "distrator": {
+      "n": 344,
+      "approved": 45.1,
+      "gen_tok": 88.0,
+      "hallucination": 28.2,
+      "refusal_correct": 45.1,
+      "answered_anyway": 54.9,
+      "paired_vs_base": {
+        "win": 1,
+        "loss": 56,
+        "sign_p": 0.0
+      }
+    },
+    "oraculo": {
+      "n": 344,
+      "approved": 91.0,
+      "gen_tok": 95.2,
+      "paired_vs_base": {
+        "win": 17,
+        "loss": 10,
+        "sign_p": 0.2478
+      }
+    },
+    "closed_book": {
+      "n": 344,
+      "approved": 7.0,
+      "gen_tok": 57.8,
+      "paired_vs_base": {
+        "win": 12,
+        "loss": 15,
+        "sign_p": 0.7011
+      }
+    },
+    "e2e_op_d50": {
+      "n": 344,
+      "approved": 73.5,
+      "hallucination": 12.5,
+      "refused": 7.3,
+      "cite_gold_item": 72.7,
+      "cite_nr": 99.4,
+      "gen_tok": 108.2,
+      "paired_vs_base": {
+        "win": 27,
+        "loss": 9,
+        "sign_p": 0.0039
+      }
+    },
+    "probe": {
+      "general": 3.31,
+      "behavioral": 2.83
+    },
+    "gen_tok_mean_all": 90.1
+  },
+  "p2-v2s200": {
+    "ranking": {
+      "n": 344,
+      "approved": 84.0,
+      "gen_tok": 98.7,
+      "refusal_undue": 0.9,
+      "cite_nr": 96.2,
+      "paired_vs_base": {
+        "win": 32,
+        "loss": 10,
+        "sign_p": 0.0009
+      }
+    },
+    "distrator": {
+      "n": 344,
+      "approved": 51.5,
+      "gen_tok": 80.0,
+      "hallucination": 25.3,
+      "refusal_correct": 51.5,
+      "answered_anyway": 48.5,
+      "paired_vs_base": {
+        "win": 1,
+        "loss": 34,
+        "sign_p": 0.0
+      }
+    },
+    "oraculo": {
+      "n": 344,
+      "approved": 90.1,
+      "gen_tok": 95.1,
+      "paired_vs_base": {
+        "win": 14,
+        "loss": 10,
+        "sign_p": 0.5413
+      }
+    },
+    "closed_book": {
+      "n": 344,
+      "approved": 8.4,
+      "gen_tok": 57.8,
+      "paired_vs_base": {
+        "win": 12,
+        "loss": 10,
+        "sign_p": 0.8318
+      }
+    },
+    "e2e_op_d50": {
+      "n": 344,
+      "approved": 72.7,
+      "hallucination": 13.1,
+      "refused": 8.1,
+      "cite_gold_item": 71.0,
+      "cite_nr": 99.4,
+      "gen_tok": 106.7,
+      "paired_vs_base": {
+        "win": 26,
+        "loss": 11,
+        "sign_p": 0.0201
+      }
+    },
+    "probe": {
+      "general": 3.33,
+      "behavioral": 3.13
+    },
+    "gen_tok_mean_all": 87.7
+  },
+  "p2-v2s300": {
+    "ranking": {
+      "n": 344,
+      "approved": 84.9,
+      "gen_tok": 103.0,
+      "refusal_undue": 0.9,
+      "cite_nr": 98.0,
+      "paired_vs_base": {
+        "win": 36,
+        "loss": 11,
+        "sign_p": 0.0003
+      }
+    },
+    "distrator": {
+      "n": 344,
+      "approved": 48.8,
+      "gen_tok": 83.0,
+      "hallucination": 25.9,
+      "refusal_correct": 48.8,
+      "answered_anyway": 51.2,
+      "paired_vs_base": {
+        "win": 3,
+        "loss": 45,
+        "sign_p": 0.0
+      }
+    },
+    "oraculo": {
+      "n": 344,
+      "approved": 90.7,
+      "gen_tok": 97.2,
+      "paired_vs_base": {
+        "win": 20,
+        "loss": 14,
+        "sign_p": 0.3915
+      }
+    },
+    "closed_book": {
+      "n": 344,
+      "approved": 5.8,
+      "gen_tok": 58.4,
+      "paired_vs_base": {
+        "win": 9,
+        "loss": 16,
+        "sign_p": 0.2295
+      }
+    },
+    "e2e_op_d50": {
+      "n": 344,
+      "approved": 70.9,
+      "hallucination": 15.4,
+      "refused": 8.1,
+      "cite_gold_item": 72.0,
+      "cite_nr": 99.4,
+      "gen_tok": 109.4,
+      "paired_vs_base": {
+        "win": 24,
+        "loss": 15,
+        "sign_p": 0.1996
+      }
+    },
+    "probe": {
+      "general": 3.29,
+      "behavioral": 3.07
+    },
+    "gen_tok_mean_all": 90.2
+  },
+  "p2-v2s400": {
+    "ranking": {
+      "n": 344,
+      "approved": 83.7,
+      "gen_tok": 105.3,
+      "refusal_undue": 0.9,
+      "cite_nr": 99.4,
+      "paired_vs_base": {
+        "win": 35,
+        "loss": 14,
+        "sign_p": 0.0038
+      }
+    },
+    "distrator": {
+      "n": 344,
+      "approved": 46.8,
+      "gen_tok": 86.8,
+      "hallucination": 28.5,
+      "refusal_correct": 46.8,
+      "answered_anyway": 53.2,
+      "paired_vs_base": {
+        "win": 1,
+        "loss": 50,
+        "sign_p": 0.0
+      }
+    },
+    "oraculo": {
+      "n": 344,
+      "approved": 91.3,
+      "gen_tok": 97.8,
+      "paired_vs_base": {
+        "win": 18,
+        "loss": 10,
+        "sign_p": 0.1849
+      }
+    },
+    "closed_book": {
+      "n": 344,
+      "approved": 7.0,
+      "gen_tok": 58.8,
+      "paired_vs_base": {
+        "win": 11,
+        "loss": 14,
+        "sign_p": 0.69
+      }
+    },
+    "e2e_op_d50": {
+      "n": 344,
+      "approved": 73.8,
+      "hallucination": 12.8,
+      "refused": 7.6,
+      "cite_gold_item": 74.0,
+      "cite_nr": 99.7,
+      "gen_tok": 110.4,
+      "paired_vs_base": {
+        "win": 30,
+        "loss": 11,
+        "sign_p": 0.0043
+      }
+    },
+    "probe": {
+      "general": 3.37,
+      "behavioral": 3.23
+    },
+    "gen_tok_mean_all": 91.8
+  }
+}

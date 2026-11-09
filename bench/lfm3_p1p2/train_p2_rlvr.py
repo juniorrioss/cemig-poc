@@ -59,6 +59,7 @@ def main() -> None:
     ap.add_argument("--concision-target", type=int, default=90)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--refuse-oversample", type=int, default=2)
+    ap.add_argument("--max-prompt-tokens", type=int, default=100000)
     ap.add_argument("--preflight", action="store_true")
     args = ap.parse_args()
 
@@ -80,9 +81,15 @@ def main() -> None:
     rows = rows + [r for r in rows if r["expect"] == "refuse"] * (args.refuse_oversample - 1)
     random.Random(args.seed).shuffle(rows)
     recs = []
+    n_long = 0
     for r in rows:
         text = tok.apply_chat_template(r["prompt"], add_generation_prompt=True,
                                        tokenize=False, enable_thinking=False)
+        # memória: 8x8 gerações com prompt de 6k tok (k=8 estático) estoura a folga da
+        # GPU compartilhada com o Qwen; os prompts do app têm ~1,1k tok
+        if len(tok(text, add_special_tokens=False)["input_ids"]) > args.max_prompt_tokens:
+            n_long += 1
+            continue
         # o TRL tokeniza com add_special_tokens=False -> o BOS do template fica
         recs.append({"prompt": text, "uid": r["uid"], "expect": r["expect"],
                      "facts": json.dumps(r.get("facts") or [], ensure_ascii=False),
@@ -90,6 +97,7 @@ def main() -> None:
                      "context": r.get("context") or "", "question": r["question"]})
     ds = Dataset.from_list(recs)
     n_ans = sum(1 for r in recs if r["expect"] == "answer")
+    print(f"[data] descartados por comprimento > {args.max_prompt_tokens}: {n_long}")
     print(f"[data] {len(recs)} prompts (answer={n_ans}, refuse={len(recs) - n_ans})", flush=True)
 
     out_dir = Path(args.out) / args.run
