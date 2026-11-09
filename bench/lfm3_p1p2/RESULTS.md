@@ -28,8 +28,8 @@ verificável por regra, sem juiz no loop, sobre o `f4-r32-ep2`. Avaliação no r
   (fora do recorte 24,2 → 15,9), e2e do app ×1536 **64,1 → 71,8**, POC 151 coloquiais
   **12,6 → 21,2** (p = 0,01). O ganho se sustenta fora das normas do recorte (§2.2).
 - **Veredito para o capitão**: o **v3s400 é candidato a substituto do f4-r32-ep2** em tudo que foi
-  medido. Ressalvas: (i) oráculo, closed e ranking ×1536 ainda não rodados (corte do prazo); no
-  recorte estão iguais ou melhores; (ii) +14% de tokens; (iii) nas 151 recusa menos e alucina um
+  medido. Ressalvas: (i) oráculo ×1536 88,5 → 90,0 e ranking ×1536
+  78,1 → 81,6 (p = 0,0004) confirmados sem regressão; só closed ×1536 não foi rodado; (ii) +14% de tokens; (iii) nas 151 recusa menos e alucina um
   pouco mais (31,1 vs 28,5). Se a prioridade for segurança (nunca inventar) e concisão, o
   **v4s400** é a alternativa: menos alucinação em todas as células, 106 tok, mas o oráculo do
   recorte caiu 1,8 p.p. A escolha v3 × v4 é decisão do capitão.
@@ -204,8 +204,16 @@ O v4s400 é o par mais conservador: menos alucinação em todo lugar (distrator 
 25,8) e conciso (106 tok), com aprovação um pouco menor (app 70,4; 151 com 17,9) e a regressão
 de oráculo do recorte (−1,8, ainda não medida ×1536).
 
-**Não medido no prazo** (corte do capitão): oráculo, closed-book e ranking ×1536; probe já
-medido no recorte (130 itens, idêntico).
+**Guardas ×1536 (rodadas na folga do prazo, base × v3s400)**:
+
+| célula ×1536 | base | v3s400 | pareado | recusa indevida | tok |
+|---|--:|--:|---|---|---|
+| oráculo | 88,5 | **90,0** | 97/74 (p = 0,09) | 4,9 → 3,3 | 96 → 105 |
+| ranking | 78,1 | **81,6** | 139/85 (p = 0,0004) | 7,1 → 6,2 | 101 → 109 |
+
+**Sem regressão nas guardas da bateria completa.** Não medidos: closed-book ×1536 (no recorte
+7,8 → 9,0) e as guardas ×1536 do v4s400 (o oráculo dele caiu 1,8 no recorte). O probe (130
+itens, sem relação com as normas) foi medido uma vez: 3,38 → 3,35.
 
 ### 2.3 Contrato v4 (reward escalonado) e curva de eficiência
 

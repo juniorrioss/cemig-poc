@@ -438,6 +438,22 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
 - **Custo**: ~2,5 h de geração na Spark (17 conjuntos × 344), 1 conversão int8
   na H100 (19 min, CPU), ~4 min de juiz por conjunto.
 
+### P1+P2 — aprendibilidade + mini-RLVR de groundedness (09/11) — `bench/lfm3_p1p2/`
+
+- **P1**: o f4-r32-ep2 rodado n=4 por item, régua automática sem juiz. **49,2% do universo
+  descartado** (39,5% já dominado, 9,7% mal especificado: nem o 27B resolve com o mesmo
+  contexto). Sem-ferramenta e recusa com ouro removido são quase só fáceis; closed-book é ruído
+  para RL (acc 0,05).
+- **P2** (GRPO/DAPO, LoRA r32, reward binário por regra): o contrato v1 foi **hackeado**: a
+  política respondia e fechava com uma ressalva que o regex contava como recusa. Contrato v2 =
+  recusa explícita no início. RL só no formato do app piorou o distrator estático; com os dois
+  formatos no pool (**v3**) o campeão `v3s400` dá, na bateria completa: **distrator ×1536 aluc.
+  23,8 → 15,7**, **app ×1536 64,1 → 71,8**, oráculo 88,5 → 90,0, ranking 78,1 → 81,6, **POC 151
+  12,6 → 21,2**. Fora das normas do recorte o ganho se repete. Custo: +14% de tokens e, nas 151,
+  menos recusa (53 → 35%) com alucinação 28,5 → 31,1.
+- **v4** (reward escalonado): grupos sem gradiente 0,54 → 0,33 (−40%); é o mais conservador
+  (distrator ×1536 13,7, 106 tok), com oráculo do recorte −1,8.
+
 ---
 
 ## 4. Decisões de produto em aberto
@@ -470,6 +486,8 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
    norma intacta) **vs** hi `w=2` (+15,5 p.p. global, −3,4 p.p. de norma,
    quebra a trava das 151). E a compressão d50, que **não fechou nas 151**:
    medir orçamento 70% ou top-2 cru + manuais antes de embarcar.
+
+7. **P2 v3s400 × v4s400 × f4-r32-ep2** (`bench/lfm3_p1p2/RESULTS.md`): v3s400 ganha em tudo que foi medido ×1536 (closed ×1536 pendente) com +14% de tokens; v4s400 é mais conservador e conciso, com oráculo do recorte −1,8. Trocar o modelo do app exige GGUF Q4 + smoke no S24+.
 
 ---
 

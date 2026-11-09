@@ -194,5 +194,33 @@
         "sign_p": 0.1338
       }
     }
+  },
+  "guards_1536": {
+    "oraculo": {
+      "base": 88.5,
+      "v3s400": 90.0,
+      "paired": [
+        97,
+        74,
+        0.0922
+      ],
+      "refusal_undue_base": 4.9,
+      "refusal_undue_v3": 3.3,
+      "tok_base": 96.0,
+      "tok_v3": 105.1
+    },
+    "ranking": {
+      "base": 78.1,
+      "v3s400": 81.6,
+      "paired": [
+        139,
+        85,
+        0.0004
+      ],
+      "refusal_undue_base": 7.1,
+      "refusal_undue_v3": 6.2,
+      "tok_base": 100.9,
+      "tok_v3": 108.6
+    }
   }
 }

@@ -184,6 +184,12 @@ strong { color:#083f36; }
 <li><strong>Veredito de qualidade</strong>: o LiteRT não retém mais que o GGUF no caminho embarcável (CPU); a GPU do S24+ decodifica a 11 tok/s (scout). <strong>Fica o GGUF.</strong> O candidato é Q4_0→Q4_K_M (+2,6 p.p. vs Q4_0, p=0,095), depois de medir o decode no S24+.</li>
 <li><strong>Custo</strong>: ~2,5 h de geração na Spark (17 conjuntos × 344), 1 conversão int8 na H100 (19 min, CPU), ~4 min de juiz por conjunto.</li>
 </ul>
+<h3>P1+P2 — aprendibilidade + mini-RLVR de groundedness (09/11) — <code>bench/lfm3_p1p2/</code></h3>
+<ul>
+<li><strong>P1</strong>: o f4-r32-ep2 rodado n=4 por item, régua automática sem juiz. <strong>49,2% do universo descartado</strong> (39,5% já dominado, 9,7% mal especificado: nem o 27B resolve com o mesmo contexto). Sem-ferramenta e recusa com ouro removido são quase só fáceis; closed-book é ruído para RL (acc 0,05).</li>
+<li><strong>P2</strong> (GRPO/DAPO, LoRA r32, reward binário por regra): o contrato v1 foi <strong>hackeado</strong>: a política respondia e fechava com uma ressalva que o regex contava como recusa. Contrato v2 = recusa explícita no início. RL só no formato do app piorou o distrator estático; com os dois formatos no pool (<strong>v3</strong>) o campeão <code>v3s400</code> dá, na bateria completa: <strong>distrator ×1536 aluc. 23,8 → 15,7</strong>, <strong>app ×1536 64,1 → 71,8</strong>, oráculo 88,5 → 90,0, ranking 78,1 → 81,6, <strong>POC 151 12,6 → 21,2</strong>. Fora das normas do recorte o ganho se repete. Custo: +14% de tokens e, nas 151, menos recusa (53 → 35%) com alucinação 28,5 → 31,1.</li>
+<li><strong>v4</strong> (reward escalonado): grupos sem gradiente 0,54 → 0,33 (−40%); é o mais conservador (distrator ×1536 13,7, 106 tok), com oráculo do recorte −1,8.</li>
+</ul>
 <hr>
 <h2>4. Decisões de produto em aberto</h2>
 <ol>
@@ -193,6 +199,9 @@ strong { color:#083f36; }
 <li><strong>Quantização (medida, <code>bench/lfm3_quant</code> + <code>bench/lfm3_q4km</code>)</strong>: o GGUF Q4_0 custa −4,9 p.p. contra o bf16 no recorte 344; o Q4_K_M (+50 MB) recupera ~metade (−2,3), mas o prefill no S24+ cai 25% (+1,1 s no 1º token). <strong>Decidido: Q4_0 em produção</strong>; Q4_K_M opcional por flag. LiteRT descartado (empata com o Q4_0 na CPU; NO-GO de runtime do scout).</li>
 <li><strong>Retrieval/compressão no app (F5)</strong>: (i) gate limiar 0,7 + boost 2× no <code>HybridRetriever</code> (2 constantes); (ii) compressão top-5→50% após validar nas 151 (custa ~20 MB int8 de índice de janelas); (iii) peso dos manuais no RRF é escolha de produto (w=1,25 sem custo para as normas; gate por margem densa a w=2 como equilíbrio).</li>
 <li><strong>Manuais no app (F6)</strong>: op <code>thr0.7_f2+man1.75+margin</code> (+10,5 p.p. global, norma intacta) <strong>vs</strong> hi <code>w=2</code> (+15,5 p.p. global, −3,4 p.p. de norma, quebra a trava das 151). E a compressão d50, que <strong>não fechou nas 151</strong>: medir orçamento 70% ou top-2 cru + manuais antes de embarcar.</li>
+</ol>
+<ol>
+<li><strong>P2 v3s400 × v4s400 × f4-r32-ep2</strong> (<code>bench/lfm3_p1p2/RESULTS.md</code>): v3s400 ganha em tudo que foi medido ×1536 (closed ×1536 pendente) com +14% de tokens; v4s400 é mais conservador e conciso, com oráculo do recorte −1,8. Trocar o modelo do app exige GGUF Q4 + smoke no S24+.</li>
 </ol>
 <hr>
 <h2>5. Apêndice</h2>
