@@ -1,0 +1,267 @@
+{
+ "v1": {
+  "bins": [
+   {
+    "steps": "1-50",
+    "reward": 0.607,
+    "zero_std": 0.167,
+    "len": 97
+   },
+   {
+    "steps": "51-100",
+    "reward": 0.693,
+    "zero_std": 0.303,
+    "len": 98
+   },
+   {
+    "steps": "101-150",
+    "reward": 0.748,
+    "zero_std": 0.383,
+    "len": 100
+   },
+   {
+    "steps": "151-200",
+    "reward": 0.761,
+    "zero_std": 0.47,
+    "len": 98
+   },
+   {
+    "steps": "201-250",
+    "reward": 0.757,
+    "zero_std": 0.462,
+    "len": 97
+   },
+   {
+    "steps": "251-300",
+    "reward": 0.795,
+    "zero_std": 0.501,
+    "len": 97
+   },
+   {
+    "steps": "301-350",
+    "reward": 0.809,
+    "zero_std": 0.59,
+    "len": 95
+   },
+   {
+    "steps": "351-400",
+    "reward": 0.826,
+    "zero_std": 0.634,
+    "len": 95
+   }
+  ],
+  "zero_std_mean": 0.439
+ },
+ "bal": {
+  "bins": [
+   {
+    "steps": "1-50",
+    "reward": 0.698,
+    "zero_std": 0.358,
+    "len": 83
+   },
+   {
+    "steps": "51-100",
+    "reward": 0.758,
+    "zero_std": 0.397,
+    "len": 85
+   },
+   {
+    "steps": "101-150",
+    "reward": 0.781,
+    "zero_std": 0.483,
+    "len": 85
+   },
+   {
+    "steps": "151-200",
+    "reward": 0.821,
+    "zero_std": 0.55,
+    "len": 85
+   },
+   {
+    "steps": "201-250",
+    "reward": 0.858,
+    "zero_std": 0.64,
+    "len": 79
+   },
+   {
+    "steps": "251-300",
+    "reward": 0.856,
+    "zero_std": 0.657,
+    "len": 82
+   },
+   {
+    "steps": "301-350",
+    "reward": 0.872,
+    "zero_std": 0.694,
+    "len": 81
+   },
+   {
+    "steps": "351-400",
+    "reward": 0.859,
+    "zero_std": 0.715,
+    "len": 82
+   }
+  ],
+  "zero_std_mean": 0.562
+ },
+ "v2": {
+  "bins": [
+   {
+    "steps": "1-50",
+    "reward": 0.688,
+    "zero_std": 0.312,
+    "len": 88
+   },
+   {
+    "steps": "51-100",
+    "reward": 0.757,
+    "zero_std": 0.341,
+    "len": 91
+   },
+   {
+    "steps": "101-150",
+    "reward": 0.793,
+    "zero_std": 0.512,
+    "len": 90
+   },
+   {
+    "steps": "151-200",
+    "reward": 0.789,
+    "zero_std": 0.542,
+    "len": 87
+   },
+   {
+    "steps": "201-250",
+    "reward": 0.834,
+    "zero_std": 0.585,
+    "len": 85
+   },
+   {
+    "steps": "251-300",
+    "reward": 0.799,
+    "zero_std": 0.612,
+    "len": 89
+   },
+   {
+    "steps": "301-350",
+    "reward": 0.847,
+    "zero_std": 0.705,
+    "len": 84
+   },
+   {
+    "steps": "351-400",
+    "reward": 0.867,
+    "zero_std": 0.74,
+    "len": 87
+   }
+  ],
+  "zero_std_mean": 0.544
+ },
+ "v3": {
+  "bins": [
+   {
+    "steps": "1-50",
+    "reward": 0.678,
+    "zero_std": 0.323,
+    "len": 84
+   },
+   {
+    "steps": "51-100",
+    "reward": 0.707,
+    "zero_std": 0.358,
+    "len": 84
+   },
+   {
+    "steps": "101-150",
+    "reward": 0.751,
+    "zero_std": 0.445,
+    "len": 84
+   },
+   {
+    "steps": "151-200",
+    "reward": 0.787,
+    "zero_std": 0.48,
+    "len": 86
+   },
+   {
+    "steps": "201-250",
+    "reward": 0.807,
+    "zero_std": 0.553,
+    "len": 86
+   },
+   {
+    "steps": "251-300",
+    "reward": 0.857,
+    "zero_std": 0.592,
+    "len": 87
+   },
+   {
+    "steps": "301-350",
+    "reward": 0.829,
+    "zero_std": 0.652,
+    "len": 90
+   },
+   {
+    "steps": "351-400",
+    "reward": 0.871,
+    "zero_std": 0.693,
+    "len": 87
+   }
+  ],
+  "zero_std_mean": 0.512
+ },
+ "v4": {
+  "bins": [
+   {
+    "steps": "1-50",
+    "reward": 0.711,
+    "zero_std": 0.184,
+    "len": 87
+   },
+   {
+    "steps": "51-100",
+    "reward": 0.775,
+    "zero_std": 0.24,
+    "len": 87
+   },
+   {
+    "steps": "101-150",
+    "reward": 0.788,
+    "zero_std": 0.28,
+    "len": 88
+   },
+   {
+    "steps": "151-200",
+    "reward": 0.822,
+    "zero_std": 0.344,
+    "len": 89
+   },
+   {
+    "steps": "201-250",
+    "reward": 0.828,
+    "zero_std": 0.383,
+    "len": 88
+   },
+   {
+    "steps": "251-300",
+    "reward": 0.816,
+    "zero_std": 0.333,
+    "len": 89
+   },
+   {
+    "steps": "301-350",
+    "reward": 0.833,
+    "zero_std": 0.403,
+    "len": 87
+   },
+   {
+    "steps": "351-400",
+    "reward": 0.858,
+    "zero_std": 0.448,
+    "len": 86
+   }
+  ],
+  "zero_std_mean": 0.327
+ }
+}

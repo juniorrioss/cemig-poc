@@ -6,24 +6,27 @@ verificável por regra, sem juiz no loop, sobre o `f4-r32-ep2`. Avaliação no r
 (normas 10/18/34/13/31/33), 4 células padrão + e2e do app (op_d50) + probe geral, juiz 27B
 (régua honesta). Tabela-mestra: `data/consolidation.json`. Relatório de bandas: `data/p1_report.json`.
 
-## Resumo
+## Resumo (relatório congelado para o prazo do capitão; ver §Pendências)
 
-- **P1 entregue como ferramenta** (`p1_pipeline.py`, 7 subcomandos reentrantes). Num universo
-  de 11.313 itens (pool RLVR completo + 5.776 do SFT data2x/F4), **49,2% são descartados**:
-  39,5% fáceis (acc ≥ 0,8, n=4) e 9,7% mal especificados (acc = 0 e o 27B também falha). Ficam
-  45,0% na banda produtiva e 5,8% difíceis que o 27B resolve.
-- **P2 melhora o modo app e o ranking. A alucinação no distrator NÃO cai: sobe.** No melhor
-  ponto (`v2s400`): e2e do app **68,3 → 73,8** (pareado 30/11, p = 0,004), cita item-ouro
-  **69,0 → 74,0%**, alucinação no app 14,5 → 12,8, ranking **77,6 → 83,7** (p = 0,004),
-  recusa indevida 3,2 → 0,9, oráculo 89,0 → 91,3, probe 3,38 → 3,37 (dentro de 1 p.p.).
-  Mas o distrator estático (4 passagens erradas, system F0 sem ferramenta) piora: alucinação
-  **22,4 → 28,5** e recusa correta 61,0 → 46,8 (pareado 1/50).
-- **Metas do brief**: citação de item > 73% ✓ (74,0 no app); alucinação no distrator < 24,9% ✗
-  (28,5). Ranking, oráculo e probe sem regressão ✓, mas **o distrator regride bem além da
-  tolerância de 1 p.p.** Na régua da ordem, o P2 **não passa** como substituto do f4-r32-ep2.
-  O ganho real fica no modo app.
-- **Concisão**: tokens médios de resposta 86,2 → 91,8 (+6,5%). O reward binário não encurta;
-  fica para o P3, com termo explícito.
+- **P1 entregue como ferramenta** (`p1_pipeline.py`, 7 subcomandos reentrantes). Num universo de
+  11.313 itens medidos (pool RLVR completo + 5.776 do SFT data2x/F4), **49,2% são descartados**:
+  39,5% fáceis (acc ≥ 0,8, n=4) e 9,7% mal especificados (acc = 0 e o 27B também falha).
+- **Campeão P2 = `v3s400`** (contrato v2 binário + pool com o formato estático): no recorte 344,
+  **alucinação no distrator 22,4 → 15,4** (meta < 24,9 ✓; pareado 16 pior/40 melhor, p = 0,002),
+  recusa correta 61,0 → 70,3, **e2e do app 68,3 → 75,0** (31/8, p = 0,0003), **cita item-ouro
+  69,0 → 73,3%** (meta > 73 ✓), ranking 77,6 → 84,6 (37/13, p = 0,001), oráculo 89,0 → 91,9,
+  closed 7,8 → 9,0, probe 3,38 → 3,35 (dentro de 1 p.p.). Custo: recusa indevida no ranking
+  3,2 → 2,9 (igual) e +9% de tokens (86 → 94).
+- **v4 (reward escalonado) tem a melhor eficiência e a menor alucinação, mas paga em guarda**:
+  `frac_reward_zero_std` médio **0,54 (v2) → 0,33 (v4), −40%**; distrator 14,5% (melhor), e2e
+  73,8, probe 3,47. Porém oráculo 89,0 → 87,2 (−1,8, fora da tolerância de 1 p.p.), recusa
+  indevida 3,2 → 4,4 e ranking +3,5 (não significativo). Por isso não é o campeão.
+- **v1/v2 sem formato estático pioram o distrator** (22,4 → 26–28,5): o RL só no formato app
+  desaprende a recusar no formato sem ferramenta. A **lição** do v3 é cobrir os dois formatos no
+  pool de prompts. Junto com o reward hacking da recusa do v1 (§3), esses são os dois achados.
+- **Trava anti-overfit (bateria completa)**: base, v3s400 e v4s400 em distrator ×1536 + e2e do app
+  ×1536 + 151 coloquiais (corte do prazo: oráculo/closed/ranking ×1536 ficam para depois). Ver §2.2;
+  **sem ela não há declaração de substituto do f4-r32-ep2.**
 
 ## 1. P1 — filtro de aprendibilidade
 
@@ -117,34 +120,80 @@ compartilhada com o Qwen** (sem troca). O prompt entra como **texto já renderiz
 offline pelo P1 e online pela vantagem zero dos grupos degenerados
 (`frac_reward_zero_std` logado, 0,15 → 0,50 ao longo do treino).
 
-**Runs** (wandb `lfm3-1.7b-cemig`):
+**Runs** (wandb `lfm3-1.7b-cemig`; todos 400 steps, lr 5e-6, 8×8):
 
-| run | pool | contrato | wandb |
+| run | pool de prompts | contrato do reward | wandb |
 |---|---|---|---|
-| `lfm3-p2-rlvr` (s200/s400) | RLVR produtiva+difícil, recusa ×2 (19%) | v1 | `c5cepsnk` |
-| `lfm3-p2-rlvr-bal` (bal200/bal400) | + todas as recusas fáceis (36%) | v1 | — |
-| `lfm3-p2-rlvr-v2` (v2s200/300/400) | âncoras de recusa até 30% | **v2** | `5h5m9jt4` |
-| `lfm3-p2-rlvr-v3` | v2 + itens data2x no formato estático | v2 | `o4kcs0vz`* |
+| `lfm3-p2-rlvr` (s200/s400) | RLVR (formato app) produtiva+difícil, recusa ×2 (19%) | v1 binário | `c5cepsnk` |
+| `lfm3-p2-rlvr-bal` | + todas as recusas fáceis (36%) | v1 | — |
+| `lfm3-p2-rlvr-v2` | âncoras de recusa até 30% | **v2** binário (recusa explícita no início) | `5h5m9jt4` |
+| **`lfm3-p2-rlvr-v3`** | v2 + data2x no **formato estático** (system F0, contexto cru, distratores da mesma NR), recusa 35%; prompts ≤ 2.200 tok (5.369) | v2 | `o4kcs0vz` |
+| `lfm3-p2-rlvr-v4` | pool v3 refiltrado pelo reward v4 (grupos com variância, 6.044 → ≤2.200 tok) | **v4 escalonado** (§2.3) | `bchs9c0h` |
 
-Reward de treino (média por quartil, run v2): answer 0,65 → 0,76; refuse 0,87 → 0,94.
-
-### Avaliação (recorte 344, juiz 27B)
+### 2.1 Avaliação no recorte 344 (juiz 27B) — v2 × v3 × v4
 
 | tag | ranking | rec-indev. | **distrator aluc.** | distr. recusa | oráculo | closed | **e2e app** | **cita item (app)** | aluc. app | probe | tok |
 |---|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
 | **f4-r32-ep2 (base)** | 77,6 | 3,2 | **22,4** | 61,0 | 89,0 | 7,8 | 68,3 | 69,0 | 14,5 | 3,38 | 86,2 |
-| s200 | 84,6 | 0,9 | 28,8 | 50,6 | 91,9 | 8,4 | 72,7 | 70,7 | 14,5 | 3,34 | 89,1 |
-| s400 | 83,7 | 1,5 | 26,2 | 48,0 | 91,6 | 8,1 | 73,3 | 73,0 | **11,6** | 3,32 | 91,2 |
-| bal200 | 84,3 | 1,5 | 25,9 | 50,3 | 91,3 | 8,7 | 70,9 | 70,7 | 14,8 | 3,34 | 87,2 |
-| bal400 | 83,4 | 1,2 | 28,2 | 45,1 | 91,0 | 7,0 | 73,5 | 72,7 | 12,5 | 3,31 | 90,1 |
-| v2s200 | 84,0 | 0,9 | 25,3 | 51,5 | 90,1 | 8,4 | 72,7 | 71,0 | 13,1 | 3,33 | 87,7 |
-| v2s300 | **84,9** | 0,9 | 25,9 | 48,8 | 90,7 | 5,8 | 70,9 | 72,0 | 15,4 | 3,29 | 90,2 |
-| **v2s400** | 83,7 | **0,9** | 28,5 | 46,8 | 91,3 | 7,0 | **73,8** | **74,0** | 12,8 | **3,37** | 91,8 |
+| v1 s400 | 83,7 | 1,5 | 26,2 | 48,0 | 91,6 | 8,1 | 73,3 | 73,0 | 11,6 | 3,32 | 91,2 |
+| bal s400 | 83,4 | 1,2 | 28,2 | 45,1 | 91,0 | 7,0 | 73,5 | 72,7 | 12,5 | 3,31 | 90,1 |
+| v2 s200 | 84,0 | 0,9 | 25,3 | 51,5 | 90,1 | 8,4 | 72,7 | 71,0 | 13,1 | 3,33 | 87,7 |
+| v2 s400 | 83,7 | 0,9 | 28,5 | 46,8 | 91,3 | 7,0 | 73,8 | **74,0** | 12,8 | 3,37 | 91,8 |
+| v3 s200 | 82,3 | 1,7 | 18,6 | 66,9 | 89,8 | 5,8 | 73,8 | 71,0 | 12,8 | 3,33 | 86,4 |
+| v3 s300 | 83,1 | 2,6 | 14,8 | 68,0 | 89,8 | 7,6 | 73,3 | 72,7 | 12,8 | **3,40** | 91,6 |
+| **v3 s400 ⇐ campeão** | **84,6** | 2,9 | 15,4 | 70,3 | **91,9** | **9,0** | **75,0** | 73,3 | 13,1 | 3,35 | 94,3 |
+| v4 s200 | 83,1 | 1,5 | 19,5 | 64,2 | 91,3 | 7,3 | 71,8 | 71,0 | 13,7 | 3,32 | 88,5 |
+| v4 s300 | 81,1 | 1,2 | 22,7 | 59,9 | 92,4 | 8,1 | 73,8 | 71,3 | 13,1 | 3,37 | 87,3 |
+| v4 s400 | 81,1 | 4,4 | **14,5** | **72,7** | 87,2 | 7,6 | 73,8 | 71,7 | **12,5** | **3,47** | 86,7 |
 
-Pareado vs base (aprovação; teste do sinal): e2e v2s400 30/11 (p = 0,004), s400 29/12 (0,012);
-ranking s400 36/15 (0,005), v2s400 35/14 (0,004); oráculo +1 a +3 sem significância (exceto s200,
-p = 0,04); distrator **1/50 (p < 1e-6)** em v2s400. Alucinação no distrator pior/melhor:
-v2s400 43/22 (p = 0,013); s400 35/22 (p = 0,11).
+Pareado vs base (aprovação, teste do sinal): **v3s400** e2e 31/8 (p = 0,0003), ranking 37/13
+(p = 0,001), distrator 41/9 (p < 1e-5), oráculo 21/11 (p = 0,11), closed 17/13 (n.s.);
+alucinação no distrator pior/melhor **16/40 (p = 0,002)**. **v4s400**: e2e 28/9 (p = 0,003),
+ranking 30/18 (n.s.), distrator 47/7, **oráculo 18/24 (n.s., mas −1,8)**; alucinação 14/41
+(p = 0,0004). v2s400: distrator 1/50 (piora, p < 1e-6).
+
+**Escolha do campeão**: o v3s400 é o único ponto que cruza as duas metas (distrator < 24,9,
+cita item > 73) sem regredir nenhuma guarda em mais de 1 p.p. O v4s400 tem menos alucinação
+e mais probe, mas o oráculo cai 1,8 e a recusa indevida sobe 1,2: fica fora da tolerância.
+
+### 2.2 Trava anti-overfit — bateria completa (1536 + 151)
+
+O recorte 344 compartilha normas com o treino (10/18/34 estão no data2x). Pela ordem do capitão,
+nenhum substituto é declarado sem a bateria completa. Corte do prazo: **distrator ×1536 + e2e do
+app ×1536 + e2e ×151 coloquiais** (régua honesta, gabarito 151). Oráculo, closed e ranking ×1536
+ficam para depois do prazo.
+
+BATERIA_COMPLETA_PLACEHOLDER
+
+### 2.3 Contrato v4 (reward escalonado) e curva de eficiência
+
+`verify_v4` (38 testes no total): **gate duro** (número fora do contexto, truncada, ferramenta
+espúria ou recusa indevida = 0); para quem passa, **r = 0,25 + 0,5·cobertura contínua +
+0,25·citação**. Multi-evidência: com ≥ 2 raízes distintas de item-ouro citáveis, a citação vale
+a fração das raízes citadas (o bônus cheio exige os dois spans; o código de item é a identidade
+verificável de cada span, já que os fatos do gabarito não são separáveis por span). Concisão:
+**×(1 − min(0,3; 0,3·(tok − 144)/144))**, com T = 144 = 1,5 × a mediana (96 tok) de 11.235
+referências do 27B (p90 = 143). Recusa continua binária (v2).
+
+**frac_reward_zero_std** (fração de grupos sem gradiente), média por janela de 50 steps
+(`data/efficiency_curves.json`, brutos em `data/curves/`):
+
+| run | 1–50 | 51–100 | 101–150 | 151–200 | 201–250 | 251–300 | 301–350 | 351–400 | **média** |
+|---|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+| v1 | 0,17 | 0,30 | 0,38 | 0,47 | 0,46 | 0,50 | 0,59 | 0,63 | 0,44 |
+| bal | 0,36 | 0,40 | 0,48 | 0,55 | 0,64 | 0,66 | 0,69 | 0,71 | 0,56 |
+| **v2** | 0,31 | 0,34 | 0,51 | 0,54 | 0,58 | 0,61 | 0,70 | 0,74 | **0,54** |
+| v3 | 0,32 | 0,36 | 0,45 | 0,48 | 0,55 | 0,59 | 0,65 | 0,69 | 0,51 |
+| **v4** | 0,18 | 0,24 | 0,28 | 0,34 | 0,38 | 0,33 | 0,40 | 0,45 | **0,33** |
+
+O escalonado **derruba os grupos sem gradiente em 40% (0,54 → 0,33)**, e a curva cresce mais
+devagar (0,45 contra 0,74 no fim): o binário satura conforme a política aprende, o escalonado
+continua separando boas de excelentes. O resíduo do v4 vem quase todo das **recusas**, que seguem
+binárias (a priori: grupos degenerados em answer 9,3% → 4,3%; em refuse 63,8% = 63,8%). Tokens
+médios no treino: v4 86–89, sem a deriva para cima do v1 (95–100). Reward médio por janela: v2
+0,69 → 0,87; v4 0,71 → 0,86 (escalas diferentes; não comparar em absoluto).
+
+### 2.4 Notas da avaliação
 
 **Linha de base regerada, não copiada**: a base foi regerada no mesmo harness e na mesma GPU que
 os treinados, para o pareamento ser justo. Contra os números da F4 no mesmo recorte, distrator,
@@ -170,8 +219,9 @@ uma resposta alucinada do distrator (0 em 201 explícitas da base). Mesmo assim,
 consertou o distrator estático** (28,5 em v2s400), porque o pool RLVR treina só no formato app
 (turno tool, top-5 comprimido), onde a recusa já era 0,90+ antes do treino. A célula distrator
 usa outro formato (system F0 sem ferramenta, 4 chunks crus da mesma norma) e lá o RL
-desaprende a recusar. O v3 (pool com itens data2x no formato estático, recusa ~35%) testa
-essa hipótese.
+desaprende a recusar. **O v3 confirmou a hipótese**: com itens data2x no formato estático no
+pool (recusa 35%), o distrator vai de 28,5 (v2s400) para **15,4** (v3s400) com o MESMO contrato,
+e o modo app não perde (73,8 → 75,0).
 
 ## 4. Infra (GPU 3 compartilhada, sem alternância)
 

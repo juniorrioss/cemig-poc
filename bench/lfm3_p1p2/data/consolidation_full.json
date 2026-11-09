@@ -1,0 +1,128 @@
+{
+  "base": {
+    "all": {
+      "distrator_n": 1536,
+      "distrator_hallucination": 23.8,
+      "distrator_refusal_correct": 66.0,
+      "e2e_n": 1536,
+      "e2e_approved": 64.1,
+      "e2e_hallucination": 14.1,
+      "e2e_refused": 17.9,
+      "e2e_cite_gold_item": 64.3,
+      "e2e_gen_tok": 103.8
+    },
+    "recorte": {
+      "distrator_n": 344,
+      "distrator_hallucination": 22.4,
+      "distrator_refusal_correct": 61.0,
+      "e2e_n": 344,
+      "e2e_approved": 69.2,
+      "e2e_hallucination": 11.0,
+      "e2e_refused": 15.1,
+      "e2e_cite_gold_item": 68.7,
+      "e2e_gen_tok": 102.3
+    },
+    "fora_recorte": {
+      "distrator_n": 1192,
+      "distrator_hallucination": 24.2,
+      "distrator_refusal_correct": 67.4,
+      "e2e_n": 1192,
+      "e2e_approved": 62.7,
+      "e2e_hallucination": 15.0,
+      "e2e_refused": 18.7,
+      "e2e_cite_gold_item": 63.0,
+      "e2e_gen_tok": 104.2
+    },
+    "poc151": {
+      "n": 151,
+      "approved": 12.6,
+      "hallucination": 28.5,
+      "refused": 53.0,
+      "gen_tok": 84.0
+    }
+  },
+  "v3s400": {
+    "all": {
+      "distrator_n": 0,
+      "distrator_hallucination": null,
+      "distrator_refusal_correct": null,
+      "e2e_n": 0,
+      "e2e_approved": null,
+      "e2e_hallucination": null,
+      "e2e_refused": null,
+      "e2e_cite_gold_item": null,
+      "e2e_gen_tok": null
+    },
+    "recorte": {
+      "distrator_n": 0,
+      "distrator_hallucination": null,
+      "distrator_refusal_correct": null,
+      "e2e_n": 0,
+      "e2e_approved": null,
+      "e2e_hallucination": null,
+      "e2e_refused": null,
+      "e2e_cite_gold_item": null,
+      "e2e_gen_tok": null
+    },
+    "fora_recorte": {
+      "distrator_n": 0,
+      "distrator_hallucination": null,
+      "distrator_refusal_correct": null,
+      "e2e_n": 0,
+      "e2e_approved": null,
+      "e2e_hallucination": null,
+      "e2e_refused": null,
+      "e2e_cite_gold_item": null,
+      "e2e_gen_tok": null
+    },
+    "poc151": {
+      "n": 0,
+      "approved": null,
+      "hallucination": null,
+      "refused": null,
+      "gen_tok": null
+    }
+  },
+  "v4s400": {
+    "all": {
+      "distrator_n": 0,
+      "distrator_hallucination": null,
+      "distrator_refusal_correct": null,
+      "e2e_n": 0,
+      "e2e_approved": null,
+      "e2e_hallucination": null,
+      "e2e_refused": null,
+      "e2e_cite_gold_item": null,
+      "e2e_gen_tok": null
+    },
+    "recorte": {
+      "distrator_n": 0,
+      "distrator_hallucination": null,
+      "distrator_refusal_correct": null,
+      "e2e_n": 0,
+      "e2e_approved": null,
+      "e2e_hallucination": null,
+      "e2e_refused": null,
+      "e2e_cite_gold_item": null,
+      "e2e_gen_tok": null
+    },
+    "fora_recorte": {
+      "distrator_n": 0,
+      "distrator_hallucination": null,
+      "distrator_refusal_correct": null,
+      "e2e_n": 0,
+      "e2e_approved": null,
+      "e2e_hallucination": null,
+      "e2e_refused": null,
+      "e2e_cite_gold_item": null,
+      "e2e_gen_tok": null
+    },
+    "poc151": {
+      "n": 0,
+      "approved": null,
+      "hallucination": null,
+      "refused": null,
+      "gen_tok": null
+    }
+  }
+}
