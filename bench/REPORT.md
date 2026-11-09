@@ -7,7 +7,7 @@
 > artefatos. Números SEMPRE copiados dos `RESULTS.md`/parquets reais de cada
 > fase — nunca de memória.
 >
-> **Última atualização**: 2026-11-05 (quantização: retenção de qualidade GGUF × LiteRT vs bf16).
+> **Última atualização**: 2026-11-09 (F9: v3s400 promovido a modelo do APK v1.1; caminho linear em `bench/CAMINHO.md`).
 > Branches-fonte (exploração, NÃO mesclados no main por decisão do capitão):
 > `main` (F0, F2) · `fm/lfm3-f3-robustez` (F3) · `fm/lfm3-f3b-sweep` (F3b) ·
 > `fm/lfm3-f4-tools` (F4) · `fm/lfm3-f5-retrieval` (F5) · `fm/lfm3-f6-manuais` (F6) ·
@@ -453,6 +453,16 @@ vs 22,4%). Sempre comparar números do MESMO recorte.
   menos recusa (53 → 35%) com alucinação 28,5 → 31,1.
 - **v4** (reward escalonado): grupos sem gradiente 0,54 → 0,33 (−40%); é o mais conservador
   (distrator ×1536 13,7, 106 tok), com oráculo do recorte −1,8.
+
+### F9 — v3s400 promovido a modelo do app, APK v1.1 (09/11) — `bench/lfm3_f9/`
+
+- Merge do LoRA v3s400 no f4-r32-ep2 mesclado → GGUF Q4_0 (md5 `b43caa0d…`, llama.cpp do app).
+  Smoke 20 operacionais: Q4_0 15/20 × bf16 16/20 (pareado 0/1); f4 Q4_0 15/20 como controle.
+- S24+ (APK v1.1, `versionCode 2`): **8/8 texto (2 rodadas) e 8/8 voz**; 1º token visível 8,1–8,3 s
+  (f4 na mesma sessão 8,1 s), total ~12 s (+0,4–0,7 s por ~14 tokens a mais), pico PSS 3,69 GB.
+- HF `juniorrios/automobil-ultra-semnexo`: `v1.1-rlvr/` (safetensors + GGUF) e
+  `apk/cemig-assistente-v1.1-rlvr.apk`; tag `v1.0-f4` preserva o estado anterior.
+- Relatório linear (só a linha vencedora, F0 → APK v1.1): [`bench/CAMINHO.md`](CAMINHO.md).
 
 ---
 

@@ -44,7 +44,7 @@ strong { color:#083f36; }
 <p>(3) acrescentar a seção da fase com data, (4) estender o Apêndice de</p>
 <p>artefatos. Números SEMPRE copiados dos <code>RESULTS.md</code>/parquets reais de cada</p>
 <p>fase — nunca de memória.</p>
-<p><strong>Última atualização</strong>: 2026-11-05 (quantização: retenção de qualidade GGUF × LiteRT vs bf16).</p>
+<p><strong>Última atualização</strong>: 2026-11-09 (F9: v3s400 promovido a modelo do APK v1.1; caminho linear em <code>bench/CAMINHO.md</code>).</p>
 <p>Branches-fonte (exploração, NÃO mesclados no main por decisão do capitão):</p>
 <p><code>main</code> (F0, F2) · <code>fm/lfm3-f3-robustez</code> (F3) · <code>fm/lfm3-f3b-sweep</code> (F3b) ·</p>
 <p><code>fm/lfm3-f4-tools</code> (F4) · <code>fm/lfm3-f5-retrieval</code> (F5) · <code>fm/lfm3-f6-manuais</code> (F6) ·</p>
@@ -189,6 +189,13 @@ strong { color:#083f36; }
 <li><strong>P1</strong>: o f4-r32-ep2 rodado n=4 por item, régua automática sem juiz. <strong>49,2% do universo descartado</strong> (39,5% já dominado, 9,7% mal especificado: nem o 27B resolve com o mesmo contexto). Sem-ferramenta e recusa com ouro removido são quase só fáceis; closed-book é ruído para RL (acc 0,05).</li>
 <li><strong>P2</strong> (GRPO/DAPO, LoRA r32, reward binário por regra): o contrato v1 foi <strong>hackeado</strong>: a política respondia e fechava com uma ressalva que o regex contava como recusa. Contrato v2 = recusa explícita no início. RL só no formato do app piorou o distrator estático; com os dois formatos no pool (<strong>v3</strong>) o campeão <code>v3s400</code> dá, na bateria completa: <strong>distrator ×1536 aluc. 23,8 → 15,7</strong>, <strong>app ×1536 64,1 → 71,8</strong>, oráculo 88,5 → 90,0, ranking 78,1 → 81,6, <strong>POC 151 12,6 → 21,2</strong>. Fora das normas do recorte o ganho se repete. Custo: +14% de tokens e, nas 151, menos recusa (53 → 35%) com alucinação 28,5 → 31,1.</li>
 <li><strong>v4</strong> (reward escalonado): grupos sem gradiente 0,54 → 0,33 (−40%); é o mais conservador (distrator ×1536 13,7, 106 tok), com oráculo do recorte −1,8.</li>
+</ul>
+<h3>F9 — v3s400 promovido a modelo do app, APK v1.1 (09/11) — <code>bench/lfm3_f9/</code></h3>
+<ul>
+<li>Merge do LoRA v3s400 no f4-r32-ep2 mesclado → GGUF Q4_0 (md5 <code>b43caa0d…</code>, llama.cpp do app). Smoke 20 operacionais: Q4_0 15/20 × bf16 16/20 (pareado 0/1); f4 Q4_0 15/20 como controle.</li>
+<li>S24+ (APK v1.1, <code>versionCode 2</code>): <strong>8/8 texto (2 rodadas) e 8/8 voz</strong>; 1º token visível 8,1–8,3 s (f4 na mesma sessão 8,1 s), total ~12 s (+0,4–0,7 s por ~14 tokens a mais), pico PSS 3,69 GB.</li>
+<li>HF <code>juniorrios/automobil-ultra-semnexo</code>: <code>v1.1-rlvr/</code> (safetensors + GGUF) e <code>apk/cemig-assistente-v1.1-rlvr.apk</code>; tag <code>v1.0-f4</code> preserva o estado anterior.</li>
+<li>Relatório linear (só a linha vencedora, F0 → APK v1.1): <a href="CAMINHO.html"><code>bench/CAMINHO.md</code></a>.</li>
 </ul>
 <hr>
 <h2>4. Decisões de produto em aberto</h2>

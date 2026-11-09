@@ -225,7 +225,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 val anyAsrOk = asrOk || whisperOk
 
-                _uiState.update { it.copy(modelStatusMessage = if (useLfm3) "Carregando LFM3 1.7B (f4-r32-ep2 ${BuildConfig.LFM3_QUANT})..." else "Carregando modelo LFM2.5 1.2B Instruct...") }
+                _uiState.update { it.copy(modelStatusMessage = if (useLfm3) "Carregando LFM3 1.7B (${BuildConfig.LFM3_MODEL} ${BuildConfig.LFM3_QUANT})..." else "Carregando modelo LFM2.5 1.2B Instruct...") }
                 val llmFile = fileManager.getLlmModelFile { progress ->
                     _uiState.update {
                         it.copy(modelStatusMessage = "Copiando modelo Q4: ${(progress * 100).toInt()}%")

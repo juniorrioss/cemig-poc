@@ -11,8 +11,8 @@ android {
         applicationId = "br.org.ceia.cemigpoc"
         minSdk = 31
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0.0"
+        versionCode = 2
+        versionName = "1.1.0"
 
         ndk {
             abiFilters.add("arm64-v8a")
@@ -55,8 +55,20 @@ android {
             else -> error("cemig.lfm3Quant deve ser q4_0 ou q4_k_m")
         }
         buildConfigField("String", "LFM3_QUANT", "\"$lfm3Quant\"")
+        // task lfm3-f9-promote: checkpoint do LFM3 por build. DEFAULT = v3s400 (P2 RLVR v3, step 400,
+        // LoRA sobre o f4-r32-ep2 mesclado; bateria ×1536: distrator aluc. 23,8→15,7, e2e app 64,1→71,8,
+        // POC 151 12,6→21,2 — bench/lfm3_p1p2/RESULTS.md, bench/lfm3_f9/RESULTS.md). Mesmo template,
+        // mesmo system e mesma arquitetura do f4: só o GGUF muda (override externo).
+        //   -Pcemig.lfm3Model=f4  -> volta ao f4-r32-ep2 (APK v1.0)
+        val lfm3Model = when ((project.findProperty("cemig.lfm3Model") as String?)?.lowercase() ?: "v3s400") {
+            "v3s400" -> "v3s400"
+            "f4" -> "f4-r32-ep2"
+            else -> error("cemig.lfm3Model deve ser v3s400 ou f4")
+        }
+        if (lfm3Model == "v3s400" && lfm3Quant != "Q4_0") error("v3s400 só tem GGUF Q4_0 (produção)")
+        buildConfigField("String", "LFM3_MODEL", "\"$lfm3Model\"")
         val llmModelName = when {
-            useLfm3 -> "lfm3-1.7b-f4-r32-ep2-$lfm3Quant.gguf"
+            useLfm3 -> "lfm3-1.7b-$lfm3Model-$lfm3Quant.gguf"
             useTool26b -> "LFM2.5-2.6B-tools-Q4_0.gguf"
             synthModel == "2.6b" -> "LFM2.5-2.6B-Q4_0.gguf"
             else -> "LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf"

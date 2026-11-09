@@ -15,6 +15,14 @@
 > Divergências encontradas entre o brief da tarefa e as fontes estão listadas na
 > [seção final](#divergências-entre-o-brief-e-as-fontes). **Vale a fonte.**
 
+> **ATUALIZAÇÃO (09/11/2026, APK v1.1):** o vigente do app passou a ser a linha **LFM3-1.7B**
+> (F3→F4→F5→F6→F7→F8→P1/P2): modelo **`v3s400`** (RLVR sobre o `f4-r32-ep2`) em GGUF Q4_0 +
+> ponto de operação F6 (top-5 → compressão 50%, manuais com margem densa) + Nemotron. A linha
+> completa, passo a passo e só com o que deu certo, está em
+> [`bench/CAMINHO.md`](../bench/CAMINHO.md); a promoção está em
+> [`bench/lfm3_f9/RESULTS.md`](../bench/lfm3_f9/RESULTS.md). A Parte A abaixo descreve a entrega
+> LFM2.5 anterior e vale como registro histórico das decisões dela.
+
 ---
 
 ## PARTE A — O QUE É A ÚLTIMA ENTREGA (o vigente)

@@ -1,0 +1,103 @@
+{
+ "gguf_q4_0": {
+  "md5": "b43caa0dc68f02fbe0eafd58bb2934b3",
+  "sha256": "689735f30a195be407fc56c5c4b7b27e3043c37b5ff2e58480477cda5992d6d8",
+  "bytes": 1049614880
+ },
+ "merged_safetensors_md5": "4213d9eccc54e9c2d6f61e2f9d809a7a",
+ "apk_v1_1_sha256": "784dc8bbb704fc611ec484775ca1d0ab03c53b2618a8b18a15e093fab9ec0b4e",
+ "smoke20": {
+  "v3_q4_0": {
+   "approved": 15,
+   "coverage": 0.837,
+   "hallucination": 3,
+   "refused": 2,
+   "tool_echo": 0,
+   "tok_parity": 20,
+   "mean_n_gen": 122.0
+  },
+  "v3_bf16": {
+   "approved": 16,
+   "coverage": 0.853,
+   "hallucination": 2,
+   "refused": 1,
+   "tool_echo": 0,
+   "tok_parity": 20,
+   "mean_n_gen": 119.8
+  },
+  "f4_q4_0": {
+   "approved": 15,
+   "coverage": 0.772,
+   "hallucination": 2,
+   "refused": 2,
+   "tool_echo": 1,
+   "tok_parity": 20,
+   "mean_n_gen": 105.8
+  },
+  "f4_bf16": {
+   "approved": 15,
+   "coverage": 0.78,
+   "hallucination": 3,
+   "refused": 1,
+   "tool_echo": 1,
+   "tok_parity": 20,
+   "mean_n_gen": 106.8
+  },
+  "paired_v3q4_vs_v3bf16": {
+   "win": 0,
+   "loss": 1
+  },
+  "paired_v3q4_vs_f4q4": {
+   "win": 1,
+   "loss": 1
+  }
+ },
+ "device": {
+  "v11_text": {
+   "model": "lfm3-1.7b-v3s400-Q4_0.gguf",
+   "approved": 8,
+   "n": 8,
+   "cites_nr": 7,
+   "first_token_ms": 8261,
+   "total_ms": 12263,
+   "tok_per_s": 26.0,
+   "completion_tokens": 103.8,
+   "peak_pss_mb": 3691
+  },
+  "v11_text_r2": {
+   "model": "lfm3-1.7b-v3s400-Q4_0.gguf",
+   "approved": 8,
+   "n": 8,
+   "cites_nr": 8,
+   "first_token_ms": 7940,
+   "total_ms": 11928,
+   "tok_per_s": 26.4,
+   "completion_tokens": 104.6,
+   "peak_pss_mb": 3695
+  },
+  "v11_voice": {
+   "model": "lfm3-1.7b-v3s400-Q4_0.gguf",
+   "approved": 8,
+   "n": 8,
+   "cites_nr": 8,
+   "first_token_ms": 8817,
+   "total_ms": 13331,
+   "tok_per_s": 25.8,
+   "completion_tokens": 115.9,
+   "peak_pss_mb": 3728,
+   "asr_ms": 2459,
+   "total_with_asr_ms": 15790
+  },
+  "ctrl_f4": {
+   "model": "lfm3-1.7b-f4-r32-ep2-Q4_0.gguf",
+   "approved": 8,
+   "n": 8,
+   "cites_nr": 7,
+   "first_token_ms": 8122,
+   "total_ms": 11565,
+   "tok_per_s": 26.5,
+   "completion_tokens": 90.8,
+   "peak_pss_mb": 3707
+  }
+ }
+}

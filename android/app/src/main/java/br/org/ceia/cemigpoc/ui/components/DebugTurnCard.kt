@@ -180,7 +180,7 @@ fun DebugTurnCard(
 
             // (4) Síntese: LFM3 1.7B f4-r32-ep2 (F7; quant por build, BuildConfig.LFM3_QUANT).
             DebugRow(
-                label = "4. Síntese (LFM3 1.7B f4-r32-ep2 ${br.org.ceia.cemigpoc.BuildConfig.LFM3_QUANT})",
+                label = "4. Síntese (LFM3 1.7B ${br.org.ceia.cemigpoc.BuildConfig.LFM3_MODEL} ${br.org.ceia.cemigpoc.BuildConfig.LFM3_QUANT})",
                 time = "${metrics.ttftMs + metrics.decodeMs} ms",
                 detail = "Prompt: ${if (metrics.promptTokens > 0) "${metrics.promptTokens} tok" else "~${metrics.contextTokens} tok"}" +
                     (if (metrics.compressBudget > 0) " (orçamento ctx ${metrics.compressBudget})" else "") +

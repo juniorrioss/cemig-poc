@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O caminho que deu certo — do LFM3-1.7B cru ao APK v1.1</title>
+<style>
+:root { --fg:#1a202c; --muted:#5a6572; --accent:#0b5d4f; --border:#d8dee5;
+        --bg:#ffffff; --code:#f2f4f7; --th:#eef2f1; }
+* { box-sizing: border-box; }
+body { margin:0; background:#f6f7f9; color:var(--fg);
+       font:16px/1.65 Georgia, 'Times New Roman', serif; }
+main { max-width: 980px; margin: 2rem auto; background:var(--bg);
+       padding: 3rem 3.5rem; border:1px solid var(--border); border-radius:8px; }
+h1 { font-size:1.9rem; line-height:1.25; border-bottom:3px solid var(--accent);
+     padding-bottom:.5rem; }
+h2 { font-size:1.45rem; margin-top:2.4rem; color:var(--accent);
+     border-bottom:1px solid var(--border); padding-bottom:.3rem; }
+h3 { font-size:1.15rem; margin-top:1.8rem; }
+code { font:.85em/1.4 ui-monospace, 'Cascadia Code', Consolas, monospace;
+       background:var(--code); padding:.1em .35em; border-radius:4px; }
+blockquote { margin:1.2rem 0; padding:.7rem 1.2rem; border-left:4px solid var(--accent);
+             background:#f4f8f7; color:var(--muted); font-size:.95em; }
+table { border-collapse:collapse; width:100%; margin:1.1rem 0; font-size:.86em;
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+th, td { border:1px solid var(--border); padding:.42em .6em; text-align:left;
+         vertical-align:top; }
+th { background:var(--th); font-weight:600; }
+tr:nth-child(even) td { background:#fafbfc; }
+hr { border:none; border-top:1px solid var(--border); margin:2.2rem 0; }
+ul, ol { padding-left:1.6rem; }
+li { margin:.3rem 0; }
+strong { color:#083f36; }
+@media (max-width: 720px) { main { padding:1.2rem; } table { font-size:.75em; } }
+</style>
+</head>
+<body>
+<main>
+<h1>O caminho que deu certo — do LFM3-1.7B cru ao APK v1.1</h1>
+<blockquote>
+<p>Este documento conta <strong>só a linha vencedora</strong>, do começo ao fim. Cada passo traz o que se fez,</p>
+<p>o número que mudou e onde está o artefato. Os desvios testados e descartados ficam no relatório</p>
+<p>completo, <a href="REPORT.html"><code>bench/REPORT.md</code></a>. Todos os números foram copiados dos <code>RESULTS.md</code> de</p>
+<p>cada fase.</p>
+<p><strong>Régua única</strong>: benchmark <code>UFGCEMIGONA/benchmark_mobile</code> (1536 perguntas = 384 × 4</p>
+<p>vocabulários: limpo, técnico, operacional e leigo). Juiz Qwen 27B, régua honesta: aprovada é a</p>
+<p>resposta que cobre ≥ 50% dos fatos pedidos, sem alucinar, sem recusar e sem truncar. O</p>
+<p>"recorte 344" são 6 NRs (10/18/34/13/31/33) usadas na avaliação rápida. As "151" são as</p>
+<p>perguntas coloquiais reais da POC.</p>
+</blockquote>
+<h2>A linha em uma tabela</h2>
+<table><thead><tr><th>#</th><th>passo</th><th>o que moveu</th><th>escopo</th></tr></thead><tbody><tr><td style="text-align:right">0</td><td>F0: baseline as-is</td><td>closed-book 5,9 · oráculo 83,7 · ranking 65,8 · recusa correta no distrator 30,5</td><td>1536</td></tr><tr><td style="text-align:right">1</td><td>F3: robustez com retriever real</td><td>ranking <strong>65,8 → 75,2</strong> · recusa correta <strong>30,5 → 59,1</strong> (2×) · truncamento 35,4 → 0</td><td>1536</td></tr><tr><td style="text-align:right">2</td><td>F3b: o dado domina</td><td>ranking <strong>77,0</strong> · oráculo 85,4 (campeão <code>data2x-ep4</code>)</td><td>1536</td></tr><tr><td style="text-align:right">3</td><td>F4: tool-calling XML nativo</td><td>decisão F1 <strong>97,2</strong> · sintaxe <strong>100%</strong> · ranking <strong>79,6</strong> · oráculo 87,8</td><td>1536</td></tr><tr><td style="text-align:right">4</td><td>Smoke de retrieval</td><td>v4 hit@5 0,874 × 0,804 do retriever do MobileRAG+ → <strong>mantém o v4</strong></td><td>1136 (norma)</td></tr><tr><td style="text-align:right">5</td><td>F5: gate + compressão</td><td>citação do item <strong>65,2 → 73,2</strong> · prompt <strong>1635 → 1100 tok (−33%)</strong> · aprovação 55,6 → 57,5</td><td>recorte 344</td></tr><tr><td style="text-align:right">6</td><td>F6: manuais como aba no RRF</td><td>fim a fim <strong>57,5 → 68,0</strong> · manual 18,3 → 53,3</td><td>recorte 344</td></tr><tr><td style="text-align:right">7</td><td>F7: embarque no S24+</td><td><strong>8/8</strong> texto e voz · 1º token 7,0–8,4 s · PSS ~3,7 GB</td><td>aparelho</td></tr><tr><td style="text-align:right">8</td><td>F8: UI "Assistente CEMIG"</td><td>8/8 pela UI · PSS 3,76 GB</td><td>aparelho</td></tr><tr><td style="text-align:right">9</td><td>Q4_0 por latência</td><td>−4,9 p.p. vs bf16, aceito pelo prefill mais rápido (190 t/s no S24+)</td><td>recorte 344 / aparelho</td></tr><tr><td style="text-align:right">10</td><td>P1: filtro de aprendibilidade</td><td><strong>49,2%</strong> do universo descartado (fácil ou mal especificado)</td><td>11.313 itens</td></tr><tr><td style="text-align:right">11</td><td>P2: RLVR verificável (<code>v3s400</code>)</td><td>distrator aluc. <strong>23,8 → 15,7</strong> · fim a fim <strong>64,1 → 71,8</strong> · 151 <strong>12,6 → 21,2</strong></td><td>1536 + 151</td></tr><tr><td style="text-align:right">12</td><td>APK v1.1</td><td>8/8 texto (×2) e voz · 1º token 8,1–8,3 s · PSS 3,69 GB</td><td>aparelho</td></tr></tbody></table>
+<hr>
+<h2>0. F0 — a régua do "antes"</h2>
+<p><strong>O que se fez.</strong> Medimos o <code>LiquidAI/LFM3-1.7B</code> bf16 sem nenhuma adaptação, nas 4 células do benchmark: closed-book (sem contexto), oráculo (só o trecho certo), ranking (o certo entre 5) e distrator (só trechos errados da mesma NR; a resposta certa é recusar).</p>
+<p><strong>Número.</strong> closed-book <strong>5,9%</strong> · oráculo <strong>83,7%</strong> · ranking <strong>65,8%</strong> · recusa correta no distrator <strong>30,5%</strong> (alucinação 28,3%, truncamento 35,4% por ruminação no thinking).</p>
+<p><strong>Leitura.</strong> O modelo quase não sabe as NRs de cor, mas lê bem quando recebe o trecho certo. O problema está em ler no meio de distratores e em saber recusar.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f0/</code> (README + parquets).</p>
+<h2>1. F3 — robustez de uso de contexto com o retriever REAL</h2>
+<p><strong>O que se fez.</strong> SFT LoRA r32 só no MLP (<code>w1/w2/w3</code>) sobre o instruct. O dataset tem 6.972 exemplos ancorados no <strong>retriever v4 real</strong> da POC, com k variável (3/5/8 trechos) e quatro casos: ouro presente, ouro ausente (recusa), parcial e closed-book. As respostas-alvo foram geradas pelo 27B vendo só o trecho-âncora.</p>
+<p><strong>Número.</strong> ranking <strong>65,8 → 75,2%</strong> · recusa correta no distrator <strong>30,5 → 59,1%</strong> (2×) · alucinação 28,3 → 22,4% · truncamento <strong>35,4 → 0%</strong> · oráculo e closed-book intactos (83,5 / 6,2).</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f3/RESULTS.md</code>; checkpoint <code>f3-r32-ep4</code>.</p>
+<h2>2. F3b — sweep: o dado domina</h2>
+<p><strong>O que se fez.</strong> Variamos um fator por vez sobre a receita da F3 (dado, dose de recusa, âncora geral, rank, alvos e LR). Só os eixos de <strong>dado</strong> moveram a agulha. O vencedor dobra o dataset (12 NRs novas).</p>
+<p><strong>Número.</strong> Campeão <code>data2x-ep4</code>: ranking <strong>77,0%</strong> (+1,8) · oráculo <strong>85,4%</strong> · closed 7,4%.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f3b/RESULTS.md</code>; base mesclada da F4 (md5 <code>ae5f304d…</code>).</p>
+<h2>3. F4 — tool-calling multiturno no formato nativo</h2>
+<p><strong>O que se fez.</strong> LoRA r32 MLP sobre o <code>data2x-ep4</code> mesclado, com 4.624 diálogos em 6 famílias: buscar, não buscar, reusar contexto, trocar de NR, recusar após a busca e multihop. O formato é o</p>
+<p><strong>XML <code>&lt;tool_call&gt;</code> emitido pelo próprio <code>apply_chat_template</code></strong>, com paridade byte a byte. A consulta da 1ª chamada é a <strong>fala crua</strong> do usuário.</p>
+<p><strong>Número.</strong> decisão F1 <strong>97,2</strong> · sintaxe XML <strong>100%</strong> (0/285) · reuso <strong>100%</strong> · troca de NR 100/96,4. O modo sem ferramenta <strong>melhorou</strong>: ranking 77,0 → <strong>79,6%</strong>, oráculo 85,4 → <strong>87,8%</strong>, recusa correta no distrator <strong>66,6%</strong>.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f4/RESULTS.md</code>; candidato <strong><code>f4-r32-ep2</code></strong> (<code>checkpoint-284</code>).</p>
+<h2>4. Smoke de retrieval — fica o v4</h2>
+<p><strong>O que se fez.</strong> Rodamos o retriever v4 da POC (BM25 com expansão ASR-robusta + 2 densos EmbeddingGemma-300M, RRF) nas 1536 perguntas, com o harness de métricas do MobileRAG+ validado contra os números publicados por eles.</p>
+<p><strong>Número.</strong> Nas 1136 com ouro em norma: v4 <strong>hit@5 0,874</strong> contra <strong>0,804</strong> do melhor 1º estágio do MobileRAG+ (Qwen3-Embedding fine-tuned, mesmo corpus de normas). O v4 vence em todas as métricas e vocabulários. Decisão: <strong>não trocar o retriever</strong> e atacar 3 pontos dentro do v4 (gate do classificador, pós-recuperação e manuais).</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_retrieval_smoke/REPORT.md</code>.</p>
+<h2>5. F5 — gate 0,7/2× + compressão top-5 → 50%</h2>
+<p><strong>O que se fez.</strong> (a) Gate do classificador de NR com limiar 0,7 e boost 2×, o único ajuste que sobe nas duas réguas (151 e benchmark). (b) A <strong>hipótese do capitão</strong>: buscar mais (top-5) e comprimir o contexto para 50% dos tokens do top-2 cru. A compressão seleciona unidades normativas pelo próprio EmbeddingGemma e preserva o código do item.</p>
+<p><strong>Número.</strong> Fim a fim (recorte 344, <code>f4-r32-ep2</code>, formato do app): aprovação 55,6 → <strong>57,5%</strong> (empate dentro do ruído) · <strong>citação do item-ouro 65,2 → 73,2% (+8 p.p.)</strong> · prompt <strong>1635 → 1100 tokens (−33%)</strong>. A hipótese foi provada: menos contexto, mais denso, sem perder resposta.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f5/RESULTS.md</code> (<code>compress.py</code>, <code>retriever_f5.py</code>).</p>
+<h2>6. F6 — manuais do MTE como aba separada no RRF</h2>
+<p><strong>O que se fez.</strong> 26% das 1536 perguntas têm a resposta num dos 9 manuais oficiais, que não estavam indexados. Entraram como sinais próprios no RRF (BM25 + denso, peso 1,75), ligados só quando o melhor manual empata ou supera a melhor norma na similaridade densa (margem 0). A compressão ganhou as janelas dos manuais.</p>
+<p><strong>Número.</strong> manual hit@5 <strong>0 → 46,8%</strong> com norma −0,44 p.p. e as 151 intactas. Fim a fim (recorte 344): <strong>57,5 → 68,0%</strong> (manual 18,3 → 53,3%, operacional 55,4 → 65,1%), <strong>sem um token a mais de prompt</strong>.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f6/RESULTS.md</code>; ponto de operação <code>thr0.7_f2+man1.75+margin</code> → top-5 → compressão 50%.</p>
+<h2>7. F7 — embarque no Galaxy S24+</h2>
+<p><strong>O que se fez.</strong> O <code>f4-r32-ep2</code> virou GGUF Q4_0 (llama.cpp v0.9.0). O porte para o app Android inclui o template XML do LFM3 em Kotlin (byte a byte), o retriever do ponto de operação e o compressor (janelas fp16), tudo com paridade verificada contra o espelho Python: 40/40 contextos na JVM e top-5/contexto 8/8 no próprio aparelho. ASR Nemotron 3.5 on-device.</p>
+<p><strong>Número.</strong> Smoke Q4_0 = bf16 (15/20). No S24+: <strong>8/8 aprovadas em texto e em voz</strong> · 1º token visível <strong>~8,4 s</strong> (6,99 s na revalidação de produção) · total ~10–12 s · <strong>pico PSS ~3,7 GB</strong>.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f7/RESULTS.md</code>; <code>android/</code> (<code>HybridRetriever.searchOp</code>, <code>ContextCompressor</code>, <code>Lfm3ToolFormat</code>).</p>
+<h2>8. F8 — UI "Assistente CEMIG"</h2>
+<p><strong>O que se fez.</strong> A interface foi recriada em Compose no estilo do app de referência: chat, paleta verde CEMIG, fontes NR/item expansíveis, bolha "Pensando" ligada ao tool-calling e segurar-para-falar. O motor ficou intocado.</p>
+<p><strong>Número.</strong> Checklist de regressão 100% · 8 perguntas-exemplo pela UI 8/8 com a fonte esperada · PSS 3,76 GB.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f8/RESULTS.md</code>; APK v1.0 publicado no HF.</p>
+<h2>9. Formato de produção: Q4_0, por latência</h2>
+<p><strong>O que se fez.</strong> Medimos a retenção de qualidade do GGUF contra o bf16 no recorte 344, com o ponto de operação congelado, e a velocidade no S24+.</p>
+<p><strong>Número.</strong> Q4_0 = <strong>−4,9 p.p.</strong> contra o bf16 (68,0 → 63,1) e prefill de <strong>190 t/s</strong> no S24+.</p>
+<p><strong>Decisão do capitão:</strong> o Q4_0 fica, porque o 1º token pesa mais que a qualidade marginal.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_quant/RESULTS.md</code>, <code>bench/lfm3_q4km/RESULTS.md</code>.</p>
+<h2>10. P1 — filtro de aprendibilidade</h2>
+<p><strong>O que se fez.</strong> Rodamos o <code>f4-r32-ep2</code> 4 vezes por item, com uma régua automática sem juiz (cita o item-ouro, cobre os fatos, não inventa números, recusa só quando deve). Separamos cada item em fácil (acerta ≥ 80%), produtivo, difícil (o 27B resolve) e mal especificado (nem o 27B resolve).</p>
+<p><strong>Número.</strong> Num universo de 11.313 itens, <strong>49,2% descartados</strong>: 39,5% já dominados e 9,7% mal especificados. O RL treina só onde há o que aprender.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_p1p2/p1_pipeline.py</code>, <code>data/p1_report.json</code>.</p>
+<h2>11. P2 — RLVR com reward verificável (<code>v3s400</code>)</h2>
+<p><strong>O que se fez.</strong> GRPO com perda DAPO (TRL 1.17, clip-higher 0,2/0,28, máscara de truncadas, β = 0). LoRA novo r32 MLP sobre o <code>f4-r32-ep2</code> mesclado, 8 prompts × 8 gerações, lr 5e-6, 400 steps (~75 min numa H100). O <strong>reward é binário e verificável por regra</strong>, sem juiz no loop:</p>
+<ul>
+<li>com o ouro no contexto, vale 1 se cita o item, cobre ≥ 50% dos fatos e todo número existe no contexto;</li>
+<li>sem o ouro, vale 1 se recusa explicitamente no início.</li>
+</ul>
+<p>O pool de prompts saiu do P1 e cobre os dois formatos de uso: o turno de ferramenta do app (top-5 comprimido) e o contexto estático.</p>
+<p><strong>Número (bateria completa, base regerada no mesmo harness):</strong></p>
+<table><thead><tr><th></th><th>f4-r32-ep2</th><th><strong>v3s400</strong></th></tr></thead><tbody><tr><td>distrator ×1536: alucinação</td><td style="text-align:right">23,8%</td><td style="text-align:right"><strong>15,7%</strong></td></tr><tr><td>fim a fim do app ×1536</td><td style="text-align:right">64,1%</td><td style="text-align:right"><strong>71,8%</strong> (pareado 177/59)</td></tr><tr><td>oráculo ×1536 / ranking ×1536</td><td style="text-align:right">88,5 / 78,1</td><td style="text-align:right">90,0 / 81,6</td></tr><tr><td>151 coloquiais da POC</td><td style="text-align:right">12,6%</td><td style="text-align:right"><strong>21,2%</strong> (p = 0,011)</td></tr></tbody></table>
+<p>O ganho se repete fora das normas do recorte (distrator 24,2 → 15,9; app 62,7 → 70,8). Custo: +14% de tokens por resposta. Nas 151 o modelo recusa menos (53 → 35%) e alucina um pouco mais (28,5 → 31,1%).</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_p1p2/RESULTS.md</code> (<code>train_p2_rlvr.py</code>, <code>verifier.py</code>); checkpoint <code>lfm3-p2-rlvr-v3/checkpoint-400</code>.</p>
+<h2>12. APK v1.1 — o v3s400 no app</h2>
+<p><strong>O que se fez.</strong> O LoRA foi mesclado no <code>f4-r32-ep2</code> e convertido para GGUF <strong>Q4_0</strong> com o llama.cpp do próprio app. Só o GGUF muda; motor, assets e UI ficam iguais. O APK v1.1 foi publicado no HF junto com os pesos.</p>
+<p><strong>Número.</strong> Smoke 20 operacionais: Q4_0 15/20 × bf16 16/20. No S24+: <strong>8/8 em texto (2 rodadas) e 8/8 em voz</strong> · 1º token visível <strong>8,1–8,3 s</strong>, o mesmo do f4 na mesma sessão (8,1 s) · total ~12 s · <strong>pico PSS 3,69 GB</strong>.</p>
+<p><strong>Artefato.</strong> <code>bench/lfm3_f9/RESULTS.md</code>. No HF <code>juniorrios/automobil-ultra-semnexo</code>: <code>v1.1-rlvr/</code> (safetensors + GGUF Q4_0) e <code>apk/cemig-assistente-v1.1-rlvr.apk</code>.</p>
+<hr>
+<h2>O que ficou de pé (a receita, em uma frase por camada)</h2>
+<ul>
+<li><strong>Modelo</strong>: LFM3-1.7B → SFT de robustez com o retriever real (dado em dobro) → SFT de tool-calling XML nativo → RLVR curto com reward verificável, num pool filtrado por aprendibilidade. Tudo com LoRA r32 só no MLP.</li>
+<li><strong>Busca</strong>: v4 (BM25 com expansão + 2 densos EmbeddingGemma, RRF) + gate 0,7/2× + manuais como aba com margem densa → top-5 → compressão para 50% preservando o código do item.</li>
+<li><strong>Aparelho</strong>: GGUF Q4_0 + llama.cpp v0.9.0 (KleidiAI) + Nemotron ASR, 100% offline, ~8 s até o 1º token e ~3,7 GB de RAM no Galaxy S24+.</li>
+</ul>
+<p>Limites honestos que seguem abertos: fala coloquial longa (as 151 ficam em 21%), multihop e metade das perguntas de manual sem o trecho recuperado. Detalhes e todos os caminhos testados e descartados estão em <a href="REPORT.html"><code>bench/REPORT.md</code></a>.</p>
+</main>
+</body>
+</html>

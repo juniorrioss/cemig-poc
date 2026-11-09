@@ -28,7 +28,9 @@ push_if_needed() {  # <local> <remote-name>
 # quant do LFM3 = o do build (-Pcemig.lfm3Quant, default Q4_0; q4_k_m é a opção qualidade);
 # LFM3_GGUF aponta o arquivo local (default ~/models-poc/lfm3_f7/f4-r32-ep2-$LFM3_QUANT.gguf)
 LFM3_QUANT="${LFM3_QUANT:-Q4_0}"
-push_if_needed "${LFM3_GGUF:-$HOME/models-poc/lfm3_f7/f4-r32-ep2-$LFM3_QUANT.gguf}" "lfm3-1.7b-f4-r32-ep2-$LFM3_QUANT.gguf"
+# LFM3_MODEL = checkpoint do build (-Pcemig.lfm3Model: v3s400 default desde a F9; f4-r32-ep2 = APK v1.0)
+LFM3_MODEL="${LFM3_MODEL:-v3s400}"
+push_if_needed "${LFM3_GGUF:-$HOME/models-poc/lfm3_f7/$LFM3_MODEL-$LFM3_QUANT.gguf}" "lfm3-1.7b-$LFM3_MODEL-$LFM3_QUANT.gguf"
 push_if_needed ~/models-poc/embed/embeddinggemma-300M-qat-Q4_0.gguf embeddinggemma-300M-qat-Q4_0.gguf
 if ! $A shell "test -f $EXT/nemotron-3.5-official-560ms-int8/encoder.int8.onnx"; then
   $A push ~/models-asr/nemotron-3.5-official-560ms-int8 $EXT/

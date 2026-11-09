@@ -4,8 +4,10 @@
 Conversor markdown→HTML mínimo em stdlib puro (sem pandoc/pip): cobre o
 subconjunto usado no REPORT.md — headers, tabelas, listas (ordenadas e não,
 com continuação indentada), blockquote, bold/italic/código inline, hr.
-Uso: python3 bench/report_html.py
+Uso: python3 bench/report_html.py            (REPORT.md -> REPORT.html)
+     python3 bench/report_html.py caminho    (CAMINHO.md -> CAMINHO.html, a linha vencedora)
 """
+import sys
 import html
 import re
 from pathlib import Path
@@ -50,6 +52,9 @@ def inline(text: str) -> str:
     text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
     text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"(?<!\w)\*([^*]+)\*(?!\w)", r"<em>\1</em>", text)
+    # links [texto](alvo); .md local vira .html (os dois documentos são gerados lado a lado)
+    text = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)",
+                  lambda m: f'<a href="{re.sub(r"[.]md$", ".html", m[2])}">{m[1]}</a>', text)
     return text
 
 
@@ -201,11 +206,18 @@ def convert(md: str) -> str:
     return "\n".join(x for x in out if x)
 
 
+DOCS = {
+    "report": (SRC, DST, "Relatório vivo — Exploração LFM3-1.7B (F0 → F4)"),
+    "caminho": (HERE / "CAMINHO.md", HERE / "CAMINHO.html",
+                "O caminho que deu certo — do LFM3-1.7B cru ao APK v1.1"),
+}
+
+
 def main():
-    md = SRC.read_text(encoding="utf-8")
+    src, dst, title = DOCS[sys.argv[1] if len(sys.argv) > 1 else "report"]
+    md = src.read_text(encoding="utf-8")
     body = convert(md)
-    title = "Relatório vivo — Exploração LFM3-1.7B (F0 → F4)"
-    DST.write_text(
+    dst.write_text(
         "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n"
         "<meta charset=\"utf-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
@@ -213,7 +225,7 @@ def main():
         f"<style>{CSS}</style>\n</head>\n<body>\n<main>\n{body}\n</main>\n</body>\n</html>\n",
         encoding="utf-8",
     )
-    print(f"gerado: {DST} ({DST.stat().st_size} bytes)")
+    print(f"gerado: {dst} ({dst.stat().st_size} bytes)")
 
 
 if __name__ == "__main__":

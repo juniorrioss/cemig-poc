@@ -42,7 +42,12 @@ import numpy as np
 # ------------------------------------------------------------------------------------
 MODEL_REPO = os.environ.get("CEMIG_MODEL_REPO", "juniorrios/cemig-lfm3-1.7b-nr")
 MODEL_REV = os.environ.get("CEMIG_MODEL_REV", None)
-GGUF_FILE = "cemig-lfm3-1.7b-nr-Q4_0.gguf"
+# Variante do modelo no repo. Padrão (raiz) = f4-r32-ep2 (APK v1.0). CEMIG_MODEL_VARIANT=v1.1-rlvr
+# usa a subpasta v1.1-rlvr/ = v3s400 (RLVR sobre o f4; modelo do APK v1.1): mesmo template,
+# tokenizer e ponto de operação, só os pesos mudam.
+MODEL_SUBFOLDER = os.environ.get("CEMIG_MODEL_VARIANT", "") or None
+GGUF_FILE = ("cemig-lfm3-1.7b-nr-v3s400-Q4_0.gguf" if MODEL_SUBFOLDER == "v1.1-rlvr"
+             else "cemig-lfm3-1.7b-nr-Q4_0.gguf")
 ASSETS_REPO = os.environ.get("CEMIG_ASSETS_REPO", "juniorrios/cemig-nr-retrieval-assets")
 ASSETS_REV = os.environ.get("CEMIG_ASSETS_REV", None)
 ASSET_FILES = ["config.json", "index.db", "manuals.db", "dense_text.bin", "dense_exponly.bin",
@@ -653,11 +658,12 @@ class HfLM:
         from transformers import AutoModelForCausalLM, AutoTokenizer
         self.torch = torch
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
-        self.tok = AutoTokenizer.from_pretrained(repo, trust_remote_code=True, revision=revision)
+        kw = {"subfolder": MODEL_SUBFOLDER} if MODEL_SUBFOLDER else {}
+        self.tok = AutoTokenizer.from_pretrained(repo, trust_remote_code=True, revision=revision, **kw)
         # sem device_map (dispensa a dependência accelerate)
         self.model = AutoModelForCausalLM.from_pretrained(
             repo, dtype=torch.bfloat16, trust_remote_code=True,
-            revision=revision).to(self.device).eval()
+            revision=revision, **kw).to(self.device).eval()
         self.gen = gen
         self.eos = self.tok.convert_tokens_to_ids(EOS_TOKEN)
         self.pad = self.tok.pad_token_id if self.tok.pad_token_id is not None else self.eos
@@ -697,8 +703,9 @@ class Pipeline:
         self.cfg = json.loads((self.assets / "config.json").read_text(encoding="utf-8"))
         self.embedder = Embedder(download_embedder(), n_threads=n_threads)
         self.rtv = Retriever(self.assets, self.cfg, self.embedder)
-        tok_json = hf_hub_download(MODEL_REPO, "tokenizer.json", revision=MODEL_REV)
-        self.template = hf_hub_download(MODEL_REPO, "chat_template.jinja", revision=MODEL_REV)
+        tok_json = hf_hub_download(MODEL_REPO, "tokenizer.json", subfolder=MODEL_SUBFOLDER, revision=MODEL_REV)
+        self.template = hf_hub_download(MODEL_REPO, "chat_template.jinja", subfolder=MODEL_SUBFOLDER,
+                                        revision=MODEL_REV)
         self.comp = Compressor(self.assets, self.rtv.chunks, tok_json)
         self.backend = backend
         self.lm = None
@@ -706,7 +713,8 @@ class Pipeline:
             return
         gen = self.cfg["generation"]
         if backend == "llama":
-            self.lm = LlamaCppLM(hf_hub_download(MODEL_REPO, GGUF_FILE, revision=MODEL_REV),
+            self.lm = LlamaCppLM(hf_hub_download(MODEL_REPO, GGUF_FILE, subfolder=MODEL_SUBFOLDER,
+                                                 revision=MODEL_REV),
                                  gen, n_gpu_layers=n_gpu_layers, n_threads=n_threads)
         elif backend == "hf":
             self.lm = HfLM(MODEL_REPO, gen, device=device, revision=MODEL_REV)
