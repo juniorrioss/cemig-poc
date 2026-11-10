@@ -8,6 +8,11 @@ verificável por regra, sem juiz no loop, sobre o `f4-r32-ep2`. Avaliação no r
 
 ## Resumo (relatório congelado para o prazo do capitão, 09/11 ~17h UTC)
 
+> **Atualização (`bench/lfm3_p2v5/`)**: pendências fechadas. Closed-book ×1536: base 8,3 ×
+> v3s400 7,3 (n.s., piso). Rollout P1 do SFT agora 100% medido (21.221 itens, descarte
+> 46,6%; `data/p1_report.json` regerado; os números de bandas abaixo são do parcial). Run v5
+> (pool v3 + contrato v4) **não supera o v3s400** (pareto: −9% tokens, distrator/e2e piores).
+
 - **P1 entregue como ferramenta** (`p1_pipeline.py`, 7 subcomandos reentrantes). Num universo de
   11.313 itens medidos (pool RLVR completo + 5.776 do SFT data2x/F4), **49,2% são descartados**:
   39,5% fáceis (acc ≥ 0,8, n=4) e 9,7% mal especificados (acc = 0 e o 27B também falha).

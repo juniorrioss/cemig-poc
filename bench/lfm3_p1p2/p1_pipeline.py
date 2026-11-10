@@ -70,7 +70,9 @@ def read_jsonl(p: Path) -> List[Dict[str, Any]]:
     if not p.exists():
         return []
     out = []
-    for l in p.read_text(encoding="utf-8").splitlines():
+    # split("\n") e NÃO splitlines(): splitlines quebra em U+2028/U+0085 que o
+    # json.dumps(ensure_ascii=False) deixa crus no texto gerado -> perdia linhas válidas
+    for l in p.read_text(encoding="utf-8").split("\n"):
         if l.strip():
             try:
                 out.append(json.loads(l))
@@ -479,10 +481,12 @@ def cmd_score(args) -> None:
     work = Path(args.work)
     items = {it["uid"]: it for it in load_universe(work, args.sources)}
     out = []
+    seen = set()
     for r in read_jsonl(work / f"rollouts_{args.tag}.jsonl"):
         it = items.get(r["uid"])
-        if it is None:
+        if it is None or r["uid"] in seen:   # re-rolado após linha perdida: 1ª vence
             continue
+        seen.add(r["uid"])
         vs = [verify(s["text"], it, stopped=s["stopped"], x=args.x) for s in r["samples"]]
         out.append({"uid": r["uid"], "source": it["source"], "family": it["family"],
                     "expect": it["expect"], "nr": it["nr"],

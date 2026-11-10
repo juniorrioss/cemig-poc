@@ -1,0 +1,130 @@
+{
+ "before_partial": {
+  "total": {
+   "n": 11313,
+   "easy_drop": 4469,
+   "productive": 5086,
+   "hard_keep": 661,
+   "ill_drop": 1097,
+   "zero_unchecked": 0,
+   "drop_pct": 49.2,
+   "mean_acc": 0.646
+  },
+  "by_source": {
+   "data2x": {
+    "n": 4524,
+    "easy_drop": 1497,
+    "productive": 1973,
+    "hard_keep": 376,
+    "ill_drop": 678,
+    "zero_unchecked": 0,
+    "drop_pct": 48.1,
+    "mean_acc": 0.567
+   },
+   "f4": {
+    "n": 1252,
+    "easy_drop": 658,
+    "productive": 502,
+    "hard_keep": 46,
+    "ill_drop": 46,
+    "zero_unchecked": 0,
+    "drop_pct": 56.2,
+    "mean_acc": 0.758
+   },
+   "rlvr": {
+    "n": 5537,
+    "easy_drop": 2314,
+    "productive": 2611,
+    "hard_keep": 239,
+    "ill_drop": 373,
+    "zero_unchecked": 0,
+    "drop_pct": 48.5,
+    "mean_acc": 0.686
+   }
+  }
+ },
+ "after_full": {
+  "total": {
+   "n": 21221,
+   "easy_drop": 7922,
+   "productive": 10074,
+   "hard_keep": 1255,
+   "ill_drop": 1970,
+   "zero_unchecked": 0,
+   "drop_pct": 46.6,
+   "mean_acc": 0.635
+  },
+  "by_source": {
+   "data2x": {
+    "n": 11151,
+    "easy_drop": 3903,
+    "productive": 5133,
+    "hard_keep": 807,
+    "ill_drop": 1308,
+    "zero_unchecked": 0,
+    "drop_pct": 46.7,
+    "mean_acc": 0.599
+   },
+   "f4": {
+    "n": 4533,
+    "easy_drop": 1705,
+    "productive": 2330,
+    "hard_keep": 209,
+    "ill_drop": 289,
+    "zero_unchecked": 0,
+    "drop_pct": 44.0,
+    "mean_acc": 0.663
+   },
+   "rlvr": {
+    "n": 5537,
+    "easy_drop": 2314,
+    "productive": 2611,
+    "hard_keep": 239,
+    "ill_drop": 373,
+    "zero_unchecked": 0,
+    "drop_pct": 48.5,
+    "mean_acc": 0.686
+   }
+  }
+ },
+ "length_bias": {
+  "data2x": {
+   "measured_before": {
+    "n": 4524,
+    "acc": 0.567,
+    "prompt_tok": 1610,
+    "keep_pct": 51.9
+   },
+   "new": {
+    "n": 6627,
+    "acc": 0.621,
+    "prompt_tok": 3204,
+    "keep_pct": 54.2
+   }
+  },
+  "f4": {
+   "measured_before": {
+    "n": 1252,
+    "acc": 0.758,
+    "prompt_tok": 1794,
+    "keep_pct": 43.8
+   },
+   "new": {
+    "n": 3281,
+    "acc": 0.627,
+    "prompt_tok": 4000,
+    "keep_pct": 60.7
+   }
+  }
+ },
+ "keep_rows": {
+  "p1_data2x_train": {
+   "before": 2349,
+   "after": 5940
+  },
+  "p1_f4_train": {
+   "before": 548,
+   "after": 2539
+  }
+ }
+}

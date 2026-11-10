@@ -1,0 +1,663 @@
+{
+  "base": {
+    "distrator": {
+      "n": 1536,
+      "approved": 66.0,
+      "gen_tok": 72.9,
+      "hallucination": 23.8,
+      "refused": 66.0,
+      "refusal_correct": 66.0,
+      "fora_recorte": {
+        "n": 1192,
+        "hallucination": 24.2,
+        "refusal_correct": 67.4
+      }
+    },
+    "ranking": {
+      "n": 1536,
+      "approved": 78.1,
+      "gen_tok": 100.9,
+      "hallucination": 12.1,
+      "refused": 7.1,
+      "refusal_undue": 7.1
+    },
+    "oraculo": {
+      "n": 1536,
+      "approved": 88.5,
+      "gen_tok": 96.0,
+      "hallucination": 5.9,
+      "refused": 4.9,
+      "refusal_undue": 4.9
+    },
+    "closed_book": {
+      "n": 1536,
+      "approved": 8.3,
+      "gen_tok": 59.5,
+      "hallucination": 67.5,
+      "refused": 1.0
+    },
+    "e2e": {
+      "n": 1536,
+      "approved": 64.1,
+      "hallucination": 14.1,
+      "refused": 17.9,
+      "gen_tok": 103.8,
+      "cite_gold_item": 64.3,
+      "fora_recorte": {
+        "n": 1192,
+        "approved": 62.7,
+        "hallucination": 15.0
+      }
+    },
+    "poc151": {
+      "n": 151,
+      "approved": 12.6,
+      "hallucination": 28.5,
+      "refused": 53.0,
+      "gen_tok": 84.0,
+      "cite_gold_item": null
+    },
+    "gen_tok_mean_all": 86.6,
+    "paired_vs_v3s400": {
+      "distrator": {
+        "approved": {
+          "a_yes_b_no": 43,
+          "a_no_b_yes": 152,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 177,
+          "a_no_b_yes": 52,
+          "sign_p": 0.0,
+          "n": 1536
+        }
+      },
+      "ranking": {
+        "approved": {
+          "a_yes_b_no": 85,
+          "a_no_b_yes": 139,
+          "sign_p": 0.0004,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 98,
+          "a_no_b_yes": 64,
+          "sign_p": 0.0093,
+          "n": 1536
+        }
+      },
+      "oraculo": {
+        "approved": {
+          "a_yes_b_no": 74,
+          "a_no_b_yes": 97,
+          "sign_p": 0.0922,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 61,
+          "a_no_b_yes": 52,
+          "sign_p": 0.4519,
+          "n": 1536
+        }
+      },
+      "closed_book": {
+        "approved": {
+          "a_yes_b_no": 70,
+          "a_no_b_yes": 54,
+          "sign_p": 0.1777,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 181,
+          "a_no_b_yes": 197,
+          "sign_p": 0.4404,
+          "n": 1536
+        }
+      },
+      "e2e": {
+        "approved": {
+          "a_yes_b_no": 59,
+          "a_no_b_yes": 177,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 88,
+          "a_no_b_yes": 102,
+          "sign_p": 0.3456,
+          "n": 1536
+        }
+      },
+      "poc151": {
+        "approved": {
+          "a_yes_b_no": 5,
+          "a_no_b_yes": 18,
+          "sign_p": 0.0106,
+          "n": 151
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 18,
+          "a_no_b_yes": 22,
+          "sign_p": 0.6358,
+          "n": 151
+        }
+      }
+    }
+  },
+  "v3s400": {
+    "distrator": {
+      "n": 1536,
+      "approved": 73.1,
+      "gen_tok": 69.5,
+      "hallucination": 15.7,
+      "refused": 73.1,
+      "refusal_correct": 73.1,
+      "fora_recorte": {
+        "n": 1192,
+        "hallucination": 15.9,
+        "refusal_correct": 73.9
+      }
+    },
+    "ranking": {
+      "n": 1536,
+      "approved": 81.6,
+      "gen_tok": 108.6,
+      "hallucination": 9.9,
+      "refused": 6.2,
+      "refusal_undue": 6.2
+    },
+    "oraculo": {
+      "n": 1536,
+      "approved": 90.0,
+      "gen_tok": 105.1,
+      "hallucination": 5.3,
+      "refused": 3.3,
+      "refusal_undue": 3.3
+    },
+    "closed_book": {
+      "n": 1536,
+      "approved": 7.3,
+      "gen_tok": 64.6,
+      "hallucination": 68.6,
+      "refused": 0.2
+    },
+    "e2e": {
+      "n": 1536,
+      "approved": 71.8,
+      "hallucination": 15.0,
+      "refused": 7.2,
+      "gen_tok": 118.0,
+      "cite_gold_item": 69.2,
+      "fora_recorte": {
+        "n": 1192,
+        "approved": 70.8,
+        "hallucination": 15.7
+      }
+    },
+    "poc151": {
+      "n": 151,
+      "approved": 21.2,
+      "hallucination": 31.1,
+      "refused": 35.1,
+      "gen_tok": 104.0,
+      "cite_gold_item": null
+    },
+    "gen_tok_mean_all": 93.2,
+    "paired_vs_base": {
+      "distrator": {
+        "approved": {
+          "a_yes_b_no": 152,
+          "a_no_b_yes": 43,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 52,
+          "a_no_b_yes": 177,
+          "sign_p": 0.0,
+          "n": 1536
+        }
+      },
+      "ranking": {
+        "approved": {
+          "a_yes_b_no": 139,
+          "a_no_b_yes": 85,
+          "sign_p": 0.0004,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 64,
+          "a_no_b_yes": 98,
+          "sign_p": 0.0093,
+          "n": 1536
+        }
+      },
+      "oraculo": {
+        "approved": {
+          "a_yes_b_no": 97,
+          "a_no_b_yes": 74,
+          "sign_p": 0.0922,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 52,
+          "a_no_b_yes": 61,
+          "sign_p": 0.4519,
+          "n": 1536
+        }
+      },
+      "closed_book": {
+        "approved": {
+          "a_yes_b_no": 54,
+          "a_no_b_yes": 70,
+          "sign_p": 0.1777,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 197,
+          "a_no_b_yes": 181,
+          "sign_p": 0.4404,
+          "n": 1536
+        }
+      },
+      "e2e": {
+        "approved": {
+          "a_yes_b_no": 177,
+          "a_no_b_yes": 59,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 102,
+          "a_no_b_yes": 88,
+          "sign_p": 0.3456,
+          "n": 1536
+        }
+      },
+      "poc151": {
+        "approved": {
+          "a_yes_b_no": 18,
+          "a_no_b_yes": 5,
+          "sign_p": 0.0106,
+          "n": 151
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 22,
+          "a_no_b_yes": 18,
+          "sign_p": 0.6358,
+          "n": 151
+        }
+      }
+    }
+  },
+  "v4s400": {
+    "distrator": {
+      "n": 1536,
+      "approved": 75.9,
+      "gen_tok": 62.6,
+      "hallucination": 13.7,
+      "refused": 75.9,
+      "refusal_correct": 75.9,
+      "fora_recorte": {
+        "n": 1192,
+        "hallucination": 14.0,
+        "refusal_correct": 76.8
+      }
+    },
+    "e2e": {
+      "n": 1536,
+      "approved": 70.4,
+      "hallucination": 14.0,
+      "refused": 9.6,
+      "gen_tok": 106.0,
+      "cite_gold_item": 67.4,
+      "fora_recorte": {
+        "n": 1192,
+        "approved": 69.7,
+        "hallucination": 14.1
+      }
+    },
+    "poc151": {
+      "n": 151,
+      "approved": 17.9,
+      "hallucination": 25.8,
+      "refused": 45.7,
+      "gen_tok": 85.9,
+      "cite_gold_item": null
+    },
+    "gen_tok_mean_all": 84.3,
+    "paired_vs_base": {
+      "distrator": {
+        "approved": {
+          "a_yes_b_no": 190,
+          "a_no_b_yes": 38,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 48,
+          "a_no_b_yes": 204,
+          "sign_p": 0.0,
+          "n": 1536
+        }
+      },
+      "e2e": {
+        "approved": {
+          "a_yes_b_no": 152,
+          "a_no_b_yes": 56,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 85,
+          "a_no_b_yes": 87,
+          "sign_p": 0.9393,
+          "n": 1536
+        }
+      },
+      "poc151": {
+        "approved": {
+          "a_yes_b_no": 15,
+          "a_no_b_yes": 7,
+          "sign_p": 0.1338,
+          "n": 151
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 14,
+          "a_no_b_yes": 18,
+          "sign_p": 0.5966,
+          "n": 151
+        }
+      }
+    },
+    "paired_vs_v3s400": {
+      "distrator": {
+        "approved": {
+          "a_yes_b_no": 47,
+          "a_no_b_yes": 4,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 43,
+          "a_no_b_yes": 74,
+          "sign_p": 0.0053,
+          "n": 1536
+        }
+      },
+      "e2e": {
+        "approved": {
+          "a_yes_b_no": 53,
+          "a_no_b_yes": 75,
+          "sign_p": 0.063,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 66,
+          "a_no_b_yes": 82,
+          "sign_p": 0.2174,
+          "n": 1536
+        }
+      },
+      "poc151": {
+        "approved": {
+          "a_yes_b_no": 4,
+          "a_no_b_yes": 9,
+          "sign_p": 0.2668,
+          "n": 151
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 12,
+          "a_no_b_yes": 20,
+          "sign_p": 0.2153,
+          "n": 151
+        }
+      }
+    }
+  },
+  "v5s400": {
+    "distrator": {
+      "n": 1536,
+      "approved": 72.3,
+      "gen_tok": 66.2,
+      "hallucination": 17.5,
+      "refused": 72.3,
+      "refusal_correct": 72.3,
+      "fora_recorte": {
+        "n": 1192,
+        "hallucination": 17.4,
+        "refusal_correct": 73.2
+      }
+    },
+    "ranking": {
+      "n": 1536,
+      "approved": 81.2,
+      "gen_tok": 103.4,
+      "hallucination": 10.2,
+      "refused": 6.1,
+      "refusal_undue": 6.1
+    },
+    "oraculo": {
+      "n": 1536,
+      "approved": 89.6,
+      "gen_tok": 100.5,
+      "hallucination": 5.1,
+      "refused": 3.4,
+      "refusal_undue": 3.4
+    },
+    "closed_book": {
+      "n": 1536,
+      "approved": 7.7,
+      "gen_tok": 60.6,
+      "hallucination": 69.3,
+      "refused": 0.3
+    },
+    "e2e": {
+      "n": 1536,
+      "approved": 70.3,
+      "hallucination": 15.0,
+      "refused": 8.8,
+      "gen_tok": 107.2,
+      "cite_gold_item": 68.9,
+      "fora_recorte": {
+        "n": 1192,
+        "approved": 69.3,
+        "hallucination": 15.5
+      }
+    },
+    "poc151": {
+      "n": 151,
+      "approved": 19.2,
+      "hallucination": 27.2,
+      "refused": 42.4,
+      "gen_tok": 86.8,
+      "cite_gold_item": null
+    },
+    "gen_tok_mean_all": 87.6,
+    "paired_vs_base": {
+      "distrator": {
+        "approved": {
+          "a_yes_b_no": 147,
+          "a_no_b_yes": 51,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 67,
+          "a_no_b_yes": 164,
+          "sign_p": 0.0,
+          "n": 1536
+        }
+      },
+      "ranking": {
+        "approved": {
+          "a_yes_b_no": 135,
+          "a_no_b_yes": 87,
+          "sign_p": 0.0015,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 67,
+          "a_no_b_yes": 97,
+          "sign_p": 0.0232,
+          "n": 1536
+        }
+      },
+      "oraculo": {
+        "approved": {
+          "a_yes_b_no": 92,
+          "a_no_b_yes": 74,
+          "sign_p": 0.1869,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 46,
+          "a_no_b_yes": 59,
+          "sign_p": 0.2414,
+          "n": 1536
+        }
+      },
+      "closed_book": {
+        "approved": {
+          "a_yes_b_no": 58,
+          "a_no_b_yes": 68,
+          "sign_p": 0.4228,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 208,
+          "a_no_b_yes": 180,
+          "sign_p": 0.1704,
+          "n": 1536
+        }
+      },
+      "e2e": {
+        "approved": {
+          "a_yes_b_no": 149,
+          "a_no_b_yes": 54,
+          "sign_p": 0.0,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 85,
+          "a_no_b_yes": 72,
+          "sign_p": 0.3382,
+          "n": 1536
+        }
+      },
+      "poc151": {
+        "approved": {
+          "a_yes_b_no": 16,
+          "a_no_b_yes": 6,
+          "sign_p": 0.0525,
+          "n": 151
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 15,
+          "a_no_b_yes": 17,
+          "sign_p": 0.8601,
+          "n": 151
+        }
+      }
+    },
+    "paired_vs_v3s400": {
+      "distrator": {
+        "approved": {
+          "a_yes_b_no": 13,
+          "a_no_b_yes": 26,
+          "sign_p": 0.0533,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 68,
+          "a_no_b_yes": 40,
+          "sign_p": 0.0091,
+          "n": 1536
+        }
+      },
+      "ranking": {
+        "approved": {
+          "a_yes_b_no": 77,
+          "a_no_b_yes": 83,
+          "sign_p": 0.6928,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 76,
+          "a_no_b_yes": 72,
+          "sign_p": 0.8053,
+          "n": 1536
+        }
+      },
+      "oraculo": {
+        "approved": {
+          "a_yes_b_no": 50,
+          "a_no_b_yes": 55,
+          "sign_p": 0.6965,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 40,
+          "a_no_b_yes": 44,
+          "sign_p": 0.7436,
+          "n": 1536
+        }
+      },
+      "closed_book": {
+        "approved": {
+          "a_yes_b_no": 63,
+          "a_no_b_yes": 57,
+          "sign_p": 0.6483,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 191,
+          "a_no_b_yes": 179,
+          "sign_p": 0.5675,
+          "n": 1536
+        }
+      },
+      "e2e": {
+        "approved": {
+          "a_yes_b_no": 50,
+          "a_no_b_yes": 73,
+          "sign_p": 0.0469,
+          "n": 1536
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 70,
+          "a_no_b_yes": 71,
+          "sign_p": 1.0,
+          "n": 1536
+        }
+      },
+      "poc151": {
+        "approved": {
+          "a_yes_b_no": 1,
+          "a_no_b_yes": 4,
+          "sign_p": 0.375,
+          "n": 151
+        },
+        "hallucination_worse_better": {
+          "a_yes_b_no": 6,
+          "a_no_b_yes": 12,
+          "sign_p": 0.2379,
+          "n": 151
+        }
+      }
+    }
+  },
+  "_promotion": {
+    "checks": {
+      "distrator_halluc_le": false,
+      "distrator_halluc_not_sig_worse": false,
+      "e2e_approved_ge": false,
+      "e2e_not_sig_worse": false,
+      "poc151_approved_ge": false,
+      "poc151_not_sig_worse": true,
+      "concision_better": true
+    },
+    "promote_strict": false
+  }
+}
