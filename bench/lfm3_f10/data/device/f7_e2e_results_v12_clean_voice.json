@@ -1,0 +1,49 @@
+{
+ "model": "lfm3-1.7b-v3s400-Q4_0.gguf",
+ "asr": "nemotron",
+ "peak_pss_mb": 2539.671875,
+ "cases": [
+  {
+   "id": "8b8bd5e927d9aeca3914d66b",
+   "kind": "norma",
+   "question": "Estou supervisionando a manutenção em uma escada fixa vertical e preciso decidir se é obrigatório o uso de sistema de proteção contra quedas. Em que situação específica essa exigência entra em vigor?",
+   "history_turns": 0,
+   "mode": "voz",
+   "audio_s": 12.744,
+   "asr_ms": 1867,
+   "transcription": "Estou supervisionando a manutenção em uma escada fixa vertical e preciso decidir se é obrigatório uso de sistema de proteção contra quedas em que situação específica essa exigência entra em vigor",
+   "called_tool": true,
+   "tool_consulta": "",
+   "tool_nr": "",
+   "decision_ms": 3123,
+   "final_answer": "Sim, é obrigatório o uso de sistema de proteção individual contra quedas em escada fixa vertical quando a altura for superior a 2 m, conforme NR-22 item 22.10.2. A proteção deve ser em conformidade com a NR-35. Se a escada for fixa vertical e utilizada para saída em caso de emergência, ela fica dispensada do atendimento previsto no item 22.10.2.",
+   "chunks": [
+    "1996 nr-35 Anexo Iii",
+    "1998 nr-35 Anexo Iii",
+    "1994 nr-35 Anexo Iii",
+    "1145 nr-22 22.10",
+    "986 nr-18 18.8.6"
+   ],
+   "n_manual_chunks": 0,
+   "tool_context": "[1] (nr-35 - Anexo Iii - Anexo Iii da Nr-35 Escadas de Uso Individual (aprovado Pela Portaria MTE Nº 1.680, de 02 de Outubro de 2025)):\nNR-35 · Anexo Iii Anexo Iii da Nr-35 Escadas de Uso Individual (aprovado Pela Portaria MTE Nº 1.680, de 02 de Outubro de 2025) — (item 5.2.1.1) f) possuir sistema de proteção contra quedas (SPQ) em conformidade com o disposto no item 35.6 e demais subitens da NR-35; e (Vide prazo de implementação - Art. 7º, da Portaria MTE nº 1.259, de 15 de julho de 2026) g) possuir projeto elaborado por profissional legalmente habilitado, considerando dimensões, resistências, segurança nos acessos e SPQ selecionado. 5.2.1.1.1 Nas escadas fixas verticais utilizadas exclusivamente como meio de acesso deve ser realizada análise de risco específica para avaliar a necessidade da adoção de SPIQ considerando a finalidade da escada, a frequência de uso e suas características construtivas. (Alterado pela Portaria MTE nº 1.259, de 15 de julho de 2026 - Vide prazo de implementação - Art. 7º) 5.2.1.1.2 Quando a análise de risco específica indicar a necessidade de adoção de SPIQ, a seleção, a inspeção, a definição da forma e as limitações de uso do SPIQ devem ser estabelecidas por profissional qualificado ou profissional legalmente habilitado em segurança do trabalho. (Alterado pela Portaria MTE nº 1.259, de 15 de julho de 2026)\n\n[2] (nr-22 - 22.10 - Escadas):\nNR-22 · 22.10 Escadas — 22.10.2 É obrigatória a utilização de sistemas de proteção individual contra quedas, em conformidade com a NR-35, em escadas fixas verticais com altura superior a 2 m (dois metros). 22.10.2.1 Escadas fixas verticais utilizadas para saída em caso de emergência ficam dispensadas do atendimento previsto no item 22.10.2. (Inserido pela Portaria MTE nº 105, de 29 de janeiro de 2026)",
+   "gate": "soft",
+   "nr_top1": "nr-35",
+   "nr_top1_prob": 0.1253143846988678,
+   "retrieval": "op",
+   "manual_on": false,
+   "budget": 579,
+   "prompt_tokens": 1185,
+   "search_ms": 86,
+   "dense_encode_ms": 0,
+   "compress_ms": 7,
+   "ttft_ms": 4129,
+   "decode_ms": 3316,
+   "completion_tokens": 94,
+   "tok_per_s": 28.35,
+   "total_ms": 10654,
+   "first_visible_token_ms": 7338,
+   "total_with_asr_ms": 12521,
+   "pss_mb_after": 2539.671875
+  }
+ ]
+}
