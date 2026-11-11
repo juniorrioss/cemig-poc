@@ -4,6 +4,8 @@
     <!-- Permissões para gravação de áudio no microfone do dispositivo para ASR offline -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- f10-dist: SÓ para o download dos modelos na configuração inicial; o uso é 100% offline. -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"

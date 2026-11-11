@@ -160,11 +160,14 @@ fun MainScreen(
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                if (!uiState.isModelReady) {
+                val setup = uiState.setup
+                if (setup != null) {
+                    item { SetupCard(setup = setup, onStart = { viewModel.startModelDownload() }) }
+                } else if (!uiState.isModelReady && uiState.stage != PipelineStage.ERROR) {
                     item { LoadingCard(message = uiState.modelStatusMessage) }
                 }
 
-                if (uiState.history.isEmpty() && !turnActive) {
+                if (setup == null && uiState.history.isEmpty() && !turnActive) {
                     item {
                         EmptyState(
                             examples = uiState.exampleQuestions,
@@ -741,6 +744,70 @@ private fun StatusBubble(label: String) {
                 fontWeight = FontWeight.Bold,
                 fontSize = 14.sp
             )
+        }
+    }
+}
+
+// -------------------------------------------------------------------------
+// f10-dist: configuração inicial — baixa os modelos que não vêm no APK (instalação limpa).
+// -------------------------------------------------------------------------
+@Composable
+private fun SetupCard(setup: SetupUiState, onStart: () -> Unit) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(16.dp))
+            .background(CemigMuted)
+            .border(1.dp, CemigBorder, RoundedCornerShape(16.dp))
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp)
+    ) {
+        Text(
+            "Configuração inicial",
+            color = CemigForeground, fontFamily = InterFontFamily, fontWeight = FontWeight.Bold, fontSize = 18.sp
+        )
+        Text(
+            "Para funcionar 100% offline, o app precisa baixar uma única vez os modelos de IA " +
+                "(${br.org.ceia.cemigpoc.data.model.fmtGb(setup.totalBytes)}). Use Wi-Fi. Depois disso funciona em modo avião.",
+            color = CemigMutedFg, fontFamily = InterFontFamily, fontSize = 13.sp, lineHeight = 19.sp
+        )
+        setup.files.forEach {
+            Text("• $it", color = CemigForeground, fontFamily = InterFontFamily, fontSize = 13.sp)
+        }
+        Text(
+            "Espaço livre: ${br.org.ceia.cemigpoc.data.model.fmtGb(setup.freeBytes)}",
+            color = CemigMutedFg, fontFamily = InterFontFamily, fontSize = 12.sp
+        )
+        if (setup.running) {
+            val frac = if (setup.totalBytes > 0) setup.doneBytes.toFloat() / setup.totalBytes else 0f
+            androidx.compose.material3.LinearProgressIndicator(
+                progress = { frac.coerceIn(0f, 1f) },
+                modifier = Modifier.fillMaxWidth().height(8.dp).clip(RoundedCornerShape(4.dp)),
+                color = CemigPrimary,
+                trackColor = CemigBorder
+            )
+            Text(
+                "${(frac * 100).toInt()}% · ${br.org.ceia.cemigpoc.data.model.fmtGb(setup.doneBytes)} de " +
+                    "${br.org.ceia.cemigpoc.data.model.fmtGb(setup.totalBytes)}\nBaixando: ${setup.currentLabel}",
+                color = CemigForeground, fontFamily = InterFontFamily, fontSize = 13.sp, lineHeight = 19.sp
+            )
+            Text(
+                "Mantenha o app aberto. Se a conexão cair, o download continua de onde parou.",
+                color = CemigMutedFg, fontFamily = InterFontFamily, fontSize = 12.sp
+            )
+        } else {
+            setup.error?.let { ErrorBanner(message = it) }
+            androidx.compose.material3.Button(
+                onClick = onStart,
+                modifier = Modifier.fillMaxWidth(),
+                colors = androidx.compose.material3.ButtonDefaults.buttonColors(containerColor = CemigPrimary)
+            ) {
+                Text(
+                    if (setup.error != null) "Tentar novamente" else
+                        "Baixar modelos (${br.org.ceia.cemigpoc.data.model.fmtGb(setup.remainingBytes)})",
+                    color = Color.White, fontFamily = InterFontFamily, fontWeight = FontWeight.Bold
+                )
+            }
         }
     }
 }

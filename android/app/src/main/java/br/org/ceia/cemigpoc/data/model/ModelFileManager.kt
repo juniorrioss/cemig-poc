@@ -93,18 +93,32 @@ class ModelFileManager(private val context: Context) {
      * joiner.int8.onnx + tokens.txt. Retorna null se ausente (o app cai no Whisper).
      */
     fun getNemotronModelDir(): File? {
-        val dir = context.getExternalFilesDir(null)?.resolve(NEMOTRON_DIR_NAME) ?: return null
-        val ok = dir.isDirectory &&
-            File(dir, "encoder.int8.onnx").exists() &&
-            File(dir, "decoder.int8.onnx").exists() &&
-            File(dir, "joiner.int8.onnx").exists() &&
-            File(dir, "tokens.txt").exists()
-        if (!ok) {
-            Log.w(TAG, "Nemotron ausente/incompleto em ${dir.absolutePath}")
-            return null
+        // f10-dist: override externo (adb push) OU filesDir (baixado pela tela de setup).
+        val candidates = listOfNotNull(
+            context.getExternalFilesDir(null)?.resolve(NEMOTRON_DIR_NAME),
+            File(context.filesDir, NEMOTRON_DIR_NAME)
+        )
+        for (dir in candidates) {
+            val ok = dir.isDirectory &&
+                File(dir, "encoder.int8.onnx").exists() &&
+                File(dir, "decoder.int8.onnx").exists() &&
+                File(dir, "joiner.int8.onnx").exists() &&
+                File(dir, "tokens.txt").exists()
+            if (ok) {
+                Log.i(TAG, "Nemotron encontrado em ${dir.absolutePath}")
+                return dir
+            }
         }
-        Log.i(TAG, "Nemotron encontrado em ${dir.absolutePath}")
-        return dir
+        Log.w(TAG, "Nemotron ausente/incompleto em ${candidates.joinToString { it.absolutePath }}")
+        return null
+    }
+
+    /** true se o arquivo existe (override externo, filesDir ou assets do APK) — sem copiar nada. */
+    fun isAvailable(fileName: String): Boolean {
+        val ext = context.getExternalFilesDir(null)?.resolve(fileName)
+        if (ext != null && ext.length() > 0) return true
+        if (File(context.filesDir, fileName).length() > 0) return true
+        return runCatching { context.assets.open(fileName).close(); true }.getOrDefault(false)
     }
 
     /**
@@ -175,9 +189,20 @@ class ModelFileManager(private val context: Context) {
             Log.i(TAG, "Cópia concluída: ${internalFile.absolutePath} (${internalFile.length()} bytes)")
             onProgress?.invoke(1.0f)
             return internalFile
+        } catch (e: java.io.FileNotFoundException) {
+            internalFile.delete()
+            Log.e(TAG, "Arquivo $fileName ausente (nem externo, nem interno, nem no APK)", e)
+            throw MissingModelException(fileName)
         } catch (e: Exception) {
+            internalFile.delete()
             Log.e(TAG, "Erro ao copiar asset $fileName", e)
             throw e
         }
     }
 }
+
+/** Peso obrigatório ausente no aparelho: mensagem orientada ao operário (não "motor não carrega"). */
+class MissingModelException(val fileName: String) : java.io.IOException(
+    "Arquivo de modelo ausente: $fileName. Abra o app com internet para baixar os modelos " +
+        "(tela de configuração inicial)."
+)

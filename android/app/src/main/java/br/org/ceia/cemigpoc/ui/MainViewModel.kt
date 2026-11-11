@@ -57,7 +57,23 @@ data class MainUiState(
     // null = modelo ainda decidindo; true = chamou buscar_norma; false = reuso/resposta direta.
     val toolCalled: Boolean? = null,
     // F8 (UI): true entre a decisão de buscar e a chegada dos trechos (busca em andamento).
-    val searchInProgress: Boolean = false
+    val searchInProgress: Boolean = false,
+    // f10-dist: tela de setup de primeiro uso (download dos pesos). null = não é necessária.
+    val setup: SetupUiState? = null,
+    // f10-dist: ASR carregado? (o app funciona por texto mesmo se a voz falhar)
+    val isAsrReady: Boolean = false
+)
+
+/** Estado da tela de setup (download dos modelos que não vêm no APK). */
+data class SetupUiState(
+    val files: List<String>,
+    val totalBytes: Long,
+    val remainingBytes: Long,
+    val freeBytes: Long,
+    val running: Boolean = false,
+    val currentLabel: String = "",
+    val doneBytes: Long = 0L,
+    val error: String? = null
 )
 
 /** Pergunta-exemplo clicável (kind = norma | manual; source = norma/manual esperado). */
@@ -73,6 +89,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val uiState: StateFlow<MainUiState> = _uiState.asStateFlow()
 
     private val fileManager = ModelFileManager(application.applicationContext)
+    private val downloader = br.org.ceia.cemigpoc.data.model.ModelDownloader(application.applicationContext)
+    private var setupJob: kotlinx.coroutines.Job? = null
     // Estágio 1 do pipeline híbrido: classificador leve de NR (TF-IDF+LogReg, Kotlin puro).
     private val nrClassifier = NrClassifier.load(application.applicationContext)
     // Retrieval v3: encoder de embeddings on-device + busca densa (fusão RRF 3-sinais).
@@ -185,8 +203,74 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
 
-        // Inicialização assíncrona dos motores nativos (Whisper Base Q5_1 + Liquid LFM2.5)
-        viewModelScope.launch(Dispatchers.IO) {
+        // f10-dist: instalação limpa (APK do HF) não tem os pesos grandes -> tela de setup.
+        val missing = downloader.missing()
+        if (missing.isEmpty()) {
+            viewModelScope.launch(Dispatchers.IO) { loadEngines() }
+        } else {
+            Log.i(TAG, "Setup necessário: faltam ${missing.map { it.relPath }}")
+            showSetup(missing, error = null)
+        }
+
+        // Observa eventos contínuos do ASR. Trava anti-reprocessamento do S24+ (poc-asr-fix):
+        // eventos com recordingId != gravação corrente são descartados; STATUS só muda o estágio;
+        // o Final NÃO dispara o pipeline (o operário revisa e confirma). Coleta os DOIS motores.
+        viewModelScope.launch {
+            realAsrEngine.events.collect { event -> handleAsrEvent(event) }
+        }
+        nemotronAsrEngine?.let { neng ->
+            viewModelScope.launch {
+                neng.events.collect { event -> handleAsrEvent(event) }
+            }
+        }
+    }
+
+    private fun showSetup(missing: List<br.org.ceia.cemigpoc.data.model.RequiredModel>, error: String?) {
+        _uiState.update {
+            it.copy(
+                setup = SetupUiState(
+                    files = missing.map { m -> "${m.label} (${br.org.ceia.cemigpoc.data.model.fmtGb(m.size)})" },
+                    totalBytes = missing.sumOf { m -> m.size },
+                    remainingBytes = downloader.remainingBytes(missing),
+                    freeBytes = downloader.freeBytes(),
+                    error = error
+                ),
+                modelStatusMessage = "Configuração inicial: baixar modelos"
+            )
+        }
+    }
+
+    /** Tela de setup: baixa os pesos faltantes (retoma .part, verifica SHA-256) e carrega os motores. */
+    fun startModelDownload() {
+        if (setupJob?.isActive == true) return
+        setupJob = viewModelScope.launch(Dispatchers.IO) {
+            val missing = downloader.missing()
+            _uiState.update { it.copy(setup = it.setup?.copy(running = true, error = null)) }
+            try {
+                downloader.downloadAll(missing) { _, m, done, total ->
+                    _uiState.update {
+                        it.copy(setup = it.setup?.copy(running = true, currentLabel = m.label, doneBytes = done, totalBytes = total))
+                    }
+                }
+                val still = downloader.missing()
+                if (still.isNotEmpty()) {
+                    showSetup(still, "Ainda faltam arquivos: ${still.joinToString { it.label }}")
+                    return@launch
+                }
+                _uiState.update { it.copy(setup = null) }
+                loadEngines()
+            } catch (e: kotlinx.coroutines.CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                Log.e(TAG, "Falha no download dos modelos", e)
+                showSetup(downloader.missing(), e.message ?: e.toString())
+            }
+        }
+    }
+
+    /** Inicialização dos motores nativos (ASR + LLM + encoder + manuais). */
+    private suspend fun loadEngines() {
+        run {
             try {
                 _uiState.update { it.copy(modelStatusMessage = "Preparando índice de normas (36 NRs)...") }
                 val dbFile = fileManager.getFts5DatabaseFile()
@@ -211,7 +295,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
                 // Whisper Base como motor principal (default) ou fallback do Nemotron.
                 val whisperOk: Boolean
-                if (activeAsrEngine === realAsrEngine) {
+                if (activeAsrEngine === realAsrEngine && useNemotron && !fileManager.isAvailable(ModelFileManager.ASR_MODEL_NAME)) {
+                    // f10-dist: build Nemotron sem os ONNX e sem o Whisper (fallback não é distribuído).
+                    Log.e(TAG, "Nemotron ausente/falhou e ${ModelFileManager.ASR_MODEL_NAME} ausente: voz indisponível")
+                    whisperOk = false
+                } else if (activeAsrEngine === realAsrEngine) {
                     _uiState.update { it.copy(modelStatusMessage = "Carregando modelo ASR Whisper Base Q5_1...") }
                     val asrFile = fileManager.getAsrModelFile { progress ->
                         _uiState.update {
@@ -243,13 +331,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     realLlamaEngine.engine.minP = 0f
                     realLlamaEngine.engine.keepPrefix = true
                 }
+                if (!llmFile.exists() || llmFile.length() == 0L) throw br.org.ceia.cemigpoc.data.model.MissingModelException(ModelFileManager.LLM_MODEL_NAME)
                 val llmOk = realLlamaEngine.engine.load(
                     modelPath = llmFile.absolutePath,
                     ctxSize = ctxSize,
                     nThreads = 6
                 )
                 if (!llmOk) {
-                    Log.e(TAG, "Falha ao inicializar LFM2.5")
+                    Log.e(TAG, "Falha ao inicializar o LLM em ${llmFile.absolutePath} (${llmFile.length()} bytes)")
                 }
                 Log.i(TAG, "Sintetizador: ${ModelFileManager.LLM_MODEL_NAME} (thinking-OFF=${BuildConfig.SUPPRESS_REASONING})")
 
@@ -297,43 +386,41 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 val asrLabel = if (activeAsrEngine === nemotronAsrEngine) "Nemotron 3.5" else "Whisper"
+                // f10-dist: o app fica pronto se o LLM carregou (texto funciona); sem ASR só a voz
+                // fica indisponível, com mensagem explícita do que falta.
+                val failMsg = when {
+                    !llmOk -> "O modelo de linguagem (${ModelFileManager.LLM_MODEL_NAME}) não carregou. " +
+                        "O arquivo pode estar incompleto: limpe os dados do app e abra-o com internet para baixar de novo."
+                    !anyAsrOk -> "Voz indisponível: modelo de reconhecimento de fala ausente ou inválido " +
+                        "(${ModelFileManager.NEMOTRON_DIR_NAME}). Digite a pergunta, ou limpe os dados do app e abra-o com internet para baixar de novo."
+                    else -> null
+                }
                 _uiState.update {
                     it.copy(
-                        isModelReady = anyAsrOk && llmOk,
-                        modelStatusMessage = if (anyAsrOk && llmOk) "Pronto ($asrLabel + ${if (useLfm3) "LFM3 1.7B" else "LFM2.5"})" else "Falha no carregamento dos modelos",
-                        stage = PipelineStage.IDLE
+                        isModelReady = llmOk,
+                        isAsrReady = anyAsrOk,
+                        modelStatusMessage = if (llmOk) "Pronto ($asrLabel + ${if (useLfm3) "LFM3 1.7B" else "LFM2.5"})" else "Falha no carregamento dos modelos",
+                        stage = if (failMsg != null) PipelineStage.ERROR else PipelineStage.IDLE,
+                        errorMessage = failMsg
                     )
                 }
                 Log.i(TAG, "Inicialização dos motores concluída com sucesso")
             } catch (e: Exception) {
                 Log.e(TAG, "Erro na inicialização dos motores", e)
+                // f10-dist: peso ausente -> volta para a tela de setup (com o motivo), não um erro opaco.
+                val missingNow = downloader.missing()
+                if (missingNow.isNotEmpty()) {
+                    showSetup(missingNow, e.message)
+                    return
+                }
                 _uiState.update {
                     it.copy(
                         isModelReady = false,
                         modelStatusMessage = "Erro: ${e.message}",
-                        errorMessage = e.message
+                        stage = PipelineStage.ERROR,
+                        errorMessage = "Falha ao carregar os modelos: ${e.message}"
                     )
                 }
-            }
-        }
-
-        // Observa eventos contínuos do ASR.
-        //
-        // Correção do bug do S24+ (task poc-asr-fix):
-        // 1) Descarta qualquer evento cujo recordingId != gravação corrente, então uma
-        //    transcrição antiga NUNCA é reaplicada nem reprocessada.
-        // 2) STATUS (Status) só mexe no indicador de estágio, jamais em currentQuestionInput.
-        // 3) CONTEÚDO (Partial/Final) vai para currentQuestionInput; o Final NÃO dispara
-        //    processQuestion automaticamente — o operário revisa/edita e confirma (botão
-        //    Enviar / submitQuestion). Assim a resposta sempre corresponde à fala atual.
-        // Coleta os eventos dos DOIS motores (só o ativo emite, pois só nele chamamos
-        // startListening). Assim independe de qual motor o init resolveu (Nemotron/Whisper).
-        viewModelScope.launch {
-            realAsrEngine.events.collect { event -> handleAsrEvent(event) }
-        }
-        nemotronAsrEngine?.let { neng ->
-            viewModelScope.launch {
-                neng.events.collect { event -> handleAsrEvent(event) }
             }
         }
     }
@@ -414,6 +501,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun startPushToTalk() {
         if (!_uiState.value.isModelReady) return
+        if (!_uiState.value.isAsrReady) {
+            _uiState.update {
+                it.copy(stage = PipelineStage.ERROR, errorMessage = "Voz indisponível: o modelo de reconhecimento de fala não está instalado. Digite a pergunta.")
+            }
+            return
+        }
 
         asrStartTimeMs = System.currentTimeMillis()
         // Marca esta gravação como a corrente ANTES de emitir eventos: qualquer evento
@@ -455,6 +548,13 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
      */
     fun processQuestion(question: String, asrMs: Long = 0L) {
         if (question.isBlank()) return
+        if (!_uiState.value.isModelReady) {
+            // f10-dist: nunca chegar no pipeline com o motor descarregado ("Motor Llama não está carregado").
+            _uiState.update {
+                it.copy(stage = PipelineStage.ERROR, errorMessage = "O modelo de linguagem ainda não está pronto (${it.modelStatusMessage}). Aguarde o carregamento ou conclua a configuração inicial.")
+            }
+            return
+        }
 
         val currentHistory = _uiState.value.history
 
