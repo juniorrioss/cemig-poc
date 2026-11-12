@@ -1,242 +1,142 @@
-# cemig-poc — Assistente por voz 100% offline para Normas Regulamentadoras
+# cemig-poc — Assistente CEMIG: perguntas por voz sobre NRs, 100% offline no celular
 
-POC de um assistente de perguntas e respostas por **voz, 100% offline**, sobre Normas
-Regulamentadoras (NRs) do domínio elétrico, rodando **inteiramente no dispositivo Android**
-(Galaxy S21 e S24+), sem internet no momento da execução. O usuário-alvo é o **operário de
-campo**: fala uma pergunta coloquial ("posso subir no poste com chuva?"), o aparelho transcreve,
-recupera o trecho da norma pertinente e sintetiza uma resposta curta **com citação obrigatória da
-fonte** — tudo em PT-BR, sem rede.
+Assistente de segurança do trabalho para o **operário de campo**. Ele faz a pergunta por voz, em
+português coloquial ("posso subir no poste com chuva?"), e o **próprio celular** transcreve a
+fala, busca o trecho pertinente nas **36 Normas Regulamentadoras** e nos **9 manuais oficiais do
+MTE** e responde em poucas frases, **citando a norma e o item**. Depois da configuração inicial,
+tudo roda **em modo avião**: nenhuma chamada de rede e nenhuma nuvem.
 
-Não é um produto; é uma prova de conceito para medir, com honestidade, o que é viável dentro do
-orçamento de latência (≤10 s de voz) e de RAM (coexistência ASR + SLM em 6–8 GB). O repositório
-tem 18 pastas de experimento; **a maioria é histórico**. Comece pelos documentos abaixo antes de
-abrir qualquer pasta.
+É uma prova de conceito CEMIG/CEIA, validada no Samsung Galaxy S24+.
 
-## ▶ ONDE COMEÇAR (handoff)
+- **Instalar o app:** [APK v1.2 no Hugging Face](https://huggingface.co/juniorrios/automobil-ultra-semnexo/resolve/main/apk/cemig-assistente-v1.2.apk)
+  ([card com instruções e requisitos](https://huggingface.co/juniorrios/automobil-ultra-semnexo))
+- **Como chegamos aqui, passo a passo:** [`bench/CAMINHO.md`](bench/CAMINHO.md)
 
-| Documento | Para quê | Papel |
-|---|---|---|
-| **[`docs/AS_IS.md`](docs/AS_IS.md)** | O que é a **última entrega** e **por que** a arquitetura ficou assim (registro de decisões com número + impacto de mudar). | **Continuidade** — leia primeiro se vai continuar o projeto. |
-| [`docs/HISTORICO.md`](docs/HISTORICO.md) | Mapa cronológico dos experimentos: pergunta / veredito / quem superou quem. | Contexto histórico (o que não repetir). |
-| [`docs/relatorio_poc.html`](docs/relatorio_poc.html) | Storytelling autocontido da POC. | **Apresentação** (não é o doc de engenharia). |
-
-> Em 2 minutos, o `AS_IS.md` responde: *por que 2 chunks e não 5? por que a busca não usa a
-> consulta do modelo? por que 1.2B e não 2.6B?* — cada um com o número e o arquivo-fonte.
-
-## Arquitetura vigente (a última entrega)
-
-Pipeline **híbrido de tool-calling**: o modelo decide **quando** buscar/reusar; quando busca, a
-busca externa usa a **fala bruta** (não a consulta reescrita pelo modelo). Detalhes e números em
-[`docs/AS_IS.md`](docs/AS_IS.md) · integração em
-[`android/README_TOOLS_HYBRID.md`](android/README_TOOLS_HYBRID.md).
+## Arquitetura
 
 ```
-  fala (PT-BR)
-      │
-      ▼  Nemotron 3.5 INT8 (sherpa-onnx, ~1,2 s, 91,9% termos técnicos)
-   [ ASR ]
-      │ fala BRUTA
-      ▼  LFM2.5-1.2B tool-trained r128 Q4  →  DECIDE: buscar_norma(...) ou responder direto
-   [ DECISÃO do modelo ]
-      │ (chamou?)
-      ▼  IGNORA a consulta do modelo; busca com FALA BRUTA + classificador NR (gate) + RRF v4
-   [ BUSCA EXTERNA ]  → top-2 chunks
-      │
-      ▼  o mesmo 1.2B sintetiza (citação inline, n_ctx 2048, ≤1 busca/turno)
-   [ SÍNTESE ]
-      │
-      ▼
-   resposta com fonte (ex.: "NR-10, Anexo II")
+ fala (PT-BR)
+    │
+    ▼  Nemotron 3.5 ASR streaming 0.6B INT8 (sherpa-onnx, CPU)
+ [ ASR ] ──► texto da fala, revisável na tela
+    │
+    ▼  LFM3-1.7B v3s400 (GGUF Q4_0, llama.cpp + KleidiAI) decide: chama buscar_norma ou responde direto
+ [ TOOL-CALLING ] (formato XML <tool_call> nativo do LFM3; reusa o contexto no multiturno)
+    │ busca com a FALA CRUA
+    ▼
+ [ RETRIEVER ]  classificador de NR (gate 0,7 / boost 2×)
+                + BM25 FTS5 com expansão ASR-robusta + 2 densos EmbeddingGemma-300M
+                + manuais do MTE como aba própria (liga só quando o manual empata ou supera a norma)
+                ─► RRF ─► top-5
+    │
+    ▼  COMPRESSÃO a 50% dos tokens do top-2 cru (mantém o código do item)
+ [ SÍNTESE ]  o mesmo LFM3 responde com citação (norma + item), ou recusa se o trecho não responde
 ```
 
-**Números do vigente (régua honesta, n=151, `bench/regua`)**: oráculo aprovação **31,4% (Q4) /
-34,9% (bf16)**; híbrido E2E **19,2%** (alucinação 34,2% Q4); recusa F1 **85,4% (Q4) / 90,5%
-(bf16)**; decisão de chamar **F1 95%**. **No S24+**: RAM PSS **3,86 GB**, latência **6–8 s** sem
-busca / **10–12 s** com busca. Opção por flag: **2.6B tool** (`-Pcemig.toolModel=2.6b`, oráculo
-46,1% Q4, mas **18–29 s / 4,3–4,75 GB** — não é o padrão por latência de campo). Procedência de
-cada número em [`docs/AS_IS.md`](docs/AS_IS.md).
+**O modelo.** `LiquidAI/LFM3-1.7B` com três etapas de treino, todas com LoRA r32 só no MLP:
+1. SFT de uso robusto de contexto, com o retriever real e o dado em dobro (`data2x-ep4`);
+2. SFT de tool-calling multiturno no formato nativo (`f4-r32-ep2`);
+3. RLVR curto (GRPO/DAPO, 400 steps) com reward verificável por regra, sem juiz no loop, num pool
+   filtrado por aprendibilidade. O resultado é o **`v3s400`**.
 
-## Como rodar o app
+## Resultados
+
+Medidos no benchmark `UFGCEMIGONA/benchmark_mobile`: 1536 perguntas, 384 × 4 vocabulários (limpo,
+técnico, operacional e leigo). O juiz é o Qwen 27B com a régua honesta: aprovada é a resposta que
+cobre ≥ 50% dos fatos pedidos, sem alucinar, sem recusar e sem truncar. As "151" são perguntas
+coloquiais reais da POC.
+
+| avaliação | `f4-r32-ep2` (antes do RLVR) | **`v3s400` (app)** |
+|---|--:|--:|
+| fim a fim do app ×1536 (aprovação) | 64,1% | **71,8%** |
+| distrator ×1536: alucinação (menor é melhor) | 23,8% | **15,7%** |
+| 151 perguntas coloquiais reais | 12,6% | **21,2%** (p = 0,011) |
+| oráculo ×1536 / ranking ×1536 | 88,5 / 78,1 | 90,0 / 81,6 |
+
+No **Galaxy S24+** com o APK: **8/8** perguntas-exemplo aprovadas em texto e em voz. O 1º token
+visível leva **~8 s** (8,1–8,3 s) e o total ~12 s. O pico de RAM é **~3,7 GB** PSS (3,69 GB).
+Fontes: [`bench/lfm3_p1p2/RESULTS.md`](bench/lfm3_p1p2/RESULTS.md) e
+[`bench/lfm3_f9/RESULTS.md`](bench/lfm3_f9/RESULTS.md).
+
+**Limites conhecidos:**
+- fala coloquial longa (as 151 ficam em 21%);
+- perguntas multihop, que pedem duas buscas;
+- cerca de metade das perguntas de manual ainda não recupera o trecho certo.
+
+A resposta não substitui o SESMT: confira sempre o item citado.
+
+## Quickstart
+
+### 1. Instalar o app (celular, sem PC)
+
+1. Baixe o [`cemig-assistente-v1.2.apk`](https://huggingface.co/juniorrios/automobil-ultra-semnexo/resolve/main/apk/cemig-assistente-v1.2.apk)
+   no celular e instale.
+   - Requisitos: Android 12+, arm64, ≥ 8 GB de RAM e ~2,6 GB livres.
+   - SHA-256 `19c4e12e929cbe60bb52ea5d54e3f728299076df3583c9064b75dbe48e91639b`.
+2. Abra o app com Wi-Fi e toque em **Baixar modelos (2,01 GB)**.
+   - O download acontece uma única vez, continua de onde parou e confere o SHA-256 de cada arquivo.
+3. Quando aparecer "Pronto · 100% offline", o app já funciona em modo avião.
+
+Para instalar via `adb` sem internet no celular, siga o [card do HF](https://huggingface.co/juniorrios/automobil-ultra-semnexo).
+
+### 2. Rodar a mesma pipeline no PC (`inference.py`)
+
+Mesma busca, mesma compressão e mesmo prompt do app, com o GGUF via llama-cpp-python:
 
 ```bash
-./android/setup-sdk.sh                       # OpenJDK 17 + Android SDK 34 (idempotente)
-export JAVA_HOME="$HOME/android-sdk/jdk-17"
-export ANDROID_HOME="$HOME/android-sdk"
-export PATH="$JAVA_HOME/bin:$ANDROID_HOME/platform-tools:$PATH"
+python3.12 -m venv .venv && . .venv/bin/activate
+pip install -r https://huggingface.co/juniorrios/automobil-ultra-semnexo/resolve/main/requirements.txt
+curl -LO https://huggingface.co/juniorrios/automobil-ultra-semnexo/resolve/main/inference.py
+CEMIG_MODEL_VARIANT=v1.1-rlvr python inference.py "Quando trocar de turno, preciso trocar os bloqueios e as etiquetas?"
+```
 
+- `CEMIG_MODEL_VARIANT=v1.1-rlvr` seleciona o **v3s400**, o modelo do app.
+- `--json`, `--file` e `--retrieval-only` estão descritos no card.
+- O espelho do código fica em [`release/`](release/) ([`release/README.md`](release/README.md) e
+  [`release/RESULTS.md`](release/RESULTS.md)).
+
+### 3. Build do app
+
+```bash
+./android/setup-sdk.sh                      # OpenJDK 17 + Android SDK 34 (idempotente)
+export JAVA_HOME="$HOME/android-sdk/jdk-17" ANDROID_HOME="$HOME/android-sdk"
 cd android
-./gradlew :app:testDebugUnitTest             # testes JVM (paridade do renderer, contrato ASR)
-./gradlew assembleRelease -Pcemig.asrEngine=nemotron   # APK com Nemotron ASR + 1.2B tool
-
-# instalar + servir o GGUF tool como override externo (pesos não vão no APK):
-adb install -r app/build/outputs/apk/release/app-release.apk
-adb push lfm2.5-1.2b-tools_1_2b_r128-Q4_0.gguf \
-  /sdcard/Android/data/br.org.ceia.cemigpoc/files/LFM2.5-1.2B-Instruct-QAD-Q4_0.gguf
+./gradlew :app:testDebugUnitTest            # testes JVM (paridade do template, retriever, compressor)
+./gradlew :app:assembleRelease              # padrão: LFM3 v3s400 Q4_0 + Nemotron
 ```
 
-App e engines nativos: [`android/README.md`](android/README.md). Fluxo tool-calling e E2E:
-[`android/README_TOOLS_HYBRID.md`](android/README_TOOLS_HYBRID.md). Pesos GGUF/ONNX e dados
-externos (PDFs das NRs) **nunca** são commitados — ver `AGENTS.md` (venvs, storage externo,
-sharp edges).
+Num clone novo, é preciso popular antes:
+- os submódulos `android/llama.cpp` e `android/whisper.cpp`;
+- os `.so` do sherpa-onnx em `android/sherpa/src/main/jniLibs/arm64-v8a/`;
+- a keystore `android/app/poc-release.jks`.
 
-## Como reconstruir os modelos
+Todos são gitignorados; detalhes em [`bench/lfm3_f10/RESULTS.md`](bench/lfm3_f10/RESULTS.md). Os
+pesos não vão no APK: o app os baixa na configuração inicial. Ao trocar o GGUF ou o ASR, atualize o
+manifesto em `ModelDownloader.kt`.
 
-Cada pasta vigente tem seu README com comandos. Treino/quantização rodam na **DGX Spark**; a
-avaliação e a régua rodam local (`classifier/.venv`) com o juiz vLLM 27B.
+## Para integrar o ASR em outro app
 
-```bash
-make -C corpus v2-all         # índice FTS5 das 36 NRs (fundação)
-make -C classifier all        # classificador NR + híbrido gated
-make -C retrieval4 all        # índice v4 (expansão ASR-robusta) + fusão RRF k=10 (2,1,2)
-# tool-calling (dados VERSIONADOS; treino na Spark):  ver "REPRODUÇÃO" abaixo e tools_v1/README.md
-# régua de qualidade:                               make -C bench/regua all
-```
+O reconhecimento de voz offline (Nemotron 3.5 + sherpa-onnx) tem guia próprio, validado no S24+:
 
-## REPRODUÇÃO
+- [`docs/GUIA_ASR_NEMOTRON.md`](docs/GUIA_ASR_NEMOTRON.md): guia para pessoas;
+- [`docs/AGENT_GUIDE_ASR.md`](docs/AGENT_GUIDE_ASR.md): o mesmo conteúdo em passos executáveis por
+  um agente de código;
+- [`docs/asr_teste_ptbr.wav`](docs/asr_teste_ptbr.wav): áudio de teste.
 
-*"O que eu preciso para replicar cada peça?"* Tudo aqui é **versionado no repo**, exceto os PDFs
-das NRs, os pesos treinados e os modelos ONNX de ASR (todos externos, com caminho e comando de
-reconstrução indicados). Caminhos são relativos à raiz; a Spark é `walcyrios@spark-b431`.
+## Onde está cada peça
 
-### 1. SLM (o modelo embarcado: LFM2.5-1.2B tool-trained)
-
-Insumos (todos versionados salvo o base HF e os pesos):
-
-| Insumo | Onde | Estado |
-|---|---|---|
-| Base | `LiquidAI/LFM2.5-1.2B-Instruct` (Hugging Face, bf16) | externo (público) |
-| **Conjunto de treino** | `tools_v1/data/train_full.jsonl` (4.236 diálogos, 5 famílias, 21,1 MB) | **VERSIONADO** |
-| Manifesto de procedência | `tools_v1/data/train_full.manifest.json` (contagem por família + **sha256 `be60946f04237e78c159a4caab8d4a9cf3ade2c6ed33ce880d126999a94ae145`**) | **VERSIONADO** |
-| Receita de treino | `tools_v1/run_train_tools.sh` (curva de saturação r32 + varredura r16/32/64/128, 1 época, seed 42) | **VERSIONADO** |
-| Índice de recuperação | `corpus/index_hf_36nr.db` (FTS5 das 36 NRs) + índice denso v4 (`retrieval4/`) | **VERSIONADO** |
-| Régua de avaliação | `bench/regua/` (`data/gabarito_151.jsonl` + `ruler.py`) | **VERSIONADO** |
-
-O `train_full.jsonl` **é o arquivo exato usado nos treinos** (sha256 idêntico ao da Spark em
-`~/cemig-poc/tools_v1/data/train_full.jsonl`; conferido nesta publicação). Os splits de degrau
-`train_step{750,1500,3000}.jsonl` são **subconjuntos aninhados** (mesma seed 42), reprodutíveis por
-`tools_v1/prep_train.py` — por isso **não** são versionados.
-
-```bash
-# conferir a integridade do dataset publicado (bate com o manifesto):
-sha256sum tools_v1/data/train_full.jsonl   # be60946f...a94ae145
-wc -l     tools_v1/data/train_full.jsonl   # 4236
-
-# TREINO (na Spark; ver cabeçalho do script para pré-requisitos de memória unificada):
-ssh walcyrios@spark-b431 "cd ~/cemig-poc && WANDB_MODE=online \
-  setsid bash tools_v1/run_train_tools.sh > logs/train_tools.log 2>&1 < /dev/null &"
-
-# AVALIAÇÃO (régua honesta, n=151 — mede a QUALIDADE da resposta, citação fora do gate):
-make -C bench/regua all         # gabarito → rejudge → analyze (juiz vLLM 27B)
-```
-
-> Se você **regerar** o dataset com `tools_v1/gen_dialogs.py` em vez de usar o `train_full.jsonl`
-> versionado, o conjunto será **diferente** (depende do 27B gerador) e os números publicados deixam
-> de ser comparáveis. Para reproduzir os resultados **exatos**, use o arquivo versionado.
-
-### 2. Classificador de NR — 100% versionado
-
-Nenhuma lacuna: dados rotulados, treinador, fontes dos rótulos e export Kotlin estão todos no repo.
-
-| Insumo | Onde |
+| pasta | o quê |
 |---|---|
-| Dados rotulados (1.970 falas) | `classifier/data/labels.jsonl` |
-| Treinador | `classifier/train_classic.py` |
-| Fontes dos rótulos | `retrieval3/data/expansions.jsonl` + `retrieval4/data/expansions_v4.jsonl` + `corpus/qa_pairs_v2.jsonl` (as 151) |
-| Export para o app (Kotlin) | `classifier/data/kotlin_export.json` |
-
-```bash
-make -C classifier all          # classic + compare + hybrid + export (Kotlin puro, NrClassifier.kt)
-```
-
-### 3. Avaliação do tool-calling — suites derivadas (não armazenadas)
-
-As 17 suites de avaliação do tool **não são versionadas de propósito**: são **derivadas** e
-regeneráveis a partir de fontes versionadas, o que é seguro porque as fontes têm **filtro lexical
-anti-contaminação** (Jaccard<0.4 vs holdout) e as NRs 33/16/26 ficam reservadas.
-
-```bash
-python3 tools_v1/build_eval_sets.py   # regenera as suites (VAL + NRs reservadas + holdout 151)
-# medição de qualidade: bench/regua (item 1). Os RESULTADOS (data/*.json) já estão versionados.
-```
-
-### 4. Pesos treinados — FORA do repo (decisão pendente do capitão)
-
-Os adapters LoRA e os GGUFs quantizados (~137 GB) **não estão no repo**; publicá-los é decisão
-ainda pendente. Como reconstruí-los:
-
-- **Onde estão**: DGX Spark, `~/cemig-poc/models/lfm2.5-1.2b-tools_1_2b_r{16,32,64,128}-{bf16,Q4_0}.gguf`
-  (candidato embarcado: **r128 Q4_0**) + `tools_1_2b_step{750,1500,3000}_r32-*.gguf`.
-- **Como reconstruir**: `tools_v1/run_train_tools.sh` (item 1) treina LoRA + requantiza para GGUF na
-  própria Spark, a partir do base HF + `train_full.jsonl` versionado. Log em `~/cemig-poc/logs/train_tools.log`;
-  wandb `cemig-tools-1.2b` (run `lh94m0ve`).
-- **Como servir no app**: o GGUF vai como override externo (não embarcado no APK) — ver `## Como rodar o app`.
-
-### 5. ASR — Nemotron 3.5 INT8 (modelos ONNX externos)
-
-O ASR vigente é **Nemotron 3.5 Streaming 0.6B INT8** (sherpa-onnx). Os arquivos ONNX (encoder
-657 MB etc.) **não são versionados** (peso); origem, variantes e trade-offs de RAM/WER estão em
-[`asr/README.md`](asr/README.md) (INT8 oficial da NVIDIA via sherpa-onnx e o fine-tune PT-BR
-`andrewmulya98/sherpa-onnx-ottema-nemotron-3.5-asr-ptbr-560ms-int8`). Bancada:
-
-```bash
-make asr-data          # gera os conjuntos de áudio (edge-tts)
-make asr-bench         # roda o benchmark no aparelho conectado (ADB)
-```
-
-## Mapa das pastas — VIGENTE vs HISTÓRICO
-
-Ver [`docs/HISTORICO.md`](docs/HISTORICO.md) para o veredito de cada uma.
-
-| Pasta | O quê | Status |
-|---|---|---|
-| `corpus/` | Ingestão/chunking/índice FTS5 das 36 NRs. | **Fundação** |
-| `classifier/` | Classificador NR leve + retrieval híbrido confiança-gated (Kotlin puro). | **Vigente** |
-| `retrieval4/` | Índice v4 (expansão ASR-robusta) + fusão RRF; classificador+pares-de-graça descartado. | **Vigente** |
-| `sft_v3/` | Dados/receita de treino (recusa ≤25%, 4 famílias) reusados pelo tool-calling. | **Vigente** |
-| `tools_v1/` | Treino de tool-calling do 1.2B (o modelo decide quando buscar). | **Vigente** |
-| `tools_oraculo/` | Desenho **híbrido** validado (oráculo/recusa/híbrido) — o que foi ao app. | **Vigente** |
-| `tools_2_6b/` | Tool-calling no 2.6B — 2ª opção de embarque (por flag). | **Vigente (opção 2)** |
-| `android/` | App Kotlin/Compose + engines nativos `:llama`/`:whisper`/`:sherpa`. | **Vigente** |
-| `asr/` | Benchmark de ASR offline PT-BR (Whisper, Nemotron, nativo). | **Fundação** |
-| `bench/regua/` | Régua honesta de qualidade (cobertura de fatos, citação fora do gate). | **Fundação** (métrica oficial) |
-| `bench/prompt_teto/` | Teto do 27B + otimização de prompt (rejeitada). | **Fundação** |
-| `bench/ctx_topk/` | Janela × nº de trechos — confirma topK=2. | **Fundação** |
-| `docai/` | Reprocessamento de tabelas (Document AI) — reparo cirúrgico. | **Fundação** |
-| `retrieval3/` | Retrieval v3 (expansão + fusão RRF). | Superado por `retrieval4/` |
-| `sft_v2/` | 4 famílias + varredura de rank + métrica de recusa. | Superado por `sft_v3/` |
-| `sft_1_2b/` | SFT de síntese pura no 1.2B. | Superado por `tools_v1/` |
-| `bench/` (raiz) | Benchmark de SLMs, juízes, device (harness/perf). | Histórico/fundação |
-
-### Removido na limpeza (camada 1+2) — recuperável pela tag
-
-Estes diretórios foram removidos do `HEAD` para enxugar o repo; o **histórico de commits foi
-preservado** e o material vive na tag anotada **`poc-completa-pre-limpeza`** (commit `3bbd529`).
-Recupere com `git show poc-completa-pre-limpeza:<caminho>` ou
-`git checkout poc-completa-pre-limpeza -- <caminho>`. Inventário e verdicto de cada um em
-[`docs/HISTORICO.md`](docs/HISTORICO.md) (seção "Artefatos removidos na limpeza").
-
-| Pasta (na tag) | O quê | Status |
-|---|---|---|
-| `finetune/` | LoRA do rewriter de query (17 pesos versionados). | **Descartado** · removido |
-| `finetune2/` | SFT+DPO do sintetizador 2.6B. | **Descartado** · removido |
-| `slm_oraculo/` | Prova do teto em oráculo + SFT de destilação. | Superado por `sft_v2/`/`v3/` · removido¹ |
-| `bench/results/`, `bench/judge151/`, `bench/sintese2/` | Saídas de bench/juiz + shootout de sintetizadores. | Superado por `bench/regua/` · removido |
-| `retrieval3/results/vec0_*_rank.json` (2 arq.) | Rankings densos intermediários (~19 MB cada); os `bin_*` ficaram. | Intermediário · removido |
-
-¹ O módulo `slm_oraculo/corpus_fix.py` (usado por `sft_v2/` e `tools_oraculo/`, vigentes) foi
-**movido para `corpus/corpus_fix.py`** — segue vivo no `HEAD`.
-
-## Hardware-alvo e requisitos
-
-- **Aparelhos**: Galaxy S21 (6 GB, piso) e S24+ (Exynos 2400, 12 GB, alvo). O vigente (Nemotron +
-  1.2B) mede **3,86 GB PSS no S24+**; no **S21 aperta o LMK** — para baixa RAM o `asr/README.md`
-  recomenda Whisper Base como ASR. Não há E2E medido no S21 (ver lacunas em `docs/AS_IS.md`).
-- **Latência**: orçamento de voz ≤10 s ponta a ponta.
-- **Offline**: sem rede na execução; toda inferência roda no dispositivo. Fonte da resposta é
-  **obrigatória**. Bancadas em GPU (RTX 5070 / DGX Spark) servem só à **qualidade** — a latência de
-  campo é medida/projetada no próprio aparelho.
+| [`android/`](android/) | app Kotlin/Compose: UI "Assistente CEMIG", motores nativos (llama.cpp, sherpa-onnx), retriever e compressor portados com paridade byte a byte |
+| [`release/`](release/) | `inference.py` autocontido, card do HF e validação de replicação do zero |
+| [`bench/CAMINHO.md`](bench/CAMINHO.md) | a linha vencedora, um passo por seção, com número e artefato |
+| `bench/lfm3_f3`, `f3b`, `f4`, `p1p2` | treino do modelo: robustez de contexto, tool-calling e RLVR |
+| `bench/lfm3_f5`, `f6` | ponto de operação da busca: gate, compressão e manuais |
+| `bench/lfm3_f7`, `f8`, `f9`, `f10` | embarque no S24+, UI, promoção do v3s400 e distribuição do APK v1.2 |
+| `retrieval4/`, `classifier/`, `corpus/` | retriever v4 (expansão ASR-robusta + densos), classificador de NR e índice FTS5 das 36 NRs |
+| `asr/` | bancada de ASR offline PT-BR |
 
 ---
 
-*Estado desta POC e o porquê de cada escolha: [`docs/AS_IS.md`](docs/AS_IS.md). História completa:
-[`docs/HISTORICO.md`](docs/HISTORICO.md). Notas de ambiente e sharp edges: `AGENTS.md`.*
+Histórico completo da exploração, com todas as tentativas e os desvios:
+[`docs/historico/`](docs/historico/README.md). Notas de ambiente e sharp edges: `AGENTS.md`.

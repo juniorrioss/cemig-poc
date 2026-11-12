@@ -3,11 +3,10 @@
 This file is the project's committed home for project-intrinsic agent knowledge: build, test, release, architecture, and sharp-edge notes that should travel with the code.
 
 ## Handoff canônico (leia primeiro)
-- **`docs/AS_IS.md`** — documento de handoff de engenharia: **a última entrega** (pipeline híbrido de tool-calling, 1.2B r128 Q4 + Nemotron ASR) e o **registro de decisões** (por que 2 chunks, por que fala crua e não a consulta do modelo, por que 1.2B e não 2.6B), cada número com arquivo-fonte + impacto de mudar + quando revisitar. Inclui lacunas/limites e divergências brief×fontes.
-- **`docs/HISTORICO.md`** — mapa cronológico lean dos 18 experimentos (pergunta/veredito/quem superou quem; vigente vs histórico vs descartado).
-- **`docs/relatorio_poc.html`** — apresentação (storytelling); NÃO é o doc de engenharia.
-- `README.md` (raiz) — handoff: onde começar, rodar o app, reconstruir modelos, mapa das pastas.
-- Ao concluir uma frente nova ou mudar o vigente, **atualize `docs/AS_IS.md` e `docs/HISTORICO.md`** (não deixe o handoff envelhecer).
+- **VIGENTE = APK v1.2 com LFM3-1.7B `v3s400` Q4_0** + retriever do ponto op F6 (gate 0,7/2×, manuais com margem densa, top-5 → compressão 50%) + tool-calling XML nativo + Nemotron ASR. Bateria oficial: e2e ×1536 71,8 · distrator aluc. 15,7 · 151: 21,2 · S24+ 1º token ~8 s / PSS ~3,7 GB.
+- **`bench/CAMINHO.md`** — a linha vencedora em passos (fonte do README). **`README.md`** (raiz) conta SÓ essa linha (ordem do capitão: nada de becos sem saída no README).
+- **Histórico** (becos sem saída, entregas superadas): `bench/REPORT.md` (linha LFM3 completa) e `docs/historico/` (`AS_IS.md`/`HISTORICO.md`/`README_LFM25.md`/`relatorio_poc.html` = fase LFM2.5). Seções LFM2.5 abaixo são histórico.
+- Ao promover algo ao app: acrescente o passo no `bench/CAMINHO.md`, atualize números/link do APK no `README.md` e registre a fase no `bench/REPORT.md`. Guias de ASR para terceiros: `docs/GUIA_ASR_NEMOTRON.md` + `docs/AGENT_GUIDE_ASR.md`.
 
 ## Architecture & Corpus Pipeline (`corpus/`)
 - **Corpus directory**: `corpus/` contains the ingestion, chunking, indexing, and evaluation pipeline for regulatory standards (NRs) targeted at Android offline RAG.

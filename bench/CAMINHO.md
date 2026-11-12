@@ -1,4 +1,4 @@
-# O caminho que deu certo — do LFM3-1.7B cru ao APK v1.1
+# O caminho que deu certo — do LFM3-1.7B cru ao APK v1.2
 
 > Este documento conta **só a linha vencedora**, do começo ao fim. Cada passo traz o que se fez,
 > o número que mudou e onde está o artefato. Os desvios testados e descartados ficam no relatório
@@ -28,6 +28,7 @@
 | 10 | P1: filtro de aprendibilidade | **49,2%** do universo descartado (fácil ou mal especificado) | 11.313 itens |
 | 11 | P2: RLVR verificável (`v3s400`) | distrator aluc. **23,8 → 15,7** · fim a fim **64,1 → 71,8** · 151 **12,6 → 21,2** | 1536 + 151 |
 | 12 | APK v1.1 | 8/8 texto (×2) e voz · 1º token 8,1–8,3 s · PSS 3,69 GB | aparelho |
+| 13 | APK v1.2: instala limpo | setup baixa 2,01 GB em 3,6 min (SHA-256, retomada) · 3/3 norma/manual/voz | aparelho |
 
 ---
 
@@ -179,6 +180,17 @@ e 8/8 em voz** · 1º token visível **8,1–8,3 s**, o mesmo do f4 na mesma ses
 ~12 s · **pico PSS 3,69 GB**.
 **Artefato.** `bench/lfm3_f9/RESULTS.md`. No HF `juniorrios/automobil-ultra-semnexo`:
 `v1.1-rlvr/` (safetensors + GGUF Q4_0) e `apk/cemig-assistente-v1.1-rlvr.apk`.
+
+## 13. APK v1.2 — instalação limpa, sem PC
+
+**O que se fez.** Os APKs anteriores dependiam de `adb push` dos pesos. A v1.2 ganhou a tela
+"Configuração inicial", que baixa o GGUF v3s400, o EmbeddingGemma e o Nemotron do HF para o
+armazenamento interno (retomada por HTTP Range, SHA-256 conferido, checagem de espaço). Os índices
+densos passaram a vir nos assets. O modelo é o mesmo da v1.1.
+**Número.** Instalação limpa no S24+: download de **2,01 GB em 3,6 min**, retomada testada,
+**3/3** perguntas-chave (norma, manual e voz) com resposta idêntica à da v1.1.
+**Artefato.** `bench/lfm3_f10/RESULTS.md`; `android/.../ModelDownloader.kt`. No HF:
+`apk/cemig-assistente-v1.2.apk` (o v1.1 foi removido).
 
 ---
 
